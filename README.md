@@ -1,6 +1,6 @@
 # Causality Lab
 
-Laboratoř Kauzální fyziky (Pavel Šikula). Testuje, zda gravitace a setrvačnost jsou dva projevy jedné
+Laboratoř Kauzální fyziky. Testuje, zda gravitace a setrvačnost jsou dva projevy jedné
 dynamiky kauzálního odporu, na sprinklovaných kauzálních uspořádáních. Testy jsou seřazené podle fází
 roadmapy a každá fáze patří k jedné části teorie (`docs/roadmapa.md`).
 
@@ -23,8 +23,6 @@ Python 3.10 nebo novější, knihovny numpy a scipy:
     python run.py results F1.2             uložené výsledky testu
     python run.py report                   přegeneruje docs/seznam_testu.md
 
-Paměť: jeden proces potřebuje podle testu do ~1,5 GB RAM; procesů nastav nejvýš tolik, kolik vychází
-RAM / 1,5 GB, s rezervou pro systém.
 
 ## Jak číst výsledek
 
@@ -48,10 +46,5 @@ Hlavička každého testu (`TEST = {...}`) obsahuje fázi, část teorie, otázk
 nulový model, úroveň závěru, použitá měřidla a závislosti. Kritérium se po běhu nemění; změna kritéria je
 nová revize testu s novým ID (např. F1.2b).
 
-## Stav první verze
-
-Jádro, kalibrační testy K.2–K.9 a test F1.2 (integrální A5′). Ostatní testy jsou naplánované v
-`docs/planovane_testy.csv`. Výsledky GTS Lab 2.x a 3.x jsou převedené na nová ID v
-`results/historie_3x/prehled.csv`.
 
 Dokumentace česky, kód anglicky. Licence MIT.
