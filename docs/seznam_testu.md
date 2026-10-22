@@ -1,6 +1,6 @@
 # Seznam testů Causality Lab
 
-Vygenerováno příkazem `python run.py report` (2026-10-18 11:17). Neupravuj ručně: hlavičky testů jsou v `phases/`, plán v `docs/planovane_testy.csv`, historie v `results/historie_3x/prehled.csv`.
+Vygenerováno příkazem `python run.py report`. Neupravovat ručně: hlavičky testů jsou v `phases/`, plán v `docs/planovane_testy.csv`, historie v `results/historie_3x/prehled.csv`.
 
 ## Implementované testy
 
