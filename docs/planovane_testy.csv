@@ -1,0 +1,38 @@
+ID;Otázka;Úroveň;Závislosti;Poznámka
+K.1;Od jaké velikosti je geometrie čitelná z řádu ve 3+1?;kalibrace;—;výsledek z E54 platí (od N* = 32 000), měřidlo se převede, až ho bude potřebovat F0 nebo F6
+K.12;Konverguje samokonzistentní pole (a) ve 2+1 ke spojitému řešení, když zdroj roste vůči ℓ_k?;kalibrace;K.11c, F2.7;implementováno 22. 10. po F2.7 (NEROZHODNUTO, P_cs/P_a = 1,21): sobě podobná rodina σ = 8 / 16 / 32 (náboj qσ² pevný, R = 12,5σ) a kontrola stěny σ = 8, R = 200; PROŠEL při |P_cs − P_a| <= P_a/16, měřidlo i s kontrolou kvadratury (|L2 − L1| <= P_a/64); vývoj s hrubou kvadraturou 1,41 / 1,21 / 1,13 / 1,14 pro σ = 4 / 8 / 16 / 32 (jemnější kvadratura při σ = 32: 1,108), stěna bez vlivu; F2.7 se zopakuje při nejmenším σ, které projde
+F0.4;Je nelokálnost vlastnost substrátu, nebo měřidla?;mechanismus;K.4, K.5;škálování ℓ_k a nelokálnosti s N, kalibrace na plochých strukturách
+F0.5;Operační definice tuhosti I;kalibrace;K.3;hustota diamantů ve světotrubici, nezávislá na Π a na klasifikaci oblasti
+F1.3;Jaká je asymptotika pole (BD-3)?;mechanismus (formální);K.4;Π − Π_vac ∝ −1/r pro r ≫ ℓ_k, odlišit 1/r, 1/r², 1/r³, sklon −1,04 (3+1) a −0,12 (2+1) na [5, 20] ℓ_k už spočten
+F1.4;Sčítají se pole dvou zdrojů?;mechanismus;F1.2;superpozice v toleranci
+F1.5;Škáluje pole se silou zdroje?;mechanismus;F1.2;Π − 1 ∝ M
+F2.6;Netriviální pole (dva zdroje, nesouměrná konfigurace);mechanismus;F2.5;
+F2.8;Newtonova limita pro zkušební tělesa;řetězec;F1.3, F2.7;a ∝ M/r², nezávislé na tělese, přechod F1/F2
+F3.3b;Vytváří přenášená zásoba (paměť) lokalizovanou trvalou strukturu?;mechanismus;F3.2, F3.3;implementováno 21. 10. (rozhodnutí autora po F3.3 capacity): zásoba Q se přenáší po linkách k potomkům a znovu nabízí, bez dědění Π a I, kapacita konstantní; kontrola = stejné grafy se zásobou zahozenou; části q99 a q90; pořadí boostované soustavy bitově shodné
+F3.3c;Vytváří kopírovaný (neředěný) pulz lokalizovanou trvalou strukturu?;mechanismus;F3.2, F3.3b;implementováno 21. 10. (hypotéza autora: stav struktury je intenzivní, kopíruje se, nedělí): pulz ω = 1 žije jen v saturovaných událostech a působí jako zdroj; skládání max a od hlavního rodiče; kapacity Q_0,99 a Q_0,9; kontrola = bez pulzu
+F3.3e;Při kterém ΔQ_crit je struktura nejsilnější a projde ta hodnota na nových datech?;mechanismus;F3.3d;implementováno 21. 10. (návrh autora po F3.3d crit025 a crit050): search = průzkumná mřížka ΔQ_crit z příkazové řádky (lo, hi, step, n_seeds) na stejných kauzálních množinách, hledaná veličina min(d_pers − 2 SE, d_loc − 2 SE), ZAZNAMENÁNO; confirm = jedna hodnota z příkazové řádky, 128 nových sprinklingů, kritéria F3.3d, druhá hodnota na stejném seedu odmítnuta; průchod v jednom vybraném bodě bránu F3 (široký rozsah bez ladění) nesplní, šířku okna rozhodne F3.4; search ZAZNAMENÁNO 21. 10. (optimum 0,2, min(d − 2 SE) = +0,002), confirm 0,2 NEPROŠEL 21. 10. (d_pers −0,009 ± 0,007, d_loc +0,010 ± 0,004); zbývá jen znovu uložit záznam search (první se neuložil)
+F3.3f;Promění zpětná vazba hodin (Π) prahovaný pulz v lokalizovaný trvalý uzel?;mechanismus;F3.3, F3.3e;implementováno 22. 10. (krok D plánu autora, hypotéza autora: zpomalení hodin nad prahem udrží uzel): pulz main, ΔQ_crit = 0,2 (z dat F3.3e), kanál capacity (C·Π) nebo source (s·Π), Π_sat = 0,5, m = 2; tři větve, rozhoduje práh + kanál proti F3.2; vtažení vazeb do jámy vyžaduje dynamiku řádu (axiom 7)
+F3.4;Vzniká struktura bez ladění?;mechanismus;F3.3;sken předem daného širokého rozsahu
+F3.5;Vlastnosti struktury;mechanismus;F0.5, K.8, F3.3;velikost, stabilita, ω, I a Π měřené nezávisle, Z = I/Π až z nich
+F4.1;Klade struktura odpor změně pohybu?;mechanismus;F3.3 nebo vložená struktura;
+F4.2;Je setrvačná hmotnost úměrná ω?;mechanismus;F4.1, F3.5;
+F4.3;Zpomalují se vnitřní hodiny pohybující se struktury?;mechanismus;F4.1;ω′ = ω √(1 − v²/c²)
+F4.4;Platí E = mc²?;mechanismus;F4.2;samostatné kritérium
+F4.5;Je dráha nejmenšího odporu táž jako dráha maximálního řetězce?;řetězec;F2.5, F4.1;R = Σ Z Δτ proti F2
+F5.1;Je struktura zdrojem pole?;řetězec;F1.2, F3.3;profil a síla podle A5′ se silou z ω
+F5.2;Přitahují se dvě struktury?;řetězec;F5.1, F4.1;
+F5.3;Shodují se setrvačná, pasivní a aktivní hmotnost?;řetězec;F4.2, F5.1;struktury různé velikosti a složení
+F5.4;Newtonova limita ze struktur;řetězec;F5.1–F5.3;bez vloženého zdroje pole
+F6.4;Má soubor uspořádání s globální akcí fázi podobnou varietě?;mechanismus;K.1, K.4;Benincasa–Dowkerova akce
+F6.5;Vzniká geometrie, nebo je vynucená výběrem?;mechanismus;F6.4;
+F6.6;Plyne z D_eff(χ) MONDovská relace v⁴ = GMa₀?;mechanismus;F6.4;bez ladění podle dat
+F6.7;Odvození A1, A2 a a₀ = cH₀/2π;mechanismus (formální);—;motivováno, neodvozeno
+F7.1;Vyplývá zúžení kuželů c_eff = c·Π²?;mechanismus;F5.1, K.2, F6;parametr γ = 1, bez c_eff jen poloviční ohyb (R86). Odvozeno 19. 10. z lokální limity □_g − R/2: rovnice (a) B_g Π = κρ_s má v geometrii H1 (γ = 1) ve 3+1 tvar 2Π|∇Π|² = κρ_s, tedy ve vakuu Π = konst.; (a) a H1 nemohou platit současně, rozhodnutí o tvaru rovnice pole je na autorovi
+F7.2;Shapirovo zpoždění;mechanismus;F7.1;
+F7.3;Tenzorové vlny (H2);mechanismus;F5.2, F6;
+F8.1;Sluneční soustava: γ (Cassini), β (perihelium Merkuru), η (MICROSCOPE);predikce;F5, F7;F6 není podmínkou
+F8.2;Rotační křivky, RAR, a₀(z) ∝ H(z);predikce;F5, F6.6, F6.7;
+F8.3;Bílí trpaslíci a práh χ_rig;predikce;F3, F5;okno 38–40 až po odvození mapy χ_K ↔ χ_obs, NICER samostatně
+F8.4;Kupy galaxií;predikce;F5;včetně Bullet Cluster
+F8.5;CMB;predikce;kosmologické pozadí a poruchy, případně F6;
+F8.6;Termodynamika horizontu;predikce (formální);dle odvození;entropie ∝ plocha, Hawkingova teplota

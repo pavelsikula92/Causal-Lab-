@@ -1,0 +1,4 @@
+  3+1 nonlocal equation in units of l_k: R = 40, source radius 1, window [5, 20]
+     res1 g = -1.050 dev 0.039; res2 g = -1.040 dev 0.027
+     convergence |dg| = 0.010 (tol 0.05), |d dev| = 0.012 (tol 0.02) -> OK
+     (g is reported only; whether the profile is 1/r is the question of F1.3)

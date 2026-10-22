@@ -1,0 +1,8 @@
+2+1 cylinder T = 7.0, N = 56000, s0 = 1.0; analysis |x| < 0.4, t in [3.5, 5.5); C = Q_0.99 = 5.0752 (8 calibration sprinklings); channel 'source', Pi_sat = 0.5, m = 2.0; 128 sprinklings = 64 pairs
+  saturated fraction (analysis events): off 0.0093, on 0.0000; Pi of saturated events (median) off 0.500, on 0.500; min Pi on 0.500
+  Delta_pers: off +0.0079 +- 0.0080, on undefined   (F3.2: +0.006 +- 0.006)
+  E_loc:      off +0.0059 +- 0.0037, on -0.0000 +- 0.0000   (F3.2: +0.004 +- 0.004)
+  paired d_pers = undefined (margin 0.05) -> INCONCLUSIVE; d_loc = +0.0056 +- 0.0189 (margin 0.05) -> EQUIVALENT; no saturation with feedback
+  switch-off at t = 5.5: saturated fraction in the last slab before it, then in the slabs of 0.25 after it: off 0.0112 0.0000 0.0000 0.0000 0.0000 0.0000; on 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+     r_s of each slab after with the last slab before (nan: no saturated cells left): off -0.073 +nan +nan +nan +nan; on +nan +nan +nan +nan +nan  (reported)
+instrument: off arm = route_capacity: OK; balance: OK; stationary routing converged: OK; invalid statistics: OK (invalid 0/192)

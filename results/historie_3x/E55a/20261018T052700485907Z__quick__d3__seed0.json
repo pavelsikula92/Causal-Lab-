@@ -1,0 +1,223 @@
+{
+ "base_seed": 0,
+ "card_sha": "24e288e268570367f60ae3207289797a617096570990713447186bb408ca59e8",
+ "eid": "E55a",
+ "elapsed_s": 3.4,
+ "lines": [
+  "2+1  N=4000  window t in [2.5, 3.5]  a=0.05  R_abs=0.4; calibration F0_tube = 1.0767 (2 sprinklings)",
+  "  radial bins (outer edges) 0.050 0.100 0.150 0.200 0.250 0.300 0.350 0.400",
+  "  F0(r) calibration       1.0767 0.0628 0.0565 0.0508 0.0446 0.0427 0.0385 0.0336",
+  "  C=0.5: k_pred 0.4644  k_meas 0.4732 +- 0.0039 (ratio 1.0188, tol 0.05); saturated outside 0/1250 = 0.00e+00 (max 0.001); tube saturated (min) 1.000; max outer offered / C 0.124 -> met",
+  "     saturated fraction per bin 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00",
+  "     measured Pi (probe): tube median 0.4858, outside median 1.0000",
+  "     reference only (uncorrected model, R145): F0(r_sat) = C gives r_sat = 0.050; measured saturated zone up to r = 0.050",
+  "  C=0.04: k_pred 0.0372  k_meas 0.0379 +- 0.0003 (ratio 1.0188, tol 0.05); saturated outside 0/1250 = 0.00e+00 (max 0.001); tube saturated (min) 1.000; max outer offered / C 0.124 -> met",
+  "     saturated fraction per bin 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00",
+  "     measured Pi (probe): tube median 0.0399, outside median 1.0000",
+  "     reference only (uncorrected model, R145): F0(r_sat) = C gives r_sat = 0.300; measured saturated zone up to r = 0.050",
+  "instrument: balance worst 7.9e-17 (tol 1e-12); C = inf stores 0; probe balance 2.2e-16, size sensitivity 6.9e-07 (tol 0.001); C < s = 1 for every C: True -> OK"
+ ],
+ "part": "d3",
+ "payload": {
+  "balance_worst": 7.894919286223336e-17,
+  "calibration": {
+   "F0_profile": [
+    1.0766508873120677,
+    0.06281960117711238,
+    0.056533534183840696,
+    0.05078152718975006,
+    0.044588116340953776,
+    0.0426769612642567,
+    0.038461034134189026,
+    0.033639298409434235
+   ],
+   "F0_tube": 1.0766508873120677,
+   "F0_tube_seeds": [
+    1.0725359072713803,
+    1.0807658673527554
+   ]
+  },
+  "per_C": {
+   "0.04": {
+    "f_out": 0.0,
+    "k_meas": [
+     0.03785237986538435,
+     0.0003083097299659103
+    ],
+    "k_pred": 0.037152247280325686,
+    "max_out_offered_over_C": 0.12368822086730458,
+    "n_sat_out": 0,
+    "ok": true,
+    "pi_out_median": 1.0,
+    "pi_tube_median": 0.03990666516477137,
+    "r_sat_measured": 0.05,
+    "r_sat_naive": 0.3,
+    "sat_profile": [
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tube_sat_min": 1.0
+   },
+   "0.5": {
+    "f_out": 0.0,
+    "k_meas": [
+     0.4731547483173044,
+     0.0038538716245739013
+    ],
+    "k_pred": 0.464403091004071,
+    "max_out_offered_over_C": 0.12368822086730459,
+    "n_sat_out": 0,
+    "ok": true,
+    "pi_out_median": 1.0,
+    "pi_tube_median": 0.48579780591821514,
+    "r_sat_measured": 0.05,
+    "r_sat_naive": 0.05,
+    "sat_profile": [
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tube_sat_min": 1.0
+   }
+  },
+  "probe_balance": 2.185891476785291e-16,
+  "probe_size": 6.935220098758244e-07,
+  "seeds": [
+   {
+    "ell": 0.09226350743220144,
+    "n_out": 585,
+    "n_tube": 6,
+    "per_C": {
+     "0.04": {
+      "balance": 3.581364595565021e-17,
+      "k_meas": 0.03816068959535027,
+      "max_out_offered_over_C": 0.108517079578245,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03990525513718469,
+      "probe_balance": 0.0,
+      "probe_size": 2.308955155544412e-08,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.4770086199418783,
+      "max_out_offered_over_C": 0.108517079578245,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.48558888441676007,
+      "probe_balance": 2.185891476785291e-16,
+      "probe_size": 2.7716134876065723e-07,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.09226350743220144,
+    "n_out": 665,
+    "n_tube": 13,
+    "per_C": {
+     "0.04": {
+      "balance": 2.960594732333751e-17,
+      "k_meas": 0.037544070135418446,
+      "max_out_offered_over_C": 0.12368822086730458,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.039908075192358054,
+      "probe_balance": 1.5058363506743117e-16,
+      "probe_size": 7.647409380057146e-08,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 7.894919286223336e-17,
+      "k_meas": 0.4693008766927305,
+      "max_out_offered_over_C": 0.12368822086730459,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.4860067274196702,
+      "probe_balance": 0.0,
+      "probe_size": 6.935220098758244e-07,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   }
+  ]
+ },
+ "plan": {
+  "C": [
+   0.5,
+   0.04
+  ],
+  "D": 3,
+  "N": 4000,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "T": 4.0,
+  "a": 0.05,
+  "estimate": "~15-25 min (about 30 s per sprinkling for links and routings in the container)",
+  "n_bins": 7,
+  "n_cal": 2,
+  "n_seeds": 2,
+  "t1": 2.5,
+  "t2": 3.5,
+  "where": "local (user)"
+ },
+ "python": "3.13.16",
+ "quick": true,
+ "title": "Screening by saturation: an inserted source with capacity-limited routing",
+ "verdict": "SUPPORTED",
+ "version": "3.3.0"
+}

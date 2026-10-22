@@ -1,0 +1,55 @@
+{
+ "id": "K.4",
+ "part": "quadrature",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_04_bd_expected.py",
+ "test_sha256": "a883b9ef16275969049be1dfbbd65f1f5f9bb5b6515c7aca0698924cc6f90fb7",
+ "core_sha256": "8febfaaa6f6f6111de01bb1e190dec4ecbfc26738bbe73fb0128ddb2d9cc174b",
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261018T092032Z",
+ "duration_s": 1.6,
+ "params": {
+  "tol_lightcone": 0.005,
+  "tol_local": 0.015,
+  "conv_g": 0.05,
+  "conv_dev": 0.02,
+  "shape_R": 40.0,
+  "shape_a": 1.0,
+  "shape_lo": 5.0,
+  "shape_hi_frac": 0.5,
+  "res1": [
+   0.25,
+   1.06,
+   3
+  ],
+  "res2": [
+   0.2,
+   1.04,
+   5
+  ],
+  "mode": "quadrature"
+ },
+ "lines": [
+  "  (a) 1+1 light cone 0.6400 vs quadrature 0.6395 (tol 0.005) -> OK",
+  "  (b) local limit E[B f] / lap f: 1+1 1.0001, 2+1 0.9892, 3+1 0.9910 (tol 0.015) -> OK",
+  "  (c) hat rows -4.3198445 vs direct -4.3198445 (rel 9.8e-14) -> OK"
+ ],
+ "data": {
+  "lightcone": 0.6400164094158365,
+  "quadrature": 0.6394620342996234,
+  "local_limit": {
+   "2": 1.0000721522420004,
+   "3": 0.98922810837799,
+   "4": 0.9909670278380239
+  },
+  "rows_rel": 9.827883577929528e-14
+ }
+}

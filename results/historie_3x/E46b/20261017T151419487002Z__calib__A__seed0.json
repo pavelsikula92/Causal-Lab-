@@ -1,0 +1,41 @@
+{
+ "base_seed": 0,
+ "calib": true,
+ "card_sha": "6510fedade8e71f14e412cf9871be39ea77304bcee0c607770ce7ec3b178003b",
+ "eid": "E46b",
+ "elapsed_s": 1122.9,
+ "lines": [
+  "E46b part A, 2+1 N0=16000 (1123s)",
+  "  mirror identity worst: L 0.0e+00, S 0.0e+00, U 0.0e+00",
+  "  E44b 0.0448 +- 0.0085 vs 0.0584",
+  "  path weights sum to 1 within 1.3e-15",
+  "calibration checks: mirror identity (all functionals): OK; 1+1 E44b: OK; path weights normalised: OK"
+ ],
+ "part": "A",
+ "payload": {
+  "checks": {
+   "1+1 E44b": true,
+   "mirror identity (all functionals)": true,
+   "path weights normalised": true
+  }
+ },
+ "plan": {
+  "D": 3,
+  "N0": 16000,
+  "T": 1.0,
+  "b": 0.5,
+  "e44b_n": 20000,
+  "e44b_seeds": 16,
+  "eps": 0.1,
+  "estimate": "~9 hours (31 s per seed in the container) + ~5 min checks",
+  "mirror_seeds": 16,
+  "n_seeds": 1024,
+  "soft": 0.2,
+  "where": "local (user)"
+ },
+ "python": "3.13.6",
+ "quick": false,
+ "title": "Specificity of the maximal-weight principle vs universality of the substrate",
+ "verdict": "CALIBRATED",
+ "version": "3.2.0"
+}

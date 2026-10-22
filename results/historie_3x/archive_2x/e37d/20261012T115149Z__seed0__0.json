@@ -1,0 +1,635 @@
+{
+ "experiment": "e37d",
+ "lab_version": "2.7.0",
+ "saved_utc": "20261012T115149Z",
+ "config": {
+  "sizes": "500,1000,2000",
+  "c1_c": "2,8",
+  "l1_c": "8",
+  "l1_kappa": "2,8",
+  "l2_c": "16",
+  "l2_K": "8,32",
+  "n_seeds": 2,
+  "n_action": 30,
+  "n_intervals": 40,
+  "require_gate": 1,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "QUICK SMOKE TEST (sizes 500,1000,2000), not the registered run; gate passed (E37a calibrated ['1+1', '2+1', '3+1']); growth audits ok; NO_CANDIDATE; C1: interval test passes 1/2 (D 2.58-2.58), past fraction 0.06-0.51; L1-: interval test passes 0/2, past fraction 0.51-0.57; L1+: interval test passes 0/2, past fraction 0.26-0.41; L2: interval test passes 0/2, past fraction 0.76-0.81; links per element over all cells 1.9-7.1",
+ "notes": "sizes=[500, 1000, 2000] seeds=2 n_action=30 elapsed=11s\ngate: E37a saved 20261012T114930Z, calibrated for ['1+1', '2+1', '3+1'], controls rejected: True, signature v3\n\nTARGETS (E37a, largest size):\n  1+1: links 8.5 (gamma_L 0.13), past fraction 0.531 (by size 0.535/0.525/0.530/0.531), overlap ratio 1.33, N/H 46.5\n  2+1: links 52.0 (gamma_L 0.39), past fraction 0.252 (by size 0.257/0.247/0.252/0.252), overlap ratio 1.67, N/H 186.2\n  3+1: links 106.2 (gamma_L 0.62), past fraction 0.106 (by size 0.101/0.110/0.108/0.106), overlap ratio 1.54, N/H 432.8\n\n  arm  knobs            interval label                              D_MM  D_ch    sd       links by size       gL/gF      past fr. by size   ov.r     N/H    dS_2/3/4 .05 crit I/L/A/P\n  C1   c=2              MANIFOLD_LIKE(D=2.58)                       2.36  2.80  0.21         1.8/1.9/1.9  0.03/-0.04        0.11/0.07/0.06   0.99    66.4    -0.6/0.9/2.4 +-+-\n  C1   c=8              NOT_MANIFOLD_LIKE(spread 0.48 > 0.4; size   2.67  2.58  0.48         3.3/3.6/4.0   0.14/0.14        0.60/0.56/0.51   1.00    24.6    -3.3/1.6/5.6 -...\n  L1-  c=8 kappa=2      NOT_MANIFOLD_LIKE(size drift 0.57)          2.45  2.15  0.39         2.7/2.9/3.1   0.10/0.06        0.59/0.56/0.51   1.01    20.9    -1.7/2.5/6.2 -...\n  L1-  c=8 kappa=8      NOT_MANIFOLD_LIKE(spread 0.41 > 0.4; size   2.35  2.04  0.41         2.2/2.5/2.5   0.11/0.06        0.67/0.60/0.57   0.99    15.8    -1.0/2.7/5.7 -...\n  L1+  c=8 kappa=2      NOT_MANIFOLD_LIKE(spread 0.52 > 0.4; size   2.75  2.53  0.52         4.7/5.3/5.7   0.14/0.09        0.51/0.45/0.41   1.01    34.6    -5.1/0.7/5.3 -...\n  L1+  c=8 kappa=8      NOT_MANIFOLD_LIKE(spread 0.47 > 0.4; size   3.03  2.56  0.47         6.1/6.8/7.1   0.10/0.08        0.33/0.29/0.26   1.02    47.7   -6.9/-0.4/4.3 -...\n  L2   c=16 K=8         NOT_MANIFOLD_LIKE(spread 0.54 > 0.4; scale  2.04  1.67  0.54         3.0/3.3/3.7   0.15/0.15        0.84/0.83/0.81   1.00    11.9    -1.7/1.6/4.0 -...\n  L2   c=16 K=32        NOT_MANIFOLD_LIKE(spread 0.58 > 0.4; scale  2.19  1.82  0.58         3.2/3.6/4.2   0.18/0.23        0.81/0.79/0.76   1.01    13.3    -2.3/1.5/4.4 -...\n\nSEED DEPENDENCE (sd over seeds at the largest size):\n  C1   c=2              D_MM 0.02  past fr. 0.001  links 0.01  | local gamma_L 0.04/0.02  hub1% 0.04\n  C1   c=8              D_MM 0.05  past fr. 0.006  links 0.10  | local gamma_L 0.13/0.15  hub1% 0.02\n  L1-  c=8 kappa=2      D_MM 0.02  past fr. 0.006  links 0.04  | local gamma_L 0.12/0.08  hub1% 0.02\n  L1-  c=8 kappa=8      D_MM 0.06  past fr. 0.008  links 0.03  | local gamma_L 0.17/0.04  hub1% 0.03\n  L1+  c=8 kappa=2      D_MM 0.07  past fr. 0.003  links 0.09  | local gamma_L 0.18/0.10  hub1% 0.02\n  L1+  c=8 kappa=8      D_MM 0.10  past fr. 0.011  links 0.12  | local gamma_L 0.14/0.06  hub1% 0.02\n  L2   c=16 K=8         D_MM 0.14  past fr. 0.005  links 0.03  | local gamma_L 0.12/0.17  hub1% 0.02\n  L2   c=16 K=32        D_MM 0.03  past fr. 0.007  links 0.02  | local gamma_L 0.16/0.21  hub1% 0.02\n\ncrit I/L/A/P  interval / links (gamma_L, gamma_F, count, local scaling, hubs) / smeared action / past\n              fraction (within 30% of the target and constant in N);\n              + met, - failed, . not evaluated (no calibrated d*).\nov.r          overlap ratio: J of an element's links vs MATCHED pairs (same heights,\n              past sizes within 15%); a diagnostic, not a criterion (targets in E37a).\ngrowth audits: all ok",
+ "gate": {
+  "e37a_saved_utc": "20261012T114930Z",
+  "calibrated_dims": [
+   2,
+   3,
+   4
+  ],
+  "controls_ok": true,
+  "signature_version": 3
+ },
+ "gate_satisfied": true,
+ "cells": {
+  "C1:2": {
+   "arm": "C1",
+   "knobs": [
+    2
+   ],
+   "label": "MANIFOLD_LIKE(D=2.58)",
+   "numbers": {
+    "D_MM": 2.356813228532701,
+    "D_chain": 2.7964063675443995,
+    "D_sd": 0.20544334258175628,
+    "D_MM_small": 2.240683659896604,
+    "D_MM_large": 2.476512079800159,
+    "size_drift": 0.3345720106444787,
+    "height_exponent": 0.23565285946279435,
+    "D_height": 4.243530090318651,
+    "D": 2.5766097980385503,
+    "heights": [
+     22,
+     22.5,
+     30.5
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.03243844039758905,
+   "gamma_future": -0.03763322043487227,
+   "gamma_links_local": [
+    0.04079377523249413,
+    0.024083105562683848
+   ],
+   "future_hub_share": 0.04000392699528761,
+   "seed_sd": {
+    "D_MM": 0.0226457726959684,
+    "past_fraction": 0.0008027854288545523,
+    "links_upper": 0.014142135623730963
+   },
+   "links_upper": 1.933,
+   "links_by_size": [
+    1.848,
+    1.9009999999999998,
+    1.933
+   ],
+   "past_fraction_by_size": [
+    0.10963708362844775,
+    0.07099126122656912,
+    0.05539585763558075
+   ],
+   "overlap_ratio": 0.9922227509398927,
+   "per_layer": 66.44880174291939,
+   "dS_eps005_by_d": {
+    "2": -0.641863059293275,
+    "3": 0.9225893294008933,
+    "4": 2.364908985784144
+   },
+   "d_star": 3,
+   "criteria": {
+    "interval": true,
+    "links": false,
+    "action": true,
+    "past_fraction": false
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "4"
+  },
+  "C1:8": {
+   "arm": "C1",
+   "knobs": [
+    8
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.48 > 0.4; size drift 0.66)",
+   "numbers": {
+    "D_MM": 2.6676016683522903,
+    "D_chain": 2.583187446112162,
+    "D_sd": 0.4759209279878032,
+    "D_MM_small": 2.8041118679539068,
+    "D_MM_large": 2.544139816527604,
+    "size_drift": 0.6634924140380463,
+    "height_exponent": 0.251619051643351,
+    "D_height": 3.974261859222872,
+    "D": 2.625394557232226,
+    "heights": [
+     57.5,
+     72.5,
+     81.5
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.1393272766321017,
+   "gamma_future": 0.1368788803133425,
+   "gamma_links_local": [
+    0.12683002223548254,
+    0.1518245310287211
+   ],
+   "future_hub_share": 0.021484396218713675,
+   "seed_sd": {
+    "D_MM": 0.04716529848937451,
+    "past_fraction": 0.006288357949533488,
+    "links_upper": 0.09687362902255671
+   },
+   "links_upper": 4.0395,
+   "links_by_size": [
+    3.33,
+    3.636,
+    4.0395
+   ],
+   "past_fraction_by_size": [
+    0.5952043562397371,
+    0.5622993041255719,
+    0.5099588599763046
+   ],
+   "overlap_ratio": 1.0022406556517232,
+   "per_layer": 24.56298975286317,
+   "dS_eps005_by_d": {
+    "2": -3.2932492119608368,
+    "3": 1.5588355282079482,
+    "4": 5.557663252487659
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1-:8,2": {
+   "arm": "L1-",
+   "knobs": [
+    8,
+    2.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(size drift 0.57)",
+   "numbers": {
+    "D_MM": 2.453790894927806,
+    "D_chain": 2.148530563304625,
+    "D_sd": 0.3943784110585481,
+    "D_MM_small": 2.5879007451549114,
+    "D_MM_large": 2.3312955148721812,
+    "size_drift": 0.5723779332693084,
+    "height_exponent": 0.259436655131692,
+    "D_height": 3.8545054456256094,
+    "D": 2.3011607291162157,
+    "heights": [
+     67,
+     80.5,
+     96
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.10387598516630213,
+   "gamma_future": 0.05585245087906966,
+   "gamma_links_local": [
+    0.12313343888185137,
+    0.08461853145075285
+   ],
+   "future_hub_share": 0.024122033153448387,
+   "seed_sd": {
+    "D_MM": 0.019881534125068854,
+    "past_fraction": 0.0058912822291206915,
+    "links_upper": 0.03818376618407376
+   },
+   "links_upper": 3.072,
+   "links_by_size": [
+    2.66,
+    2.8970000000000002,
+    3.072
+   ],
+   "past_fraction_by_size": [
+    0.5915844493663486,
+    0.5551901970012871,
+    0.5081718999800509
+   ],
+   "overlap_ratio": 1.0071908016462012,
+   "per_layer": 20.869565217391305,
+   "dS_eps005_by_d": {
+    "2": -1.7326472537748705,
+    "3": 2.4730514277225604,
+    "4": 6.165605571966287
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1-:8,8": {
+   "arm": "L1-",
+   "knobs": [
+    8,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.41 > 0.4; size drift 0.63)",
+   "numbers": {
+    "D_MM": 2.350890497509681,
+    "D_chain": 2.0421134163672656,
+    "D_sd": 0.41020774843618846,
+    "D_MM_small": 2.4847715694850194,
+    "D_MM_large": 2.2291664640724775,
+    "size_drift": 0.6278448907578422,
+    "height_exponent": 0.312720785038113,
+    "D_height": 3.197740757392012,
+    "D": 2.1965019569384734,
+    "heights": [
+     82,
+     103.5,
+     126.5
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.10527941906768291,
+   "gamma_future": 0.06227898632459693,
+   "gamma_links_local": [
+    0.16566557801887677,
+    0.04489326011648908
+   ],
+   "future_hub_share": 0.02684810826011936,
+   "seed_sd": {
+    "D_MM": 0.060139096459505145,
+    "past_fraction": 0.008063572323328043,
+    "links_upper": 0.027577164466275457
+   },
+   "links_upper": 2.5294999999999996,
+   "links_by_size": [
+    2.186,
+    2.452,
+    2.5294999999999996
+   ],
+   "past_fraction_by_size": [
+    0.6736235973902016,
+    0.602130134857038,
+    0.5740691095957985
+   ],
+   "overlap_ratio": 0.9926661461471366,
+   "per_layer": 15.83030909773495,
+   "dS_eps005_by_d": {
+    "2": -0.9531097405532344,
+    "3": 2.6881444509107117,
+    "4": 5.693411892695004
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1+:8,2": {
+   "arm": "L1+",
+   "knobs": [
+    8,
+    2.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.52 > 0.4; size drift 0.52)",
+   "numbers": {
+    "D_MM": 2.747112076205667,
+    "D_chain": 2.5264717256072062,
+    "D_sd": 0.5185749137330709,
+    "D_MM_small": 2.8075338918861235,
+    "D_MM_large": 2.692549706691352,
+    "size_drift": 0.519841340588755,
+    "height_exponent": 0.13650924720320762,
+    "D_height": 7.325511058686012,
+    "D": 2.6367919009064367,
+    "heights": [
+     48,
+     52,
+     58
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.13907131383539192,
+   "gamma_future": 0.09069927314049352,
+   "gamma_links_local": [
+    0.17949076505078057,
+    0.09865186262000326
+   ],
+   "future_hub_share": 0.022291283025602224,
+   "seed_sd": {
+    "D_MM": 0.07446238568240551,
+    "past_fraction": 0.002510339449438703,
+    "links_upper": 0.09263098833543788
+   },
+   "links_upper": 5.7115,
+   "links_by_size": [
+    4.71,
+    5.334,
+    5.7115
+   ],
+   "past_fraction_by_size": [
+    0.5093332492774008,
+    0.4482697745962132,
+    0.406642624800943
+   ],
+   "overlap_ratio": 1.0072137813272222,
+   "per_layer": 34.575260804769,
+   "dS_eps005_by_d": {
+    "2": -5.136212970201122,
+    "3": 0.6696852269549745,
+    "4": 5.259863193633622
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1+:8,8": {
+   "arm": "L1+",
+   "knobs": [
+    8,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.47 > 0.4; size drift 0.51)",
+   "numbers": {
+    "D_MM": 3.025798591741477,
+    "D_chain": 2.5562700429088063,
+    "D_sd": 0.4734233546623813,
+    "D_MM_small": 3.0390759335459734,
+    "D_MM_large": 3.016840609463543,
+    "size_drift": 0.5106380224679015,
+    "height_exponent": 0.2075187496394221,
+    "D_height": 4.818841679306414,
+    "D": 2.791034317325142,
+    "heights": [
+     31.5,
+     36.5,
+     42
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.10258270111198675,
+   "gamma_future": 0.08446796119617453,
+   "gamma_links_local": [
+    0.14074774274308233,
+    0.06441765948089129
+   ],
+   "future_hub_share": 0.024319900322089402,
+   "seed_sd": {
+    "D_MM": 0.10387392829680561,
+    "past_fraction": 0.01073407679364747,
+    "links_upper": 0.12020815280171303
+   },
+   "links_upper": 7.076,
+   "links_by_size": [
+    6.138,
+    6.7669999999999995,
+    7.076
+   ],
+   "past_fraction_by_size": [
+    0.32965732781470614,
+    0.29212763854732715,
+    0.25776084839056496
+   ],
+   "overlap_ratio": 1.024978760232381,
+   "per_layer": 47.72727272727273,
+   "dS_eps005_by_d": {
+    "2": -6.874660746072907,
+    "3": -0.43621712412318236,
+    "4": 4.340808799177367
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "3"
+  },
+  "L2:16,8": {
+   "arm": "L2",
+   "knobs": [
+    16,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.54 > 0.4; scale drift 2.48 -> 1.70)",
+   "numbers": {
+    "D_MM": 2.0431907613165095,
+    "D_chain": 1.6662006532737577,
+    "D_sd": 0.5378771763750083,
+    "D_MM_small": 2.4810925014717213,
+    "D_MM_large": 1.7027041222463595,
+    "size_drift": 0.41411981257988373,
+    "height_exponent": 0.30547885462704993,
+    "D_height": 3.2735490029935796,
+    "D": 1.8546957072951336,
+    "heights": [
+     110,
+     141,
+     168
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.14642006380120925,
+   "gamma_future": 0.1497411250662404,
+   "gamma_links_local": [
+    0.12111403890761228,
+    0.17172608869480643
+   ],
+   "future_hub_share": 0.01833296498241707,
+   "seed_sd": {
+    "D_MM": 0.14426342473448067,
+    "past_fraction": 0.004936260413837187,
+    "links_upper": 0.026870057685088673
+   },
+   "links_upper": 3.707,
+   "links_by_size": [
+    3.026,
+    3.2910000000000004,
+    3.707
+   ],
+   "past_fraction_by_size": [
+    0.8410051425905931,
+    0.8300245736174952,
+    0.8080610884555777
+   ],
+   "overlap_ratio": 1.0032461907806574,
+   "per_layer": 11.919965942954448,
+   "dS_eps005_by_d": {
+    "2": -1.7114885014256291,
+    "3": 1.553230429195513,
+    "4": 3.989924662844179
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L2:16,32": {
+   "arm": "L2",
+   "knobs": [
+    16,
+    32.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.58 > 0.4; scale drift 2.60 -> 1.87; size drift 0.53)",
+   "numbers": {
+    "D_MM": 2.191571343508258,
+    "D_chain": 1.8184994509225771,
+    "D_sd": 0.5769530983421335,
+    "D_MM_small": 2.6031862481722783,
+    "D_MM_large": 1.8699487990597845,
+    "size_drift": 0.5303355797259428,
+    "height_exponent": 0.2759521060709301,
+    "D_height": 3.623817242195507,
+    "D": 2.0050353972154173,
+    "heights": [
+     103,
+     127,
+     151
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.18479053523938901,
+   "gamma_future": 0.22743301682557687,
+   "gamma_links_local": [
+    0.16393124524786157,
+    0.2056498252309166
+   ],
+   "future_hub_share": 0.019168398542212584,
+   "seed_sd": {
+    "D_MM": 0.03118984794293646,
+    "past_fraction": 0.007045325644295976,
+    "links_upper": 0.02262741699796954
+   },
+   "links_upper": 4.155,
+   "links_by_size": [
+    3.216,
+    3.603,
+    4.155
+   ],
+   "past_fraction_by_size": [
+    0.809560321352716,
+    0.7946686558337929,
+    0.7577304310229863
+   ],
+   "overlap_ratio": 1.0054212111037792,
+   "per_layer": 13.25957147874956,
+   "dS_eps005_by_d": {
+    "2": -2.3090876033537184,
+    "3": 1.5126178385862683,
+    "4": 4.382452583207089
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  }
+ },
+ "candidates": [],
+ "per_arm": {
+  "C1": {
+   "n_manifold": 1,
+   "D_range": 0.0,
+   "D_min": 2.5766097980385503,
+   "D_max": 2.5766097980385503,
+   "follows_knobs": false,
+   "past_fraction_range": [
+    0.05539585763558075,
+    0.5099588599763046
+   ]
+  },
+  "L1-": {
+   "n_manifold": 0,
+   "D_range": 0.0,
+   "D_min": null,
+   "D_max": null,
+   "follows_knobs": false,
+   "past_fraction_range": [
+    0.5081718999800509,
+    0.5740691095957985
+   ]
+  },
+  "L1+": {
+   "n_manifold": 0,
+   "D_range": 0.0,
+   "D_min": null,
+   "D_max": null,
+   "follows_knobs": false,
+   "past_fraction_range": [
+    0.25776084839056496,
+    0.406642624800943
+   ]
+  },
+  "L2": {
+   "n_manifold": 0,
+   "D_range": 0.0,
+   "D_min": null,
+   "D_max": null,
+   "follows_knobs": false,
+   "past_fraction_range": [
+    0.7577304310229863,
+    0.8080610884555777
+   ]
+  }
+ },
+ "audit_failures": 0,
+ "criteria": {
+  "D_TOL": 0.6,
+  "GAMMA_TOL": 0.2,
+  "LINKS_FACTOR": 2.0,
+  "ACTION_TOL": 1.0,
+  "ACTION_EPS": 0.05,
+  "PAST_TOL": 0.3,
+  "LOCAL_SPREAD": 0.3,
+  "HUB_FACTOR": 2.0
+ },
+ "design": "2.7.0 registered: pairwise S(A), matched overlap, four sizes"
+}

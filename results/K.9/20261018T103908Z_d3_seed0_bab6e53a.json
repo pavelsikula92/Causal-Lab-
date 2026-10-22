@@ -1,0 +1,46 @@
+{
+ "id": "K.9",
+ "part": "d3",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_09_topology_nulls.py",
+ "test_sha256": "bab6e53a42c6d5ef8d12dec273c06d89a068286f943eb899f3c2f6c961738def",
+ "core_sha256": "8febfaaa6f6f6111de01bb1e190dec4ecbfc26738bbe73fb0128ddb2d9cc174b",
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261018T103908Z",
+ "duration_s": 47.9,
+ "params": {
+  "kept_max": 0.5,
+  "N_dag": 16000,
+  "N_check": 4000,
+  "N_strict": 1500,
+  "swaps_per_edge": 10.0,
+  "strict_trials": 300000,
+  "local_ell": 1.0,
+  "redundant_sample": 300,
+  "T": 6.0,
+  "R": 0.5,
+  "D": 3
+ },
+ "lines": [
+  "2+1",
+  "  (a) covering check vs brute force on a random DAG: equal (15 redundant of 89)",
+  "  (b) original links N=4000: redundant edges 0",
+  "  (c) DAG null N=16000: forward True, no duplicates True, degrees exact True, original edges kept 0.147 (max 0.5); non-covering edges 0.873 (reported)",
+  "  (d) strict null N=1500: redundant after 0, degrees exact True; accepted 3414 of 300000 trials, original edges kept 0.902 (reported)"
+ ],
+ "data": {
+  "dag_kept": 0.14702336228136084,
+  "dag_noncovering": 0.8733333333333333,
+  "strict_kept": 0.9016714866918288,
+  "strict_accepted": 3414,
+  "strict_tried": 300000
+ }
+}

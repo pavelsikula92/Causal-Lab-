@@ -1,0 +1,12 @@
+2+1: field = continuum solution of (a), Gaussian source sigma = 8, q = 0.01 (Pi(0) = 0.710), R = 100; grid step 2, ratio 1.12, 28 nodes; Q_src = 4.0212
+  r                           4.0        24.0        27.8        32.2        37.3        43.2        50.0
+  source (continuum)   +8.825e-03  +1.111e-04  +2.392e-05  +3.050e-06  +1.926e-07  +4.739e-09  +3.294e-11
+  spline L1            +7.272e-03  +1.755e-04  +7.580e-05  +1.185e-06  +4.280e-05  +2.989e-05  -4.198e-05   Q_far/Q_src = +0.04157  [160, 8, 48, 6, 24, 1]
+  spline L2            +7.272e-03  +1.755e-04  +7.591e-05  +1.192e-06  +4.283e-05  +2.988e-05  -4.197e-05   Q_far/Q_src = +0.04160  [240, 8, 96, 8, 48, 1]
+  spline L3            +7.272e-03  +1.755e-04  +7.591e-05  +1.197e-06  +4.284e-05  +2.988e-05  -4.196e-05   Q_far/Q_src = +0.04161  [320, 10, 144, 10, 64, 1]
+  reference L2         +7.272e-03  +1.755e-04  +7.590e-05  +1.137e-06  +4.289e-05  +2.996e-05  -4.207e-05   Q_far/Q_src = +0.04161  [240, 8, 96, 8, 48, 1]
+  linear L2            +7.347e-03  +1.462e-04  +5.639e-05  -3.366e-05  +8.200e-05  +6.212e-05  -1.022e-04   Q_far/Q_src = +0.03802  [240, 8, 96, 8, 48, 1]
+  convergence: |Q_far(L3) - Q_far(L2)| / Q_src = 0.00001 (tol 0.01) -> OK
+  instrument: |Q_far(spline L2) - Q_far(reference)| / Q_src = 0.00001 -> OK
+  linear geometry (K.11b instrument) at L2: Q_far/Q_src = +0.03802; difference from the smooth reference -0.00359 (reported only)
+  coarsest level within tolerance of the finest: L1 [160, 8, 48, 6, 24, 1]

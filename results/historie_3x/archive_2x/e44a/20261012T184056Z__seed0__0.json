@@ -1,0 +1,154 @@
+{
+ "experiment": "e44a",
+ "lab_version": "2.15.0",
+ "saved_utc": "20261012T184056Z",
+ "config": {
+  "sizes": "1000,2000,4000",
+  "n_seeds": 3,
+  "dims": "2,3,4",
+  "n_pairs": 20,
+  "min_interval": 50,
+  "quick": 0
+ },
+ "seed": 0,
+ "verdict": "SIGN NOT CONFIRMED (1+1 SIGN_CONFIRMED; 2+1 SIGN_CONFIRMED; 3+1 SHORTEST_NOT_SEPARATED)",
+ "notes": "sizes=[1000, 2000, 4000] seeds=3 pairs/seed=20 min_interval=50 elapsed=7s\n\nd    N      interval  steps L/S     dev L / S        polygon tau L / S\n1+1  1000        282    31/4      0.112 / 0.345    0.787 / 0.198\n1+1  2000        560    44/5      0.098 / 0.324    0.761 / 0.148\n1+1  4000       1205    66/5      0.081 / 0.329    0.758 / 0.116\n     slope dev_long -0.23, slope tau_short -0.39 -> SIGN_CONFIRMED\n2+1  1000        112     9/2      0.145 / 0.446    0.710 / 0.398\n2+1  2000        249    11/2      0.134 / 0.459    0.681 / 0.306\n2+1  4000        563    16/3      0.130 / 0.291    0.679 / 0.254\n     slope dev_long -0.08, slope tau_short -0.32 -> SIGN_CONFIRMED\n3+1  1000         62     5/2      0.206 / 0.380    0.666 / 0.643\n3+1  2000        104     6/2      0.177 / 0.409    0.686 / 0.565\n3+1  4000        168     7/2      0.173 / 0.430    0.643 / 0.502\n     slope dev_long -0.13, slope tau_short -0.18 -> SHORTEST_NOT_SEPARATED",
+ "results": {
+  "2": {
+   "medians": {
+    "dev_long": [
+     0.11232262471315164,
+     0.0975294890085549,
+     0.08148093017485081
+    ],
+    "dev_short": [
+     0.34468222201923876,
+     0.3236564385761646,
+     0.3293476315942472
+    ],
+    "tau_long": [
+     0.7868158416526752,
+     0.7614375031946937,
+     0.7583272507894743
+    ],
+    "tau_short": [
+     0.1980504344531753,
+     0.14814234624904488,
+     0.11607685344211166
+    ],
+    "steps_long": [
+     31.0,
+     44.0,
+     66.0
+    ],
+    "steps_short": [
+     4.0,
+     5.0,
+     5.0
+    ],
+    "interval": [
+     282.0,
+     560.5,
+     1205.0
+    ]
+   },
+   "slope_dev_long": -0.23155709919683323,
+   "slope_tau_short": -0.38539377443912903,
+   "longest_tracks": true,
+   "shortest_deviates": true,
+   "verdict": "SIGN_CONFIRMED"
+  },
+  "3": {
+   "medians": {
+    "dev_long": [
+     0.1448638658307289,
+     0.13406272904187294,
+     0.12989846727329674
+    ],
+    "dev_short": [
+     0.44587176338978085,
+     0.4588420068114707,
+     0.2910264409858011
+    ],
+    "tau_long": [
+     0.7098805266490404,
+     0.6809117299921035,
+     0.6790058329617401
+    ],
+    "tau_short": [
+     0.39778718272070535,
+     0.3064960345230258,
+     0.25381617739920037
+    ],
+    "steps_long": [
+     9.0,
+     11.0,
+     15.5
+    ],
+    "steps_short": [
+     2.0,
+     2.0,
+     3.0
+    ],
+    "interval": [
+     112.5,
+     249.0,
+     563.0
+    ]
+   },
+   "slope_dev_long": -0.07865668635185498,
+   "slope_tau_short": -0.3241063832509584,
+   "longest_tracks": true,
+   "shortest_deviates": true,
+   "verdict": "SIGN_CONFIRMED"
+  },
+  "4": {
+   "medians": {
+    "dev_long": [
+     0.20599175177693424,
+     0.17682962532080512,
+     0.1730622871782791
+    ],
+    "dev_short": [
+     0.3804866035331963,
+     0.4091437181539743,
+     0.4304584004015659
+    ],
+    "tau_long": [
+     0.6659859539856031,
+     0.6864371515872141,
+     0.6433686735203024
+    ],
+    "tau_short": [
+     0.6432193227800067,
+     0.5652830847759189,
+     0.5017684799983636
+    ],
+    "steps_long": [
+     5.0,
+     6.0,
+     7.0
+    ],
+    "steps_short": [
+     2.0,
+     2.0,
+     2.0
+    ],
+    "interval": [
+     62.0,
+     104.0,
+     168.5
+    ]
+   },
+   "slope_dev_long": -0.12564759820426533,
+   "slope_tau_short": -0.1791444500736171,
+   "longest_tracks": true,
+   "shortest_deviates": false,
+   "verdict": "SHORTEST_NOT_SEPARATED"
+  }
+ },
+ "criteria": {
+  "SHORT_TAU_FACTOR": 0.5,
+  "LONG_DEV_FACTOR": 0.5
+ }
+}

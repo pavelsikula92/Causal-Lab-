@@ -1,0 +1,274 @@
+{
+ "base_seed": 0,
+ "card_sha": "6eb00fa9f7526a6115ad920b643683d75f4fc6d4e434ddfb3b67763b675bcae3",
+ "eid": "E55b",
+ "elapsed_s": 23.6,
+ "lines": [
+  "2+1  N=6000  s0=1.0  window t in [3.5, 5.5), |x| < 0.4; cells 0.1, slabs 0.25; 4 sprinklings = 2 pairs",
+  "  capacity C = Q_0.99(F0) = 5.3676 from 1 calibration sprinklings (1302 events; median F0 3.575)",
+  "  saturated fraction (analysis events) 0.0046; measured Pi of saturated events (median) 0.9710",
+  "  persistence: r_s within nan, between -0.0935; Delta_pers +nan +- nan (95 % +nan .. +nan); margin 0.05 -> INCONCLUSIVE",
+  "  localization: Moran I -0.0728; E_loc -0.0503 +- 0.0230 (95 % -0.0937 .. -0.0070); margin 0.05 -> INCONCLUSIVE",
+  "  uncapped F0 quantiles 50/90/99 %: sprinklings 3.575 4.496 5.368; degree_time_DAG_null 3.247 4.183 5.002",
+  "  degree_time_DAG_null (reported): C_null = Q_0.99 = 5.0016; saturated at C_null 0.0044, at the real C 0.0016; Delta_pers -0.0163 +- nan (INCONCLUSIVE); E_loc +0.0054 +- 0.0186 (EQUIVALENT)",
+  "     null structure: original edges kept 0.151 (max 0.152); non-covering edges 0.880 (sampled; original links 0.000)",
+  "     time span 10/50/90 %: original links 0.132 0.327 0.679; null covering 0.014 0.039 0.081; null non-covering 0.136 0.369 0.919",
+  "instrument: balance: OK; C = inf stores nothing: OK; probe balance: OK; probe size: OK; DAG null valid (time-forward, no duplicates, degrees exact): OK; DAG null mixed (original edges kept <= kept_max): OK; invalid statistics <= invalid_max: FAILS (balance 0.0e+00, probe 1.4e-16 / 9.0e-06, invalid 2/6)"
+ ],
+ "part": "main",
+ "payload": {
+  "E_loc": [
+   -0.05033602147072197,
+   0.023049192407620277,
+   [
+    -0.09371222794414058,
+    -0.006959814997303373
+   ]
+  ],
+  "E_loc_null": [
+   0.005359549009048975,
+   0.018577077070443444,
+   [
+    -0.02262328510054812,
+    0.04977308917515993
+   ]
+  ],
+  "capacity": {
+   "C": 5.367587621830695,
+   "C_null": 5.001591079675634,
+   "F0_median": 3.574977519823602,
+   "F0_null_q": [
+    3.2466604008194206,
+    4.1834301821367115,
+    5.001591079675634
+   ],
+   "F0_q": [
+    3.574977519823602,
+    4.496074671126225,
+    5.367587621830695
+   ],
+   "n_events": 1302,
+   "q": 0.99
+  },
+  "decisions": {
+   "loc": "INCONCLUSIVE",
+   "loc_null": "EQUIVALENT",
+   "pers": "INCONCLUSIVE",
+   "pers_null": "INCONCLUSIVE"
+  },
+  "delta_pers": [
+   "nan",
+   "nan",
+   [
+    "nan",
+    "nan"
+   ]
+  ],
+  "delta_pers_null": [
+   -0.01625744300799821,
+   "nan",
+   [
+    "nan",
+    "nan"
+   ]
+  ],
+  "instrument": {
+   "C = inf stores nothing": true,
+   "DAG null mixed (original edges kept <= kept_max)": true,
+   "DAG null valid (time-forward, no duplicates, degrees exact)": true,
+   "balance": true,
+   "invalid statistics <= invalid_max": false,
+   "probe balance": true,
+   "probe size": true
+  },
+  "pairs": [
+   {
+    "between": -0.11289221318543739,
+    "delta": "nan",
+    "within": "nan"
+   },
+   {
+    "between": -0.07417582417582419,
+    "delta": "nan",
+    "within": "nan"
+   }
+  ],
+  "pairs_null": [
+   {
+    "between": "nan",
+    "delta": "nan",
+    "within": -0.05263157894736842
+   },
+   {
+    "between": -0.06707589032533513,
+    "delta": -0.01625744300799821,
+    "within": -0.08333333333333334
+   }
+  ],
+  "seeds": [
+   {
+    "E_loc": -0.07767857142857142,
+    "I_obs": -0.06785714285714282,
+    "balance": 0.0,
+    "ell": 0.09226350743220144,
+    "null_E_loc": "nan",
+    "null_I_obs": "nan",
+    "null_kept": 0.15012191836650113,
+    "null_redundant": 0.86,
+    "null_sat_at_C": 0.0,
+    "null_sat_fraction": 0.0,
+    "null_valid": true,
+    "orig_redundant": 0.0,
+    "pi_sat_median": 0.9713647097446776,
+    "probe_balance": 1.4456028966473392e-16,
+    "probe_size": 8.96282638795931e-06,
+    "sat_fraction": 0.001579778830963665,
+    "span_null_covering_q": [
+     0.019079046405568435,
+     0.035801264193541016,
+     0.09416830942427595
+    ],
+    "span_null_redundant_q": [
+     0.13882880491499874,
+     0.30756831347375346,
+     0.7481479979090864
+    ],
+    "span_orig_q": [
+     0.11780592360776626,
+     0.3549699713398091,
+     0.6900347419285064
+    ],
+    "stored_inf_max": 0.0
+   },
+   {
+    "E_loc": -0.018102597055527875,
+    "I_obs": -0.09449573281851768,
+    "balance": 0.0,
+    "ell": 0.09226350743220144,
+    "null_E_loc": 0.04977308917515993,
+    "null_I_obs": 0.03758652415629171,
+    "null_kept": 0.1503648615620963,
+    "null_redundant": 0.86,
+    "null_sat_at_C": 0.002377179080824089,
+    "null_sat_fraction": 0.005546751188589541,
+    "null_valid": true,
+    "orig_redundant": 0.0,
+    "pi_sat_median": 0.9928858539620453,
+    "probe_balance": 0.0,
+    "probe_size": 8.97603991334428e-06,
+    "sat_fraction": 0.003961965134706815,
+    "span_null_covering_q": [
+     0.006865665763602013,
+     0.04111586451209348,
+     0.0705522528497518
+    ],
+    "span_null_redundant_q": [
+     0.13548638393359802,
+     0.3019262559264453,
+     0.6948631575387262
+    ],
+    "span_orig_q": [
+     0.10974736412319283,
+     0.3192743690823625,
+     0.7241424416439887
+    ],
+    "stored_inf_max": 0.0
+   },
+   {
+    "E_loc": 0.004182967060921128,
+    "I_obs": -0.05440491308721099,
+    "balance": 0.0,
+    "ell": 0.09226350743220144,
+    "null_E_loc": -0.011071157047464886,
+    "null_I_obs": -0.03943539833788601,
+    "null_kept": 0.15232460079669255,
+    "null_redundant": 0.92,
+    "null_sat_at_C": 0.001607717041800643,
+    "null_sat_fraction": 0.005627009646302251,
+    "null_valid": true,
+    "orig_redundant": 0.0,
+    "pi_sat_median": 0.9707180947899581,
+    "probe_balance": 1.4456028966473392e-16,
+    "probe_size": 8.786636225055489e-06,
+    "sat_fraction": 0.006430868167202572,
+    "span_null_covering_q": [
+     0.0066634856528406065,
+     0.009609928957609704,
+     0.05018701296206221
+    ],
+    "span_null_redundant_q": [
+     0.14183803162010955,
+     0.4578650331829386,
+     1.190715055049722
+    ],
+    "span_orig_q": [
+     0.15565133617834834,
+     0.31512048772561774,
+     0.6499091477903806
+    ],
+    "stored_inf_max": 0.0
+   },
+   {
+    "E_loc": -0.10974588445970973,
+    "I_obs": -0.07444000035911806,
+    "balance": 0.0,
+    "ell": 0.09226350743220144,
+    "null_E_loc": -0.02262328510054812,
+    "null_I_obs": -0.06702686356430017,
+    "null_kept": 0.1493073790897372,
+    "null_redundant": 0.88,
+    "null_sat_at_C": 0.0023677979479084454,
+    "null_sat_fraction": 0.006314127861089187,
+    "null_valid": true,
+    "orig_redundant": 0.0,
+    "pi_sat_median": 0.9702828350992609,
+    "probe_balance": 1.4456028966473392e-16,
+    "probe_size": 8.883097961986941e-06,
+    "sat_fraction": 0.006314127861089187,
+    "span_null_covering_q": [
+     0.023505303846971914,
+     0.06840433047054284,
+     0.10731830125925013
+    ],
+    "span_null_redundant_q": [
+     0.12974024400921474,
+     0.409280061044933,
+     1.043036148327543
+    ],
+    "span_orig_q": [
+     0.14575984447309684,
+     0.31779626654803894,
+     0.6505388189721598
+    ],
+    "stored_inf_max": 0.0
+   }
+  ]
+ },
+ "plan": {
+  "D": 3,
+  "N": 6000,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "T": 6.0,
+  "cell": 0.1,
+  "estimate": "~4 hours (about 110 s per sprinkling with the null in the container) + ~10 min calibration",
+  "min_count": 3,
+  "n_cal": 1,
+  "n_perm": 4,
+  "n_rbins": 16,
+  "n_seeds": 4,
+  "q": 0.99,
+  "redundant_sample": 50,
+  "s0": 1.0,
+  "slab": 0.25,
+  "swaps_per_edge": 10.0,
+  "t1": 3.5,
+  "t2": 5.5,
+  "where": "local (user)"
+ },
+ "python": "3.13.16",
+ "quick": true,
+ "title": "Homogeneous driving with capacity: extra localization and persistence without feedback (baseline for E56)",
+ "verdict": "INSTRUMENT_FAILS",
+ "version": "3.3.0"
+}

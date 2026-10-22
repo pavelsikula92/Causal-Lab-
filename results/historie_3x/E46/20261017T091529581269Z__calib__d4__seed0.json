@@ -1,0 +1,75 @@
+{
+ "base_seed": 0,
+ "calib": true,
+ "card_sha": "e72eb0d4bcc82cf931ab60d4977a4956fac411bc595f4bc1647bbac6563d6b7e",
+ "eid": "E46",
+ "elapsed_s": 7326.3,
+ "lines": [
+  "3+1 (7326s); prediction 0.0432",
+  "  mirror identity: worst |d(P) + d(MP)| = 0.0e+00 (tol 1e-12); 64 seeds at N0=16000, 4 at N0=64000; sd(d) 0.057",
+  "  diagnostic (not a gate): eps = 0 at N0=16000, 512 seeds: 0.0026 +- 0.0025; |mean| + 2 SE = 0.0077 vs 0.0108",
+  "  1+1 E44b at N=20000, 16 seeds: 0.0448 +- 0.0085 vs 0.0584",
+  "  chain weights sum to 1 within 2.2e-16",
+  "calibration checks: mirror identity + non-trivial reading: OK; 1+1 E44b: OK; chain average normalised: OK"
+ ],
+ "part": "d4",
+ "payload": {
+  "checks": {
+   "1+1 E44b": true,
+   "chain average normalised": true,
+   "mirror identity + non-trivial reading": true
+  },
+  "e44b_check": {
+   "mean": 0.044849755251962636,
+   "n": 20000,
+   "prediction": 0.05836256110716816,
+   "se": 0.008459080931883212,
+   "seeds": 16
+  },
+  "mirror_gate": {
+   "ok": true,
+   "sd": 0.05711225293098593,
+   "tol": 1e-12,
+   "worst": 0.0,
+   "worst_big": 0.0,
+   "worst_small": 0.0
+  },
+  "zero_check": {
+   "bound": 0.010789558066254704,
+   "equivalence_ok": true,
+   "mean": 0.002649356436143162,
+   "mirror_seeds": 64,
+   "mirror_worst": 0.0,
+   "n": 16000,
+   "sd": 0.05711225293098593,
+   "se": 0.002524028833521339,
+   "seeds": 512
+  }
+ },
+ "plan": {
+  "D": 4,
+  "T": 1.0,
+  "b": 0.5,
+  "e44b_n": 20000,
+  "e44b_seeds": 16,
+  "eps": 0.1,
+  "estimate": "5-7 hours (eps = 0 readings ~70 min, mirror identity ~15 min; 24 null seeds need the links of the conformal sprinkling at 64000)",
+  "mirror_seeds": 64,
+  "mirror_seeds_big": 4,
+  "n_seeds": 24,
+  "null_seeds": 24,
+  "sizes": [
+   16000,
+   32000,
+   64000
+  ],
+  "soft": 0.2,
+  "where": "local (user)",
+  "zero_seeds": 512
+ },
+ "python": "3.13.6",
+ "quick": false,
+ "title": "Convergence of Pi-weighted chains to geodesics (2+1, 3+1)",
+ "verdict": "CALIBRATED",
+ "version": "3.1.1"
+}

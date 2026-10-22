@@ -1,0 +1,1080 @@
+{
+ "experiment": "e40",
+ "lab_version": "2.10.0",
+ "saved_utc": "20261012T142157Z",
+ "config": {
+  "sizes": "500,1000",
+  "n_seeds": 1,
+  "grid": "2,4,8,16,32",
+  "dims": "2,3,4",
+  "n_intervals": 40,
+  "n_action": 30,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "QUICK SMOKE TEST (sizes 500,1000, grid 2,4,8,16,32), not the registered run; calibrated for 1+1, 2+1; past cap: MIXED(1+1 CONSTANT, 2+1 UNCLEAR); total cap (theory's reading): MIXED(1+1 UNCLEAR, 2+1 CONSTANT); 1+1 K*_N 2/2 vs links 5/6; 2+1 K*_N 16/8 vs links 11/15; 3+1 K*_N -/- vs links 11/18",
+ "notes": "sizes=[500, 1000] seeds=1 grid=[2, 4, 8, 16, 32] elapsed=10s\n\n1+1 source: GEOMETRIC(D=1.94, d*=2) (calibrated True); passes by size 500:+ 1000:+; links per element 5.0/5.5\n  K*_N  past_largest: 2/2  past_random: 2/4  total_largest: 8/4   favourable past: 2/2   -> past CONSTANT, total UNCLEAR\n  mode              K pass  links  rel.k  D_MM  D_ch   dS_d  homog min.el  integrated (all sizes)\n  past_largest      2 + +     2.0   0.65  1.77  2.10    1.0   0.06      1  GEOMETRIC(D=1.94, d*=2)\n  past_largest      4 + +     3.6   0.95  1.92  2.04    0.1   0.10      1  GEOMETRIC(D=1.98, d*=2)\n  past_largest      8 + +     5.3   1.00  1.93  1.92    0.0   0.03      1  GEOMETRIC(D=1.92, d*=2)\n  past_largest     16 + +     5.5   1.00  1.93  1.95   -0.0   0.03      1  GEOMETRIC(D=1.94, d*=2)\n  past_largest     32 + +     5.5   1.00  1.93  1.95   -0.0   0.03      1  GEOMETRIC(D=1.94, d*=2)\n  past_random       2 + .     2.0   0.48  2.34  2.85   -0.5   0.24      1  ACTION_MISMATCH(dS_3 1.88)\n  past_random       4 + +     3.6   0.93  2.18  2.23   -0.6   0.13      1  EXPLAINED_BY_NULL(seq)\n  past_random       8 + +     5.3   1.00  1.95  2.02   -0.1   0.00      1  GEOMETRIC(D=1.99, d*=2)\n  past_random      16 + +     5.5   1.00  1.93  1.95   -0.0   0.03      1  GEOMETRIC(D=1.94, d*=2)\n  past_random      32 + +     5.5   1.00  1.93  1.95   -0.0   0.03      1  GEOMETRIC(D=1.94, d*=2)\n  total_largest     2 . .     1.0   0.01     -     -    0.9      -    305  NOT_MANIFOLD_LIKE\n  total_largest     4 . +     2.0   0.32  1.57  1.86    1.0   0.07     85  GEOMETRIC(D=1.71, d*=2)\n  total_largest     8 + +     3.7   0.92  1.97  2.08    0.1   0.08      5  GEOMETRIC(D=2.03, d*=2)\n  total_largest    16 + +     5.4   1.00  1.92  1.94   -0.0   0.03      1  GEOMETRIC(D=1.93, d*=2)\n  total_largest    32 + +     5.5   1.00  1.93  1.95   -0.0   0.03      1  GEOMETRIC(D=1.94, d*=2)\n\n2+1 source: GEOMETRIC(D=2.97, d*=3) (calibrated True); passes by size 500:+ 1000:+; links per element 11.0/15.2\n  K*_N  past_largest: 16/8  past_random: 16/16  total_largest: 16/16   favourable past: 16/8   -> past UNCLEAR, total CONSTANT\n  mode              K pass  links  rel.k  D_MM  D_ch   dS_d  homog min.el  integrated (all sizes)\n  past_largest      2 . .     1.9   0.26  2.32  3.00    0.9      -      1  NOT_MANIFOLD_LIKE\n  past_largest      4 . .     3.6   0.53  2.40  3.09    0.8   0.12      1  NOT_MANIFOLD_LIKE\n  past_largest      8 . +     6.7   0.78  2.60  2.76    0.7   0.04      1  EXPLAINED_BY_NULL(seq)\n  past_largest     16 + +    10.9   0.93  2.70  2.49    0.4   0.02      1  EXPLAINED_BY_NULL(seq)\n  past_largest     32 + +    14.6   0.99  2.81  3.12    0.1   0.05      1  GEOMETRIC(D=2.96, d*=3)\n  past_random       2 . .     1.9   0.10     -     -    0.6      -      1  NOT_MANIFOLD_LIKE\n  past_random       4 . .     3.6   0.31  2.98 26.10    0.3      -      1  NOT_MANIFOLD_LIKE\n  past_random       8 . .     6.7   0.64  2.94  3.60    0.1   0.24      1  NOT_MANIFOLD_LIKE\n  past_random      16 + +    10.9   0.89  2.94  3.21    0.1   0.12      1  GEOMETRIC(D=3.07, d*=3)\n  past_random      32 + +    14.6   0.99  2.77  2.94    0.1   0.14      1  EXPLAINED_BY_NULL(seq)\n  total_largest     2 . .     1.0   0.01     -     -    0.9      -    374  NOT_MANIFOLD_LIKE\n  total_largest     4 . .     1.9   0.08     -     -    0.8      -    196  NOT_MANIFOLD_LIKE\n  total_largest     8 . .     3.8   0.45  2.46  3.72    0.7   0.03     88  NOT_MANIFOLD_LIKE\n  total_largest    16 + +     7.3   0.79  2.66  2.64    0.6   0.05     55  EXPLAINED_BY_NULL(seq)\n  total_largest    32 + +    12.9   0.95  2.74  2.95    0.2   0.14     32  EXPLAINED_BY_NULL(seq)\n\n3+1 source: NOT_MANIFOLD_LIKE (calibrated False); passes by size 500:. 1000:.; links per element 11.4/18.5\n  K*_N  past_largest: -/-  past_random: -/-  total_largest: -/-   favourable past: -/-   -> past UNDEFINED, total UNDEFINED\n  mode              K pass  links  rel.k  D_MM  D_ch   dS_d  homog min.el  integrated (all sizes)\n  past_largest      2 . .     1.8   0.18  2.73     -    1.1      -      1  NOT_MANIFOLD_LIKE\n  past_largest      4 . .     3.2   0.36  2.79  3.37    1.3      -      1  NOT_MANIFOLD_LIKE\n  past_largest      8 . .     5.7   0.56  2.82  4.70    1.3      -      1  NOT_MANIFOLD_LIKE\n  past_largest     16 . .     9.4   0.76  3.05  3.62    1.0   0.09      1  EXPLAINED_BY_NULL(seq)\n  past_largest     32 . .    14.1   0.91  3.28  5.24    0.6   0.03      1  NOT_MANIFOLD_LIKE\n  past_random       2 . .     1.8   0.08     -     -    0.9      -      1  NOT_MANIFOLD_LIKE\n  past_random       4 . .     3.2   0.18     -     -    0.8      -      1  NOT_MANIFOLD_LIKE\n  past_random       8 . .     5.7   0.37  3.31     -    0.7      -      1  NOT_MANIFOLD_LIKE\n  past_random      16 . .     9.4   0.62  3.41  3.96    0.7      -      1  INHOMOGENEOUS(spread -)\n  past_random      32 . .    14.1   0.85  3.38  5.60    0.5   0.16      1  NOT_MANIFOLD_LIKE\n  total_largest     2 . .     0.9   0.02     -     -    0.9      -    432  NOT_MANIFOLD_LIKE\n  total_largest     4 . .     1.7   0.07     -     -    0.9      -    297  NOT_MANIFOLD_LIKE\n  total_largest     8 . .     3.4   0.29  3.01  2.26    1.1      -    208  NOT_MANIFOLD_LIKE\n  total_largest    16 . .     6.3   0.57  2.97  3.78    1.1      -    152  NOT_MANIFOLD_LIKE\n  total_largest    32 . .    11.1   0.79  3.28  3.68    0.8   0.09    111  GEOMETRIC(D=3.48, d*=3)\n\npass = GEOMETRIC with d* = d at that single size (no null); rel.k = share of the source's\nrelations kept (largest N); min.el = elements left without a link (total mode);\nintegrated = the E38-B decision over all sizes, checked against a seed-sequence null\nwhen it reads GEOMETRIC.\nK*_N = smallest K passing there and at every larger K; growth: GROWS if non-decreasing and\nx1.5 from the smallest to the largest defined size, CONSTANT if equal.",
+ "results": {
+  "2": {
+   "source": {
+    "decision": "GEOMETRIC(D=1.94, d*=2)",
+    "d_star": 2,
+    "calibrated": true,
+    "pass_by_size": {
+     "500": true,
+     "1000": true
+    },
+    "D_MM": 1.927292377640697,
+    "D_chain": 1.9534730675819791,
+    "links_by_size": {
+     "500": 4.974051896207585,
+     "1000": 5.503496503496503
+    }
+   },
+   "table": {
+    "past_largest": {
+     "2": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.97, d*=2)",
+       "1000": "GEOMETRIC(D=1.94, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.94, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.7701316295169818,
+      "D_chain": 2.1039640966130797,
+      "dS_d": 0.9649217561900343,
+      "homog": 0.06431032896216493,
+      "links": 1.963036963036963,
+      "relations_kept": 0.6528564574046558,
+      "links_kept": 0.356689054274823,
+      "minimal": 1
+     },
+     "4": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=2.00, d*=2)",
+       "1000": "GEOMETRIC(D=1.98, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.98, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.9194892237173917,
+      "D_chain": 2.043022134033604,
+      "dS_d": 0.139028953619278,
+      "homog": 0.09524986133328639,
+      "links": 3.6313686313686313,
+      "relations_kept": 0.9471118127786032,
+      "links_kept": 0.6598293701216191,
+      "minimal": 1
+     },
+     "8": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.94, d*=2)",
+       "1000": "GEOMETRIC(D=1.92, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.92, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.9316148182151665,
+      "D_chain": 1.9153457612953069,
+      "dS_d": 0.0056951793720843875,
+      "homog": 0.03158146545320051,
+      "links": 5.2617382617382615,
+      "relations_kept": 0.9974074418028727,
+      "links_kept": 0.9560718823742966,
+      "minimal": 1
+     },
+     "16": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.94, d*=2)",
+       "1000": "GEOMETRIC(D=1.94, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.94, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.927292377640697,
+      "D_chain": 1.9534730675819791,
+      "dS_d": -0.01841811968157724,
+      "homog": 0.03209803471690975,
+      "links": 5.503496503496503,
+      "relations_kept": 1.0,
+      "links_kept": 1.0,
+      "minimal": 1
+     },
+     "32": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.94, d*=2)",
+       "1000": "GEOMETRIC(D=1.94, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.94, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.927292377640697,
+      "D_chain": 1.9534730675819791,
+      "dS_d": -0.01841811968157724,
+      "homog": 0.03209803471690975,
+      "links": 5.503496503496503,
+      "relations_kept": 1.0,
+      "links_kept": 1.0,
+      "minimal": 1
+     }
+    },
+    "past_random": {
+     "2": {
+      "pass_by_size": {
+       "500": true,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=2.48, d*=2)",
+       "1000": "ACTION_MISMATCH(dS_3 1.88)"
+      },
+      "integrated": "ACTION_MISMATCH(dS_3 1.88)",
+      "integrated_d_star": 3,
+      "D_MM": 2.344175933732913,
+      "D_chain": 2.8496673357122693,
+      "dS_d": -0.5186332509362236,
+      "homog": 0.2361989771015942,
+      "links": 1.963036963036963,
+      "relations_kept": 0.48277690069341256,
+      "links_kept": 0.356689054274823,
+      "minimal": 1
+     },
+     "4": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=2.11, d*=2)",
+       "1000": "GEOMETRIC(D=2.20, d*=2)"
+      },
+      "integrated": "EXPLAINED_BY_NULL(seq)",
+      "integrated_d_star": 2,
+      "D_MM": 2.181916260455182,
+      "D_chain": 2.225724971684871,
+      "dS_d": -0.6416880274002932,
+      "homog": 0.1276415901229484,
+      "links": 3.6313686313686313,
+      "relations_kept": 0.9269440316988609,
+      "links_kept": 0.6598293701216191,
+      "minimal": 1
+     },
+     "8": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.94, d*=2)",
+       "1000": "GEOMETRIC(D=1.99, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.99, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.9509286336215155,
+      "D_chain": 2.0226691774556453,
+      "dS_d": -0.06192479538058675,
+      "homog": 0.0027347301511326805,
+      "links": 5.2617382617382615,
+      "relations_kept": 0.9967767149579,
+      "links_kept": 0.9560718823742966,
+      "minimal": 1
+     },
+     "16": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.94, d*=2)",
+       "1000": "GEOMETRIC(D=1.94, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.94, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.927292377640697,
+      "D_chain": 1.9534730675819791,
+      "dS_d": -0.01841811968157724,
+      "homog": 0.03209803471690975,
+      "links": 5.503496503496503,
+      "relations_kept": 1.0,
+      "links_kept": 1.0,
+      "minimal": 1
+     },
+     "32": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.94, d*=2)",
+       "1000": "GEOMETRIC(D=1.94, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.94, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.927292377640697,
+      "D_chain": 1.9534730675819791,
+      "dS_d": -0.01841811968157724,
+      "homog": 0.03209803471690975,
+      "links": 5.503496503496503,
+      "relations_kept": 1.0,
+      "links_kept": 1.0,
+      "minimal": 1
+     }
+    },
+    "total_largest": {
+     "2": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": null,
+      "D_chain": null,
+      "dS_d": 0.9080875,
+      "homog": null,
+      "links": 0.986013986013986,
+      "relations_kept": 0.006233748142644874,
+      "links_kept": 0.17916137229987295,
+      "minimal": 305
+     },
+     "4": {
+      "pass_by_size": {
+       "500": false,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "CHAIN",
+       "1000": "GEOMETRIC(D=1.71, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.71, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.565279801037832,
+      "D_chain": 1.8550680876611922,
+      "dS_d": 0.9874477879443783,
+      "homog": 0.07356010715011507,
+      "links": 1.95004995004995,
+      "relations_kept": 0.3183777550767707,
+      "links_kept": 0.3543292793610456,
+      "minimal": 85
+     },
+     "8": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.99, d*=2)",
+       "1000": "GEOMETRIC(D=2.03, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=2.03, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.972074403489387,
+      "D_chain": 2.083149478700963,
+      "dS_d": 0.10582490469136956,
+      "homog": 0.07804403101908974,
+      "links": 3.734265734265734,
+      "relations_kept": 0.9203813769192669,
+      "links_kept": 0.6785260482846251,
+      "minimal": 5
+     },
+     "16": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.94, d*=2)",
+       "1000": "GEOMETRIC(D=1.93, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.93, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.9227026692860818,
+      "D_chain": 1.9364327688481728,
+      "dS_d": -0.014344622378629294,
+      "homog": 0.03263235314079793,
+      "links": 5.418581418581419,
+      "relations_kept": 0.9986069836552749,
+      "links_kept": 0.9845707024868398,
+      "minimal": 1
+     },
+     "32": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=1.94, d*=2)",
+       "1000": "GEOMETRIC(D=1.94, d*=2)"
+      },
+      "integrated": "GEOMETRIC(D=1.94, d*=2)",
+      "integrated_d_star": 2,
+      "D_MM": 1.927292377640697,
+      "D_chain": 1.9534730675819791,
+      "dS_d": -0.01841811968157724,
+      "homog": 0.03209803471690975,
+      "links": 5.503496503496503,
+      "relations_kept": 1.0,
+      "links_kept": 1.0,
+      "minimal": 1
+     }
+    }
+   },
+   "kstar": {
+    "past_largest": {
+     "500": 2,
+     "1000": 2
+    },
+    "past_random": {
+     "500": 2,
+     "1000": 4
+    },
+    "total_largest": {
+     "500": 8,
+     "1000": 4
+    }
+   },
+   "kstar_favourable": {
+    "500": 2,
+    "1000": 2
+   },
+   "growth_past": "CONSTANT",
+   "growth_total": "UNCLEAR",
+   "sizes_defined": [
+    500,
+    1000
+   ]
+  },
+  "3": {
+   "source": {
+    "decision": "GEOMETRIC(D=2.97, d*=3)",
+    "d_star": 3,
+    "calibrated": true,
+    "pass_by_size": {
+     "500": true,
+     "1000": true
+    },
+    "D_MM": 2.7716741926451505,
+    "D_chain": 3.176625059062816,
+    "links_by_size": {
+     "500": 11.035928143712574,
+     "1000": 15.24975024975025
+    }
+   },
+   "table": {
+    "past_largest": {
+     "2": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.317447568373609,
+      "D_chain": 2.9988484598540475,
+      "dS_d": 0.907275045991831,
+      "homog": null,
+      "links": 1.9060939060939062,
+      "relations_kept": 0.2610632047758931,
+      "links_kept": 0.12499181133311497,
+      "minimal": 1
+     },
+     "4": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.4006028422554664,
+      "D_chain": 3.085165927805232,
+      "dS_d": 0.832814373798684,
+      "homog": 0.11988549477246124,
+      "links": 3.6323676323676324,
+      "relations_kept": 0.5307323208393994,
+      "links_kept": 0.23819194235178512,
+      "minimal": 1
+     },
+     "8": {
+      "pass_by_size": {
+       "500": false,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "GEOMETRIC(D=2.68, d*=3)"
+      },
+      "integrated": "EXPLAINED_BY_NULL(seq)",
+      "integrated_d_star": 3,
+      "D_MM": 2.5994287454559526,
+      "D_chain": 2.755134907843302,
+      "dS_d": 0.6911224556050354,
+      "homog": 0.043398935471486766,
+      "links": 6.662337662337662,
+      "relations_kept": 0.7842233574252905,
+      "links_kept": 0.43688175565018017,
+      "minimal": 1
+     },
+     "16": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=2.90, d*=3)",
+       "1000": "GEOMETRIC(D=2.59, d*=3)"
+      },
+      "integrated": "EXPLAINED_BY_NULL(seq)",
+      "integrated_d_star": 3,
+      "D_MM": 2.6991110033013683,
+      "D_chain": 2.4866630616600367,
+      "dS_d": 0.3625177898685319,
+      "homog": 0.024563305887568276,
+      "links": 10.932067932067932,
+      "relations_kept": 0.9338145981754434,
+      "links_kept": 0.7168686537831641,
+      "minimal": 1
+     },
+     "32": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=3.01, d*=3)",
+       "1000": "GEOMETRIC(D=2.96, d*=3)"
+      },
+      "integrated": "GEOMETRIC(D=2.96, d*=3)",
+      "integrated_d_star": 3,
+      "D_MM": 2.8093411727932107,
+      "D_chain": 3.1174923868597926,
+      "dS_d": 0.14394715679261635,
+      "homog": 0.05446368089906173,
+      "links": 14.601398601398602,
+      "relations_kept": 0.9932203681848333,
+      "links_kept": 0.9574844415329185,
+      "minimal": 1
+     }
+    },
+    "past_random": {
+     "2": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": null,
+      "D_chain": null,
+      "dS_d": 0.6317806283725029,
+      "homog": null,
+      "links": 1.9060939060939062,
+      "relations_kept": 0.09602611924226631,
+      "links_kept": 0.12499181133311497,
+      "minimal": 1
+     },
+     "4": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.9775861345879093,
+      "D_chain": 26.095762794833693,
+      "dS_d": 0.26406813552981784,
+      "homog": null,
+      "links": 3.6323676323676324,
+      "relations_kept": 0.3130432535341092,
+      "links_kept": 0.23819194235178512,
+      "minimal": 1
+     },
+     "8": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "INHOMOGENEOUS(spread -)",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.9360267224583367,
+      "D_chain": 3.598153060778785,
+      "dS_d": 0.1189199690148872,
+      "homog": 0.24263338709715754,
+      "links": 6.662337662337662,
+      "relations_kept": 0.635226518956264,
+      "links_kept": 0.43688175565018017,
+      "minimal": 1
+     },
+     "16": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=2.97, d*=3)",
+       "1000": "GEOMETRIC(D=3.07, d*=3)"
+      },
+      "integrated": "GEOMETRIC(D=3.07, d*=3)",
+      "integrated_d_star": 3,
+      "D_MM": 2.9372695538440894,
+      "D_chain": 3.2108772918185644,
+      "dS_d": 0.10626971587155605,
+      "homog": 0.12353567023819778,
+      "links": 10.932067932067932,
+      "relations_kept": 0.8860642815916198,
+      "links_kept": 0.7168686537831641,
+      "minimal": 1
+     },
+     "32": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=2.93, d*=3)",
+       "1000": "GEOMETRIC(D=2.86, d*=3)"
+      },
+      "integrated": "EXPLAINED_BY_NULL(seq)",
+      "integrated_d_star": 3,
+      "D_MM": 2.7730671269127924,
+      "D_chain": 2.9445503222640053,
+      "dS_d": 0.12808451957969036,
+      "homog": 0.1377625138775329,
+      "links": 14.601398601398602,
+      "relations_kept": 0.989662569023888,
+      "links_kept": 0.9574844415329185,
+      "minimal": 1
+     }
+    },
+    "total_largest": {
+     "2": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": null,
+      "D_chain": null,
+      "dS_d": 0.93034375,
+      "homog": null,
+      "links": 0.962037962037962,
+      "relations_kept": 0.011241956186521712,
+      "links_kept": 0.06308548968227973,
+      "minimal": 374
+     },
+     "4": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": null,
+      "D_chain": null,
+      "dS_d": 0.7551769851193958,
+      "homog": null,
+      "links": 1.925074925074925,
+      "relations_kept": 0.08381933616464082,
+      "links_kept": 0.1262364886996397,
+      "minimal": 196
+     },
+     "8": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.4623561756561685,
+      "D_chain": 3.723048859479674,
+      "dS_d": 0.6998375823918203,
+      "homog": 0.02707952246419154,
+      "links": 3.769230769230769,
+      "relations_kept": 0.45011758827735326,
+      "links_kept": 0.24716672125777922,
+      "minimal": 88
+     },
+     "16": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=2.93, d*=3)",
+       "1000": "GEOMETRIC(D=2.65, d*=3)"
+      },
+      "integrated": "EXPLAINED_BY_NULL(seq)",
+      "integrated_d_star": 3,
+      "D_MM": 2.655902211448847,
+      "D_chain": 2.6367553060892477,
+      "dS_d": 0.5883150010073576,
+      "homog": 0.04547865929635009,
+      "links": 7.2847152847152845,
+      "relations_kept": 0.7889010449419812,
+      "links_kept": 0.4776940714051752,
+      "minimal": 55
+     },
+     "32": {
+      "pass_by_size": {
+       "500": true,
+       "1000": true
+      },
+      "decision_by_size": {
+       "500": "GEOMETRIC(D=3.04, d*=3)",
+       "1000": "GEOMETRIC(D=2.84, d*=3)"
+      },
+      "integrated": "EXPLAINED_BY_NULL(seq)",
+      "integrated_d_star": 3,
+      "D_MM": 2.7386218556821404,
+      "D_chain": 2.9491576218651874,
+      "dS_d": 0.21788484236556452,
+      "homog": 0.13952122229966335,
+      "links": 12.909090909090908,
+      "relations_kept": 0.9485798954196566,
+      "links_kept": 0.8465116279069768,
+      "minimal": 32
+     }
+    }
+   },
+   "kstar": {
+    "past_largest": {
+     "500": 16,
+     "1000": 8
+    },
+    "past_random": {
+     "500": 16,
+     "1000": 16
+    },
+    "total_largest": {
+     "500": 16,
+     "1000": 16
+    }
+   },
+   "kstar_favourable": {
+    "500": 16,
+    "1000": 8
+   },
+   "growth_past": "UNCLEAR",
+   "growth_total": "CONSTANT",
+   "sizes_defined": [
+    500,
+    1000
+   ]
+  },
+  "4": {
+   "source": {
+    "decision": "NOT_MANIFOLD_LIKE",
+    "d_star": null,
+    "calibrated": false,
+    "pass_by_size": {
+     "500": false,
+     "1000": false
+    },
+    "D_MM": 3.4386044666061935,
+    "D_chain": 4.06323971670905,
+    "links_by_size": {
+     "500": 11.369261477045908,
+     "1000": 18.45154845154845
+    }
+   },
+   "table": {
+    "past_largest": {
+     "2": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.7257729602970358,
+      "D_chain": null,
+      "dS_d": 1.0894374782700504,
+      "homog": null,
+      "links": 1.7912087912087913,
+      "relations_kept": 0.1776386470566443,
+      "links_kept": 0.09707634001082838,
+      "minimal": 1
+     },
+     "4": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.787035735902464,
+      "D_chain": 3.3717288008383237,
+      "dS_d": 1.307060304392519,
+      "homog": null,
+      "links": 3.2347652347652347,
+      "relations_kept": 0.3574630459748824,
+      "links_kept": 0.17531131564699512,
+      "minimal": 1
+     },
+     "8": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.8208397345042613,
+      "D_chain": 4.703362882354025,
+      "dS_d": 1.2872779474880331,
+      "homog": null,
+      "links": 5.679320679320679,
+      "relations_kept": 0.5630348608898603,
+      "links_kept": 0.307796426637791,
+      "minimal": 1
+     },
+     "16": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "GEOMETRIC(D=3.34, d*=3)"
+      },
+      "integrated": "EXPLAINED_BY_NULL(seq)",
+      "integrated_d_star": 3,
+      "D_MM": 3.0544559462832694,
+      "D_chain": 3.6191553745645626,
+      "dS_d": 1.0143704164762757,
+      "homog": 0.08642179053276777,
+      "links": 9.422577422577422,
+      "relations_kept": 0.7556403512021636,
+      "links_kept": 0.5106659447753114,
+      "minimal": 1
+     },
+     "32": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 3.282910274396272,
+      "D_chain": 5.242195217323032,
+      "dS_d": 0.5729379270023679,
+      "homog": 0.026045380131108686,
+      "links": 14.13986013986014,
+      "relations_kept": 0.9050124106249768,
+      "links_kept": 0.766323768272875,
+      "minimal": 1
+     }
+    },
+    "past_random": {
+     "2": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": null,
+      "D_chain": null,
+      "dS_d": 0.8826312157965589,
+      "homog": null,
+      "links": 1.7912087912087913,
+      "relations_kept": 0.08454043640943948,
+      "links_kept": 0.09707634001082838,
+      "minimal": 1
+     },
+     "4": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": null,
+      "D_chain": null,
+      "dS_d": 0.7510488229714325,
+      "homog": null,
+      "links": 3.2347652347652347,
+      "relations_kept": 0.18065794835698143,
+      "links_kept": 0.17531131564699512,
+      "minimal": 1
+     },
+     "8": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 3.3067505495964724,
+      "D_chain": null,
+      "dS_d": 0.7256779269086836,
+      "homog": null,
+      "links": 5.679320679320679,
+      "relations_kept": 0.3672989293520542,
+      "links_kept": 0.307796426637791,
+      "minimal": 1
+     },
+     "16": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "INHOMOGENEOUS(spread -)"
+      },
+      "integrated": "INHOMOGENEOUS(spread -)",
+      "integrated_d_star": 4,
+      "D_MM": 3.4129659797654313,
+      "D_chain": 3.95539271138521,
+      "dS_d": 0.6670786960027189,
+      "homog": null,
+      "links": 9.422577422577422,
+      "relations_kept": 0.6206609120883192,
+      "links_kept": 0.5106659447753114,
+      "minimal": 1
+     },
+     "32": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 3.3774520439146727,
+      "D_chain": 5.597230510330054,
+      "dS_d": 0.5076040494810624,
+      "homog": 0.15889089114352828,
+      "links": 14.13986013986014,
+      "relations_kept": 0.8454228874152558,
+      "links_kept": 0.766323768272875,
+      "minimal": 1
+     }
+    },
+    "total_largest": {
+     "2": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": null,
+      "D_chain": null,
+      "dS_d": 0.9458091666666667,
+      "homog": null,
+      "links": 0.8851148851148851,
+      "relations_kept": 0.02141295891527433,
+      "links_kept": 0.047969680563075254,
+      "minimal": 432
+     },
+     "4": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": null,
+      "D_chain": null,
+      "dS_d": 0.8898009020759954,
+      "homog": null,
+      "links": 1.7382617382617382,
+      "relations_kept": 0.07487126292001631,
+      "links_kept": 0.09420682187330806,
+      "minimal": 297
+     },
+     "8": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 3.0114935695128224,
+      "D_chain": 2.258808629380046,
+      "dS_d": 1.0828551285118804,
+      "homog": null,
+      "links": 3.381618381618382,
+      "relations_kept": 0.2859259808098396,
+      "links_kept": 0.18327016783974012,
+      "minimal": 208
+     },
+     "16": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "NOT_MANIFOLD_LIKE"
+      },
+      "integrated": "NOT_MANIFOLD_LIKE",
+      "integrated_d_star": null,
+      "D_MM": 2.9719213271564513,
+      "D_chain": 3.783834328705502,
+      "dS_d": 1.1233746699714835,
+      "homog": null,
+      "links": 6.292707292707293,
+      "relations_kept": 0.5730374541547809,
+      "links_kept": 0.34103952355170547,
+      "minimal": 152
+     },
+     "32": {
+      "pass_by_size": {
+       "500": false,
+       "1000": false
+      },
+      "decision_by_size": {
+       "500": "NOT_MANIFOLD_LIKE",
+       "1000": "GEOMETRIC(D=3.48, d*=3)"
+      },
+      "integrated": "GEOMETRIC(D=3.48, d*=3)",
+      "integrated_d_star": 3,
+      "D_MM": 3.2792569081539114,
+      "D_chain": 3.6827083545570867,
+      "dS_d": 0.8374995429855551,
+      "homog": 0.08504831178288441,
+      "links": 11.054945054945055,
+      "relations_kept": 0.7914829770681288,
+      "links_kept": 0.5991337303735788,
+      "minimal": 111
+     }
+    }
+   },
+   "kstar": {
+    "past_largest": {
+     "500": "undefined",
+     "1000": "undefined"
+    },
+    "past_random": {
+     "500": "undefined",
+     "1000": "undefined"
+    },
+    "total_largest": {
+     "500": "undefined",
+     "1000": "undefined"
+    }
+   },
+   "kstar_favourable": {
+    "500": "undefined",
+    "1000": "undefined"
+   },
+   "growth_past": "UNDEFINED",
+   "growth_total": "UNDEFINED",
+   "sizes_defined": []
+  }
+ },
+ "calibrated": [
+  2,
+  3
+ ],
+ "verdict_past": "MIXED(1+1 CONSTANT, 2+1 UNCLEAR)",
+ "verdict_total": "MIXED(1+1 UNCLEAR, 2+1 CONSTANT)",
+ "criteria": {
+  "GROW_FACTOR": 1.5,
+  "grid": [
+   2,
+   4,
+   8,
+   16,
+   32
+  ],
+  "OVER": 192
+ }
+}

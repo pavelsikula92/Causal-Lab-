@@ -1,0 +1,232 @@
+{
+ "experiment": "e41",
+ "lab_version": "2.13.0",
+ "saved_utc": "20261012T172412Z",
+ "config": {
+  "parts": "law",
+  "sizes": "500,1000",
+  "n_seeds": 1,
+  "dims": "2,3,4",
+  "n_intervals": 40,
+  "n_action": 30,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "QUICK SMOKE TEST (sizes 500,1000), not the registered run; calibrated for 1+1, 2+1, 3+1; LAW: past_largest: LAW_WORKS(1+1 alpha*=0.2); UNDEFINED(2+1, 3+1: the source passes at fewer than two sizes); total_largest: LAW_WORKS(1+1 alpha*=0.6); UNDEFINED(2+1, 3+1: the source passes at fewer than two sizes)",
+ "notes": "parts=['law'] sizes=[500, 1000] seeds=1 dims=[2, 3, 4] quick=1\n\nsources: 1+1 calibrated True, passes + +; 2+1 calibrated True, passes . +; 3+1 calibrated True, passes . +\n\nLAW -- K(x) = c (|P(x)|/100)^alpha; c*_N = smallest c keeping geometry at N and above:\n  1+1 past_largest  a=0.2: 4/4*  a=0.6: 1/1*   alpha* = 0.2\n  1+1 total_largest a=0.2: 4/16  a=0.6: 4/4*   alpha* = 0.6\n  2+1 past_largest  a=0.2: -/16  a=0.6: -/16   alpha* = none\n  2+1 total_largest a=0.2: -/16  a=0.6: -/16   alpha* = none\n  3+1 past_largest  a=0.2: -/>64  a=0.6: -/64   alpha* = none\n  3+1 total_largest a=0.2: -/>64  a=0.6: -/>64   alpha* = none\n  (* = c*_N does not grow: ENOUGH)\n  what a theory fixing (mode, alpha, c) keeps -- dimensions passing at every size:\n    past_largest  alpha=0.2  c=4:1+1  c=16:1+1/2+1  c=64:1+1\n    past_largest  alpha=0.6  c=1:1+1  c=4:1+1  c=16:1+1/2+1  c=64:1+1\n    total_largest alpha=0.2  c=16:1+1/2+1  c=64:1+1\n    total_largest alpha=0.6  c=4:1+1  c=16:1+1  c=64:1+1/2+1\n  verdict: {'past_largest': 'LAW_WORKS(1+1 alpha*=0.2); UNDEFINED(2+1, 3+1: the source passes at fewer than two sizes)', 'total_largest': 'LAW_WORKS(1+1 alpha*=0.6); UNDEFINED(2+1, 3+1: the source passes at fewer than two sizes)'}\n\nelapsed 7s",
+ "parts": {
+  "law": {
+   "results": {
+    "2": {
+     "past_largest": {
+      "by_alpha": {
+       "0.2": {
+        "cstar": {
+         "500": 4,
+         "1000": 4
+        },
+        "enough": true,
+        "mean_cap_at_cstar": 4.419580419580419
+       },
+       "0.6": {
+        "cstar": {
+         "500": 1,
+         "1000": 1
+        },
+        "enough": true,
+        "mean_cap_at_cstar": 1.6823176823176824
+       }
+      },
+      "alpha_star": 0.2
+     },
+     "total_largest": {
+      "by_alpha": {
+       "0.2": {
+        "cstar": {
+         "500": 4,
+         "1000": 16
+        },
+        "enough": false,
+        "mean_cap_at_cstar": 17.622377622377623
+       },
+       "0.6": {
+        "cstar": {
+         "500": 4,
+         "1000": 4
+        },
+        "enough": true,
+        "mean_cap_at_cstar": 6.235764235764235
+       }
+      },
+      "alpha_star": 0.6
+     }
+    },
+    "3": {
+     "past_largest": {
+      "by_alpha": {
+       "0.2": {
+        "cstar": {
+         "500": "undefined",
+         "1000": 16
+        },
+        "enough": false,
+        "mean_cap_at_cstar": 14.355644355644356
+       },
+       "0.6": {
+        "cstar": {
+         "500": "undefined",
+         "1000": 16
+        },
+        "enough": false,
+        "mean_cap_at_cstar": 14.82117882117882
+       }
+      },
+      "alpha_star": null
+     },
+     "total_largest": {
+      "by_alpha": {
+       "0.2": {
+        "cstar": {
+         "500": "undefined",
+         "1000": 16
+        },
+        "enough": false,
+        "mean_cap_at_cstar": 14.355644355644356
+       },
+       "0.6": {
+        "cstar": {
+         "500": "undefined",
+         "1000": 16
+        },
+        "enough": false,
+        "mean_cap_at_cstar": 14.82117882117882
+       }
+      },
+      "alpha_star": null
+     }
+    },
+    "4": {
+     "past_largest": {
+      "by_alpha": {
+       "0.2": {
+        "cstar": {
+         "500": "undefined",
+         "1000": null
+        },
+        "enough": false,
+        "mean_cap_at_cstar": null
+       },
+       "0.6": {
+        "cstar": {
+         "500": "undefined",
+         "1000": 64
+        },
+        "enough": false,
+        "mean_cap_at_cstar": 31.176823176823177
+       }
+      },
+      "alpha_star": null
+     },
+     "total_largest": {
+      "by_alpha": {
+       "0.2": {
+        "cstar": {
+         "500": "undefined",
+         "1000": null
+        },
+        "enough": false,
+        "mean_cap_at_cstar": null
+       },
+       "0.6": {
+        "cstar": {
+         "500": "undefined",
+         "1000": null
+        },
+        "enough": false,
+        "mean_cap_at_cstar": null
+       }
+      },
+      "alpha_star": null
+     }
+    }
+   },
+   "verdict": {
+    "past_largest": "LAW_WORKS(1+1 alpha*=0.2); UNDEFINED(2+1, 3+1: the source passes at fewer than two sizes)",
+    "total_largest": "LAW_WORKS(1+1 alpha*=0.6); UNDEFINED(2+1, 3+1: the source passes at fewer than two sizes)"
+   },
+   "surviving": {
+    "past_largest alpha=0.2 c=4": [
+     2
+    ],
+    "past_largest alpha=0.2 c=16": [
+     2,
+     3
+    ],
+    "past_largest alpha=0.2 c=64": [
+     2
+    ],
+    "past_largest alpha=0.6 c=1": [
+     2
+    ],
+    "past_largest alpha=0.6 c=4": [
+     2
+    ],
+    "past_largest alpha=0.6 c=16": [
+     2,
+     3
+    ],
+    "past_largest alpha=0.6 c=64": [
+     2
+    ],
+    "total_largest alpha=0.2 c=16": [
+     2,
+     3
+    ],
+    "total_largest alpha=0.2 c=64": [
+     2
+    ],
+    "total_largest alpha=0.6 c=4": [
+     2
+    ],
+    "total_largest alpha=0.6 c=16": [
+     2
+    ],
+    "total_largest alpha=0.6 c=64": [
+     2,
+     3
+    ]
+   }
+  }
+ },
+ "calibrated": {
+  "2": true,
+  "3": true,
+  "4": true
+ },
+ "criteria": {
+  "SLOPE_MAX": 0.1,
+  "ALPHAS": [
+   0.2,
+   0.6
+  ],
+  "CS": [
+   0.25,
+   1,
+   4,
+   16,
+   64
+  ],
+  "BETAS": [
+   1.0,
+   4.0
+  ],
+  "K0S": [
+   2,
+   4,
+   8,
+   16,
+   32
+  ],
+  "GROW_FACTOR": 1.5
+ }
+}

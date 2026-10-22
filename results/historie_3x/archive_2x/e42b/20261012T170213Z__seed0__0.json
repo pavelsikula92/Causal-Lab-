@@ -1,0 +1,100 @@
+{
+ "experiment": "e42b",
+ "lab_version": "2.12.0",
+ "saved_utc": "20261012T170213Z",
+ "config": {
+  "sizes": "500,1000,2000",
+  "n_seeds": 1,
+  "dims": "2,3,4",
+  "n_sample": 40,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "QUICK SMOKE TEST; 1+1 gamma_bulk 0.12 vs 0.00: CONSISTENT; 2+1 gamma_bulk 0.37 vs 0.33: CONSISTENT; 3+1 gamma_bulk 0.62 vs 0.50: INCONSISTENT",
+ "notes": "sizes=[500, 1000, 2000] seeds=1 n_sample=40 elapsed=1s\n\n1+1: bulk links 6.0/6.2/7.1 (sd -/-/-); gamma_bulk 0.12, local 0.05/0.19; heuristic 0.00; upper-half links 5.7/6.4/7.2 (gamma 0.17) -> CONSISTENT\n2+1: bulk links 18.1/24.7/30.1 (sd -/-/-); gamma_bulk 0.37, local 0.45/0.28; heuristic 0.33; upper-half links 17.8/22.3/29.8 (gamma 0.37) -> CONSISTENT\n3+1: bulk links 23.2/33.0/55.1 (sd -/-/-); gamma_bulk 0.62, local 0.51/0.74; heuristic 0.50; upper-half links 20.9/31.9/46.6 (gamma 0.58) -> INCONSISTENT",
+ "results": {
+  "2": {
+   "bulk_links": [
+    6,
+    6.2,
+    7.075
+   ],
+   "bulk_sd": [
+    null,
+    null,
+    null
+   ],
+   "upper_links": [
+    5.685258964143427,
+    6.4271457085828345,
+    7.170829170829171
+   ],
+   "gamma_bulk": 0.118883823611682,
+   "gamma_upper": 0.16745694172754616,
+   "local": [
+    0.04730571477835691,
+    0.1904619324450071
+   ],
+   "heuristic": 0.0,
+   "verdict": "CONSISTENT"
+  },
+  "3": {
+   "bulk_links": [
+    18.05,
+    24.725,
+    30.125
+   ],
+   "bulk_sd": [
+    null,
+    null,
+    null
+   ],
+   "upper_links": [
+    17.784860557768923,
+    22.333333333333332,
+    29.84915084915085
+   ],
+   "gamma_bulk": 0.36948120211507623,
+   "gamma_upper": 0.3735201135938307,
+   "local": [
+    0.4539716838719395,
+    0.2849907203582131
+   ],
+   "heuristic": 0.3333333333333333,
+   "verdict": "CONSISTENT"
+  },
+  "4": {
+   "bulk_links": [
+    23.225,
+    32.975,
+    55.1
+   ],
+   "bulk_sd": [
+    null,
+    null,
+    null
+   ],
+   "upper_links": [
+    20.86454183266932,
+    31.900199600798402,
+    46.59440559440559
+   ],
+   "gamma_bulk": 0.6231868610942523,
+   "gamma_upper": 0.5795517529955839,
+   "local": [
+    0.5056940628688914,
+    0.740679659319613
+   ],
+   "heuristic": 0.5,
+   "verdict": "INCONSISTENT"
+  }
+ },
+ "criteria": {
+  "HEURISTIC": {
+   "2": 0.0,
+   "3": 0.3333333333333333,
+   "4": 0.5
+  },
+  "H_TOL": 0.1
+ }
+}

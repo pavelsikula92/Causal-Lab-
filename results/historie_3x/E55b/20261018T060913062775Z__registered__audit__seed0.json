@@ -1,0 +1,175 @@
+{
+ "base_seed": 0,
+ "card_sha": "6eb00fa9f7526a6115ad920b643683d75f4fc6d4e434ddfb3b67763b675bcae3",
+ "eid": "E55b",
+ "elapsed_s": 781.2,
+ "lines": [
+  "audit (REPORTED, no verdict): 2+1 N=2000, 4 sprinklings, strict trials 1500000 (local 1.0 ell); C = Q_0.99 per sprinkling",
+  "  orig  : F0 quantiles 50/90/99 % 3.385 4.458 5.428; saturated fraction 0.0107",
+  "  strict: F0 quantiles 50/90/99 % 3.404 4.452 5.477; saturated fraction 0.0127",
+  "  dag   : F0 quantiles 50/90/99 % 3.123 4.115 5.029; saturated fraction 0.0029",
+  "  mixing: strict keeps 0.819 of the original edges (redundant after 0); DAG keeps 0.161, non-covering 0.799",
+  "  the strict null is interpretable only if it is mixed (kept well below 1); otherwise it is the original graph"
+ ],
+ "part": "audit",
+ "payload": {
+  "seeds": [
+   {
+    "C": 5.559033446273531,
+    "dag": {
+     "F0_q": [
+      3.193723299536952,
+      4.178168487144281,
+      4.860670375799648
+     ],
+     "sat": 0.0
+    },
+    "dag_kept": 0.16340621403912542,
+    "dag_redundant": 0.7921420351800099,
+    "orig": {
+     "F0_q": [
+      3.4037229094901376,
+      4.564891854887682,
+      5.559033446273531
+     ],
+     "sat": 0.00980392156862745
+    },
+    "strict": {
+     "F0_q": [
+      3.464985001282273,
+      4.629188202964875,
+      5.737740772991718
+     ],
+     "sat": 0.0196078431372549
+    },
+    "strict_kept": 0.8104553674173928,
+    "strict_redundant": 0,
+    "strict_swaps": 22515
+   },
+   {
+    "C": 5.171416747310043,
+    "dag": {
+     "F0_q": [
+      3.00758713257981,
+      3.904668183023468,
+      4.723623009111665
+     ],
+     "sat": 0.004464285714285714
+    },
+    "dag_kept": 0.15881224184473283,
+    "dag_redundant": 0.7982892639932351,
+    "orig": {
+     "F0_q": [
+      3.177171034085519,
+      4.127674863644027,
+      5.171416747310043
+     ],
+     "sat": 0.011160714285714286
+    },
+    "strict": {
+     "F0_q": [
+      3.163829146058319,
+      4.166391960849248,
+      5.055699076048296
+     ],
+     "sat": 0.006696428571428571
+    },
+    "strict_kept": 0.8232022636354767,
+    "strict_redundant": 0,
+    "strict_swaps": 19549
+   },
+   {
+    "C": 5.50861091861934,
+    "dag": {
+     "F0_q": [
+      3.246819299357804,
+      4.411349598425488,
+      5.393887835314548
+     ],
+     "sat": 0.0071090047393364926
+    },
+    "dag_kept": 0.16138524219103667,
+    "dag_redundant": 0.8023022699346828,
+    "orig": {
+     "F0_q": [
+      3.52479247328297,
+      4.693181543160298,
+      5.50861091861934
+     ],
+     "sat": 0.011848341232227487
+    },
+    "strict": {
+     "F0_q": [
+      3.5427790599375015,
+      4.6311351276155515,
+      5.51986557710297
+     ],
+     "sat": 0.011848341232227487
+    },
+    "strict_kept": 0.8174998383237405,
+    "strict_redundant": 0,
+    "strict_swaps": 20412
+   },
+   {
+    "C": 5.473836804495701,
+    "dag": {
+     "F0_q": [
+      3.0424168283660427,
+      3.966504115468611,
+      5.13945764335056
+     ],
+     "sat": 0.0
+    },
+    "dag_kept": 0.16116783663050416,
+    "dag_redundant": 0.8024250159540524,
+    "orig": {
+     "F0_q": [
+      3.433768082354981,
+      4.448079180400088,
+      5.473836804495701
+     ],
+     "sat": 0.01015228426395939
+    },
+    "strict": {
+     "F0_q": [
+      3.4443893399771977,
+      4.380433558595355,
+      5.59314573607895
+     ],
+     "sat": 0.012690355329949238
+    },
+    "strict_kept": 0.825271218889598,
+    "strict_redundant": 0,
+    "strict_swaps": 20132
+   }
+  ]
+ },
+ "plan": {
+  "D": 3,
+  "N": 2000,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "T": 6.0,
+  "cell": 0.1,
+  "estimate": "~45 min (strict rewiring in pure Python)",
+  "local_ell": 1.0,
+  "min_count": 3,
+  "n_perm": 20,
+  "n_rbins": 16,
+  "n_seeds": 4,
+  "q": 0.99,
+  "redundant_sample": 300,
+  "s0": 1.0,
+  "slab": 0.25,
+  "strict_trials": 1500000,
+  "swaps_per_edge": 10.0,
+  "t1": 3.5,
+  "t2": 5.5,
+  "where": "local (user)"
+ },
+ "python": "3.13.6",
+ "quick": false,
+ "title": "Homogeneous driving with capacity: extra localization and persistence without feedback (baseline for E56)",
+ "verdict": "REPORTED",
+ "version": "3.3.1"
+}

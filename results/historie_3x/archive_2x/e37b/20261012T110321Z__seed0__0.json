@@ -1,0 +1,27 @@
+{
+ "experiment": "e37b",
+ "lab_version": "2.5.2",
+ "saved_utc": "20261012T110321Z",
+ "config": {
+  "sizes": "500,1000,2000",
+  "b1_p": "0.3",
+  "b1_lam": "1,4",
+  "b2_h": "2,3",
+  "b2_phi": "1,0.5",
+  "n_seeds": 2,
+  "n_action": 30,
+  "n_intervals": 40,
+  "require_gate": 1,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "GATED_NOT_RUN (no saved E37a run; the target and the calibration come first -- run `python run.py e37a`)",
+ "notes": "",
+ "gate": {
+  "e37a_saved_utc": null,
+  "e37a_verdict": null,
+  "calibrated_dims": [],
+  "controls_ok": null
+ },
+ "ran": false
+}

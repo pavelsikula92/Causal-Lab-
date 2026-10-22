@@ -1,0 +1,53 @@
+{
+ "id": "K.6",
+ "part": "d3",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_06_flux_identities.py",
+ "test_sha256": "0e4bcdabe832e1551aa27a38b15b5c2ce3d3bfa76ae8e93e771506b2450babc1",
+ "core_sha256": "8febfaaa6f6f6111de01bb1e190dec4ecbfc26738bbe73fb0128ddb2d9cc174b",
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261018T103741Z",
+ "duration_s": 23.2,
+ "params": {
+  "tol": 1e-09,
+  "N": 16000,
+  "T": 4.0,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "a": 0.05,
+  "t1": 2.0,
+  "t2": 3.5,
+  "radii": [
+   0.1,
+   0.2,
+   0.3
+  ],
+  "keep_null": 0.9,
+  "C_frac": 0.6,
+  "n_seeds": 2,
+  "D": 3
+ },
+ "lines": [
+  "2+1 N=16000: closed-surface and node-set identities worst 4.1e-16 (tol 1e-09)",
+  "  no source -> flux max 0; capacity balance 0.0e+00; C = inf vs uniform routing 0.0e+00",
+  "  impulse response decay rate (reported) 1.121 per unit t"
+ ],
+ "data": {
+  "identity_worst": 4.0602442043434295e-16,
+  "zero": 0.0,
+  "capacity_balance": 0.0,
+  "capacity_inf_diff": 0.0,
+  "decay_rates": [
+   1.1181192477022548,
+   1.123062006079906
+  ]
+ }
+}

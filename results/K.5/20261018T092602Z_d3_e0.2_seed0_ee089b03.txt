@@ -1,0 +1,2 @@
+2+1 N=32000 eps=0.2 (l_k = 0.0497); 16 sprinklings x 36 rows
+  sampled - expected = +0.0334 +- 0.0753 (z 0.44, max 3.0); scale of the rows 0.093

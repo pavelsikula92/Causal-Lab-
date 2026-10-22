@@ -1,0 +1,3 @@
+2+1 N=16000
+  inserted source: C = 0.5, saturated 0.010, min Pi_meas 0.333; balance 0.0e+00, size sensitivity 3.6e-07, background shift 4.0e-08 -> OK
+  homogeneous driving: C = 4.263, saturated 0.063, min Pi_meas 0.212; balance 1.1e-16, size sensitivity 8.9e-06, background shift 9.9e-07 -> OK

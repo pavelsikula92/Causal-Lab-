@@ -1,0 +1,305 @@
+{
+ "experiment": "e37b",
+ "lab_version": "2.5.2",
+ "saved_utc": "20261012T110347Z",
+ "config": {
+  "sizes": "500,1000,2000",
+  "b1_p": "0.3",
+  "b1_lam": "1,4",
+  "b2_h": "2,3",
+  "b2_phi": "1,0.5",
+  "n_seeds": 2,
+  "n_action": 30,
+  "n_intervals": 40,
+  "require_gate": 0,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "gate passed (E37a calibrated ['1+1', '2+1', '3+1']); growth audits ok; CANDIDATE: B2 (3, 0.5)~(3, 1.0) at 1+1; interval test alone passes in 6/6 cells, D 1.01-2.70 -> DIMENSION_FOLLOWS_KNOBS; B1 N/height 1.4, 2.5 (a chain is 1); gamma_L over all cells -0.01..0.68",
+ "notes": "sizes=[500, 1000, 2000] seeds=2 n_action=30 elapsed=6s\ngate: E37a saved 20261012T110331Z, calibrated for ['1+1', '2+1', '3+1'], controls rejected: False\n\nTARGETS (E37a, largest size): 1+1 links 7.2 gamma_L 0.18 gap 7.38 N/H 23.6; 2+1 links 30.2 gamma_L 0.45 gap 5.46 N/H 75.5; 3+1 links 47.5 gamma_L 0.63 gap 3.88 N/H 148.4\n\n  arm  knobs              interval label                                  D_MM  D_ch    sd    links by size gamma_L   gap     N/H   dS4.05  pass\n  B1   p=0.3 lam=1        MANIFOLD_LIKE(D=1.01)                           1.00  1.01  0.00      1.1/1.1/1.1   -0.01  1.05     1.4     1.00     -\n  B1   p=0.3 lam=4        MANIFOLD_LIKE(D=1.05)                           1.07  1.03  0.07      1.6/1.6/1.6    0.00  1.95     2.5     1.09     -\n  B2   h=2 phi=1          MANIFOLD_LIKE(D=2.19)                           2.32  2.07  0.31     4.8/7.0/12.5    0.68  5.06    26.7     2.65     -\n  B2   h=2 phi=0.5        MANIFOLD_LIKE(D=2.70)                           2.58  2.82  0.24      2.5/3.6/3.7    0.28  2.27    60.8     3.94     -\n  B2   h=3 phi=1          MANIFOLD_LIKE(D=1.52)                           1.64  1.40  0.25      4.7/6.3/7.7    0.36 12.18     9.7     1.93   yes\n  B2   h=3 phi=0.5        MANIFOLD_LIKE(D=1.68)                           1.82  1.53  0.30      4.2/5.2/6.7    0.34 10.10    13.1     2.35   yes\n\npass     interval test MANIFOLD_LIKE against a calibrated dimension d*, AND\n         |gamma_L - gamma_L(d*)| <= 0.2 and links within x2 of\n         the d* sprinkling. A CANDIDATE needs two adjacent passing cells.\nN/H      elements per height level; a chain has N/H = 1, a 3+1 diamond of\n         8000 elements ~ 400-500.\ndS4.05   smeared 3+1 action per element at eps = 0.05 (sprinkling ~0).\ngrowth audits (antichain links, exact down-closure, originary): all ok",
+ "gate": {
+  "e37a_saved_utc": "20261012T110331Z",
+  "e37a_verdict": "self-test PASSED; calibrated for 1+1, 2+1, 3+1; controls NOT all rejected: transitive percolation, originary percolation; targets: 1+1 links 7.2 (gamma_L 0.18), gap 7.38, dS_2 local sd 10.40 -> eps 0.05 sd 0.43; 2+1 links 30.2 (gamma_L 0.45), gap 5.46, dS_3 local sd 16.76 -> eps 0.05 sd 0.44; 3+1 links 47.5 (gamma_L 0.63), gap 3.88, dS_4 local sd 77.56 -> eps 0.05 sd 0.78; smeared 3+1 action at eps 0.05: sprinkling 0.01, percolation 6.11, Kleitman-Rothschild -17.93",
+  "calibrated_dims": [
+   2,
+   3,
+   4
+  ],
+  "controls_ok": false
+ },
+ "cells": {
+  "B1:0.3,1": {
+   "arm": "B1",
+   "knobs": [
+    0.3,
+    1.0
+   ],
+   "label": "MANIFOLD_LIKE(D=1.01)",
+   "numbers": {
+    "D_MM": 1.0041354535169376,
+    "D_chain": 1.0062646569080962,
+    "D_sd": 0.004524298724942184,
+    "D_MM_small": 1.0067159767640987,
+    "D_MM_large": 1.0015566024121654,
+    "size_drift": 0.005290748078550678,
+    "height_exponent": 0.9961691491459669,
+    "D_height": 1.0038455827078336,
+    "D": 1.0052000552125169,
+    "heights": [
+     354,
+     693.5,
+     1408.5
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": -0.008029925448049573,
+   "links_upper": 1.072,
+   "link_gap": 1.0503796189127093,
+   "per_layer": 1.4199647957609742,
+   "dS4_eps005": 0.995477447300446,
+   "d_star": null,
+   "signature_ok": null,
+   "passes": false,
+   "links_by_size": [
+    1.084,
+    1.0870000000000002,
+    1.072
+   ]
+  },
+  "B1:0.3,4": {
+   "arm": "B1",
+   "knobs": [
+    0.3,
+    4.0
+   ],
+   "label": "MANIFOLD_LIKE(D=1.05)",
+   "numbers": {
+    "D_MM": 1.0738558977936918,
+    "D_chain": 1.0287804875604603,
+    "D_sd": 0.06619280320464332,
+    "D_MM_small": 1.1203059820181807,
+    "D_MM_large": 1.0280580855214794,
+    "size_drift": 0.09089299947663676,
+    "height_exponent": 0.9950852564757293,
+    "D_height": 1.004939017528686,
+    "D": 1.051318192677076,
+    "heights": [
+     202.5,
+     401,
+     804.5
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.002924537848343657,
+   "links_upper": 1.6065,
+   "link_gap": 1.9499817069069354,
+   "per_layer": 2.486362863721354,
+   "dS4_eps005": 1.0888357722881592,
+   "d_star": null,
+   "signature_ok": null,
+   "passes": false,
+   "links_by_size": [
+    1.6,
+    1.626,
+    1.6065
+   ]
+  },
+  "B2:2,1": {
+   "arm": "B2",
+   "knobs": [
+    2,
+    1.0
+   ],
+   "label": "MANIFOLD_LIKE(D=2.19)",
+   "numbers": {
+    "D_MM": 2.3171310279176396,
+    "D_chain": 2.0726399415936108,
+    "D_sd": 0.3144035144606899,
+    "D_MM_small": 2.4781526071928965,
+    "D_MM_large": 2.172410321978532,
+    "size_drift": 0.23769541972433217,
+    "height_exponent": 0.6239637567217926,
+    "D_height": 1.6026571883819705,
+    "D": 2.194885484755625,
+    "heights": [
+     32,
+     51.5,
+     76
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.6843186424674587,
+   "links_upper": 12.493,
+   "link_gap": 5.064044451781211,
+   "per_layer": 26.690079016681302,
+   "dS4_eps005": 2.651499931813772,
+   "d_star": 2,
+   "signature_ok": false,
+   "passes": false,
+   "links_by_size": [
+    4.838,
+    6.977,
+    12.493
+   ]
+  },
+  "B2:2,0.5": {
+   "arm": "B2",
+   "knobs": [
+    2,
+    0.5
+   ],
+   "label": "MANIFOLD_LIKE(D=2.70)",
+   "numbers": {
+    "D_MM": 2.581218989504123,
+    "D_chain": 2.8179945307639915,
+    "D_sd": 0.24349077558003335,
+    "D_MM_small": 2.469313177829463,
+    "D_MM_large": 2.703750478631264,
+    "size_drift": 0.4593263822753215,
+    "height_exponent": 0.2297158093186485,
+    "D_height": 4.353204957752202,
+    "D": 2.699606760134057,
+    "heights": [
+     24,
+     31,
+     33
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.2791589683789488,
+   "links_upper": 3.7285,
+   "link_gap": 2.2653241146952414,
+   "per_layer": 60.82949308755761,
+   "dS4_eps005": 3.9441007848231084,
+   "d_star": 3,
+   "signature_ok": false,
+   "passes": false,
+   "links_by_size": [
+    2.532,
+    3.607,
+    3.7285
+   ]
+  },
+  "B2:3,1": {
+   "arm": "B2",
+   "knobs": [
+    3,
+    1.0
+   ],
+   "label": "MANIFOLD_LIKE(D=1.52)",
+   "numbers": {
+    "D_MM": 1.6353983429798973,
+    "D_chain": 1.4002351447594172,
+    "D_sd": 0.24552803110685295,
+    "D_MM_small": 1.7969875722774304,
+    "D_MM_large": 1.4871674796995649,
+    "size_drift": 0.120806556140451,
+    "height_exponent": 0.7550444407022557,
+    "D_height": 1.3244253531221484,
+    "D": 1.5178167438696573,
+    "heights": [
+     72.5,
+     121.5,
+     206.5
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.3562913287139601,
+   "links_upper": 7.6955,
+   "link_gap": 12.18311648449039,
+   "per_layer": 9.685741088180112,
+   "dS4_eps005": 1.9293480365694236,
+   "d_star": 2,
+   "signature_ok": true,
+   "passes": true,
+   "links_by_size": [
+    4.696,
+    6.286,
+    7.6955
+   ]
+  },
+  "B2:3,0.5": {
+   "arm": "B2",
+   "knobs": [
+    3,
+    0.5
+   ],
+   "label": "MANIFOLD_LIKE(D=1.68)",
+   "numbers": {
+    "D_MM": 1.821572452383407,
+    "D_chain": 1.5289487611476251,
+    "D_sd": 0.29720341645078374,
+    "D_MM_small": 2.072572524557472,
+    "D_MM_large": 1.6041426613264775,
+    "size_drift": 0.09096244762986316,
+    "height_exponent": 0.7098877091427535,
+    "D_height": 1.408673494583503,
+    "D": 1.675260606765516,
+    "heights": [
+     57,
+     92,
+     152.5
+    ],
+    "sizes": [
+     500,
+     1000,
+     2000
+    ]
+   },
+   "gamma_links": 0.33514261315951194,
+   "links_upper": 6.651999999999999,
+   "link_gap": 10.099660662111878,
+   "per_layer": 13.118279569892472,
+   "dS4_eps005": 2.347036445548905,
+   "d_star": 2,
+   "signature_ok": true,
+   "passes": true,
+   "links_by_size": [
+    4.18,
+    5.227,
+    6.651999999999999
+   ]
+  }
+ },
+ "candidates": [
+  {
+   "arm": "B2",
+   "cell": [
+    3,
+    0.5
+   ],
+   "neighbour": [
+    3,
+    1.0
+   ],
+   "d_star": 2
+  }
+ ],
+ "knob_range": 1.6944067049215403,
+ "audit_failures": 0,
+ "criteria": {
+  "D_TOL": 0.6,
+  "GAMMA_TOL": 0.2,
+  "LINKS_FACTOR": 2.0
+ }
+}
