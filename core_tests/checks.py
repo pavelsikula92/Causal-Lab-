@@ -276,6 +276,57 @@ def pulse_with_feedback():
 
 
 @check
+def pulse_narrowed_cones():
+    """F3.3h: narrowed cones with Pi = 1 change nothing; with feedback: balance exact, any linear extension identical."""
+    import numpy as np
+    from core.order.sprinkle import sprinkle, Cylinder
+    from core.order.links import links_csr
+    from core.flux.capacity import route_capacity
+    from core.flux.pulse import route_pulse, pulse_balance
+    S = sprinkle(Cylinder(3, 0.0, 3.0, 0.5), 1500, 13)
+    ptr, idx = links_csr(S.X, S.rho)
+    absorb = S.r() > 0.4
+    s = np.ones(S.n)
+    C = float(np.quantile(route_capacity(ptr, idx, s, np.inf, absorb)["offered"], 0.9))
+    a = route_pulse(ptr, idx, s, C, absorb, "main", 1.0, dq_crit=0.2, channel="capacity", Pi_sat=1.0, m=2.0)
+    b = route_pulse(ptr, idx, s, C, absorb, "main", 1.0, dq_crit=0.2, channel="capacity", Pi_sat=1.0, m=2.0,
+                    narrow_power=2.0, X=S.X)
+    same = all(np.array_equal(a[k], b[k]) for k in ("accepted", "stored", "Phi", "P"))
+    tb = (S.X[:, 0] - 0.6 * S.X[:, 1]) / 0.8
+    ok_order, bal, fb = True, 0.0, 0
+    for ch in ("none", "capacity"):
+        c = route_pulse(ptr, idx, s, C, absorb, "main", 1.0, dq_crit=0.2, channel=ch, Pi_sat=0.5, m=2.0,
+                        narrow_power=2.0, X=S.X)
+        d = route_pulse(ptr, idx, s, C, absorb, "main", 1.0, order=np.argsort(tb, kind="stable"), dq_crit=0.2,
+                        channel=ch, Pi_sat=0.5, m=2.0, narrow_power=2.0, X=S.X)
+        ok_order &= all(np.array_equal(c[k], d[k]) for k in ("accepted", "stored", "Phi", "P", "Pi"))
+        bal = max(bal, pulse_balance(c))
+        fb = max(fb, int(c["narrow_fallback"].sum()))
+    ok = same and ok_order and bal < 1e-12
+    return ok, f"Pi = 1 unchanged {same}; boosted order identical {ok_order}; balance {bal:.1e}; fallback events {fb}"
+
+
+@check
+def dynamic_order_links():
+    """F6.3: the order of clock-dependent cones: vacuum = flat links; equals the brute-force closure with a varying Pi."""
+    import numpy as np
+    from core.order.sprinkle import sprinkle, Cylinder
+    from core.order.links import links_csr
+    from core.order.dynamic import order_links, order_links_bruteforce, link_set, links_increase_time
+    S = sprinkle(Cylinder(3, 0.0, 3.0, 0.5), 600, 21)
+    p0, i0 = links_csr(S.X, S.rho)
+    p1, i1 = order_links(S.X, np.ones(S.n))
+    vac = np.array_equal(p0, p1) and np.array_equal(i0, i1)
+    r, t = S.r(), S.X[:, 0]
+    Pi = 1.0 - 0.5 * np.exp(-((r / 0.15) ** 2) - ((t - 1.5) / 0.6) ** 2)
+    pb, ib = order_links_bruteforce(S.X, Pi)
+    pl, il = order_links(S.X, Pi)
+    mism = len(link_set(pb, ib) ^ link_set(pl, il))
+    ok = vac and mism == 0 and links_increase_time(S.X, pl, il)
+    return ok, f"vacuum = flat links {vac}; mismatches with the brute-force closure {mism} of {ib.size}"
+
+
+@check
 def order_read_paths():
     """Geometry reading (K.1): coordinate and bitset paths agree on intervals and action counts; Myrheim-Meyer inverts."""
     import random as _r

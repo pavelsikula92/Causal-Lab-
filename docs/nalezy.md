@@ -1,6 +1,6 @@
 # List nálezů a objevů
 
-Stav 21. 10. 2026: výsledky GTS Lab 2.x a 3.x a první běhy Causality Lab (kalibrace K.2–K.9, K.11, K.11b, F1.2, F1.2b, F1.3, F1.4, F1.5 předběžně, F2.5 d4 a d3, F2.7, K.11c, F3.3 všechny tři kanály, F3.3b q90, F3.3c main_q99, F3.3d celý sken, F3.3e search a confirm, F3.3f capacity a source, F3.3g A); vývojová diagnóza K.11b a odvozený rozpor (a) s H1 ve 3+1.
+Stav 21. 10. 2026: výsledky GTS Lab 2.x a 3.x a první běhy Causality Lab (kalibrace K.2–K.9, K.11, K.11b, F1.2, F1.2b, F1.3, F1.4, F1.5 předběžně, F2.5 d4 a d3, F2.7, K.12 s16, K.11c, F3.3 všechny tři kanály, F3.3b q90, F3.3c main_q99, F3.3d celý sken, F3.3e search a confirm, F3.3f capacity a source, F3.3g A); vývojová diagnóza K.11b a odvozený rozpor (a) s H1 ve 3+1.
 Úplný seznam testů a jejich posledních stavů je v `docs/seznam_testu.md`.
 
 Nejsilnější výsledek: dráhy v poli Π sledují geodetiku, tok zdroje splňuje Gaussův zákon a pole zdroje má daleko
@@ -208,6 +208,14 @@ Největší mezera: žádná struktura podobná hmotě zatím nevznikla z dynami
 
 ## Selhání měřidel (bez závěru o teorii)
 
+- **K.12 s16: článek zdroj → pole ve 2+1 není při σ = 16 ℓ_k kalibrován pro test typu F2.7, ale odchylka klesá s σ**
+  (kalibrace, sobě podobná rodina σ = 16, q = 0,0025, R = 200, NEPROŠEL). Geodetika v poli kauzální množiny
+  P_cs = 3,771 proti spojitému P_a = 3,354, poměr 1,124 (tolerance P_a/16, tj. 1,0625); při σ = 8 (pole F2.7) 1,206.
+  Přebytek tedy klesl z 0,206 na 0,124 při zdvojnásobení σ (formálně ~σ^(−0,73); zda klesá k nule, rozhodne s32).
+  Kvadratura zkonvergovala (kontrolní a hlavní úroveň se liší o 0,0001 proti P_a/64 = 0,052), Π(0) 0,7202 proti 0,7099.
+  Poměr sklonů cs/spojité v r = 1,25σ / 2,5σ / 3,75σ: 1,158 / 1,097 / 1,049 (při σ = 8: 1,245 / 1,129 / 1,056).
+  Gaussův deficit toku 1 − tok(R/2)/tok(3σ) zůstává ~0,10 při obou σ (spojité −0,014): v sobě podobné rodině je
+  R = 12,5σ, takže okrajový jev by škáloval s σ a nezmenšoval se; rozliší s08_R200.
 - **F1.2, integrální A5′ s ostrým zdrojem**: reziduum očekávaného pole 0,0875 q proti toleranci 0,05.
   Ostrá hrana zdroje není na škále nelokality ℓ_k zobrazitelná. Toleranci jsem nastavil bez měření na plné
   mřížce (moje chyba). Revize F1.2b změnila jen tvar zdroje na gaussovský, kritéria zůstala stejná.

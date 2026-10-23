@@ -46,5 +46,13 @@ Hlavička každého testu (`TEST = {...}`) obsahuje fázi, část teorie, otázk
 nulový model, úroveň závěru, použitá měřidla a závislosti. Kritérium se po běhu nemění; změna kritéria je
 nová revize testu s novým ID (např. F1.2b).
 
+<<<<<<< HEAD
+=======
+## Stav první verze
+
+Jádro, kalibrační testy K.2–K.9 a test F1.2 (integrální A5′). Ostatní testy jsou naplánované v
+`docs/planovane_testy.csv`. Výsledky GTS Lab z předešlých verzí jsou převedené na nová ID v
+`results/historie_3x/prehled.csv`.
+>>>>>>> 34f57c7 (Nová iterace výzkumu + oprava bug v pulse.py)
 
 Dokumentace česky, kód anglicky. Licence MIT.

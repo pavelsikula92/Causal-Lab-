@@ -1,0 +1,34 @@
+fixed: 2+1 cylinder T = 9.0, N = 7000, R_abs = 0.4; C = Q_0.99 = 5.5773; ignition s_ign = 5.0 in the disk r0 = 0.15, t [3.0, 4.0); 4 sprinklings; rule frames beta = 0 (source frame) and [0.3, 0.6]; readout in the source frame
+  rule under test: narrowed cones |dx| <= Pi^2 dt (F3.3h) on the fixed order; reference: bistable with full cones
+  s_bg 0:
+     reference : died 1.000; N early 0.0 late 0.0; R_late nan; C_late nan; X_late +nan
+     coord_0   : died 0.000; N early 12.1 late 2.6; R_late 0.2969; C_late 0.057; X_late -0.0030
+     coord_0.3 : died 1.000; N early 7.5 late 0.0; R_late nan; C_late nan; X_late +nan
+     coord_0.6 : died 1.000; N early 2.0 late 0.0; R_late nan; C_late nan; X_late +nan
+     beta 0.3: events with a different number of allowed children than in S: 0.0583
+     beta 0.6: events with a different number of allowed children than in S: 0.0585
+     beta 0.3 N_late : frame effect -2.6250 +- 0.5975 (n 4); mechanism +2.6250 +- 0.6346 (n 4); tol 0.6562 -> EXCESS
+     beta 0.3 R_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE
+     beta 0.3 C_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE
+     beta 0.3 X_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol 0.0375 -> NOT DECISIVE
+     beta 0.6 N_late : frame effect -2.6250 +- 0.5813 (n 4); mechanism +2.6250 +- 0.6346 (n 4); tol 0.6562 -> EXCESS
+     beta 0.6 R_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE
+     beta 0.6 C_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE
+     beta 0.6 X_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol 0.0375 -> NOT DECISIVE
+  s_bg 0.2:
+     reference : died 1.000; N early 0.2 late 0.0; R_late nan; C_late nan; X_late +nan
+     coord_0   : died 0.000; N early 14.0 late 5.6; R_late 0.2936; C_late 0.085; X_late -0.0208
+     coord_0.3 : died 0.750; N early 8.2 late 0.2; R_late 0.4464; C_late 0.017; X_late +0.2965
+     coord_0.6 : died 0.500; N early 2.0 late 0.2; R_late 0.5345; C_late 0.008; X_late +0.3756
+     beta 0.3: events with a different number of allowed children than in S: 0.7013
+     beta 0.6: events with a different number of allowed children than in S: 0.8315
+     beta 0.3 N_late : frame effect -5.3750 +- 1.6113 (n 4); mechanism +5.6250 +- 1.6972 (n 4); tol 1.4062 -> EXCESS
+     beta 0.3 R_late : frame effect +nan +- nan (n 1); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE
+     beta 0.3 C_late : frame effect +nan +- nan (n 1); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE
+     beta 0.3 X_late : frame effect +nan +- nan (n 1); mechanism +nan +- nan (n 0); tol 0.0375 -> NOT DECISIVE
+     beta 0.6 N_late : frame effect -5.3750 +- 1.5242 (n 4); mechanism +5.6250 +- 1.6972 (n 4); tol 1.4062 -> EXCESS
+     beta 0.6 R_late : frame effect +0.1623 +- 0.0069 (n 2); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE
+     beta 0.6 C_late : frame effect -0.0423 +- 0.0153 (n 2); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE
+     beta 0.6 X_late : frame effect +0.4181 +- 0.0605 (n 2); mechanism +nan +- nan (n 0); tol 0.0375 -> EXCESS
+decision: 5 decisive comparisons: EQUIVALENT 0, EXCESS 5, INCONCLUSIVE 0
+instrument: light control bit-identical in S and S': OK; balance: OK

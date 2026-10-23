@@ -1,0 +1,5 @@
+conformal 2+1: Pi(y) = 0.75 + 0.25 cos(2 pi y / 40.0), 2 periods, 16 bins; 400 sprinklings; a^(3) = 0.218853
+  fitted exponent k = 1.0598 +- 0.0647 (bootstrap), target d - 2 = 1, alternatives 0 and 3; tolerance d_alt/4 = 0.250
+  amplitude C / a^(3) = 0.9924 (leading-order prediction 1); chi^2 of the fit 15.4 for 14 dof
+  parameter-free model (k = 1, C = a): chi^2 18.7 for 16 bins; with k = 0: 1151.1; with k = 3: 778.2
+  bins (mean count, prediction a int Pi^(d-2)): 1.04/1.07; 0.89/0.92; 0.74/0.72; 0.58/0.57; 0.62/0.57; 0.72/0.72; 0.85/0.92; 1.11/1.07; 1.16/1.07; 0.85/0.92; 0.65/0.72; 0.52/0.57; 0.51/0.57; 0.71/0.72; 0.88/0.92; 1.04/1.07

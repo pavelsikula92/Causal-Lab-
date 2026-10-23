@@ -1,0 +1,713 @@
+{
+ "id": "F0.6",
+ "part": "fixed",
+ "seed": 0,
+ "quick": true,
+ "status": "FAILED",
+ "test_file": "phases\\F0_substrat\\F0_06_relativity_gate.py",
+ "test_sha256": "049b5e0c546608782efd3b84e16deed56ed5924451ec0547cdd7fe4e22723833",
+ "core_sha256": "09f86c32fdaf2a92c87d30263a295b1ac48d37c76bd72040816b9d70c592f366",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T044438Z",
+ "duration_s": 20.9,
+ "params": {
+  "D": 3,
+  "T": 9.0,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "n_cal": 1,
+  "q": 0.99,
+  "cal_t1": 3.5,
+  "cal_t2": 5.5,
+  "s0": 1.0,
+  "s_ign": 5.0,
+  "t_ign1": 3.0,
+  "t_ign2": 4.0,
+  "r0": 0.15,
+  "ign_axes": [
+   0.15,
+   0.15
+  ],
+  "slab": 0.25,
+  "t_obs1": 3.0,
+  "t_obs2": 8.5,
+  "early": [
+   4.5,
+   5.0
+  ],
+  "late": [
+   8.0,
+   8.5
+  ],
+  "ring": 0.3,
+  "die_frac": 0.05,
+  "omega": 1.0,
+  "rule": "main",
+  "dq_crit": 0.2,
+  "Pi_sat": 0.5,
+  "m": 2.0,
+  "power": 2.0,
+  "lam": 25.0,
+  "window": 1.5,
+  "damp": 0.5,
+  "burn_in": 2,
+  "n_avg": 2,
+  "betas": [
+   0.3,
+   0.6
+  ],
+  "n_se": 2.0,
+  "quarter": 4.0,
+  "boot_B": 200,
+  "balance_tol": 1e-12,
+  "mode": "fixed",
+  "N": 7000,
+  "n_seeds": 4,
+  "bg_grid": [
+   0.0,
+   0.2
+  ]
+ },
+ "lines": [
+  "fixed: 2+1 cylinder T = 9.0, N = 7000, R_abs = 0.4; C = Q_0.99 = 5.5773; ignition s_ign = 5.0 in the disk r0 = 0.15, t [3.0, 4.0); 4 sprinklings; rule frames beta = 0 (source frame) and [0.3, 0.6]; readout in the source frame",
+  "  rule under test: narrowed cones |dx| <= Pi^2 dt (F3.3h) on the fixed order; reference: bistable with full cones",
+  "  s_bg 0:",
+  "     reference : died 1.000; N early 0.0 late 0.0; R_late nan; C_late nan; X_late +nan",
+  "     coord_0   : died 0.000; N early 12.1 late 2.6; R_late 0.2969; C_late 0.057; X_late -0.0030",
+  "     coord_0.3 : died 1.000; N early 7.5 late 0.0; R_late nan; C_late nan; X_late +nan",
+  "     coord_0.6 : died 1.000; N early 2.0 late 0.0; R_late nan; C_late nan; X_late +nan",
+  "     beta 0.3: events with a different number of allowed children than in S: 0.0583",
+  "     beta 0.6: events with a different number of allowed children than in S: 0.0585",
+  "     beta 0.3 N_late : frame effect -2.6250 +- 0.5975 (n 4); mechanism +2.6250 +- 0.6346 (n 4); tol 0.6562 -> EXCESS",
+  "     beta 0.3 R_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE",
+  "     beta 0.3 C_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE",
+  "     beta 0.3 X_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol 0.0375 -> NOT DECISIVE",
+  "     beta 0.6 N_late : frame effect -2.6250 +- 0.5813 (n 4); mechanism +2.6250 +- 0.6346 (n 4); tol 0.6562 -> EXCESS",
+  "     beta 0.6 R_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE",
+  "     beta 0.6 C_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE",
+  "     beta 0.6 X_late : frame effect +nan +- nan (n 0); mechanism +nan +- nan (n 0); tol 0.0375 -> NOT DECISIVE",
+  "  s_bg 0.2:",
+  "     reference : died 1.000; N early 0.2 late 0.0; R_late nan; C_late nan; X_late +nan",
+  "     coord_0   : died 0.000; N early 14.0 late 5.6; R_late 0.2936; C_late 0.085; X_late -0.0208",
+  "     coord_0.3 : died 0.750; N early 8.2 late 0.2; R_late 0.4464; C_late 0.017; X_late +0.2965",
+  "     coord_0.6 : died 0.500; N early 2.0 late 0.2; R_late 0.5345; C_late 0.008; X_late +0.3756",
+  "     beta 0.3: events with a different number of allowed children than in S: 0.7013",
+  "     beta 0.6: events with a different number of allowed children than in S: 0.8315",
+  "     beta 0.3 N_late : frame effect -5.3750 +- 1.6113 (n 4); mechanism +5.6250 +- 1.6972 (n 4); tol 1.4062 -> EXCESS",
+  "     beta 0.3 R_late : frame effect +nan +- nan (n 1); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE",
+  "     beta 0.3 C_late : frame effect +nan +- nan (n 1); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE",
+  "     beta 0.3 X_late : frame effect +nan +- nan (n 1); mechanism +nan +- nan (n 0); tol 0.0375 -> NOT DECISIVE",
+  "     beta 0.6 N_late : frame effect -5.3750 +- 1.5242 (n 4); mechanism +5.6250 +- 1.6972 (n 4); tol 1.4062 -> EXCESS",
+  "     beta 0.6 R_late : frame effect +0.1623 +- 0.0069 (n 2); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE",
+  "     beta 0.6 C_late : frame effect -0.0423 +- 0.0153 (n 2); mechanism +nan +- nan (n 0); tol nan -> NOT DECISIVE",
+  "     beta 0.6 X_late : frame effect +0.4181 +- 0.0605 (n 2); mechanism +nan +- nan (n 0); tol 0.0375 -> EXCESS",
+  "decision: 5 decisive comparisons: EQUIVALENT 0, EXCESS 5, INCONCLUSIVE 0",
+  "instrument: light control bit-identical in S and S': OK; balance: OK"
+ ],
+ "data": {
+  "C": 5.577347044838343,
+  "comparisons": [
+   {
+    "key": "N_late",
+    "beta": 0.3,
+    "frame": [
+     -2.625,
+     0.597508107953651
+    ],
+    "n_frame": 4,
+    "mech": [
+     2.625,
+     0.6345612875350899
+    ],
+    "n_mech": 4,
+    "tol": 0.65625,
+    "verdict": "EXCESS",
+    "s_bg": 0.0
+   },
+   {
+    "key": "R_late",
+    "beta": 0.3,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 0,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": null,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.0
+   },
+   {
+    "key": "C_late",
+    "beta": 0.3,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 0,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": null,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.0
+   },
+   {
+    "key": "X_late",
+    "beta": 0.3,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 0,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": 0.0375,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.0
+   },
+   {
+    "key": "N_late",
+    "beta": 0.6,
+    "frame": [
+     -2.625,
+     0.581268742605908
+    ],
+    "n_frame": 4,
+    "mech": [
+     2.625,
+     0.6345612875350899
+    ],
+    "n_mech": 4,
+    "tol": 0.65625,
+    "verdict": "EXCESS",
+    "s_bg": 0.0
+   },
+   {
+    "key": "R_late",
+    "beta": 0.6,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 0,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": null,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.0
+   },
+   {
+    "key": "C_late",
+    "beta": 0.6,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 0,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": null,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.0
+   },
+   {
+    "key": "X_late",
+    "beta": 0.6,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 0,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": 0.0375,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.0
+   },
+   {
+    "key": "N_late",
+    "beta": 0.3,
+    "frame": [
+     -5.375,
+     1.6113300896040255
+    ],
+    "n_frame": 4,
+    "mech": [
+     5.625,
+     1.6972260659957699
+    ],
+    "n_mech": 4,
+    "tol": 1.40625,
+    "verdict": "EXCESS",
+    "s_bg": 0.2
+   },
+   {
+    "key": "R_late",
+    "beta": 0.3,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 1,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": null,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.2
+   },
+   {
+    "key": "C_late",
+    "beta": 0.3,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 1,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": null,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.2
+   },
+   {
+    "key": "X_late",
+    "beta": 0.3,
+    "frame": [
+     null,
+     null
+    ],
+    "n_frame": 1,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": 0.0375,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.2
+   },
+   {
+    "key": "N_late",
+    "beta": 0.6,
+    "frame": [
+     -5.375,
+     1.524175857503979
+    ],
+    "n_frame": 4,
+    "mech": [
+     5.625,
+     1.6972260659957699
+    ],
+    "n_mech": 4,
+    "tol": 1.40625,
+    "verdict": "EXCESS",
+    "s_bg": 0.2
+   },
+   {
+    "key": "R_late",
+    "beta": 0.6,
+    "frame": [
+     0.16228947768123708,
+     0.00694988861693266
+    ],
+    "n_frame": 2,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": null,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.2
+   },
+   {
+    "key": "C_late",
+    "beta": 0.6,
+    "frame": [
+     -0.04233862842188756,
+     0.015290802421294929
+    ],
+    "n_frame": 2,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": null,
+    "verdict": "NOT DECISIVE",
+    "s_bg": 0.2
+   },
+   {
+    "key": "X_late",
+    "beta": 0.6,
+    "frame": [
+     0.41810272985853714,
+     0.06048285580918536
+    ],
+    "n_frame": 2,
+    "mech": [
+     null,
+     null
+    ],
+    "n_mech": 0,
+    "tol": 0.0375,
+    "verdict": "EXCESS",
+    "s_bg": 0.2
+   }
+  ],
+  "instrument": {
+   "light control bit-identical in S and S'": true,
+   "balance": true
+  },
+  "rows": [
+   {
+    "cfg": [
+     {
+      "reference": {
+       "N_early": 0.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "coord_0": {
+       "N_early": 10.5,
+       "N_late": 3.5,
+       "died": false,
+       "R_late": 0.3774786818568394,
+       "C_late": 0.028009379885356955,
+       "X_late": 0.054263505057584246
+      },
+      "coord_0.3": {
+       "N_early": 6.5,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.3": 0.055948846768668646,
+      "coord_0.6": {
+       "N_early": 1.5,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.6": 0.05457867092943595
+     },
+     {
+      "reference": {
+       "N_early": 0.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "coord_0": {
+       "N_early": 14.0,
+       "N_late": 3.5,
+       "died": false,
+       "R_late": 0.3774786818568394,
+       "C_late": 0.028009379885356955,
+       "X_late": 0.054263505057584246
+      },
+      "coord_0.3": {
+       "N_early": 6.5,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.3": 0.6965060516099566,
+      "coord_0.6": {
+       "N_early": 1.5,
+       "N_late": 0.5,
+       "died": false,
+       "R_late": 0.5494908534550933,
+       "C_late": 0.007874015748031496,
+       "X_late": 0.3838895121299958
+      },
+      "diff_events_0.6": 0.8348938113724594
+     }
+    ],
+    "light_identical": true,
+    "balance": 1.2970546231787339e-16,
+    "frame_changed_kids": {}
+   },
+   {
+    "cfg": [
+     {
+      "reference": {
+       "N_early": 0.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "coord_0": {
+       "N_early": 12.5,
+       "N_late": 1.0,
+       "died": false,
+       "R_late": 0.24708127132037608,
+       "C_late": 0.03773584905660377,
+       "X_late": -0.11471636198066221
+      },
+      "coord_0.3": {
+       "N_early": 5.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.3": 0.051029543419874666,
+      "coord_0.6": {
+       "N_early": 4.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.6": 0.055282005371530885
+     },
+     {
+      "reference": {
+       "N_early": 0.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "coord_0": {
+       "N_early": 15.5,
+       "N_late": 6.5,
+       "died": false,
+       "R_late": 0.3669307997789807,
+       "C_late": 0.072875226039783,
+       "X_late": -0.13928354552502167
+      },
+      "coord_0.3": {
+       "N_early": 5.0,
+       "N_late": 1.0,
+       "died": false,
+       "R_late": 0.4463596416770966,
+       "C_late": 0.016666666666666666,
+       "X_late": 0.2965054374024827
+      },
+      "diff_events_0.3": 0.711727842435094,
+      "coord_0.6": {
+       "N_early": 4.0,
+       "N_late": 0.5,
+       "died": false,
+       "R_late": 0.519497583543201,
+       "C_late": 0.008333333333333333,
+       "X_late": 0.3672959071196411
+      },
+      "diff_events_0.6": 0.82408236347359
+     }
+    ],
+    "light_identical": true,
+    "balance": 2.0068285564274677e-16,
+    "frame_changed_kids": {}
+   },
+   {
+    "cfg": [
+     {
+      "reference": {
+       "N_early": 0.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "coord_0": {
+       "N_early": 9.5,
+       "N_late": 4.0,
+       "died": false,
+       "R_late": 0.43584799792105877,
+       "C_late": 0.0296681664791901,
+       "X_late": 0.12077088046615497
+      },
+      "coord_0.3": {
+       "N_early": 7.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.3": 0.059748427672955975,
+      "coord_0.6": {
+       "N_early": 1.5,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.6": 0.05952380952380952
+     },
+     {
+      "reference": {
+       "N_early": 1.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "coord_0": {
+       "N_early": 10.5,
+       "N_late": 10.5,
+       "died": false,
+       "R_late": 0.3028544899774171,
+       "C_late": 0.10676873489121676,
+       "X_late": 0.07426832600028671
+      },
+      "coord_0.3": {
+       "N_early": 7.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.3": 0.7028301886792453,
+      "coord_0.6": {
+       "N_early": 1.5,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.6": 0.8324348607367476
+     }
+    ],
+    "light_identical": true,
+    "balance": 2.236829074699774e-16,
+    "frame_changed_kids": {}
+   },
+   {
+    "cfg": [
+     {
+      "reference": {
+       "N_early": 0.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "coord_0": {
+       "N_early": 16.0,
+       "N_late": 2.0,
+       "died": false,
+       "R_late": 0.12718304228095823,
+       "C_late": 0.13257575757575757,
+       "X_late": -0.0724536605258084
+      },
+      "coord_0.3": {
+       "N_early": 11.5,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.3": 0.06641408513483396,
+      "coord_0.6": {
+       "N_early": 1.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.6": 0.06463115667483842
+     },
+     {
+      "reference": {
+       "N_early": 0.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "coord_0": {
+       "N_early": 16.0,
+       "N_late": 2.0,
+       "died": false,
+       "R_late": 0.12718304228095823,
+       "C_late": 0.13257575757575757,
+       "X_late": -0.0724536605258084
+      },
+      "coord_0.3": {
+       "N_early": 14.5,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.3": 0.694004903053265,
+      "coord_0.6": {
+       "N_early": 1.0,
+       "N_late": 0.0,
+       "died": true,
+       "R_late": null,
+       "C_late": null,
+       "X_late": null
+      },
+      "diff_events_0.6": 0.8346333853354134
+     }
+    ],
+    "light_identical": true,
+    "balance": 1.3585903169409182e-16,
+    "frame_changed_kids": {}
+   }
+  ]
+ }
+}

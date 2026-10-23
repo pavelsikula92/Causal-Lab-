@@ -1,0 +1,2 @@
+V1 vacuum: 4 sprinklings of N = 36000: exact order with Pi = 1 against core.order.links: identical up to empty wall links [True, True, True, True]; wall links found only by the exact order [0, 0, 0, 0]; links of the old instrument missing [0, 0, 0, 0]; links per sprinkling [1523779, 1524361, 1525528, 1522931]
+V1 brute force: 6 sprinklings of 1200 events with a slow-clock blob (Pi down to 0.5): mismatches [0, 0, 0, 0, 0, 0] of [19920, 20529, 20302, 20927, 20602, 20365] links; acyclic True

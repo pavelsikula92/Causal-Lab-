@@ -1,0 +1,98 @@
+2+1 cylinder T = 9.0, N = 36000, R_abs = 0.4; C = Q_0.99 = 5.1293; ignition s_ign = 5.0 in t [3.0, 4.0), disk r0 = 0.15; bistable flux (dQ_crit 0.2, C Pi, Pi_sat 0.5, m 2.0); dynamic order: cones Pi_z^2, self-consistent, damping 0.5, burn-in 8, average over 4; 32 sprinklings; tolerance r0/4 = 0.0375
+  s_bg 0:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N        65.5   89.6   87.6   92.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.151  0.149   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.851  0.997  0.985  1.010   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.699  0.980  0.969  0.976   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+     fixed: died 1.000; R_rms early 0.315 late nan; growth undefined; ring (late) 0.0000
+        N        91.4   89.6   88.1   96.9   11.2    0.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.151  0.150  0.152  0.160  0.261  0.294  0.315   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.997  0.997  0.981  0.965  0.200  0.093  0.051   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.971  0.980  0.960  0.886  0.038  0.010  0.002   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+     dynamic: died 1.000; R_rms early 0.161 late nan; growth undefined; ring (late) 0.0000
+        N        92.1   93.2   96.1  107.0  100.4   99.5   93.5   87.4   84.6   85.6   84.4   73.3   53.0   29.5   10.0    1.7    0.1    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.152  0.154  0.159  0.163  0.166  0.166  0.162  0.159  0.157  0.155  0.161  0.165  0.175  0.189  0.184  0.195  0.241   nan   nan   nan   nan   nan
+        B       0.997  0.993  0.978  0.997  0.952  0.954  0.941  0.933  0.931  0.937  0.900  0.813  0.638  0.518  0.334  0.215  0.105   nan   nan   nan   nan   nan
+        C_drop  0.968  0.961  0.923  0.928  0.851  0.820  0.800  0.796  0.790  0.798  0.732  0.618  0.434  0.303  0.137  0.056  0.013   nan   nan   nan   nan   nan
+     stationarity (first - second half of the averaging window): R_late +0.0000 +- 0.0000, C_late +0.000 +- 0.000, N_late +0.0 +- 0.0 -> OK
+     flip fraction per iteration (mean): 0.153 0.109 0.110 0.101 0.095 0.097 0.089 0.093 0.096 0.102 0.106 0.111; links dynamic / vacuum 1629372 / 1527432
+     -> dynamic order FAILED; fixed order FAILED; value FAILED
+  s_bg 0.1:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N        91.4   89.6   87.6   92.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.151  0.150  0.151  0.149   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.997  0.997  0.985  1.010   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.971  0.980  0.969  0.976   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+     fixed: died 1.000; R_rms early 0.242 late nan; growth undefined; ring (late) 0.0000
+        N        91.4   89.6   91.6  103.6   24.1    5.2    0.6    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.151  0.150  0.159  0.176  0.288  0.325  0.242   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.997  0.997  0.954  0.911  0.267  0.116  0.098   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.971  0.980  0.891  0.752  0.067  0.016  0.015   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+     dynamic: died 0.000; R_rms early 0.190 late 0.225; growth +0.0349 +- 0.0018; ring (late) 0.0026; C_drop (late) 0.689 +- 0.012
+        N        92.2   96.0  104.2  119.4  120.5  127.7  130.5  130.2  134.6  138.4  142.4  144.2  147.9  151.6  153.8  155.2  157.9  158.8  159.2  156.8  154.8  152.7
+        R_rms   0.152  0.157  0.166  0.173  0.181  0.186  0.189  0.191  0.195  0.195  0.198  0.201  0.205  0.209  0.211  0.215  0.219  0.222  0.222  0.224  0.224  0.227
+        B       0.997  0.990  0.974  0.992  0.957  0.961  0.953  0.948  0.947  0.949  0.951  0.944  0.936  0.932  0.929  0.917  0.911  0.896  0.899  0.888  0.881  0.865
+        C_drop  0.967  0.943  0.910  0.905  0.866  0.846  0.829  0.834  0.828  0.833  0.823  0.821  0.811  0.784  0.778  0.758  0.749  0.725  0.715  0.710  0.698  0.681
+     stationarity (first - second half of the averaging window): R_late +0.0060 +- 0.0018, C_late -0.117 +- 0.014, N_late -17.4 +- 2.4 -> NOT STATIONARY
+     flip fraction per iteration (mean): 0.219 0.150 0.200 0.222 0.265 0.305 0.326 0.318 0.300 0.278 0.250 0.221; links dynamic / vacuum 1831817 / 1527432
+     -> dynamic order UNDECIDED; fixed order FAILED; value UNDECIDED
+  s_bg 0.2:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N        91.4   89.6   87.6   92.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.151  0.150  0.151  0.149   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.997  0.997  0.985  1.010   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.971  0.980  0.969  0.976   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+     fixed: died 1.000; R_rms early 0.303 late nan; growth undefined; ring (late) 0.0000
+        N        91.4   91.5  101.1  118.8   53.7   29.4   17.1    8.7    3.3    1.5    0.6    0.2    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.151  0.154  0.183  0.205  0.307  0.322  0.301  0.307  0.295  0.300  0.349  0.223  0.217   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.997  0.981  0.874  0.836  0.374  0.262  0.205  0.155  0.114  0.101  0.087  0.123  0.072   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.971  0.943  0.702  0.607  0.127  0.065  0.042  0.026  0.016  0.013  0.009  0.017  0.005   nan   nan   nan   nan   nan   nan   nan   nan   nan
+     dynamic: died 0.000; R_rms early 0.222 late 0.261; growth +0.0390 +- 0.0014; ring (late) 0.0098; C_drop (late) 0.839 +- 0.004
+        N        92.9  101.3  117.9  140.9  149.8  166.2  178.6  184.1  194.2  206.9  213.4  214.9  222.6  232.1  233.3  237.2  239.7  239.8  245.5  246.4  246.0  247.2
+        R_rms   0.153  0.162  0.178  0.189  0.201  0.211  0.219  0.225  0.231  0.236  0.239  0.242  0.245  0.250  0.252  0.254  0.256  0.256  0.257  0.261  0.261  0.262
+        B       0.996  0.985  0.969  0.986  0.961  0.970  0.965  0.957  0.958  0.960  0.965  0.960  0.957  0.965  0.961  0.957  0.957  0.954  0.960  0.953  0.953  0.953
+        C_drop  0.963  0.915  0.890  0.894  0.874  0.865  0.855  0.862  0.856  0.862  0.861  0.862  0.862  0.852  0.848  0.848  0.848  0.848  0.841  0.836  0.842  0.836
+     stationarity (first - second half of the averaging window): R_late -0.0022 +- 0.0010, C_late -0.013 +- 0.005, N_late -7.2 +- 1.5 -> OK
+     flip fraction per iteration (mean): 0.513 0.354 0.522 0.484 0.475 0.446 0.384 0.329 0.269 0.223 0.200 0.189; links dynamic / vacuum 1932546 / 1527432
+     -> dynamic order UNDECIDED; fixed order FAILED; value UNDECIDED
+  s_bg 0.3:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N        91.4   89.6   87.6   92.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.151  0.150  0.151  0.149   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.997  0.997  0.985  1.010   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.971  0.980  0.969  0.976   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+     fixed: died 0.125; R_rms early 0.343 late 0.334; growth -0.0104 +- 0.0049; ring (late) 0.0556; C_drop (late) 0.146 +- 0.015
+        N        92.0  104.4  126.9  153.3  116.4  105.7  104.8  101.9   99.7   95.3   94.8   88.4   89.5   87.0   86.6   85.2   85.2   74.0   74.7   68.0   65.1   64.8
+        R_rms   0.152  0.180  0.228  0.253  0.333  0.338  0.341  0.346  0.332  0.335  0.337  0.329  0.339  0.334  0.330  0.334  0.330  0.331  0.323  0.331  0.338  0.331
+        B       0.995  0.901  0.784  0.769  0.510  0.477  0.466  0.453  0.461  0.440  0.437  0.428  0.429  0.438  0.445  0.433  0.436  0.404  0.398  0.401  0.383  0.386
+        C_drop  0.968  0.730  0.523  0.497  0.237  0.205  0.199  0.193  0.197  0.183  0.182  0.174  0.173  0.181  0.181  0.178  0.178  0.154  0.157  0.153  0.145  0.147
+     dynamic: died 0.000; R_rms early 0.258 late 0.301; growth +0.0429 +- 0.0013; ring (late) 0.0826; C_drop (late) 0.884 +- 0.003
+        N        94.8  117.3  147.0  178.0  195.7  220.3  241.9  252.9  267.2  285.9  296.6  300.0  306.8  317.6  321.9  326.6  332.5  333.4  340.0  337.9  336.6  340.4
+        R_rms   0.155  0.176  0.200  0.214  0.229  0.242  0.253  0.263  0.269  0.276  0.279  0.283  0.286  0.289  0.292  0.294  0.297  0.298  0.298  0.300  0.300  0.301
+        B       0.993  0.973  0.961  0.980  0.963  0.973  0.972  0.962  0.966  0.967  0.974  0.970  0.964  0.976  0.974  0.969  0.970  0.966  0.975  0.971  0.969  0.970
+        C_drop  0.949  0.873  0.861  0.884  0.873  0.882  0.881  0.872  0.878  0.881  0.884  0.885  0.883  0.881  0.882  0.878  0.881  0.882  0.883  0.879  0.883  0.886
+     stationarity (first - second half of the averaging window): R_late -0.0055 +- 0.0009, C_late -0.005 +- 0.004, N_late -13.0 +- 1.6 -> OK
+     flip fraction per iteration (mean): 0.846 0.582 0.556 0.546 0.506 0.451 0.372 0.293 0.245 0.226 0.217 0.212; links dynamic / vacuum 2046656 / 1527432
+     -> dynamic order FAILED; fixed order FAILED; value FAILED
+  s_bg 0.4:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N        91.4   89.6   87.6   92.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.151  0.150  0.151  0.149   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.997  0.997  0.985  1.010   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.971  0.980  0.969  0.976   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+     fixed: died 0.000; R_rms early 0.367 late 0.374; growth +0.0074 +- 0.0016; ring (late) 0.3659; C_drop (late) 0.497 +- 0.011
+        N       103.0  151.3  191.3  228.2  220.3  228.0  241.2  247.5  262.4  276.5  285.3  291.6  298.3  299.7  304.2  305.7  309.4  307.2  306.6  298.7  296.8  302.8
+        R_rms   0.171  0.246  0.295  0.313  0.361  0.364  0.365  0.369  0.368  0.369  0.371  0.372  0.373  0.370  0.373  0.374  0.374  0.373  0.374  0.374  0.373  0.375
+        B       0.936  0.794  0.744  0.757  0.648  0.656  0.671  0.676  0.697  0.709  0.718  0.726  0.728  0.739  0.738  0.737  0.743  0.739  0.736  0.731  0.728  0.732
+        C_drop  0.809  0.528  0.460  0.484  0.382  0.391  0.409  0.419  0.448  0.463  0.475  0.487  0.491  0.501  0.503  0.502  0.510  0.507  0.503  0.495  0.493  0.501
+     dynamic: died 0.000; R_rms early 0.302 late 0.337; growth +0.0349 +- 0.0011; ring (late) 0.3054; C_drop (late) 0.900 +- 0.002
+        N       169.8  210.8  244.1  272.7  291.6  313.2  336.6  351.6  364.7  386.9  395.6  397.7  404.9  413.6  416.4  420.6  422.8  426.0  433.2  429.8  428.7  430.9
+        R_rms   0.232  0.253  0.266  0.271  0.281  0.288  0.297  0.307  0.312  0.318  0.321  0.324  0.327  0.328  0.330  0.332  0.334  0.335  0.335  0.336  0.337  0.337
+        B       0.886  0.911  0.934  0.959  0.961  0.973  0.976  0.970  0.971  0.973  0.979  0.974  0.969  0.981  0.979  0.976  0.974  0.972  0.980  0.977  0.973  0.976
+        C_drop  0.691  0.735  0.792  0.847  0.864  0.884  0.891  0.890  0.894  0.895  0.898  0.896  0.896  0.903  0.900  0.900  0.895  0.897  0.902  0.899  0.899  0.901
+     stationarity (first - second half of the averaging window): R_late -0.0066 +- 0.0008, C_late -0.002 +- 0.002, N_late -17.1 +- 1.9 -> OK
+     flip fraction per iteration (mean): 0.927 0.724 0.658 0.629 0.600 0.560 0.447 0.365 0.332 0.316 0.307 0.300; links dynamic / vacuum 2183116 / 1527432
+     -> dynamic order FAILED; fixed order FAILED; value FAILED
+  part A: values passing: none
+instrument: control arm = route_capacity: OK; balance: OK; acyclic (links forward in t): OK; boosted order bit-identical (flux on the final links): OK; stationary ensemble: FAILS

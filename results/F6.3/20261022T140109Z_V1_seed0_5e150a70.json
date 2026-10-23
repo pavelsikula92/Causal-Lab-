@@ -1,0 +1,139 @@
+{
+ "id": "F6.3",
+ "part": "V1",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\F6_dynamika_radu\\F6_03_dynamic_order.py",
+ "test_sha256": "5e150a700ece65821ce9ffe0fe73ff90b62dce067d8d03a2587cc311dea5316b",
+ "core_sha256": "6dafbec3dd9f11f82cb32f9e8c088e85f0e11326d83c28a2dfb1ada807bad893",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261022T140109Z",
+ "duration_s": 123.3,
+ "params": {
+  "D": 3,
+  "T": 9.0,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "N": 36000,
+  "n_seeds": 32,
+  "n_cal": 8,
+  "q": 0.99,
+  "cal_t1": 3.5,
+  "cal_t2": 5.5,
+  "s0": 1.0,
+  "s_ign": 5.0,
+  "t_ign1": 3.0,
+  "t_ign2": 4.0,
+  "r0": 0.15,
+  "ign_axes": [
+   0.15,
+   0.15
+  ],
+  "slab": 0.25,
+  "t_obs1": 3.0,
+  "t_obs2": 8.5,
+  "early": [
+   4.5,
+   5.0
+  ],
+  "late": [
+   8.0,
+   8.5
+  ],
+  "ring": 0.3,
+  "die_frac": 0.05,
+  "omega": 1.0,
+  "rule": "main",
+  "dq_crit": 0.2,
+  "Pi_sat": 0.5,
+  "m": 2.0,
+  "power": 2.0,
+  "lam": 25.0,
+  "window": 1.5,
+  "window_check": 3.0,
+  "damp": 0.5,
+  "burn_in": 8,
+  "n_avg": 4,
+  "c_domain": 0.5,
+  "max_died_pass": 0.05,
+  "max_died_fail": 0.5,
+  "n_se": 2.0,
+  "boot_B": 4000,
+  "balance_tol": 1e-12,
+  "boost_beta": 0.6,
+  "link_mismatch_max": 1e-05,
+  "n_small": 6,
+  "N_small": 1200,
+  "n_val": 4,
+  "s_bg_val": 0.2,
+  "mode": "V1"
+ },
+ "lines": [
+  "V1 vacuum: 4 sprinklings of N = 36000: local links with Pi = 1 identical to core.order.links: True, True, True, True; links per sprinkling [1523779, 1524361, 1525528, 1522931]",
+  "V1 brute force: 6 sprinklings of 1200 events with a slow-clock blob (Pi down to 0.5): mismatches [0, 0, 0, 0, 0, 0] of [19920, 20529, 20302, 20927, 20602, 20365] links; acyclic True"
+ ],
+ "data": {
+  "big": [
+   {
+    "identical": true,
+    "acyclic": true,
+    "links": 1523779
+   },
+   {
+    "identical": true,
+    "acyclic": true,
+    "links": 1524361
+   },
+   {
+    "identical": true,
+    "acyclic": true,
+    "links": 1525528
+   },
+   {
+    "identical": true,
+    "acyclic": true,
+    "links": 1522931
+   }
+  ],
+  "small": [
+   {
+    "mismatch": 0,
+    "links": 19920,
+    "acyclic": true
+   },
+   {
+    "mismatch": 0,
+    "links": 20529,
+    "acyclic": true
+   },
+   {
+    "mismatch": 0,
+    "links": 20302,
+    "acyclic": true
+   },
+   {
+    "mismatch": 0,
+    "links": 20927,
+    "acyclic": true
+   },
+   {
+    "mismatch": 0,
+    "links": 20602,
+    "acyclic": true
+   },
+   {
+    "mismatch": 0,
+    "links": 20365,
+    "acyclic": true
+   }
+  ]
+ }
+}

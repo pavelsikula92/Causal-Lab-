@@ -1,0 +1,158 @@
+{
+ "id": "F6.3b",
+ "part": "V2",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\F6_dynamika_radu\\F6_03b_dynamic_order.py",
+ "test_sha256": "6826ec922dcb35fdafe49ccc961bcb993ea193ee1ea3520ab376a97945adb0a5",
+ "core_sha256": "6dafbec3dd9f11f82cb32f9e8c088e85f0e11326d83c28a2dfb1ada807bad893",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261022T161040Z",
+ "duration_s": 1097.1,
+ "params": {
+  "D": 3,
+  "T": 9.0,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "N": 36000,
+  "n_seeds": 32,
+  "n_cal": 8,
+  "q": 0.99,
+  "cal_t1": 3.5,
+  "cal_t2": 5.5,
+  "s0": 1.0,
+  "s_ign": 5.0,
+  "t_ign1": 3.0,
+  "t_ign2": 4.0,
+  "r0": 0.15,
+  "ign_axes": [
+   0.15,
+   0.15
+  ],
+  "slab": 0.25,
+  "t_obs1": 3.0,
+  "t_obs2": 8.5,
+  "early": [
+   4.5,
+   5.0
+  ],
+  "late": [
+   8.0,
+   8.5
+  ],
+  "ring": 0.3,
+  "die_frac": 0.05,
+  "omega": 1.0,
+  "rule": "main",
+  "dq_crit": 0.2,
+  "Pi_sat": 0.5,
+  "m": 2.0,
+  "power": 2.0,
+  "lam": 25.0,
+  "window": 1.5,
+  "window_check": 3.0,
+  "damp": 0.5,
+  "burn_in": 8,
+  "n_avg": 4,
+  "c_domain": 0.5,
+  "max_died_pass": 0.05,
+  "max_died_fail": 0.5,
+  "n_se": 2.0,
+  "boot_B": 4000,
+  "balance_tol": 1e-12,
+  "boost_beta": 0.6,
+  "link_mismatch_max": 1e-05,
+  "n_small": 6,
+  "N_small": 1200,
+  "n_val": 4,
+  "s_bg_val": 0.2,
+  "mode": "V2"
+ },
+ "lines": [
+  "C = Q_0.99 = 5.1293; s_bg = 0.2; N = 36000",
+  "V2 (a) Pi_sat = 1: solution after [1, 1, 1, 1] iteration(s), equal to the fixed order element for element: [True, True, True, True]",
+  "V2 (b) window 1.5 against 3.0 on the matter solution: mismatched links [0, 0, 0, 0] of [1957128, 1966510, 1951347, 1956586] (fractions 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00; allowed 1e-05)",
+  "     flip fraction per iteration (first sprinkling): 0.504 0.275 0.537 0.490 0.479 0.447 0.382 0.323 0.260"
+ ],
+ "data": {
+  "C": 5.1293066424573945,
+  "results": [
+   {
+    "pisat1_equals_fixed": true,
+    "iterations_pisat1": 1,
+    "win_mismatch": 0,
+    "links": 1957128,
+    "flips": [
+     0.5045,
+     0.2748333333333333,
+     0.5371666666666667,
+     0.4900555555555556,
+     0.47944444444444445,
+     0.4473611111111111,
+     0.3819722222222222,
+     0.3234166666666667,
+     0.26013888888888886
+    ]
+   },
+   {
+    "pisat1_equals_fixed": true,
+    "iterations_pisat1": 1,
+    "win_mismatch": 0,
+    "links": 1966510,
+    "flips": [
+     0.5149166666666667,
+     0.3259166666666667,
+     0.544,
+     0.5060555555555556,
+     0.4880833333333333,
+     0.45263888888888887,
+     0.3894444444444444,
+     0.33575,
+     0.2688055555555556
+    ]
+   },
+   {
+    "pisat1_equals_fixed": true,
+    "iterations_pisat1": 1,
+    "win_mismatch": 0,
+    "links": 1951347,
+    "flips": [
+     0.5031388888888889,
+     0.3448333333333333,
+     0.52875,
+     0.4890555555555556,
+     0.47955555555555557,
+     0.45158333333333334,
+     0.3885,
+     0.3328611111111111,
+     0.26666666666666666
+    ]
+   },
+   {
+    "pisat1_equals_fixed": true,
+    "iterations_pisat1": 1,
+    "win_mismatch": 0,
+    "links": 1956586,
+    "flips": [
+     0.48438888888888887,
+     0.33066666666666666,
+     0.5076388888888889,
+     0.4503888888888889,
+     0.4538611111111111,
+     0.4339722222222222,
+     0.37627777777777777,
+     0.32419444444444445,
+     0.26775
+    ]
+   }
+  ]
+ }
+}

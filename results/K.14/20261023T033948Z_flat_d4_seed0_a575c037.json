@@ -1,0 +1,71 @@
+{
+ "id": "K.14",
+ "part": "flat_d4",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_14_horizon_molecules.py",
+ "test_sha256": "a575c0378bbba3943542743368f9a67c36782fda40d4acaf12dbbdbc67e05099",
+ "core_sha256": "e43b6a579338f2608cc158ef4a343ad3cd57cc040d43b2e5f4aad0a454a2ecea",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T033948Z",
+ "duration_s": 13.1,
+ "params": {
+  "densities": [
+   1.0,
+   4.0
+  ],
+  "z_max": 3.5,
+  "lam": 40.0,
+  "Pi_mid": 0.75,
+  "Pi_amp": 0.25,
+  "periods": 2,
+  "n_bins": 16,
+  "L_z": 20.0,
+  "boot_B": 2000,
+  "n_se": 2.0,
+  "tail": 30.0,
+  "chunk": 1,
+  "mode": "flat",
+  "d": 4,
+  "n_spr": 48,
+  "L": 40.0
+ },
+ "lines": [
+  "flat 3+1: Sigma t = 0, horizon t = x; a^(4) = 0.173205 (quadrature); window side L = 40, tail e^-30",
+  "  rho 1: molecules per sprinkling 274.6042 +- 2.1612 (n 48), prediction a^(4) rho^(2/4) A = 277.1281; per unit area 0.17163 +- 0.00135 (a^(4) rho^((d-2)/d) = 0.17321); z = -1.17",
+  "  rho 4: molecules per sprinkling 545.0833 +- 4.2325 (n 48), prediction a^(4) rho^(2/4) A = 554.2563; per unit area 0.34068 +- 0.00265 (a^(4) rho^((d-2)/d) = 0.34641); z = -2.17"
+ ],
+ "data": {
+  "a": 0.17320508075688776,
+  "rows": [
+   {
+    "rho": 1.0,
+    "mean": 274.6041666666667,
+    "se": 2.1612191987257794,
+    "pred": 277.1281292110204,
+    "z": -1.167841996703433,
+    "n": 48,
+    "per_area": 0.17162760416666667,
+    "per_area_se": 0.001350761999203612
+   },
+   {
+    "rho": 4.0,
+    "mean": 545.0833333333334,
+    "se": 4.232476738041388,
+    "pred": 554.2562584220408,
+    "z": -2.1672712353647237,
+    "n": 48,
+    "per_area": 0.34067708333333335,
+    "per_area_se": 0.0026452979612758675
+   }
+  ]
+ }
+}

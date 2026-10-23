@@ -15,6 +15,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 
 def main() -> int:
+    # a console that cannot encode a character (e.g. Greek letters on a Windows code page) prints "?" instead of
+    # stopping the run with UnicodeEncodeError
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(errors="replace")
+        except (AttributeError, ValueError):
+            pass
     from core.cli import main as cli
     return cli(sys.argv[1:])
 
