@@ -1,0 +1,23 @@
+H1 (gamma = 1), 3+1, lengths in l_k; u = exp(-r^2/2 sigma^2), w = 1 and exp(-r^2/2 (2 sigma)^2); R = 10 sigma, rows r/sigma = [0.0, 1.0, 2.0]; main [160, 16, 24, 6, 16, 8], check [80, 12, 8, 3, 8, 4]
+  one   r = 0 sigma: rho(sigma = 4, 8, 16, 32) = 0.7431 0.8935 0.9615 0.9873; alternatives flat cones 1.500, box_g 0.000 -> d_alt 0.500; |1 - rho| at sigma 32: 0.0127 vs d_alt/4 = 0.1250
+        density part P / limit: 0.7431 0.8935 0.9615 0.9873; cone part Q / limit: 0.7432 0.8935 0.9615 0.9872; quadrature |main - check|: 0.0000 0.0000 0.0000 0.0000 (tol 0.0312)
+        finite-scale systematic at sigma 32: 0.0127, local exponent log2(dev(sigma/2)/dev(sigma)) = 1.60; strictly decreasing: yes
+  one   r = 1 sigma: rho(sigma = 4, 8, 16, 32) = 0.8058 0.9243 0.9738 0.9916; alternatives flat cones 1.500, box_g 0.000 -> d_alt 0.500; |1 - rho| at sigma 32: 0.0084 vs d_alt/4 = 0.1250
+        density part P / limit: 0.8058 0.9243 0.9738 0.9916; cone part Q / limit: 0.8059 0.9244 0.9738 0.9914; quadrature |main - check|: 0.0005 0.0002 0.0000 0.0004 (tol 0.0312)
+        finite-scale systematic at sigma 32: 0.0084, local exponent log2(dev(sigma/2)/dev(sigma)) = 1.65; strictly decreasing: yes
+  one   r = 2 sigma: rho(sigma = 4, 8, 16, 32) = 0.5370 0.8060 0.9299 0.9765; alternatives flat cones 1.500, box_g -0.000 -> d_alt 0.500; |1 - rho| at sigma 32: 0.0235 vs d_alt/4 = 0.1250
+        density part P / limit: 0.5368 0.8060 0.9299 0.9769; cone part Q / limit: 0.5366 0.8059 0.9299 0.9775; quadrature |main - check|: 0.0203 0.0067 0.0021 0.0004 (tol 0.0312)
+        finite-scale systematic at sigma 32: 0.0235, local exponent log2(dev(sigma/2)/dev(sigma)) = 1.58; strictly decreasing: yes
+  gauss r = 0 sigma: rho(sigma = 4, 8, 16, 32) = 0.5955 0.8199 0.9320 0.9769; alternatives flat cones 2.500, box_g -1.000 -> d_alt 1.500; |1 - rho| at sigma 32: 0.0231 vs d_alt/4 = 0.3750
+        density part P / limit: 0.6646 0.8538 0.9455 0.9816; cone part Q / limit: 0.7107 0.8764 0.9545 0.9848; quadrature |main - check|: 0.0000 0.0000 0.0000 0.0000 (tol 0.0938)
+        finite-scale systematic at sigma 32: 0.0231, local exponent log2(dev(sigma/2)/dev(sigma)) = 1.56; strictly decreasing: yes
+  gauss r = 1 sigma: rho(sigma = 4, 8, 16, 32) = 0.6886 0.8751 0.9562 0.9858; alternatives flat cones 3.300, box_g -2.200 -> d_alt 2.300; |1 - rho| at sigma 32: 0.0142 vs d_alt/4 = 0.5750
+        density part P / limit: 0.7696 0.9095 0.9686 0.9899; cone part Q / limit: 0.8048 0.9245 0.9740 0.9917; quadrature |main - check|: 0.0007 0.0003 0.0001 0.0000 (tol 0.1437)
+        finite-scale systematic at sigma 32: 0.0142, local exponent log2(dev(sigma/2)/dev(sigma)) = 1.63; strictly decreasing: yes
+  gauss r = 2 sigma: rho(sigma = 4, 8, 16, 32) = 0.7004 0.8776 0.9565 0.9858; alternatives flat cones 1.500, box_g 0.500 -> d_alt 0.500; |1 - rho| at sigma 32: 0.0142 vs d_alt/4 = 0.1250
+        density part P / limit: 0.6401 0.8519 0.9472 0.9827; cone part Q / limit: 0.5193 0.8006 0.9286 0.9766; quadrature |main - check|: 0.0052 0.0020 0.0007 0.0003 (tol 0.0312)
+        finite-scale systematic at sigma 32: 0.0142, local exponent log2(dev(sigma/2)/dev(sigma)) = 1.62; strictly decreasing: yes
+  coefficient of lap u for w = 1 (expected -1): sigma 4 r/sigma 0: -0.7431; sigma 4 r/sigma 1: -0.8058; sigma 4 r/sigma 2: -0.5370; sigma 8 r/sigma 0: -0.8935; sigma 8 r/sigma 1: -0.9243; sigma 8 r/sigma 2: -0.8060; sigma 16 r/sigma 0: -0.9615; sigma 16 r/sigma 1: -0.9738; sigma 16 r/sigma 2: -0.9299; sigma 32 r/sigma 0: -0.9873; sigma 32 r/sigma 1: -0.9916; sigma 32 r/sigma 2: -0.9765
+  gamma = +0 (same parts): one r/sigma 0: 0.7431 0.8935 0.9615 0.9873; one r/sigma 1: 0.8059 0.9243 0.9738 0.9915; one r/sigma 2: 0.5368 0.8060 0.9299 0.9770; gauss r/sigma 0: 0.6819 0.8623 0.9489 0.9828; gauss r/sigma 1: 0.7840 0.9157 0.9708 0.9906; gauss r/sigma 2: 0.6099 0.8391 0.9425 0.9812
+  gamma = -1 (same parts): one r/sigma 0: 0.7431 0.8935 0.9615 0.9873; one r/sigma 1: 0.8058 0.9243 0.9738 0.9916; one r/sigma 2: 0.5368 0.8060 0.9299 0.9769; gauss r/sigma 0: 0.6646 0.8538 0.9455 0.9816; gauss r/sigma 1: 0.7696 0.9095 0.9686 0.9899; gauss r/sigma 2: 0.6401 0.8519 0.9472 0.9827
+decision: quadrature within d_alt/16: OK; |1 - rho| strictly decreasing: yes; at sigma 32 within d_alt/4: yes

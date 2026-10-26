@@ -178,6 +178,34 @@ def curved_rows_flat_limit():
 
 
 @check
+def h1_first_order_identities():
+    """H1 first-order operator (K.13a): flat value equals K.4; constant field gives A1 = V0, A2 = n V0; thin needles stable."""
+    import math
+    import numpy as np
+    from core.operators.bd_expect import expected_apply_general
+    from core.operators.bd_expect_h1 import GaussianField, _spheroid_A, first_order_row, flat_value
+    from core.order.sprinkle import interval_volume
+    D, sig, R = 4, 3.0, 24.0
+    u, w = GaussianField(sig), GaussianField(2.0 * sig)
+    q = (30, 10, 6, 2, 4, 4)
+    pt = first_order_row(D, 20.0, 0.05, 3.0 * R, sig, R, u, w, q)
+    mine = flat_value(pt, D, 20.0, 0.05)
+    ref = expected_apply_general(D, 20.0, 0.05, 3.0 * R, sig, R, lambda d, r, t: w.value(r * r), pt["w_x"],
+                                 n_rho=q[0], n_s=q[1], n_ang=q[2])
+    rel = abs(mine - ref) / abs(ref)
+    const = GaussianField(1e9)                       # u = 1 to 1e-12 over the diamonds below
+    worst = 0.0
+    for n in (2, 3):
+        for L, tau in ((2.0, 2.2), (300.0, 0.05)):     # a fat diamond and a long thin needle (dt - L ~ 4e-6)
+            dt = math.sqrt(L * L + tau * tau)
+            A1, A2, _ = _spheroid_A(const, n, 1.0, 0.3, np.array([[L]]), np.array([[dt]]),
+                                    np.array([[tau * tau / (dt + L)]]), 6, 12, 6, 0.0)
+            V0 = interval_volume(n + 1, tau)
+            worst = max(worst, abs(A1[0, 0] / V0 - 1.0), abs(A2[0, 0] / (n * V0) - 1.0))
+    return rel < 1e-9 and worst < 1e-6, f"flat vs K.4 rel. {rel:.1e}; constant-field identities worst {worst:.1e}"
+
+
+@check
 def feedback_reduces_to_capacity():
     """F3.3: with Pi_sat = 1 every feedback channel is exactly the capacity routing; the balance of axiom 3 holds."""
     import numpy as np

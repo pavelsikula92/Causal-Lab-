@@ -1,0 +1,6 @@
+3+1, rho = 1, box t [0, 7], |x_i| <= 8 (~28665 events); sources in a ball of radius 4, t < 0.3, v = 0.6; window t in [2.5, 4.5]; T^ab = (1/dV4) sum F u^a u^b tau_link
+  merge rule F = |P|: q_x/E -0.0011 +- 0.0090 (exp +0.0000, OK); S_xx/E +0.3381 +- 0.0017 (exp +0.3600, OK); S_yy/E +0.0000 +- 0.0000 (exp +0.0000, OK); p/E +0.1127 +- 0.0006 (exp +0.1200, OK); pi_xx/E +0.2254 +- 0.0011 (exp +0.2400, OK)
+     flux in merged events 0.031, mixed flux (speed no longer v) 0.091; Landau-frame pressure p_rest/E_rest +0.1118; cells L = 2.0: p/E 0.1088, spread 0.0252 over 14 cells; cells L = 3.0: p/E 0.1128, spread 0.0169 over 15 cells
+  merge rule sum of fluxes: q_x/E -0.0012 +- 0.0090 (exp +0.0000); S_xx/E +0.3421 +- 0.0014 (exp +0.3600); S_yy/E +0.0000 +- 0.0000 (exp +0.0000); p/E +0.1140 +- 0.0005 (exp +0.1200); pi_xx/E +0.2281 +- 0.0009 (exp +0.2400)
+     flux in merged events 0.026, mixed flux (speed no longer v) 0.075; Landau-frame pressure p_rest/E_rest +0.1132; cells L = 2.0: p/E 0.1107, spread 0.0222 over 14 cells; cells L = 3.0: p/E 0.1137, spread 0.0151 over 15 cells
+checks: expected ratios (merge rule F = |P|): OK; frame check of the tensor (relative 1e-9): OK

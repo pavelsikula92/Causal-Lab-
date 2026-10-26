@@ -1,0 +1,547 @@
+{
+ "id": "F1.7",
+ "part": "N",
+ "seed": 0,
+ "quick": false,
+ "status": "RECORDED",
+ "test_file": "phases\\F1_pole\\F1_07_field_equation_benchmark.py",
+ "test_sha256": "cad74b6fcc54fe138da63873d21db7cb1969c8c399f78e2fbd4680267ebc2892",
+ "core_sha256": "958b2e63c86a80186be4d6e827bc848b9cdc851f62724850a0a11a83d4f617d4",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T101329Z",
+ "duration_s": 128.5,
+ "params": {
+  "gamma": 1.0,
+  "d_s": 3,
+  "kappa": 1.0,
+  "sigma": 8.0,
+  "R_over_sigma": 50.0,
+  "rmin_over_sigma": 0.0001,
+  "n_shoot": 160,
+  "shoot_rtol": 1e-10,
+  "tol": 1e-08,
+  "max_nodes": 200000,
+  "lin_tol": 1e-06,
+  "scale_tol": 1e-06,
+  "weak_u0": -0.0001,
+  "weak_tol": 0.01,
+  "strengths": [
+   -0.03,
+   -0.1,
+   -0.2,
+   -0.3,
+   -0.5,
+   -0.7,
+   -0.9
+  ],
+  "ks": [
+   -1.0,
+   2.0,
+   3.0
+  ],
+  "scale_sigmas": [
+   4.0,
+   16.0
+  ],
+  "scale_u0": -0.3,
+  "mode": "N"
+ },
+ "lines": [
+  "3+1 (d_s = 3), metric -Pi^2 dt^2 + Pi^(-2 gamma) dx^2, gamma = 1; box_g Pi = Pi^(2g)[(1) lap + ((1 - gamma)/p) grad^2]; R = Pi^(2g)[(2*(2*gamma - 1)/p) lap + (-2*gamma*(gamma + 1)/p**2) grad^2]",
+  "  weak-field coefficient of (box_g - R/2) Pi: lambda_1(gamma) = 2 - 2*gamma",
+  "N ln Pi             : regular up to u_lin(0) = -0.3; none from -0.5",
+  "     u_lin(0) -0.03: regular solutions 1 (roots [0.969722]); weak-field branch Pi(0) 0.96972, Pi(R) 0.999232, min P +1.002, exterior charge / linear 1.0217",
+  "     u_lin(0) -0.10: regular solutions 2 (roots [0.896243, 0.087367]); weak-field branch Pi(0) 0.89624, Pi(R) 0.997283, min P +1.005, exterior charge / linear 1.0838",
+  "     u_lin(0) -0.20: regular solutions 2 (roots [0.779305, 0.16433]); weak-field branch Pi(0) 0.77931, Pi(R) 0.993890, min P +1.012, exterior charge / linear 1.2187",
+  "     u_lin(0) -0.30: regular solutions 2 (roots [0.625331, 0.277723]); weak-field branch Pi(0) 0.62533, Pi(R) 0.988671, min P +1.023, exterior charge / linear 1.5065",
+  "     u_lin(0) -0.50: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.70: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.90: regular solutions 0 (roots [])",
+  "N Pi - 1            : regular up to u_lin(0) = -0.2; none from -0.3",
+  "     u_lin(0) -0.03: regular solutions 2 (roots [0.969249, 0.062799]); weak-field branch Pi(0) 0.96925, Pi(R) 0.999231, min P +1.001, exterior charge / linear 1.0227",
+  "     u_lin(0) -0.10: regular solutions 2 (roots [0.890119, 0.13471]); weak-field branch Pi(0) 0.89012, Pi(R) 0.997264, min P +1.003, exterior charge / linear 1.0915",
+  "     u_lin(0) -0.20: regular solutions 2 (roots [0.74315, 0.26627]); weak-field branch Pi(0) 0.74315, Pi(R) 0.993621, min P +1.006, exterior charge / linear 1.2725",
+  "     u_lin(0) -0.30: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.50: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.70: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.90: regular solutions 0 (roots [])",
+  "N (Pi^-1 - 1)/-1    : regular up to u_lin(0) = -0.5; none from -0.7",
+  "     u_lin(0) -0.03: regular solutions 1 (roots [0.970176]); weak-field branch Pi(0) 0.97018, Pi(R) 0.999233, min P +1.002, exterior charge / linear 1.0206",
+  "     u_lin(0) -0.10: regular solutions 1 (roots [0.90152]); weak-field branch Pi(0) 0.90152, Pi(R) 0.997301, min P +1.008, exterior charge / linear 1.0767",
+  "     u_lin(0) -0.20: regular solutions 1 (roots [0.803565]); weak-field branch Pi(0) 0.80357, Pi(R) 0.994069, min P +1.018, exterior charge / linear 1.1831",
+  "     u_lin(0) -0.30: regular solutions 1 (roots [0.701578]); weak-field branch Pi(0) 0.70158, Pi(R) 0.989920, min P +1.031, exterior charge / linear 1.3405",
+  "     u_lin(0) -0.50: regular solutions 2 (roots [0.41084, 0.282984]); weak-field branch Pi(0) 0.41084, Pi(R) 0.969409, min P +1.097, exterior charge / linear 2.4408",
+  "     u_lin(0) -0.70: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.90: regular solutions 0 (roots [])",
+  "N (Pi^2 - 1)/2      : regular up to u_lin(0) = -0.2; none from -0.3",
+  "     u_lin(0) -0.03: regular solutions 2 (roots [0.968755, 0.087981]); weak-field branch Pi(0) 0.96875, Pi(R) 0.999230, min P +1.000, exterior charge / linear 1.0238",
+  "     u_lin(0) -0.10: regular solutions 2 (roots [0.882884, 0.179636]); weak-field branch Pi(0) 0.88288, Pi(R) 0.997242, min P +1.000, exterior charge / linear 1.1001",
+  "     u_lin(0) -0.20: regular solutions 2 (roots [0.674384, 0.401446]); weak-field branch Pi(0) 0.67438, Pi(R) 0.993064, min P +1.000, exterior charge / linear 1.3835",
+  "     u_lin(0) -0.30: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.50: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.70: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.90: regular solutions 0 (roots [])",
+  "N (Pi^3 - 1)/3      : regular up to u_lin(0) = -0.1; none from -0.2",
+  "     u_lin(0) -0.03: regular solutions 2 (roots [0.968239, 0.111892]); weak-field branch Pi(0) 0.96824, Pi(R) 0.999229, min P +0.969, exterior charge / linear 1.0249",
+  "     u_lin(0) -0.10: regular solutions 2 (roots [0.874142, 0.226332]); weak-field branch Pi(0) 0.87414, Pi(R) 0.997218, min P +0.891, exterior charge / linear 1.1100",
+  "     u_lin(0) -0.20: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.30: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.50: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.70: regular solutions 0 (roots [])",
+  "     u_lin(0) -0.90: regular solutions 0 (roots [])",
+  "  Pi(0) of the weak-field branch at u_lin(0) -0.03: ln Pi 0.96972; Pi - 1 0.96925; (Pi^-1 - 1)/-1 0.97018; (Pi^2 - 1)/2 0.96875; (Pi^3 - 1)/3 0.96824",
+  "  Pi(0) of the weak-field branch at u_lin(0) -0.10: ln Pi 0.89624; Pi - 1 0.89012; (Pi^-1 - 1)/-1 0.90152; (Pi^2 - 1)/2 0.88288; (Pi^3 - 1)/3 0.87414",
+  "  Pi(0) of the weak-field branch at u_lin(0) -0.20: ln Pi 0.77931; Pi - 1 0.74315; (Pi^-1 - 1)/-1 0.80357; (Pi^2 - 1)/2 0.67438; (Pi^3 - 1)/3 nan",
+  "  Pi(0) of the weak-field branch at u_lin(0) -0.30: ln Pi 0.62533; Pi - 1 nan; (Pi^-1 - 1)/-1 0.70158; (Pi^2 - 1)/2 nan; (Pi^3 - 1)/3 nan",
+  "  Pi(0) of the weak-field branch at u_lin(0) -0.50: ln Pi nan; Pi - 1 nan; (Pi^-1 - 1)/-1 0.41084; (Pi^2 - 1)/2 nan; (Pi^3 - 1)/3 nan",
+  "  Pi(0) of the weak-field branch at u_lin(0) -0.70: ln Pi nan; Pi - 1 nan; (Pi^-1 - 1)/-1 nan; (Pi^2 - 1)/2 nan; (Pi^3 - 1)/3 nan",
+  "  Pi(0) of the weak-field branch at u_lin(0) -0.90: ln Pi nan; Pi - 1 nan; (Pi^-1 - 1)/-1 nan; (Pi^2 - 1)/2 nan; (Pi^3 - 1)/3 nan",
+  "  (check 3, psi and gamma, not tested here: with the H1 ansatz it is input; 128 s)"
+ ],
+ "data": {
+  "ln Pi": [
+   {
+    "u0": -0.03,
+    "n_regular": 1,
+    "n_roots": 1,
+    "branch": {
+     "Pi0": 0.9697218365484115,
+     "regular": true,
+     "Pi_R": 0.9992317149082537,
+     "charge": 0.30731403670684176,
+     "charge_lin": 0.30079539295572005,
+     "P_min": 1.00153804712441,
+     "monotone": true
+    },
+    "all": [
+     0.969722
+    ]
+   },
+   {
+    "u0": -0.1,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.8962429590686875,
+     "regular": true,
+     "Pi_R": 0.9972834151246759,
+     "charge": 1.0866339501637012,
+     "charge_lin": 1.0026513098524004,
+     "P_min": 1.0054516763050292,
+     "monotone": true
+    },
+    "all": [
+     0.896243,
+     0.087367
+    ]
+   },
+   {
+    "u0": -0.2,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.7793053290757361,
+     "regular": true,
+     "Pi_R": 0.9938902568269775,
+     "charge": 2.443897269504043,
+     "charge_lin": 2.0053026197048007,
+     "P_min": 1.0123134592741319,
+     "monotone": true
+    },
+    "all": [
+     0.779305,
+     0.16433
+    ]
+   },
+   {
+    "u0": -0.3,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.6253313313016446,
+     "regular": true,
+     "Pi_R": 0.9886712303640531,
+     "charge": 4.531507854397176,
+     "charge_lin": 3.0079539295572006,
+     "P_min": 1.0229825627457692,
+     "monotone": true
+    },
+    "all": [
+     0.625331,
+     0.277723
+    ]
+   },
+   {
+    "u0": -0.5,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.7,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.9,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   }
+  ],
+  "Pi - 1": [
+   {
+    "u0": -0.03,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.9692485044127918,
+     "regular": true,
+     "Pi_R": 0.9992309152199073,
+     "charge": 0.30763391203607815,
+     "charge_lin": 0.30079539295572005,
+     "P_min": 1.0007696767267489,
+     "monotone": true
+    },
+    "all": [
+     0.969249,
+     0.062799
+    ]
+   },
+   {
+    "u0": -0.1,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.8901185597658271,
+     "regular": true,
+     "Pi_R": 0.9972640628452724,
+     "charge": 1.0943748618917382,
+     "charge_lin": 1.0026513098524004,
+     "P_min": 1.0027434430424795,
+     "monotone": true
+    },
+    "all": [
+     0.890119,
+     0.13471
+    ]
+   },
+   {
+    "u0": -0.2,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.7431495711868491,
+     "regular": true,
+     "Pi_R": 0.9936207269062589,
+     "charge": 2.5517092374770667,
+     "charge_lin": 2.0053026197048007,
+     "P_min": 1.0064202294909885,
+     "monotone": true
+    },
+    "all": [
+     0.74315,
+     0.26627
+    ]
+   },
+   {
+    "u0": -0.3,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.5,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.7,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.9,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   }
+  ],
+  "(Pi^-1 - 1)/-1": [
+   {
+    "u0": -0.03,
+    "n_regular": 1,
+    "n_roots": 1,
+    "branch": {
+     "Pi0": 0.9701761994127368,
+     "regular": true,
+     "Pi_R": 0.9992325055411796,
+     "charge": 0.30699778352731266,
+     "charge_lin": 0.30079539295572005,
+     "P_min": 1.0023054317829445,
+     "monotone": true
+    },
+    "all": [
+     0.970176
+    ]
+   },
+   {
+    "u0": -0.1,
+    "n_regular": 1,
+    "n_roots": 1,
+    "branch": {
+     "Pi0": 0.9015198183457938,
+     "regular": true,
+     "Pi_R": 0.9973009939004754,
+     "charge": 1.0796024398107507,
+     "charge_lin": 1.0026513098524004,
+     "P_min": 1.0081335795762734,
+     "monotone": true
+    },
+    "all": [
+     0.90152
+    ]
+   },
+   {
+    "u0": -0.2,
+    "n_regular": 1,
+    "n_roots": 1,
+    "branch": {
+     "Pi0": 0.803565492568144,
+     "regular": true,
+     "Pi_R": 0.994068889068239,
+     "charge": 2.3724443727012847,
+     "charge_lin": 2.0053026197048007,
+     "P_min": 1.0179706949140226,
+     "monotone": true
+    },
+    "all": [
+     0.803565
+    ]
+   },
+   {
+    "u0": -0.3,
+    "n_regular": 1,
+    "n_roots": 1,
+    "branch": {
+     "Pi0": 0.701577741873997,
+     "regular": true,
+     "Pi_R": 0.9899196414792066,
+     "charge": 4.032143408343948,
+     "charge_lin": 3.0079539295572006,
+     "P_min": 1.0307564079011955,
+     "monotone": true
+    },
+    "all": [
+     0.701578
+    ]
+   },
+   {
+    "u0": -0.5,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.4108403961169344,
+     "regular": true,
+     "Pi_R": 0.9694086702188428,
+     "charge": 12.236531924507528,
+     "charge_lin": 5.013256549262001,
+     "P_min": 1.0966617222432957,
+     "monotone": true
+    },
+    "all": [
+     0.41084,
+     0.282984
+    ]
+   },
+   {
+    "u0": -0.7,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.9,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   }
+  ],
+  "(Pi^2 - 1)/2": [
+   {
+    "u0": -0.03,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.9687548283190248,
+     "regular": true,
+     "Pi_R": 0.9992301061606856,
+     "charge": 0.30795753572596535,
+     "charge_lin": 0.30079539295572005,
+     "P_min": 1.0000002965966097,
+     "monotone": true
+    },
+    "all": [
+     0.968755,
+     0.087981
+    ]
+   },
+   {
+    "u0": -0.1,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.8828841556141168,
+     "regular": true,
+     "Pi_R": 0.9972424165328709,
+     "charge": 1.103033386851559,
+     "charge_lin": 1.0026513098524004,
+     "P_min": 1.0000038126469815,
+     "monotone": true
+    },
+    "all": [
+     0.882884,
+     0.179636
+    ]
+   },
+   {
+    "u0": -0.2,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.6743842897325985,
+     "regular": true,
+     "Pi_R": 0.993063979961756,
+     "charge": 2.7744080152906614,
+     "charge_lin": 2.0053026197048007,
+     "P_min": 1.0000242221925988,
+     "monotone": true
+    },
+    "all": [
+     0.674384,
+     0.401446
+    ]
+   },
+   {
+    "u0": -0.3,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.5,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.7,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.9,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   }
+  ],
+  "(Pi^3 - 1)/3": [
+   {
+    "u0": -0.03,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.9682392873074656,
+     "regular": true,
+     "Pi_R": 0.9992292871600137,
+     "charge": 0.3082851359941951,
+     "charge_lin": 0.30079539295572005,
+     "P_min": 0.9692590600074443,
+     "monotone": true
+    },
+    "all": [
+     0.968239,
+     0.111892
+    ]
+   },
+   {
+    "u0": -0.1,
+    "n_regular": 2,
+    "n_roots": 2,
+    "branch": {
+     "Pi0": 0.8741424094613145,
+     "regular": true,
+     "Pi_R": 0.9972176897199636,
+     "charge": 1.1129241120145377,
+     "charge_lin": 1.0026513098524004,
+     "P_min": 0.8907427548646653,
+     "monotone": true
+    },
+    "all": [
+     0.874142,
+     0.226332
+    ]
+   },
+   {
+    "u0": -0.2,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.3,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.5,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.7,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   },
+   {
+    "u0": -0.9,
+    "n_regular": 0,
+    "n_roots": 0,
+    "branch": null,
+    "all": []
+   }
+  ]
+ }
+}

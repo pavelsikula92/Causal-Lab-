@@ -1,0 +1,4 @@
+2+1, rho = 1; bundles radius 3, source time [0, 4), box margin 12, T = 48; field phi_i = sum F / (2 pi tau), tau >= 1; epsilon = 0.1 (from F3.8/F3.9), phi_ref = 24.689, lambda = 0.00405; flux per unit time of a single bundle mu = 84.04; window [d + 2, T - 4]
+  d = 12, f_L = 1, f_R = 2: relative acceleration a = -0.01416 +- 0.00196 (prediction -0.01915, ratio 0.739); a_L towards R +0.00825 +- 0.00111 (prediction +0.01277); dP_L/dt +1.5084 +- 0.0624, dP_R/dt -1.3819 +- 0.1594, sum +0.1265 +- 0.1599; acceleration from momentum (diagnostic) a_P,L +0.00909 +- 0.00038, a_P,R -0.00420 +- 0.00048
+momentum: dP_L + dP_R = +0.1265 +- 0.1599 vs tolerance (|dP_L| + |dP_R|)/8 = 0.3613; both changes resolved: True
+instrument: C equals A (coupling only through the field): OK; frame check (beta' = 0.6): OK; mirror x -> -x (identical choices): OK

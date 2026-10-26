@@ -1,0 +1,55 @@
+2+1 sprinkling rho = 1 (lengths in l), box t [0, 32], x [-20, 28], y [-20, 20]; source tube radius 4, time [0, 4) at rest in the lab; eta = 0.6; 32 sprinklings (~61448 events, 202 source events); readout in the CM frame, window [6.0, 18.0]
+  config cold: CM velocity 0.000; free-stream RMS velocity v_free 0.000
+    A staré  : v_s = +0.0485 +- 0.0028 (spreading); internal spread late 0.0000 +- 0.0000; max |dP|/E 0.0e+00; energy deficit +0.00e+00; rest-mass gain 1.0000; mergers 141, mean eta_eq 0.000
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0   29.0
+        R_rms     2.98   3.03   3.14   3.25   3.31   3.45   3.51   3.64   3.68   3.72   3.78   3.87   3.94
+        spread   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+        streams   74.7   57.1   48.1   43.1   39.6   36.0   34.0   33.0   31.8   28.2   29.1   27.4   27.0
+    B |P|    : v_s = +0.0485 +- 0.0028 (spreading); internal spread late 0.0000 +- 0.0000; max |dP|/E 0.0e+00; energy deficit +0.00e+00; rest-mass gain 1.0000; mergers 141, mean eta_eq 0.000
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0   29.0
+        R_rms     2.98   3.03   3.14   3.25   3.31   3.45   3.51   3.64   3.68   3.72   3.78   3.87   3.94
+        spread   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+        streams   74.7   57.1   48.1   43.1   39.6   36.0   34.0   33.0   31.8   28.2   29.1   27.4   27.0
+    C volný  : v_s = +0.0485 +- 0.0028 (reference); internal spread late 0.0000 +- 0.0000; max |dP|/E 0.0e+00; energy deficit +0.00e+00; rest-mass gain 1.0000
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0   29.0
+        R_rms     2.98   3.03   3.14   3.25   3.31   3.45   3.51   3.64   3.68   3.72   3.78   3.87   3.94
+        spread   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+        streams  302.3  294.6  297.9  294.7  301.3  297.1  298.1  299.3  313.4  296.8  310.3  302.2  305.8
+    v_s(B) - v_s(A) = +0.00000 +- 0.00000 (no measurable difference)
+    cold control: A and B choose identically: yes; max flux difference 0.0e+00
+  config sym: CM velocity 0.000; free-stream RMS velocity v_free 0.537
+    A staré  : v_s = +0.2485 +- 0.0071 (spreading); internal spread late 0.2332 +- 0.0055; max |dP|/E 1.3e-01; energy deficit +1.20e-01; rest-mass gain 1.0000; mergers 128, mean eta_eq 0.493
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0   29.0
+        R_rms     3.29   3.64   4.15   4.62   5.09   5.65   6.13   6.65   7.07   7.76   8.22   8.66   9.25
+        spread   0.281  0.258  0.249  0.245  0.240  0.241  0.238  0.238  0.233  0.239  0.237  0.230  0.233
+        streams   83.2   69.5   62.7   58.5   57.0   55.8   53.3   53.1   51.0   50.3   50.5   50.3   51.1
+    B |P|    : v_s = +0.2370 +- 0.0067 (spreading); internal spread late 0.2202 +- 0.0054; max |dP|/E 4.1e-15; energy deficit -2.91e-15; rest-mass gain 1.1406; mergers 128, mean eta_eq 0.487
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0   29.0
+        R_rms     3.25   3.58   4.07   4.52   4.97   5.51   5.95   6.46   6.93   7.51   7.94   8.43   8.86
+        spread   0.267  0.244  0.237  0.232  0.229  0.229  0.226  0.226  0.223  0.225  0.222  0.220  0.218
+        streams   83.5   69.8   62.8   58.9   57.3   56.6   54.2   53.9   51.2   50.6   51.5   50.8   51.5
+    C volný  : v_s = +0.4648 +- 0.0031 (reference); internal spread late 0.6000 +- 0.0000; max |dP|/E 0.0e+00; energy deficit +0.00e+00; rest-mass gain 1.0000
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0   29.0
+        R_rms     3.40   4.04   4.89   5.81   6.70   7.71   8.68   9.70  10.74  11.80  12.83  13.93  14.95
+        spread   0.600  0.600  0.600  0.600  0.600  0.600  0.600  0.600  0.600  0.600  0.600  0.600  0.600
+        streams  248.1  251.7  251.0  253.1  254.0  256.3  253.0  254.7  252.1  249.2  257.3  250.2  260.0
+    v_s(B) - v_s(A) = -0.01152 +- 0.00232 (differ)
+  config asym: CM velocity 0.167; free-stream RMS velocity v_free 0.527
+    A staré  : v_s = +0.2513 +- 0.0060 (spreading); internal spread late 0.2326 +- 0.0052; max |dP|/E 1.3e-01; energy deficit +1.17e-01; rest-mass gain 1.0000; mergers 129, mean eta_eq 0.467
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0
+        R_rms     3.25   3.63   4.07   4.54   5.06   5.64   6.10   6.55   7.13   7.65   8.10   8.69
+        spread   0.283  0.259  0.250  0.242  0.238  0.241  0.235  0.233  0.234  0.233  0.230  0.235
+        streams   84.6   68.9   60.9   58.0   55.4   52.0   52.4   50.9   49.2   49.6   49.8   48.1
+    B |P|    : v_s = +0.2434 +- 0.0068 (spreading); internal spread late 0.2236 +- 0.0048; max |dP|/E 9.9e-16; energy deficit -3.35e-17; rest-mass gain 1.1359; mergers 129, mean eta_eq 0.466
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0
+        R_rms     3.21   3.59   4.01   4.48   4.97   5.54   5.98   6.42   7.02   7.52   7.89   8.56
+        spread   0.273  0.250  0.240  0.233  0.227  0.229  0.225  0.222  0.227  0.224  0.219  0.228
+        streams   84.7   69.0   60.8   57.8   55.6   52.2   53.2   51.1   49.5   50.0   49.9   48.2
+    C volný  : v_s = +0.4401 +- 0.0034 (reference); internal spread late 0.5608 +- 0.0027; max |dP|/E 0.0e+00; energy deficit +0.00e+00; rest-mass gain 1.0000
+        t          5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0
+        R_rms     3.37   4.00   4.73   5.62   6.48   7.45   8.36   9.33  10.33  11.40  12.33  13.40
+        spread   0.557  0.556  0.559  0.558  0.556  0.559  0.554  0.558  0.557  0.561  0.560  0.562
+        streams  255.5  252.9  256.2  255.5  259.9  253.5  258.8  261.0  256.9  255.0  255.9  263.1
+    v_s(B) - v_s(A) = -0.00789 +- 0.00212 (differ)
+verdicts of B against free dispersal: sym: spreading; asym: spreading
+instrument: balance B and C <= 1e-12: OK; boosted recomputation identical: OK; cold: A = B: OK; sym: mergers discriminate (mean eta_eq >= 0.15): OK; sym: C spreads (v_s - 2 SE >= v_free / 2 = 0.269): OK; asym: mergers discriminate (mean eta_eq >= 0.15): OK; asym: C spreads (v_s - 2 SE >= v_free / 2 = 0.264): OK

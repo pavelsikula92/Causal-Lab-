@@ -89,6 +89,84 @@ correction that vanishes in the continuum limit (then F2.7 is repeated at
 the smallest sigma that PASSED); a floor that does not fall = a property of
 the operator that the continuum chain of the theory does not contain.
 
+Interpretation rules (declared 23 Oct 2026, after s16 and before s08_R200
+and s32; they add readings, they do not change the per-part criterion)
+---------------------------------------------------------------------------
+The fields are deterministic (quadrature, no sampling); the uncertainty of a
+part is its quadrature difference |P_cs(main) - P_cs(check)|, reported. Two
+readings, computed automatically when the needed records exist:
+  wall      the same sigma = 8 with R = 100 (the F2.7 field) and R = 200
+            (s08_R200), compared in the SAME physical region: the Gauss deficit
+            D(r) = 1 - flux(r) / flux(3 sigma) at r = 48 (inside both boxes,
+            R/2 of the smaller), and the excess E = P_cs / P_a - 1.
+              wall supported      D(200) <= D(100) / 2 and E(200) <= E(100) / 2;
+              wall not supported  |D(200) - D(100)| <= D(100) / 4 and
+                                  |E(200) - E(100)| <= E(100) / 4;
+              partial             otherwise.
+            Reported beside it: the slope ratio cs / continuum at the same
+            r / sigma for s08_R200 (R = 25 sigma) and s16 (R = 12.5 sigma): if
+            it follows sigma (l_k / sigma) and not R, that indicates the
+            nonlocal operator rather than the wall.
+  converge  the self-similar family R = 12.5 sigma at sigma = 8 (F2.7 field or
+            s08), 16, 32: excesses E8, E16, E32. The floor is estimated by the
+            Aitken extrapolation of a geometric approach,
+              E_inf = (E8 E32 - E16^2) / (E8 + E32 - 2 E16),
+            unless |E8 + E32 - 2 E16| < 0.1 E16 (no detectable curvature): then
+            E_inf = E32 if the sequence has stalled (|E16 - E32| < 0.1 E16), and
+            0 if it still decreases (no floor detectable).
+              converging     E32 < E16 and E_inf <= 1/16 (below the per-part
+                             tolerance, so a large enough sigma will pass);
+              floor          E32 >= 0.9 E16 (the decrease stopped) or E_inf > 1/16;
+              undetermined   otherwise (sigma = 64 would be needed).
+            The same rule is reported, without a reading, for the Gauss deficit
+            at r = R/2. A floor would mean that the discrete operator does not
+            converge to the assumed continuum operator in this regime, after the
+            wall has been excluded (only if 'wall' was not 'supported'); its
+            cause would still be open (boundary conditions, normalisation of the
+            source, scaling of the family, or the operator).
+
+Results of 24 Oct 2026 and the parts added afterwards
+------------------------------------------------------
+s08_R200 FAILED (P_cs/P_a 1.227), reading 'wall' = not supported: at r = 48
+the Gauss deficit went 0.088 -> 0.074 and the excess 0.206 -> 0.227 when the
+wall moved from 100 to 200. Nearer the wall the deficit does depend on it
+(r = 64: 0.190 -> 0.110; r = 80: 0.414 -> 0.143). s32: P_cs/P_a 1.105, but
+INSTRUMENT_FAILED: the check-level solve (from the vacuum) did not converge
+within max_iter = 30, although its P_cs equals the main one within 0.0003
+(tolerance 0.105). Reading 'converge' (provisional, because of that):
+excesses 0.206 / 0.124 / 0.105, Aitken floor 0.099 > 1/16 -> floor.
+Pi(0) of the causal-set field moves AWAY from the continuum 0.7099 as sigma
+grows (0.7113 / 0.7202 / 0.7256).
+Declared before any further run (24 Oct):
+  * max_iter = 60 for every run (an instrument parameter: the fixed point does
+    not depend on it); s32 is re-run with it to certify or reject the reading.
+  * weak-field family w08 / w16 / w32: the same geometry of the family with q
+    ten times smaller (q sigma^2 = 0.064, Pi(0) about 0.97, the field nearly
+    linear). The same per-part criterion; the reading 'converge' is computed
+    for each family separately (grouped by q sigma^2). Question: is the floor a
+    property of the linear operator (then it is present in the weak family)
+    or of the nonlinear, self-consistent coupling (then the weak family
+    converges)? The linear far field of the flat operator passed in 3+1
+    (F1.3); the theory's weak field (ln Pi) uses only the linear operator,
+    its second order (beta) the first nonlinear response.
+
+Added 24 Oct 2026 after the analysis docs/derivations/k12_dno.md (before any of these parts ran)
+-------------------------------------------------------------------------------------------------
+The analysis found (exact symbol of the operator, linear model of this scheme): the operator itself does not
+screen (B(k) = -k^2 (1 - 1.155 l_k k + ...), r(0) = 1) and its excess near the source falls as l_k / sigma; the
+self-similar node step sigma / 4 grows against l_k and adds a slope excess that GROWS with sigma (linear model at
+r = 1.25 sigma: +0.007 / +0.021 / +0.051), which is what stalled the excess between sigma 16 and 32; the far
+Gauss deficit (~0.10) comes from the wall (the nonlocal operator sees the kink of the field continued by zero
+beyond R, the reference is the local Dirichlet problem) and barely reaches the motion region. Parts h08 / h16 /
+h32 (strong field) and hw08 / hw16 / hw32 (weak field) repeat the family with the node step near the source fixed
+at 1 l_k (geometric 1.12 beyond 4 sigma as before). The per-part criterion is unchanged; the readings 'wall' and
+'converge' are computed for each grid separately (a family is a q sigma^2 AND a grid). New reading 'grid' (same
+sigma and source, step sigma / 4 against step 1 l_k, slope ratio at 1.25 sigma): grid supported if the difference
+is at least half the linear-model component, not supported if at most a quarter, partial otherwise (sigma 16 and
+32; sigma 8 only reported). The analysis predicts for the strong field without the grid component a slope ratio
+at 1.25 sigma of about 1.14 (sigma 16) and 1.09 (sigma 32); the weak family should follow the linear model
+(1.077 / 1.037 on a fine grid) if the remaining excess of the strong field is nonlinear.
+
 Seen before this test was written: the F2.7 field and the development runs
 above. The criterion uses only the F2.7 band and the quarter rule.
 """
@@ -130,20 +208,42 @@ TEST = {
     "depends_on": ["K.11c", "F2.7"],
     "params": {"D": 3, "ratio": 1.12, "rows_per_element": 2, "quad": [240, 8, 96, 8, 48, 1], "quad_check": [160, 8, 48, 6, 24, 1],
                "geom": "spline",
-               "tol": 1e-5, "max_iter": 30, "res_tol": 0.05, "chunk": 4, "motion_fracs": [1.25, 2.5, 3.75],
-               "flux_fracs": [0.25, 0.5, 0.75, 0.9], "h_frac": 0.0625, "ref_grid": 40001},
+               "tol": 1e-5, "max_iter": 60, "res_tol": 0.05, "chunk": 4, "motion_fracs": [1.25, 2.5, 3.75],
+               "flux_fracs": [0.25, 0.5, 0.75, 0.9], "h_frac": 0.0625, "ref_grid": 40001,
+               "fixed_r": [16.0, 24.0, 32.0, 48.0, 64.0, 80.0], "wall_r": 48.0},
     "parts": {"s08": {"sigma": 8.0, "q": 0.01, "R": 100.0, "b": 10.0, "T": 40.0, "dr": 2.0},
               "s16": {"sigma": 16.0, "q": 0.0025, "R": 200.0, "b": 20.0, "T": 80.0, "dr": 4.0},
               "s32": {"sigma": 32.0, "q": 0.000625, "R": 400.0, "b": 40.0, "T": 160.0, "dr": 8.0},
-              "s08_R200": {"sigma": 8.0, "q": 0.01, "R": 200.0, "b": 10.0, "T": 40.0, "dr": 2.0}},
+              "s08_R200": {"sigma": 8.0, "q": 0.01, "R": 200.0, "b": 10.0, "T": 40.0, "dr": 2.0},
+              "w08": {"sigma": 8.0, "q": 0.001, "R": 100.0, "b": 10.0, "T": 40.0, "dr": 2.0},
+              "w16": {"sigma": 16.0, "q": 0.00025, "R": 200.0, "b": 20.0, "T": 80.0, "dr": 4.0},
+              "w32": {"sigma": 32.0, "q": 0.0000625, "R": 400.0, "b": 40.0, "T": 160.0, "dr": 8.0},
+              # added 24 Oct after the analysis docs/derivations/k12_dno.md: the same family, but the node step near
+              # the source is fixed at 1 l_k instead of sigma / 4 (the self-similar step grows against l_k)
+              "h08": {"sigma": 8.0, "q": 0.01, "R": 100.0, "b": 10.0, "T": 40.0, "dr": 1.0},
+              "h16": {"sigma": 16.0, "q": 0.0025, "R": 200.0, "b": 20.0, "T": 80.0, "dr": 1.0},
+              "h32": {"sigma": 32.0, "q": 0.000625, "R": 400.0, "b": 40.0, "T": 160.0, "dr": 1.0},
+              "hw08": {"sigma": 8.0, "q": 0.001, "R": 100.0, "b": 10.0, "T": 40.0, "dr": 1.0},
+              "hw16": {"sigma": 16.0, "q": 0.00025, "R": 200.0, "b": 20.0, "T": 80.0, "dr": 1.0},
+              "hw32": {"sigma": 32.0, "q": 0.0000625, "R": 400.0, "b": 40.0, "T": 160.0, "dr": 1.0}},
     "quick": {"quad": [40, 6, 12, 3, 8, 1], "quad_check": [24, 4, 8, 2, 6, 1], "tol": 1e-4, "max_iter": 12,
               "ref_grid": 6001},
     "quick_parts": {"s08": {"sigma": 3.0, "q": 0.0711, "R": 37.5, "b": 3.75, "T": 15.0, "dr": 0.75},
                     "s16": {"sigma": 6.0, "q": 0.0178, "R": 75.0, "b": 7.5, "T": 30.0, "dr": 1.5},
                     "s32": {"sigma": 12.0, "q": 0.00444, "R": 150.0, "b": 15.0, "T": 60.0, "dr": 3.0},
-                    "s08_R200": {"sigma": 3.0, "q": 0.0711, "R": 75.0, "b": 3.75, "T": 15.0, "dr": 0.75}},
+                    "s08_R200": {"sigma": 3.0, "q": 0.0711, "R": 75.0, "b": 3.75, "T": 15.0, "dr": 0.75},
+                    "w08": {"sigma": 3.0, "q": 0.00711, "R": 37.5, "b": 3.75, "T": 15.0, "dr": 0.75},
+                    "w16": {"sigma": 6.0, "q": 0.00178, "R": 75.0, "b": 7.5, "T": 30.0, "dr": 1.5},
+                    "w32": {"sigma": 12.0, "q": 0.000444, "R": 150.0, "b": 15.0, "T": 60.0, "dr": 3.0},
+                    "h08": {"sigma": 3.0, "q": 0.0711, "R": 37.5, "b": 3.75, "T": 15.0, "dr": 0.75},
+                    "h16": {"sigma": 6.0, "q": 0.0178, "R": 75.0, "b": 7.5, "T": 30.0, "dr": 0.75},
+                    "h32": {"sigma": 12.0, "q": 0.00444, "R": 150.0, "b": 15.0, "T": 60.0, "dr": 0.75},
+                    "hw08": {"sigma": 3.0, "q": 0.00711, "R": 37.5, "b": 3.75, "T": 15.0, "dr": 0.75},
+                    "hw16": {"sigma": 6.0, "q": 0.00178, "R": 75.0, "b": 7.5, "T": 30.0, "dr": 0.75},
+                    "hw32": {"sigma": 12.0, "q": 0.000444, "R": 150.0, "b": 15.0, "T": 60.0, "dr": 0.75}},
     "estimate": "každá část ~4–6 h s 10 procesy (kontrolní úroveň z vakua + hlavní úroveň z ní; stejný počet uzlů jako "
-                "pole F2.7; s32 může trvat déle); s08 je volitelná (hlavní úroveň se shoduje s polem F2.7)",
+                "pole F2.7; s32 může trvat déle); s08 je volitelná (hlavní úroveň se shoduje s polem F2.7); části h a hw (krok 1 ℓ_k u zdroje) mají více uzlů: "
+                "h08/hw08 ~45, h16/hw16 ~76, h32/hw32 ~140 uzlů, čas zhruba úměrně počtu řádků (h32 odhadem 10–14 h)",
 }
 
 _EPS, _RHO = 0.05, 20.0          # the field computation of F2.7: eps * rho = 1, lengths in units of l_k
@@ -171,7 +271,13 @@ def profile_metrics(Pi_cs_f, R, p):
     rf = np.r_[3.0 * sig, np.asarray(p["flux_fracs"], float) * R]
     P_cs, P_a = geodesic_mid(Pi_cs_f, b, T), geodesic_mid(Pi_a_f, b, T)
     fl_cs, fl_a = flux(Pi_cs_f, rf, h), flux(Pi_a_f, rf, h)
-    return {"R": R, "sigma": sig, "P_cs": P_cs, "P_a": P_a, "ratio_P": P_cs / P_a,
+    # the flux at fixed PHYSICAL radii (the same region for different walls) and the Gauss deficit there
+    rx = np.asarray([r for r in p.get("fixed_r", []) if r < 0.9 * R], float)
+    f3 = float(flux(Pi_cs_f, np.array([3.0 * sig]), h)[0])
+    fx_cs = flux(Pi_cs_f, rx, h) if rx.size else np.zeros(0)
+    fx_a = flux(Pi_a_f, rx, h) if rx.size else np.zeros(0)
+    return {"R": R, "sigma": sig, "qs2": round(qs * sig * sig, 9), "dr": float(p["dr"]), "P_cs": P_cs, "P_a": P_a, "ratio_P": P_cs / P_a,
+            "r_fixed": rx, "flux_cs_fixed": fx_cs, "flux_a_fixed": fx_a, "deficit_fixed": 1.0 - fx_cs / f3,
             "r_motion": rm, "slope_ratio": flux(Pi_cs_f, rm, h) / flux(Pi_a_f, rm, h),
             "r_flux": rf, "flux_cs": fl_cs, "flux_a": fl_a,
             "gauss_deficit_cs": 1.0 - fl_cs[2] / fl_cs[0], "gauss_deficit_a": 1.0 - fl_a[2] / fl_a[0],
@@ -187,7 +293,97 @@ def metric_lines(m, tag):
             "     flux r dPi/dr at r = " + ", ".join(f"{r:.4g}" for r in m["r_flux"]) + ":  cs "
             + " ".join(f"{x:.4f}" for x in m["flux_cs"]) + "   continuum " + " ".join(f"{x:.4f}" for x in m["flux_a"]),
             f"     Gauss deficit 1 - flux(R/2)/flux(3 sigma): cs {m['gauss_deficit_cs']:+.3f}, continuum "
-            f"{m['gauss_deficit_a']:+.3f}"]
+            f"{m['gauss_deficit_a']:+.3f}",
+            "     at fixed physical r = " + ", ".join(f"{r:g}" for r in m["r_fixed"]) + ": deficit 1 - flux(r)/flux(3 sigma) cs "
+            + " ".join(f"{x:+.3f}" for x in m["deficit_fixed"]) + "; flux cs " + " ".join(f"{x:.4f}" for x in m["flux_cs_fixed"])
+            + " continuum " + " ".join(f"{x:.4f}" for x in m["flux_a_fixed"])]
+
+
+def interpretation(allm, p):
+    """The two readings declared in the module notes (wall, converge), from every field available."""
+    out = []
+    wr = float(p["wall_r"])
+
+    def dfix(m, r):
+        rr = list(np.asarray(m["r_fixed"], float))
+        return float(np.asarray(m["deficit_fixed"])[rr.index(r)]) if r in rr else float("nan")
+    def selfsim(m):                                  # the original grid: node step sigma / 4 near the source
+        return abs(m.get("dr", 0.25 * m["sigma"]) / m["sigma"] - 0.25) < 1e-9
+    s8 = [m for _, m in allm if abs(m["sigma"] - 8.0) < 1e-9 and selfsim(m)]
+    a = [m for m in s8 if abs(m["R"] - 100.0) < 1e-9]
+    b = [m for m in s8 if abs(m["R"] - 200.0) < 1e-9]
+    if a and b:
+        a, b = a[0], b[0]
+        D1, D2 = dfix(a, wr), dfix(b, wr)
+        E1, E2 = a["ratio_P"] - 1.0, b["ratio_P"] - 1.0
+        if D2 <= D1 / 2 and E2 <= E1 / 2:
+            verdict = "wall supported"
+        elif abs(D2 - D1) <= D1 / 4 and abs(E2 - E1) <= E1 / 4:
+            verdict = "wall not supported"
+        else:
+            verdict = "partial"
+        out.append(f"  reading 'wall' (sigma 8, R 100 -> 200, same region r = {wr:g}): Gauss deficit {D1:+.3f} -> {D2:+.3f}, "
+                   f"excess P_cs/P_a - 1 {E1:+.3f} -> {E2:+.3f}: {verdict}")
+        s16 = [m for _, m in allm if abs(m["sigma"] - 16.0) < 1e-9 and abs(m["R"] - 200.0) < 1e-9 and selfsim(m)]
+        if s16:
+            out.append("     slope ratio cs/continuum at r/sigma = " + ", ".join(f"{x / 8.0:g}" for x in b["r_motion"])
+                       + f": sigma 8 R 200 (R = 25 sigma) " + " ".join(f"{x:.3f}" for x in b["slope_ratio"])
+                       + f"; sigma 16 R 200 (R = 12.5 sigma) " + " ".join(f"{x:.3f}" for x in s16[0]["slope_ratio"]))
+    fams = {}
+    for _, m in allm:                                # families: R = 12.5 sigma, the same q sigma^2 and the same grid
+        if abs(m["R"] / m["sigma"] - 12.5) < 1e-9:
+            grid = "step sigma/4" if selfsim(m) else f"step {m['dr']:g} l_k"
+            fams.setdefault((m.get("qs2", 0.64), grid), {}).setdefault(m["sigma"], m)
+    for (qs2, grid), fam in sorted(fams.items(), reverse=True):
+        if not all(k in fam for k in (8.0, 16.0, 32.0)):
+            continue
+        out.append(f"  family q sigma^2 = {qs2:g}, node {grid} near the source "
+                   f"({'strong field, Pi(0) about 0.71' if qs2 > 0.3 else 'weak field'}):")
+        for name, val in (("excess P_cs/P_a - 1", lambda m: m["ratio_P"] - 1.0),
+                          ("Gauss deficit at R/2", lambda m: m["gauss_deficit_cs"])):
+            E8, E16, E32 = (val(fam[k]) for k in (8.0, 16.0, 32.0))
+            den = E8 + E32 - 2.0 * E16
+            if abs(den) >= 0.1 * abs(E16):
+                Einf = (E8 * E32 - E16 ** 2) / den
+            else:                                    # no curvature: stalled (floor = E32) or a straight decrease
+                Einf = E32 if abs(E16 - E32) < 0.1 * abs(E16) else 0.0
+            line = f"  {name} at sigma 8 / 16 / 32: {E8:+.4f} / {E16:+.4f} / {E32:+.4f}; Aitken floor {Einf:+.4f}"
+            if name.startswith("excess"):
+                if E32 < E16 and Einf <= 1.0 / 16.0:
+                    rd = "converging"
+                elif E32 >= 0.9 * E16 or Einf > 1.0 / 16.0:
+                    rd = "floor"
+                else:
+                    rd = "undetermined (sigma = 64 needed)"
+                line += f": reading 'converge' = {rd}"
+            out.append(line)
+    # reading 'grid' (declared 24 Oct, before any h-part ran): the same sigma and source on the two grids; the
+    # analysis k12_dno.md attributes to the self-similar step a slope excess at r = 1.25 sigma that grows with sigma
+    # (linear model: +0.007 / +0.021 / +0.051 at sigma 8 / 16 / 32)
+    for sg in (8.0, 16.0, 32.0):
+        for qs2 in sorted({m.get("qs2", 0.64) for _, m in allm}, reverse=True):
+            pick = lambda f: [m for _, m in allm if abs(m["sigma"] - sg) < 1e-9 and abs(m["R"] / sg - 12.5) < 1e-9
+                              and abs(m.get("qs2", 0.64) - qs2) < 1e-9 and f(m)]
+            a_, b_ = pick(selfsim), pick(lambda m: not selfsim(m))
+            if not (a_ and b_):
+                continue
+            a_, b_ = a_[0], b_[0]
+            dS = float(a_["slope_ratio"][0] - b_["slope_ratio"][0])     # grid component of the slope at 1.25 sigma
+            dE = a_["ratio_P"] - b_["ratio_P"]
+            pred = {8.0: 0.007, 16.0: 0.021, 32.0: 0.051}[sg]
+            if sg == 8.0:
+                rd = "reported only (predicted component below the resolution of the reading)"
+            elif dS >= pred / 2:
+                rd = "grid supported"
+            elif dS <= pred / 4:
+                rd = "grid not supported"
+            else:
+                rd = "partial"
+            out.append(f"  reading 'grid' sigma {sg:g}, q sigma^2 = {qs2:g}: slope ratio at 1.25 sigma, step sigma/4 "
+                       f"{a_['slope_ratio'][0]:.3f} vs step {b_['dr']:g} l_k {b_['slope_ratio'][0]:.3f} (difference "
+                       f"{dS:+.3f}, linear model {pred:+.3f}); P_cs/P_a {a_['ratio_P']:.3f} vs {b_['ratio_P']:.3f} "
+                       f"({dE:+.3f}): {rd}")
+    return out
 
 
 def earlier_fields(p, ctx):
@@ -198,13 +394,13 @@ def earlier_fields(p, ctx):
     for rec in provenance.load_all("F2.7"):
         d = rec.get("data") or {}
         if d.get("nodes") and d.get("Pi_cs"):
-            rp = dict(p, **{k: rec["params"][k] for k in ("sigma", "q", "b", "T")})
+            rp = dict(p, **{k: rec["params"][k] for k in ("sigma", "q", "b", "T", "dr") if k in rec["params"]})
             f = pi_geometry(np.asarray(d["nodes"], float), np.asarray(d["Pi_cs"], float), str(rec["params"]["geom"]))
             out.append((f"F2.7 field ({rec['time_utc']})", profile_metrics(f, float(rec["params"]["R"]), rp)))
     for rec in provenance.load_all("K.12"):
         d = rec.get("data") or {}
         if d.get("nodes") and d.get("Pi_cs") and rec.get("part") != ctx.part and "sigma" in rec["params"]:
-            rp = dict(p, **{k: rec["params"][k] for k in ("sigma", "q", "b", "T")})
+            rp = dict(p, **{k: rec["params"][k] for k in ("sigma", "q", "b", "T", "dr") if k in rec["params"]})
             f = pi_geometry(np.asarray(d["nodes"], float), np.asarray(d["Pi_cs"], float), str(rec["params"]["geom"]))
             out.append((f"K.12 {rec['part']} ({rec['time_utc']}, {rec['status']})",
                         profile_metrics(f, float(rec["params"]["R"]), rp)))
@@ -262,6 +458,10 @@ def run(p, ctx):
     allm = [("this part", m)] + prev
     lines.append("  P_cs / P_a against sigma (all fields above): " + "; ".join(
         f"sigma {mm['sigma']:g} R {mm['R']:g}: {mm['ratio_P']:.3f}" for _, mm in sorted(allm, key=lambda x: (x[1]['sigma'], x[1]['R']))))
+    inter = interpretation(allm, p)
+    if inter:
+        lines.append("interpretation (rules declared 23 Oct, before s08_R200 and s32):")
+        lines += inter
     lines.append("instrument: " + "; ".join(f"{k}: {'OK' if v else 'FAILS'}" for k, v in inst.items()))
     data = {"nodes": nodes, "Pi_cs": Pi_cs, "Pi_check": np.asarray(chk["Pi"], float), "metrics_check": m_chk,
             "solve": {k: sol[k] for k in ("iterations", "converged", "residual", "steps")},

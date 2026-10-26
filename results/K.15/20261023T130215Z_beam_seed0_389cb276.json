@@ -1,0 +1,63 @@
+{
+ "id": "K.15",
+ "part": "beam",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_15_flux_tensor.py",
+ "test_sha256": "389cb2769f462d714c5514d98f647ba9975e39f188e176fe5f258e2c8ff5dd0c",
+ "core_sha256": "958b2e63c86a80186be4d6e827bc848b9cdc851f62724850a0a11a83d4f617d4",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T130215Z",
+ "duration_s": 363.3,
+ "params": {
+  "D": 4,
+  "T": 7.0,
+  "half": 8.0,
+  "r_src": 4.0,
+  "t_src": 0.3,
+  "v": 0.6,
+  "win": [
+   2.5,
+   4.5
+  ],
+  "cuts": [
+   2.5,
+   3.0,
+   3.5,
+   4.0,
+   4.5
+  ],
+  "cells": [
+   2.0,
+   3.0
+  ],
+  "beta_check": 0.6,
+  "n_seeds": 64,
+  "n_se": 2.0,
+  "boot_B": 2000,
+  "tol": 0.05,
+  "mode": "beam"
+ },
+ "lines": [
+  "3+1, rho = 1, box t [0, 7], |x_i| <= 8 (~28669 events); sources in a ball of radius 4, t < 0.3, v = 0.6; window t in [2.5, 4.5]; T^ab = (1/dV4) sum F u^a u^b tau_link",
+  "  merge rule F = |P|: p_rest/E_rest +0.0000 +- 0.0000 (exp +0.0000, OK); max|pi_rest|/E_rest +0.0000 +- 0.0000 (exp +0.0000, OK); |q|/E +0.6000 +- 0.0000 (exp +0.6000, OK); S_xx/E +0.3600 +- 0.0000 (exp +0.3600, OK); E/rho +1.5625 +- 0.0000 (exp +1.5625, OK)",
+  "     flux in merged events 0.000, mixed flux (speed no longer v) 0.000; Landau-frame pressure p_rest/E_rest +0.0000; cells L = 2.0: p/E 0.1200, spread 0.0000 over 15 cells; cells L = 3.0: p/E 0.1200, spread 0.0000 over 14 cells",
+  "  merge rule sum of fluxes: p_rest/E_rest +0.0000 +- 0.0000 (exp +0.0000); max|pi_rest|/E_rest +0.0000 +- 0.0000 (exp +0.0000); |q|/E +0.6000 +- 0.0000 (exp +0.6000); S_xx/E +0.3600 +- 0.0000 (exp +0.3600); E/rho +1.5625 +- 0.0000 (exp +1.5625)",
+  "     flux in merged events 0.000, mixed flux (speed no longer v) 0.000; Landau-frame pressure p_rest/E_rest +0.0000; cells L = 2.0: p/E 0.1200, spread 0.0000 over 15 cells; cells L = 3.0: p/E 0.1200, spread 0.0000 over 14 cells",
+  "checks: expected ratios (merge rule F = |P|): OK; frame check of the tensor (relative 1e-9): OK"
+ ],
+ "data": {
+  "instrument": {
+   "expected ratios (merge rule F = |P|)": true,
+   "frame check of the tensor (relative 1e-9)": true
+  }
+ }
+}

@@ -1,0 +1,68 @@
+{
+ "id": "F1.7",
+ "part": "V",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\F1_pole\\F1_07_field_equation_benchmark.py",
+ "test_sha256": "cad74b6fcc54fe138da63873d21db7cb1969c8c399f78e2fbd4680267ebc2892",
+ "core_sha256": "958b2e63c86a80186be4d6e827bc848b9cdc851f62724850a0a11a83d4f617d4",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T101108Z",
+ "duration_s": 1.7,
+ "params": {
+  "gamma": 1.0,
+  "d_s": 3,
+  "kappa": 1.0,
+  "sigma": 8.0,
+  "R_over_sigma": 50.0,
+  "rmin_over_sigma": 0.0001,
+  "n_shoot": 160,
+  "shoot_rtol": 1e-10,
+  "tol": 1e-08,
+  "max_nodes": 200000,
+  "lin_tol": 1e-06,
+  "scale_tol": 1e-06,
+  "weak_u0": -0.0001,
+  "weak_tol": 0.01,
+  "strengths": [
+   -0.03,
+   -0.1,
+   -0.2,
+   -0.3,
+   -0.5,
+   -0.7,
+   -0.9
+  ],
+  "ks": [
+   -1.0,
+   2.0,
+   3.0
+  ],
+  "scale_sigmas": [
+   4.0,
+   16.0
+  ],
+  "scale_u0": -0.3,
+  "mode": "V"
+ },
+ "lines": [
+  "3+1 (d_s = 3), metric -Pi^2 dt^2 + Pi^(-2 gamma) dx^2, gamma = 1; box_g Pi = Pi^(2g)[(1) lap + ((1 - gamma)/p) grad^2]; R = Pi^(2g)[(2*(2*gamma - 1)/p) lap + (-2*gamma*(gamma + 1)/p**2) grad^2]",
+  "  weak-field coefficient of (box_g - R/2) Pi: lambda_1(gamma) = 2 - 2*gamma",
+  "V (i) symbolic: forms complete True; C5 reproduced True; lambda_1(gamma) = 2 - gamma (d_s - 1) True",
+  "V (ii) linear solver against the analytic solution: max relative deviation 3.33e-09 (allowed 1e-06)",
+  "V (iii) scaling: ln Pi at u_lin(0) = -0.3 for sigma = [4.0, 16.0]: max |Pi_a(r/sigma) - Pi_b(r/sigma)| = 1.09e-12 (allowed 1e-06); Pi(0) = [0.625331, 0.625331]"
+ ],
+ "data": {
+  "symbolic_ok": true,
+  "lin_dev": 3.333249052702943e-09,
+  "scale_dev": 1.088129586435116e-12
+ }
+}
