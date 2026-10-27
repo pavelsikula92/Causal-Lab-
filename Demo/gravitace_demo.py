@@ -1,103 +1,81 @@
-# Gravity_Demo: interaktivní demonstrace gravitačního pole a pohybu těles
-# =====================================================================
-# Samostatná vizualizace gravitačního pole a pohybu těles. Neimportuje
-# ani nemění kód laboratoře. Hmota je zadána jako vstupní předpoklad.
+# Gravitační demonstrace: gravitační pole, pohyb těles a měřitelné důsledky
+# ===========================================================================
+# Samostatná interaktivní aplikace; nemění kód gravitační laboratoře.
+# Hmotnosti, geometrie a okrajové podmínky jsou v této demonstraci vstupy.
 #
 # Spuštění:
-#   python demo/gravitace_demo.py
-#   python demo/gravitace_demo.py --selftest
-#   python demo/gravitace_demo.py --scene 2 --autorun
+#   python demo/gravitace_demo.py                 # otevře výchozí scénu
+#   python demo/gravitace_demo.py --selftest      # spustí numerické autotesty
+#   python demo/gravitace_demo.py --scene 2       # otevře scénu s daným indexem
+#   python demo/gravitace_demo.py --scene 2 --autorun  # spustí simulaci ihned
+# Požadavky: Python 3, tkinter a numpy.
 #
-# Požadavky: Python 3, tkinter, numpy.
-# Česká verze 
-# FYZIKÁLNÍ MODEL (G = c = 1)
-# ---------------------------
-# Pole hodin L = ln(Pi) splňuje polní rovnici
+# FYZIKÁLNÍ MODEL A JEHO PŘEDPOKLADY
+# ----------------------------------
+# Pole hodin L = ln Π vně bodových zdrojů je zadáno vztahem
+#   B_g ln Π = κρ_s,    L(x) = −Σ_j M_j / sqrt(|x − x_j|² + ε²).
+# Parametr ε numericky změkčuje singularitu. Pole se lineárně superponuje;
+# nelineární překryvové korekce zdrojů nejsou zahrnuty.
+# Hypotéza metriky H1: ds² = −e^(2L)dt² + e^(−2L)dx², v 1PN řádu β = γ = 1.
+# Exponenciální tvar metriky mimo 1PN je volbou demonstrace, ne odvozeným výsledkem.
+# Kvazistatický pohyb používá dv/dt = −e^(4L)∇L − |v|²∇L + 4v(v·∇L) a
+# dτ = sqrt(e^(2L) − e^(−2L)|v|²)dt. Retardace pole se zanedbává.
+# Shoda slabého pole s Newtonovou fyzikou nebo GR sama o sobě není novým důkazem.
 #
-#   B_g ln(Pi) = kappa rho_s
-#   L(x) = -sum_j M_j / sqrt(|x - x_j|^2 + eps^2)
+# PŘEHLED SCÉN
+# ------------
+# 0  Precese perihelia: excentrická oběžná dráha a dlouhodobé měření precese.
+# 1  Sluneční soustava (zveličená): několik planetárních drah v jednotkách G=c=1.
+# 2  Ohyb světla: porovnání trajektorií fotonů s různými parametry dopadu.
+# 3  Shapirovo zpoždění: porovnání zpoždění dvou paprsků v různých vzdálenostech.
+# 4  Dvojhvězda a planeta: oběh dvou hvězd a vzdálenější planety.
+# 5  Hodiny v poli: vlastní čas statických hodin a obíhající částice.
+# 6  Sluneční soustava (skutečná): vstupní elementy J2000, vzdálenosti v AU.
+# 7  Povrch Země: pád jablka, vržený míč a hodiny v různých výškách.
+# 8  Země, ISS a GPS: oběžné dráhy a rozdíly rychlosti hodin.
+# 9  UAP – naprogramovaný manévr: potřebné zrychlení při konvenčním pohonu.
+# 10 UAP – ruční řízení: ovládání klávesnicí; „nulové pole“ je hypotéza.
+# 11 Černá díra: vnější profil rovnice a kritické trajektorie, bez modelovaného horizontu.
+# 12 Alfa Centauri A/B: model relativního oběhu dvojhvězdy.
+# 13 Sirius A/B: dvojhvězda a gravitační rudý posuv bílého trpaslíka Siria B.
+# 14 Okolí Slunce do 12 ly: prostorová mapa hvězd a extrapolace známých pohybů.
+# 15 Volná scéna: pracovní plocha s pevným zdrojem, na kterou lze přidávat objekty.
 #
-# eps numericky změkčuje singularitu. Pole je lineární a superponuje
-# příspěvky bodových hmotností; nelineární překryvové korekce uvnitř
-# zdrojů nejsou zahrnuty.
+# OVLÁDÁNÍ A ZOBRAZENÍ
+# --------------------
+# V ovládání lze přidávat/mazat tělesa, fotony a hodiny. Kliknutí umístí objekt;
+# tažení určuje směr a rychlost. Ve scénách u Země tažení představuje vrh.
+# Hmotnost se zadává jako poměr m/Mref; Mref je nejhmotnější zdroj při načtení scény a zůstává pevná.
+# Tempo se zadává jednotně jako simulační časové jednotky za sekundu reálného času;
+# v SI scénách se zobrazuje čas v sekundách, v geometrických scénách modelové jednotky.
+# 3D náhled lze zapnout u rovinných scén. Jde pouze o projekci roviny z=0,
+# nikoli o prostorovou dynamiku. Hvězdná mapa má skutečné souřadnice x,y,z.
+# Ve hvězdné mapě lze objekty přidávat formulářem nebo nástrojem na pracovní ploše.
 #
-# Hypotéza metriky H1 (gamma = 1 je vstupní předpoklad):
+# SROVNÁNÍ A MĚŘENÍ
+# -----------------
+# Srovnávají se H1, obecná relativita (GR), Newtonova korpuskulární aproximace,
+# pravidlo F3 a PPN metrika s parametry β a γ. Sledují se precese perihelia,
+# ohyb světla, Shapirovo zpoždění a vlastní čas hodin a částic.
+# Druhý řád ohybu v exponenciální metrice je 4π(M/b)²; GR předpovídá
+# 15π(M/b)²/4. Rozdíl plyne z volby metriky mimo 1PN řád.
 #
-#   ds^2 = -e^(2L) dt^2 + e^(-2L) dx^2
-#   g_00 = -(1 + 2L + 2L^2),  g_ij = (1 - 2L) delta_ij
-#
-# V 1PN aproximaci odpovídá beta = gamma = 1. Exponenciální metrika
-# mimo tento řád je volbou demonstrace, nikoli odvozeným výsledkem.
-#
-# Pohyb v kvazistatickém poli ostatních těles:
-#
-#   dv/dt = -e^(4L) grad(L) - |v|^2 grad(L)
-#           + 4v(v . grad(L))
-#   dtau = sqrt(e^(2L) - e^(-2L)|v|^2) dt
-#
-# Newtonovská limita je dv/dt = -grad(L). Světlo splňuje |v| = e^(2L)
-# a v 1PN řádu vykazuje dvojnásobnou odchylku oproti Newtonovské
-# korpuskulární předpovědi (gamma = 1). Retardace pole se zanedbává.
-#
-# MĚŘENÍ A POROVNÁNÍ
-# ------------------
-# Aplikace zobrazuje:
-# - precesi perihélia: [(2 + 2 gamma - beta)/3] * 6 pi M/[a(1-e^2)];
-# - odchylku světla: (1 + gamma)(M/b)(sin th2 - sin th1);
-# - Shapirovo zpoždění: (1 + gamma)M ln[(x2+r2)/(x1+r1)];
-# - vlastní čas hodin a částic.
-#
-# Pro druhý řád odchylky světla dává exponenciální metrika 4 pi(M/b)^2,
-# zatímco GR předpovídá 15 pi(M/b)^2/4. Rozdíl plyne z volby metriky
-# mimo 1PN řád. Rozdíly vyšších řádů nejsou automaticky numerickou chybou.
-#
-# SCÉNY A FUNKCE
-# --------------
-# Země: pád těles, vržený míč, výškové hodiny, ISS a GPS. V těchto
-# slabých polích model reprodukuje známé výsledky v rámci aproximace;
-# shoda s Newtonovou fyzikou a GR není novým fyzikálním důkazem.
-#
-# Sluneční soustava: 2D pohyb podle elementů J2000, délky v AU a čas
-# ve dnech či letech. Zahrnuje měření precese Merkuru a srovnání rámců:
-# H1, GR, Newtonovu fyziku, transportní pravidlo F3 a nastavitelnou PPN
-# metriku s parametry beta a gamma.
-#
-# Černá díra: přesný vnější profil bh_profile bez horizontu událostí.
-# Modelový poloměr fotonové sféry je 3.07 M a kritický parametr dopadu
-# 5.2435 M oproti Schwarzschildově hodnotě 5.1962 M.
-#
-# Dvojhvězdy: alfa Centauri A/B a Sirius A/B, precese periastra
-# a gravitační rudý posuv Siria B. Hvězdná mapa zobrazuje 3D okolí
-# do 12 světelných let a extrapoluje pohyby hvězd po přímých trajektoriích,
-# bez modelování Galaxie.
-#
-# UAP: řízený manévr a potřebné vlastní zrychlení při konvenčním pohonu.
-# Režim „nulového pole“ je alternativní hypotéza, nikoli výsledek teorie.
-#
-# Další funkce: porovnání fyzikálních rámců, zobrazení hodnot L a Pi,
-# rychlostí hodin, dob pádu, měřítka, odstraňování těles a názvů podle
-# hmotnosti. Laboratorní rozhraní načítá záznamy, předpovědi a profily
-# pole; stav jednotlivých tvrzení je uveden na kartě „Stav teorie“.
-#
-# ČAS A NUMERIKA
-# --------------
-# Pohyb se integruje metodou RK4. Časový krok se přizpůsobuje pohybu
-# a blízkosti nárazu. Rozdíly vlastních a souřadnicových časů se počítají
-# pomocí expm1/log1p pro zachování přesnosti při velmi malých odchylkách.
-#
-# AUTOTEST A INTERPRETACE
-# -----------------------
-# --selftest ověřuje numerickou implementaci a reprodukci použitých
-# vzorců, nikoli platnost teorie. Uváděné předpovědi jsou zpravidla
-# v prvním postnewtonovském řádu; výsledky vyšších řádů závisí na volbě
-# metriky a dalších předpokladech demonstrace.
-#
-# Stav teorie rozlišuje výsledky odvozené a testované v laboratoři,
-# výsledky odvozené pouze v limitě kontinua a vstupní předpoklady.
-#
-# Komentáře pro kód jsou v angličtině
-# =========================================================================
-
+# AUTOTESTY (--selftest)
+# ---------------------
+# Test 1: Keplerova perioda v Newtonovské limitě.
+# Test 2: precese perihelia proti vztahu 6πM/[a(1−e²)].
+# Test 3: odchylka světla proti předpovědi prvního a druhého řádu.
+# Test 4: Shapirovo zpoždění proti analytickému vztahu.
+# Test 5: nulová podmínka fotonu |v|=e^(2L) a rychlost statických hodin.
+# Test 6: doba pádu z 10 m proti sqrt(2h/g).
+# Test 7: rozdíl rychlosti hodin GPS a pozemních hodin za den.
+# Test 8: rozdíl rychlosti hodin ve výšce 30 m.
+# Test 9: precese Merkuru pro Newton, H1, GR a PPN s β=1/2.
+# Test 10: zachycení fotonu u černé díry a kritický parametr dopadu H1.
+# Autotesty kontrolují implementaci a použité vzorce, nikoli platnost celé teorie.
+# Karta „Stav teorie“ rozlišuje testované výsledky, spojité odvození,
+# vstupní předpoklady a neověřené hypotézy. Laboratorní panel zobrazuje uložené záznamy.
+# ===========================================================================
 
 from __future__ import annotations
 
@@ -108,34 +86,34 @@ from collections import deque
 
 import numpy as np
 
-EPS = 1e-3  # softening of point sources (numerical, in length units)
-C_SI = 299792458.0  # speed of light [m/s]: Earth scenes work in metres with G = c = 1 (time in metres = c t)
+EPS = 1e-3  # Numerické změkčení singularity bodových zdrojů v délkových jednotkách.
+C_SI = 299792458.0  # Rychlost světla [m/s]; v SI scénách je čas interně vyjádřen jako ct.
 G_C2 = (
-    7.42591e-28  # G / c^2 [m/kg]: converts a mass in kg to the length unit of G = c = 1
+    7.42591e-28  # G/c² [m/kg]: převod kilogramů na geometrickou délkovou jednotku.
 )
 M_EARTH = 4.43502e-3  # G M_Earth / c^2 [m]
-R_EARTH = 6.371e6  # mean radius of the Earth [m]
+R_EARTH = 6.371e6  # střední poloměr Země [m]
 G_SURF = (
     M_EARTH / R_EARTH**2 * C_SI**2
-)  # surface gravity [m/s^2] (9.82 for these values)
-AU = 1.495978707e11  # astronomical unit [m]
-YEAR = 365.25 * 86400.0  # Julian year [s]
-M_SUN = 1476.625  # G M_Sun / c^2 [m]
-ARCSEC = math.pi / (180.0 * 3600.0)
-LY = 9.4607304725808e15  # light year [m]
-M_SUN_KG = 1.98847e30  # solar mass [kg]
-R_SUN = 6.957e8  # nominal solar radius [m]
+)  # Gravitační zrychlení na povrchu [m/s²].
+AU = 1.495978707e11  # Astronomická jednotka [m].
+YEAR = 365.25 * 86400.0  # Juliánský rok [s].
+M_SUN = 1476.625  # GM☉/c² [m].
+ARCSEC = math.pi / (180.0 * 3600.0)  # Úhlová vteřina v radiánech.
+LY = 9.4607304725808e15  # Světelný rok [m].
+M_SUN_KG = 1.98847e30  # Hmotnost Slunce [kg].
+R_SUN = 6.957e8  # Jmenovitý poloměr Slunce [m].
 TAU_NULL = (
     0.05 * C_SI
-)  # 'null field' UAP mode: response time of the velocity control (0.05 s, in metres)
+)  # Hypotéza „nulového pole“: doba odezvy řízení rychlosti 0,05 s, interně v metrech.
 L_MAX = (
-    0.2  # weak-field limit of the demo: where |L| > L_MAX, 1PN is no longer adequate
+    0.2  # Mez slabého pole; pro |L| > L_MAX není aproximace 1PN dostačující.
 )
-# (errors ~ L^2); a body entering such a region merges, a photon is absorbed
+# Chyba je řádu L²; tělesa se při vstupu sloučí a fotony jsou pohlceny.
 
 
 def fmt_len(m):
-    """A length in metres for display: m, km, or astronomical units for large distances."""
+    """Převede délku v metrech na vhodnou zobrazovací jednotku."""
     a = abs(m)
     if a >= 0.1 * LY:
         return f"{m / LY:.4g} ly"
@@ -147,7 +125,7 @@ def fmt_len(m):
 
 
 def fmt_time(sec):
-    """A time in seconds for display: s, min, h, days or years."""
+    """Převede čas v sekundách na sekundy, minuty, hodiny, dny nebo roky."""
     a = abs(sec)
     if a < 120:
         return f"{sec:.2f} s"
@@ -161,14 +139,13 @@ def fmt_time(sec):
 
 
 # =============================================================================
-# physics: the field, the geodesic acceleration, the integrator
+# Fyzika: pole, geodetické zrychlení a integrátor
 # =============================================================================
 
 
 class Body:
-    """One object of the scene. kind: 'mass' (source + geodesic), 'photon' (null geodesic, no source),
-    'clock' (a static clock at a fixed place, no source), 'craft' (prescribed, non-geodesic motion: the
-    UAP scene; its proper acceleration is what a thrust would have to supply)."""
+    """Těleso scény. Typ „mass“ je hmotný zdroj, „photon“ foton bez hmotnosti, „clock“ pevné hodiny a „craft“
+    těleso s předepsaným pohybem. U režimu craft představuje vlastní zrychlení požadovaný tah pohonu."""
 
     def __init__(
         self,
@@ -186,20 +163,20 @@ class Body:
         self.name, self.kind, self.color = name, kind, color
         self.radius = float(
             radius
-        )  # > 0: a solid body (the Earth); others land on its surface
-        self.z = 0.0  # third coordinate (only the 3D star map uses it)
-        self.thrust = (0.0, 0.0)  # 'pilot': applied acceleration [m/s^2] (keyboard)
-        self.info = ""  # extra description (star map, binaries)
-        self.landed_t = None  # simulation time of landing (Earth scenes)
-        self.script = None  # 'craft': prescribed motion (UAP scene), see CraftScript
+        )  # Kladný poloměr označuje pevný povrch; ostatní tělesa na něj dosednou.
+        self.z = 0.0  # Třetí souřadnice, využívá ji skutečná 3D mapa hvězd.
+        self.thrust = (0.0, 0.0)  # Řízené zrychlení [m/s²] nastavené klávesnicí.
+        self.info = ""  # Doplňující popis pro hvězdnou mapu a dvojhvězdy.
+        self.landed_t = None  # Simulační čas dosednutí ve scénách u Země.
+        self.script = None  # Předepsaný pohyb ve scéně UAP; viz CraftScript.
         self.max_g = 0.0  # 'craft': largest proper acceleration so far [m/s^2]
         self.now_g = 0.0
         self.mass = float(mass) if kind == "mass" else 0.0
         self.fixed = bool(fixed) or kind == "clock"
         self.x, self.y, self.vx, self.vy = float(x), float(y), float(vx), float(vy)
-        self.tau = 0.0  # accumulated proper time
-        self.tau_def = 0.0  # accumulated deficit t - tau (precise for tiny fields)
-        self.t_birth = None  # simulation time when the body entered (set by the app)
+        self.tau = 0.0  # Nasčítaný vlastní čas.
+        self.tau_def = 0.0  # Nasčítaný rozdíl t − τ; zachovává přesnost i pro velmi slabá pole.
+        self.t_birth = None  # Čas vložení tělesa do scény, nastavuje aplikace.
         self.trail = deque(maxlen=4000)
         self.alive = True
 
@@ -209,12 +186,12 @@ _BH = {}
 
 def bh_profile():
     """
-    The exterior (vacuum) solution of the laboratory equation B_g ln Pi = 0 in H1, 3+1, spherical, mass M = 1:
-        e^{2L} [(1 - L) lap L + L |grad L|^2] = 0   (F1.7 form),
-    in s = ln r:  dL/ds = P,  dP/ds = -P - L P^2 / (1 - L),  P = r dL/dr,
-    integrated inwards from r = 1e5 (L = -1/r + 1/(6 r^3), the asymptotic series; the second order only renames
-    the mass) down to r = 1e-4 by RK4 (ds = 1e-3). Cached. Returns (s, L, P, info) with the photon sphere
-    (r dL/dr = 1/2 for this metric) and the critical impact parameter b = r e^{-2L} there.
+    Vnější vakuové řešení rovnice laboratoře B_g ln Π = 0 pro H1, 3+1 rozměry a kulově symetrický zdroj M = 1:
+        e^(2L) [(1 − L) ΔL + L |∇L|²] = 0  (tvar F1.7).
+    Pro s = ln r platí dL/ds = P a dP/ds = −P − LP²/(1 − L), kde P = r dL/dr.
+    Řešení se integruje metodou RK4 z r = 1e5 do r = 1e−4 s krokem ds = 1e−3. Asymptotický začátek je
+    L = −1/r + 1/(6r³); druhý člen pouze předefinuje hmotnost. Výsledek (s, L, P, info) obsahuje poloměr
+    fotonové sféry (r dL/dr = 1/2) a kritický parametr dopadu b = r e^(−2L). Data se ukládají do mezipaměti.
     """
     if _BH:
         return _BH["s"], _BH["L"], _BH["P"], _BH["info"]
@@ -241,7 +218,7 @@ def bh_profile():
         np.array(LL[::-1]),
         np.array(PP[::-1]),
     )  # increasing s
-    # photon sphere: outermost r with P = 1/2
+    # Fotonová sféra: nejvzdálenější r, pro které P = 1/2
     k = np.where((P_arr[:-1] - 0.5) * (P_arr[1:] - 0.5) <= 0)[0][-1]
     f = (0.5 - P_arr[k]) / (P_arr[k + 1] - P_arr[k])
     s_ph = s_arr[k] + f * (s_arr[k + 1] - s_arr[k])
@@ -259,7 +236,7 @@ def bh_profile():
 
 
 def bh_L(r, M=1.0):
-    """L and dL/dr of the exterior solution for mass M at radii r (arrays); below 1e-4 M the logarithmic tail."""
+    """Vrátí L a dL/dr v zadaných poloměrech pro hmotnost M; pod 1e−4 M použije logaritmický chvost."""
     s_arr, L_arr, P_arr, _ = bh_profile()
     r = np.maximum(np.asarray(r, float), 1e-300)
     sx = np.log(r / M)
@@ -275,12 +252,12 @@ def bh_L(r, M=1.0):
 
 class Law:
     """
-    A law of motion for the comparison ("ghosts"). With U = -L = sum M/r (the Newtonian potential, G = c = 1):
-      kind 'metric': geodesics of the static metric ds^2 = -A(U) dt^2 + B(U) dx^2; in coordinate time
-          dv/dt = -(A'/2B) gU - v (v.gU) B'/B + |v|^2 (B'/2B) gU + v (v.gU) A'/A,   gU = grad U,
-        light moves with |v| = sqrt(A/B), clocks with dtau/dt = sqrt(A - B v^2) (A - 1 is given separately as Am1,
-        so that clock deficits of 1e-15 survive);
-      kind 'newton': dv/dt = gU for bodies and for light (a corpuscle launched at c), clocks do not slow down.
+    Pohybový zákon srovnávacího běhu. U = −L = Σ M/r je Newtonův potenciál pro G = c = 1.
+    Typ „metric“ používá geodetiky statické metriky ds² = −A(U)dt² + B(U)dx² a rovnici
+    dv/dt = −(A′/2B)∇U − v(v·∇U)B′/B + |v|²(B′/2B)∇U + v(v·∇U)A′/A.
+    Světlo má rychlost |v| = sqrt(A/B), hodiny dτ/dt = sqrt(A − Bv²). Hodnota A−1 se počítá zvlášť
+    kvůli zachování rozdílů hodin řádu 10⁻¹⁵. Typ „newton“ používá dv/dt = ∇U pro tělesa i fotony a
+    nezahrnuje gravitační zpomalování hodin.
     """
 
     def __init__(
@@ -300,7 +277,7 @@ class Law:
 
 
 def _law_h1():
-    """The demo's (and the laboratory's) geometry H1 with L = ln Pi: A = e^{2L} = e^{-2U}, B = e^{-2L} = e^{2U}."""
+    """Metrika H1 používaná v demonstraci i laboratoři: L = ln Π, A = e^(2L) = e^(−2U), B = e^(−2L) = e^(2U)."""
     return Law(
         "H1",
         "kauzální (H1, ln Π)",
@@ -314,9 +291,8 @@ def _law_h1():
 
 
 def _law_gr():
-    """General relativity: Schwarzschild in isotropic coordinates, A = ((1-U/2)/(1+U/2))^2, B = (1+U/2)^4
-    (exact for one mass; for several masses U is superposed, which is the 1PN-correct approximation).
-    """
+    """Obecná relativita: Schwarzschildova metrika v izotropních souřadnicích, A = ((1−U/2)/(1+U/2))² a B = (1+U/2)⁴.
+    Pro jeden zdroj je přesná; u více zdrojů se potenciály sčítají, což je aproximace správná do 1PN řádu."""
     return Law(
         "GR",
         "obecná relativita (Schwarzschild)",
@@ -334,7 +310,7 @@ def _law_newton():
 
 
 def _law_f3():
-    """The F3 transport rule of the laboratory = geodesics of Pi^2 eta (gamma = -1): A = B = e^{-2U}."""
+    """Transportní pravidlo F3 laboratoře odpovídá geodetikám Π²η s γ = −1: A = B = e^(−2U)."""
     return Law(
         "F3",
         "pravidlo F3 (Π²η, γ = −1)",
@@ -348,7 +324,7 @@ def _law_f3():
 
 
 def _law_ppn(beta, gamma):
-    """The parametrised post-Newtonian metric to first order: A = 1 - 2U + 2 beta U^2, B = 1 + 2 gamma U."""
+    """Parametrizovaná postnewtonovská metrika do prvního řádu: A = 1 − 2U + 2βU² a B = 1 + 2γU."""
     return Law(
         "PPN",
         f"PPN β = {beta:g}, γ = {gamma:g}",
@@ -362,24 +338,23 @@ def _law_ppn(beta, gamma):
 
 
 class Sim:
-    """The particle system and its integrator (no graphics; used by the application and the self-test)."""
+    """Systém těles a jeho integrátor bez grafiky, sdílený aplikací a autotesty."""
 
     def __init__(self, law=None):
         self.law = law if law is not None else _law_h1()
-        self.profile = None  # a fixed body whose field is the exact exterior solution
+        self.profile = None  # Pevný zdroj, jehož pole je přesným vnějším řešením.
         self.no_guard = (
-            False  # True: no merging/absorbing in strong fields (black hole)
+            False  # True vypne slučování a pohlcování v silném poli černé díry.
         )
         self.bodies = []
         self.t = 0.0
-        self.eta = 0.02  # step safety factor
+        self.eta = 0.02  # Bezpečnostní faktor časového kroku.
         self.dt_max = 0.5
-        self.events = []  # messages about merges / absorptions (strong field)
+        self.events = []  # Záznamy o sloučení a pohlcení v silném poli.
         self._extra = None
 
     def remove(self, body):
-        """Remove a body; removing the profile body (the black hole) also removes its exact field and restores the
-        strong-field guard."""
+        """Odstraní těleso. Odstranění zdroje profilu (černé díry) odstraní také jeho přesné pole a obnoví ochranu silného pole."""
         body.alive = False
         if body in self.bodies:
             self.bodies.remove(body)
@@ -387,22 +362,21 @@ class Sim:
             self.profile = None
             self.no_guard = False
 
-    # ---- arrays of the current state
+    # ---- pole aktuálního stavu
     def arrays(self):
         live = [b for b in self.bodies if b.alive]
         pos = np.array([[b.x, b.y] for b in live], float).reshape(-1, 2)
         vel = np.array([[b.vx, b.vy] for b in live], float).reshape(-1, 2)
-        # the profile body's field is added exactly by ext_field, so it is left out of the point-mass sum
+        # Pole zdroje s profilem přidává ext_field, proto se nezahrnuje do součtu bodových hmot.
         mass = np.array([0.0 if b is self.profile else b.mass for b in live], float)
         photon = np.array([b.kind == "photon" for b in live], bool)
         fixed = np.array(
             [b.fixed or b.kind == "craft" for b in live], bool
-        )  # crafts: moved by their script
+        )  # Řízené objekty se pohybují podle svého scénáře.
         return live, pos, vel, mass, photon, fixed
 
     def ext_field(self, points):
-        """Field of the profile body: the exact exterior solution of the field equation (H1 law only; a GR ghost uses
-        the ordinary point-mass U, for which the Schwarzschild metric is exact)."""
+        """Pole zdroje s profilem: přesné vnější řešení rovnice pole pro H1. Srovnávací běh GR používá běžný bodový potenciál U."""
         if self.profile is None:
             return 0.0, 0.0
         c = self.profile
@@ -412,11 +386,11 @@ class Sim:
         with np.errstate(over="ignore", invalid="ignore"):
             g = np.nan_to_num(
                 (dL / np.maximum(r, 1e-300))[:, None] * d
-            )  # the body itself: 0 (it is fixed)
+            )  # Ve středu zdroje je příspěvek nulový; zdroj je pevný.
         return L, g
 
     def L_points(self, pts):
-        """L at points from every source (point masses plus the profile body)."""
+        """Hodnota L v bodech od všech zdrojů, tedy bodových hmot i zdroje s profilem."""
         live, pos, vel, mass, photon, fixed = self.arrays()
         L = np.zeros(len(pts))
         if np.any(mass > 0):
@@ -425,7 +399,7 @@ class Sim:
         return L + Le
 
     def extra_acc(self, live):
-        """Applied accelerations (pilot thrust, SI m/s^2) in units of 1/length (a / c^2)."""
+        """Vnější zrychlení řízeného tělesa v SI převede z m/s² na interní jednotku 1/délka dělením c²."""
         return np.array(
             [
                 (
@@ -440,7 +414,7 @@ class Sim:
 
     @staticmethod
     def field_at(points, src_pos, src_mass, exclude=None):
-        """L and grad L at points (P, 2) from sources; exclude[p] = index of a source to skip for point p (self)."""
+        """Vypočítá L a ∇L v bodech tvaru (P, 2). Parametr exclude[p] určuje zdroj vynechaný pro bod p."""
         d = points[:, None, :] - src_pos[None, :, :]  # (P, S, 2)
         s2 = np.sum(d * d, axis=2) + EPS * EPS
         s = np.sqrt(s2)
@@ -448,20 +422,20 @@ class Sim:
         if exclude is not None:
             for p, j in enumerate(exclude):
                 if j is not None and j >= 0:
-                    w[p, j] = 0.0  # no self-field
+                    w[p, j] = 0.0  # Vlastní pole se nezapočítává.
         L = -np.sum(w / s, axis=1)
         g = np.sum((w / (s2 * s))[:, :, None] * d, axis=1)  # grad of -M/s is +M d / s^3
         return L, g
 
     @staticmethod
     def geodesic_accel(vel, L, gL):
-        """H1: dv/dt = -e^{4L} grad L - |v|^2 grad L + 4 v (v . grad L) (module notes)."""
+        """Zrychlení geodetiky H1: dv/dt = −e^(4L)∇L − |v|²∇L + 4v(v·∇L)."""
         v2 = np.sum(vel * vel, axis=1)[:, None]
         vg = np.sum(vel * gL, axis=1)[:, None]
         return -np.exp(4.0 * L)[:, None] * gL - v2 * gL + 4.0 * vel * vg
 
     def law_accel(self, vel, L, gL):
-        """Acceleration under self.law (H1 uses the closed form above; the others the general static metric)."""
+        """Vypočítá zrychlení podle zvoleného zákona; H1 používá uzavřený vztah, ostatní obecnou statickou metriku."""
         law = self.law
         if law.key == "H1":
             return self.geodesic_accel(vel, L, gL)
@@ -476,7 +450,7 @@ class Sim:
         )[:, None] * vel
 
     def deriv(self, pos, vel, mass, fixed):
-        """Time derivatives of the joint state (the sources move with the state inside each RK4 stage)."""
+        """Časové derivace společného stavu; polohy zdrojů se mění v každé fázi integrátoru RK4."""
         n = len(mass)
         L, gL = self.field_at(pos, pos, mass, exclude=list(range(n)))
         if self.profile is not None:
@@ -504,7 +478,7 @@ class Sim:
         if not np.any(moving):
             return self.dt_max if any(b.kind == "craft" for b in live) else math.inf
         speed = np.sqrt(np.sum(vel * vel, axis=1)) + 1e-12
-        if self.profile is not None:  # timescales near the profile body
+        if self.profile is not None:  # Časové škály v okolí zdroje s profilem.
             c = self.profile
             d = np.sqrt((pos[:, 0] - c.x) ** 2 + (pos[:, 1] - c.y) ** 2) + 1e-12
             tb = np.minimum(d / speed, np.where(photon, np.inf, np.sqrt(d**3 / c.mass)))
@@ -518,14 +492,14 @@ class Sim:
                 sdist = np.sqrt(np.sum(d * d, axis=2) + EPS * EPS)
                 idx = np.where(src)[0]
                 for k, j in enumerate(idx):
-                    sdist[j, k] = np.inf  # a source does not limit itself
+                    sdist[j, k] = np.inf  # Zdroj neomezuje vlastní časový krok.
                 t_cross = np.min(sdist, axis=1) / speed
                 t_orb = np.min(np.sqrt(sdist**3 / (mass[src][None, :] + 1e-30)), axis=1)
                 t_body = np.where(photon, t_cross, np.minimum(t_cross, t_orb))
                 dt = float(
                     np.clip(self.eta * np.min(t_body[moving]), 1e-6, self.dt_max)
                 )
-        # time to impact on a solid body (near its surface only: h < 5 % of its radius)
+        # Odhad času do dopadu na pevný povrch; počítá se jen v blízkosti povrchu.
         for o in (b for b in live if b.radius > 0):
             for i, b in enumerate(live):
                 if not moving[i] or photon[i] or b.radius > 0:
@@ -539,26 +513,26 @@ class Sim:
                 vt2 = max(float(vel[i] @ vel[i]) - vr * vr, 0.0)
                 g = max(
                     o.mass / (r * r) - vt2 / r, 0.0
-                )  # gravity minus the centripetal part (orbits)
-                u = max(-vr, 0.0)  # inward speed
+                )  # Gravitace po odečtení dostředivého příspěvku při oběhu.
+                u = max(-vr, 0.0)  # Radiální rychlost směrem dovnitř.
                 if g > 0:
                     t_imp = (-u + math.sqrt(u * u + 2.0 * g * h)) / g
                 else:
                     t_imp = h / u if u > 0 else math.inf
                 dt = min(
                     dt, t_imp * (1.0 + 1e-7) + 1e-9
-                )  # end just past the surface: lands
+                )  # Krok skončí těsně za povrchem, aby se zaznamenalo dosednutí.
         return dt
 
     def step(self, dt=None):
-        """One RK4 step of every live body; photons are renormalised to the null speed e^{2L} afterwards."""
+        """Provede jeden krok RK4 pro živá tělesa a poté upraví rychlost fotonů na nulovou podmínku e^(2L)."""
         live, pos, vel, mass, photon, fixed = self.arrays()
         if not live:
             return 0.0
         self._extra = (
             self.extra_acc(live) if any(b.kind == "pilot" for b in live) else None
         )
-        # 'null field' hypothesis: the pilot's velocity relaxes to the commanded one within TAU_NULL, whatever gravity
+        # Hypotéza „nulového pole“: rychlost řízeného tělesa se během TAU_NULL přiblíží požadované hodnotě bez ohledu na gravitaci.
         self._vt = [
             (i, np.array(b.vtarget, float))
             for i, b in enumerate(live)
@@ -587,7 +561,7 @@ class Sim:
                 b.x, b.y = pos_n[i]
                 if (
                     b.kind == "photon" and self.law.kind == "metric"
-                ):  # keep the null condition |v| = sqrt(A/B)
+                ):  # Zachová nulovou podmínku |v| = sqrt(A/B).
                     sp = math.hypot(*vel_n[i])
                     U = -float(L[i])
                     vel_n[i] *= math.sqrt(
@@ -596,7 +570,7 @@ class Sim:
                 b.vx, b.vy = vel_n[i]
                 v2 = float(vel_n[i] @ vel_n[i])
             if b.kind != "photon" and self.law.kind == "newton":
-                b.tau += dt  # Newton: absolute time, no clock effects
+                b.tau += dt  # Newtonův model: čas plyne stejně, bez gravitačního zpomalení hodin.
             elif b.kind != "photon" and self.law.key != "H1":
                 U = -max(float(L[i]), -20.0)
                 delta = (
@@ -606,12 +580,12 @@ class Sim:
                 b.tau_def += d * dt
                 b.tau += (1.0 - d) * dt
             elif b.kind != "photon":
-                # dtau/dt = sqrt(e^{2L} - e^{-2L} v^2) = exp(L + log1p(-e^{-4L} v^2)/2); its deficit 1 - dtau/dt is
-                # formed with expm1/log1p, so fields of 1e-10 (the Earth) keep their 1e-15 clock differences, which a
-                # plain sum of tau ~ t would round away
+                # dτ/dt = sqrt(e^(2L) − e^(−2L)|v|²); deficit 1 − dτ/dt se počítá stabilním logaritmickým zápisem.
+                # Deficit se počítá pomocí expm1/log1p, aby i pole Země řádu 10⁻¹⁰ zachovalo rozdíly hodin řádu 10⁻¹⁵,
+                # které by se při prostém sčítání τ ≈ t zaokrouhlily pryč.
                 Li = max(
                     float(L[i]), -20.0
-                )  # overflow guard (the strong-field guard acts first)
+                )  # Ochrana proti přetečení; kontrola silného pole zasahuje dříve.
                 q = min(math.exp(-4.0 * Li) * v2, 1.0 - 1e-16)
                 d = -math.expm1(Li + 0.5 * math.log1p(-q))
                 b.tau_def += d * dt
@@ -626,19 +600,19 @@ class Sim:
         return dt
 
     def move_craft(self, b, pos, mass, i):
-        """Prescribed motion of a craft (SI script) and the proper acceleration a_kin - a_grav it implies."""
+        """Provede předepsaný pohyb tělesa podle scénáře SI a určí vlastní zrychlení a_kin − a_grav."""
         x, y, vx, vy, ax, ay = b.script.state(self.t / C_SI)
         b.x, b.y, b.vx, b.vy = x, y, vx / C_SI, vy / C_SI
         _, g = self.field_at(np.array([[x, y]]), pos, mass, exclude=[i])
         agx, agy = (
             -g[0, 0] * C_SI**2,
             -g[0, 1] * C_SI**2,
-        )  # Newtonian gravity at the craft [m/s^2]
+        )  # Newtonovské gravitační zrychlení v místě řízeného tělesa [m/s²].
         b.now_g = math.hypot(ax - agx, ay - agy)
         b.max_g = max(b.max_g, b.now_g)
 
     def land_on_solids(self):
-        """A body that enters a solid body (radius > 0) stops on its surface; a photon is absorbed."""
+        """Těleso, které pronikne dovnitř pevného objektu, se zastaví na jeho povrchu; foton je pohlcen."""
         solids = [o for o in self.bodies if o.alive and o.radius > 0]
         for b in self.bodies:
             if not b.alive or b.fixed or b.radius > 0 or b.kind == "craft":
@@ -648,7 +622,7 @@ class Sim:
                 r = math.hypot(dx, dy)
                 if (
                     r < o.radius and b.kind == "pilot"
-                ):  # the pilot stands on the ground and can take off again
+                ):  # Řízené těleso se zastaví na povrchu, ale může znovu vzlétnout.
                     ux, uy = dx / max(r, 1e-12), dy / max(r, 1e-12)
                     b.x, b.y = o.x + ux * o.radius, o.y + uy * o.radius
                     vr = b.vx * ux + b.vy * uy
@@ -661,8 +635,8 @@ class Sim:
                 if r < o.radius:
                     if r < 1e-12 * max(
                         o.radius, 1.0
-                    ):  # exactly at the centre: no radial direction,
-                        dx, dy, r = 0.0, 1.0, 1.0  # put it on the 'top' of the surface
+                    ):  # Přesně ve středu není definován radiální směr,
+                        dx, dy, r = 0.0, 1.0, 1.0  # proto se těleso umístí na horní bod povrchu.
                     if b.kind == "photon":
                         b.alive = False
                     else:
@@ -673,15 +647,15 @@ class Sim:
 
     def strong_field_guard(self):
         """
-        Outside the weak field (|L| > L_MAX at a body, from the others) the demo's 1PN physics does not apply.
-        A photon there is absorbed; a massive body merges with the source that dominates its field
-        (mass and momentum conserved, Newtonian). Recorded in self.events.
+        Pokud příspěvky ostatních zdrojů vytvoří u tělesa |L| > L_MAX, aproximace 1PN se nepoužije.
+        Foton je pohlcen a hmotné těleso splyne se zdrojem, který dominuje jeho poli. Při sloučení se zachovává
+        hmotnost a hybnost v Newtonovském přiblížení; událost se zapíše do self.events.
         """
         src = [b for b in self.bodies if b.alive and b.mass > 0]
         for b in [x for x in self.bodies if x.alive and not x.fixed]:
             if (
                 not b.alive
-            ):  # merged away earlier in this pass: its mass is already counted
+            ):  # Těleso bylo sloučeno dříve v tomto průchodu; jeho hmotnost už je započtena.
                 continue
             others = [o for o in src if o is not b and o.alive]
             if not others:
@@ -716,7 +690,7 @@ class Sim:
                 )
 
     def advance(self, T, max_steps=5000, on_step=None):
-        """Advance by simulation time T (or until max_steps); on_step(sim) after every step."""
+        """Posune simulaci o čas T nebo do limitu kroků; po každém kroku zavolá on_step(sim)."""
         t_end = self.t + T
         steps = 0
         while self.t < t_end and steps < max_steps:
@@ -729,7 +703,7 @@ class Sim:
         return steps
 
     def pull_split(self, body, main):
-        """|grad L| at a body from one chosen source (main) and from all the other sources (Newtonian pulls)."""
+        """Velikost ∇L u tělesa zvlášť od zvoleného hlavního zdroje a od všech ostatních zdrojů."""
         gm, go = np.zeros(2), np.zeros(2)
         for o in self.bodies:
             if not o.alive or o.mass <= 0 or o is body:
@@ -744,7 +718,7 @@ class Sim:
         return float(np.hypot(*gm)), float(np.hypot(*go))
 
     def L_at(self, x, y, skip=None):
-        """L at one point from all sources (skip: a body to leave out)."""
+        """Hodnota L v jednom bodě od všech zdrojů; skip označuje těleso, které se má vynechat."""
         src = [
             b
             for b in self.bodies
@@ -764,7 +738,7 @@ class Sim:
 
 
 # =============================================================================
-# measurements (trackers): perihelion advance, light deflection, Shapiro delay
+# Měření: precese perihélia, odklon světla a Shapirův časový posun
 # =============================================================================
 
 
@@ -774,22 +748,21 @@ def heaviest_other(sim, body):
 
 
 class PerihelionTracker:
-    """Perihelion angles of a body relative to its central body; advance per orbit against 1PN predictions."""
+    """Měří úhel perihélia tělesa vzhledem k centrálnímu zdroji a porovnává posun s předpovědí 1PN."""
 
     def __init__(self, body, center):
         self.body, self.center = body, center
         self.r_hist = deque(maxlen=3)
-        self.peri = []  # (t, angle, r)
+        self.peri = []  # (čas, úhel, vzdálenost)
         self.r_max = 0.0
         self.r_min = math.inf
-        self.other_max = 0.0  # largest pull of the other bodies relative to the centre
-        self.lrl = []  # (t, direction of the Laplace-Runge-Lenz vector) at perihelia
+        self.other_max = 0.0  # Největší působení ostatních těles vzhledem k hlavnímu zdroji.
+        self.lrl = []  # (čas, směr vektoru Laplace–Runge–Lenz v perihéliu)
 
     def lrl_angle(self):
-        """Direction of the (Newtonian, osculating) eccentricity vector e = (v^2/mu - 1/r) r - (r.v/mu) v.
-        Sampled at every perihelion, so the periodic 1PN wobble of the osculating orbit cancels; its secular
-        drift is the perihelion advance, measured far more precisely than from the discrete minima of r.
-        """
+        """Směr oskulačního Newtonovského vektoru excentricity e = (v²/μ − 1/r)r − (r·v/μ)v.
+        Vzorkování v každém perihéliu potlačí periodické kolísání oskulační dráhy; dlouhodobý posun udává
+        precese perihélia přesněji než přímé hledání diskrétních minim vzdálenosti."""
         b, c = self.body, self.center
         rx, ry = b.x - c.x, b.y - c.y
         vx, vy = b.vx - c.vx, b.vy - c.vy
@@ -802,7 +775,7 @@ class PerihelionTracker:
         return math.atan2(ey, ex)
 
     def rate(self):
-        """Secular perihelion advance [rad per unit time] from a least-squares line through the LRL angles."""
+        """Určí sekulární rychlost precese [rad na jednotku času] lineárním fitem úhlů vektoru Laplace–Runge–Lenz."""
         if len(self.lrl) < 3:
             return None
         t = np.array([x[0] for x in self.lrl])
@@ -824,10 +797,10 @@ class PerihelionTracker:
             (r0, a0, t0), (r1, a1, t1), (r2, a2, t2) = self.r_hist
             near_min = (
                 r1 - self.r_min <= 0.3 * (self.r_max - self.r_min) + 1e-12
-            )  # not a small wiggle elsewhere
+            )  # Vyloučí drobné lokální kolísání mimo perihélium.
             if (
                 r1 < r0 and r1 <= r2 and near_min
-            ):  # a minimum of the distance: refine by a parabola
+            ):  # Minimum vzdálenosti se zpřesní parabolickou interpolací.
                 den = r0 - 2 * r1 + r2
                 u = 0.5 * (r0 - r2) / den if den > 0 else 0.0
                 da_m = math.atan2(math.sin(a1 - a0), math.cos(a1 - a0))
@@ -838,14 +811,13 @@ class PerihelionTracker:
                     self.lrl.append((sim.t, self.lrl_angle()))
 
     def result(self):
-        """(advance per orbit in the direction of motion [rad], predicted GR (beta = gamma = 1) [rad], a, e,
-        number of orbits) or None; needs two full orbits and a clearly eccentric orbit (e >= 0.05).
-        """
+        """Vrátí posun na oběh, předpověď GR pro β = γ = 1, velkou poloosu, excentricitu a počet oběhů.
+        Bez alespoň dvou úplných oběhů nebo pro téměř kruhovou dráhu (e < 0,05) vrátí None."""
         if len(self.peri) < 3 or self.r_max <= 0:
             return None
         a = 0.5 * (self.r_min + self.r_max)
         e = (self.r_max - self.r_min) / (self.r_max + self.r_min)
-        if e < 0.05:  # nearly circular: the perihelion direction is ill-defined
+        if e < 0.05:  # U téměř kruhové dráhy není směr perihélia dobře definován.
             return None
         steps = [
             math.atan2(math.sin(p2[1] - p1[1]), math.cos(p2[1] - p1[1]))
@@ -858,27 +830,27 @@ class PerihelionTracker:
 
 
 class LightTracker:
-    """Deflection of a photon by its dominant mass and its Shapiro delay, against the straight-line predictions."""
+    """Měří odklon fotonu a Shapirův časový posun vůči předpovědi pro přímou trajektorii."""
 
     def __init__(self, photon, mass_body, sim):
         self.ph, self.m = photon, mass_body
         sp = math.hypot(photon.vx, photon.vy)
         self.d0 = (photon.vx / sp, photon.vy / sp)
         rx, ry = photon.x - mass_body.x, photon.y - mass_body.y
-        self.x1 = rx * self.d0[0] + ry * self.d0[1]  # position along the initial line
-        self.b = abs(rx * self.d0[1] - ry * self.d0[0])  # impact parameter
+        self.x1 = rx * self.d0[0] + ry * self.d0[1]  # poloha podél počáteční přímky
+        self.b = abs(rx * self.d0[1] - ry * self.d0[0])  # parametr dopadu
         self.t0 = sim.t
-        self.path = 0.0  # Euclidean length of the actual path
+        self.path = 0.0  # Eukleidovská délka skutečné dráhy.
         self.last = (photon.x, photon.y)
         self.int_main, self.int_other = (
             0.0,
             0.0,
-        )  # path integrals of the pulls (main / others)
-        self.turn = 0.0  # accumulated (signed) turning of the direction
+        )  # Integrály působení hlavního zdroje a ostatních těles podél dráhy.
+        self.turn = 0.0  # Nasčítané podepsané natočení směru pohybu.
         self.last_dir = math.atan2(photon.vy, photon.vx)
 
     def update(self, sim):
-        """Accumulate the path length (the flat travel time along the ACTUAL, slightly bent path)."""
+        """Sčítá délku skutečné, mírně zakřivené dráhy pro výpočet geometrické části zpoždění."""
         x, y = self.ph.x, self.ph.y
         dl = math.hypot(x - self.last[0], y - self.last[1])
         self.path += dl
@@ -888,15 +860,15 @@ class LightTracker:
         self.int_other += go * dl
         ang = math.atan2(
             self.ph.vy, self.ph.vx
-        )  # turning angle summed step by step, so a
+        )  # Úhel se sčítá po jednotlivých krocích, takže
         self.turn += math.atan2(
             math.sin(ang - self.last_dir), math.cos(ang - self.last_dir)
-        )  # photon that
-        self.last_dir = ang  # circles the hole counts > 180 degrees
+        )  # foton, který
+        self.last_dir = ang  # oběhne černou díru, může mít odklon větší než 180°.
 
     @staticmethod
     def _x_plus_r(x, b):
-        """x + sqrt(x^2 + b^2) without cancellation for x < 0 (there it equals b^2 / (r - x))."""
+        """Vypočítá x + sqrt(x² + b²) bez ztráty přesnosti pro x < 0; tehdy použije ekvivalentní b²/(r − x)."""
         r = math.hypot(x, b)
         return x + r if x >= 0 else b * b / (r - x)
 
@@ -909,8 +881,8 @@ class LightTracker:
         x2 = rx * d0[0] + ry * d0[1]
         b, x1, M = self.b, self.x1, m.mass
         other = self.int_other / self.int_main if self.int_main > 0 else 0.0
-        # aimed (almost) straight at the mass: within the softening, or (weak-field scenes) so close that the photon
-        # enters |L| > L_MAX and is absorbed by the guard; the weak-field predictions do not apply there
+        # Paprsek míří přímo na zdroj nebo tak blízko, že v běžné scéně vstoupí do oblasti silného pole;
+        # ochrana jej pohltí a předpovědi slabého pole zde neplatí.
         if b <= (EPS if sim.no_guard else max(EPS, M / L_MAX)):
             return {
                 "defl": defl,
@@ -924,11 +896,11 @@ class LightTracker:
             }
         geom = (x2 / math.hypot(x2, b) - x1 / math.hypot(x1, b)) * M / b
         pred = {g: (1.0 + g) * geom for g in (1.0, 0.0, -1.0)}
-        # second order of THIS metric (PPN: pi (8 + 8 gamma - 4 beta + 3 eps) / 4 (M/b)^2; exponential metric
-        # g_ij = 1 + 2U + 2U^2 has eps = 4/3, so 4 pi (M/b)^2; GR has 15 pi / 4), infinite-path value
+        # Druhý řád této metriky: PPN dává π(8 + 8γ − 4β + 3ε)/4 · (M/b)²; exponenciální metrika
+        # gᵢⱼ = 1 + 2U + 2U² má ε = 4/3, tedy 4π(M/b)²; GR dává 15π/4. Jde o limitu nekonečné dráhy.
         pred2 = 4.0 * math.pi * (M / b) ** 2
-        # coordinate time minus the flat time along the actual path: the bending itself adds a geometric delay
-        # of second order (~ alpha^2 L / 2) that is not part of the Shapiro formula, so it is excluded
+        # Souřadnicový čas minus doba letu po skutečné dráze v plochém prostoru; samotný ohyb přidává geometrické zpoždění
+        # druhého řádu (~ α²L/2), které není součástí Shapirova vztahu, a proto se odečítá.
         delay_meas = (sim.t - self.t0) - self.path
         lr = math.log(self._x_plus_r(x2, b) / self._x_plus_r(x1, b))
         delay_pred = {g: (1.0 + g) * M * lr for g in (1.0, 0.0, -1.0)}
@@ -945,9 +917,8 @@ class LightTracker:
 
 
 def make_trackers(sim, orbits, old_p=None, old_l=None):
-    """Perihelion trackers (if orbits) for bodies around a much heavier one and light trackers for photons;
-    trackers in old_p / old_l (keyed by id of the body) are kept, so adding a body loses no progress.
-    """
+    """Vytvoří sledovače perihélia a fotonů. Existující sledovače zachová podle identity tělesa, takže přidání objektu
+    nesmaže dosavadní měření."""
     old_p, old_l = old_p or {}, old_l or {}
     trackers, light = [], []
     for b in sim.bodies:
@@ -1006,11 +977,11 @@ def mercury_experiment(laws, years, planets):
 
 
 def kepler_peri_velocity(M, a, e):
-    """Newtonian speed at perihelion of an orbit with semi-major axis a and eccentricity e."""
+    """Newtonovská rychlost v perihéliu dráhy s velkou poloosou a a excentricitou e."""
     return math.sqrt(M * (1 + e) / (a * (1 - e)))
 
 
-# J2000 mean elements: mass [kg], a [AU], e, longitude of perihelion [deg], mean longitude [deg] (NASA fact sheets)
+# Střední elementy J2000: hmotnost [kg], a [AU], excentricita e a délky perihélia a střední délka [°].
 PLANETS = [
     ("Merkur", 3.3011e23, 0.387098, 0.205630, 77.456, 252.251, "#c9a37a"),
     ("Venuše", 4.8675e24, 0.723332, 0.006772, 131.533, 181.980, "#ffe0a0"),
@@ -1024,12 +995,11 @@ PLANETS = [
 
 
 def kepler_state(mu, a, e, varpi, lam):
-    """Position and velocity (G = c = 1 units, velocity in units of c) on a Kepler ellipse around mu [m],
-    semi-major axis a [m], eccentricity e, longitude of perihelion varpi and mean longitude lam [rad].
-    """
+    """Poloha a rychlost na Keplerově elipse při G = c = 1, rychlost je vyjádřena v jednotkách c.
+    Vstupy: gravitační parametr μ [m], velká poloosa a [m], excentricita e, délka perihélia varpi a střední délka lam [rad]."""
     M = (lam - varpi) % (2 * math.pi)
     E = M if e < 0.8 else math.pi
-    for _ in range(50):  # Newton iteration of Kepler's equation
+    for _ in range(50):  # Newtonovy iterace Keplerovy rovnice
         E -= (E - e * math.sin(E) - M) / (1 - e * math.cos(E))
     n = math.sqrt(mu / a**3)
     x, y = a * (math.cos(E) - e), a * math.sqrt(1 - e * e) * math.sin(E)
@@ -1040,7 +1010,8 @@ def kepler_state(mu, a, e, varpi, lam):
 
 
 def solar_system(planets=True, only=None):
-    """Sun and planets (J2000, 2D); the Sun moves so that the total momentum is zero. only: list of names."""
+    """Slunce a planety pro epochu J2000 ve 2D; Slunce se pohybuje tak, aby celková hybnost byla nulová.
+    Parametr only omezuje výběr na zadaná jména."""
     sun = Body("Slunce", 0, 0, mass=M_SUN, color="#ffd27a")
     B = [sun]
     if planets or only:
@@ -1059,8 +1030,8 @@ def solar_system(planets=True, only=None):
 
 class CraftScript:
     """
-    Prescribed motion in SI units: a start state and phases (duration [s], ax, ay [m/s^2]) of constant KINEMATIC
-    acceleration; after the last phase the craft keeps its last velocity (the scenes end every manoeuvre at rest).
+    Předepsaný pohyb v SI: počáteční stav a fáze zadané délkou [s] a konstantním kinematickým zrychlením ax, ay [m/s²].
+    Po poslední fázi těleso pokračuje poslední rychlostí; připravené scénáře končí v klidu.
     """
 
     def __init__(self, x0, y0, vx0, vy0, phases):
@@ -1077,7 +1048,7 @@ class CraftScript:
         self.end = (t, x, y, vx, vy)
 
     def state(self, t):
-        """(x, y, vx, vy, ax, ay) at time t [s]."""
+        """Vrátí (x, y, vx, vy, ax, ay) v čase t [s]."""
         for t0, t1, x, y, vx, vy, ax, ay in self.phases:
             if t < t1:
                 d = max(t - t0, 0.0)
@@ -1103,17 +1074,18 @@ class CraftScript:
 def scene(name):
     """
     Bodies of a preset scene, its view (center x, y, half-width) and meta:
-      si        True: lengths in metres, time shown in seconds (t / c); False: arbitrary units, G = c = 1
-      dt_max    largest step (simulation time units)
-      speed     default speed: SI scenes log10(simulated seconds per real second); others log10(time per frame)
-      display   ("log", lo, hi): colour = log10|L| on a fixed scale;  ("rel", L_ref, span): colour = (L - L_ref)/span
-      click     "orbit": a click gives a circular orbit; "rest": a click drops a body at rest (surface scenes)
+      si        True: délky v metrech a zobrazení času v sekundách; False: geometrické jednotky G = c = 1
+      dt_max    největší integrační krok
+      speed     výchozí logaritmické tempo simulace na sekundu reálného času ve všech scénách
+      display   pevná barevná škála pole nebo relativní odchylka od referenční hodnoty
+      click     „orbit“ vytvoří kruhovou dráhu; „rest“ pustí objekt z klidu
     """
     B = []
     meta = {
         "si": False,
         "dt_max": 0.5,
-        "speed": 0.0,
+        # V původním ovládání představovala hodnota 0 přibližně jednu jednotku na snímek (≈30/s).
+        "speed": math.log10(30.0),
         "display": ("log", -4.0, -1.0),
         "click": "orbit",
     }
@@ -1121,8 +1093,8 @@ def scene(name):
         M = 0.01
         B.append(Body("hvězda", 0, 0, mass=M, color="#ffd27a"))
         a, e = 1.0, 0.5
-        # Newtonian speed at perihelion; the 1PN pull there is weaker by (1 - 4M/r + v^2), so the actual orbit is
-        # larger than a = 1 (a and e are measured from the orbit itself)
+        # Newtonovská rychlost v perihéliu; účinek 1PN je zde slabší o faktor (1 − 4M/r + v²), proto je skutečná dráha
+        # větší než a = 1. Hodnoty a a e se následně měří ze simulované dráhy.
         B.append(
             Body(
                 "planeta",
@@ -1227,7 +1199,7 @@ def scene(name):
         )
         v0, ang = 14.0, math.radians(
             50
-        )  # a thrown ball: 14 m/s at 50 degrees from 1.5 m
+        )  # vržený míč: 14 m/s pod úhlem 50° z výšky 1,5 m.
         B.append(
             Body(
                 "míč (14 m/s, 50°)",
@@ -1288,7 +1260,7 @@ def scene(name):
         )
         x0, y0 = -3000.0, R + 1000.0
         craft = Body("UAP", x0, y0, kind="craft", color="#9affff")
-        # an illustrative manoeuvre of the kind reported: hover, dash, abrupt stop, hover, vertical climb, stop
+        # Ilustrační manévr: vznášení, rychlý let, prudké zastavení, vznášení, kolmý výstup a zastavení.
         craft.script = CraftScript(
             x0,
             y0,
@@ -1328,14 +1300,14 @@ def scene(name):
             click="rest",
         )
     elif name == "Černá díra (silné pole, neověřeno)":
-        # G = c = 1 with M = 1 (lengths in GM/c^2). The main scene uses the EXACT exterior solution of the
-        # laboratory's field equation (bh_profile), a GR ghost the Schwarzschild metric.
+        # Jednotky G = c = 1 a M = 1, délky v GM/c². Hlavní scéna používá přesné vnější řešení
+        # rovnice pole laboratoře (bh_profile); srovnávací běh GR používá Schwarzschildovu metriku.
         bh = Body("černá díra? (M = 1)", 0, 0, mass=1.0, fixed=True, color="#202020")
         bh.is_profile = True
         B.append(bh)
         for bb in (3.5, 4.0, 4.5, 5.0, 5.15, 5.21, 5.23, 5.26, 5.5, 6.0, 7.0, 8.0):
-            # the conserved impact parameter is y0 times the refractive index n = sqrt(B/A) = e^{-2L} at the start, so
-            # the launch height is y0 = b / n (H1; the GR index differs there only at second order, ~1e-4)
+            # Zachovaný parametr dopadu je počáteční výška y₀ násobená indexem lomu n = sqrt(B/A) = e^(−2L), proto
+            # je počáteční výška y₀ = b/n. Index GR se zde liší až ve druhém řádu, přibližně o 10⁻⁴.
             y0 = bb
             for _ in range(5):
                 y0 = bb * math.exp(2.0 * float(bh_L([math.hypot(40.0, y0)])[0][0]))
@@ -1355,7 +1327,7 @@ def scene(name):
             4.0,
             6.0,
             10.0,
-        ):  # static clocks at areal radii R (isotropic r from R = r e^{-L})
+        ):  # Statické hodiny v plošných poloměrech R; izotropní r splňuje R = r e^(−L).
             lo, hi = 0.05, R_ar
             for _ in range(80):
                 mid = 0.5 * (lo + hi)
@@ -1386,7 +1358,7 @@ def scene(name):
         )
         view = (0.0, 0.0, 14.0)
         meta.update(
-            dt_max=1.0, eta=0.01, display=("log", -2.0, 0.7), bh=True, speed=-0.2
+            dt_max=1.0, eta=0.01, display=("log", -2.0, 0.7), bh=True, speed=math.log10(10**(-0.2) / 0.03)
         )
     elif name == "UAP: řízení (klávesnice)":
         R = R_EARTH
@@ -1432,7 +1404,7 @@ def scene(name):
         M1, M2 = m1 * M_SUN, m2 * M_SUN
         x, y, vx, vy = kepler_state(
             M1 + M2, a_au * AU, e, 0.0, 0.0
-        )  # relative orbit, start at periastron
+        )  # Relativní dráha, počáteční bod je periastr.
         f1, f2 = -M2 / (M1 + M2), M1 / (M1 + M2)
         B.append(Body(n1, f1 * x, f1 * y, f1 * vx, f1 * vy, mass=M1, color=c1))
         B.append(Body(n2, f2 * x, f2 * y, f2 * vx, f2 * vy, mass=M2, color=c2))
@@ -1447,7 +1419,7 @@ def scene(name):
             orbits="binary",
         )
     elif name == "Okolí Slunce do 12 ly (3D)":
-        # equatorial positions (J2000, OpenStax Astronomy Appendix I) and approximate masses [M_sun]
+        # Ekvatoriální polohy J2000 (OpenStax Astronomy, dodatek I) a přibližné hmotnosti [M☉].
         STARS = [
             ("Slunce", 0.0, 0.0, 0.0, "G2 V", 1.0),
             ("Proxima Centauri", 14.48, -62.67, 4.2, "M5.5 V", 0.12),
@@ -1474,10 +1446,10 @@ def scene(name):
             ("ε Indi A", 22.05, -56.77, 11.8, "K5 V", 0.76),
             ("τ Ceti", 1.73, -15.93, 11.9, "G8.5 V", 0.78),
         ]
-        # proper motion mu [arcsec/yr], its position angle [deg, N through E] and radial velocity [km/s]:
-        # mu and PA from the RECONS 100 nearest systems table (GJ 15 A from Kervella et al. 2019); radial velocities
-        # from Kervella et al. 2019, A&A 623, A72, Table 1 where listed, otherwise unknown (None: motion on the sky only).
-        # Companions without their own entry share the motion of their primary. None for mu: no motion data.
+        # Vlastní pohyb μ [″/rok], poziční úhel [°, od severu přes východ] a radiální rychlost [km/s]:
+        # μ a poziční úhel vycházejí z tabulky RECONS pro 100 nejbližších systémů (GJ 15 A z Kervella et al. 2019); radiální rychlosti
+        # z Kervella et al. 2019, A&A 623, A72, tabulka 1; neuvedené hodnoty jsou neznámé (None znamená jen pohyb na obloze).
+        # Průvodci bez vlastních údajů sdílejí pohyb hlavní hvězdy. Chybějící μ znamená, že data o pohybu nejsou k dispozici.
         MOTION = {
             "Proxima Centauri": (3.853, 281.5, None),
             "α Centauri A": (3.710, 277.5, None),
@@ -1531,12 +1503,12 @@ def scene(name):
                 0.0,
                 0.0,
                 0.0,
-            )  # space velocity in units of c (heliocentric, Sun at rest)
+            )  # Prostorová rychlost v jednotkách c vůči Slunci, které je v klidu.
             st.motion_note = (
                 "Slunce (počátek)" if nm == "Slunce" else "bez údajů o pohybu"
             )
             if mu is not None:
-                vt = 4.74047 * mu * d_ly / 3.26156 * 1000.0  # tangential speed [m/s]
+                vt = 4.74047 * mu * d_ly / 3.26156 * 1000.0  # Tečná rychlost [m/s].
                 rr = (
                     math.cos(dlt) * math.cos(a),
                     math.cos(dlt) * math.sin(a),
@@ -1570,16 +1542,16 @@ def scene(name):
             display=("log", -14.0, -12.0),
             map3d=True,
         )
-    else:  # "Volná scéna": a fixed anchor, so added orbits stay clean
+    else:  # Volná scéna používá pevný zdroj, aby přidané oběžné dráhy zůstaly stabilní.
         B.append(Body("hmota (pevná)", 0, 0, mass=0.01, fixed=True, color="#ffd27a"))
         view = (0.0, 0.0, 3.0)
     return B, view, meta
 
 
 def category_astro(m):
-    """Name of a body by its mass relative to the 'Sun of the scenes' M = 0.005 (G = c = 1), real mass ratios:
-    star >= 0.08, brown dwarf >= 0.013, giant planet >= 1e-4 (~30 Earths), planet >= 3e-7 (~Mars),
-    moon >= 1e-10, otherwise asteroid."""
+    """Zařadí těleso podle hmotnosti v jednotkách G = c = 1. Orientační hranice: hvězda ≥ 0,08 M☉,
+    hnědý trpaslík ≥ 0,013 M☉, obří planeta ≥ 10⁻⁴ M☉, planeta ≥ 3×10⁻⁷ M☉, měsíc ≥ 10⁻¹⁰ M☉,
+    jinak planetka."""
     r = m / 0.005
     for lim, name in (
         (0.08, "hvězda"),
@@ -1594,7 +1566,7 @@ def category_astro(m):
 
 
 def category_si(kg):
-    """Name of an object near the Earth by its mass in kg."""
+    """Pojmenuje objekt u Země podle jeho hmotnosti v kilogramech."""
     for lim, name in (
         (1.6e29, "hvězda"),
         (2.5e28, "hnědý trpaslík"),
@@ -1705,7 +1677,7 @@ odlišnost teorie by se ukázala až v silném poli."""
 
 
 # =============================================================================
-# bridge to the laboratory: records, the board of predictions, the continuum reference
+# Propojení s laboratoří: záznamy, nástěnka predikcí a spojitá reference
 # =============================================================================
 
 
@@ -1719,7 +1691,7 @@ def default_results_dir():
 
 
 def load_records(folder, include_quick=False):
-    """All saved test records (JSON written by the laboratory), newest first. Damaged files are skipped."""
+    """Načte uložené záznamy testů ve formátu JSON od nejnovějšího. Poškozené soubory přeskočí."""
     import json
     import os
 
@@ -1749,8 +1721,8 @@ def load_records(folder, include_quick=False):
     return recs
 
 
-# The risky claims of the theory and the tests that measure them. 'reading' is the interpretation recorded in
-# docs/nalezy.md (with its date); the statuses next to it are read from the records themselves.
+# Riziková tvrzení teorie a testy, které je měří. Položka „reading“ obsahuje interpretaci uvedenou v
+# docs/nalezy.md včetně data; stavy testů se načítají přímo z uložených záznamů.
 PREDICTIONS = [
     (
         "Daleké pole zdroje je newtonovské (Gaussův tok)",
@@ -1817,13 +1789,12 @@ PREDICTIONS = [
 
 
 def continuum_a_2p1(R, sigma, q, n_grid=20001):
-    """The continuum solution of equation (a) in 2+1, lap Pi = (1/3) Pi^2 rho_s with Pi(R) = 1 (kappa = 1, as the
-    laboratory's K.12 / F2.7 fields), by relaxation with continuation in the source strength (the laboratory's
-    core.operators.bd_expect_curved.continuum_radial, model 'a', D = 3)."""
+    """Spočítá spojité řešení rovnice (a) v rozměrech 2+1: ΔΠ = (1/3)Π²ρ_s s podmínkou Π(R) = 1 a κ = 1.
+    Jde o nezávislou referenci k profilům K.12/F2.7 z laboratoře, řešenou relaxací s postupným zesilováním zdroje."""
     r = np.linspace(0.0, R, n_grid)
     rs = q * np.exp(-(r**2) / (2 * sigma**2))
 
-    def poisson(f):  # lap Psi = f (radial, 2 dims), Psi'(0) = 0, Psi(R) = 0
+    def poisson(f):  # ΔΨ = f v radiální symetrii; Ψ'(0) = 0 a Ψ(R) = 0
         dens = f * 2 * math.pi * r
         Q = np.concatenate(
             [[0.0], np.cumsum(0.5 * (dens[1:] + dens[:-1]) * np.diff(r))]
@@ -1845,12 +1816,12 @@ def continuum_a_2p1(R, sigma, q, n_grid=20001):
 
 
 # =============================================================================
-# self-test of the demo code (no window)
+# Autotest kódu demonstrace bez otevření okna
 # =============================================================================
 
 
 def selftest():
-    """Checks that the code reproduces the formulas it claims (code verification, not physics evidence)."""
+    """Ověří numerickou implementaci vzorců; nejde o důkaz fyzikální teorie."""
     ok_all = True
 
     def report(name, val, ref, tol):
@@ -1858,12 +1829,14 @@ def selftest():
         rel = abs(val - ref) / abs(ref)
         ok = rel <= tol
         ok_all &= ok
+        stav = "V POŘÁDKU" if ok else "CHYBA"
         print(
-            f"  {'OK  ' if ok else 'FAIL'} {name}: {val:.6g} vs {ref:.6g} (rel. {rel:.2e}, tol {tol:g})"
+            f"  {stav:10s} {name}: {val:.6g}; očekáváno {ref:.6g} "
+            f"(relativní odchylka {rel:.2e}, tolerance {tol:g})"
         )
 
-    print("Self-test of gravitace_demo.py (units G = c = 1)")
-    # 1. Newtonian limit: period of a nearly circular orbit, M small
+    print("Autotesty gravitace_demo.py (jednotky G = c = 1)")
+    # 1. Newtonovská limita: perioda téměř kruhové dráhy při malé hmotnosti.
     s = Sim()
     M = 1e-5
     s.bodies = [
@@ -1883,15 +1856,15 @@ def selftest():
     s.advance(2.2 * 2 * math.pi / math.sqrt(M), max_steps=200000, on_step=on)
     if len(crossings) >= 2:
         report(
-            "Kepler period (M = 1e-5, r = 1)",
+            "Keplerova perioda (M = 1e-5, r = 1)",
             crossings[1] - crossings[0],
             2 * math.pi / math.sqrt(M),
             1e-3,
         )
     else:
-        print("  FAIL Kepler period: orbit not completed")
+        print("  CHYBA Keplerovy periody: oběh nebyl dokončen")
         ok_all = False
-    # 2. perihelion advance against 6 pi M / (a (1 - e^2)), M = 0.002 (2PN ~ M/a small)
+    # 2. Precese perihelia proti vztahu 6πM/[a(1−e²)]; korekce vyššího řádu jsou malé.
     s = Sim()
     M, a, e = 0.002, 1.0, 0.5
     s.bodies = [
@@ -1904,31 +1877,31 @@ def selftest():
     )
     res = tr.result()
     if res:
-        report(f"perihelion advance per orbit ({res[4]} orbits)", res[0], res[1], 0.03)
+        report(f"precese perihélia na oběh ({res[4]} oběhů)", res[0], res[1], 0.03)
     else:
-        print("  FAIL perihelion: no perihelia found")
+        print("  CHYBA precese perihélia: nebylo nalezeno perihélium")
         ok_all = False
-    # 3. light deflection and 4. Shapiro delay against the straight-line formulas (gamma = 1)
+    # 3.–4. Ohyb světla a Shapirovo zpoždění proti analytickým vztahům pro γ=1.
     s = Sim()
     s.bodies = [
         Body("m", 0, 0, mass=1e-3, fixed=True),
         Body("ph", -50.0, 0.2, 1.0, 0.0, kind="photon"),
     ]
-    # prediction: first order along the finite straight path + second order of the exponential metric
+    # Předpověď: první řád na konečné přímé dráze a druhý řád exponenciální metriky.
     lt = LightTracker(s.bodies[1], s.bodies[0], s)
     s.advance(100.0, max_steps=400000, on_step=lt.update)
     st = lt.state(s)
     report(
-        "light deflection (M = 1e-3, b = 0.2)",
+        "odklon světla (M = 1e-3, b = 0,2)",
         st["defl"],
         st["pred"][1.0] + st["pred2"],
         2e-3,
     )
-    report("Shapiro delay", st["delay"], st["delay_pred"][1.0], 0.03)
-    # 5. null condition and clock rate
+    report("Shapirovo zpoždění", st["delay"], st["delay_pred"][1.0], 0.03)
+    # 5. Nulová podmínka fotonu a rychlost statických hodin.
     ph = s.bodies[1]
     Lp = s.L_at(ph.x, ph.y)
-    report("null speed |v| = e^{2L}", math.hypot(ph.vx, ph.vy), math.exp(2 * Lp), 1e-9)
+    report("rychlost fotonu |v| = e^(2L)", math.hypot(ph.vx, ph.vy), math.exp(2 * Lp), 1e-9)
     s = Sim()
     s.bodies = [
         Body("m", 0, 0, mass=0.02, fixed=True),
@@ -1936,12 +1909,12 @@ def selftest():
     ]
     s.advance(10.0)
     report(
-        "static clock dtau/dt = e^{L}",
+        "rychlost statických hodin dτ/dt = e^L",
         s.bodies[1].tau / s.t,
         math.exp(-0.02 / math.hypot(0.5, EPS)),
         1e-9,
     )
-    # 6. Earth: an apple dropped from 10 m against sqrt(2h/g)
+    # 6. Země: doba pádu z výšky 10 m proti vztahu sqrt(2h/g).
     s = Sim()
     s.dt_max = 0.002 * C_SI
     h = 10.0
@@ -1953,12 +1926,12 @@ def selftest():
         s.step()
     g = M_EARTH / (R_EARTH + h) ** 2 * C_SI**2
     report(
-        "apple fall time from 10 m [s]",
+        "doba pádu z výšky 10 m [s]",
         s.bodies[1].landed_t / C_SI,
         math.sqrt(2 * h / g),
         2e-3,
     )
-    # 7. Earth: GPS clock against a ground clock over one day, against Delta L - v^2/2 (+38.5 us/day)
+    # 7. GPS: rozdíl hodin na oběžné dráze a na povrchu za jeden den.
     s = Sim()
     s.dt_max = 10.0 * C_SI
     r = 2.6560e7
@@ -1970,8 +1943,8 @@ def selftest():
     s.advance(86400 * C_SI, max_steps=100000)
     d_meas = (s.bodies[1].tau_def - s.bodies[2].tau_def) / s.t * 86400e6
     d_pred = (M_EARTH / (R_EARTH + 0.01) - M_EARTH / r - 0.5 * M_EARTH / r) * 86400e6
-    report("GPS clock against ground [us/day]", d_meas, d_pred, 1e-2)
-    # 8. Earth: a clock 30 m higher runs faster by g h / c^2 (Pound-Rebka type, 3.3e-15)
+    report("rozdíl hodin GPS a povrchu [μs/den]", d_meas, d_pred, 1e-2)
+    # 8. Země: hodiny ve výšce 30 m a očekávaný gravitační rudý posuv.
     s = Sim()
     s.dt_max = 0.002 * C_SI
     s.bodies = [
@@ -1981,12 +1954,12 @@ def selftest():
     ]
     s.advance(1.0 * C_SI, max_steps=10000)
     report(
-        "tower clock 30 m, relative rate",
+        "relativní rychlost hodin ve výšce 30 m",
         (s.bodies[1].tau_def - s.bodies[2].tau_def) / s.t,
         M_EARTH / (R_EARTH + 0.01) - M_EARTH / (R_EARTH + 30.0),
         1e-3,
     )
-    # 9. Mercury (Sun + Mercury only, 3 years): the relativistic advance against 42.98''/century, per law
+    # 9. Merkur: relativistická precese pro jednotlivé modely bez planetárních poruch.
     gen = mercury_experiment(
         [_law_newton(), _law_h1(), _law_gr(), _law_ppn(0.5, 1.0)], 3.0, False
     )
@@ -1995,12 +1968,12 @@ def selftest():
             next(gen)
     except StopIteration as stop:
         res = stop.value
-    report("Mercury, Newton (no planets) [''/century]", abs(res["N"]) + 1.0, 1.0, 0.05)
-    report("Mercury, H1 [''/century]", res["H1"], 42.98, 0.01)
-    report("Mercury, GR [''/century]", res["GR"], 42.98, 0.01)
-    report("Mercury, PPN beta = 1/2 [''/century]", res["PPN"], 42.98 * 3.5 / 3.0, 0.01)
-    # 10. black hole: a photon with b = 5.23 M is captured by the exterior solution of the field equation and
-    #     escapes in Schwarzschild (critical b: 5.2435 against 5.1962)
+    report("Merkur, Newton bez planet [''/století]", abs(res["N"]) + 1.0, 1.0, 0.05)
+    report("Merkur, H1 [''/století]", res["H1"], 42.98, 0.01)
+    report("Merkur, GR [''/století]", res["GR"], 42.98, 0.01)
+    report("Merkur, PPN β = 1/2 [''/století]", res["PPN"], 42.98 * 3.5 / 3.0, 0.01)
+    # 10. Černá díra: porovnání zachycení fotonu s parametrem b=5,23 M a kritického dopadu.
+    # V H1 je foton zachycen; v Schwarzschildově řešení unikne.
     caught = {}
     for law in (_law_h1(), _law_gr()):
         B, _, m = scene("Černá díra (silné pole, neověřeno)")
@@ -2014,23 +1987,23 @@ def selftest():
             s.step()
         caught[law.key] = math.hypot(ph.x, ph.y) < 1.0
     report(
-        "black hole: b = 5.23 captured (H1) / escapes (GR)",
+        "černá díra: b = 5,23, zachycení v H1 a únik v GR",
         1.0 if (caught["H1"] and not caught["GR"]) else 0.0,
         1.0,
         1e-9,
     )
     report(
-        "black hole: critical impact parameter (H1, M)",
+        "černá díra: kritický parametr dopadu (H1, M)",
         bh_profile()[3]["b_crit"],
         5.2435,
         1e-3,
     )
-    print("RESULT:", "all checks passed" if ok_all else "SOME CHECKS FAILED")
+    print("VÝSLEDEK:", "všechny kontroly prošly" if ok_all else "některé kontroly selhaly")
     return 0 if ok_all else 1
 
 
 # =============================================================================
-# the application (tkinter)
+# Aplikace a její grafické rozhraní Tkinter
 # =============================================================================
 
 
@@ -2039,7 +2012,7 @@ def run_app(start_scene=None, autorun=False):
     from tkinter import ttk
 
     root = tk.Tk()
-    root.title("Gravitace kauzální fyziky – demonstrace spojité limity (v1.5)")
+    root.title("Gravitace kauzální fyziky – interaktivní demonstrace")
     root.geometry("1360x860")
     root.configure(bg="#14161c")
 
@@ -2061,6 +2034,11 @@ def run_app(start_scene=None, autorun=False):
         "scene": SCENES[0],
         "meta": {"si": False, "display": ("log", -4.0, -1.0), "click": "orbit"},
         "name_seq": 0,
+        "mass_reference": None,
+        "view3d": False,
+        "readout_hold": False,
+        "readout_text": "",
+        "readout_pending": "",
     }
 
     # ---------- layout
@@ -2071,22 +2049,34 @@ def run_app(start_scene=None, autorun=False):
     right.pack(side="left", fill="both", expand=True)
     canvas = tk.Canvas(right, bg="#0b0d12", highlightthickness=0)
     canvas.pack(fill="both", expand=True)
-    out_frame = tk.Frame(right, bg="#10131a")  # readouts with a vertical scrollbar
+    out_frame = tk.Frame(right, bg="#10131a")
     out_frame.pack(fill="x")
-    out_sb = tk.Scrollbar(out_frame, orient="vertical")
+    out_toolbar = tk.Frame(out_frame, bg="#1c1f27")
+    out_toolbar.pack(side="top", fill="x")
+    out_status = tk.Label(out_toolbar, text="Výpis měření", bg="#1c1f27", fg="#9aa0ad", anchor="w")
+    out_status.pack(side="left", fill="x", expand=True, padx=6)
+    out_text_frame = tk.Frame(out_frame, bg="#10131a")
+    out_text_frame.pack(side="top", fill="both", expand=True)
+    out_sb = tk.Scrollbar(out_text_frame, orient="vertical")
+    out_xsb = tk.Scrollbar(out_text_frame, orient="horizontal")
     out_sb.pack(side="right", fill="y")
+    out_xsb.pack(side="bottom", fill="x")
     out = tk.Text(
-        out_frame,
-        height=13,
+        out_text_frame,
+        height=12,
         bg="#10131a",
         fg="#d8dce6",
         font=("Consolas", 10),
         relief="flat",
-        wrap="word",
+        wrap="none",
         yscrollcommand=out_sb.set,
+        xscrollcommand=out_xsb.set,
+        undo=False,
+        exportselection=True,
     )
     out.pack(side="left", fill="both", expand=True)
     out_sb.config(command=out.yview)
+    out_xsb.config(command=out.xview)
     err_lbl = tk.Label(
         right,
         text="",
@@ -2100,7 +2090,7 @@ def run_app(start_scene=None, autorun=False):
     seen_errors = set()
 
     def report_error(where, exc):
-        """Show an exception in red under the readouts (the simulation keeps running); print its traceback once."""
+        """Zobrazí chybu pod výpisem, ale ponechá simulaci spuštěnou; trasování vypíše jen jednou."""
         import traceback
 
         err_lbl.config(
@@ -2112,7 +2102,7 @@ def run_app(start_scene=None, autorun=False):
             traceback.print_exc()
 
     def safe(where, fn):
-        """A handler that cannot kill the application: exceptions are reported, not propagated."""
+        """Obalí obsluhu události tak, aby chyba nezastavila celé GUI."""
 
         def wrapped(*a, **kw):
             try:
@@ -2124,20 +2114,149 @@ def run_app(start_scene=None, autorun=False):
 
         return wrapped
 
-    def set_readout(text):
-        """Replace the readout text but keep the reader's scroll position (it is refreshed every frame)."""
-        top = out.yview()[0]
+    def _apply_readout(text):
+        """Aktualizuje výpis bez zbytečného přepisování nezměněného obsahu."""
+        text = str(text)
+        if text == state.get("readout_text", ""):
+            return
+        y_top = out.yview()[0]
+        byl_dole = out.yview()[1] >= 0.98
+        out.configure(state="normal")
         out.delete("1.0", "end")
-        out.insert("end", text)
-        out.yview_moveto(top)
+        out.insert("1.0", text)
+        out.configure(state="disabled")
+        state["readout_text"] = text
+        if byl_dole:
+            out.see("end")
+        else:
+            out.yview_moveto(y_top)
+
+    def set_readout(text):
+        """Aktualizuje data, ale během výběru textu nechá obsah stabilní pro kopírování."""
+        text = str(text)
+        state["readout_pending"] = text
+        if state.get("readout_hold"):
+            return
+        _apply_readout(text)
+
+    def copy_text_widget(widget, only_selection=False, status=None):
+        """Zkopíruje vybraný text nebo celý obsah textového pole do systémové schránky."""
+        try:
+            bez_vyberu = False
+            if only_selection:
+                try:
+                    content = widget.get("sel.first", "sel.last")
+                except Exception:
+                    content = widget.get("1.0", "end-1c")
+                    bez_vyberu = True
+            else:
+                content = widget.get("1.0", "end-1c")
+            widget.winfo_toplevel().clipboard_clear()
+            widget.winfo_toplevel().clipboard_append(content)
+            widget.winfo_toplevel().update_idletasks()
+            if status is not None:
+                if bez_vyberu:
+                    status.config(text=f"Není vybrán text; zkopírován celý výpis ({len(content)} znaků).")
+                elif content:
+                    status.config(text=f"Zkopírováno {len(content)} znaků do schránky.")
+        except Exception as exc:
+            if status is not None:
+                status.config(text=f"Kopírování selhalo: {exc}")
+        return "break"
+
+    def select_all_text(widget):
+        """Vybere celý obsah textového pole."""
+        widget.tag_add("sel", "1.0", "end-1c")
+        widget.mark_set("insert", "1.0")
+        widget.see("insert")
+        return "break"
+
+    def bind_text_copy(widget, status=None):
+        """Přidá běžné klávesové zkratky a kontextovou nabídku pro kopírování."""
+        widget.bind("<Control-a>", lambda _e, w=widget: select_all_text(w))
+        widget.bind("<Control-A>", lambda _e, w=widget: select_all_text(w))
+        widget.bind("<Control-c>", lambda _e, w=widget, st=status: copy_text_widget(w, True, st))
+        widget.bind("<Control-C>", lambda _e, w=widget, st=status: copy_text_widget(w, True, st))
+        widget.bind("<Control-Insert>", lambda _e, w=widget, st=status: copy_text_widget(w, True, st))
+        menu = tk.Menu(widget, tearoff=0)
+        menu.add_command(label="Kopírovat výběr", command=lambda w=widget, st=status: copy_text_widget(w, True, st))
+        menu.add_command(label="Kopírovat vše", command=lambda w=widget, st=status: copy_text_widget(w, False, st))
+        menu.add_command(label="Vybrat vše", command=lambda w=widget: select_all_text(w))
+        def show_menu(event, m=menu):
+            try:
+                m.tk_popup(event.x_root, event.y_root)
+            finally:
+                m.grab_release()
+            return "break"
+        widget.bind("<Button-3>", show_menu)
+        widget.bind("<Button-2>", show_menu)
+
+    def _uvolni_vypis():
+        """Po opuštění výpisu obnoví živá data, ne během označování či kopírování."""
+        try:
+            focus = root.focus_get()
+        except tk.TclError:
+            focus = None
+        if focus is out:
+            return
+        state["readout_hold"] = False
+        if state.get("readout_pending") != state.get("readout_text"):
+            _apply_readout(state.get("readout_pending", ""))
+
+    def _vypis_focus_in(_event=None):
+        state["readout_hold"] = True
+
+    def _vypis_focus_out(_event=None):
+        # Krátká prodleva umožní použít tlačítko „Kopírovat výběr“ bez závodu s obnovou.
+        root.after(350, _uvolni_vypis)
+
+    out.bind("<FocusIn>", _vypis_focus_in)
+    out.bind("<FocusOut>", _vypis_focus_out)
+    bind_text_copy(out, out_status)
+    tk.Button(out_toolbar, text="Kopírovat vše", command=lambda: copy_text_widget(out, False, out_status)).pack(side="left", padx=2, pady=2)
+    tk.Button(out_toolbar, text="Kopírovat výběr", command=lambda: copy_text_widget(out, True, out_status)).pack(side="left", padx=2, pady=2)
+    tk.Button(out_toolbar, text="Vybrat vše", command=lambda: select_all_text(out)).pack(side="left", padx=2, pady=2)
+    tk.Button(out_toolbar, text="Obnovit výpis", command=lambda: (state.update(readout_hold=False), readouts())).pack(side="left", padx=2, pady=2)
 
     nb = ttk.Notebook(left)
     nb.pack(fill="both", expand=True, padx=6, pady=6)
-    tab_c, tab_g, tab_s, tab_a = (tk.Frame(nb, bg="#1c1f27") for _ in range(4))
-    nb.add(tab_c, text="Ovládání")
-    nb.add(tab_g, text="Srovnání")
-    nb.add(tab_s, text="Stav teorie")
-    nb.add(tab_a, text="O modelu")
+
+    def vytvor_posuvnou_kartu(nazev):
+        """Vytvoří kartu svisle posuvnou i v menším okně."""
+        obal = tk.Frame(nb, bg="#1c1f27")
+        nb.add(obal, text=nazev)
+        plocha = tk.Canvas(obal, bg="#1c1f27", highlightthickness=0, bd=0)
+        posuvnik = ttk.Scrollbar(obal, orient="vertical", command=plocha.yview)
+        obsah = tk.Frame(plocha, bg="#1c1f27")
+        okno = plocha.create_window((0, 0), window=obsah, anchor="nw")
+        plocha.configure(yscrollcommand=posuvnik.set)
+        plocha.pack(side="left", fill="both", expand=True)
+        posuvnik.pack(side="right", fill="y")
+        obsah.bind("<Configure>", lambda _e, c=plocha: c.configure(scrollregion=c.bbox("all")))
+        plocha.bind("<Configure>", lambda e, c=plocha, w=okno: c.itemconfigure(w, width=e.width))
+        def posun_karty(event, c=plocha, o=obal):
+            widget = event.widget
+            while widget is not None:
+                if widget is o:
+                    delta = getattr(event, "delta", 0)
+                    if delta:
+                        c.yview_scroll(-int(delta / 120) or (-1 if delta > 0 else 1), "units")
+                    elif getattr(event, "num", None) == 4:
+                        c.yview_scroll(-1, "units")
+                    elif getattr(event, "num", None) == 5:
+                        c.yview_scroll(1, "units")
+                    return "break"
+                widget = getattr(widget, "master", None)
+            return None
+        obal.bind_all("<MouseWheel>", posun_karty, add="+")
+        obal.bind_all("<Button-4>", posun_karty, add="+")
+        obal.bind_all("<Button-5>", posun_karty, add="+")
+        return obal, obsah
+
+    card_c, tab_c = vytvor_posuvnou_kartu("Ovládání")
+    card_g, tab_g = vytvor_posuvnou_kartu("Srovnání")
+    card_s, tab_s = vytvor_posuvnou_kartu("Stav teorie")
+    card_a, tab_a = vytvor_posuvnou_kartu("O modelu")
 
     def label(parent, text, **kw):
         return tk.Label(
@@ -2167,13 +2286,13 @@ def run_app(start_scene=None, autorun=False):
         btns, text="Znovu", width=7, command=lambda: load_scene(scene_var.get())
     ).pack(side="left")
 
-    speed_lbl = label(tab_c, "Rychlost (simulační čas na snímek, log10)")
+    speed_lbl = label(tab_c, "Tempo simulace (log₁₀ simulačních jednotek za sekundu reálného času)")
     speed_lbl.pack(fill="x", padx=8)
     speed_var = tk.DoubleVar(value=0.0)
     speed_scale = tk.Scale(
         tab_c,
         from_=-3.0,
-        to=1.5,
+        to=12.5,
         resolution=0.05,
         orient="horizontal",
         variable=speed_var,
@@ -2186,17 +2305,17 @@ def run_app(start_scene=None, autorun=False):
     speed_val.pack(fill="x", padx=8)
 
     def speed_value_label(*_):
-        v = speed_var.get()
-        if state["meta"]["si"]:
-            txt = f"1 s reálného času = {fmt_time(10 ** v)} simulace"
-            if state.get("achieved"):
+        """Zobrazuje stejné ovládací tempo ve všech scénách, nikoli tempo závislé na FPS."""
+        tempo = 10.0 ** speed_var.get()
+        if state["meta"].get("si"):
+            txt = f"1 s reálného času = {fmt_time(tempo)} simulace"
+            if state.get("achieved") is not None:
                 txt += f"  (dosaženo {fmt_time(state['achieved'])}/s)"
-            speed_val.config(text=txt)
         else:
-            txt = f"{10 ** v:.3g} jednotek času na snímek"
-            if state.get("achieved"):
-                txt += f"  (dosaženo {state['achieved']:.3g} jednotek/s)"
-            speed_val.config(text=txt)
+            txt = f"{tempo:.4g} jednotek modelového času za sekundu reálného času"
+            if state.get("achieved") is not None:
+                txt += f"  (dosaženo {state['achieved']:.4g} jednotek/s)"
+        speed_val.config(text=txt)
 
     speed_var.trace_add("write", speed_value_label)
 
@@ -2221,12 +2340,29 @@ def run_app(start_scene=None, autorun=False):
             anchor="w",
         ).pack(fill="x", padx=8)
 
+    projection_var = tk.BooleanVar(value=False)
+    projection_check = tk.Checkbutton(
+        tab_c,
+        text="3D náhled rovinné scény (pouze projekce)",
+        variable=projection_var,
+        command=lambda: change_projection(),
+        bg="#1c1f27",
+        fg="#d8dce6",
+        selectcolor="#2b2f3a",
+        activebackground="#1c1f27",
+        anchor="w",
+        wraplength=285,
+        justify="left",
+    )
+    projection_check.pack(fill="x", padx=8, pady=(4, 0))
+
     label(tab_c, "Myš: kolečko = zoom, pravé tlačítko = posun").pack(
         fill="x", padx=8, pady=(10, 0)
     )
     click_lbl = label(tab_c, "")
     click_lbl.pack(fill="x", padx=8)
     tool_var = tk.StringVar(value="none")
+    tool_widgets = {}
     for txt, val in (
         ("nic", "none"),
         ("přidat těleso", "mass"),
@@ -2234,7 +2370,7 @@ def run_app(start_scene=None, autorun=False):
         ("přidat hodiny", "clock"),
         ("smazat (klik na objekt)", "delete"),
     ):
-        tk.Radiobutton(
+        rb = tk.Radiobutton(
             tab_c,
             text=txt,
             value=val,
@@ -2244,10 +2380,12 @@ def run_app(start_scene=None, autorun=False):
             selectcolor="#2b2f3a",
             activebackground="#1c1f27",
             anchor="w",
-        ).pack(fill="x", padx=16)
-    mass_lbl = label(tab_c, "")
+        )
+        rb.pack(fill="x", padx=16)
+        tool_widgets[val] = rb
+    mass_lbl = label(tab_c, "Poměr hmotnosti nového tělesa m/Mref")
     mass_lbl.pack(fill="x", padx=8, pady=(6, 0))
-    mass_var = tk.StringVar(value="1.5e-8")
+    mass_var = tk.StringVar(value="1e-6")
     tk.Entry(tab_c, textvariable=mass_var).pack(fill="x", padx=8)
     cat_lbl = (
         label(tab_c, "", fg="#9ad9ff")
@@ -2259,8 +2397,7 @@ def run_app(start_scene=None, autorun=False):
     pilot_frame.pack(fill="x", padx=8, pady=(6, 0))
     tk.Label(
         pilot_frame,
-        text="UAP řízení: šipky/WASD, Shift = ×10, mezerník =\nvznášení (1 g) zap/vyp. Posuvník: tah [log10 g],\n"
-        "v režimu null field rychlost [log10 m/s − 2]:",
+        text="Řízení UAP: šipky/WASD, Shift = ×10, mezerník zapíná/vypíná\nvznášení (1 g). Posuvník nastavuje tah [log₁₀ g] nebo\nrychlost v hypotéze „nulového pole“ [log₁₀(m/s) − 2]:",
         bg="#1c1f27",
         fg="#d8dce6",
         anchor="w",
@@ -2281,7 +2418,7 @@ def run_app(start_scene=None, autorun=False):
     nullf_var, follow_var = tk.BooleanVar(value=False), tk.BooleanVar(value=True)
     tk.Checkbutton(
         pilot_frame,
-        text="režim „null field“ (hypotéza): řízení rychlosti\nbez setrvačnosti, posádka 0 g",
+        text="Hypotéza „nulového pole“: řízení rychlosti bez setrvačnosti, posádka 0 g",
         variable=nullf_var,
         bg="#1c1f27",
         fg="#d8dce6",
@@ -2291,7 +2428,7 @@ def run_app(start_scene=None, autorun=False):
     ).pack(fill="x")
     tk.Checkbutton(
         pilot_frame,
-        text="kamera sleduje UAP",
+        text="Kamera sleduje UAP",
         variable=follow_var,
         bg="#1c1f27",
         fg="#d8dce6",
@@ -2299,26 +2436,61 @@ def run_app(start_scene=None, autorun=False):
         activebackground="#1c1f27",
         anchor="w",
     ).pack(fill="x")
+    pilot_frame.pack_forget()
+
+    # Formulář pro ruční vložení objektu do skutečné prostorové mapy hvězd.
+    map3d_frame = tk.LabelFrame(
+        tab_c, text="Nový objekt ve 3D mapě", bg="#1c1f27", fg="#d8dce6",
+        bd=1, padx=6, pady=4,
+    )
+    map_name_var = tk.StringVar(value="Nové těleso")
+    map_xyz_vars = [tk.StringVar(value=v) for v in ("0", "0", "0")]
+    map_v_vars = [tk.StringVar(value=v) for v in ("0", "0", "0")]
+    tk.Label(map3d_frame, text="Název", bg="#1c1f27", fg="#d8dce6", anchor="w").grid(row=0, column=0, columnspan=3, sticky="w")
+    tk.Entry(map3d_frame, textvariable=map_name_var).grid(row=1, column=0, columnspan=3, sticky="ew", pady=(0, 4))
+    for j, osa in enumerate(("X", "Y", "Z")):
+        tk.Label(map3d_frame, text=f"{osa} [ly]", bg="#1c1f27", fg="#d8dce6").grid(row=2, column=j, sticky="w")
+        tk.Entry(map3d_frame, textvariable=map_xyz_vars[j], width=8).grid(row=3, column=j, sticky="ew", padx=(0, 3))
+    for j, osa in enumerate(("Vx", "Vy", "Vz")):
+        tk.Label(map3d_frame, text=f"{osa} [km/s]", bg="#1c1f27", fg="#d8dce6").grid(row=4, column=j, sticky="w")
+        tk.Entry(map3d_frame, textvariable=map_v_vars[j], width=8).grid(row=5, column=j, sticky="ew", padx=(0, 3))
+    for j in range(3):
+        map3d_frame.columnconfigure(j, weight=1)
+    tk.Button(map3d_frame, text="Přidat objekt", command=lambda: add_map3d_object()).grid(row=6, column=0, columnspan=3, sticky="ew", pady=(5, 0))
+    map3d_frame.pack_forget()
     keys = set()
 
     def parse_mass():
-        """The entered mass, or None if it is not a finite positive number (nan, inf, 0 and negatives are refused)."""
+        """Vrátí kladný konečný poměr m/Mref; při chybném vstupu vrátí None."""
         try:
-            m = float(mass_var.get().replace(",", "."))
+            pomer = float(mass_var.get().strip().replace(",", "."))
         except ValueError:
             return None
-        return m if math.isfinite(m) and m > 0 else None
+        return pomer if math.isfinite(pomer) and pomer > 0 else None
+
+    def referencni_hmotnost(sim=None):
+        """Vrátí hmotnost nejhmotnějšího živého zdroje scény v interních jednotkách."""
+        sim = sim or state["sim"]
+        if sim is state.get("sim") and state.get("mass_reference") is not None:
+            return float(state["mass_reference"])
+        hodnoty = [b.mass for b in sim.bodies if b.alive and b.mass > 0 and b is not sim.profile]
+        return max(hodnoty, default=(M_SUN if state.get("meta", {}).get("map3d") else 1.0))
 
     def update_category(*_):
-        m = parse_mass()
-        si = state.get("meta", {}).get("si", False)
-        cat_lbl.config(
-            text=(
-                "neplatná hmotnost (musí být kladné konečné číslo); použije se výchozí"
-                if m is None
-                else "→ " + (category_si(m) if si else category_astro(m))
-            )
-        )
+        pomer = parse_mass()
+        if pomer is None:
+            text = "Neplatný poměr: zadej kladné konečné číslo."
+        else:
+            hmotnost = pomer * referencni_hmotnost()
+            meta = state.get("meta", {})
+            if meta.get("map3d"):
+                text = f"Odhad: {hmotnost / M_SUN:.4g} M☉"
+            elif meta.get("si"):
+                kg = hmotnost / G_C2
+                text = f"Odhad: {category_si(kg)}, {kg:.4g} kg"
+            else:
+                text = f"Odhad: {category_astro(hmotnost)}, {hmotnost:.4g} jednotek modelu"
+        cat_lbl.config(text=text)
 
     mass_var.trace_add("write", update_category)
     note_lbl = label(tab_c, "")
@@ -2352,10 +2524,10 @@ def run_app(start_scene=None, autorun=False):
         font=("Consolas", 9),
     ).pack(fill="both", padx=8, pady=8)
 
-    # ---------- comparison tab: ghosts of other laws, PPN sliders, the Mercury experiment
+    # ---------- Karta srovnávacích zákonů, posuvníky PPN a experiment s Merkurem
     tk.Label(
         tab_g,
-        text="Fyzikální rámce: stejná scéna souběžně v jiném\nrámci (čárkované stopy; hlavní scéna je kauzální\nH1). "
+        text="Fyzikální rámce: stejná scéna souběžně v jiném\nrámci (čárkované stopy; hlavní scéna používá H1). "
         "Zaškrtnutí scénu hned spustí znovu.",
         bg="#1c1f27",
         fg="#d8dce6",
@@ -2459,7 +2631,7 @@ def run_app(start_scene=None, autorun=False):
     ).pack(fill="x", padx=8, pady=4)
 
     def open_lab():
-        """A window over the laboratory's saved records: the board of predictions and a record browser."""
+        """Otevře okno se záznamy laboratoře, nástěnkou predikcí a prohlížečem výsledků."""
         win = tk.Toplevel(root)
         win.title("Laboratoř: nástěnka predikcí a záznamy")
         win.geometry("1250x820")
@@ -2497,8 +2669,16 @@ def run_app(start_scene=None, autorun=False):
             wrap="word",
             yscrollcommand=bsb.set,
         )
-        board.pack(fill="both", expand=True)
         bsb.config(command=board.yview)
+        board_tools = tk.Frame(f_board, bg="#14161c")
+        board_tools.pack(side="top", fill="x")
+        board_status = tk.Label(board_tools, text="", bg="#14161c", fg="#9aa0ad", anchor="w")
+        board_status.pack(side="right", padx=6)
+        tk.Button(board_tools, text="Kopírovat vše", command=lambda: copy_text_widget(board, False, board_status)).pack(side="left", padx=3, pady=3)
+        tk.Button(board_tools, text="Kopírovat výběr", command=lambda: copy_text_widget(board, True, board_status)).pack(side="left", padx=3, pady=3)
+        tk.Button(board_tools, text="Vybrat vše", command=lambda: select_all_text(board)).pack(side="left", padx=3, pady=3)
+        board.pack(fill="both", expand=True)
+        bind_text_copy(board, board_status)
         for tag, col in (
             ("h", "#ffffff"),
             ("ok", "#9ad99a"),
@@ -2528,6 +2708,13 @@ def run_app(start_scene=None, autorun=False):
         right_f.pack(side="left", fill="both", expand=True)
         plot = tk.Canvas(right_f, bg="#0b0d12", height=330, highlightthickness=0)
         plot.pack(fill="x")
+        record_tools = tk.Frame(right_f, bg="#14161c")
+        record_tools.pack(side="top", fill="x")
+        record_status = tk.Label(record_tools, text="", bg="#14161c", fg="#9aa0ad", anchor="w")
+        record_status.pack(side="right", padx=6)
+        tk.Button(record_tools, text="Kopírovat vše", command=lambda: copy_text_widget(txt, False, record_status)).pack(side="left", padx=3, pady=3)
+        tk.Button(record_tools, text="Kopírovat výběr", command=lambda: copy_text_widget(txt, True, record_status)).pack(side="left", padx=3, pady=3)
+        tk.Button(record_tools, text="Vybrat vše", command=lambda: select_all_text(txt)).pack(side="left", padx=3, pady=3)
         tsb = tk.Scrollbar(right_f)
         tsb.pack(side="right", fill="y")
         txt = tk.Text(
@@ -2540,6 +2727,7 @@ def run_app(start_scene=None, autorun=False):
         )
         txt.pack(fill="both", expand=True)
         tsb.config(command=txt.yview)
+        bind_text_copy(txt, record_status)
         lab = {"recs": []}
 
         def status_tag(st):
@@ -2778,23 +2966,38 @@ def run_app(start_scene=None, autorun=False):
 
     # ---------- coordinates
     def W2S(x, y):
+        """Převod souřadnic scény na obrazovku, případně přes nakloněnou 3D projekci."""
         cx, cy, hw = state["view"]
         w, h = max(canvas.winfo_width(), 10), max(canvas.winfo_height(), 10)
         sc = 0.5 * w / hw
+        if state.get("view3d") and not state["meta"].get("map3d"):
+            yaw, pitch = state.get("rot", [0.25, 0.9])
+            dx, dy = x - cx, y - cy
+            xr = math.cos(yaw) * dx - math.sin(yaw) * dy
+            yr = math.sin(yaw) * dx + math.cos(yaw) * dy
+            return w / 2 + xr * sc, h / 2 - math.sin(pitch) * yr * sc
         return w / 2 + (x - cx) * sc, h / 2 - (y - cy) * sc
 
     def S2W(sx, sy):
+        """Inverzní převod kliknutí na souřadnice scény včetně 3D projekce roviny z=0."""
         cx, cy, hw = state["view"]
         w, h = max(canvas.winfo_width(), 10), max(canvas.winfo_height(), 10)
         sc = 0.5 * w / hw
-        return cx + (sx - w / 2) / sc, cy - (sy - h / 2) / sc
+        xr = (sx - w / 2) / sc
+        if state.get("view3d") and not state["meta"].get("map3d"):
+            yaw, pitch = state.get("rot", [0.25, 0.9])
+            yr = (h / 2 - sy) / (sc * max(abs(math.sin(pitch)), 0.15))
+            dx = math.cos(yaw) * xr + math.sin(yaw) * yr
+            dy = -math.sin(yaw) * xr + math.cos(yaw) * yr
+            return cx + dx, cy + dy
+        return cx + xr, cy - (sy - h / 2) / sc
 
-    # ---------- scene handling
+    # ---------- správa scén
     def orbits_tracked():
         return (not state["meta"]["si"]) or state["meta"].get("orbits", False)
 
     def setup_trackers():
-        """Trackers of the main scene and of every ghost; existing trackers are kept (no lost progress)."""
+        """Připraví měřicí sledovače hlavní scény i srovnávacích rámců; stávající průběh zachová."""
         sim = state["sim"]
         old_p = {
             id(t.body): t for t in state["trackers"] if t.body.alive and t.center.alive
@@ -2813,15 +3016,15 @@ def run_app(start_scene=None, autorun=False):
             )
 
     def build_ghosts(name, meta):
-        """Fresh copies of the scene under every selected comparison law."""
+        """Vytvoří samostatné kopie scény pro každý vybraný srovnávací zákon."""
         state["ghosts"] = []
-        if meta.get("map3d"):  # the star map has no gravitational dynamics to compare
+        if meta.get("map3d"):  # Hvězdná mapa nemá gravitační dynamiku, kterou by bylo možné srovnávat.
             return
         for law in selected_laws():
             gs = Sim(law)
             gs.bodies = [
                 b for b in scene(name)[0] if b.kind != "pilot"
-            ]  # the keyboard flies only the main scene
+            ]  # Klávesnicí se řídí jen hlavní scéna.
             gs.dt_max, gs.eta = meta["dt_max"], meta.get("eta", 0.02)
             gs.no_guard = bool(meta.get("bh"))
             if meta.get("bh") and law.key == "H1":
@@ -2836,50 +3039,64 @@ def run_app(start_scene=None, autorun=False):
         sim = Sim()
         sim.bodies, state["view"], meta = scene(name)
         sim.dt_max, sim.eta = meta["dt_max"], meta.get("eta", 0.02)
-        if meta.get("bh"):  # exact exterior solution of the field equation, no guard
+        if meta.get("bh"):  # Přesné vnější řešení rovnice pole bez ochrany silného pole.
             sim.profile = next(b for b in sim.bodies if getattr(b, "is_profile", False))
             sim.no_guard = True
         state["sim"], state["scene"], state["meta"] = sim, name, meta
-        state["rot"] = [0.6, 0.5]  # 3D map: yaw, pitch [rad]
-        for b in sim.bodies:  # initial data for the Earth readouts (heights, speeds)
+        state["mass_reference"] = max(
+            (b.mass for b in sim.bodies if b.alive and b.mass > 0 and b is not sim.profile),
+            default=(M_SUN if meta.get("map3d") else 1.0),
+        )
+        tool_var.set("none")
+        state["rot"] = [0.6, 0.5]  # otočení 3D mapy: azimut a sklon [rad]
+        for b in sim.bodies:  # Počáteční stav pro měření ve scénách u Země: výšky a rychlosti.
             b.t_birth = 0.0
             b.start = (b.x, b.y, b.vx, b.vy)
         build_ghosts(name, meta)
-        if meta["si"]:
-            # simulated time per real second: 0.1 s ... ~160 years (the star map up to ~100 000 years)
-            speed_scale.config(from_=-1.0, to=12.5 if meta.get("map3d") else 9.7)
-            speed_lbl.config(text="Zrychlení času (log10 s za sekundu): 0 = reálně")
-            mass_lbl.config(text="Hmotnost nového tělesa v kg")
-            mass_var.set(
-                "6e24"
-                if state["scene"].startswith("Sluneční soustava (skutečná)")
-                else "0.2"
-            )
-            note_lbl.config(
-                text="\nSkutečné hodnoty (SI, velké vzdálenosti v AU). Pole\nje tak slabé, že se teorie neliší od GR;\n"
-                "od Newtona se liší jen o malé 1PN efekty."
-            )
-            click_lbl.config(
-                text=(
-                    "Levé tlačítko: klik = pustit v klidu; tažení =\nhod (80 px = 20 m/s):"
-                    if meta["click"] == "rest"
-                    else "Levé tlačítko: klik = kruhová dráha kolem\nnejtěžšího tělesa; tažení = směr a rychlost\n(80 px = kruhová):"
-                )
-            )
+        # Všechny scénáře používají stejný rozsah tempa a stejný poměr hmotnosti m/Mref.
+        speed_scale.config(from_=-3.0, to=12.5)
+        speed_lbl.config(text="Tempo simulace (log₁₀ jednotek simulačního času za sekundu reálného času)")
+        mass_lbl.config(text="Hmotnost nového tělesa: poměr m/Mref (Mref je pevná pro načtenou scénu)")
+        ref_mass = referencni_hmotnost(sim)
+        if meta.get("map3d"):
+            mass_var.set("0.05")
+            note_lbl.config(text="\nSkutečná 3D mapa hvězd. Poloha se zadává v ly a rychlost v km/s.\nKliknutím s nástrojem „přidat těleso“ vložíš objekt do roviny pohledu;\nformulář dovoluje zadat i hloubku Z a prostorovou rychlost.")
+            click_lbl.config(text="Levým tlačítkem otáčíš mapou. Vyber „přidat těleso“ nebo „smazat“ pro úpravu objektů.")
+            map3d_frame.pack(fill="x", padx=8, pady=(6, 0))
+            projection_check.pack_forget()
+            for key in ("photon", "clock"):
+                tool_widgets[key].pack_forget()
+            if not tool_widgets["mass"].winfo_manager():
+                tool_widgets["mass"].pack(fill="x", padx=16, before=tool_widgets["delete"])
+            tool_var.set("none")
+            state["view3d"] = False
+            projection_var.set(False)
         else:
-            speed_scale.config(from_=-3.0, to=1.5)
-            speed_lbl.config(text="Rychlost (simulační čas na snímek, log10)")
-            mass_lbl.config(
-                text="Hmotnost nového tělesa (G = c = 1; poměry jako ve\nskutečnosti: 1,5e-8 ≈ Země, 5e-6 ≈ Jupiter, 0,005 ≈ Slunce)"
-            )
-            mass_var.set("1.5e-8")
-            note_lbl.config(
-                text="\nHodnoty jsou v jednotkách G = c = 1. Hmotnosti\njsou zveličené kvůli viditelnosti, pole zůstává\n"
-                "slabé (|L| ≲ 0,05 na drahách)."
-            )
-            click_lbl.config(
-                text="Levé tlačítko: klik = kruhová dráha kolem\nnejtěžšího tělesa; tažení = směr a rychlost\n(80 px = kruhová rychlost):"
-            )
+            map3d_frame.pack_forget()
+            if not projection_check.winfo_manager():
+                projection_check.pack(fill="x", padx=8, pady=(4, 0), before=click_lbl)
+            for key in ("photon", "clock"):
+                if not tool_widgets[key].winfo_manager():
+                    tool_widgets[key].pack(fill="x", padx=16, before=tool_widgets["delete"])
+            if meta.get("si"):
+                if state["scene"].startswith("Sluneční soustava (skutečná)"):
+                    default_ratio = 6.0458e24 * G_C2 / max(ref_mass, 1e-300)
+                elif state["scene"].startswith("Povrch Země") or state["scene"].startswith("UAP:"):
+                    default_ratio = 0.2 * G_C2 / max(ref_mass, 1e-300)
+                else:
+                    default_ratio = 1e3 * G_C2 / max(ref_mass, 1e-300)
+                note_lbl.config(text="\nScéna používá vstupy SI; výpočty mají interní geometrické jednotky.\nHmotnost je poměr k referenční hmotnosti Mref stanovené při načtení scény.")
+                click_lbl.config(text=("Kliknutí: pustit v klidu; tažení: vrh (80 px = 20 m/s)." if meta["click"] == "rest" else "Kliknutí: kruhová dráha; tažení určuje směr a násobek kruhové rychlosti (80 px = 1×)."))
+            else:
+                default_ratio = 1e-6
+                note_lbl.config(text="\nScéna používá geometrické jednotky G = c = 1. Hmotnost je poměr\nk referenční hmotnosti Mref stanovené při načtení scény.")
+                click_lbl.config(text="Kliknutí: kruhová dráha; tažení určuje směr a rychlost (80 px = 1× kruhové rychlosti).")
+            mass_var.set(f"{default_ratio:.6g}")
+            state["view3d"] = bool(projection_var.get())
+        if meta.get("pilot"):
+            pilot_frame.pack(fill="x", padx=8, pady=(6, 0))
+        else:
+            pilot_frame.pack_forget()
         speed_var.set(meta["speed"])
         speed_value_label()
         update_category()
@@ -2887,7 +3104,13 @@ def run_app(start_scene=None, autorun=False):
         state["achieved"] = None
         err_lbl.config(text="")
         setup_trackers()
-        canvas.focus_set()  # keys go to the canvas, not to the scene combo box
+        canvas.focus_set()  # Klávesy obsluhuje plátno, nikoli seznam scén.
+        draw(force_field=True)
+
+    def change_projection():
+        """Zapne/vypne pouze prostorové zobrazení rovinných dat."""
+        state["view3d"] = bool(projection_var.get()) and not state["meta"].get("map3d")
+        state["rot"] = [0.25, 0.95] if state["view3d"] else [0.0, 0.0]
         draw(force_field=True)
 
     scene_var.trace_add("write", lambda *a: load_scene(scene_var.get()))
@@ -2898,7 +3121,7 @@ def run_app(start_scene=None, autorun=False):
 
     run_btn.config(command=toggle_run)
 
-    # ---------- field image (fixed colour scale)
+    # ---------- obraz pole s pevnou barevnou škálou
     def field_image():
         sim = state["sim"]
         src = [b for b in sim.bodies if b.alive and b.mass > 0]
@@ -2907,21 +3130,34 @@ def run_app(start_scene=None, autorun=False):
         gw, gh = max(w // k, 2), max(h // k, 2)
         if not src:
             return None
-        xs = np.array([S2W(i * k + k / 2, 0)[0] for i in range(gw)])
-        ys = np.array([S2W(0, j * k + k / 2)[1] for j in range(gh)])
-        X, Y = np.meshgrid(xs, ys)
+        if state.get("view3d") and not state["meta"].get("map3d"):
+            sx, sy = np.meshgrid(
+                np.arange(gw) * k + k / 2,
+                np.arange(gh) * k + k / 2,
+            )
+            cx, cy, hw = state["view"]
+            scale = 0.5 * max(w, 10) / hw
+            yaw, pitch = state.get("rot", [0.25, 0.95])
+            xr = (sx - w / 2) / scale
+            yr = (h / 2 - sy) / (scale * max(abs(math.sin(pitch)), 0.15))
+            X = cx + math.cos(yaw) * xr + math.sin(yaw) * yr
+            Y = cy - math.sin(yaw) * xr + math.cos(yaw) * yr
+        else:
+            xs = np.array([S2W(i * k + k / 2, h / 2)[0] for i in range(gw)])
+            ys = np.array([S2W(w / 2, j * k + k / 2)[1] for j in range(gh)])
+            X, Y = np.meshgrid(xs, ys)
         pts = np.stack([X.ravel(), Y.ravel()], axis=1)
-        L = sim.L_points(pts)  # point masses plus an exact exterior profile, if any
+        L = sim.L_points(pts)  # Bodové hmoty a případný přesný vnější profil.
         disp = state["meta"]["display"]
-        if disp[0] == "log":  # fixed logarithmic scale of |L|
+        if disp[0] == "log":  # Pevná logaritmická škála |L|.
             lo, hi = disp[1], disp[2]
             t = np.clip(
                 (np.log10(np.maximum(-L, 1e-300)) - lo) / (hi - lo), 0.0, 1.0
             ).reshape(gh, gw)
-        else:  # ("rel", L_ref, span): change of L from the ground level
+        else:  # Režim „rel“ zobrazuje odchylku L od referenční hodnoty.
             t = np.clip(1.0 - (L - disp[1]) / disp[2], 0.0, 1.0).reshape(gh, gw)
             t = np.where(t >= 1.0, 1.0, t)
-        # colour map: deep blue -> violet -> orange -> pale yellow (fixed, data-driven)
+        # Barevná škála: tmavě modrá → fialová → oranžová → světle žlutá; rozsah je pevný pro danou scénu.
         r = np.clip(40 + 230 * t**0.9, 0, 255)
         g = np.clip(18 + 200 * t**2.2, 0, 255)
         bl = np.clip(
@@ -2940,7 +3176,7 @@ def run_app(start_scene=None, autorun=False):
 
     # ---------- drawing
     def draw_map3d():
-        """The star map in 3D: equatorial positions rotated by (yaw, pitch), orthographic projection."""
+        """Vykreslí skutečnou 3D mapu hvězd ortografickou projekcí po otočení (azimut, sklon)."""
         sim = state["sim"]
         w, h = max(canvas.winfo_width(), 10), max(canvas.winfo_height(), 10)
         cx, cy, hw = state["view"]
@@ -2957,11 +3193,11 @@ def run_app(start_scene=None, autorun=False):
             x1, y1 = (
                 cyw * x - syw * y,
                 syw * x + cyw * y,
-            )  # yaw about the celestial pole
+            )  # Otočení kolem nebeského pólu.
             y2, z2 = cp * y1 - sp * z, sp * y1 + cp * z  # pitch
-            return w / 2 + x1 * sc, h / 2 - z2 * sc, y2  # depth y2 (for drawing order)
+            return w / 2 + x1 * sc, h / 2 - z2 * sc, y2  # Hloubka y2 určuje pořadí vykreslení.
 
-        for rr in (4, 8, 12):  # rings in the equatorial plane
+        for rr in (4, 8, 12):  # Kružnice v rovníkové rovině.
             pts = []
             for k in range(73):
                 a = 2 * math.pi * k / 72
@@ -2986,7 +3222,7 @@ def run_app(start_scene=None, autorun=False):
             X1, Y1, _ = proj(x, y, z)
             canvas.create_line(X0, Y0, X1, Y1, fill="#46506a")
             canvas.create_text(X1, Y1, text=lab_, fill="#7a86a0", font=("Segoe UI", 8))
-        if trails_var.get():  # paths of the stars (straight space motion)
+        if trails_var.get():  # Trajektorie hvězd při přímočarém prostorovém pohybu.
             for b in sim.bodies:
                 tr = getattr(b, "trail3", None)
                 if tr and len(tr) > 1:
@@ -2996,17 +3232,20 @@ def run_app(start_scene=None, autorun=False):
                         pts += [X, Y]
                     canvas.create_line(*pts, fill=b.color, width=1)
         items = []
+        projected_points = {}
         for b in sim.bodies:
             X, Y, dep = proj(b.x, b.y, b.z)
             items.append((dep, X, Y, b))
-        for dep, X, Y, b in sorted(items, key=lambda t: -t[0]):  # far stars first
+            projected_points[id(b)] = (X, Y, b)
+        state["map3d_points"] = projected_points
+        for dep, X, Y, b in sorted(items, key=lambda t: -t[0]):  # nejvzdálenější hvězdy se kreslí první
             rad = max(
                 2.0, min(9.0, 3.0 + 3.0 * math.log10(max(b.mass / M_SUN, 0.05) / 0.05))
             )
             X0, Y0, _ = proj(b.x, b.y, 0.0)
             canvas.create_line(
                 X, Y, X0, Y0, fill="#2a3346"
-            )  # drop line to the equatorial plane
+            )  # Spojnice k rovníkové rovině.
             canvas.create_oval(
                 X - rad, Y - rad, X + rad, Y + rad, fill=b.color, outline=""
             )
@@ -3025,8 +3264,9 @@ def run_app(start_scene=None, autorun=False):
             anchor="nw",
             fill="#9aa0ad",
             font=("Segoe UI", 9),
-            text=f"{state['scene']}   t = {fmt_time(sim.t / C_SI)} od J2000   (levé tlačítko = otáčení, "
-            f"kolečko = zoom; ekvatoriální souřadnice, přímočarý pohyb hvězd)",
+            text=(f"{state['scene']}   t = {fmt_time(sim.t / C_SI)} od J2000   "
+                  f"(nástroj: {tool_var.get()}, levé tlačítko = {('otáčení' if tool_var.get() == 'none' else 'úprava objektu')}, "
+                  "kolečko = zoom; pohyb hvězd je přímočarý)"),
         )
         scale_bar()
         readouts()
@@ -3048,12 +3288,12 @@ def run_app(start_scene=None, autorun=False):
                 state["field_img"] = None
         if field_var.get() and state["field_img"] is not None:
             canvas.create_image(0, 0, image=state["field_img"], anchor="nw")
-        for b in sim.bodies:  # solid bodies (the Earth) first, under everything else
+        for b in sim.bodies:  # Pevná tělesa, například Země, se kreslí jako první.
             if b.alive and b.radius > 0:
                 draw_solid(b)
         if (
             state["meta"].get("bh") and sim.profile is not None
-        ):  # photon spheres and the critical impact parameters
+        ):  # Fotonové sféry a kritické parametry dopadu.
             info = bh_profile()[3]
             c = sim.profile
             for rr, col, dash in (
@@ -3197,7 +3437,7 @@ def run_app(start_scene=None, autorun=False):
         readouts()
 
     def hover_text():
-        """Values at the mouse cursor in the causal language (L, Pi) and in SI (clock rate per day)."""
+        """Zobrazí hodnoty v místě kurzoru: L, Π a v SI také rychlost hodin za den."""
         sim = state["sim"]
         hx, hy = state["hover"]
         wx, wy = S2W(hx, hy)
@@ -3218,7 +3458,7 @@ def run_app(start_scene=None, autorun=False):
         )
 
     def draw_solid(b):
-        """A solid body: a circle when it fits the view, otherwise the visible part of its surface as a polygon."""
+        """Pevné těleso vykreslí jako kruh, pokud se vejde do pohledu, jinak jako viditelnou část povrchu."""
         cx, cy, hw = state["view"]
         w = max(canvas.winfo_width(), 10)
         sc = 0.5 * w / hw
@@ -3229,7 +3469,7 @@ def run_app(start_scene=None, autorun=False):
         else:
             phi0 = math.atan2(
                 cy - b.y, cx - b.x
-            )  # direction from the centre to the view
+            )  # Směr od středu scény k pozorovateli.
             dphi = 4.0 * hw / b.radius
             pts = []
             for k in range(81):
@@ -3249,13 +3489,13 @@ def run_app(start_scene=None, autorun=False):
                 )
 
     def scale_bar():
-        """A scale bar of a round length (1, 2, 5 x 10^k) about a fifth of the view width."""
+        """Vykreslí měřítko o zaokrouhlené délce 1, 2 nebo 5 × 10^k, přibližně pětinu šířky pohledu."""
         cx, cy, hw = state["view"]
         w, h = max(canvas.winfo_width(), 10), max(canvas.winfo_height(), 10)
         sc = 0.5 * w / hw
         target = 0.4 * hw
         unit = 1.0
-        if state["meta"]["si"]:  # light years / astronomical units for large views
+        if state["meta"]["si"]:  # Při velkém zobrazení se používají světelné roky nebo astronomické jednotky.
             unit = LY if target >= 0.1 * LY else (AU if target >= 0.01 * AU else 1.0)
         p10 = 10 ** math.floor(math.log10(target / unit))
         length = max(m * p10 for m in (1, 2, 5) if m * p10 <= target / unit) * unit
@@ -3281,7 +3521,7 @@ def run_app(start_scene=None, autorun=False):
         )
 
     def legend():
-        """Legend of the fixed colour scale of the field."""
+        """Vykreslí legendu pevné barevné škály gravitačního pole."""
         if not field_var.get():
             return
         h = max(canvas.winfo_height(), 10)
@@ -3298,7 +3538,7 @@ def run_app(start_scene=None, autorun=False):
         )
 
     def readouts_si():
-        """Readouts of the Earth scenes: falls and throws, clocks against the ground clock, the UAP manoeuvre."""
+        """Vypíše výsledky scén u Země: pády, vrhy, rozdíly hodin a naprogramovaný manévr UAP."""
         sim = state["sim"]
         earth = next((b for b in sim.bodies if b.alive and b.radius > 0), None)
         lines = [
@@ -3324,11 +3564,11 @@ def run_app(start_scene=None, autorun=False):
             g = earth.mass / r0**2 * C_SI**2
             ux, uy = (x0 - earth.x) / r0, (y0 - earth.y) / r0  # local vertical
             vv, vh = (vx0 * ux + vy0 * uy) * C_SI, (vx0 * uy - vy0 * ux) * C_SI
-            if h0 > 2e5:  # an orbiting body: no fall readout
+            if h0 > 2e5:  # Obíhající těleso: údaj o volném pádu se nezobrazuje.
                 continue
             t_pred = (
                 vv + math.sqrt(vv * vv + 2 * g * h0)
-            ) / g  # flat-Earth projectile from height h0
+            ) / g  # Výpočet vrhu v homogenním gravitačním poli z výšky h0.
             if b.landed_t is not None:
                 t_meas = (b.landed_t - (b.t_birth or 0.0)) / C_SI
                 dist = math.hypot(b.x - x0, b.y - y0)
@@ -3349,14 +3589,14 @@ def run_app(start_scene=None, autorun=False):
             ),
             None,
         )
-        if ground is None:  # no ground clock: every clock against infinity
+        if ground is None:  # Pokud chybí pozemní hodiny, porovnávají se všechny s hodinami v nekonečnu.
             lines += clock_lines()
         if ground is not None:
             Lg = sim.L_at(ground.x, ground.y)
             age_g = sim.t - (ground.t_birth or 0.0)
             def_g = (
                 ground.tau_def / age_g if age_g > 0 else float("nan")
-            )  # 1 - rate of the ground clock
+            )  # 1 minus rychlost pozemních hodin.
             for b in sim.bodies:
                 if (
                     not b.alive
@@ -3405,8 +3645,8 @@ def run_app(start_scene=None, autorun=False):
         return lines
 
     def clock_lines():
-        """Every clock of the scene: its measured rate against a clock far away (infinity) and the static prediction
-        e^L at its place (SI scenes: micro- or nanoseconds per day)."""
+        """Pro každé hodiny vypíše měřenou rychlost vůči hodinám v nekonečnu a statickou předpověď e^L.
+        Ve scénách SI se rozdíly uvádějí v mikrosekundách nebo nanosekundách za den."""
         sim = state["sim"]
         si = state["meta"]["si"]
         lines = []
@@ -3417,8 +3657,8 @@ def run_app(start_scene=None, autorun=False):
             if age <= 0:
                 lines.append(f"HODINY {b.name}: čekám, až uběhne čas …")
                 continue
-            d = b.tau_def / age  # 1 - dtau/dt (measured)
-            pred = -math.expm1(max(sim.L_at(b.x, b.y), -50.0))  # 1 - e^L (static clock)
+            d = b.tau_def / age  # Naměřené 1 − dτ/dt.
+            pred = -math.expm1(max(sim.L_at(b.x, b.y), -50.0))  # Statická předpověď 1 − e^L.
             if si:
                 f, unit = (
                     (86400e6, "μs/den")
@@ -3436,7 +3676,7 @@ def run_app(start_scene=None, autorun=False):
         return lines
 
     def experiment_lines():
-        """Results of the Mercury experiment (if any), against observation and the PPN formula."""
+        """Vypíše výsledky experimentu s Merkurem, pokud jsou dostupné, a porovná je s pozorováním a vztahem PPN."""
         r = state.get("exp_result")
         if not r:
             return []
@@ -3468,7 +3708,7 @@ def run_app(start_scene=None, autorun=False):
         return lines
 
     def comparison_lines():
-        """The same measured quantity in the main scene (H1) and in every ghost."""
+        """Porovná stejnou měřenou veličinu v hlavní scéně H1 a ve všech srovnávacích bězích."""
         if not state["ghosts"]:
             return []
         si = state["meta"]["si"]
@@ -3518,7 +3758,7 @@ def run_app(start_scene=None, autorun=False):
 
         for b in [
             x for x in sim.bodies if x.alive and x.kind == "clock"
-        ]:  # clock rates against infinity
+        ]:  # Rychlosti hodin vůči hodinám v nekonečnu.
             parts = []
             for key, sm, bb in [("H1", sim, b)] + [
                 (g["law"].key, g["sim"], twin(g, b)) for g in state["ghosts"]
@@ -3562,7 +3802,7 @@ def run_app(start_scene=None, autorun=False):
         return lines
 
     def readouts_solar():
-        """The real Solar System: perihelion advance of every planet in arcseconds per century."""
+        """Vypíše pro skutečnou Sluneční soustavu posun perihélia planet v úhlových vteřinách za století."""
         lines = [
             "Sluneční soustava J2000 (2D, sklony drah zanedbány), skutečné hmotnosti; pole slabé (L ≈ −10⁻⁸): teorie "
             "= GR, od Newtona se liší o 1PN efekty. Precese z vektoru Laplace–Runge–Lenz v periheliích."
@@ -3593,7 +3833,7 @@ def run_app(start_scene=None, autorun=False):
         return lines + clock_lines()
 
     def readouts_bh():
-        """Black hole scene: the theory's exterior solution against Schwarzschild."""
+        """Porovná vnější řešení modelu černé díry se Schwarzschildovým řešením."""
         sim = state["sim"]
         info = bh_profile()[3]
         if sim.profile is None:
@@ -3745,7 +3985,7 @@ def run_app(start_scene=None, autorun=False):
             M_B, R_B = 1.018 * M_SUN, 0.0081 * R_SUN
             z = math.expm1(
                 M_B / R_B
-            )  # H1: z = e^{-L} - 1 with L = -M/R (+ (M/R)^3/6, negligible)
+            )  # H1: z = e^(−L) − 1, kde L = −M/R; korekce (M/R)³/6 je zanedbatelná.
             lines.append(
                 f"SIRIUS B (bílý trpaslík): gravitační rudý posuv z povrchu c·z = {z * C_SI / 1000:.1f} km/s pro "
                 "M = 1,018 M☉, R = 0,0081 R☉ (teorie = GR v tomto slabém poli); pozorováno 80,0 ± 1,6 km/s "
@@ -3763,11 +4003,10 @@ def run_app(start_scene=None, autorun=False):
             "známá); vzájemná gravitace ani pole Galaxie se nezapočítávají, na tisíce let je to dobrá aproximace. "
             "Pole hvězd je tu nepatrné (L ~ 10⁻¹³), o pohybu rozhodují jejich rychlosti, ne gravitace."
         ]
-        if state.get("map_note"):
-            lines.append(
-                "Nástroje přidat / smazat v mapě nepracují: vzdálenosti jsou světelné roky a gravitace mezi hvězdami "
-                "je zanedbatelná, přidané těleso by se jen přímočaře posouvalo. Levé tlačítko mapu otáčí."
-            )
+        lines.append(
+            'Úprava mapy: objekt lze přidat formulářem nebo kliknutím po výběru nástroje „přidat těleso“; '
+            'nástroj „smazat“ odstraní nejbližší označenou hvězdu. Nové objekty se pohybují podle zadané prostorové rychlosti.'
+        )
         rows = []
         for b in sim.bodies[1:]:
             r = (b.x - sun.x, b.y - sun.y, b.z - sun.z)
@@ -3777,7 +4016,7 @@ def run_app(start_scene=None, autorun=False):
             extra = ""
             if (
                 v2 > 0 and "neznámá" not in b.motion_note
-            ):  # closest approach of the straight path (3D motion known)
+            ):  # Nejmenší vzdálenost na přímočaré dráze, pokud je známa 3D rychlost.
                 t_min = -sum(r[k] * v[k] for k in range(3)) / v2
                 d_min = math.sqrt(sum((r[k] + v[k] * t_min) ** 2 for k in range(3)))
                 when = (sim.t + t_min) / C_SI / YEAR
@@ -3835,10 +4074,10 @@ def run_app(start_scene=None, autorun=False):
                     f"e = {e:.3f}) | 1PN β=γ=1: {math.degrees(pred):.3f}° | β=1/2: {math.degrees(pred*7/6):.3f}° | "
                     f"β=3/2: {math.degrees(pred*5/6):.3f}°"
                 )
-                # the 1PN effect is only ~3M/p of the Newtonian pull, so even a small pull of the other bodies
-                # (Newtonian planetary perturbations, as for Mercury) can rival it: flag when it exceeds 10 % of 3M/p
+                # Efekt 1PN tvoří jen přibližně 3M/p Newtonovského působení, proto jej může ovlivnit i slabé působení dalších těles.
+                # Podobně jako planetární poruchy u Merkuru; upozornění se zobrazí při překročení 10 % hodnoty 3M/p.
                 rel_1pn = 3.0 * (tr.center.mass + tr.body.mass) / (a * (1.0 - e * e))
-                if tr.other_max > 1.0:  # another body pulls harder than the centre
+                if tr.other_max > 1.0:  # Jiné těleso působí silněji než hlavní zdroj.
                     line += (
                         f"  !! RUŠENO: jiné těleso táhne silněji než {tr.center.name} (až {tr.other_max:.0f}×); "
                         f"nejde o oběh kolem jedné hmoty, předpověď neplatí"
@@ -3879,7 +4118,7 @@ def run_app(start_scene=None, autorun=False):
                 L = sim.L_at(b.x, b.y, skip=b)
                 age = sim.t - (
                     b.t_birth or 0.0
-                )  # proper time since the body entered the scene
+                )  # Vlastní čas od vložení tělesa do scény.
                 rate = b.tau / age if age > 0 else float("nan")
                 lines.append(
                     f"HODINY {b.name}: τ = {b.tau:.3f}, τ/t od vložení = {rate:.6f} | statické hodiny na tomto místě "
@@ -3901,7 +4140,7 @@ def run_app(start_scene=None, autorun=False):
             )
         )
 
-    # ---------- time stepping
+    # ---------- časový krok simulace
     def tick_experiment_only():
         t2 = time.perf_counter()
         try:
@@ -3936,7 +4175,7 @@ def run_app(start_scene=None, autorun=False):
                 n = math.hypot(dx, dy)
                 vt = (V * dx / n / C_SI, V * dy / n / C_SI) if n else (0.0, 0.0)
                 b.vtarget, b.thrust = vt, (0.0, 0.0)
-                gx = gy = 0.0  # Newtonian gravity at the craft [m/s^2]
+                gx = gy = 0.0  # Newtonovské gravitační zrychlení v místě řízeného tělesa [m/s²].
                 for o in sim.bodies:
                     if o.alive and o.mass > 0 and o is not b:
                         ddx, ddy = b.x - o.x, b.y - o.y
@@ -3963,7 +4202,7 @@ def run_app(start_scene=None, autorun=False):
             ax, ay = (mag * dx / n, mag * dy / n) if n else (0.0, 0.0)
             if getattr(
                 b, "hover", False
-            ):  # cancel the local gravity (Newtonian, m/s^2)
+            ):  # Kompenzace místní gravitace v Newtonovské aproximaci [m/s²].
                 g = sim.pull_split(b, None)[1] * C_SI**2
                 ex = next((o for o in sim.bodies if o.radius > 0), None)
                 if ex is not None:
@@ -3979,13 +4218,13 @@ def run_app(start_scene=None, autorun=False):
         now = time.perf_counter()
         real_dt = min(max(now - state.get("last_tick", now - 0.03), 0.001), 0.1)
         state["last_tick"] = now
-        if state["meta"]["si"]:  # SI: simulated seconds per real second
-            T = 10 ** speed_var.get() * real_dt * C_SI
-        else:
-            T = 10 ** speed_var.get()
+        # Stejné ovládání ve všech scénách: čas simulace za sekundu reálného času.
+        # SI scény používají interní délku ct, proto se sekundy násobí rychlostí světla.
+        jednotky_ct = C_SI if state["meta"].get("si") else 1.0
+        T = 10.0 ** speed_var.get() * real_dt * jednotky_ct
         if state["meta"].get(
             "map3d"
-        ):  # the star map: each star moves along its space velocity
+        ):  # Hvězdná mapa: každá hvězda se pohybuje svou prostorovou rychlostí.
             hw = state["view"][2]
             for b in sim.bodies:
                 vx, vy, vz = getattr(b, "v3", (0.0, 0.0, 0.0))
@@ -4018,16 +4257,14 @@ def run_app(start_scene=None, autorun=False):
             t_end = sim.t + T
             while (
                 sim.t < t_end and time.perf_counter() - t0 < 0.025
-            ):  # keep the window responsive
+            ):  # Zachová odezvu okna.
                 live, pos, vel, mass, photon, _ = sim.arrays()
                 dt = min(sim.choose_dt(pos, vel, mass, photon), t_end - sim.t)
                 sim.step(max(dt, 1e-9))
                 on(sim)
                 steps += 1
-        if not single:  # achieved speed (the computation may not keep up)
-            state["achieved"] = (
-                (sim.t - t_start) / (C_SI if state["meta"]["si"] else 1.0) / real_dt
-            )
+        if not single:  # Skutečně dosažené tempo může být nižší kvůli výpočetní náročnosti.
+            state["achieved"] = (sim.t - t_start) / (C_SI if state["meta"].get("si") else 1.0) / real_dt
             speed_value_label()
         if state["meta"].get("pilot") and follow_var.get():
             pl = next((b for b in sim.bodies if b.kind == "pilot" and b.alive), None)
@@ -4035,7 +4272,7 @@ def run_app(start_scene=None, autorun=False):
                 state["view"] = (pl.x, pl.y, state["view"][2])
         if state["meta"].get(
             "bh"
-        ):  # photons deep inside freeze (infinite redshift): stop them
+        ):  # Foton hluboko v oblasti nekonečného rudého posuvu se zastaví.
             for sm in [sim] + [g["sim"] for g in state["ghosts"]]:
                 c = next(
                     (b for b in sm.bodies if getattr(b, "is_profile", False)), None
@@ -4044,7 +4281,7 @@ def run_app(start_scene=None, autorun=False):
                     if b.kind == "photon" and b.alive and not b.fixed and c is not None:
                         if math.hypot(b.x - c.x, b.y - c.y) < 1.0:
                             b.fixed, b.captured = True, True
-        # ghosts: the same scene under the comparison laws, advanced to the same time (each with its own steps)
+        # Srovnávací běhy: stejná scéna podle jiných zákonů, posunutá ke stejnému času vlastními kroky.
         t1 = time.perf_counter()
         for g in state["ghosts"]:
             gs = g["sim"]
@@ -4058,7 +4295,7 @@ def run_app(start_scene=None, autorun=False):
                 for lt in g["light"]:
                     lt.update(gs)
                 n += 1
-        # the Mercury experiment: a slice of at most ~15 ms per frame
+        # Experiment s Merkurem: na jeden snímek připadá nejvýše přibližně 15 ms výpočtu.
         if state["exp"] is not None:
             t2 = time.perf_counter()
             try:
@@ -4070,7 +4307,7 @@ def run_app(start_scene=None, autorun=False):
                 exp_lbl.config(text="hotovo, výsledky ve výpisu dole")
         if sim.events and state.get("n_events", 0) != len(sim.events):
             state["n_events"] = len(sim.events)
-            setup_trackers()  # a body merged or a photon was absorbed
+            setup_trackers()  # Došlo ke sloučení tělesa nebo pohlcení fotonu.
         for sm in [sim] + [g["sim"] for g in state["ghosts"]]:
             for b in sm.bodies:
                 if b.alive and not b.fixed:
@@ -4089,24 +4326,63 @@ def run_app(start_scene=None, autorun=False):
                 tick()
             elif (
                 state["exp"] is not None
-            ):  # the experiment also runs while the scene is paused
+            ):  # Experiment běží i při pozastavené scéně.
                 tick_experiment_only()
         except (
             Exception
-        ) as exc:  # noqa: BLE001 -- a bad frame must not stop the animation
+        ) as exc:  # noqa: BLE001 -- chyba jednoho snímku nesmí zastavit animaci.
             report_error("snímek", exc)
         finally:
             root.after(30, loop)  # always rescheduled
 
-    # ---------- mouse
+    # ---------- pomocné nástroje 3D mapy a ovládání myší
+    def map3d_souradnice_z_kliknuti(sx, sy):
+        """Převede kliknutí na bod v rovině pohledu 3D mapy; hloubku určí projekční rovina."""
+        w, h = max(canvas.winfo_width(), 10), max(canvas.winfo_height(), 10)
+        hw = state["view"][2]
+        scale = 0.5 * w / hw
+        yaw, pitch = state["rot"]
+        x1 = (sx - w / 2) / scale
+        z2 = (h / 2 - sy) / scale
+        # Zvolíme bod s hloubkovou souřadnicí y2 = 0 v aktuální projekci.
+        y1 = math.sin(pitch) * z2
+        z = math.cos(pitch) * z2
+        x = math.cos(yaw) * x1 + math.sin(yaw) * y1
+        y = -math.sin(yaw) * x1 + math.cos(yaw) * y1
+        return x, y, z
+
+    def smaz_neblizsi_3d_objekt(sx, sy):
+        """Odstraní nejbližší bod mapy do 16 obrazových bodů od kliknutí."""
+        body = state.get("map3d_points", {})
+        nejlepsi, vzdalenost = None, 16.0
+        for px, py, b in body.values():
+            d = math.hypot(px - sx, py - sy)
+            if d < vzdalenost:
+                nejlepsi, vzdalenost = b, d
+        if nejlepsi is not None:
+            if nejlepsi.name == "Slunce":
+                report_error("úprava 3D mapy", ValueError("Slunce je počátek souřadnicové soustavy a nelze jej odstranit."))
+                return
+            state["sim"].remove(nejlepsi)
+            update_category()
+            draw(refresh_field=False)
+            readouts()
+
+    # ---------- ovládání myší
     def on_press(ev):
-        if state["meta"].get("map3d"):  # the 3D map: drag to rotate
-            state["rot_drag"] = (ev.x, ev.y, list(state["rot"]))
-            if tool_var.get() not in ("none",):
-                state["map_note"] = True
-                draw(refresh_field=False)
+        if state["meta"].get("map3d"):
+            nastroj = tool_var.get()
+            if nastroj == "delete":
+                smaz_neblizsi_3d_objekt(ev.x, ev.y)
+            elif nastroj == "mass":
+                state["map3d_add_click"] = (ev.x, ev.y)
+            else:
+                state["rot_drag"] = (ev.x, ev.y, list(state["rot"]))
             return
-        if tool_var.get() == "delete":  # remove the nearest object within 15 px
+        if state.get("view3d") and tool_var.get() == "none":
+            state["rot_drag"] = (ev.x, ev.y, list(state.get("rot", [0.25, 0.95])))
+            return
+        if tool_var.get() == "delete":  # Odstraní nejbližší objekt do vzdálenosti 15 px.
             sim = state["sim"]
             best, bd = None, 15.0
             for b in sim.bodies:
@@ -4116,10 +4392,10 @@ def run_app(start_scene=None, autorun=False):
                     if d < bd:
                         best, bd = b, d
             if best is not None:
-                sim.remove(best)  # the black hole: its exact field goes too
+                sim.remove(best)  # Při odstranění černé díry se smaže i její přesné pole.
                 for g in state[
                     "ghosts"
-                ]:  # the same object in every ghost (names are unique)
+                ]:  # Odstraní těleso se stejným unikátním názvem ve všech srovnávacích bězích.
                     for gb in [b for b in g["sim"].bodies if b.name == best.name]:
                         g["sim"].remove(gb)
                 setup_trackers()
@@ -4129,11 +4405,11 @@ def run_app(start_scene=None, autorun=False):
             state["drag"] = ((ev.x, ev.y), (ev.x, ev.y))
 
     def on_motion(ev):
-        if state["meta"].get("map3d") and state.get("rot_drag"):
+        if (state["meta"].get("map3d") or state.get("view3d")) and state.get("rot_drag"):
             x0, y0, (yw, pt) = state["rot_drag"]
             state["rot"] = [
                 yw + (ev.x - x0) * 0.01,
-                max(-1.55, min(1.55, pt + (ev.y - y0) * 0.01)),
+                max(-1.45, min(1.45, pt + (ev.y - y0) * 0.01)),
             ]
             draw(refresh_field=False)
             return
@@ -4144,6 +4420,17 @@ def run_app(start_scene=None, autorun=False):
 
     def on_release(ev):
         if state["meta"].get("map3d"):
+            zacatek = state.get("map3d_add_click")
+            state["map3d_add_click"] = None
+            if zacatek is not None:
+                x3, y3, z3 = map3d_souradnice_z_kliknuti(ev.x, ev.y)
+                map_xyz_vars[0].set(f"{x3 / LY:.8g}")
+                map_xyz_vars[1].set(f"{y3 / LY:.8g}")
+                map_xyz_vars[2].set(f"{z3 / LY:.8g}")
+                add_map3d_object(poloha_m=(x3, y3, z3))
+            state["rot_drag"] = None
+            return
+        if state.get("view3d") and state.get("rot_drag") is not None:
             state["rot_drag"] = None
             return
         if state["drag"] is None:
@@ -4157,11 +4444,11 @@ def run_app(start_scene=None, autorun=False):
         tool = tool_var.get()
         n = len(sim.bodies)
         state["name_seq"] += 1
-        seq = state["name_seq"]  # running number: names never repeat after a deletion
+        seq = state["name_seq"]  # Pořadové číslo se po smazání nerecykluje, názvy zůstávají jedinečné.
         if tool in ("mass", "clock"):
             for o in [
                 b for b in sim.bodies if b.alive and b.radius > 0
-            ]:  # inside the Earth: onto its surface
+            ]:  # Při kliknutí dovnitř Země se objekt přesune na povrch.
                 rx, ry = wx - o.x, wy - o.y
                 r = math.hypot(rx, ry)
                 if r < o.radius:
@@ -4171,7 +4458,7 @@ def run_app(start_scene=None, autorun=False):
                     )
             if (
                 sim.profile is not None
-            ):  # not at the centre of the black hole (L -> -inf there)
+            ):  # Objekt nesmí být přesně ve středu černé díry, kde L → −∞.
                 c = sim.profile
                 rx, ry = wx - c.x, wy - c.y
                 r = math.hypot(rx, ry)
@@ -4180,25 +4467,24 @@ def run_app(start_scene=None, autorun=False):
                     ux, uy = (rx / r, ry / r) if r > 0 else (1.0, 0.0)
                     wx, wy = c.x + ux * r_min, c.y + uy * r_min
         if tool == "mass":
-            m = parse_mass()
+            pomer = parse_mass()
+            if pomer is None:
+                report_error("vstup hmotnosti", ValueError("Poměr m/Mref musí být kladné konečné číslo."))
+                state["name_seq"] -= 1
+                return
             meta = state["meta"]
-            if meta["si"]:  # mass in kg; the field of such bodies is negligible
-                kg = m if m is not None else 0.2
-                m_len = kg * G_C2
+            m_len = pomer * referencni_hmotnost(sim)
+            if meta["si"]:
+                kg = m_len / G_C2
                 name = f"{category_si(kg)} {seq}"
-                if meta["click"] == "rest":  # click: drop at rest; drag: 80 px = 20 m/s
+                if meta["click"] == "rest":  # Kliknutí pustí těleso; tažení mu udělí počáteční rychlost.
                     dpx, dpy = x1 - x0, y1 - y0
-                    k = math.hypot(dpx, dpy) / 80.0 * 20.0 / C_SI
                     dl = max(math.hypot(dpx, dpy), 1e-9)
-                    vx, vy = (
-                        (k * dpx / dl, -k * dpy / dl)
-                        if math.hypot(dpx, dpy) >= 6
-                        else (0.0, 0.0)
-                    )
+                    k = dl / 80.0 * 20.0 / C_SI
+                    vx, vy = (k * dpx / dl, -k * dpy / dl) if dl >= 6 else (0.0, 0.0)
                 else:
                     vx, vy, _ = new_body_velocity(wx, wy, m_len, x0, y0, x1, y1)
             else:
-                m_len = m if m is not None else 1e-5
                 name = f"{category_astro(m_len)} {seq}"
                 vx, vy, _ = new_body_velocity(wx, wy, m_len, x0, y0, x1, y1)
             sim.bodies.append(Body(name, wx, wy, vx, vy, mass=m_len, color="#9ad9ff"))
@@ -4224,7 +4510,7 @@ def run_app(start_scene=None, autorun=False):
             )
             sim.bodies[-1].start = (wx, wy, 0.0, 0.0)
         sim.bodies[-1].t_birth = sim.t
-        if len(sim.bodies) > n:  # copy the new object into every ghost
+        if len(sim.bodies) > n:  # Zkopíruje nový objekt do všech srovnávacích běhů.
             nb_ = sim.bodies[-1]
             for g in state["ghosts"]:
                 cp = Body(
@@ -4241,15 +4527,57 @@ def run_app(start_scene=None, autorun=False):
                     nb_, "start", (nb_.x, nb_.y, nb_.vx, nb_.vy)
                 )
                 g["sim"].bodies.append(cp)
+        update_category()
         setup_trackers()
         draw(force_field=True)
+
+    def add_map3d_object(poloha_m=None):
+        """Přidá objekt do 3D mapy; souřadnice se zadávají v ly a rychlosti v km/s."""
+        if not state.get("meta", {}).get("map3d"):
+            return
+        try:
+            if poloha_m is None:
+                xyz = tuple(float(v.get().strip().replace(",", ".")) * LY for v in map_xyz_vars)
+            else:
+                xyz = tuple(float(v) for v in poloha_m)
+            rychlosti = tuple(float(v.get().strip().replace(",", ".")) * 1000.0 / C_SI for v in map_v_vars)
+            if not all(math.isfinite(v) for v in (*xyz, *rychlosti)):
+                raise ValueError("Souřadnice i rychlosti musí být konečná čísla.")
+        except ValueError as exc:
+            report_error("vstup objektu 3D mapy", exc)
+            return
+        pomer = parse_mass()
+        if pomer is None:
+            report_error("vstup hmotnosti", ValueError("Poměr m/Mref musí být kladné konečné číslo."))
+            return
+        m_len = pomer * referencni_hmotnost(state["sim"])
+        nazev = map_name_var.get().strip() or f"Nové těleso {state['name_seq'] + 1}"
+        if any(b.alive and b.name == nazev for b in state["sim"].bodies):
+            report_error("vstup objektu 3D mapy", ValueError(f"Objekt s názvem ‚{nazev}‘ už existuje."))
+            return
+        b = Body(nazev, xyz[0], xyz[1], mass=m_len, fixed=True, color="#9ad9ff")
+        b.z = xyz[2]
+        b.v3 = rychlosti
+        b.trail3 = deque(maxlen=4000)
+        vzdalenost = math.sqrt(sum(v * v for v in xyz)) / LY
+        b.info = f"uživatelský objekt, {m_len / M_SUN:.4g} M☉, {vzdalenost:.4g} ly"
+        v_kms = tuple(v * C_SI / 1000.0 for v in rychlosti)
+        b.motion_note = f"v = ({v_kms[0]:.4g}, {v_kms[1]:.4g}, {v_kms[2]:.4g}) km/s"
+        b.t_birth = state["sim"].t
+        b.start = (b.x, b.y, 0.0, 0.0)
+        state["sim"].bodies.append(b)
+        state["name_seq"] += 1
+        map_name_var.set(f"Nové těleso {state['name_seq'] + 1}")
+        update_category()
+        draw(refresh_field=False)
+        readouts()
 
     def new_body_velocity(wx, wy, m, x0, y0, x1, y1):
         """
         Velocity of a new body: a click without dragging gives a circular orbit (counter-clockwise) around the
-        heaviest body; a drag sets the direction, and its length (80 px = 1) the speed in units of that circular
-        speed. Without any other mass: 0.1 x the drag in world units.
-        Returns (vx, vy, multiple of the circular speed or None).
+        nejhmotnějšího zdroje. Tažení určí směr a násobek kruhové rychlosti (80 px = 1×).
+        Bez zdroje se použije desetina délky tažení v souřadnicích scény.
+        Vrací (vx, vy, násobek kruhové rychlosti nebo None).
         """
         sim = state["sim"]
         src = [b for b in sim.bodies if b.alive and b.mass > 0]
@@ -4262,14 +4590,14 @@ def run_app(start_scene=None, autorun=False):
         rx, ry = wx - c.x, wy - c.y
         r = max(math.hypot(rx, ry), 1e-6)
         vc = math.sqrt((c.mass + m) / r)
-        if dlen < 6:  # a click: circular orbit
+        if dlen < 6:  # Samotné kliknutí vytvoří kruhový oběh.
             return c.vx - vc * ry / r, c.vy + vc * rx / r, 1.0
         k = dlen / 80.0
         return (
             c.vx + vc * k * dpx / dlen,
             c.vy - vc * k * dpy / dlen,
             k,
-        )  # screen y points down
+        )  # Osa y obrazovky míří dolů.
 
     def on_wheel(ev):
         delta = (
@@ -4328,21 +4656,21 @@ def run_app(start_scene=None, autorun=False):
             return None
         if (
             k in CONTROL_KEYS and not state["running"]
-        ):  # the pilot scene starts with the first control key
+        ):  # Scéna řízení se spustí prvním stiskem ovládací klávesy.
             toggle_run()
         if k == "space":
             if (
                 "space" not in keys
-            ):  # held key: auto-repeat must not toggle again and again
+            ):  # U podržené klávesy opakování nesmí přepnout režim znovu.
                 for b in state["sim"].bodies:
                     if b.kind == "pilot":
                         b.hover = not getattr(b, "hover", False)
             keys.add("space")
-            return "break"  # a focused button must not also be pressed
+            return "break"  # Stisk nesmí zároveň aktivovat právě zaostřené tlačítko.
         keys.add(k)
         return (
             "break" if k in CONTROL_KEYS else None
-        )  # arrows must not move a focused slider or combo box
+        )  # Šipky nesmějí měnit právě zaostřený posuvník ani seznam.
 
     def on_key_up(ev):
         keys.discard(ev.keysym)
@@ -4352,7 +4680,7 @@ def run_app(start_scene=None, autorun=False):
             else None
         )
 
-    # the canvas holds the focus (load_scene, mouse over the canvas); window-level bindings catch the rest
+    # Fokus má plátno (po načtení scény nebo přejetí myší); vazby okna zachytí ostatní vstupy.
     canvas.bind("<KeyPress>", safe("klávesnice", on_key))
     canvas.bind("<KeyRelease>", safe("klávesnice", on_key_up))
     root.bind(
@@ -4367,7 +4695,7 @@ def run_app(start_scene=None, autorun=False):
     )
     root.bind(
         "<FocusOut>", lambda ev: keys.clear()
-    )  # no key stays 'pressed' when the window loses focus
+    )  # Při ztrátě fokusu okna se žádná klávesa nesmí tvářit jako stále stisknutá.
     canvas.bind("<Enter>", lambda ev: canvas.focus_set())
 
     def on_hover(ev):
@@ -4380,7 +4708,7 @@ def run_app(start_scene=None, autorun=False):
     canvas.bind("<Configure>", safe("okno", lambda e: draw(force_field=True)))
 
     if start_scene is not None:
-        scene_var.set(SCENES[start_scene])  # triggers load_scene through the trace
+        scene_var.set(SCENES[start_scene])  # Změna proměnné zavolá load_scene přes sledování změny.
     else:
         load_scene(SCENES[0])
     if autorun:
@@ -4392,7 +4720,7 @@ def run_app(start_scene=None, autorun=False):
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         raise SystemExit(selftest())
-    # optional: --scene N (0..15) opens a preset, --autorun starts the simulation at once (for presentations)
+    # Volby: --scene N (0–15) otevře scénu podle indexu, --autorun ihned spustí simulaci.
     sc = None
     if "--scene" in sys.argv:
         try:
