@@ -9,6 +9,32 @@ Největší mezera: žádná struktura podobná hmotě zatím nevznikla z dynami
 
 ## Drží
 
+- **K.16c: slepé měřidlo γ funguje i ve 3+1 v boxu, který 3+1 unese** (kalibrace, 16 sprinklingů na konfiguraci,
+  ~52 000 událostí, box t [0, 9], |x| <= 9, PROŠEL; nulová kontrola OK). Slovník 3+1: hustota → φ − 3ψ, kužele → φ + ψ,
+  diamant πτ⁴/24 → φ. Pole φ = −0,1·exp(−r²/32): γ = −1 čte −1,001 ± 0,001 / −1,001 ± 0,001; γ = 1/3 (alternativa
+  „jen užší kužele“) 0,325 ± 0,037 / 0,249 ± 0,041; γ = +1 0,994 ± 0,049 / 1,013 ± 0,061. Měřidlo pro F7.1c.
+
+- **K.16b: slepé měřidlo γ čte z uspořádání hodiny, kužele a hustotu a vrací vložené γ = −1, 0, +1** (kalibrace,
+  2+1, 32 sprinklingů na konfiguraci, ~18 000 událostí, PROŠEL; nulová kontrola OK). Měřidlo dostane jen události,
+  relaci substrátu a vlastní hustotu 1, ne metriku. Slovník: hodiny (počet prvků diamantu v klidu) → φ, hranice relace
+  (rychlost světla) → φ + ψ, hustota na souřadnicový objem → φ − 2ψ (ve 3+1 φ − 3ψ). Pole φ = −0,1·exp(−r²/128),
+  ψ = γφ:
+  - γ = −1: A (kužele + hustota) −1,000 ± 0,001, B (hodiny + kužele) −1,000 ± 0,001. Nezměněné kužele samy znamenají
+    γ = −1, proto přesně;
+  - γ = 0: −0,039 ± 0,019 a −0,068 ± 0,021;
+  - γ = +1: +0,921 ± 0,026 a +0,891 ± 0,044 (zbytkový posun k nule ~0,1).
+
+  Rozsah: při a = 0,1 je měřidlo v toleranci 0,25. Při slabším poli a = 0,03 (jen hlášeno) čte γ = +1 jako 0,56 ± 0,07
+  a 0,27 ± 0,08, tedy pro |φ| ≲ 0,03 je nespolehlivé. Kandidáti vazby Π → relace se proto musí měřit v poli
+  |φ| ~ 0,1. Měřidlo používá souřadnice a známou hustotu (deklarovaný odečet), slouží substrátům postaveným na
+  vnoření. Souřadnicově nezávislé čtení (radarová ozvěna) je další krok.
+
+  Předchozí verze K.16 (16 sprinklingů) NEPROŠLA těsně: B pro γ = +1 1,092 ± 0,080, |odchylka| + 2 SE = 0,253 proti
+  0,25. Diagnostika na týchž sprinklinzích (nic nerozhodovala) ukázala, že nejde o zředění regrese, ale o dva posuny
+  čtení: střed mezery u každé kotvy čte rychlost světla o ~0,005 níž i bez pole a diamant výšky 5 průměruje pole přes
+  šířku 3,75. K.16b je revize měřidla s novými sprinklingy a stejnými kritérii: sdružená hranice relace a diamanty
+  výšky 3.
+
 - **F3.10b law: pravidlo předává pole partnera jako sílu se správným průběhem na vzdálenosti** (mechanismus, 2+1,
   d = 8 / 12 / 16 / 20, 64 sprinklingů na d, okno lineární odezvy [1,25 d; 2,5 d], PROŠEL 23. 10., seed 2;
   replikace chybí). Přijatá hybnost dvojice (B − A) proti předpovědi prvního řádu z větve A (pole skutečného
@@ -286,6 +312,44 @@ Největší mezera: žádná struktura podobná hmotě zatím nevznikla z dynami
 
 ## Nedrží
 
+- **F7.1a: kandidát z kapacity (zatížená událost drží jen pomalejší vazby) dává γ ≈ 1/2, ne 1, a to nezávisle na síle
+  vazby, jak předpovědělo odvození před během** (mechanismus, 2+1, 16 sprinklingů po ~18 000 událostech, NEPROŠEL;
+  měřidlo K.16b, plochá kontrola OK: bez zátěže čte γ −0,998 / −0,999 a všechna čtení nulová). Zátěž
+  σ = σ0·exp(−r²/128), vazba ponechána, když její rychlost <= exp(−σ) v rodičovské události:
+  - σ0 = 0,2 (ponecháno 42 % vazeb): γ_A (kužele + hustota) +0,465 ± 0,030, γ_B (hodiny + kužele) +0,433 ± 0,033;
+    rozdíl cest 0,03 ± 0,05, uspořádání je metrické; od předpovědi 1/2 −0,04 a −0,07, od OTR −0,54 a −0,57;
+  - σ0 = 0,3 (34 %): +0,490 ± 0,013 a +0,531 ± 0,029;
+  - čtená rychlost světla sedí s pravidlem na tisíciny (ln c −0,198 proti −0,198 ve středu): řetězce přes ponechané
+    vazby dosáhnou až na zúžený kužel; hustota zůstává plochá (|d| <= 0,03).
+
+  Čtení: odebírat vazby nestačí. Pravidlo, které jen zužuje kužele a události ponechává, dává ψ = φ/2 (ve 3+1 φ/3),
+  ať je zúžení jakkoli silné, a geometrie z něj je konzistentní metrika (hodiny i kužele dávají stejné γ). Pro γ = 1
+  musí substrát u hmoty zároveň přidávat události: hustotu na souřadnicový objem e^(−φ) ve 2+1 (e^(−2φ) ve 3+1)
+  spolu se zúžením kuželů na e^(2φ). Kapacita (axiom 4) jako jediná vazba Π → relace je tím pro γ vyloučená.
+
+- **F3.11 search: horký svazek ve vlastním poli vázaný stav nedá; při η = 0,15 drží ~30 jednotek času plošinu
+  a pak se pomalu smršťuje, jako chladnoucí samogravitující plyn** (mechanismus, průzkum, 2+1, 32 sprinklingů,
+  ~49 100 událostí, 202 událostí zdroje, ZAZNAMENÁNO; kandidát podle pravidla z hlavičky: žádný; měřidlo OK:
+  kontrola soustavy ve všech větvích, bilance volných větví ≤ 5·10⁻¹⁵, field_0 se proti free_0 stahuje).
+  Pole a ohyb F3.8 (ε = 0,1 zamčené), slučování B a horký zdroj sym z F3.6c. Tolerance vázanosti s(free_0)/4 =
+  0,0085 (W1) a 0,0103 (W2). Sklon šířky v W1 [12, 28] / W2 [28, 44]:
+  - free_0 +0,034 / +0,041 (roste);
+  - field_0 −0,016 ± 0,006 (nerozlišeno) / −0,037 ± 0,007 (kolaps); souhlasí s F3.8 ε = 0,1 (−0,004 / −0,036);
+  - **field_0,15 +0,009 ± 0,007 / −0,019 ± 0,006 (obě nerozlišeno)**: R drží 3,4–3,6 od t ≈ 13 do 37, pak klesá
+    k 3,3–3,4; bez pole (free_0,15) roste z 3,5 na 5,3;
+  - field_0,3 +0,062 / +0,034 a field_0,45 +0,146 / +0,090: rostou, pole je jen brzdí (proti free 0,111 / 0,112
+    a 0,179 / 0,135).
+
+  Vnitřní rozptyl rapidit v polích roste: field_0 z 0 na 0,136, field_0,15 z 0,05 na 0,13 (bez pole klesá na 0,035).
+  Smršťování tedy svazek zahřívá (potenciální energie pole přechází do vnitřního pohybu) a slučování ho chladí.
+  Plošina při η = 0,15 je kvazirovnováha, kterou chlazení pomalu posouvá ke smršťování. Odpovídá to F3.9 (kapacita:
+  plošina, pak pomalé smršťování) a smršťování hvězdy bez zdroje energie.
+
+  Čtení: odpor substrátu s dosahem (pole) a vnitřní pohyb se umějí vyvážit, ale jen dočasně. Slučování s F = |P|
+  energii nemaže, převádí vnitřní pohyb na klidovou hmotnost, která pak už netlačí. Stacionární vázaný stav by
+  potřeboval nedisipativní tlak nebo zdroj energie, tedy nový mechanismus. Jemnější mřížka η by chlazení
+  neodstranila. Výhrady: 2+1 (logaritmický potenciál), ohyb F3 odpovídá γ = −1, pole buzené jen klidovou hmotností.
+
 - **F3.6c (eta03 i eta06): slučování s přesnou 4-hybností (F = |P|) svazek z horkého zdroje neudrží; rozbíhání
   jen zpomalí zhruba na polovinu** (mechanismus, 2+1, 32 sprinklingů, ~61 000 událostí, 202 událostí zdroje,
   obě části NEPROŠEL; měřidlo ve všech podmínkách v pořádku). Část eta03 (η = 0,3). Rychlost rozšiřování
@@ -483,6 +547,34 @@ Největší mezera: žádná struktura podobná hmotě zatím nevznikla z dynami
 
 ## Selhání měřidel (bez závěru o teorii)
 
+- **F6.4a: kalibrace 2D uspořádání s BD akcí reprodukuje varietní fázi i přechod, ale ne výšku krystalické fáze**
+  (kalibrace, N = 50, ε = 0,12, 20 hodnot β, 4 řetězce po 500 + 3000 sweepech, NEPROŠEL; kontroly měřidla OK:
+  přesná rovnováha N = 4 TV 0,0078, β = 0 proti 20 000 přímo vzorkovaným uspořádáním v toleranci). Proti Surya 2012:
+  - fáze I (β = 0,1): χ 0,4981 (0,499), h 10,237 (10,232), S 3,835 (3,846), d_MM 2,005: shoda na setiny;
+  - přechod: největší fluktuace var(S) i nejdelší autokorelace při β = 2,4 (publikováno 2,2–2,5);
+  - fáze II (β = 3,5): S −41,07 (−41,37) a χ 0,593 (0,579) v toleranci, **výška h 3,70 proti 4,18** (tolerance 0,3).
+
+  Ve fázi II se přijímá 2 % tahů a χ není v β monotonní (0,593 / 0,576 / 0,605 pro β = 3,5 / 4,0 / 4,5), což
+  ukazuje na zamrzlé, na přípravě závislé stavy. Rozdíl výšky tedy může být vlastnost přípravy (termalizace,
+  počáteční stavy), ne chyba akce. Podle R132 verdikt platí, tolerance se zpětně nemění. Fáze, kterou potřebuje
+  F6.4b (varietní) a poloha přechodu, sedí popisně velmi dobře; formálně měřidlo kalibrované není.
+- **F6.4c: výška krystalické fáze nezávisí na délce termalizace ani na startu; k publikovaným 4,18 nesměřuje žádná
+  příprava** (kalibrace, β = 3,5, 5 příprav po 8 řetězcích, 3000 měřených sweepů, NEROZHODNUTO podle kritérií: největší
+  rozdíl dlouhých příprav 0,179 nad hranicí nezávislosti 0,15, ale daleko pod hranicí závislosti (rozdíl − 2 SE =
+  +0,010 proti 0,3); měřidlo OK: opakování F6.4a h 3,742, S −41,17, přesná rovnováha TV 0,0088). Výška h:
+  - P1 opakování 3,742 ± 0,038; P2 dlouhá termalizace 3,784 ± 0,032; P3 ochlazení z β = 2 3,887 ± 0,099;
+    P4 start z řetězce 3,750 ± 0,025; P5 start z antiřetězce 3,708 ± 0,008; posun mezi polovinami měření ≤ 0,014.
+  - Rozdělení je dvouvrcholové: většina řetězců 3,68–3,92, dva ochlazené řetězce (P3) 4,31 a 4,37 a jeden z P1 4,00.
+    Fáze II má tedy aspoň dva dlouho žijící stavy a ochlazení občas skončí ve vyšším.
+  - Průměr dlouhých příprav 3,78, o 0,40 pod 4,18. Nejstabilnější přípravy (P4, P5 z opačných extrémů) dávají
+    3,71–3,75 s malou chybou. Žádná příprava ani žádný jednotlivý řetězec (nejvýš 4,37) publikovanou hodnotu
+    nereprodukuje jako střední hodnotu.
+
+  Čtení: rozdíl F6.4a nezpůsobila krátká termalizace (P2 s desetinásobnou dává totéž co P1). Rovnovážná výška fáze II
+  v kódu laboratoře je ~3,7–3,8. Hodnota 4,18 v článku odpovídá spíš přípravě, která skončila ve vyšším stavu, nebo
+  jiné definici výšky; z dostupného textu to rozhodnout nejde. Fáze I (výška včetně) a přechod sedí na setiny, takže
+  akce, tahy i měření výšky jsou v pořádku. Rozpor je omezený na metastabilní krystalickou fázi.
+
 - **F1.9a: β diskrétního operátoru mimo zdroj, MĚŘIDLO SELHALO jen v kontrole kvadratury při σ = 4**
   (mechanismus, 25. 10., 252 úloh, 5,8 h). Jediná nesplněná podmínka: |c_hlavní − c_kontrolní| v řádku 6σ při
   σ = 4 je 0,090 (H1) a 0,076 (γ = −1) proti toleranci 1/16. Při σ = 8 a 16 je to 0,023 a 0,004. Stěna (rozdíl
@@ -664,6 +756,73 @@ Největší mezera: žádná struktura podobná hmotě zatím nevznikla z dynami
 
 ## Odvozené důsledky (bez testu)
 
+- **Ve 3+1 je princip propustnosti v lineárním řádu totéž co tenzorová vazba na T_ab (linearizovaná obecná
+  relativita). Skalární rovnice jako úplný dynamický zákon je vyloučená** (odvozeno 27. 10., sympy;
+  `docs/derivations/tenzorova_vazba.md`).
+  - h̄_ab = U[(1 − γ)η_ab + 2(1 + γ)u_a u_b]: γ = −1 je čistá stopová vazba (Nordström), γ = 1 čistá vazba na T_ab.
+  - Propustnost dává γ = 2/(d_s − 1), tenzorová vazba γ = 1/(d_s − 2). Shodují se jen pro d_s = 3.
+  - Skalár Π vyzařuje kvadrupólově 1/6 výkonu obecné relativity (kruhová dvojhvězda) a nemá g_0i. Dvojité pulsary
+    a Gravity Probe B ho vylučují.
+  - Rozcestí pro nelineární řád:
+    - A: propustnost je zákon plateau a doplnění je obecná relativita (bootstrap, Jacobson). Hrdlo a 2PN
+      předpovědi skalární rovnice pak odpadají.
+    - B: propustnost platí přesně a teorie se odchyluje od 2PN dál.
+  - Rozhodne autor. Doporučení laboratoře: A.
+- **Vakuová rovnice ve 3+1 (H1, ln Π) má přesný první integrál r²L′ = M e^L (1 − L) a uzavřené řešení
+  Ei(1 − L) = Ei(1) + eM/r. Bodová hmota tak nemá horizont, má fotonovou sféru 3,070 M, b_crit 5,2435 M (+0,91 %
+  proti obecné relativitě) a hrdlo 2,341 M** (odvozeno 27. 10., sympy a numerická ODR se shodou 5·10⁻⁸;
+  `docs/derivations/gravitacni_rovnice.md`).
+  - 2PN: −g_tt = 1 − 2x + 2x² − x³ a g_rr = 1 + 2x + 2x² + x³ (x = M/r). Obecná relativita má −3/2 x³ a 3/2 x²
+    a 1/2 x³, takže první odchylka je v g_rr ve druhém řádu.
+  - Pod hrdlem plocha sfér znovu roste a g_tt → 0 až v r → 0, v nekonečné vlastní vzdálenosti.
+  - Ohraničení: spojitá limita bez diskrétního testu. Zdroj nemá tlak, takže není jasné, zda může těleso
+    hrdlo vůbec odhalit.
+- **Princip propustnosti je v ontologii *Physics of Causality* obsažený, jen nebyl spojený do vzorce. Oddíl 26.6
+  mu ale odporuje** (rozbor 27. 10., `docs/derivations/proc_gamma1.md`, oddíl 7). Kniha: c je maximální stabilní
+  propustnost bez zácpy (5.3), c_eff klesá s impedancí (5.3, 7.7), Einsteinova limita má rovnoměrnou maximální
+  propustnost (26.1), gravitace je redistribuce hustoty aktualizací v substrátu se zachovaným tokem (23), tuhé
+  struktury zvyšují větvení v okolí (27.5), Π klesá s nasycením (6.5), hmota je Π → 0 (19.1). Formulace autora
+  („propustnost dle nasycenosti, čím nasycenější úroveň kuželu, tím víc zmaterializovaný“) jako vzorec: q = S · c_eff
+  = konst., S = nasycení vrstvy. Ve 3+1 s hodinami Π: S = Π⁻², c_eff = Π², tedy H1 a γ = 1. Rozpor: 26.6 tvrdí, že
+  gravitační dilatace nemění kauzální řád. Pro γ = 1 se řád měnit musí (pevný řád dává γ = −1). Úpravu textu musí
+  rozhodnout autor.
+
+- **Kandidát na princip γ = 1: zachování kauzální propustnosti ρ_c · c = konst. dává γ = 2/(d_s − 1), tedy γ = 1
+  právě ve 3+1, a metriku H1 ve 3+1 splňuje přesně ve všech řádech** (odvozeno 27. 10., sympy, bez testu;
+  `docs/derivations/proc_gamma1.md`). Intuice z dopravy a kontinuity (q = ρv): kde substrát zúží kužele (c), nahustí se
+  události (ρ_c na souřadnicový objem) tak, aby počet událostí, které čelo světla projde za jednotku času a plochy,
+  zůstal stejný. ln(ρ_c c) = 2φ − (d_s − 1)ψ. Ve 2+1 dává γ = 2, kde obecná relativita newtonovskou limitu nemá. Ve 3+1
+  hodiny Π a ρ_c c = 1 dohromady dávají přesně H1 (A·B = 1, c = Π², ρ_c = Π⁻²), Schwarzschild jen v prvním řádu
+  ((1 − M²/4r²)²). Dvě volby ansatzu H1 tak nahrazuje jedna fyzikální podmínka. Výhrady: postulát, ne odvození;
+  vztaženo ke Killingovu času a izotropním souřadnicím (kovariantní formulace chybí, kandidát je počítat plochu čela
+  v událostech, K.14, což by se potkalo s principem fokusace); vyžaduje vznik událostí u hmoty (axiom 7). Návrh testu:
+  F7.1b ve 2+1 s předpovědí γ = 2.
+
+- **Ve známých souborech uspořádání s BD akcí je kauzální struktura plochá, hmota v nich může měnit jen hustotu,
+  ne kužele; γ = 1 z nich vyjít nemůže** (rešerše a odvození 27. 10., plný text Cunningham a Surya,
+  arXiv:1908.11647). Ve 3D nepoužívají 3-uspořádání (jejich „kužele“ jsou krychle, ne Lorentzovy kužele), ale
+  obsazení míst pevné mřížky na plochém R × T² (n = 300, ε = 0,1, přechod β_c ≈ 1,98, první řád, špatná termalizace
+  u přechodu). Relace tam určuje plochá mřížka. 2D uspořádání jsou zase přesně kauzální množiny vnořitelné do 2D
+  Minkowského intervalu. V obou souborech tedy může akce nebo hmota měnit jen počet prvků v oblasti, tedy objemový
+  (konformní) faktor Ω²η. To je stejná třída geometrie jako A6 na pevném řádu (γ = −1, odvozeno 27. 10.). F6.4b v těchto
+  souborech by γ neměřil, jen by znovu ukázal konformní odezvu. Aby mohly kužele reagovat na hmotu, musí výběrový
+  prostor obsahovat uspořádání s neplochou kauzální strukturou. Obecné posety ale ovládají Kleitmanovy–Rothschildovy
+  struktury a varietní soubor s volnými kužely ve 3D zatím nikdo nezkonstruoval (otevřený problém oboru).
+
+- **Akce axiomu 6 je slučitelná s H1 jen tehdy, když řád sám zužuje kužele na c_eff = cΠ²; na pevném uspořádání dává
+  γ = −1** (odvozeno 27. 10., sympy, bez testu). Akce S = −ħω_B Σ Π Δτ v limitě dává lagrangián Π dτ_u, kde dτ_u je
+  vlastní čas metriky g_u, ve které se Δτ měří. Efektivní metrika pohybu je proto Π² g_u:
+  - na pevném sprinklingu (g_u = η): Π√(dt² − dx²) = √(Π²dt² − Π²dx²), tedy konformní Π²η, PPN γ = −1, světlo
+    se neohýbá. Shoduje se to s naměřeným: maximální řetězce Σ Π u geodetiky Π²η (F2.5), pravidlo ohybu F3.8–F3.10;
+  - H1 (−Π²dt² + Π⁻²dx²) vyjde právě pro g_u = −dt² + Π⁻⁴dx², tedy pro uspořádání, jehož kužele mají rychlost
+    c_eff = cΠ²: Π√(dt² − Π⁻⁴dx²) = √(Π²dt² − Π⁻²dx²).
+
+  Axiom 6 tedy není chybný, ale neurčený. Jeho fyzikální obsah závisí na tom, co je Δτ (otevřené rozhodnutí A1,
+  `docs/derivations/variacni_audit.md`), a na dynamice řádu (axiom 7). Na pevném řádu dávají A6 a H1 dvě různé
+  geometrie a smířit je může jen řád, jehož kužele hmota zužuje. Je to stejný požadavek jako F7.1 a princip fokusace
+  (`docs/derivations/prostorova_cast.md`). Důsledek pro laboratoř: γ se nedá získat úpravou axiomů na pevném
+  uspořádání, jen v souboru nebo růstu uspořádání, které reagují na hmotu (F6.4b).
+
 - **Horizontová cesta k a₀ (Deser–Levin, Jacobson, Milgrom) přímé odvození pozorovaného a₀ nedává** (odvozeno
   24. 10., revize autora, `docs/derivations/a0_horizont.md`). Důsledně podle Jacobsona (κ pomocného horizontu) se
   teplota vykrátí a vzniká obecná relativita; modifikace vyžaduje dodatečně ztotožnit κ s fyzikálním g. Plná
@@ -786,6 +945,64 @@ Největší mezera: žádná struktura podobná hmotě zatím nevznikla z dynami
   c(r) ale chybí. Možný test (F1.9a): c(r) = dB_{L₁}[L₁]/|∇L₁|² v řádcích mimo zdroj, předpověď 0, kontrola stejnou
   kvadraturou γ = −1 s předpovědí 2. Konvence zdroje: laboratoř dál používá ρ_s jako pevnou souřadnicovou funkci bez
   √−g (F1.7, K.12). Pro definici hmoty (κ ↔ G) se musí stanovit samostatně.
+
+## Nerozhodnuto (popisně)
+
+- **F7.1b: diskrétní řád se zachovanou kauzální propustností (užší kužele i víc událostí) dává ve 2+1 γ ≈ 1,8–1,9,
+  blízko předpovědi 2 a daleko od 1 i od 1/2; formálně NEROZHODNUTO kvůli statistice** (mechanismus, 2+1,
+  16 sprinklingů po ~20 000 událostech; měřidlo OK: plochá kontrola nulová, přesné metriky γ = 2 a γ = 1 jasně
+  rozlišené: 1,97 / 1,84 proti 0,86 / 0,83). Hustota událostí exp(σ), kužele exp(−σ) pravidlem kapacity, σ0 = 0,3:
+  - γ_A (kužele + hustota) 1,813 ± 0,073, γ_B (hodiny + kužele) 1,944 ± 0,077; cesty se shodují (rozdíl
+    0,13 ± 0,11), uspořádání je metrické;
+  - proti přesné metrice γ = 2 čtené stejným měřidlem: A −0,156 ± 0,084, B +0,108 ± 0,086. Kritérium PROŠEL
+    (|odchylka| + 2 SE <= 0,25) nesplněné (0,32 a 0,28), NEPROŠEL (|odchylka| − 2 SE > 0,25) také ne;
+  - čtení po binech sleduje spojitá očekávání: hustota 0,28 / 0,30 / 0,24 (0,30 / 0,28 / 0,25), kužele −0,30 / −0,29 /
+    −0,26, hodiny −0,106 / −0,085 / −0,084 (−0,099 / −0,093 / −0,082).
+
+  σ0 = 0,45 (jen hlášeno): u středu se uspořádání přestává chovat jako metrika. Kužele čtou −1,06 místo −0,45 a hodiny
+  + kužele dávají γ 3,8 ± 0,4, kužele + hustota 1,1. Dosažitelnost přes ponechané vazby v hustém, silně zúženém
+  jádru zaostává za nominálním kuželem. Kniha to popisuje jako ztrátu věrnosti geometrické rekonstrukce mimo plató
+  (5.2, 26.6).
+
+  Replikace (seed 1, nové sprinklingy, stejná kritéria; NEROZHODNUTO, měřidlo OK): γ_A 1,768 ± 0,029, γ_B 1,960 ± 0,080,
+  kontroly γ = 2 čtou 1,879 / 1,763 a γ = 1 čtou 0,929 / 0,822. Proti kontrole γ = 2: A −0,111 ± 0,059 (|odchylka|
+  + 2 SE = 0,229 <= 0,25, tato cesta projde), B +0,197 ± 0,103 (0,403, neprojde). V obou bězích je posun stejného
+  znaménka: cesta A čte o 0,11–0,16 níž než přesná metrika, cesta B o 0,11–0,20 výš. To ukazuje na malou soustavnou
+  odchylku diskrétního řádu (dosažitelnost přes ponechané vazby a hustota u středu), ne na náhodu. Obě cesty dohromady
+  dávají γ ≈ 1,85 ± 0,1.
+
+  Čtení: princip propustnosti dává v diskrétním řádu metrickou geometrii s γ kolem 2 ve 2+1, jak předpovídá
+  γ = 2/(d_s − 1). Kapacita bez přidání událostí dává 1/2 (F7.1a), pevný řád −1. Pro formální verdikt je potřeba
+  menší chyba (replikace), pro fyziku verze 3+1 s předpovědí γ = 1.
+
+- **F7.1c: diskrétní řád se zachovanou kauzální propustností dává ve 3+1 γ = 1,000 ± 0,045 a 0,972 ± 0,074,
+  přesně podle předpovědi. Formálně NEROZHODNUTO, protože kontrola, se kterou se porovnává, v jedné cestě náhodně
+  podčetla** (mechanismus, 3+1, 16 sprinklingů po ~54 000 událostech; měřidlo OK: plochá kontrola nulová, přesné
+  γ = 1 a 1/3 rozlišené). σ = σ0·exp(−r²/32), hustota exp(σ), kužele exp(−σ):
+  - σ0 = 0,2 (ponecháno 55 % vazeb): γ_A (kužele + hustota) 1,000 ± 0,045, γ_B (hodiny + kužele) 0,972 ± 0,074;
+    cesty se shodují (0,027 ± 0,087). Čtení po slupkách sedí se spojitými očekáváními na tisíciny: hustota 0,197 /
+    0,163 / 0,133 (0,197 / 0,171 / 0,129), kužele −0,193 / −0,169 / −0,126, hodiny −0,095 / −0,085 / −0,061
+    (−0,098 / −0,085 / −0,064);
+  - **jen užší kužele** (σ0 = 0,2, bez přidaných událostí; hlášeno): 0,349 ± 0,017 a 0,328 ± 0,032, předpověď 1/3;
+  - σ0 = 0,3 (hlášeno): 0,924 ± 0,027 a 0,901 ± 0,045, u středu hustota zaostává (0,258 proti 0,295);
+  - kontroly ve stejném běhu: přesné γ = 1 čte 0,984 ± 0,071 a **0,781 ± 0,078**, přesné γ = 1/3 čte 0,309 a 0,266.
+    Kalibrace K.16c četla stejnou metriku jako 0,994 a 1,013, takže cesta B kontroly je zde ~2,4 SE nízko.
+
+  Proč NEROZHODNUTO: proti kontrole γ = 1 je cesta A +0,016 ± 0,085 (|odchylka| + 2 SE = 0,19, projde), cesta B
+  +0,192 ± 0,107 (0,41, neprojde). Verdikt podle R132 platí. Srovnání s kalibrací K.16c (A 0,006 ± 0,067, B −0,041 ±
+  0,096) je výpočet po běhu, verdikt nemění.
+
+  Replikace (seed 1, nové sprinklingy, stejná kritéria; NEROZHODNUTO, měřidlo OK): γ_A 0,948 ± 0,047, γ_B 0,979 ± 0,058
+  (cesty se shodují, 0,031 ± 0,074); σ0 = 0,3 0,975 / 1,043; jen užší kužele 0,318 / 0,310 (předpověď 1/3); kontroly:
+  γ = 1 čte 0,965 / 0,900, γ = 1/3 0,290 / 0,217. Proti kontrole γ = 1: A −0,017 ± 0,070 (0,157, projde), B +0,079 ±
+  0,107 (0,293, těsně neprojde). V obou bězích tedy neprošla cesta B a důvodem je chyba srovnání (SE ~0,1, z toho
+  ~0,08–0,09 z kontroly), ne posun kandidáta. Kritérium |odchylka| + 2 SE <= 0,25 nechává při 16 sprinklinzích
+  pro skutečnou odchylku jen ~0,04: test byl na verdikt statisticky slabý. To je vada návrhu, ne výsledku.
+
+  Čtení: všechny tři předpovědi principu ve 3+1 sedí na surových hodnotách. Pevný řád dává −1 (kontrola), samotné
+  zúžení kuželů 1/3, zachovaná propustnost 1, a uspořádání je metrické. Výhrada zůstává: test ověřuje, že diskrétní
+  uspořádání postavené podle principu (hustota = 1/c) má geometrii s γ = 1. Proč substrát propustnost zachovává,
+  neodvozuje.
 
 ## Otevřené otázky
 

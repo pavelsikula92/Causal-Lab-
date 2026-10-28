@@ -1,0 +1,9 @@
+3+1 box t [0, 8], |x| <= 8, rho = 1; metric -dt^2 + e^(2 a f) dx^2, w = 2.5, a = 0.2; rows t in [6.5, 8.0], r <= 6; 48 sprinklings; elements (0/+/-) ~32777 / 34086 / 31710, rows ~1358; 373 s per sprinkling
+continuum prediction Q_pred = 2.7290 (Einstein-Hilbert even part over the rows)
+  instrument: eps = 0.3, S(a = 1e-09) - S(0) = +0.000e+00 -> OK
+  instrument: eps = 0.1, S(a = 1e-09) - S(0) = +0.000e+00 -> OK
+  instrument: eps = 0.03, S(a = 1e-09) - S(0) = +0.000e+00 -> OK
+  eps = 0.3 (l_k = 1.35): S(0) = +164.05 ± 1508.24 (sd); corr(S0, S+) = 0.5521; Q = +2623.1020 ± 150.8921 (sd 1045.4110) against Q_pred +2.7290; M_needed for 10 % = 1.47e+07
+  eps = 0.1 (l_k = 1.78): S(0) = +70.60 ± 233.38 (sd); corr(S0, S+) = 0.6696; Q = +473.2314 ± 20.2801 (sd 140.5048) against Q_pred +2.7290; M_needed for 10 % = 2.65e+05
+  eps = 0.03 (l_k = 2.40): S(0) = +215.87 ± 61.32 (sd); corr(S0, S+) = 0.8495; Q = +76.2475 ± 4.0645 (sd 28.1594) against Q_pred +2.7290; M_needed for 10 % = 1.06e+04
+  the mean of Q is biased at the order of the signal by the straight-segment relation, the nonlocality and the box; only the noise is judged

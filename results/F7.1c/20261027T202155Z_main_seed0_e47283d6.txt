@@ -1,0 +1,56 @@
+3+1, t [0, 9], |x|, |y|, |z| <= 9; sigma = sigma0 exp(-r^2/(2*4^2)); throughput: events of coordinate density exp(sigma) and links kept iff speed <= exp(-sigma) at the parent; cones_only: the same links, uniform events; readers K.16c; controls: exact metrics a = 0.1, gamma = 1 and 1/3; 16 sprinklings per configuration
+  flat (throughput 0): ~52496 events, links kept 1.000; gamma A (cones + density) -1.002 ± 0.001; gamma B (clocks + cones) -0.998 ± 0.002
+        r               0.75    2.25    3.75    5.25    6.75
+        d expected   +0.0000 +0.0000 +0.0000 +0.0000 +0.0000
+        d read       +0.0397 +0.0005 +0.0000 -0.0010 -0.0015
+        s expected   -0.0000 -0.0000 -0.0000 -0.0000 -0.0000
+        s read       -0.0000 +0.0000 -0.0000 -0.0000 -0.0000
+        phi expected -0.0000 -0.0000 -0.0000 -0.0000 -0.0000
+        phi clock    +0.0070 +0.0007 -0.0006 -0.0006 -0.0012
+        phi A / psi A +0.010/-0.010 +0.000/-0.000 -0.000/-0.000 -0.000/+0.000 -0.000/+0.000
+        phi B / psi B +0.007/-0.007 +0.001/-0.001 -0.001/+0.001 -0.001/+0.001 -0.001/+0.001
+  throughput (throughput 0.2): ~54268 events, links kept 0.546; gamma A (cones + density) +1.000 ± 0.045; gamma B (clocks + cones) +0.972 ± 0.074
+        r               0.75    2.25    3.75    5.25    6.75
+        d expected   +0.1965 +0.1707 +0.1289 +0.0845 +0.0482
+        d read       +0.1973 +0.1628 +0.1330 +0.0834 +0.0497
+        s expected   -0.1965 -0.1707 -0.1289 -0.0845 -0.0482
+        s read       -0.1930 -0.1685 -0.1255 -0.0836 -0.0473
+        phi expected -0.0983 -0.0854 -0.0644 -0.0423 -0.0241
+        phi clock    -0.0949 -0.0853 -0.0606 -0.0406 -0.0240
+        phi A / psi A -0.095/-0.098 -0.086/-0.083 -0.061/-0.065 -0.042/-0.042 -0.023/-0.024
+        phi B / psi B -0.095/-0.098 -0.085/-0.083 -0.061/-0.065 -0.041/-0.043 -0.024/-0.023
+  throughput_strong (throughput 0.3): ~55059 events, links kept 0.452; gamma A (cones + density) +0.924 ± 0.027; gamma B (clocks + cones) +0.901 ± 0.045
+        r               0.75    2.25    3.75    5.25    6.75
+        d expected   +0.2948 +0.2561 +0.1933 +0.1268 +0.0722
+        d read       +0.2579 +0.2353 +0.1865 +0.1232 +0.0705
+        s expected   -0.2948 -0.2561 -0.1933 -0.1268 -0.0722
+        s read       -0.2903 -0.2521 -0.1914 -0.1258 -0.0725
+        phi expected -0.1474 -0.1281 -0.0967 -0.0634 -0.0361
+        phi clock    -0.1540 -0.1326 -0.0966 -0.0629 -0.0365
+        phi A / psi A -0.153/-0.137 -0.130/-0.122 -0.097/-0.094 -0.064/-0.062 -0.037/-0.036
+        phi B / psi B -0.154/-0.136 -0.133/-0.120 -0.097/-0.095 -0.063/-0.063 -0.036/-0.036
+  cones_only (cones 0.2): ~52584 events, links kept 0.563; gamma A (cones + density) +0.349 ± 0.017; gamma B (clocks + cones) +0.328 ± 0.032
+        r               0.75    2.25    3.75    5.25    6.75
+        d expected   +0.0000 +0.0000 +0.0000 +0.0000 +0.0000
+        d read       +0.0161 +0.0066 -0.0009 +0.0008 +0.0025
+        s expected   -0.1965 -0.1707 -0.1289 -0.0845 -0.0482
+        s read       -0.1922 -0.1672 -0.1261 -0.0852 -0.0446
+        phi expected -0.1474 -0.1281 -0.0967 -0.0634 -0.0361
+        phi clock    -0.1394 -0.1256 -0.0976 -0.0657 -0.0364
+        phi A / psi A -0.140/-0.052 -0.124/-0.043 -0.095/-0.031 -0.064/-0.022 -0.033/-0.012
+        phi B / psi B -0.139/-0.053 -0.126/-0.042 -0.098/-0.029 -0.066/-0.020 -0.036/-0.008
+  ctrl_g1 (metric 1): ~54405 events; gamma A (cones + density) +0.984 ± 0.071; gamma B (clocks + cones) +0.781 ± 0.078
+        r               0.75    2.25    3.75    5.25    6.75
+        phi true     -0.0983 -0.0854 -0.0644 -0.0423 -0.0241
+        phi A / psi A -0.099/-0.091 -0.078/-0.085 -0.062/-0.063 -0.043/-0.040 -0.022/-0.025
+        phi B / psi B -0.113/-0.077 -0.090/-0.073 -0.067/-0.058 -0.044/-0.039 -0.020/-0.027
+  ctrl_g13 (metric 0.333): ~52429 events; gamma A (cones + density) +0.309 ± 0.043; gamma B (clocks + cones) +0.266 ± 0.034
+        r               0.75    2.25    3.75    5.25    6.75
+        phi true     -0.0983 -0.0854 -0.0644 -0.0423 -0.0241
+        phi A / psi A -0.094/-0.031 -0.081/-0.028 -0.065/-0.019 -0.043/-0.011 -0.023/-0.008
+        phi B / psi B -0.097/-0.029 -0.084/-0.025 -0.067/-0.017 -0.041/-0.013 -0.025/-0.007
+  instrument (i) flat: every reading |mean| <= 0.01 + 3 SE -> OK (largest |mean| - 3 SE = -0.0000)
+  instrument (ii) exact metrics: gamma 1 reads A +0.984, B +0.781; gamma 1/3 reads A +0.309, B +0.266 -> told apart (needs |difference| - 2 SE > 1/3)
+  throughput (sigma0 = 0.2): |gamma_A - gamma_B| = 0.027 ± 0.087 -> metric-like; against the exact gamma = 1 metric: A +0.016 ± 0.085, B +0.192 ± 0.107; raw against 1: A -0.000, B -0.028
+  sigma0 = 0.3 (reported): gamma A +0.924 ± 0.027, B +0.901 ± 0.045
+  cones only, sigma0 = 0.2 (prediction 1/3) (reported): gamma A +0.349 ± 0.017, B +0.328 ± 0.032

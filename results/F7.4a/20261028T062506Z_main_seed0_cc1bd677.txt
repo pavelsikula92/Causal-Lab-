@@ -1,0 +1,63 @@
+3+1, t [0, 9], |x|, |y|, |z| <= 9; streams along x, rest-frame saturation sigma0 exp(-rho^2/(2*4^2)); density exp(sigma_tot); link kept iff -dt^2 + |dx|^2 + sum a_i (u_i.d)^2 <= 0 at the parent; reachability; 16 sprinklings per configuration
+  flat []: ~52442 events, links kept 1.000; amplitude A -0.0141 ± 0.0176; K (along/across) -6.169 ± 7.742
+        rho               0.75    2.25    3.75    5.25
+        d     predicted +0.0000 +0.0000 +0.0000 +0.0000
+        d     read      +0.0044 +0.0030 +0.0044 -0.0044
+        phic  predicted +0.0000 +0.0000 +0.0000 +0.0000
+        phic  read      -0.0003 +0.0022 +0.0007 +0.0028
+        perp  predicted -0.0000 -0.0000 -0.0000 -0.0000
+        perp  read      -0.0000 +0.0000 -0.0000 +0.0000
+        par   predicted -0.0000 -0.0000 -0.0000 -0.0000
+        par   read      +0.0001 -0.0001 +0.0001 -0.0000
+        fwd   predicted -0.0000 -0.0000 -0.0000 -0.0000
+        fwd   read      +0.0001 -0.0000 +0.0004 -0.0001
+        bwd   predicted -0.0000 -0.0000 -0.0000 -0.0000
+        bwd   read      +0.0003 -0.0001 -0.0000 +0.0001
+  two_v0 [[0.1, 0.0], [0.1, 0.0]]: ~55723 events, links kept 0.384; amplitude A +0.9828 ± 0.0196; K (along/across) 1.002 ± 0.004
+        rho               0.75    2.25    3.75    5.25
+        d     predicted +0.1965 +0.1707 +0.1289 +0.0845
+        d     read      +0.2076 +0.1585 +0.1307 +0.0815
+        phic  predicted -0.0983 -0.0854 -0.0644 -0.0423
+        phic  read      -0.0948 -0.0848 -0.0660 -0.0395
+        perp  predicted -0.1965 -0.1707 -0.1289 -0.0845
+        perp  read      -0.1942 -0.1716 -0.1290 -0.0861
+        par   predicted -0.1965 -0.1707 -0.1289 -0.0845
+        par   read      -0.1946 -0.1710 -0.1299 -0.0861
+        fwd   predicted -0.1965 -0.1707 -0.1289 -0.0845
+        fwd   read      -0.1937 -0.1716 -0.1283 -0.0859
+        bwd   predicted -0.1965 -0.1707 -0.1289 -0.0845
+        bwd   read      -0.1950 -0.1711 -0.1300 -0.0853
+  two_v06 [[0.1, 0.6], [0.1, -0.6]]: ~55750 events, links kept 0.267; amplitude A +2.3599 ± 0.0230; K (along/across) 1.221 ± 0.012
+        rho               0.75    2.25    3.75    5.25
+        d     predicted +0.1965 +0.1707 +0.1289 +0.0845
+        d     read      +0.1776 +0.1856 +0.1297 +0.0829
+        phic  predicted -0.2377 -0.2017 -0.1473 -0.0938
+        phic  read      -0.2431 -0.1978 -0.1438 -0.0937
+        perp  predicted -0.3598 -0.3055 -0.2231 -0.1418
+        perp  read      -0.3578 -0.3143 -0.2292 -0.1410
+        par   predicted -0.4250 -0.3640 -0.2697 -0.1742
+        par   read      -0.4393 -0.3792 -0.2822 -0.1763
+        fwd   predicted -0.4250 -0.3640 -0.2697 -0.1742
+        fwd   read      -0.4551 -0.3785 -0.2823 -0.1799
+        bwd   predicted -0.4250 -0.3640 -0.2697 -0.1742
+        bwd   read      -0.4616 -0.3919 -0.2804 -0.1750
+  single_v06 [[0.2, 0.6]]: ~55713 events, links kept 0.328; amplitude A +2.4947 ± 0.0252; K (along/across) 1.817 ± 0.056
+        rho               0.75    2.25    3.75    5.25
+        d     predicted +0.1965 +0.1707 +0.1289 +0.0845
+        d     read      +0.1880 +0.1603 +0.1310 +0.0878
+        phic  predicted -0.2562 -0.2154 -0.1548 -0.0969
+        phic  read      -0.2556 -0.2123 -0.1528 -0.0945
+        perp  predicted -0.3598 -0.3055 -0.2231 -0.1418
+        perp  read      -0.4244 -0.3427 -0.2410 -0.1428
+        par   predicted -0.4250 -0.3640 -0.2697 -0.1742
+        par   read      -0.7802 -0.6172 -0.4292 -0.1786
+        fwd   predicted -0.0649 -0.0563 -0.0423 -0.0276
+        fwd   read      -0.0646 -0.0567 -0.0437 -0.0273
+        bwd   predicted -0.7851 -0.6718 -0.4970 -0.3209
+        bwd   read      -1.2378 -1.0543 -0.6088 -0.3571
+  instrument (i) flat: every reading |mean| <= 0.01 + 3 SE -> OK (largest |mean| - 3 SE = -0.0000)
+  instrument (ii) static amplitude: A(two_v0) / predicted - 1 = -0.017 ± 0.020 -> OK (tolerance 0.25)
+  instrument (iii) isotropic cones: K(two_v0) = 1.002 ± 0.004 -> OK (needs |K - 1| - 2 SE <= 0.1)
+  AMPLITUDE R = A(v = 0.6) / A(0) = 2.401 ± 0.053; candidates: tensor (exact, this rule) 2.361, tensor (linear) 2.125, energy density 1.562, lab density 1.250, rest density 1.000; nearest: tensor (exact, this rule); against R_T: +0.040 ± 0.053 -> PASSED
+  ANISOTROPY K = along / across = 1.221 ± 0.012; tensor K_T 1.192, every mean-flow scalar rule 1; against K_T: +0.030 ± 0.012 (tolerance 0.096) -> PASSED
+  single stream v = 0.6 (reported): R = 2.538 (predicted 2.519); cone deficit backward / forward (inner shells) read 17.58, predicted 11.95 (dragging of the cones; mean-flow scalar rules: 1)

@@ -40,6 +40,36 @@ dodatečným laděním a člen −R/2 se nepřidává ani neodebírá jen kvůli
     a γ = 1 vstupem, ne výsledkem, a test (3) by byl tautologický. Netriviální test γ vyžaduje číst oba potenciály
     nezávisle – časový z hodin (Π, délky řetězců), prostorový z prostorových vzdáleností nebo z šířky kuželů
     v dynamickém uspořádání (F6.3b) – a teprve pak porovnat.
+  - **Potvrzení autora (23. 10., po K.13a):** H1 (γ = 1) zůstává a mění se rovnice pole, tedy cesta druhého kola.
+    K.13a ověřil důvod vlastním přístrojem: v geometrii H1 ve 3+1 jde koeficient u ∇²u v B_g 1 k −1, lineární člen
+    rovnice (a) se ruší. Návrh laboratoře z téhož dne, B_g Π − Π·B_g 1 = κρ_s, je stažený: ve spojité limitě je to
+    □_g Π, tedy odebrání členu −R/2, které toto rozhodnutí vylučuje. V lineárním řádu se shoduje s kontrolou
+    f = Π − 1 a liší se až ve druhém řádu. Kandidáty f rozliší F1.7 N, která čekala na K.13a.
+
+- **Rozhodnutí (čtvrté kolo, 23. 10., po F1.7 N): f = ln Π je primární, kanonická skalarizace rovnice pole.**
+  - Rovnice: B_g ln Π = κρ_s. BD operátor zůstává celý včetně −R/2; ve spojité limitě a v H1 (γ = 1, 3+1),
+    s L = ln Π: e^(2L) [ (1 − L) ∇²L + L |∇L|² ] = κρ_s; ve slabém poli ∇²L = κρ_s (newtonovský potenciál L = −U).
+  - Důvod: v rodině (Π^k − 1)/k je β = 1 − k/2 a jen ln Π (k → 0) dává β = 1, tedy stáčení perihelia obecné
+    relativity (odvozeno 23. 10., docs/nalezy.md, Odvozené důsledky). Navíc motiv skládání poměrů hodin.
+  - Poznámka laboratoře ke statusu (aby se později nečetlo víc, než platí):
+    - člen −R/2 se neodebral: ruší se jen v lineárním řádu, protože násobí f(Π) a f(1) = 0;
+    - volba je VYBRANÁ PODLE DAT (perihelium), ne předpověď: β = 1 je teď vstupem, ne potvrzením teorie;
+      pozorování fixuje jen f″(1) = −1, „jediná“ platí uvnitř rodiny (Π^k − 1)/k;
+    - γ = 1 zůstává vstupem ansatzu H1, ne výsledkem;
+    - testovatelné předpovědi rovnice jsou až dál: diskrétní řešení na kauzální množině, mez existence statických
+      řešení silného pole (F1.7 N: ln Π mezi u_lin(0) = −0,3 a −0,5), řád 2PN a zúžení kuželů v uspořádání (F7.1).
+- **Rozhodnutí (čtvrté kolo, 23. 10., po F1.7 N): kanonická rovnice pole je B_g ln Π = κρ_s** (ve spojité limitě
+  (□_g − R/2) ln Π; BD operátor i s členem −R/2 zůstává, mění se jen argument).
+  - Důvod: ve 3+1 s H1 má rovnice B_g f(Π) = κρ_s parametr PPN β = (1 − f″(1))/2, v rodině (Π^k − 1)/k tedy
+    β = 1 − k/2; perihelium (|β − 1| řádu 10⁻⁴) vyžaduje f″(1) = −1, což z rodiny splňuje jen ln Π (sympy, nálezy).
+  - Ohraničení: γ = 1 je vstup ansatzu H1, ne výsledek; pozorování fixuje jen f(1), f′(1), f″(1), vyšší derivace
+    ln Π (vyšší řády PN, silné pole, mez statických řešení z F1.7 N) zůstávají hypotézou; κ a převod na G se
+    teprve odvodí.
+  - Poznámka laboratoře k zápisu autora: tvar „B_g ln Π − Π·B_g 1 = κρ“ (ze staženého návrhu) by přidal člen
+    +(R/2)Π, který je prvního řádu: zdvojnásobí lineární vazbu (koeficient 2 místo 1) a dá β = 5/4, tedy pozorováním
+    vyloučené stáčení perihelia. Zapsán je proto tvar B_g ln Π = κρ_s, na kterém stojí odvození β = 1.
+    Člen −R/2 přitom β neovlivní (pro f(1) = 0 je ve vakuu až třetího řádu; □_g ln Π bez něj dává také β = 1);
+    projeví se uvnitř zdroje a ve vyšších řádech.
 
 - **Rozhodnutí (třetí kolo, 22. 10.): K.13a zůstává hlavním diskrétním testem, K.13b v původní podobě vypadá,
   poznámka o ln Π je samostatné analytické zdůvodnění.**
@@ -136,3 +166,45 @@ Poznámky laboratoře:
   cesta projde, rovnice pole se nevolí, ale odvozuje, a γ = 1 přestává být vstupem.
 - Chybějící kus je hmota s tenzorem energie a hybnosti (předpoklad 5). Bez hybnosti nelze hmotu teorie vložit
   do Clausiovy rovnosti.
+
+## 10. Axiom 5: obecná odezva a kandidátní zákony odezvy (27. 10.)
+
+**Rozhodnutí:** axiom 5 se dělí na obecný princip odezvy a samostatně testovatelné zákony odezvy. Původní vztah
+Π_v = f(σ_v) se tím mění z axiomu na kandidátní uzávěr modelu.
+
+- **Axiom 5 (lokální odezva):** každá událost v má lokální proměnnou odezvy Π_v, 0 < Π_v ≤ 1. Tuhost I_v ≥ 1 měří
+  odpor ke změně uspořádání, impedance je Z_v = I_v/Π_v. Funkční závislost Π_v na zátěži, vnitřní kauzální
+  struktuře nebo jiných kauzálních proměnných axiom neurčuje. Musí ji určit nezávisle testovatelný zákon odezvy.
+- **Kandidátní zákony odezvy:**
+  - **R1, odezva ze zátěže:** Π_v = f(σ_v), σ_v = F_v/C, f klesající;
+  - **R2, odezva z pole:** Π_v určuje rovnice pole se zdrojem z vnitřních kauzálních událostí (dnes
+    B_g ln Π = κρ_s, rozhodnutí 1); závislost na zátěži je omezená na režim saturace (A5′).
+  - R1 a R2 jsou alternativní uzávěry modelu, dokud se neprokáže jejich slučitelnost. Ani jeden neplyne
+    z obecného axiomu.
+
+Poznámky laboratoře:
+- Co testy o obou zákonech už řekly: R1 samotný dává pole bez dosahu, které svazek zahřeje a nesváže (F3.7). R2 dává
+  pole s dosahem, které svazek přitahuje (F3.8, F3.11). Slučitelné jsou, pokud R1 působí jen v saturaci, jak to
+  formuluje A5′.
+- Rozpor rovnice (a) s H1 ve 3+1 (rozhodnutí 1) nezpůsobil A5 ani A6. Způsobil ho tvar rovnice pole, tedy dodatečný
+  předpoklad (λ₁ = 2 − γ(d_s − 1) = 0), a vyřešila ho rovnice B_g ln Π = κρ_s.
+- Audit axiomů (oddíl 2) vede „Odezva Π = f(σ) (axiom 5)“ jako pevnou půdu. Po tomto rozhodnutí je to pevná půda
+  jako lokální pravidlo R1, ne jako axiom.
+- Související otevřená věc: obsah axiomu 6 závisí na definici Δτ (rozhodnutí A1 z variačního auditu), viz
+  `docs/nalezy.md`, Odvozené důsledky, 27. 10.
+
+## 11. Měřidlo pro F6.4b: varietní fáze a přechod (27. 10., po F6.4a a F6.4c)
+
+**Rozhodnutí:** F6.4b (hmota v akci) smí stavět na měřidle 2D uspořádání s BD akcí, které reprodukuje varietní fázi
+a polohu přechodu, ale ne výšku krystalické fáze. Je to rozhodnutí po neúspěchu, ne úprava kritérií: F6.4a si ponechává
+NEPROŠEL a F6.4c NEROZHODNUTO.
+
+Důvod: fáze I (χ, výška, akce, d_MM) a přechod (β ≈ 2,4) sedí s článkem na setiny, přesná rovnováha i β = 0 proti
+přímému vzorkování prošly. Rozpor je omezený na metastabilní krystalickou fázi. Ta má aspoň dva dlouho žijící stavy
+(F6.4c) a její výška 4,18 v článku nejde reprodukovat žádnou přípravou. Hmota se do souboru vkládá ve varietní fázi.
+
+Poznámky laboratoře:
+- Měření γ (φ z hodin, ψ ze šířky kuželů) potřebuje příčný směr, tedy aspoň 2+1. Před F6.4b proto přijde kalibrace
+  3D uspořádání (literaturu ověřit z plného textu jako u F6.4a).
+- Krystalická fáze se v F6.4b nepoužívá. Kdyby ji později něco potřebovalo, platí pro ni výhrada F6.4c.
+
