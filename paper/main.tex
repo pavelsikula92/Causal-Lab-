@@ -1,0 +1,79 @@
+% =============================================================================
+%  Physics of Causality
+%  Pavel Sikula, Independent Researcher
+%  Build:  pdflatex main && bibtex main && pdflatex main && pdflatex main
+%          (or: latexmk -pdf main)
+% =============================================================================
+\documentclass[11pt,a4paper]{article}
+\input{preamble}
+
+\title{Physics of Causality\\[4pt]
+\large Gravity as the response of a causal order: from a Lorentz-invariant substrate\\
+to the Einstein--Hilbert stiffness of the Benincasa--Dowker action}
+\author{Pavel \v{S}ikula\\ \small Independent Researcher, Brno, Czech Republic\\ \small ORCID: \todo{ORCID}}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+\input{chapters/00_abstract}
+\tableofcontents
+\clearpage
+
+\input{chapters/01_introduction}
+
+\part{The Causal Picture of the World}\label{part:ontology}
+\input{chapters/015_ontology}
+
+\part{Causal Physics on a Lorentz-Invariant Substrate}\label{part:foundations}
+\input{chapters/02_foundations}
+
+\part{Units, Parameters and the SI Bridge}\label{part:units}
+\input{chapters/03_units}
+
+\part{Axioms of Causal Physics}\label{part:axioms}
+\input{chapters/04_axioms}
+
+\part{The Geometric Limit: Gravity from the Response of the Order}\label{part:geometric}
+\input{chapters/05_geometric_limit}
+
+\part{Astrophysics and the Strong Field}\label{part:astro}
+\input{chapters/06_astrophysics}
+
+\part{Predictions and Falsification}\label{part:predictions}
+\input{chapters/07_predictions}
+
+\part{Discussion and Conclusion}\label{part:discussion}
+\input{chapters/08_discussion}
+
+\appendix
+\part*{Appendices}
+\addcontentsline{toc}{part}{Appendices}
+\input{chapters/A_lab}
+\input{chapters/B_changes}
+
+\section*{Acknowledgements}
+\addcontentsline{toc}{part}{Acknowledgements}
+The analyses, the code of the Causality Lab and this text were developed with the assistance of an AI
+system (Claude, Anthropic). All numerical results were produced by the tests of the laboratory, whose
+code and outputs are public, and were checked by the author, who takes responsibility for the content.
+\todo{edit or remove as the author prefers}
+
+\section*{Funding}
+\addcontentsline{toc}{part}{Funding, competing interests, data and licence}
+This work received no external funding.
+
+\section*{Competing interests}
+The author declares no competing interests.
+
+\section*{Data and code availability}
+The code of the Causality Lab, the headers of all tests with their pre-registered criteria, and the
+recorded outputs of every run quoted in this paper are available at
+\url{https://github.com/pavelsikula92/Causal-Lab-}. The version used for this paper is archived as
+\todo{release tag and Zenodo DOI of the code}.
+
+\section*{Licence}
+This work is distributed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0).
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}

@@ -1,0 +1,654 @@
+{
+ "id": "F4.1",
+ "part": "d4",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\F4_setrvacnost\\F4_01_contact_collision.py",
+ "test_sha256": "cd1b8659233fb9ee6ea8b7d53fea2f2b83ee6e662133a3d642c00850f8addbee",
+ "core_sha256": "40c954bae6a8a81ef4a33bb0d16a0e647582f8350212a087429e565911eea588",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261029T151529Z",
+ "duration_s": 2640.0,
+ "params": {
+  "v": 0.6,
+  "r_src": 3.0,
+  "t_src": 2.0,
+  "beta_check": 0.6,
+  "n_se": 2.0,
+  "boot_B": 4000,
+  "tol_miss": 0.05,
+  "tol_cons": 1e-09,
+  "D": 4,
+  "T": 16.0,
+  "hx": 13.0,
+  "hy": 7.0,
+  "d": 6.0,
+  "win": [
+   13.0,
+   15.0
+  ],
+  "n_seeds": 16
+ },
+ "lines": [
+  "3+1 sprinkling rho = 1, box t [0, 16], x [-13, 13], other axes [-7, 7]; tubes radius 3, emission t [0, 2), d = 6, v = +-0.6; 16 sprinklings (~81452 events, sources 227 + 221); window t [13, 15]",
+  "  head: f_mix 0.7742 +- 0.0079; v_mix -0.0034 +- 0.0109; v_A -0.6000 +- 0.0000; v_B +0.6000 +- 0.0000; bounce 0.0000; mixed rest mass / parts 1.2158 (gamma = 1.2500 for equal parts)",
+  "  miss: f_mix 0.0000 +- 0.0000; v_mix +nan +- nan; v_A -0.6000 +- 0.0000; v_B +0.6000 +- 0.0000; bounce 0.0000; mixed rest mass / parts nan (gamma = 1.2500 for equal parts)",
+  "instrument: miss f_mix <= 0.05: OK; boosted recomputation chooses the same children: OK; 4-momentum conservation on mixed events (max 2.1e-16): OK",
+  "  head: f_mix - 2 SE = 0.7585 (> 1/4 stick), f_mix + 2 SE = 0.7900 (< 1/4 pass); |v_mix| + 2 SE = 0.0252 vs v/4 = 0.150"
+ ],
+ "data": {
+  "stats": {
+   "head": {
+    "f_mix": [
+     0.7742223932860888,
+     0.007874015941610957
+    ],
+    "v_mix": [
+     -0.003426446195415661,
+     0.010886347027578763
+    ],
+    "v_A": [
+     -0.6,
+     2.220723657059018e-16
+    ],
+    "v_B": [
+     0.6,
+     2.220723657059018e-16
+    ],
+    "bounce": [
+     0.0,
+     0.0
+    ],
+    "mass_ratio": [
+     1.2157978916530476,
+     0.0023829905810032123
+    ]
+   },
+   "miss": {
+    "f_mix": [
+     0.0,
+     0.0
+    ],
+    "v_mix": [
+     null,
+     null
+    ],
+    "v_A": [
+     -0.6,
+     2.220723657059018e-16
+    ],
+    "v_B": [
+     0.6,
+     2.220723657059018e-16
+    ],
+    "bounce": [
+     0.0,
+     0.0
+    ],
+    "mass_ratio": [
+     null,
+     null
+    ]
+   }
+  },
+  "instrument": {
+   "miss f_mix <= 0.05": true,
+   "boosted recomputation chooses the same children": true,
+   "4-momentum conservation on mixed events (max 2.1e-16)": true
+  },
+  "rows": [
+   {
+    "N": 81758,
+    "head": {
+     "f_mix": 0.8205772448657273,
+     "v_mix": 0.03932346723044398,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 104,
+     "flux": 707.8254923962038,
+     "bounce": 0.0,
+     "cons": 2.0376210396350002e-16,
+     "mass_ratio": 1.2279608718735808,
+     "sources": [
+      239,
+      240
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 153,
+     "flux": 415.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      232,
+      235
+     ]
+    }
+   },
+   {
+    "N": 81673,
+    "head": {
+     "f_mix": 0.7565184670158072,
+     "v_mix": 0.04043126684636118,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 120,
+     "flux": 591.4206233018449,
+     "bounce": 0.0,
+     "cons": 2.0606264803495178e-16,
+     "mass_ratio": 1.2059855075521424,
+     "sources": [
+      228,
+      222
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 164,
+     "flux": 527.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      232,
+      260
+     ]
+    }
+   },
+   {
+    "N": 81488,
+    "head": {
+     "f_mix": 0.7710653362494383,
+     "v_mix": 0.050220264317180616,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 132,
+     "flux": 707.6254742117554,
+     "bounce": 0.0,
+     "cons": 2.0376210396350002e-16,
+     "mass_ratio": 1.2018182251360252,
+     "sources": [
+      231,
+      241
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 171,
+     "flux": 508.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      209,
+      210
+     ]
+    }
+   },
+   {
+    "N": 80794,
+    "head": {
+     "f_mix": 0.74395561013742,
+     "v_mix": -0.08270676691729323,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 123,
+     "flux": 648.3250817918444,
+     "bounce": 0.0,
+     "cons": 2.0319890722612115e-16,
+     "mass_ratio": 1.2088347914582565,
+     "sources": [
+      209,
+      221
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 159,
+     "flux": 472.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      225,
+      222
+     ]
+    }
+   },
+   {
+    "N": 80936,
+    "head": {
+     "f_mix": 0.7812725799355823,
+     "v_mix": -0.011650485436893204,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 116,
+     "flux": 649.2098702493696,
+     "bounce": 0.0,
+     "cons": 2.0376210396350002e-16,
+     "mass_ratio": 1.2310919180809943,
+     "sources": [
+      216,
+      196
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 158,
+     "flux": 479.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      230,
+      207
+     ]
+    }
+   },
+   {
+    "N": 81605,
+    "head": {
+     "f_mix": 0.7152394828166269,
+     "v_mix": -0.023376623376623377,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 109,
+     "flux": 519.7349740192196,
+     "bounce": 0.0,
+     "cons": 1.6747652892626934e-16,
+     "mass_ratio": 1.2069317338286352,
+     "sources": [
+      208,
+      206
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 164,
+     "flux": 501.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      207,
+      233
+     ]
+    }
+   },
+   {
+    "N": 81919,
+    "head": {
+     "f_mix": 0.7649114703051426,
+     "v_mix": -0.06666666666666667,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 122,
+     "flux": 659.3260853738316,
+     "bounce": 0.0,
+     "cons": 2.0376210396350002e-16,
+     "mass_ratio": 1.2181789501783369,
+     "sources": [
+      251,
+      218
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 163,
+     "flux": 506.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      254,
+      213
+     ]
+    }
+   },
+   {
+    "N": 81406,
+    "head": {
+     "f_mix": 0.8533021045984962,
+     "v_mix": 0.00782608695652174,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 114,
+     "flux": 654.4061163062594,
+     "bounce": 0.0,
+     "cons": 2.0606264803495178e-16,
+     "mass_ratio": 1.2139263397962161,
+     "sources": [
+      228,
+      201
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 194,
+     "flux": 583.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      222,
+      244
+     ]
+    }
+   },
+   {
+    "N": 81355,
+    "head": {
+     "f_mix": 0.760404886017013,
+     "v_mix": -0.07478260869565218,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 106,
+     "flux": 550.929431763675,
+     "bounce": 0.0,
+     "cons": 2.1184291441043398e-16,
+     "mass_ratio": 1.214288208010652,
+     "sources": [
+      216,
+      189
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 152,
+     "flux": 490.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      225,
+      192
+     ]
+    }
+   },
+   {
+    "N": 81554,
+    "head": {
+     "f_mix": 0.7872286121254153,
+     "v_mix": -0.01769436997319035,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 125,
+     "flux": 578.0852455241808,
+     "bounce": 0.0,
+     "cons": 2.0606264803495178e-16,
+     "mass_ratio": 1.220067682370458,
+     "sources": [
+      228,
+      204
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 145,
+     "flux": 452.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      228,
+      218
+     ]
+    }
+   },
+   {
+    "N": 81403,
+    "head": {
+     "f_mix": 0.8154989017358573,
+     "v_mix": 0.002586206896551724,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 110,
+     "flux": 688.3427860043367,
+     "bounce": 0.0,
+     "cons": 2.0376210396350002e-16,
+     "mass_ratio": 1.2097904870783123,
+     "sources": [
+      251,
+      225
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 153,
+     "flux": 518.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      247,
+      224
+     ]
+    }
+   },
+   {
+    "N": 81689,
+    "head": {
+     "f_mix": 0.753171249457159,
+     "v_mix": 0.04941176470588235,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 151,
+     "flux": 834.5867308688801,
+     "bounce": 0.0,
+     "cons": 1.5798618021872576e-16,
+     "mass_ratio": 1.2325230017036863,
+     "sources": [
+      250,
+      256
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 154,
+     "flux": 504.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      238,
+      234
+     ]
+    }
+   },
+   {
+    "N": 81570,
+    "head": {
+     "f_mix": 0.783404076876714,
+     "v_mix": 0.017142857142857144,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 114,
+     "flux": 600.1959691826899,
+     "bounce": 0.0,
+     "cons": 1.5232134233268086e-16,
+     "mass_ratio": 1.2212882316433502,
+     "sources": [
+      207,
+      208
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 147,
+     "flux": 488.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      238,
+      204
+     ]
+    }
+   },
+   {
+    "N": 81444,
+    "head": {
+     "f_mix": 0.7689088840711875,
+     "v_mix": -0.04097560975609756,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 114,
+     "flux": 653.42191712171,
+     "bounce": 0.0,
+     "cons": 1.5232134233268086e-16,
+     "mass_ratio": 1.2254193100529511,
+     "sources": [
+      252,
+      227
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 177,
+     "flux": 462.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      239,
+      208
+     ]
+    }
+   },
+   {
+    "N": 81363,
+    "head": {
+     "f_mix": 0.7570347550849998,
+     "v_mix": 0.02212581344902386,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 127,
+     "flux": 736.7308853684891,
+     "bounce": 0.0,
+     "cons": 2.0376210396350002e-16,
+     "mass_ratio": 1.209828384747265,
+     "sources": [
+      214,
+      244
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 160,
+     "flux": 497.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      205,
+      223
+     ]
+    }
+   },
+   {
+    "N": 81283,
+    "head": {
+     "f_mix": 0.755064631284834,
+     "v_mix": 0.033962264150943396,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 102,
+     "flux": 591.9929031099613,
+     "bounce": 0.0,
+     "cons": 1.6747652892626934e-16,
+     "mass_ratio": 1.2048326229379014,
+     "sources": [
+      207,
+      234
+     ]
+    },
+    "same_choice": true,
+    "miss": {
+     "f_mix": 0.0,
+     "v_mix": null,
+     "v_A": -0.6,
+     "v_B": 0.6,
+     "n_car": 149,
+     "flux": 448.0,
+     "bounce": 0.0,
+     "cons": 0.0,
+     "mass_ratio": null,
+     "sources": [
+      218,
+      229
+     ]
+    }
+   }
+  ]
+ }
+}

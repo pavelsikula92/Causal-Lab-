@@ -4,7 +4,7 @@ core.testing
 
 The contract between a test file, the runner and the results.
 
-A test is ONE file in phases/<phase folder>/, e.g. phases/F1_pole/F1_02_integral_A5.py.
+A test is ONE file in phases/<phase folder>/, e.g. phases/F1_field/F1_02_integral_A5.py.
 It defines
 
     TEST = {
@@ -49,7 +49,7 @@ Statuses
     INSTRUMENT_FAILED  an instrument check failed: no statement
     RECORDED           an exploratory part: numbers recorded, no verdict
 
-Rules (docs/roadmapa.md): the criterion lives in the test file and is not
+Rules (docs/roadmap.md): the criterion lives in the test file and is not
 changed after a run (a changed criterion = a new revision with a new id,
 the old result stays valid under its own criterion); a verdict counts as
 replicated only after a run with another seed (--seed K); the level of the
@@ -63,10 +63,7 @@ from dataclasses import dataclass, field
 from typing import Any, Callable, Dict, List, Optional
 
 STATUSES = ("PASSED", "FAILED", "UNDECIDED", "INSTRUMENT_FAILED", "RECORDED")
-STATUS_CS = {"PASSED": "PROŠEL", "FAILED": "NEPROŠEL", "UNDECIDED": "NEROZHODNUTO",
-             "INSTRUMENT_FAILED": "MĚŘIDLO SELHALO", "RECORDED": "ZAZNAMENÁNO"}
 LEVELS = ("calibration", "mechanism", "chain", "prediction")
-LEVEL_CS = {"calibration": "kalibrace", "mechanism": "mechanismus", "chain": "řetězec", "prediction": "predikce"}
 REQUIRED = ("id", "phase", "title", "theory_part", "question", "method", "prediction", "criterion",
             "null_model", "level", "meters", "depends_on", "params", "quick", "estimate")
 

@@ -1,0 +1,5 @@
+2+1 sprinkling rho = 1, box t [0, 24], x [-20, 20], other axes [-10, 10]; tubes radius 3, emission t [0, 2), d = 8, v = +-0.6; 32 sprinklings (~19180 events, sources 58 + 56); window t [18, 22]
+  head: f_mix 0.8213 +- 0.0130; v_mix -0.0078 +- 0.0131; v_A -0.6000 +- 0.0000; v_B +0.6000 +- 0.0000; bounce 0.0000; mixed rest mass / parts 1.2158 (gamma = 1.2500 for equal parts)
+  miss: f_mix 0.0030 +- 0.0023; v_mix -0.1250 +- 0.2304; v_A -0.6000 +- 0.0000; v_B +0.6000 +- 0.0000; bounce 0.0000; mixed rest mass / parts 1.1705 (gamma = 1.2500 for equal parts)
+instrument: miss f_mix <= 0.05: OK; boosted recomputation chooses the same children: OK; 4-momentum conservation on mixed events (max 2.1e-16): OK
+  head: f_mix - 2 SE = 0.7953 (> 1/4 stick), f_mix + 2 SE = 0.8472 (< 1/4 pass); |v_mix| + 2 SE = 0.0340 vs v/4 = 0.150

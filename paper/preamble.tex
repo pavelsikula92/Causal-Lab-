@@ -1,0 +1,50 @@
+% ---------------------------------------------------------------- packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[safe]{tipa}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}\usepackage{microtype}}{\usepackage[expansion=false]{microtype}}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{booktabs,tabularx,array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor={blue!50!black},citecolor={green!35!black},urlcolor={blue!70!black},
+  bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,pdfstartview=FitH]{hyperref}
+\hypersetup{pdftitle={Physics of Causality: gravity as the response of a causal order},
+  pdfauthor={Pavel Sikula},
+  pdfsubject={Causal sets, Benincasa-Dowker action, emergent gravity, pre-registered numerical tests},
+  pdfkeywords={causal set theory; Benincasa-Dowker action; emergent gravity; non-locality; post-Newtonian gamma}}
+\usepackage{url}
+\setlist{itemsep=2pt,topsep=4pt}
+\numberwithin{equation}{section}
+
+% ---------------------------------------------------------------- environments
+\theoremstyle{definition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{rule_}{Rule}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{status}{Status}
+
+% a box for the verdict of a laboratory test
+\newcommand{\verdict}[1]{\textsc{#1}}
+% status label of a statement in the ontology part
+\newcommand{\stat}[1]{\unskip\nobreak\hfill\mbox{\footnotesize\textsf{[#1]}}}
+% editorial notes (to be removed before publication)
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+% ---------------------------------------------------------------- notation
+\newcommand{\lk}{\ell_k}
+\newcommand{\Pib}{\Pi}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\BD}{\mathrm{BD}}
+\newcommand{\Khat}{\hat K}
+\newcommand{\Ex}{\mathbb{E}}
+\renewcommand{\vec}[1]{\bm{#1}}
+% coefficients of the static quadratic form of the action of the order (Einstein--Hilbert: 6, 8, 2)
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}

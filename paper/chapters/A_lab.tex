@@ -1,0 +1,75 @@
+\section{The Causality Lab}\label{app:lab}
+
+\subsection{Purpose and architecture}
+
+The Causality Lab~\cite{CausalityLab} is an open Python code base written to test Causal Physics step by
+step. It has three layers:
+\begin{itemize}
+\item a \emph{core}: sprinkling of causal sets in 1+1 to 3+1 dimensions, causal relations and links,
+  interval counts, the discrete and expected Benincasa--Dowker operator and action (flat and curved),
+  transport of flows with capacity and carried four-velocity, and blind instruments that read geometry
+  from the order;
+\item \emph{tests}, one file per test, each with a header that states the question, method, prediction,
+  null model, criterion, level of conclusion, the instruments it depends on and an estimate of its cost;
+\item a \emph{runner} that executes a test (\texttt{python run.py <ID>}), records the full parameters, the
+  seed, the version and the output, and refuses to change the criteria of a full run.
+\end{itemize}
+Deterministic computations (expected values by quadrature) carry their own convergence checks; stochastic
+ones (sprinklings) are replicated with independent seeds before a verdict is final.
+
+\subsection{Rules}
+
+The methodological principles M1--M7 (Sec.~\ref{sec:method-ax}) are enforced by the runner and the test
+headers; a revision of a test states its reason in its header. Calibrations (phase K) establish
+instruments and carry no physical conclusion.
+
+\subsection{Tests cited in this paper}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.0cm}}
+\toprule
+test & question and result & verdict\\
+\midrule
+K.1 & geometry readable from the order in 3+1 from $N\approx3\times10^4$ & calibration\\
+K.2 & causal front measures the Shapiro delay ($0.98$ of GR) and deflection ($0.84$--$0.87$) & calibration\\
+K.3 & clock rate readable from the density of chains & calibration, replicated\\
+K.11, K.11c & curved BD operator tends to $\Box_g-\tfrac12R$ (conformal geometry, near and far field) & calibration\\
+K.13a & BD operator in a geometry with bent light converges, density and cone parts separately & calibration\\
+K.14 & horizon molecules measure the proper area (exponent $1.96\pm0.06$ in 3+1) & calibration\\
+K.15 & energy--momentum tensor of flows; four-momentum conserved exactly by $F=|P|$ & calibration, replicated\\
+K.16b, K.16c & blind instrument reads $\gamma=-1,0,1$ (2+1) and $-1,\tfrac13,1$ (3+1) & calibration\\
+F0.3 & degree of an event grows with $N$: no bound $K_0$ & mechanism\\
+F1.1 & Gauss's law for a steady source, $J/S=1.003$--$1.004$ & mechanism\\
+F1.3 & far field of a source: Green function with Gauss strength & mechanism\\
+F1.4 & superposition fails at second order as predicted & mechanism, passed\\
+F1.8 & capacity limits the flow, not the number of relations & mechanism (seed-sensitive)\\
+F2.2, F2.4, F2.5 & maximal chains follow the geodesics of $\Pi^2\eta$ (2+1, 3+1) & mechanism, passed\\
+F3.6 & a flow with carried direction is localised and moves with its source & mechanism, passed, replicated\\
+F4.1 & flows that meet head-on stick: merged fraction $0.82$ (2+1), $0.77$ (3+1), merged flow at rest, no bounce & mechanism, passed\\
+F5.1 & free fall with a direction carried in flat coordinates, or keeping to the longest chains from the origin: no fall & mechanism, instrument failed; failed\\
+F5.1c & longest-chain history started at rest: inward, $R=0.34\pm0.05$ & mechanism, failed\\
+F5.1d & longest-chain history started at the apex of a thrown ball falls, $R=1.069\pm0.051$ & mechanism, passed\\
+F6.1, F6.2 & local growth with bounded degree: no manifold, no 3D space & mechanism\\
+F6.4a & 2D orders with BD action: manifold phase and transition reproduced; height of the crystalline
+  phase not & calibration, failed\\
+F6.8a & EH stiffness of the expected BD action, $6.0003$; correction and age term & chain, passed\\
+F6.8b2 & mixed stiffness, $7.983$ against $8$; covariant at leading order, sectors differ beyond (revision of F6.8b, whose instruments failed) & chain, passed\\
+F6.8c & optical sector read linearly in the age: the age dependence is not linear & chain, failed\\
+F6.8c2 & optical sector read at fixed $kT$ on new wavenumbers: $\cC(0)=2.002$ against $2$ & chain, passed\\
+F7.1a & cones narrowed without added events give $\gamma\approx\tfrac12$ (2+1), as derived & mechanism, failed\\
+F7.1b & throughput principle in 2+1: $\gamma\approx1.85$ against $2$ & mechanism, undecided\\
+F7.1c & throughput principle in 3+1: $\gamma=1.000\pm0.045$, $0.972\pm0.074$ & mechanism, undecided\\
+F7.4a & tensor coupling of counter-streaming flows, $R=2.401\pm0.053$ against $2.361$ & mechanism, passed\\
+\bottomrule
+\end{tabularx}
+\end{center}
+A verdict answers the question the test asked. \verdict{failed} for F7.1a means that cones which only
+narrow do not give $\gamma=1$, which was the derived expectation; \verdict{undecided} for F7.1b and F7.1c
+means that the statistical comparison with the control metric was too weak for a formal verdict, while the
+raw values agree with the prediction.
+
+\subsection{Availability}
+
+The code, the test headers and the recorded outputs of every run quoted here are available at
+\url{https://github.com/pavelsikula92/Causal-Lab-}. Every number in this paper can be reproduced with \texttt{python run.py <ID>}.

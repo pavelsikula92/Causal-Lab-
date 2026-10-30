@@ -35,6 +35,28 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def _aliases() -> Dict[str, str]:
+    """results/sha_aliases.json: {old test hash: new test hash} for files whose code is unchanged and whose text was
+    edited only (the English translation of 30 Oct 2026: comments, docstrings and strings; checked by comparing the
+    syntax trees with all string constants removed). A record stays current for the new file."""
+    p = RESULTS / "sha_aliases.json"
+    try:
+        return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def same_test(record_sha: str, current_sha: str) -> bool:
+    """True if a record was made with the current test file, directly or through a text-only alias chain."""
+    al, seen, s = _aliases(), set(), record_sha
+    while s not in seen:
+        if s == current_sha:
+            return True
+        seen.add(s)
+        s = al.get(s, s)
+    return False
+
+
 def core_sha256() -> str:
     """One hash over all core/*.py files, sorted by relative path."""
     h = hashlib.sha256()

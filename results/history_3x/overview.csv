@@ -1,0 +1,28 @@
+New ID;Original;Question;Result;Level
+K.1;E54;From what size is the geometry readable from the order in 3+1?;calibrated from N* = 32 000, replicated;calibration
+K.2;E47;Does the causal cone work as an instrument of bending?;calibrated: 0.913 and 0.919 of the GR value;calibration
+K.3;E45c;Can Π be read back from the density of chains?;calibrated in the tested range, replicated;calibration
+K.5;E45b BD-1;Is the discrete BD operator unbiased?;verified: +0.004 ± 0.008 (clustered by sprinkling);calibration
+K.6;E45a (identities);Does routing conserve the flow and is the window settled?;verified: residual ~10⁻¹⁵, decay at a rate of ~1;calibration
+K.7;E46 (gate);Are the chain functionals mirror symmetric?;verified: exactly 0;calibration
+K.8;E55 (probe);Does the probe measure the throughput T_out/T_in?;verified: balance 0, sensitivity 9·10⁻⁶;calibration
+K.9;E55b (audit);How faithful are the topology null models?;DAG null 90 % non-covering edges, narrower tail of the flow, the strict null shuffles 18 % of edges – influence of covering relations undecided;calibration
+K.10;E49;Are the verdicts stable under a different seed?;not robust: E40, E41-A, E42b;calibration
+F0.1;E43;Does the order carry a signature of geometry?;confirmed: overlap of pasts 1.42–1.66 against 1.00;mechanism
+F0.2;E44a;Is depth given by the longest chain?;confirmed: shortest 2–5, longest 7–66;mechanism
+F0.3;E42b;Can the stiffness I be read from the degree of an event?;does not hold: the degree grows with N, clustering 0;mechanism
+F1.1;E45a;Does Gauss's law hold for the net flux of a persistent source?;confirmed in 2+1 and 3+1: J/S_w = 1.003–1.004, null 0.77–0.88;mechanism
+F1.6;E45b;Does the field satisfy A5′ point by point?;impossible: at an achievable N noise decides (INSTRUMENT_FAILS);mechanism
+F1.7;E44d;What profile does the field around a source have?;undecided: the load was measured, not Π;mechanism
+F1.8;E40, E41-A;Does capacity limit the flow, not the number of links?;supported, not robust to the seed;mechanism
+F2.1;E44b;Do maximal chains bend in the field Π like geodesics (1+1)?;confirmed;mechanism
+F2.2;E46, E46b-A;Geodesic bending in the conformal representation 2+1;confirmed: the bending follows the density of the substrate, every maximal chain, replicated;mechanism
+F2.3;E46, E46b-A;Specificity of axiom 6 in the conformal representation;NOT_SPECIFIC: no demonstrated specific predictive value;mechanism
+F2.4;E46b-B;Predictive value of the action in the weighted representation 2+1;confirmed: Σ Π² → Π⁴η, 0.0770 against 0.0776, replicated;mechanism
+F2.9;E46b-G;Does a local greedy step follow the geodesic?;no: 0.46 against 0.043;mechanism
+F3.1;E55a;Does saturation spread from an overloaded source into its surroundings?;shielding confirmed: k/k_pred = 1.0054, outside 0 of 79 921 saturated;mechanism
+F3.2;E55b;Does a local structure arise without a source and without feedback?;confirmed: Δ_pers +0.006 ± 0.006, E_loc +0.004 ± 0.004 (limit 0.05);mechanism
+F5.0;E44c;Are inertial and passive mass the same (inserted body, 1+1)?;confirmed conditionally;mechanism
+F6.1;E35–E41-B, E39, E42d, E43;Does a manifold grow from a local rule?;does not hold: 0 of 7 rules;mechanism
+F6.2;E04b, E31;Does three-dimensional space arise from the dynamics?;does not hold;mechanism
+F6.3;E37d, E41-B;Does the width of the present grow (2nd law)?;does not hold;mechanism

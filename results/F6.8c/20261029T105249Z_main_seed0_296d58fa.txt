@@ -1,0 +1,36 @@
+3+1, eps rho = 1 (l_k = 1); g = -dt^2 + e^(2bh)dx^2, h = cos(k z1), phase-averaged; light cones to second order (bent rays); K_hat_bb = d2E[S]/db2 / EH 2k^2 (C = 2 K_hat_bb); K_hat = conformal (F6.8a) on the same nodes
+  I1a <T2> closed form vs numerical Fermat ray: d = 3, angle 0.4: +0.693680 vs +0.693680 (rel 4.3e-07); d = 5, angle 1.1: -0.209230 vs -0.209213 (rel 7.9e-05); d = 2, angle 1.5: +0.365748 vs +0.365751 (rel 9.2e-06) (tol 0.002)
+  I1b d2V/db2 -0.0159484 vs numerical roots + finite differences -0.0159590 (rel 6.6e-04); uniform null 3.6e-15 (tol 0.002, 1e-09)
+  I2 conformal K_hat on this grid +0.673224 vs F6.8a row +0.673224 (k = 0.2, T = 40): |diff| 1.6e-10 (tol 0.001)
+  I3 null k = 0: T = 40: J_bb +5.1e-06 (boundary part -3.1e-05), 2.1e-04 in K_hat_bb units at k = 0.2; T = 160: J_bb +6.7e-08 (boundary part -1.2e-07), 4.4e-05 in K_hat_bb units at k = 0.05; T = 320: J_bb +5.6e-08 (boundary part -6.0e-09), 3.6e-05 in K_hat_bb units at k = 0.05 (tol 0.002)
+  I4 k = 0.05, T = 160: K_hat_bb level 1 +0.952665, level 2 +0.952988, |diff| 3.2e-04 (tol 0.002)
+  I4 k = 0.1, T = 80: K_hat_bb level 1 +0.848517, level 2 +0.848500, |diff| 1.7e-05 (tol 0.002)
+  I4 k = 0.2, T = 40: K_hat_bb level 1 +0.537172, level 2 +0.537172, |diff| 5.6e-08 (tol 0.002)
+  k       ages T                   K_hat_bb(T) | K_hat(T)                              K_loc_bb  K_loc     c_T,bb   c_T      phi2
+  0.05    160, 240, 320            +0.9527|+0.9660 +0.9035|+0.9648 +0.6886|+0.9638 +1.24438  +0.96813  +13.2044  +0.1100  +0.57375
+  0.07    114.286, 171.429, 228.571 +0.9167|+0.9398 +0.9029|+0.9375 +0.8646|+0.9355 +0.97286  +0.94406  +1.3288  +0.1098  +0.09489
+  0.1     80, 120, 160             +0.8485|+0.8913 +0.8327|+0.8865 +0.8084|+0.8825 +0.89000  +0.89991  +0.5011  +0.1096  +0.04690
+  0.14    57.1429, 85.7143, 114.286 +0.7373|+0.8128 +0.7076|+0.8034 +0.6659|+0.7956 +0.81077  +0.82969  +0.4556  +0.1095  +0.07572
+  0.2     40, 60, 80               +0.5372|+0.6732 +0.4769|+0.6541 +0.3927|+0.6383 +0.68565  +0.70763  +0.4515  +0.1092  +0.15095
+  0.3     40, 60, 80               +0.0072|+0.3602 -0.3108|+0.3066 -0.9084|+0.2525 +0.96935  +0.46794  +0.8477  +0.0997  +1.35753
+  fit K_loc_bb = K0 - k^2 (c1 ln(1/k) + c0) over k <= 0.14: K0_bb = 1.55913, c1 = 98.764, c0 = -156.437, rms 4.2e-02; C(k -> 0) = 2 K0_bb = 3.1183 (EH 2)
+  reported (K_hat_ab of F6.8b2, same k and T): gamma(k, T) = 2 K_ab/K_bb - 1, Phi/Phi_GR = -2/(6 K - 8 K_ab^2/K_bb):
+    k = 0.05, T = 160: gamma +1.02659, Phi/Phi_GR +0.98544
+    k = 0.05, T = 240: gamma +1.13251, Phi/Phi_GR +0.82337
+    k = 0.05, T = 320: gamma +1.79485, Phi/Phi_GR +0.40204
+    k = 0.07, T = 114.286: gamma +1.04780, Phi/Phi_GR +0.97593
+    k = 0.07, T = 171.429: gamma +1.07114, Phi/Phi_GR +0.94288
+    k = 0.07, T = 228.571: gamma +1.15335, Phi/Phi_GR +0.83160
+    k = 0.1, T = 80: gamma +1.09489, Phi/Phi_GR +0.95245
+    k = 0.1, T = 120: gamma +1.11703, Phi/Phi_GR +0.93248
+    k = 0.1, T = 160: gamma +1.16012, Phi/Phi_GR +0.88912
+    k = 0.14, T = 57.1429: gamma +1.19137, Phi/Phi_GR +0.90714
+    k = 0.14, T = 85.7143: gamma +1.24242, Phi/Phi_GR +0.87095
+    k = 0.14, T = 114.286: gamma +1.33460, Phi/Phi_GR +0.80484
+    k = 0.2, T = 40: gamma +1.46934, Phi/Phi_GR +0.79630
+    k = 0.2, T = 60: gamma +1.65785, Phi/Phi_GR +0.71086
+    k = 0.2, T = 80: gamma +2.06071, Phi/Phi_GR +0.56692
+    k = 0.3, T = 40: gamma +86.33835, Phi/Phi_GR +0.01855
+    k = 0.3, T = 60: gamma -2.26676, Phi/Phi_GR -0.70491
+    k = 0.3, T = 80: gamma -1.06310, Phi/Phi_GR -1.31363
+  reported, local parts: k = 0.05: gamma_loc +0.55626; k = 0.07: gamma_loc +0.94559; k = 0.1: gamma_loc +1.03266; k = 0.14: gamma_loc +1.06899; k = 0.2: gamma_loc +1.11790; k = 0.3: gamma_loc +0.25708

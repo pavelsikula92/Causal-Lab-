@@ -4,10 +4,10 @@
 # Masses, geometry and boundary conditions are inputs of the simulator.
 #
 # Run:
-#   python demo/causal_gravity.py                       # opens the default scene
-#   python demo/causal_gravity.py --selftest            # runs the numerical self-tests (no window)
-#   python demo/causal_gravity.py --scene 2             # opens the scene with the given index
-#   python demo/causal_gravity.py --scene 2 --autorun   # and starts the simulation at once
+#   python Demo/causal_gravity.py                       # opens the default scene
+#   python Demo/causal_gravity.py --selftest            # runs the numerical self-tests (no window)
+#   python Demo/causal_gravity.py --scene 2             # opens the scene with the given index
+#   python Demo/causal_gravity.py --scene 2 --autorun   # and starts the simulation at once
 # Requirements: Python 3.9+, tkinter and numpy.
 #
 # THE GRAVITY LAW (state of the theory, 28 Oct 2026)
@@ -16,7 +16,7 @@
 #   * the principle of conserved causal throughput (where the light cones narrow, the levels of the cone saturate)
 #     gives the PPN parameter gamma = 1 in 3+1 (F7.1c);
 #   * in the linear order the principle is the same thing as coupling to the full energy-momentum tensor:
-#     hbar_ab = 4U u_a u_b for dust (docs/derivations/tenzorova_vazba.md); the substrate realises this coupling
+#     hbar_ab = 4U u_a u_b for dust (docs/derivations/tensor_coupling.md); the substrate realises this coupling
 #     with the rule "every flow narrows the cone in its own rest frame, capacity deficits add" (F7.4a PASSED:
 #     counter-streaming beams gravitate as Gamma^2 (1 + v^2), the cones tilt along the flow);
 #   * the nonlinear completion is general relativity (decision 13), to be derived on the substrate later
@@ -242,7 +242,7 @@ def bh_profile():
     Exterior vacuum solution of the scalar-stage field equation B_g ln Pi = 0 with the metric H1 in 3+1 for a
     spherical source M = 1:  e^(2L) [(1 - L) Laplace L + L |grad L|^2] = 0. With s = ln r: dL/ds = P,
     dP/ds = -P - L P^2 / (1 - L), P = r dL/dr. Integrated by RK4 from r = 1e5 to r = 1e-4 (ds = 1e-3) from
-    L = -1/r + 1/(6 r^3). The closed form is Ei(1 - L) = Ei(1) + e M / r (docs/derivations/gravitacni_rovnice.md).
+    L = -1/r + 1/(6 r^3). The closed form is Ei(1 - L) = Ei(1) + e M / r (docs/derivations/gravity_equations.md).
     Returns (s, L, P, info) with the photon sphere (r dL/dr = 1/2), the critical impact parameter b = r e^(-2L) and
     the throat (r dL/dr = 1). Decision 13: these strong-field properties are NOT predictions of the theory; they
     describe the scalar stage only.
@@ -1999,7 +1999,7 @@ coincide by construction; the content is that the substrate
 rule produces the tensor coupling (F7.4a) and that Newton, the
 scalar stage and the fixed order fail the listed tests."""
 
-# Risky claims of the theory and the tests that measure them. "reading" is the interpretation in docs/nalezy.md
+# Risky claims of the theory and the tests that measure them. "reading" is the interpretation in docs/findings.md
 # with its date; the status of the tests is loaded from the saved records.
 PREDICTIONS = [
     ("The far field of a source is Newtonian (Gauss flux)", ["F1.3"], "a different exponent or strength",
@@ -2038,7 +2038,7 @@ PREDICTIONS = [
 
 
 def default_results_dir():
-    """results/ of the laboratory next to demo/ (D:\\Projekty\\causality_lab\\results when the simulator is in demo/)."""
+    """results/ of the laboratory next to Demo/ (D:\\Projekty\\causality_lab\\results when the simulator is in Demo/)."""
     import os
 
     return os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results"))
@@ -2778,7 +2778,7 @@ def run_app(start_scene=None, autorun=False):
             recs = lab["recs"]
             board.insert("end", f"Prediction board (records: {len(recs)} in {path_var.get()})\nFor every claim: what "
                          "would refute it, the latest records of its tests (automatic) and the reading from "
-                         "docs/nalezy.md.\n\n", "txt")
+                         "docs/findings.md.\n\n", "txt")
             for claim, tests, falsifier, reading in PREDICTIONS:
                 board.insert("end", claim + "\n", "h")
                 board.insert("end", f"   refuted by: {falsifier}\n", "txt")

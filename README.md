@@ -1,58 +1,64 @@
 # Causality Lab
 
-Laboratoř Kauzální fyziky. Testuje, zda gravitace a setrvačnost jsou dva projevy jedné
-dynamiky kauzálního odporu, na sprinklovaných kauzálních uspořádáních. Testy jsou seřazené podle fází
-roadmapy a každá fáze patří k jedné části teorie (`docs/roadmapa.md`).
+The laboratory of Causal Physics (Pavel Šikula). It tests, on sprinkled causal orders, whether gravity and inertia are
+two manifestations of one dynamics of causal resistance, and whether the geometry of general relativity can be read
+from a causal order and its action. The tests are ordered by the phases of the roadmap, and every phase belongs to one
+part of the theory (`docs/roadmap.md`). The paper that reports the finished tests is in `paper/`.
 
-## Instalace
+## Installation
 
-Python 3.10 nebo novější, knihovny numpy a scipy:
+Python 3.10 or newer, with numpy and scipy (matplotlib only for the figures of the paper):
 
-    pip install numpy scipy
-    python run.py core          rychlé kontroly jádra (asi 10 s)
+    pip install numpy scipy matplotlib
+    python run.py core          quick checks of the core (about 10 s)
 
-## Spuštění
+Memory: one process needs up to ~1.5 GB of RAM depending on the test; use at most as many processes as
+RAM / 1.5 GB, with a reserve for the system.
 
-    python run.py list                     fáze, testy a jejich poslední stav
-    python run.py show F1.2                otázka, předpověď, kritérium, parametry testu
-    python run.py F1.2                     test, všechny jeho části
-    python run.py F1.2 --part d3           jen jedna část
-    python run.py F1.2 --quick             zmenšený běh: ověří, že test běží (nic nerozhoduje)
-    python run.py F1.2 --seed 7            nezávislá replikace jiným seedem
-    python run.py F1.2 --workers 6         počet procesů (jinak CAUSALITY_WORKERS nebo všechna jádra)
-    python run.py results F1.2             uložené výsledky testu
-    python run.py report                   přegeneruje docs/seznam_testu.md
+## Running
 
+    python run.py list                     phases, tests and their latest status
+    python run.py show F1.2                question, prediction, criterion, parameters of a test
+    python run.py F1.2                     a test, all its parts
+    python run.py F1.2 --part d3           one part only
+    python run.py F1.2 --quick             reduced run: checks that the test runs (decides nothing)
+    python run.py F1.2 --seed 7            independent replication with another seed
+    python run.py F1.2 --workers 6         number of processes (otherwise CAUSALITY_WORKERS or all cores)
+    python run.py results F1.2             saved results of a test
+    python run.py report                   regenerates docs/test_list.md
+    python paper/figures/make_figures.py   draws the figures of the paper from the saved results
 
-## Jak číst výsledek
+## How to read a result
 
-Každý test končí jedním stavem: **PASSED** (prošel; u měřidla kalibrováno v deklarovaném rozsahu),
-**FAILED** (neprošel), **UNDECIDED** (rozlišení nestačí, nebo kritérium splní i nulový model),
-**INSTRUMENT_FAILED** (selhala kontrola měřidla, bez závěru), **RECORDED** (jen zaznamenaná čísla).
+Every test ends with one status: **PASSED** (for an instrument: calibrated in the declared range), **FAILED**,
+**UNDECIDED** (the resolution is not sufficient, or the null model meets the criterion as well),
+**INSTRUMENT_FAILED** (a check of the instrument failed; no conclusion), **RECORDED** (numbers recorded only).
 
-Úroveň závěru (kalibrace, mechanismus, řetězec, predikce) říká, co výsledek smí tvrdit. Výsledek se uloží
-do `results/<ID>/` jako JSON a text, s otiskem testu i jádra, parametry, seedem a verzemi knihoven;
-nic se nepřepisuje. Zmenšené běhy jdou do `results/<ID>/quick/` a nepočítají se.
+The level of the conclusion (calibration, mechanism, chain, prediction) says what a result may claim. A result is
+saved in `results/<ID>/` as JSON and text, with the hash of the test file and of the core, the parameters, the seed
+and the versions of the libraries; nothing is overwritten. Reduced runs go to `results/<ID>/quick/` and do not count.
+`results/sha_aliases.json` maps the hashes of test files from before the English translation of 30 Oct 2026 to the
+translated files where only text changed (checked by comparing the syntax trees without string constants), so the
+records stay current.
 
-## Struktura
+## Structure
 
-    core/          jádro: řád, tok, operátory, řetězce, měřidla, statistika, otisky, rámec testů
-    phases/        testy po fázích (K_meridla, F0_substrat, F1_pole, …); test = jeden soubor
-    results/       výsledky; historie_3x/ pro výsledky GTS Lab 2.x a 3.x
-    docs/          roadmapa, list nálezů, plánované testy, generovaný seznam testů
-    core_tests/    rychlé kontroly jádra
+    core/          the core: order, flow, operators, chains, instruments, statistics, provenance, test framework
+    phases/        tests by phase (K_instruments, F0_substrate, F1_field, …); one test = one file
+    results/       results; history_3x/ for the results of GTS Lab 2.x and 3.x
+    docs/          roadmap, findings, planned tests, author's decisions, derivations, generated list of tests
+    paper/         the paper (LaTeX source, figures and the script that draws them)
+    Demo/          Causal Gravity, an interactive simulator of the gravity law (stand-alone)
+    core_tests/    quick checks of the core
 
-Hlavička každého testu (`TEST = {...}`) obsahuje fázi, část teorie, otázku, metodu, předpověď, kritérium,
-nulový model, úroveň závěru, použitá měřidla a závislosti. Kritérium se po běhu nemění; změna kritéria je
-nová revize testu s novým ID (např. F1.2b).
+The header of every test (`TEST = {...}`) contains the phase, the part of the theory, the question, the method, the
+prediction, the criterion, the null model, the level of the conclusion, the instruments used and the dependencies.
+The criterion does not change after the run; a change of the criterion is a new revision of the test with a new ID
+(e.g. F1.2b).
 
-<<<<<<< HEAD
-=======
-## Stav první verze
+The findings, with every negative result, are in `docs/findings.md`; the plan in `docs/planned_tests.csv`. The
+results of GTS Lab 2.x and 3.x are converted to the new IDs in `results/history_3x/overview.csv`.
 
-Jádro, kalibrační testy K.2–K.9 a test F1.2 (integrální A5′). Ostatní testy jsou naplánované v
-`docs/planovane_testy.csv`. Výsledky GTS Lab z předešlých verzí jsou převedené na nová ID v
-`results/historie_3x/prehled.csv`.
->>>>>>> 34f57c7 (Nová iterace výzkumu + oprava bug v pulse.py)
+## Licence
 
-Dokumentace česky, kód anglicky. Licence MIT.
+Code: MIT (`LICENSE`). Paper: CC BY 4.0.

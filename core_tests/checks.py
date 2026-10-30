@@ -151,7 +151,7 @@ def bd_constants_and_null_rows():
 def bd_expectation():
     """Expected BD operator: 1+1 light cone, local limit, hat rows vs direct quadrature (as K.4 quadrature)."""
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from phases.K_meridla.K_04_bd_expected import _quadrature, TEST
+    from phases.K_instruments.K_04_bd_expected import _quadrature, TEST
     ok, lines, data = _quadrature(TEST["params"])
     return ok, f"light cone {data['lightcone']:.4f} vs {data['quadrature']:.4f}; local " + \
         ", ".join(f"{D - 1}+1 {v:.4f}" for D, v in data["local_limit"].items())

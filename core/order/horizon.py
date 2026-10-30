@@ -4,7 +4,7 @@ core.order.horizon
 
 Horizon molecules of a causal set: the entropy instrument of the Jacobson
 route (author's decision of 22 Oct 2026: "try to derive gravity as
-thermodynamics of the deeper layer"; docs/derivations/jacobson_cesta.md).
+thermodynamics of the deeper layer"; docs/derivations/jacobson_route.md).
 
 Definition (Barton, Counsell, Dowker, Gould, Jubb, Taylor, "Horizon
 molecules in causal set theory", arXiv:1909.08620, the 1-molecule)

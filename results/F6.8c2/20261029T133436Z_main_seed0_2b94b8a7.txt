@@ -1,0 +1,28 @@
+3+1, eps rho = 1 (l_k = 1); optical sector as F6.8c, read at fixed n = k T; K_hat_bb = d2E[S]/db2 / EH 2k^2
+  I1a <T2> vs numerical Fermat ray: rel 4.3e-07; rel 7.9e-05; rel 9.2e-06 (tol 0.002)
+  I1b d2V/db2 -0.0159484 vs -0.0159590 (rel 6.6e-04); uniform null 3.6e-15 (tol 0.002, 1e-09)
+  I2 conformal K_hat +0.673224 vs F6.8a row +0.673224 (k = 0.2, T = 40): |diff| 1.6e-10 (tol 0.001)
+  I3 null k = 0: T = 40: J_bb +5.1e-06, 2.9e-04 at k = 0.17; T = 100: J_bb +1.9e-07, 8.5e-05 at k = 0.06; T = 170: J_bb +6.9e-08, 3.1e-05 at k = 0.06 (tol 0.002)
+  I4 k = 0.06, T = 133.333: K_hat_bb level 1 +0.936575, level 2 +0.935906, |diff| 6.7e-04 (tol 0.002)
+  I4 k = 0.17, T = 47.0588: K_hat_bb level 1 +0.641594, level 2 +0.641593, |diff| 6.8e-07 (tol 0.002)
+  I5 reading method on the conformal sector, n = 8: K0_conf = 0.99976 (F6.8a 1.00005; tol 0.002)
+  k       n    T          K_hat_bb   K_hat (conformal)
+  0.06    6    100        +0.937240  +0.953958
+  0.06    8    133.3      +0.936575  +0.953587
+  0.06    10   166.7      +0.918758  +0.952553
+  0.085   6    70.59      +0.887204  +0.917548
+  0.085   8    94.12      +0.884414  +0.916816
+  0.085   10   117.6      +0.877495  +0.914737
+  0.12    6    50         +0.801037  +0.855216
+  0.12    8    66.67      +0.795507  +0.853764
+  0.12    10   83.33      +0.784852  +0.849624
+  0.17    6    35.29      +0.652620  +0.748654
+  0.17    8    47.06      +0.641594  +0.745778
+  0.17    10   58.82      +0.620613  +0.737480
+  fit at n = 6: optical K0_bb = 0.99971 (c1 5.133, c0 2.915, max res 2.6e-05); conformal K0 = 0.99976 (max res 2.3e-05)
+  fit at n = 8: optical K0_bb = 1.00118 (c1 5.317, c0 3.019, max res 2.5e-04); conformal K0 = 0.99976 (max res 2.1e-05)
+  fit at n = 10: optical K0_bb = 0.97108 (c1 1.848, c0 8.867, max res 3.4e-03); conformal K0 = 0.99977 (max res 2.1e-05)
+  reported row k = 0.12, T = 133.333 (n = 16): K_hat_bb +0.741976, K_hat +0.841140
+  reported row k = 0.12, T = 200 (n = 24): K_hat_bb +0.598664, K_hat +0.829447
+  reported: gamma(0) = 2 K0_ab / K0_bb - 1 = 2 x 0.99988 / 1.00118 - 1 = +0.99741
+  reported: age dependence per k, D(n) = (K0_bb - K_hat_bb(k, n/k)) / k^2: k = 0.06: 17.761, 17.945, 22.895; k = 0.085: 15.775, 16.161, 17.119; k = 0.12: 13.899, 14.283, 15.023; k = 0.17: 12.061, 12.442, 13.168

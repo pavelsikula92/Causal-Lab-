@@ -1,0 +1,205 @@
+% =============================================================================
+%  Part IV -- Units, parameters and the SI bridge (catalogue of symbols)
+% =============================================================================
+
+Causal Physics is formulated at the level of causal structure, not of spacetime geometry. Its
+fundamental quantities are therefore dimensionless and relational: counts of events, relations
+between them and ratios of such counts. Comparison with observation nevertheless requires
+quantities reported in SI units. This part states how the two are kept apart, lists the symbols of
+the theory, and states which numbers are parameters and which are bridges.
+
+% =============================================================================
+\section{Three descriptive layers}\label{sec:layers}
+% =============================================================================
+
+The theory separates three layers of description. The separation is a structural requirement, not
+a convenience.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{lXX}
+\toprule
+layer & role & permitted content\\
+\midrule
+causal layer & physical ontology and dynamics & events, the relation $\prec$, counts of events,
+  flows, response variables, the action of the order\\
+bridge layer & metrology only & the discreteness scale, unit conversion, projection of counts onto
+  lengths, times and accelerations\\
+observational layer & empirical comparison & SI quantities, catalogues, measured accelerations,
+  delays, deflections\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Three rules follow. Causal variables never carry physical dimensions. Observational quantities never
+take part in causal evolution. Bridge parameters never change a rule, a threshold or a weight of the
+causal layer. A construction that violates any of the three reintroduces background structure and
+is excluded.
+
+Coordinates have a special status. They are not part of the causal layer. An \emph{instrument} may
+use them as a declared readout, for example to place the events of a sprinkling or to report a
+profile as a function of radius; a \emph{rule} of the dynamics may not (Sec.~\ref{sec:method-ax}).
+
+% =============================================================================
+\section{Catalogue of symbols}\label{sec:symbols}
+% =============================================================================
+
+For Greek letters and special symbols the middle column gives the name and the pronunciation
+(International Phonetic Alphabet, English).
+
+\newcommand{\rd}[2]{#1~\textipa{/#2/}}
+\newenvironment{symtab}{\begin{center}\small\begin{tabular}{l>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{7.4cm}}
+\toprule symbol & read as & meaning\\\midrule}{\bottomrule\end{tabular}\end{center}}
+
+\subsection{Structure of the order}
+
+\begin{symtab}
+$v,\ u,\ x,\ y$ & & events (elements of the causal set)\\
+$u\prec v$ & \rd{$u$ precedes $v$}{prI"si:dz} & causal relation: $u$ can influence $v$\\
+$u\prec\!\!\cdot\, v$ & \rd{link}{lINk} & link: $u\prec v$ with nothing in between\\
+$I(u,v)$ & & causal interval $\{w:u\prec w\prec v\}$\\
+$n(u,v)$ & & number of elements strictly inside $I(u,v)$\\
+$J^-(x)$ & \rd{J minus}{dZeI "maIn@s} & causal past of $x$\\
+$\rho$ & \rd{rho}{roU} & \textbf{fundamental density of the substrate}: the mean number of events per unit
+  proper four-volume. In a sprinkling the number of events in a region of volume $V$ is Poisson
+  distributed with mean $\rho V$. It sets the discreteness length $\ell=\rho^{-1/D}$ and, with
+  $\epsilon$, the non-locality scale $\ell_k$. It is the same everywhere: near matter the
+  \emph{coordinate} density changes ($\rho_c$), not $\rho$\\
+$D=d_s+1$ & & spacetime dimension; $d_s$ spatial dimensions\\
+$N$ & & number of events in a region\\
+\end{symtab}
+
+\subsection{Transport, matter and action}
+
+\begin{symtab}
+$F_v$ & & flow carried by event $v$ (non-negative, conserved)\\
+$\Delta Q_v$ & \rd{delta}{"dElt@} $Q$ & flow stored at $v$ (the residual of the balance at $v$)\\
+$s_v$ & & source term at $v$\\
+$u^a$ & & four-velocity carried by a flow as its state\\
+$P^a=F\,u^a$ & & four-momentum of a flow; merging rule $F=|P|$\\
+$T^{ab}$ & & energy--momentum tensor of flows, Eq.~\eqref{eq:Tab}\\
+$e_0$ & & rest-frame energy density of a flow ($T_{ab}u^au^b$)\\
+$C$ & & capacity: the largest flow an event can pass on\\
+$\sigma_v=F_v/C$ & \rd{sigma}{"sIgm@} & load of event $v$\\
+$\Delta\tau$ & \rd{delta tau}{"dElt@ taU} & proper time between successive events of a flow, counted by the order\\
+$S_m=-\sum m\,\Delta\tau$ & $\Sigma$: \rd{sum}{s2m} & action of a flow (Axiom~\ref{ax:action})\\
+$\mathcal R=\sum_v Z_v\,\Delta\tau$ & \rd{script R}{skrIpt A:r} & Causal Resistance Functional, the impedance-weighted action\\
+\end{symtab}
+
+\subsection{Response of the substrate}
+
+\begin{symtab}
+$\Pi_v$, $0<\Pi_v\le1$ & \rd{capital pi}{"k\ae pIt@l paI} & permeability, read as the local clock rate:
+  $\dd\tau=\Pi\,\dd t$ along a static world line\\
+$L=\ln\Pi$ & \rd{log pi}{lAg paI} & logarithmic clock potential; the stress coordinate of the substrate
+  ($L<0$ near matter)\\
+$I_v\ge1$ & & stiffness: resistance of the order to reconfiguration\\
+$Z_v=I_v/\Pi_v\ge1$ & & impedance\\
+$c_{\rm eff}$ & \rd{c effective}{si: I"fEktIv} & local speed of the causal cone; $c_{\rm eff}=c$ in the empty substrate\\
+$\rho_c$ & \rd{rho c}{roU si:} & density of events per \emph{coordinate} volume, in units of $\rho$
+  ($=\sqrt{-g}$ in a sprinkling); grows near matter\\
+$\rho_s$ & \rd{rho s}{roU Es} & density of saturated events: the source of the static field in the rest
+  frame of the matter ($T_{ab}u^au^b$ of the flows)\\
+$q=\rho_c\,c_{\rm eff}$ & & causal throughput (conserved, Sec.~\ref{sec:response})\\
+\end{symtab}
+
+\subsection{Geometry read from the order}
+
+\begin{symtab}
+$\phi$ & \rd{phi}{faI} & clock potential, read from the number of elements of a small interval at rest\\
+$\psi$ & \rd{psi}{saI} & spatial potential; $\phi+\psi$ is read from the boundary of the relation and
+  $\phi-d_s\psi$ from the density\\
+$\gamma=\psi/\phi$ & \rd{gamma}{"g\ae m@} & post-Newtonian parameter (light deflection, Shapiro delay)\\
+$\beta$ & \rd{beta}{"beIt@} & post-Newtonian parameter of the non-linearity of the clock field\\
+$U$ & & Newtonian potential ($U=-\phi$ in the weak field)\\
+$\eta_{ab}$ & \rd{eta}{"eIt@} & Minkowski metric\\
+$h_{ab},\ \bar h_{ab}$ & \rd{h bar}{eItS bA:r} & metric perturbation and its trace-reversed form\\
+$\Box_g$ & \rd{box}{bAks}, d'Alembertian & wave operator of the metric $g$\\
+$R$ & & scalar curvature\\
+\end{symtab}
+
+\subsection{Operators and the action of the order}
+
+\begin{symtab}
+$\epsilon$, $0<\epsilon\le1$ & \rd{epsilon}{"Eps@lAn} & smearing parameter of the Benincasa--Dowker operator\\
+$\ell_k=(\epsilon\rho)^{-1/D}$ & \rd{ell k}{El keI} & non-locality scale\\
+$C_i$ & & Benincasa--Dowker coefficients; in 3+1 $(-1,9,-16,8)$, fixed by $D$\\
+$a_D$ & & normalisation; $a_4=4/\sqrt6$\\
+$K_\epsilon(n)$ & \rd{K epsilon}{keI "Eps@lAn} & smeared kernel, Eq.~\eqref{eq:Bdiscrete}\\
+$g_k(w)$ & & expected kernel, Eq.~\eqref{eq:gk}\\
+$B_\epsilon$, $\Ex[B_\epsilon]$ & \rd{expectation of B}{Ek.spEk"teIS@n} & discrete BD operator and its expectation\\
+$S_\BD$ & & BD action of the order, Eq.~\eqref{eq:SBD}\\
+$V(x,y)$ & & proper volume of the interval between $y$ and $x$\\
+$\hat K(k,T)$ & \rd{K hat}{keI h\ae t} & ratio of the second-order BD action to its Einstein--Hilbert value
+  (Sec.~\ref{sec:bdaction}); $K_{\rm loc}$ its local part\\
+$c_T$ & & coefficient of the age term of the BD action\\
+$\cA,\ \cB,\ \cC$ & \rd{script A, B, C}{skrIpt eI bi: si:} & coefficients of the static quadratic form of the action of
+  the order: conformal, mixed and optical sector (Einstein--Hilbert $6$, $8$, $2$), Sec.~\ref{sec:mixed}\\
+$T_{\rm U}$ & & Unruh temperature (Sec.~\ref{sec:jacobson}); not the age $T$\\
+$T$ & & age: how long a static field has existed in the past of an event\\
+$\kappa$ & \rd{kappa}{"k\ae p@} & coupling of flows to the order\\
+$\hbar$ & \rd{h-bar}{eItS bA:r} & reduced Planck constant\\
+$\ell_P$ & \rd{ell P}{El pi:} & Planck length\\
+\end{symtab}
+
+% =============================================================================
+\section{Parameters of the theory}\label{sec:parameters}
+% =============================================================================
+
+\paragraph{Fundamental.} The causal layer has two numbers that are not fixed by the order itself:
+the density $\rho$, which sets the discreteness length $\ell=\rho^{-1/D}$, and the smearing
+parameter $\epsilon$, which sets the non-locality scale $\ell_k=(\epsilon\rho)^{-1/D}\ge\ell$. All
+results of Part~\ref{part:geometric} are stated in units of $\ell_k$; the expectation values of the
+operator and of the action depend on $\epsilon$ and $\rho$ only through the product $\epsilon\rho$.
+For $\epsilon=1$, $\ell_k=\ell$.
+
+\paragraph{Fixed by the dimension.} The coefficients $C_i$ and the normalisation $a_D$ are not
+parameters: they are fixed by requiring that the expected operator reproduce the d'Alembertian in
+$D$ dimensions.
+
+\paragraph{The coupling.} The strength with which a flow acts on the order, $\kappa$, becomes
+Newton's constant in the bridge layer. It is not tuned in the causal layer: in the linear regime
+it fixes only the normalisation of the field, never its shape or its tensor structure.
+
+\paragraph{Working parameters of models.} Particular models of the response of the substrate (the
+saturation level of a load-driven clock law, a materialisation threshold, a feedback exponent) carry
+working parameters. They are properties of a model, not constants of nature, and no result of this
+paper depends on their values.
+
+\paragraph{Laboratory units.} The laboratory works in units in which $\rho=1$, or $\epsilon\rho=1$
+for computations with the expected operator; lengths are then counted in $\ell$ or $\ell_k$.
+
+% =============================================================================
+\section{The SI bridge}\label{sec:bridge}
+% =============================================================================
+
+\paragraph{The speed of light.} In a Lorentz-invariant substrate the boundary of the relation has
+the same slope in every frame. Reporting that slope in SI units defines $c$; $c$ is a conversion
+between the counting of events along time and across space, not an additional constant of the
+causal layer.
+
+\paragraph{Newton's constant (conditional).} The bridge to $G$ goes through the entropy of horizons
+(Sec.~\ref{sec:jacobson}). If the entropy of a horizon is the number of horizon molecules times an
+entropy $s_0$ per molecule, the entropy density per unit area is $\eta=s_0\,a^{(4)}/\ell^2$ with
+$a^{(4)}=\sqrt3/10$, and the thermodynamic derivation of Einstein's equations gives
+$G=1/(4\hbar\eta)$~\cite{Jacobson1995}. Then
+\begin{equation}\label{eq:lP}
+  \ell^2=4s_0\,a^{(4)}\,\ell_P^2=\frac{2\sqrt3}{5}\,s_0\,\ell_P^2,\qquad
+  \ell\simeq1.075\sqrt{s_0}\;\ell_P ,
+\end{equation}
+with $\ell_P$ the Planck length. The discreteness length is thereby tied to $G$ up to $s_0$. This is a
+relation of consistency, not a prediction of $G$: it becomes predictive only when $\ell$ or $s_0$ is
+measured independently.
+
+\paragraph{The non-locality scale.} The smearing scale $\ell_k$ is not fixed by any bridge. It is a
+free scale of the theory, to be bounded or measured by the predictions of Part~\ref{part:predictions}. For
+fields propagated by the non-local operator existing data give $\ell_k\lesssim10^{-19}$\,m; whether this
+applies to Causal Physics is discussed in Sec.~\ref{sec:window}.
+
+\paragraph{Projection of counts.} Within the plateau, where geometry is a reliable compression of
+the order, counts are projected onto SI quantities: a number of elements $N$ of a region onto a
+four-volume $N/\rho$, the length of the longest chain onto a proper time, the clock potential $L$
+onto the Newtonian potential $U/c^2$. Outside the plateau the projections persist formally but lose
+physical meaning.
+
+\paragraph{No acceleration scale.} The present formulation introduces no acceleration scale in any
+layer (Sec.~\ref{sec:astro-cosmo}).

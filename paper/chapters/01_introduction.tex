@@ -1,0 +1,113 @@
+% =============================================================================
+\section{Introduction}\label{sec:intro}
+% =============================================================================
+
+\subsection{Causality before geometry}
+
+General relativity treats spacetime geometry as dynamical but primary; quantum field theory treats it
+as fixed and equally primary. In both, matter and fields evolve on a manifold that exists before
+anything happens on it. Causal Physics adopts the opposite stance: the primitive of physics is a
+set of events and the relation of influence between them,
+\begin{equation}
+  u \prec v \quad\Longleftrightarrow\quad u \text{ can influence } v ,
+\end{equation}
+and geometry is a large-scale description of regularities in that relation.
+
+This stance is not new. It is the founding hypothesis of causal set theory, compressed by Sorkin
+into the slogan ``order $+$ number $=$ geometry''~\cite{Bombelli1987,Surya2019}: a causal order
+determines a Lorentzian metric up to a conformal factor, and the number of events in a region
+fixes that factor. What Causal Physics adds is a physical reading of the order. Events are updates
+of a substrate; persistent flows of events are matter; and gravity is the way the order itself
+responds to those flows, slowing clocks, narrowing causal cones and adding events near matter. The
+question this paper asks is how much of gravitation follows from that picture once it is made
+precise enough to be computed.
+
+\subsection{Method: a laboratory that tests and does not rescue}\label{sec:method}
+
+All quantitative statements in this paper come from the Causality Lab~\cite{CausalityLab}, an open
+collection of numerical tests written for this programme. The rules of the laboratory matter as
+much as its results, because a theory developed together with its own tests can easily test only
+what it already put in.
+
+Every test states its question, prediction, null model and numerical criterion before the full run,
+declares the level of conclusion it can support, and ends with one of four verdicts:
+\verdict{passed}, \verdict{failed}, \verdict{undecided} or \verdict{instrument failed}. Negative
+results are kept, and a failed test is never rescued by changing its criteria. The rules are stated
+in full as the methodological principles M1--M7 (Sec.~\ref{sec:method-ax}).
+
+Throughout the paper, results are labelled with the identifiers of the tests (e.g.\ F7.4a) so that
+each can be rerun. Appendix~\ref{app:lab} lists the tests used.
+
+\subsection{Main results}
+
+\begin{enumerate}
+\item \textbf{The substrate} is a Lorentz-invariant causal set; a finite-degree substrate with a rest
+  frame is excluded by the tests together with a known theorem (Sec.~\ref{sec:substrate}).
+\item \textbf{Geometry is read blindly from the order.} An instrument that receives only events
+  and their relation recovers the clock potential $\phi$ and the spatial potential $\psi$ of a weak
+  field, and with them the post-Newtonian parameter $\gamma$, in 2+1 and 3+1 dimensions
+  (Sec.~\ref{sec:reading}).
+\item \textbf{Matter carries momentum.} A flow that keeps its timelike direction as a state stays
+  localised and moves with its source, and its energy--momentum tensor is measured correctly
+  (Sec.~\ref{sec:flows}).
+\item \textbf{The response of the order fixes $\gamma$.} A fixed order gives $\gamma=-1$, narrowing
+  cones alone give $\gamma=1/d_s$, and conservation of causal throughput gives
+  $\gamma=2/(d_s-1)$; on 3+1 sprinklings the last reads $\gamma=1.000\pm0.045$ (raw value; the
+  formal verdict is undecided because the comparison metric was read with a larger error,
+  Sec.~\ref{sec:response}).
+\item \textbf{The coupling is tensorial.} In 3+1 the throughput principle is the linearised coupling
+  of general relativity to $T_{ab}$; a substrate rule realising it makes pressure and motion
+  gravitate and drags the cones (Part~\ref{part:geometric}).
+\item \textbf{The rule follows from the action of the order.} The expected Benincasa--Dowker action
+  of a causal set carries the Einstein--Hilbert stiffness in the static conformal sector,
+  $6.0003$ against $6$, in the mixed sector, $7.983$ against $8$, and in the optical sector, $2.002$
+  against $2$; $\gamma=1$ follows ($0.997$ to $1.000$). The discreteness adds a non-analytic correction and
+  non-local age terms (Part~\ref{part:geometric}).
+\item \textbf{The road to predictions} is the static quadratic form of the order, now known in all three
+  sectors; the asymptotic age term of the optical sector is the next computation
+  (Part~\ref{part:predictions}).
+\item \textbf{Where to look.} The age term is not suppressed like the local corrections. For a cosmological
+  age and $\ell_k$ at the level of existing bounds it places the breakdown of the static response at tens of
+  micrometres, the range of current torsion balances (Sec.~\ref{sec:window}).
+\end{enumerate}
+
+\subsection{Relation to existing frameworks}
+
+\paragraph{Causal set theory.} The substrate, the reading of geometry from order and number and the
+Benincasa--Dowker operator and action are taken from causal set
+theory~\cite{Bombelli1987,Surya2019,BenincasaDowker2010,Sorkin2007,DowkerGlaser2013}. The
+contribution of this work lies elsewhere: in the physical reading of matter as flows that carry
+momentum, in the principle by which the order responds to them, in the explicit second-order
+computation of the expected action with its non-local age term, and in the systematic numerical
+testing of each step.
+
+\paragraph{General relativity.} The theory does not compete with general relativity in the regime
+where general relativity is tested. In the linear regime it reproduces it, and beyond the linear
+order it adopts it, with the intention of deriving it thermodynamically along the lines of
+Jacobson~\cite{Jacobson1995}. Its own content lies in the discreteness and non-locality of the
+substrate.
+
+\paragraph{Uniqueness theorems.} A massless spin-2 field coupled consistently to the total conserved
+energy--momentum is general relativity~\cite{Deser1970,FeynmanGravitation}, and in four dimensions
+the Einstein tensor is the unique divergence-free tensor built from the metric and its first two
+derivatives~\cite{Lovelock1971}. The results of Part~\ref{part:geometric} are consistent with these
+theorems and use them: once the order is shown to couple to $T_{ab}$ with the Einstein--Hilbert
+stiffness, the non-linear completion is fixed.
+
+\paragraph{Modified gravity.} The theory makes no claim of a modified low-acceleration regime
+(Sec.~\ref{sec:astro-cosmo}).
+
+\subsection{Structure of the paper}
+
+Part~\ref{part:ontology} describes, without equations, how Causal Physics sees the world: events,
+order and time, observation, transport, merging, matter, gravity, horizons and superposition, each
+statement labelled by how firmly it stands. Part~\ref{part:foundations} sets up the substrate, the reading of geometry from it, matter as flows
+and the response of the order. Part~\ref{part:units} states the parameters and the conditional
+bridge to SI units. Part~\ref{part:axioms} collects the axioms in their revised form, with the status
+of each. Part~\ref{part:geometric} derives and tests the gravitational coupling, from the throughput
+principle to the Einstein--Hilbert stiffness of the discrete action. Part~\ref{part:astro} states what
+remains of the strong-field and astrophysical claims. Part~\ref{part:predictions} sets out the
+predictions the theory can make and how they can fail. Part~\ref{part:discussion} discusses the
+limitations. Appendix~\ref{app:lab} describes the laboratory and the tests;
+Appendix~\ref{app:changes} relates this formulation to the first published version of the
+programme.

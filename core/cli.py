@@ -15,7 +15,7 @@ Commands behind run.py.
     python run.py show <ID>                the test's header: question, prediction, criterion, ...
     python run.py results <ID>             the saved results of a test
     python run.py core                     fast checks of the core and the instruments
-    python run.py report                   regenerate docs/seznam_testu.md
+    python run.py report                   regenerate docs/test_list.md
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ from typing import Any, Dict, List, Optional
 
 from . import provenance, registry
 from .stats.parallel import default_workers
-from .testing import Context, Result, STATUS_CS, LEVEL_CS, check_overrides, merged_params, parts_of, settable_of
+from .testing import Context, Result, check_overrides, merged_params, parts_of, settable_of
 
 
 def _out(msg: str) -> None:
@@ -84,11 +84,11 @@ def status_line(tid: str, entry: Dict[str, Any]) -> str:
             continue
         r = recs[-1]
         seeds = {x["seed"] for x in recs if x["status"] == r["status"]}
-        mark = STATUS_CS[r["status"]]
+        mark = r["status"]
         if len(seeds) > 1:
-            mark += " (replikováno)"
-        if r["test_sha256"] != cur:
-            mark += " [starší verze testu]"
+            mark += " (replicated)"
+        if not provenance.same_test(r["test_sha256"], cur):
+            mark += " [older version of the test]"
         bits.append(f"{part}: {mark}" if part else mark)
     return "; ".join(bits)
 
@@ -99,11 +99,11 @@ def cmd_list() -> int:
         ids = sorted([t for t in tests if registry.phase_of(t) == ph], key=registry.sort_key)
         _out(f"{ph:3s} {name} – {part}")
         if not ids:
-            _out("      (zatím bez testů; plán v docs/roadmapa.md)")
+            _out("      (no tests yet; plan in docs/roadmap.md)")
         for tid in ids:
             t = tests[tid]["test"]
             old = f" ({t['old_id']})" if t.get("old_id") else ""
-            _out(f"      {tid:7s}{old:9s} {t['title']}  [{LEVEL_CS[t['level']]}]  {status_line(tid, tests[tid])}")
+            _out(f"      {tid:7s}{old:9s} {t['title']}  [{t['level']}]  {status_line(tid, tests[tid])}")
     return 0
 
 
@@ -176,7 +176,7 @@ def cmd_run(tid: str, opts: Dict[str, Any]) -> int:
             _out(line)
         f = provenance.save(tid, path, part, opts["seed"], opts["quick"], p, res.status, res.lines, res.data, t0,
                             hashes=hashes)
-        _out(f"\nRESULT {tid}{(' [' + part + ']') if part else ''}: {res.status} ({STATUS_CS[res.status]})"
+        _out(f"\nRESULT {tid}{(' [' + part + ']') if part else ''}: {res.status}"
              f"{'  (quick run)' if opts['quick'] else ''}")
         _out(f"saved: {f.relative_to(provenance.ROOT)}  ({time.time() - t0:.0f} s)\n")
     return 0

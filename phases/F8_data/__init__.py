@@ -1,1 +1,1 @@
-"""Fáze F8 · Konfrontace s daty – problémy 6, 7, 10 a sluneční soustava."""
+"""Phase F8 · Confrontation with data – problems 6, 7, 10 and the solar system."""

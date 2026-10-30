@@ -35,6 +35,20 @@ the script computes box_g Pi and the Ricci scalar R from the metric
       (the weak-field coupling of B_g Pi = kappa rho_s is kappa / l1);
   C5  3+1, gamma = 1 (H1): (box_g - R/2) Pi = 2 Pi |grad Pi|^2 exactly (no
       lap Pi term), so outside the source grad Pi = 0.
+  C6  (K.13a target) the operator acting on an independent static field w,
+      first order in the geometry Pi = 1 + e u:
+          d/de (box_g - R/2) w = 2 gamma u lap w + (1 - gamma(n-2)) grad u.grad w
+                                 + (1 - gamma(n-1)) w lap u ;
+      with w = 1 this is -R/2 = (1 - gamma(n-1)) lap u.
+  C7  the split of C6 into a density part and a cone part:
+          C6 = (1 - gamma n) P + (1 + gamma) Q,
+          P = (-2 u lap w + (n-1) grad u.grad w + n w lap u) / D,
+          Q = ( 2 u lap w +     2 grad u.grad w +   w lap u) / D;
+      sqrt(-g) = 1 + (1 - gamma n) e u is the density change, P is the
+      first-order operator of the conformal geometry with that density
+      (flat cones), and (1 + gamma) is the change of the cone speed
+      c_eff = Pi^(1 + gamma); the discrete instrument computes the two
+      parts separately (core.operators.bd_expect_h1).
 
 Every check prints OK or FAILS; the script exits with status 1 if any fails.
 Run:  python docs/derivations/local_form_symbolic.py      (needs: pip install sympy)
@@ -127,6 +141,24 @@ def main() -> int:
             op1 = sp.simplify(op.subs(gam, 1))
             results.append(("C5 3+1 gamma = 1: (box_g - R/2) Pi = 2 Pi |grad Pi|^2 (no lap Pi term)",
                             is_zero(op1 - 2 * Pi * G2)))
+        # ---- C6: the operator on an INDEPENDENT static field w, first order in the geometry (K.13a) -------------------
+        w = sp.Function("w")(*xs)
+        opw = box(coords, ginv, sqrtg, w) - R / 2 * w
+        linw = sp.diff(opw.subs(Pi, 1 + e * u).doit(), e).subs(e, 0)
+        Lw, _ = lap_grad2(xs, w)
+        guw = sum(sp.diff(u, x) * sp.diff(w, x) for x in xs)
+        dB = 2 * gam * u * Lw + (1 - gam * (n - 2)) * guw + (1 - gam * (n - 1)) * w * Lu
+        results.append((f"C6 {tag} d/de (box_g - R/2) w = 2g u lap w + (1 - g(n-2)) grad u.grad w"
+                        f" + (1 - g(n-1)) w lap u", is_zero(linw - dB)))
+        # ---- C7: split into the density part (1 - g n) P and the cone part (1 + g) Q ------------------------------
+        # sqrt(-g) = 1 + (1 - g n) e u: with flat cones this is the conformal geometry Omega^2 eta, Omega^D = sqrt(-g),
+        # whose first-order operator is the gamma = -1 formula with u -> (1 - g n) u / D (P below); the rest is
+        # proportional to the cone speed change c_eff = Pi^(1 + g) and defines Q.
+        P = (-2 * u * Lw + (n - 1) * guw + n * w * Lu) / D
+        Q = (2 * u * Lw + 2 * guw + w * Lu) / D
+        results.append((f"C7 {tag} split: dB = (1 - g n) P + (1 + g) Q, P = conformal part / D, "
+                        f"Q = (2 u lap w + 2 grad u.grad w + w lap u) / D",
+                        is_zero(dB - (1 - gam * n) * P - (1 + gam) * Q)))
     for name, ok in results:
         print(f"{'OK   ' if ok else 'FAILS'}  {name}")
     print(f"{sum(ok for _, ok in results)}/{len(results)} checks passed")
