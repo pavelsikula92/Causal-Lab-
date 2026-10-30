@@ -20,7 +20,7 @@ Figures (the section of the paper in brackets):
   fig_sectors    the three sectors approach the Einstein-Hilbert values 6, 8, 2 as k -> 0 (sec:optical)
   fig_optical    the age term of the optical sector grows faster than linearly; the conformal one does not (sec:optical)
   fig_window     the window of the non-locality scale: L* against l_k for four readings of T (sec:window)
-  fig_fall       free fall from the apex (F5.1d): displacement against time, and R = a/a_pred with the criterion (sec:fall)
+  fig_fall       free fall from the apex, F5.1d (2+1) and F5.1e (3+1): displacement against time, R = a/a_pred (sec:fall)
 """
 
 from __future__ import annotations
@@ -425,52 +425,62 @@ def fig_window():
     save(fig, "fig_window")
 
 
-def fig_fall():
-    """F5.1d: (a) radial displacement from the apex against time, loaded and flat order (mean of the per-sprinkling
-    series, band +-1 SE across sprinklings), with the Newtonian fall from rest at the apex radius (the prediction of
-    the test) and the same fall shifted by the fitted start velocity v0; (b) R = a/a_pred and the control R_max with
-    the criterion band 1/2 < R < 2."""
-    from phases.F5_gravity.F5_01_free_fall_order import fall_curve
-    rec = record("F5.1d")
+def _fall_panel(ax, rec, fall, title, legend):
+    """One displacement panel of fig_fall: loaded and flat order (mean of the per-sprinkling series, band +-1 SE across
+    sprinklings), the Newtonian fall from rest at the apex radius (the prediction of the test) and the same fall
+    shifted by the fitted start velocity v0."""
     D, p = rec["data"], rec["params"]
-    tau = np.linspace(0.0, float(p["span"]), 23)               # the time grid of the test (F5_01d, seed_task)
-    keys = sorted(D["res"], key=float)                          # "0.0" flat, "0.45" loaded
+    keys = sorted(D["res"], key=float)                          # "0.0" flat, the other loaded
     flat_k, load_k = keys[0], keys[-1]
-    fig, (ax, bx) = plt.subplots(1, 2, figsize=(WIDTH, 2.6), gridspec_kw={"width_ratios": [1.6, 1]})
+    rows_l = [r for r in D["rows"] if abs(float(r["sigma0"]) - float(load_k)) < 1e-9]
+    tau = np.linspace(0.0, float(p["span"]), len(rows_l[0]["series"]))   # the time grid of the test
     for key, col, mk, lab in [(load_k, C1, "o", "loaded order"), (flat_k, C2, "s", "flat order")]:
         rows = [r for r in D["rows"] if abs(float(r["sigma0"]) - float(key)) < 1e-9]
         S = np.array([r["series"] for r in rows], float)
         m = np.nanmean(S, axis=0)
         se = np.nanstd(S, axis=0, ddof=1) / np.sqrt(np.sum(np.isfinite(S), axis=0))
         ax.fill_between(tau, m - se, m + se, color=col, alpha=0.18, lw=0)
-        ax.plot(tau, m, color=col, marker=mk, ms=3, lw=1.1, label=lab)
-        print(f"    {lab}: displacement at tau = {tau[-1]:g}: {m[-1]:+.3f} +- {se[-1]:.3f} ({len(rows)} sprinklings)")
-    rows = [r for r in D["rows"] if abs(float(r["sigma0"]) - float(load_k)) < 1e-9]
-    pred = np.mean([fall_curve(dict(p, r0=float(r["r_apex"]), t0=0.0), tau) for r in rows], axis=0)
+        ax.plot(tau, m, color=col, marker=mk, ms=2.5, lw=1.1, label=lab)
+        print(f"    {title} {lab}: displacement at tau = {tau[-1]:g}: {m[-1]:+.3f} +- {se[-1]:.3f} ({len(rows)} sprinklings)")
+    pred = np.mean([fall(dict(p, r0=float(r["r_apex"]), t0=0.0), tau) for r in rows_l], axis=0)
     v0 = float(D["res"][load_k]["v0"][0])
-    ax.plot(tau, pred, color=INK2, ls=":", lw=1.2, label="Newtonian fall from rest (prediction)")
-    ax.plot(tau, pred + v0 * tau, color=INK, ls="--", lw=1.0, label=f"same, with fitted $v_0$ = {v0:+.3f}")
-    print(f"    prediction at tau = {tau[-1]:g}: {pred[-1]:+.3f}; with v0: {pred[-1] + v0 * tau[-1]:+.3f}")
+    ax.plot(tau, pred, color=INK2, ls=":", lw=1.2, label="prediction: fall from rest")
+    ax.plot(tau, pred + v0 * tau, color=INK, ls="--", lw=1.0, label=r"prediction + fitted $v_0\tau$")
+    print(f"    {title} prediction at tau = {tau[-1]:g}: {pred[-1]:+.3f}; with v0 = {v0:+.3f}: {pred[-1] + v0 * tau[-1]:+.3f}")
     ax.axhline(0, color=INK2, lw=0.6)
     ax.set_xlabel(r"time from the apex $\tau$ [$\ell$]")
+    ax.set_title(title, loc="left")
+    return D["res"][load_k], D["res"][flat_k]
+
+
+def fig_fall():
+    """Free fall from the apex: (a) F5.1d in 2+1, (b) F5.1e in 3+1, displacement from the apex against time (see
+    _fall_panel); (c) R = a/a_pred and the control R_max of both tests with the criterion band 1/2 < R < 2."""
+    from phases.F5_gravity.F5_01_free_fall_order import fall_curve
+    from phases.F5_gravity.F5_01e_free_fall_apex_3d import fall_curve3
+    r2, r3 = record("F5.1d"), record("F5.1e")
+    fig, (ax, ay, bx) = plt.subplots(1, 3, figsize=(WIDTH, 2.9), gridspec_kw={"width_ratios": [1.25, 1.25, 1]})
+    fig.subplots_adjust(wspace=0.42, bottom=0.30)
+    l2, f2 = _fall_panel(ax, r2, fall_curve, "(a) 2+1 (F5.1d)", True)
+    l3, f3 = _fall_panel(ay, r3, fall_curve3, "(b) 3+1 (F5.1e)", False)
     ax.set_ylabel(r"radial displacement [$\ell$]")
-    ax.set_title("(a) fall from the apex", loc="left")
-    ax.legend(loc="lower left")
-    # (b) R and the control
+    h, lab = ax.get_legend_handles_labels()
+    fig.legend(h, lab, loc="lower center", ncol=4, fontsize=7, bbox_to_anchor=(0.42, -0.02))
     bx.axhspan(0.5, 2.0, color=C3, alpha=0.12, lw=0)
     bx.axhline(1.0, color=INK2, lw=0.8, ls=":")
-    items = [("$R$ loaded", D["res"][load_k]["R"], C1, "o"), ("$R$ flat", D["res"][flat_k]["R"], C2, "s"),
-             (r"$R_{\max}$ loaded", D["res"][load_k]["R_max"], C1, "D"),
-             (r"$R_{\max}$ flat", D["res"][flat_k]["R_max"], C2, "D")]
+    bx.axhline(0.0, color=INK2, lw=0.6)
+    items = [("$R$ 2+1", l2["R"], C1, "o"), (r"$R_{\max}$ 2+1", l2["R_max"], C1, "D"),
+             ("$R$ 3+1", l3["R"], C1, "^"), (r"$R_{\max}$ 3+1", l3["R_max"], C1, "D"),
+             ("$R$ flat 2+1", f2["R"], C2, "o"), ("$R$ flat 3+1", f3["R"], C2, "^")]
     for i, (lab, (v, e), col, mk) in enumerate(items):
         bx.errorbar([i], [v], yerr=[e], color=col, marker=mk, ls="none", **ERR)
         print(f"    {lab}: {v:+.3f} +- {e:.3f}")
     bx.set_xticks(range(len(items)))
-    bx.set_xticklabels([it[0] for it in items], rotation=30, ha="right")
+    bx.set_xticklabels([it[0] for it in items], rotation=40, ha="right", fontsize=6.5)
     bx.set_ylabel(r"$a/a_{\mathrm{pred}}$")
-    bx.set_ylim(-0.4, 2.2)
-    bx.text(3.35, 1.95, "criterion band", ha="right", va="top", fontsize=7, color=INK2)
-    bx.set_title("(b) acceleration ratio", loc="left")
+    bx.set_ylim(-0.5, 2.2)
+    bx.text(5.4, 1.95, "criterion band", ha="right", va="top", fontsize=6.5, color=INK2)
+    bx.set_title("(c) ratio", loc="left")
     save(fig, "fig_fall")
 
 

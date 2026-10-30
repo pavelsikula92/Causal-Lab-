@@ -32,7 +32,8 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     into the dynamics. The start condition matters: a history begun at rest (F5.1c) does not fall cleanly, a history
     read from a free state of the order (the apex of a thrown ball) does. The rule "start from the apex" arose after
     F5.1c FAILED; its criteria were fixed before the run (R132). Open: the velocity jump at the apex, the excess over
-    R_max, a replication on new sprinklings and the 3+1 version.
+    R_max and a replication on new sprinklings. The same rule in 3+1 does not fall (F5.1e, FAILED 30 Oct, below): the
+    result holds in 2+1 only.
 
 - **F4.1 (d3 and d4): flows that meet stick together: contact transfers momentum, the merged flow stops in the
   centre-of-momentum frame and the kinetic energy turns into rest mass; the rule has no bounce** (mechanism, 2+1,
@@ -487,6 +488,27 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   (K.10, E49).
 
 ## Does not hold
+
+- **F5.1e: in 3+1 the same history from the apex does not fall: it takes an inward velocity at the apex and then keeps
+  it, without acceleration; the longest chains between fixed events read the geometry well** (mechanism, 3+1, order of
+  F7.1c σ0 = 0.3, w = 4, box t [0, 24], |x| ≤ 8, 16 + 16 sprinklings of ~105 000 events, 60 chains, rule of F5.1c/F5.1d
+  m = H = 8, FAILED 30 Oct).
+  - **Instruments OK:** flat R = +0.139 ± 0.138, longest chains R_max = −0.011 ± 0.071; loaded longest chains read the
+    geometry, R_max = 0.850 ± 0.058 (better than in 2+1).
+  - **Loaded order:** R = a / a_pred = **−0.134 ± 0.121** (R + 2 SE = 0.11 < 1/2: does not fall), a_pred = −0.02187
+    (φ = −σ/2, fall from rest at r_apex = 4.15). 59.5 of 60 chains reach the end. Displacement from the apex,
+    τ = 0, 1, …, 12: 0.00 −0.07 −0.18 −0.28 −0.39 −0.48 −0.57 −0.65 −0.72 −0.80 −0.88 −0.94 −1.01 (the prediction
+    −1.62).
+  - **Descriptively (not evaluated):** the displacement is almost linear. The history moves inwards at ~0.1 from the
+    apex on and slows slightly (−0.10 at the start, −0.06–0.08 at the end), hence R slightly negative. At the apex the
+    velocity jumps from the rising half (+0.067) to v0 = −0.102 ± 0.021, a jump of −0.17; in the flat order the jump is
+    −0.045 (+0.070 → +0.025). The order is felt once, at the start, as a kick, not as a continuous acceleration. The
+    same kick appeared in 2+1 (F5.1d, −0.09), where an acceleration followed it.
+  - **Reading (declared before the run):** the rule that falls in 2+1 loses the gravity of the order in 3+1; a property
+    of the rule at m = H = 8, not of the order, whose longest chains between fixed events read the geometry (R_max 0.85).
+    A possible cause (a hypothesis, not tested): in 3+1 the effect of the field on the lengths L(p, q) over the horizon
+    is below one link, so the choice of q* is decided by the tie-breakers rather than by the geometry. A new rule or a
+    rescaled one would be a new hypothesis with its own criteria (R132). F5.1d stays PASSED for 2+1.
 
 - **F5.1c: a flow that continues its history as the longest chain moves inwards in an order curved by matter, but does
   not fall with the Newtonian acceleration** (mechanism, 2+1, order of F7.1b σ0 = 0.45, 32 + 32 sprinklings of
