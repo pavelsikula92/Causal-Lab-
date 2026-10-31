@@ -10,9 +10,58 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Holds
 
+- **F3.13b2: a hedgehog of the carried orientation is locked: a dynamics that relaxes every unprotected distortion
+  does not remove it, randomising its core does not erase its charge, and its core keeps a cost that a twist without
+  charge loses** (mechanism, 3+1, revision of F3.13b, box t [0, 20], half 7, ~54 900 events, ~1 045 sources,
+  16 new sprinklings, PASSED 31 Oct). Rules approved by the author: the internal orientation n (F3.13a) and its
+  alignment n ← N[(1 − κ) n + κ m̂] towards the flow-weighted mean of the causal past with rest-frame lag ≤ 2 (the
+  gradient flow of the configuration cost E = Σ(1 − n·n′)).
+  - **Instrument OK:** vacuum 0 on 336 of 336 in every κ; ≥ 50 readable shells in every deciding arm; the alignment
+    works: the twist at κ = 0.3 relaxes, mean cost 0.0270 → 0.0094.
+  - **Charge:** the hedgehog reads +1 on 139 of 139 (κ = 0.1) and 205 of 205 (κ = 0.3) readable shells; after the
+    core (r < 2) is randomised at 6 ≤ t < 7, the shells R ≥ 3 read +1 on 56 of 56 and 97 of 97. No core event in any
+    arm. κ = 0 (reported): 90 of 90, after the erase 31 of 31.
+  - **Cost:** in the last slab at κ = 0.3 the core cost of the hedgehog is 0.275 ± 0.075 against 0.021 ± 0.005 of the
+    twist. The hedgehog's core cost rises from 0.22 to 0.27–0.38 while the twist's mean cost falls threefold.
+  - **Reported:** after the erase the core cost jumps (0.46–0.59) and relaxes back; at κ = 0.3 it ends at 0.25 against
+    0.27 of the undisturbed hedgehog (F3.13b: 0.31 against 0.34). Readability of the hedgehog 0.27 / 0.41 / 0.61 for
+    κ = 0 / 0.1 / 0.3.
+
+  Reading (declared before the run): the charge is locked. The alignment removes what nothing protects (the twist
+  relaxes towards the vacuum), but it cannot remove the hedgehog, and a complete randomisation of its core is followed by
+  a core with the same charge and about the same cost. The core cost is the candidate rest mass in the author's sense:
+  the cost of a configuration, not the number of events, and it seems to belong to the charge rather than to the history
+  of the core. The first locked structure of the laboratory. Limits: the orientation and the alignment are new
+  assumptions; the defect is put in by hand; cold flow at rest, no field; readout to t = 17; the erase is a
+  randomisation, not an optimised attempt to unwind; an S² hedgehog's gradient cost grows with its size in 3D (Derrick:
+  its cost concentrates in a shrinking core, as seen), so a finite mass independent of the box would need a full
+  orientation (a Skyrmion) or a core held at the discreteness scale. Next: the cost of a moving hedgehog (does it grow
+  as γ, like a rest energy?), a hedgehog and an anti-hedgehog (annihilation, release of the cost), size and κ.
+
+- **F3.13a (static_d3, static_d4, flow_d4): a defect of the carried orientation has an integer charge that the
+  instrument reads exactly, and in 3+1 the cold flow of the laboratory carries a hedgehog with its degree +1 intact**
+  (mechanism, 31 Oct; the author's principle of a particle as a topologically locked defect; new carried state
+  approved by the author: an internal orientation n ⟂ u, carried unchanged, merged as the flow-weighted sum projected
+  on the rest space of the merged u).
+  - **Instrument (static, PASSED in 2+1 and 3+1):** the degree of the map shell → sphere of orientations reads vacuum
+    0, vortex/hedgehog +1, anti −1, double +2 and the twisted control 0 on all 96 shells of 32 sprinklings. Under noise
+    (random rotation of each n up to θ) it never reads a wrong integer: a shell whose field is not resolved
+    (neighbours differ by ≥ π/2) is unreadable instead. Readability of the defect: 3+1 1.00 / 1.00 / 0.08 at
+    θ = 0 / π/8 / π/4; 2+1 1.00 / 0.98 / 0.69.
+  - **flow_d4 (3+1, box t [0, 12], half 7, ~33 000 events, ~1 050 sources, 16 sprinklings, PASSED):** the hedgehog
+    reads +1 on 78 of 78 readable shells (readable 0.54), anti −1 on 78 of 78, vacuum 0 on 144 of 144, twist 0 on 54
+    of 54, at t = 5, 7, 9; no core event (the orientations never cancelled at a merge).
+  - **Reading (declared before the run):** the transport of the laboratory, merging included, does not destroy the
+    charge: the defect is a configuration of the flow that the flow carries. This is the necessary condition only: the
+    cold flow moves almost straight up and merges only neighbouring streams, so the charge was carried, not challenged.
+    Whether it is locked against a perturbation that tries to unwind it, and what erasing it costs, is F3.13b. Limits:
+    the orientation is a new assumption; the defect is put in by hand; 3+1 readout over t = 5–9 only; readability
+    0.54, just above the limit.
+
 - **F5.1d: a history along longest chains that starts at the apex of a thrown ball falls in an order curved by matter
   with the Newtonian acceleration; no bending rule is put in** (mechanism, 2+1, order of F7.1b σ0 = 0.45, box T = 46,
-  32 + 32 sprinklings of ~68 600 events, 40 chains, rule of F5.1c m = H = 8, PASSED 30 Oct; replication missing).
+  32 + 32 sprinklings of ~68 600 events, 40 chains, rule of F5.1c m = H = 8, PASSED 30 Oct; replication with seed 1
+  PASSED 31 Oct).
   - **Instruments OK:** flat order R = +0.146 ± 0.098 (|R| + 2 SE = 0.34 ≤ 1/2), longest chains without sag
     R_max = +0.104 ± 0.120; loaded longest chains read the geometry, R_max = 0.742 ± 0.075.
   - **Loaded order:** R = a / a_pred = **1.069 ± 0.051** (criterion 1/2 < R ∓ 2 SE < 2: 0.97–1.17), a_pred = −0.01109
@@ -27,13 +76,19 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     - ⟨v²⟩ of the links of the history: 0.369 loaded, 0.569 flat.
     - Development rows (8–10 chains, decided nothing) gave R 1.67 / 2.23; the upper bound R − 2 SE ≥ 2 was added
       before the full run.
+  - **Replication with seed 1 (31 Oct, new sprinklings, the same criteria; PASSED, instruments OK):**
+    R = **1.101 ± 0.064** (0.97–1.23); flat R = +0.113 ± 0.105; R_max = 0.879 ± 0.073 loaded, +0.007 ± 0.109 flat;
+    39.0 of 40 chains to the end. Displacement from the apex (t = 0, 2, …, 22): 0.00 −0.12 −0.35 −0.66 −1.03 −1.42
+    −1.86 −2.36 −2.89 −3.45 −4.05 −4.64. The reported quantities repeat too: the jump at the apex (rising half
+    +0.036, v0 = −0.080 ± 0.012; flat +0.020 → +0.026), R / R_max = 1.25, ⟨v²⟩ 0.368 / 0.568; the flat order drifts
+    outwards and back (+0.34 at t = 16, +0.18 at 22). Both runs together: R = 1.07 ± 0.05 and 1.10 ± 0.06.
   - **Reading:** for the first time in the laboratory a flow falls in an order shaped by matter only through inertia
     (it continues its history) and the longest chains of the order, without a bending rule and without a field put
     into the dynamics. The start condition matters: a history begun at rest (F5.1c) does not fall cleanly, a history
     read from a free state of the order (the apex of a thrown ball) does. The rule "start from the apex" arose after
-    F5.1c FAILED; its criteria were fixed before the run (R132). Open: the velocity jump at the apex, the excess over
-    R_max and a replication on new sprinklings. The same rule in 3+1 does not fall (F5.1e, FAILED 30 Oct, below): the
-    result holds in 2+1 only.
+    F5.1c FAILED; its criteria were fixed before the run (R132). Replicated on new sprinklings. Open: the velocity jump
+    at the apex and the excess over R_max (1.44 and 1.25). The same rule in 3+1 does not fall (F5.1e, FAILED 30 Oct,
+    below): the result holds in 2+1 only.
 
 - **F4.1 (d3 and d4): flows that meet stick together: contact transfers momentum, the merged flow stops in the
   centre-of-momentum frame and the kinetic energy turns into rest mass; the rule has no bounce** (mechanism, 2+1,
@@ -489,6 +544,50 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Does not hold
 
+- **F3.12b search: capacity as an elastic wall does not hold a bundle in its own field; without merging a warm bundle
+  (η = 0.06) comes closest to a stationary width of all F3 runs, but even there the classification gives no bound arm**
+  (mechanism, exploration, 2+1, F3.11 set-up, 32 sprinklings of ~49 000 events, 201 source events, RECORDED 31 Oct;
+  candidate by the rule in the header: none; instrument OK: frame check identical in all 17 arms on 8 sprinklings, rest
+  mass of the stream arms conserved to 3e−16, balances ≤ 2e−15, field_0 contracts against free_0).
+  Tolerance of boundness s(free_0)/4 = 0.0103 (W1 [12, 28]) and 0.0063 (W2 [28, 44]). Slopes of the width W1 / W2:
+  - free_0 +0.041 / +0.025; field_0 −0.010 / −0.038 (collapse, R 3.0 → 2.5); free_cl_0.06 +0.055 / +0.056;
+  - streams without merging and without capacity: cl_0.03 −0.002 (bound) / −0.017 (collapse); **cl_0.06 +0.011 ±
+    0.003 / −0.004 ± 0.003 (both unresolved): R holds 3.39–3.50 from t ≈ 15 to 45**; cl_0.1 +0.033 / +0.032 (grows);
+  - capacity C = 2 / 4 / 8 (reflections per stream 0.39–0.41 / 0.35–0.37 / 0.20–0.31): at η = 0 collapses like
+    field_0, slower (W2 −0.020 to −0.023); at η = 0.03 bound or unresolved in W1, collapse in W2; at η = 0.06 grows in
+    W1 (+0.020 to +0.036) and unresolved in W2 (−0.006 to +0.001), plateau R ≈ 3.5–4.0; at η = 0.1 grows.
+  - The internal spread grows in every arm with a field (field_0 from 0 to 0.14, cl_0.06 from 0.06 to 0.14): the
+    discrete bending heats the bundle, as in F3.7.
+
+  Reading (declared before the run): reflection off overloaded events does not balance the field in this form. The
+  capacity pushes the bundle out early (a larger plateau) but neither stops the collapse of a cold bundle nor holds a
+  warm one better than streams without capacity. The new fact is the role of merging: without it, internal motion alone
+  nearly balances the field at η ≈ 0.06 (F3.11 with merging only gave plateaus followed by contraction). What prevents
+  a stationary state now is not cooling but heating: the spread rises steadily, so a plateau is a slow drift between
+  two regimes, not an equilibrium. Limits: 2+1 (logarithmic potential), conformal bending (γ = −1), rest-mass source.
+
+- **F3.12a2: the topological cost of rerouting is not the primary resistance of the substrate; capacity is**
+  (calibration, revision of F3.12a, 2+1, box t [0, 10], |x| ≤ 10, ~4 000 events, ~85 000 links, 32 new sprinklings,
+  lens 3 ≤ t ≤ 7, w = 2.5, RECORDED 31 Oct with the classification "capacity dominates"; instrument OK: unperturbed
+  I_flow 2.4e−8, balance 3.3e−10, all programs solved). The author's hypothesis (31 Oct): the impedance is the
+  topological cost of rerouting the flow, I_v = C(H → H′ | Φ, Q, K0); his definitions: I_flow = the smallest L1
+  change of the flow that the new network admits (linear program), I_topo = created and removed links separately.
+  Split I_flow = I_forced + I_cascade; I_cascade at σ0 = 0.1 / 0.2 / 0.3:
+  - T (narrowed cones, fewer paths, 3528 / 5513 / 6848 links removed): 0.0045 / **0.0134 ± 0.0003** / 0.0196;
+  - K (capacity cut to the same forced change, the same paths): 0.0383 / **0.0525 ± 0.0011** / 0.0598;
+  - P (throughput: narrowed cones and added events, 659 / 1170 / 1641 links created): 0.0042 / 0.0125 / 0.0170.
+  Criterion at σ0 = 0.2: K − 2 SE = 0.050 > 2 (T + 2 SE) = 0.028, capacity dominates; the same at all strengths and
+  for P against K. F3.12a (instrument failed on its tolerance) gave the same numbers to the second decimal.
+
+  Reading (declared before the run): resistance is the capacity effect; the topological candidate is not supported as
+  the primary one. When paths vanish the network reroutes almost freely: beyond the flow that has to leave the lost
+  links, only ~1 % of the link flux changes (it grows with σ0, so topology has a small cost of its own). A cut in
+  capacity at the same forced change costs 3–9× more. Adding events (the throughput principle) adds no resistance of
+  its own. Limits: one instrument (L1 distance to the uniform flow), one geometry (a lens), 2+1. For a bound structure
+  (F3.12b) the candidate is therefore capacity: a flow that meets a full capacity must be deflected outwards with
+  exact four-momentum, i.e. elastically, not merged (F3.9 had capacity without an outward momentum and gave only a
+  plateau).
+
 - **F5.1e: in 3+1 the same history from the apex does not fall: it takes an inward velocity at the apex and then keeps
   it, without acceleration; the longest chains between fixed events read the geometry well** (mechanism, 3+1, order of
   F7.1c σ0 = 0.3, w = 4, box t [0, 24], |x| ≤ 8, 16 + 16 sprinklings of ~105 000 events, 60 chains, rule of F5.1c/F5.1d
@@ -842,6 +941,52 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   range.
 
 ## Instrument failures (no conclusion about the theory)
+
+- **F3.13b: the readability requirement failed; every readable shell shows a locked charge and the hedgehog keeps a
+  core cost that the twist loses** (mechanism, 3+1, box t [0, 20], half 7, ~54 800 events, ~1 050 sources,
+  16 sprinklings, INSTRUMENT FAILED 31 Oct; the verdict and the criteria stand). New rule approved by the author:
+  alignment of orientations, n ← N[(1 − κ) n + κ m̂] towards the flow-weighted mean of the causal past (the gradient
+  flow of the configuration cost E = Σ(1 − n·n′)).
+  - **What failed:** the hedgehog arms (all κ together) were readable on 0.445 of their triples against 0.5 (κ = 0:
+    0.26; 0.1: 0.46; 0.3: 0.62). The requirement was a fraction; the taller box added late slabs in which the cold
+    bundle has thinned. The other instrument conditions passed: vacuum 0 on 335 of 335 in every κ; the twist at
+    κ = 0.3 relaxed, mean cost 0.0277 → 0.0097. Revision F3.13b2: a count instead of a fraction (≥ 50 readable shells
+    per arm), decision on κ > 0, new sprinklings.
+  - **Descriptively (not evaluated):**
+    - The hedgehog read +1 on 89 / 153 / 207 of 89 / 153 / 207 readable shells (κ = 0 / 0.1 / 0.3); the erase arms
+      +1 on 81 / 123 / 186 of all of theirs, on shells R ≥ 3 after the erase 25 / 59 / 115 of 25 / 59 / 115; no core
+      event in any arm.
+    - Core cost at κ = 0.3 in the last slab: hedgehog 0.343 ± 0.049, twist 0.011 ± 0.003 (30×). Over time the
+      hedgehog's core cost grows (κ = 0: 0.27 → 0.63; κ = 0.3: 0.23 → 0.34–0.41) while the twist's falls: the cost
+      concentrates in a shrinking core, as Derrick's theorem expects for a directional field.
+    - After the erase the core cost jumps (0.54–0.59) and relaxes back; at κ = 0.3 it ends at 0.31 against 0.34 of the
+      undisturbed hedgehog: the core re-forms with about the same cost, as if the cost belonged to the charge rather
+      than to the history of the core.
+
+- **F3.13a flow_d3: in 2+1 too few rings were readable; every readable ring read the right charge** (mechanism,
+  2+1, box t [0, 24], half 10, ~9 600 events, ~156 sources, 32 sprinklings, INSTRUMENT FAILED 31 Oct; the verdict and
+  the criteria stand). The defect arm was readable on 30 % of its (sprinkling, slab, ring) triples against a limit of
+  50 %; the limit came from a single development sprinkling (59 %), a design error. Descriptively: defect +1 on 258 of
+  258 readable rings, anti −1 on 258 of 258, vacuum 0 on 606 of 606, twist 0 on 459 of 459, at every slab t = 5–21;
+  double +2 on 14 of 15; no core event. After merging a cold bundle keeps few world lines, so rings of width 1.5 catch
+  few carriers. A revision would read one wide annulus around the centre (any closed loop around the core carries the
+  winding); not run, since flow_d4 (3+1) passed.
+
+- **F3.12a: the instrument failed on its own tolerance; the numbers point clearly to capacity, not topology, as the
+  source of the resistance to rerouting** (calibration, 2+1, box t [0, 10], |x| ≤ 10, ~4 000 events, ~85 000 links,
+  32 sprinklings, lens 3 ≤ t ≤ 7, INSTRUMENT FAILED 31 Oct; the verdict and the criteria stand).
+  - **What failed:** the unperturbed program returned the original flow to 1.3e−7 of the total link flux and the
+    balance held to 4.6e−9, against limits of 1e−9. The limit was a design error: the linear program (HiGHS) has a
+    feasibility tolerance of 1e−7. All programs were solved. Revision F3.12a2: only the tolerances (1e−6), new
+    sprinklings.
+  - **Descriptively (not evaluated):** I_cascade, the change of the flow beyond the flow that is forced to move, at
+    σ0 = 0.1 / 0.2 / 0.3:
+    - T (narrowed cones, fewer paths): 0.0043 / 0.0129 / 0.0194 (± 0.0002–0.0005);
+    - K (capacity cut to the same forced change, same paths): 0.0391 / 0.0539 / 0.0618 (± 0.0009–0.0011);
+    - P (throughput: narrowed cones and added events, 648–1594 new links): 0.0041 / 0.0115 / 0.0167, like T.
+    By the rule declared for the verdict this would read "capacity dominates" at every strength (K about 3–9× T).
+    I_forced at σ0 = 0.2: 0.105 (T, K), 0.117 (P).
+  - **Reading:** confirmed by the revision F3.12a2 on new sprinklings (Does not hold, above).
 
 - **F5.1 carried: the instrument failed narrowly; a flow with a carried direction alone does not fall** (mechanism, 2+1,
   order of F7.1b σ0 = 0.45, 32 + 32 sprinklings of ~47 650 events, 40 chains, INSTRUMENT FAILED 29 Oct; the verdict and
@@ -1349,6 +1494,33 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   fixed separately.
 
 ## Undecided (descriptive)
+
+- **F3.13c: the moving hedgehog keeps its charge and moves with its source; its rest-frame cost is 0.99 of the cost at
+  rest at β = 0.3 and 0.87 at β = 0.6, but the difference measures the finite box, not the defect** (mechanism, 3+1,
+  box t [0, 20], x [−7, 19], y, z [−7, 7], ~101 900 events, 16 sprinklings, UNDECIDED 31 Oct by the criteria fixed
+  before the run; instrument OK: vacuum 0 on 240 of 240, ≥ 50 readable shells in every defect arm, frame check 4 of 4).
+  - **Charge and motion:** +1 on 162 / 147 / 70 of 240 shells (all readable ones) at β = 0 / 0.3 / 0.6; centroid
+    velocity in the source frame +0.0036 ± 0.0029 / −0.0011 ± 0.0034 / +0.0010 ± 0.0030 (limit β/4); no core event.
+  - **Cost:** r(0.3) = 0.986 ± 0.029 (meets the PASSED condition), r(0.6) = 0.866 ± 0.025 (|r − 1| + 2 SE = 0.18 > 0.15,
+    |r − 1| − 2 SE = 0.08 < 0.15: undecided). Reported: E_lab / (γ E(0)) = 1.036 ± 0.041 and 0.949 ± 0.031.
+  - **Diagnosis after the run (decides nothing):** the arms had 1 065 / 906 / 768 source events. The source region
+    (0 ≤ t_s < 2, r_s < 5 in the source frame) lies partly below the laboratory time t = 0 when it moves: the fraction
+    inside the box is 1.000 / 0.859 / 0.732 (Monte Carlo), i.e. 1 047 / 899 / 766 expected sources, as observed. The
+    moving hedgehogs started with 14 % and 27 % of their source ball cut off on the −x side, and the substrate below
+    t = 0 was missing from their causal past. The slab 12 ≤ t_s < 14 at β = 0.6 was also cut by the top of the box
+    (0.96 of the ball r_s < 6 inside).
+
+  Reading. The criteria fixed before the run give UNDECIDED and stay. The design, however, could not answer its
+  question: the sprinkling is Lorentz invariant, the sources and orientations were given in the source frame, and the
+  dynamics is covariant (frame check: identical flows and costs after a boost of 0.6). In such a set-up an arm moving
+  with β differs from the arm at rest only by the shape of the region in its own frame, here the laboratory box; any
+  deviation of r from 1 is therefore a boundary effect, and here it follows the size of the cut. A defect that moves
+  relative to nothing is a resting defect seen from another frame: that its rest-frame cost is the same is a property of
+  the covariant rules, and the frame check is the test of it. This is my design error: the test asked a question whose
+  answer was fixed by symmetry, and the only free element was the box. A revision with congruent regions would give
+  r = 1 by construction and is not proposed. What the run does show: a moving flow carries the locked defect with its
+  charge and keeps it with its source. The physical content of a rest mass (inertia, release of the cost) needs motion
+  relative to something: another defect (annihilation of a hedgehog with an anti-hedgehog), a medium, or a push.
 
 - **F8.1 (run 29 Oct): the numbers carry no information, because the input was the invalid linear fit of the optical
   sector from F6.8c** (prediction, RECORDED; instruments I1–I3 OK, but I1 accepted an input with the status FAILED,

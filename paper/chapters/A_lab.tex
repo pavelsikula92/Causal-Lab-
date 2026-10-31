@@ -25,12 +25,18 @@ instruments and carry no physical conclusion.
 
 \subsection{Tests cited in this paper}
 
-\begin{center}
-\small
-\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.0cm}}
+{\small
+\begin{xltabular}{\linewidth}{>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.0cm}}
 \toprule
 test & question and result & verdict\\
 \midrule
+\endfirsthead
+\toprule
+test & question and result & verdict\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
 K.1 & geometry readable from the order in 3+1 from $N\approx3\times10^4$ & calibration\\
 K.2 & causal front measures the Shapiro delay ($0.98$ of GR) and deflection ($0.84$--$0.87$) & calibration\\
 K.3 & clock rate readable from the density of chains & calibration, replicated\\
@@ -46,10 +52,18 @@ F1.4 & superposition fails at second order as predicted & mechanism, passed\\
 F1.8 & capacity limits the flow, not the number of relations & mechanism (seed-sensitive)\\
 F2.2, F2.4, F2.5 & maximal chains follow the geodesics of $\Pi^2\eta$ (2+1, 3+1) & mechanism, passed\\
 F3.6 & a flow with carried direction is localised and moves with its source & mechanism, passed, replicated\\
+F3.6c & merging with exact four-momentum does not hold a bundle from a hot source; it halves the spreading & mechanism, failed\\
+F3.8 & a retarded field of the bundle contracts it; no bound state & mechanism, no candidate\\
+F3.11 & a hot bundle in its own field holds a plateau, then contracts & mechanism, no candidate\\
+F3.12a2 & resistance to rerouting: capacity $0.053$ against topology $0.013$ of the link flux (revision of F3.12a, whose instrument tolerance was below the solver's) & calibration, recorded\\
+F3.12b & capacity as an elastic wall in the bundle's own field: no stationary width & mechanism, no candidate\\
+F3.13a & integer charge of a carried-orientation defect read exactly; carried intact by the flow in 3+1 (2+1: too few readable rings) & mechanism, passed (3+1)\\
+F3.13b2 & hedgehog locked under alignment, charge kept after its core is randomised, core cost $0.275$ against $0.021$ (revision of F3.13b, whose readability requirement failed) & mechanism, passed\\
+F3.13c & moving hedgehog keeps its charge and its source; cost ratio $0.99$ ($\beta=0.3$), $0.87$ ($0.6$), a boundary effect of the box (design error) & mechanism, undecided\\
 F4.1 & flows that meet head-on stick: merged fraction $0.82$ (2+1), $0.77$ (3+1), merged flow at rest, no bounce & mechanism, passed\\
 F5.1 & free fall with a direction carried in flat coordinates, or keeping to the longest chains from the origin: no fall & mechanism, instrument failed; failed\\
 F5.1c & longest-chain history started at rest: inward, $R=0.34\pm0.05$ & mechanism, failed\\
-F5.1d & longest-chain history started at the apex of a thrown ball falls, $R=1.069\pm0.051$ (2+1) & mechanism, passed\\
+F5.1d & longest-chain history started at the apex of a thrown ball falls, $R=1.069\pm0.051$ (2+1) & mechanism, passed, replicated\\
 F5.1e & the same in 3+1 does not fall, $R=-0.13\pm0.12$; longest chains read the geometry, $R_{\max}=0.85$ & mechanism, failed\\
 F6.1, F6.2 & local growth with bounded degree: no manifold, no 3D space & mechanism\\
 F6.4a & 2D orders with BD action: manifold phase and transition reproduced; height of the crystalline
@@ -62,9 +76,7 @@ F7.1a & cones narrowed without added events give $\gamma\approx\tfrac12$ (2+1), 
 F7.1b & throughput principle in 2+1: $\gamma\approx1.85$ against $2$ & mechanism, undecided\\
 F7.1c & throughput principle in 3+1: $\gamma=1.000\pm0.045$, $0.972\pm0.074$ & mechanism, undecided\\
 F7.4a & tensor coupling of counter-streaming flows, $R=2.401\pm0.053$ against $2.361$ & mechanism, passed\\
-\bottomrule
-\end{tabularx}
-\end{center}
+\end{xltabular}}
 A verdict answers the question the test asked. \verdict{failed} for F7.1a means that cones which only
 narrow do not give $\gamma=1$, which was the derived expectation; \verdict{undecided} for F7.1b and F7.1c
 means that the statistical comparison with the control metric was too weak for a formal verdict, while the

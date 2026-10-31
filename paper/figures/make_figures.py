@@ -21,6 +21,8 @@ Figures (the section of the paper in brackets):
   fig_optical    the age term of the optical sector grows faster than linearly; the conformal one does not (sec:optical)
   fig_window     the window of the non-locality scale: L* against l_k for four readings of T (sec:window)
   fig_fall       free fall from the apex, F5.1d (2+1) and F5.1e (3+1): displacement against time, R = a/a_pred (sec:fall)
+  fig_matter     toward matter: the width of a bundle in its own field (F3.12b) and the cost of a locked defect (F3.13b2)
+                 (sec:matter)
 """
 
 from __future__ import annotations
@@ -458,7 +460,7 @@ def fig_fall():
     _fall_panel); (c) R = a/a_pred and the control R_max of both tests with the criterion band 1/2 < R < 2."""
     from phases.F5_gravity.F5_01_free_fall_order import fall_curve
     from phases.F5_gravity.F5_01e_free_fall_apex_3d import fall_curve3
-    r2, r3 = record("F5.1d"), record("F5.1e")
+    r2, r3 = record("F5.1d", seed=0), record("F5.1e")   # panel (a): the first run; the replication is quoted in the text
     fig, (ax, ay, bx) = plt.subplots(1, 3, figsize=(WIDTH, 2.9), gridspec_kw={"width_ratios": [1.25, 1.25, 1]})
     fig.subplots_adjust(wspace=0.42, bottom=0.30)
     l2, f2 = _fall_panel(ax, r2, fall_curve, "(a) 2+1 (F5.1d)", True)
@@ -484,9 +486,56 @@ def fig_fall():
     save(fig, "fig_fall")
 
 
+def fig_matter():
+    """(a) F3.12b: the width R_rms of a bundle against time (means over sprinklings, as stored) for the reference, the
+    cold bundle in its field, warm streams without merging and with capacity; (b) F3.13b2 at kappa = 0.3: the core cost
+    of the hedgehog, of the hedgehog whose core was randomised, and of the twist (band +-1 SE across sprinklings);
+    (c) the mean cost per carrying event of the hedgehog and of the twist (the twist relaxes, the hedgehog does not)."""
+    rb, rc = record("F3.12b"), record("F3.13b2")
+    st = rb["data"]["stats"]
+    tb = np.arange(5.0, 5.0 + 2.0 * len(st["free_0"]["R"]), 2.0)
+    fig, (ax, bx, cx) = plt.subplots(1, 3, figsize=(WIDTH, 2.5))
+    fig.subplots_adjust(wspace=0.42)
+    for key, col, ls, lab in [("free_0", INK2, ":", "no field"), ("field_0", C2, "-", "cold, own field"),
+                              ("cl_0.06", C1, "-", r"warm streams $\eta=0.06$"),
+                              ("cap4_0.06", C3, "--", r"same with capacity $C=4$")]:
+        ax.plot(tb, st[key]["R"], color=col, ls=ls, lw=1.2, label=lab)
+        print(f"    F3.12b {key}: R {st[key]['R'][0]:.2f} -> {st[key]['R'][-1]:.2f}; slopes W1 {st[key]['s1'][0]:+.4f} "
+              f"W2 {st[key]['s2'][0]:+.4f} ({st[key]['c1']}, {st[key]['c2']})")
+    ax.set_xlabel("time")
+    ax.set_ylabel(r"width $R_{\rm rms}$ [$\ell$]")
+    ax.set_title("(a) bundle in its own field", loc="left")
+    ax.set_ylim(top=5.0)
+    ax.legend(loc="upper left", fontsize=5.8)
+    rows = rc["data"]["rows"]
+    t = np.asarray(rows[0]["arms"]["defect_0.3"]["t"], float)
+    for key, col, mk, lab in [("defect_0.3", C1, "o", "hedgehog"), ("erase_0.3", C3, "D", "hedgehog, core erased"),
+                              ("twist_0.3", C2, "s", "twist (no charge)")]:
+        for q, axx in (("core_cost", bx), ("mean_cost", cx)):
+            if q == "mean_cost" and key == "erase_0.3":
+                continue
+            A = np.array([r_["arms"][key][q] for r_ in rows], float)
+            m = np.nanmean(A, axis=0)
+            se = np.nanstd(A, axis=0, ddof=1) / np.sqrt(np.sum(np.isfinite(A), axis=0))
+            axx.fill_between(t, m - se, m + se, color=col, alpha=0.18, lw=0)
+            axx.plot(t, m, color=col, marker=mk, ms=3, lw=1.1, label=lab)
+            print(f"    F3.13b2 {key} {q}: {m[0]:.4f} -> {m[-1]:.4f} (+- {se[-1]:.4f})")
+    bx.axvspan(6.0, 7.0, color=GRID, alpha=0.8, lw=0)
+    bx.set_xlabel("time")
+    bx.set_ylabel("core cost")
+    bx.set_title(r"(b) core, $\kappa=0.3$", loc="left")
+    bx.set_ylim(0.0, 0.75)
+    bx.legend(loc="upper right", fontsize=5.8)
+    cx.set_xlabel("time")
+    cx.set_ylabel("mean cost per event")
+    cx.set_title("(c) all events", loc="left")
+    cx.set_ylim(bottom=0)
+    save(fig, "fig_matter")
+
+
 # ===================================================================================== main
 
-FIGURES = [fig_blind, fig_response, fig_counter, fig_conformal, fig_sectors, fig_optical, fig_window, fig_fall]
+FIGURES = [fig_blind, fig_response, fig_counter, fig_conformal, fig_sectors, fig_optical, fig_window, fig_fall, fig_matter]
 
 if __name__ == "__main__":
     only = set(sys.argv[1:])                           # e.g. "python make_figures.py fig_window" draws one figure

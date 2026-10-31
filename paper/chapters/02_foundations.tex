@@ -314,7 +314,7 @@ $\tfrac12<R_{\max}\mp2\,\text{SE}<2$.
   the order.
 \item The same rule started at the apex of a thrown ball (F5.1d): the history is the rising half of the
   longest chain between two events at the same place, a free state read from the order. It falls,
-  $R=1.069\pm0.051$: \verdict{passed}. Flat order $R=0.15\pm0.10$; longest chains $R_{\max}=0.74\pm0.08$
+  $R=1.069\pm0.051$: \verdict{passed}; replicated on new sprinklings, $R=1.101\pm0.064$. Flat order $R=0.15\pm0.10$; longest chains $R_{\max}=0.74\pm0.08$
   (loaded) and $0.10\pm0.12$ (flat).
 \item The same experiment in 3+1 (F5.1e: the order of F7.1c, $\sigma_0=0.3$, $w=4$, $\phi=-\sigma/2$; rule and
   criteria unchanged) does not fall, $R=-0.13\pm0.12$: \verdict{failed}. The instruments passed: flat
@@ -343,10 +343,85 @@ receives an inward velocity jump at the apex ($-0.09$ in 2+1, $-0.17$ in 3+1, ag
 the flat orders): the order acts on it at the start as a kick, and only in 2+1 does a continuous acceleration
 follow. A possible cause, not tested: in 3+1 the effect of the field on the chain lengths over the horizon of
 the rule is below one link, so the choice of the next event is decided by the tie-breakers rather than by the
-geometry. Further limits of the 2+1 result: one run; the start from the apex was introduced after F5.1c
-failed, with its criteria fixed before the run; the fall is $1.44$ times what the longest chains read of the
-geometry; the flat order drifts slightly outwards, within its tolerance. A replication of F5.1d and a rule
-that carries the acceleration in 3+1 are the next steps.
+geometry. Further limits of the 2+1 result, which holds in two independent runs: the start from the apex was
+introduced after F5.1c failed, with its criteria fixed before the run; the fall is $1.44$ and $1.25$ times what
+the longest chains read of the geometry; the flat order drifts slightly outwards, within its tolerance. A rule
+that carries the acceleration in 3+1 is the next step.
+
+% =============================================================================
+\section{Toward self-bound matter}\label{sec:matter}
+% =============================================================================
+
+A flow that carries its direction stays localised (F3.6), but nothing holds its width: a particle that keeps
+itself together without an external source is the central open problem of the matter sector. Two routes were
+tested.
+
+\paragraph{A bundle held by its own field: not obtained.} The retarded field of a bundle pulls it in (F3.8); the
+question is what resists. Three candidates failed to give a stationary width under the classification fixed in
+advance (the slope of the width within a quarter of the free spreading in two time windows).
+\begin{itemize}
+\item \emph{Merging cools.} Streams that meet merge with exact four-momentum (F3.6c); internal motion becomes
+  rest mass, and a hot bundle in its field holds a plateau and then contracts (F3.11).
+\item \emph{The resistance of the substrate is capacity, not topology.} When the flow must avoid a region, the
+  change of its distribution beyond the flow that is forced to move, obtained by linear programming, is
+  $0.013\pm0.0003$ of the link flux if the paths vanish (narrowed cones) and $0.053\pm0.001$ if the capacity
+  drops by the same forced amount (F3.12a2, 32 sprinklings; the same at three strengths).
+\item \emph{Capacity as an elastic wall does not bind.} Streams that never merge and are reflected out of events
+  that carry more than $C$ streams spread or collapse like streams without the wall; without merging, warm
+  streams ($\eta=0.06$) come closest to a stationary width ($3.39$--$3.50\,\ell$ from $t\approx15$ to $45$), but
+  the internal spread grows steadily: the discrete bending heats the bundle (F3.12b, no candidate,
+  Fig.~\ref{fig:matter}a).
+\end{itemize}
+
+\paragraph{A locked defect: obtained under two added assumptions.} A particle need not be a balance of forces.
+It may be a configuration that the dynamics cannot remove because there is no local way back to the vacuum, a
+topological defect. Two assumptions are added for this route, both new to the theory and flagged as such:
+every flow carries, besides its four-velocity $u$, an internal orientation $n$ ($n\cdot n=-1$, $n\cdot u=0$),
+merged as the flow-weighted sum projected on the rest space of the merged flow; and orientations align with
+their causal neighbourhood, $n\to N[(1-\kappa)n+\kappa\hat m]$ with $\hat m$ the mean orientation of the
+causal past within a rest-frame lag of $2\ell$, the discrete gradient flow of the configuration cost
+$E=\sum(1-n\cdot n')$. The charge of a hedgehog ($n$ pointing outwards) is the degree of the map from a shell
+around its centre to the sphere of orientations, an integer, read on sprinkled shells.
+\begin{itemize}
+\item The instrument reads the degree exactly: $0$, $+1$, $-1$, $+2$ and $0$ for the vacuum, hedgehog,
+  anti-hedgehog, a double defect and a twisted configuration without charge, on all 96 shells of 32
+  sprinklings in 2+1 and 3+1; under noise it declines to read rather than reads a wrong integer (F3.13a).
+\item The cold flow of the laboratory, merging included, carries a hedgehog with its degree $+1$ on every
+  readable shell in 3+1 (F3.13a).
+\item With alignment the hedgehog is locked (F3.13b2, 3+1, 16 sprinklings): it reads $+1$ on $139$ of $139$ and
+  $205$ of $205$ readable shells ($\kappa=0.1$, $0.3$); randomising its core does not change the charge on the
+  shells outside ($56$ of $56$, $97$ of $97$); the twist without charge relaxes towards the vacuum (mean cost
+  $0.027\to0.009$) while the core of the hedgehog keeps a cost, $0.275\pm0.075$ against $0.021\pm0.005$ in the last slab; after
+  the erase the core re-forms with about the same cost (Fig.~\ref{fig:matter}b,c).
+\end{itemize}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_matter.pdf}
+  \caption{Toward matter. (a) F3.12b, 2+1, 32 sprinklings: the width of a bundle without a field, in its own
+field (cold), and with warm streams that do not merge, without and with a capacity wall ($C=4$); none is stationary by
+the criterion fixed in advance. (b, c) F3.13b2, 3+1, 16 sprinklings, alignment $\kappa=0.3$: the cost of the core
+of a hedgehog of the carried orientation, of a hedgehog whose core was randomised at $6\le t<7$ (grey band), and of
+a twisted configuration without charge; (c) the mean cost per carrying event: the twist relaxes, the hedgehog does
+not. Bands: $\pm1$ standard error across sprinklings.}\label{fig:matter}
+\end{figure}
+
+\paragraph{What this does and does not show.} A configuration of the carried orientation with a topological
+charge is the first structure of the laboratory that its dynamics cannot remove, and it carries a cost that a
+configuration without charge loses; the cost appears to belong to the charge rather than to the history of the
+core. This is the candidate the author proposes for a rest mass: the cost of a configuration, not the number of
+events in it. It is not yet a particle. The orientation and the alignment are assumptions added for this
+route; the defect is placed by hand, not created by the dynamics; the flow is cold and has no field. The cost
+of a hedgehog of a direction field grows with its size in three dimensions (Derrick's theorem), and its core
+shrinks as observed, so a mass independent of the region would need a full orientation (a frame, whose
+defects are Skyrmions) or a core held at the discreteness scale. A moving flow carries the defect with its charge and
+keeps it with its source (F3.13c: $+1$ on every readable shell at $\beta=0.3$ and $0.6$). That its rest-frame
+cost does not depend on its velocity is a property of the covariant rules, not a finding: in a Lorentz-invariant
+sprinkling, a defect moving relative to nothing is a resting one seen from another frame, and the frame check
+confirms the covariance. The run that compared them measured the finite box instead, which cut the source region
+of the moving defects (cost ratio $0.99\pm0.03$ and $0.87\pm0.03$, undecided; a design error). The content of a rest
+mass that can be tested is relative motion: whether the cost is released when a hedgehog meets an anti-hedgehog,
+and whether it resists a change of motion.
 
 % =============================================================================
 \section{The Benincasa--Dowker operator and action}\label{sec:bd}
