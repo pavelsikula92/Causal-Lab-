@@ -118,6 +118,16 @@ correction GPS would drift by kilometres a day.
 only show what such a motion would require: the accelerations a crew would feel. The "null field" option is a
 **hypothesis of the author**, not part of the theory or of the laboratory.
 
+What such a field would have to be: in the scripted manoeuvre the craft stops from 1000 m/s within 0.2 s, an
+acceleration of a = 5000 m/s², about 510 g. A crew driven by an engine would feel all of it. A body that falls
+freely in a gravitational field feels nothing, so a craft moved by gravity would carry its crew at 0 g. A field
+that gives this acceleration needs a steepness of the potential (U in units of c²) of
+
+  |∇U| = a/c² ≈ 5.6 · 10⁻¹⁴ m⁻¹,
+
+about 510 times the steepness of the Earth's field at its surface (g/c² ≈ 1.1 · 10⁻¹⁶ m⁻¹). Nothing in the theory or
+in the laboratory produces such a field around a craft; the number only states what the hypothesis would require.
+
 **11 Black hole (strong field).** Light passing a black hole at different distances, clocks near the horizon, and
 a particle on a tight orbit. Light that comes too close is captured, which produces the "shadow" seen by the
 Event Horizon Telescope. Here causal gravity is Einstein's by adoption. The scalar stage has no horizon (a throat
