@@ -148,6 +148,12 @@ def cmd_run(tid: str, opts: Dict[str, Any]) -> int:
         if opts["part"] not in parts:
             raise SystemExit(f"{tid} has parts {parts}")
         parts = [opts["part"]]
+    if opts["set"] and opts["quick"]:
+        # a quick run takes any known parameter; an unknown key (a typo, typographic quotes) stops before anything runs
+        for part in parts:
+            why = check_overrides(test, part, True, opts["set"])
+            if why:
+                raise SystemExit(why)
     if opts["set"] and not opts["quick"]:
         # a full run takes from --set only the parameters its part declares settable; checked for every part
         # BEFORE anything runs, so a long chain never stops halfway on a bad option

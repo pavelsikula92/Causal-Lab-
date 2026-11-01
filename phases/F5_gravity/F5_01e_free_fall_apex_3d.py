@@ -113,7 +113,7 @@ TEST = {
     "meters": ["K.16c"],
     "depends_on": ["F5.1d", "F7.1c", "K.16c"],
     "params": {"T": 24.0, "half": 8.0, "width": 4.0, "sigma0": 0.3, "r_launch": 4.0, "t_launch": 1.0,
-               "dT_launch": 6.0, "span": 12.0, "n_ring": 60, "memory": 8, "horizon": 8, "region": 4.0,
+               "dT_launch": 6.0, "span": 12.0, "n_ring": 60, "memory": 20, "horizon": 20, "region": 4.0,
                "r0": 4.0, "t0": 2.0, "dT": 16.0, "n_max": 40, "n_seeds": 16, "n_se": 2.0, "boot_B": 4000},
     "parts": {"main": {}},
     "quick": {"n_seeds": 1, "n_ring": 4, "n_max": 4, "boot_B": 200, "half": 6.0, "T": 14.0, "span": 4.0,

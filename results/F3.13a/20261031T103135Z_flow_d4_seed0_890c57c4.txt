@@ -1,0 +1,12 @@
+flow 3+1: box t [0, 12], ~32916 events, 1048 sources (r < 5, t < 2), cold F3.6 transport with merging and the flow-weighted merge of n; rings/shells [2.0, 3.0, 4.0] around the centroid of each slab; 16 sprinklings
+  vacuum : reads +0 on 1.000 of 144 readable triples (readable 1.00); values {0: 144}; core events 0.0
+           match by slab: t5:1.00 t7:1.00 t9:1.00
+  defect : reads +1 on 1.000 of 78 readable triples (readable 0.54); values {1: 78}; core events 0.0
+           match by slab: t5:1.00 t7:1.00 t9:1.00
+  anti   : reads -1 on 1.000 of 78 readable triples (readable 0.54); values {-1: 78}; core events 0.0
+           match by slab: t5:1.00 t7:1.00 t9:1.00
+  double : reads +2 on 1.000 of 4 readable triples (readable 0.03); values {2: 4}; core events 0.0
+           match by slab: t5:1.00
+  twist  : reads +0 on 1.000 of 54 readable triples (readable 0.38); values {0: 54}; core events 0.0
+           match by slab: t5:1.00 t7:1.00 t9:1.00
+instrument: defect readable >= 50%: OK; vacuum reads 0 on >= 95%: OK; twist reads 0 on >= 95%: OK

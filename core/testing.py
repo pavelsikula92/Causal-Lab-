@@ -117,8 +117,20 @@ def settable_of(test: Dict[str, Any], part: Optional[str]) -> List[str]:
 
 def check_overrides(test: Dict[str, Any], part: Optional[str], quick: bool,
                     overrides: Optional[Dict[str, Any]]) -> Optional[str]:
-    """None if the --set overrides are allowed, otherwise the reason (quick: anything; full: settable only)."""
-    if not overrides or quick:
+    """None if the --set overrides are allowed, otherwise the reason (quick: any known parameter; full: settable only).
+    An unknown key is refused in every mode (found 1 Nov 2026: typographic quotes around --set "kappas=[...]" made the
+    key '“kappas', which was silently added, and a diagnostic ran with the default kappas)."""
+    if not overrides:
+        return None
+    known = set(test.get("params", {})) | set(test.get("quick", {}))
+    for part_p in (test.get("parts", {}) or {}).values():
+        known |= set(part_p or {})
+    for part_q in (test.get("quick_parts", {}) or {}).values():
+        known |= set(part_q or {})
+    unknown = sorted(k for k in overrides if k not in known)
+    if unknown:
+        return f"--set {', '.join(repr(k) for k in unknown)}: no such parameter of this test (known: {sorted(known)})"
+    if quick:
         return None
     allowed = settable_of(test, part)
     bad = sorted(k for k in overrides if k not in allowed)

@@ -343,6 +343,11 @@ def seed_task(dim, p, arm, seed, n_ring, n_pairs, n_throw):
             if st is not None:
                 rows.append(st)
         out["tube"][name] = {"dT": dT, "pred": pred_sag(dim, p, float(p["r0"]), dT), "rows": rows}
+    # every sprinkling is saved as soon as it is done, so a stopped run loses only the sprinklings in progress
+    rd = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "rows")
+    os.makedirs(rd, exist_ok=True)
+    with open(os.path.join(rd, f"d{dim}_{arm}_{seed}.json"), "w", encoding="utf-8") as f:
+        json.dump(out, f)
     return out
 
 
@@ -425,6 +430,8 @@ def main():
     ap.add_argument("--n-throw", type=int, default=6, help="thrown histories per velocity (flat)")
     ap.add_argument("--workers", type=int, default=1)
     ap.add_argument("--base-seed", type=int, default=0)
+    ap.add_argument("--summarize", action="store_true", help="only summarise the sprinklings already saved in "
+                    "diag/out/rows for this dimension (after a stopped run)")
     ap.add_argument("--smoke", action="store_true", help="a small box only to check that the code runs (3+1: the "
                     "quick parameters of F5.1e); its numbers mean nothing")
     a = ap.parse_args()
@@ -432,6 +439,15 @@ def main():
     if a.smoke and a.dim == 3:
         p.update({"half": 6.0, "T": 14.0, "span": 4.0, "r_launch": 3.0, "region": 3.0, "r0": 3.0, "dT": 8.0})
     n_ring = a.n_ring or (40 if a.dim == 2 else 60)
+    if a.summarize:
+        import glob
+        rd = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "rows")
+        rows = []
+        for fn in sorted(glob.glob(os.path.join(rd, f"d{a.dim}_*.json"))):
+            with open(fn, encoding="utf-8") as f:
+                rows.append(json.load(f))
+        print("\n".join(summary(a.dim, p, rows)))
+        return
     jobs = [(a.dim, p, arm, derive_seed(a.base_seed, "diag-fall-layers", a.dim, arm, k), n_ring, a.n_pairs, a.n_throw)
             for k in range(a.seeds) for arm in ("loaded", "flat")]
     t0 = time.time()
