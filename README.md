@@ -5,6 +5,11 @@ two manifestations of one dynamics of causal resistance, and whether the geometr
 from a causal order and its action. The tests are ordered by the phases of the roadmap, and every phase belongs to one
 part of the theory (`docs/roadmap.md`). The paper that reports the finished tests is in `paper/`.
 
+## Citation
+
+The paper and the code used for it are archived together on Zenodo:
+Pavel Šikula, *Physics of Causality*, https://doi.org/10.5281/zenodo.23853689
+
 ## Installation
 
 Python 3.10 or newer, with numpy and scipy (matplotlib only for the figures of the paper):
@@ -48,7 +53,9 @@ records stay current.
     results/       results; history_3x/ for the results of GTS Lab 2.x and 3.x
     docs/          roadmap, findings, planned tests, author's decisions, derivations, generated list of tests
     paper/         the paper (LaTeX source, figures and the script that draws them)
-    Demo/          Causal Gravity, an interactive simulator of the gravity law (stand-alone)
+    Demo/          Causal Gravity, an interactive simulator of the gravity law (stand-alone; scenes explained in
+                   plain words in Demo/README.md)
+    diag/          development diagnostics (decide nothing; not registered tests)
     core_tests/    quick checks of the core
 
 The header of every test (`TEST = {...}`) contains the phase, the part of the theory, the question, the method, the

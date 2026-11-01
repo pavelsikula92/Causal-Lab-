@@ -10,21 +10,25 @@
 #   python Demo/causal_gravity.py --scene 2 --autorun   # and starts the simulation at once
 # Requirements: Python 3.9+, tkinter and numpy.
 #
-# THE GRAVITY LAW (state of the theory, 28 Oct 2026)
-# --------------------------------------------------
-# Causal gravity is the gravity law of the laboratory after decision 13 (route A):
+# THE GRAVITY LAW (state of the theory, 1 Nov 2026; the paper "Physics of Causality", doi:10.5281/zenodo.23853689)
+# -------------------------------------------------------------------------------------------------------------
+# Causal gravity is the gravity law of the laboratory:
 #   * the principle of conserved causal throughput (where the light cones narrow, the levels of the cone saturate)
-#     gives the PPN parameter gamma = 1 in 3+1 (F7.1c);
+#     gives the PPN parameter gamma = 1 in 3+1 (F7.1c, formally undecided only by the precision of its control);
 #   * in the linear order the principle is the same thing as coupling to the full energy-momentum tensor:
-#     hbar_ab = 4U u_a u_b for dust (docs/derivations/tensor_coupling.md); the substrate realises this coupling
-#     with the rule "every flow narrows the cone in its own rest frame, capacity deficits add" (F7.4a PASSED:
-#     counter-streaming beams gravitate as Gamma^2 (1 + v^2), the cones tilt along the flow);
-#   * the nonlinear completion is general relativity (decision 13), to be derived on the substrate later
-#     (Jacobson's route).
-# So in every scene of this simulator causal gravity and Einstein's general relativity give the same numbers;
-# that is the expected result, not a coincidence. What the simulator adds is the comparison with the frameworks
-# that fail (Newton, the scalar stage of the theory, the fixed order of the F3 rule) and the measurement of each
-# classical test in each framework.
+#     hbar_ab = 4U u_a u_b for dust; the substrate realises this coupling with the rule "every flow narrows the cone
+#     in its own rest frame, capacity deficits add" (F7.4a PASSED: counter-streaming beams gravitate as
+#     Gamma^2 (1 + v^2), the cones tilt along a moving flow);
+#   * the rule is not an independent postulate: the discrete action of the order (Benincasa-Dowker) has the
+#     Einstein-Hilbert stiffness in all three static sectors (F6.8a, F6.8b2, F6.8c2: 6.0003 / 7.983 / 2.002 against
+#     6 / 8 / 2), and gamma = 1 follows from it (0.997-1.000);
+#   * the nonlinear completion is ADOPTED: general relativity; its derivation from the order (Jacobson's route) is
+#     open. Gravitational waves and the frame dragging of a rotating body are not computed in the order: in this
+#     simulator they come from the adopted completion.
+# So in the scenes 0-21 causal gravity and Einstein's general relativity give the same numbers; that is expected,
+# not a coincidence. The simulator adds the comparison with the frameworks that fail (Newton, the scalar stage of
+# the theory, the fixed order of the F3 rule) and, in scene 22, the one place where causal gravity predicts a
+# different number: the weakening of an old static field at short distances (prediction P2, the age term).
 #
 # WHAT IS COMPUTED (approximations of the simulator)
 # --------------------------------------------------
@@ -44,6 +48,10 @@
 #     lambda * f(v), f = Gamma^2 (1 + v^2) for the tensor coupling, 1 for the scalar stage and Newton.
 #   * Strong field: outside the black-hole scene, a body that enters |U| > 0.2 of another source merges with it
 #     (the superposition of point fields fails there); photons are absorbed.
+#   * Short range (scene 22 only, causal gravity only): the pull of every point source is weakened by the age term
+#     of the paper (Sec. "P2: the age term"), delta(r) = c_T l_k^2 (cT) / r^3 with c_T = 0.1035, i.e. the
+#     relative weakening at wavenumber k = 1/r; capped at delta = 1. The non-locality scale l_k and the reading of the
+#     age T are inputs of the scene (sliders). The form beyond delta ~ 0.3 has not been computed.
 #
 # COMPARISON FRAMEWORKS (the same scene integrated in parallel, dashed trails)
 # ---------------------------------------------------------------------------
@@ -68,6 +76,7 @@
 #  8 Earth: ISS and GPS                    19 Binary pulsar PSR B1913+16
 #  9 UAP: scripted manoeuvre (hypothesis)  20 Inspiral (strong radiation)
 # 10 UAP: keyboard control                 21 What gravitates: counter-streaming beams (F7.4a)
+#                                          22 Short range: the age of a field (prediction P2)
 #
 # CONTROLS
 # --------
@@ -95,7 +104,7 @@ from collections import deque
 import numpy as np
 
 APP_NAME = "Causal Gravity"
-APP_VERSION = "2.0 (28 Oct 2026)"
+APP_VERSION = "2.1 (1 Nov 2026)"
 
 EPS = 1e-3  # numerical softening of point sources [length units]
 C_SI = 299792458.0  # speed of light [m/s]; in the SI scenes time is stored internally as ct [m]
@@ -117,6 +126,22 @@ MAS = ARCSEC / 1000.0  # milliarcsecond [rad]
 LY = 9.4607304725808e15  # light year [m]
 TAU_NULL = 0.05 * C_SI  # "null field" hypothesis: velocity response time 0.05 s, stored in metres
 L_MAX = 0.2  # weak-field limit; for |U| > L_MAX the superposition of point fields is not trusted
+C_T_AGE = 0.1035  # coefficient of the age term, delta = C_T_AGE (k l_k)^2 k T (paper, Sec. "The window", F6.8a)
+# readings of the age T of a static field in metres (cT); the paper's table "The window of the non-locality scale"
+AGE_READINGS = {"age of the universe (1.3·10²⁶ m)": 1.3e26, "age of the Earth's field (4.3·10²⁵ m)": 4.3e25,
+                "one year (9.5·10¹⁵ m)": 9.5e15, "one day (2.6·10¹³ m)": 2.6e13}
+SHORTEST_TESTED = 52e-6  # shortest distance at which the inverse-square law is tested [m] (Lee et al. 2020)
+W_DENSITY = 19300.0  # density of tungsten [kg/m^3] (the source of scene 22)
+
+
+def age_delta(r, age):
+    """Relative weakening of the pull of a static source at distance r by the age term, capped at 1.
+    age = (l_k, cT) in metres; None means no age term."""
+    if age is None:
+        return 0.0 * np.asarray(r, float)
+    ell, cT = age
+    r = np.maximum(np.asarray(r, float), 1e-300)
+    return np.minimum(C_T_AGE * ell * ell * cT / (r * r * r), 1.0)
 
 # Units offered for the mass of a new body: label -> geometric mass per unit [m].
 MASS_UNITS_SI = {"kg": G_C2, "Earth masses (M⊕)": M_EARTH, "solar masses (M☉)": M_SUN}
@@ -357,7 +382,7 @@ def _tensor_src(v):
 
 
 def _law_cg():
-    """Causal gravity: tensor coupling (F7.4a) with general relativity as the nonlinear completion (decision 13)."""
+    """Causal gravity: tensor coupling (F7.4a) with general relativity as the adopted nonlinear completion."""
     return Law("CG", "causal gravity (tensor coupling)", "#ffffff", beta=1.0, gamma=1.0, eps=1.0, gm=1.0, rad=1.0,
                src=_tensor_src, light_src=2.0, short="Causal", **_schwarzschild_iso())
 
@@ -425,6 +450,10 @@ class Sim:
         self.dt_max = 0.5
         self.events = []  # records of merging and absorption
         self.rad_E = {}  # radiated energy per pair of bodies (names) [geometric units]
+        self.eps = EPS  # softening of point sources [length units]; scene 22 needs a much smaller one
+        self.age = None  # (l_k, cT) [m]: the age term of scene 22, applied only in causal gravity
+        self.v_floor = 1e-12  # speed floor of the step choice [c]; scene 22 moves at ~1e-17 c and needs a lower one
+        self.m_floor = 1e-30  # mass floor of the step choice [m]; scene 22 has a source of ~5e-37 m
         self._extra = None
         self._vt = []
         self._spins = []
@@ -497,15 +526,18 @@ class Sim:
         return L, g
 
     @staticmethod
-    def field_at(points, src_pos, src_mass, exclude=None):
+    def field_at(points, src_pos, src_mass, exclude=None, eps=EPS, age=None):
         """
         L and grad L at points (P, 2) from point sources. exclude[p] is the index of a source left out for point p
         (its own field), or -1; exclude="self" leaves out the diagonal when the points are the sources.
+        eps: softening; age: (l_k, cT) weakens every source by 1 - delta(s) (scene 22, causal gravity only).
         """
         d = points[:, None, :] - src_pos[None, :, :]  # (P, S, 2)
-        s2 = np.sum(d * d, axis=2) + EPS * EPS
+        s2 = np.sum(d * d, axis=2) + eps * eps
         s = np.sqrt(s2)
         w = np.broadcast_to(src_mass[None, :], s.shape).copy()
+        if age is not None:
+            w = w * (1.0 - age_delta(s, age))
         if isinstance(exclude, str) and exclude == "self":
             np.fill_diagonal(w, 0.0)
         elif exclude is not None:
@@ -516,10 +548,14 @@ class Sim:
         g = np.sum((w / (s2 * s))[:, :, None] * d, axis=1)  # grad of -M/s is +M d / s^3
         return L, g
 
+    def age_term(self):
+        """The age term applies only to causal gravity (the prediction differs from Einstein exactly there)."""
+        return self.age if self.law.key == "CG" else None
+
     def total_field(self, points, pos, mass, exclude=None):
         """Point masses, the profile source and the rods."""
         if len(mass):
-            L, g = self.field_at(points, pos, mass, exclude=exclude)
+            L, g = self.field_at(points, pos, mass, exclude=exclude, eps=self.eps, age=self.age_term())
         else:
             L, g = np.zeros(len(points)), np.zeros((len(points), 2))
         if self.profile is not None:
@@ -542,7 +578,8 @@ class Sim:
         pt = np.array([[x, y]])
         L = 0.0
         if src:
-            L += float(self.field_at(pt, np.array([[b.x, b.y] for b in src]), np.array([b.mass for b in src]))[0][0])
+            L += float(self.field_at(pt, np.array([[b.x, b.y] for b in src]), np.array([b.mass for b in src]),
+                                     eps=self.eps, age=self.age_term())[0][0])
         if self.profile is not None:
             L += float(self.ext_field(pt)[0][0])
         if self.rods():
@@ -645,7 +682,7 @@ class Sim:
         moving = np.array([not (b.fixed or b.kind == "craft") for b in live], bool)
         if not np.any(moving):
             return self.dt_max if any(b.kind == "craft" for b in live) else math.inf
-        speed = np.sqrt(np.sum(vel * vel, axis=1)) + 1e-12
+        speed = np.sqrt(np.sum(vel * vel, axis=1)) + self.v_floor
         if self.profile is not None:  # time scales near the profile source
             c = self.profile
             d = np.sqrt((pos[:, 0] - c.x) ** 2 + (pos[:, 1] - c.y) ** 2) + 1e-12
@@ -658,11 +695,11 @@ class Sim:
                 dt = self.dt_max
             else:
                 d = pos[:, None, :] - pos[None, src, :]
-                sdist = np.sqrt(np.sum(d * d, axis=2) + EPS * EPS)
+                sdist = np.sqrt(np.sum(d * d, axis=2) + self.eps * self.eps)
                 idx = np.where(src)[0]
                 sdist[idx, np.arange(len(idx))] = np.inf  # a source does not limit its own step
                 t_cross = np.min(sdist, axis=1) / speed
-                t_orb = np.min(np.sqrt(sdist**3 / (mass[src][None, :] + 1e-30)), axis=1)
+                t_orb = np.min(np.sqrt(sdist**3 / (mass[src][None, :] + self.m_floor)), axis=1)
                 t_body = np.where(photon, t_cross, np.minimum(t_cross, t_orb))
                 dt = float(np.clip(self.eta * np.min(t_body[moving]), 1e-6, self.dt_max))
         for rod in self.rods():  # time scales near the beams: distance / sqrt(2 lambda)
@@ -1350,6 +1387,7 @@ SCENES = [
     "Binary pulsar PSR B1913+16",
     "Inspiral (strong radiation)",
     "What gravitates: counter-streaming beams (F7.4a)",
+    "Short range: the age of a field (prediction P2)",
 ]
 
 ROD_SPEEDS = (0.0, 0.3, 0.6, 0.9)  # beam speeds of the F7.4a scene (plus one pair of light beams)
@@ -1364,7 +1402,8 @@ def scene(name):
       display    fixed colour scale of the field ("log", lo, hi) or deviation from a reference ("rel", L0, range)
       click      "orbit": a click makes a circular orbit; "rest": a click releases the object at rest
       mass       default mass of a new body (value, unit label); None: 1e-6 of the reference mass in model units
-      flags      orbits, bh, map3d, pilot, radiation, pulsar, inspiral, probes, dragging, gpb, rods
+      flags      orbits, bh, map3d, pilot, radiation, pulsar, inspiral, probes, dragging, gpb, rods, age
+      eps        softening of point sources (default EPS); age: the age term of scene 22 (filled in by the app)
     """
     B = []
     meta = {"si": False, "dt_max": 0.5, "speed": math.log10(30.0), "display": ("log", -4.0, -1.0), "click": "orbit",
@@ -1461,7 +1500,7 @@ def scene(name):
         meta.update(si=True, dt_max=0.01 * C_SI, speed=0.0, display=("rel", -M_EARTH / R, M_EARTH / R**2 * 3000.0),
                     click="rest", mass=(1.0, "kg"))
     elif name == "Black hole (strong field)":
-        # G = c = 1 and M = 1, lengths in GM/c^2. Causal gravity = GR here (decision 13): Schwarzschild metric in
+        # G = c = 1 and M = 1, lengths in GM/c^2. Causal gravity = GR here (adopted completion): Schwarzschild metric in
         # isotropic coordinates. The framework H1 (scalar stage) uses the exact profile of its own field equation.
         bh = Body("black hole (M = 1)", 0, 0, mass=1.0, fixed=True, color="#202020")
         bh.is_profile = True
@@ -1643,6 +1682,22 @@ def scene(name):
         view = (0.0, 0.5, 34.0)
         meta.update(dt_max=0.5, eta=0.01, speed=math.log10(6.0), display=("log", -4.0, -2.0), rods=True,
                     click="rest", mass=(1e-12, "model units (G = c = 1)"))
+    elif name == "Short range: the age of a field (prediction P2)":
+        # A tungsten sphere of radius 20 um and probes released at rest at 60-250 um from its centre. Causal gravity
+        # (solid trails) carries the age term; Einstein (dashed, switched on by the scene) does not. l_k and the
+        # reading of T come from the controls of the scene (meta "age" is filled in by the application).
+        rs = 20e-6
+        m_src = W_DENSITY * 4.0 / 3.0 * math.pi * rs**3  # ~6.5e-10 kg
+        B.append(Body("tungsten sphere (r = 20 µm)", 0, 0, mass=m_src * G_C2, fixed=True, color="#c8c8d8", radius=rs))
+        cols = ("#ff7a7a", "#ffb37a", "#fff27a", "#7affb0", "#7ad0ff")
+        for k, (r0, col) in enumerate(zip((60e-6, 80e-6, 100e-6, 150e-6, 250e-6), cols)):
+            ang = math.radians(90.0 + 72.0 * k)
+            B.append(Body(f"probe {r0 * 1e6:.0f} µm", r0 * math.cos(ang), r0 * math.sin(ang), mass=1e-15 * G_C2,
+                          color=col))
+        view = (0.0, 0.0, 3.0e-4)
+        meta.update(si=True, dt_max=5.0 * C_SI, eta=0.01, speed=math.log10(100.0), display=("log", -33.5, -31.5),
+                    click="rest", mass=(1e-15, "kg"), age=True, eps=1e-7, v_floor=1e-30,
+                    m_floor=1e-300)
     else:  # free scene: a fixed source keeps added orbits stable
         B.append(Body("mass (fixed)", 0, 0, mass=0.01, fixed=True, color="#ffd27a"))
         view = (0.0, 0.0, 3.0)
@@ -1917,8 +1972,8 @@ def classical_tests_table(res, laws):
                 cells.append("0" if v == 0 else (f"{v:.4g}" if abs(v) >= 1e-3 else f"{v:.2e}"))
         lines.append(f"{(label + ' [' + unit + ']'):44s}" + "".join(f"{c:>{w + 1}s}" for c in cells) + f"   {obs}")
     lines += [
-        "Reading: causal gravity and Einstein agree in every row (decision 13: the same metric, tensor coupling and "
-        "radiation); differences could only appear at the discreteness scale of the order.",
+        "Reading: causal gravity and Einstein agree in every row (the same metric, tensor coupling and radiation; "
+        "beyond the linear order GR is adopted); the theory differs only at short range, by the age term (scene 22).",
         "Newton fails light (half), perihelion, Shapiro, clocks, gyroscopes and radiation; the scalar stage H1 passes "
         "light, perihelion, Shapiro and clocks but fails frame dragging (0), the binary pulsar (1/6 for circular "
         "orbits) and the active mass of moving matter; the fixed order F3 (γ = −1) fails light bending completely.",
@@ -1939,21 +1994,39 @@ STATUS = [
     ("Coupling κ ↔ G", "input (calibration), not derived"),
     ("Motion along the geodesics of the field", "tested in 2+1 (F2.7: motion exactly on the geodesic of the causal-set "
      "field)"),
+    ("Free fall from the order itself (no bending rule)",
+     "a history continued as a longest chain of the order falls with Newton's acceleration in 2+1 (F5.1d PASSED, "
+     "replicated: R = 1.07 ± 0.05 and 1.10 ± 0.06), but not in 3+1 (F5.1e FAILED); the cause is being diagnosed. "
+     "In the simulator bodies follow the geodesics of the metric: an input"),
     ("Discrete operator → continuum equation", "tested: K.11, K.13a; K.12 without screening (r(0) = 1)"),
+    ("Einstein–Hilbert stiffness of the order",
+     "computed from the discrete Benincasa–Dowker action with nothing from GR put in: 6.0003 against 6 (conformal), "
+     "7.983 against 8 (mixed), 2.002 against 2 (optical) (F6.8a, F6.8b2, F6.8c2)"),
     ("γ = 1 (light bending, Shapiro delay)",
-     "derived from the throughput principle (decision 12); lab F7.1c in 3+1: 1.000 / 0.972 and 0.948 / 0.979 "
-     "(formally undecided only by the statistics of the control); no longer an input"),
-    ("Tensor coupling to T_ab (frame dragging, pressure and motion gravitate)",
+     "follows from the action of the order (0.997–1.000, F6.8) and from the throughput principle; lab F7.1c in 3+1: "
+     "1.000 ± 0.045 (formally undecided only by the precision of the control); no longer an input"),
+    ("Tensor coupling to T_ab (pressure and motion gravitate)",
      "tested: F7.4a PASSED (beams at 0.6c: R = 2.401 ± 0.053 against 2.361; anisotropy K = 1.221 ± 0.012 against "
-     "1.192; the cones tilt along the flow)"),
+     "1.192; a moving flow tilts the cones)"),
+    ("Frame dragging of a rotating body (Gravity Probe B)",
+     "not computed in the order: only its local mechanism, the tilt of the cones by a moving flow, is tested "
+     "(F7.4a); the simulator uses g_0i of general relativity"),
     ("Nonlinear completion = general relativity (strong field, horizon)",
-     "decision 13 (route A): input until derived on the substrate (Jacobson's route, steps 2 and 4)"),
-    ("β = 1 (perihelion)", "continuum (ln Π, F1.7); in GR form by decision 13; discrete F1.9a: instrument failed in the "
-     "quadrature check, descriptively c → continuum (β ≈ 1 at σ = 16)"),
-    ("Gravitational radiation (quadrupole)",
-     "follows from the tensor coupling at linear order; the simulator uses the 2.5PN reaction force of GR; not tested "
-     "in the lab"),
-    ("Mass as point particles", "input of the simulator; the origin of matter from the dynamics is open"),
+     "ADOPTED, not derived: the uniqueness theorems need assumptions the order is not yet shown to satisfy; the "
+     "derivation from the thermodynamics of the order (Jacobson's route) is open"),
+    ("β = 1 (perihelion)", "continuum (ln Π, F1.7); in GR form by the adopted completion; discrete F1.9a: instrument "
+     "failed in the quadrature check, descriptively c → continuum (β ≈ 1 at σ = 16)"),
+    ("Gravitational radiation (quadrupole, two polarisations)",
+     "adopted with the completion: if the completion is linearised GR, the tensor coupling gives the two "
+     "polarisations; the propagation of waves in the order is not computed; the simulator uses the 2.5PN reaction "
+     "force of GR"),
+    ("Short range: the age term (scene 22)",
+     "a prediction of the theory: an old static field pulls more weakly at short distance, δ ≈ 0.10 ℓ_k² cT/r³ "
+     "(F6.8a; the scale ℓ_k is free, the meaning of T is open, the form beyond δ ~ 0.3 is not computed)"),
+    ("Mass as point particles",
+     "input of the simulator. In the lab: a bundle held by its own field was not obtained (F3.11, F3.12b); a locked "
+     "topological defect exists only in a model extended by two assumptions and placed by hand (F3.13b2), not yet a "
+     "particle"),
     ("Superposition, quasi-static field", "linear superposition of point fields, no retardation (slow sources)"),
     ("Many-body dynamics", "every body a test body in the field of the others; gravitomagnetism of mass currents and "
      "the EIH terms are not modelled (spins only)"),
@@ -1962,25 +2035,35 @@ STATUS = [
     ("UAP 'null field'", "HYPOTHESIS of the author, neither in the theory nor in the lab; the scene only shows what it "
      "would have to explain"),
     ("Scalar stage: no horizon, throat 2.341 M, shadow +0.91 %",
-     "NOT a prediction of the theory (decision 13); shown only as the framework H1"),
+     "NOT a prediction of the theory (the completion is GR); shown only as the framework H1"),
 ]
 
-ABOUT = """Causal gravity (decision 13, 28 Oct 2026)
+ABOUT = """Causal gravity (state of 1 Nov 2026)
 
-Throughput principle: where the light cones narrow (c_eff ↓)
-the levels of the cone saturate (more events), ρ_c · c = const.
-In 3+1 this gives γ = 1 (F7.1c) and, in the linear order, the
-coupling of the field to the full energy-momentum tensor:
-   h̄_ab = 4U u_a u_b  (dust),
-realised on the substrate by "every flow narrows the cone in
-its own rest frame, capacity deficits add" (F7.4a PASSED).
-The nonlinear completion is general relativity.
+Gravity is the response of the causal order to matter:
+near matter clocks slow down, light cones narrow and
+events become denser. Where the cones narrow, the order
+keeps its causal throughput (ρ_c · c = const).
+In 3+1 this is the coupling of general relativity to the
+full energy-momentum tensor, realised on the substrate by
+"every flow narrows the cone in its own rest frame,
+capacity deficits add" (F7.4a PASSED), and it follows
+from the discrete action of the order, whose stiffness is
+Einstein-Hilbert (F6.8: 6.0003, 7.983, 2.002 vs 6, 8, 2).
+Beyond the linear order general relativity is ADOPTED;
+its derivation from the order is open.
+
+So in scenes 0-21 causal gravity and Einstein agree by
+construction. Scene 22 shows the one difference the theory
+predicts: an old static field pulls more weakly at very
+short distances (the age term).
 
 Metric used (G = c = 1, U = ΣM/r):
    ds² = −A dt² + B dx²,  A = ((1−U/2)/(1+U/2))²,  B = (1+U/2)⁴
-Spinning bodies: g_0i = −2 (J × r)_i / r³ (frame dragging).
-Radiation: 2.5PN reaction force of a binary (quadrupole).
+Spinning bodies: g_0i = −2 (J × r)_i / r³ (from GR).
+Radiation: 2.5PN reaction force of a binary (from GR).
 Moving matter as a source: T_00 + T_ii, beams Γ²(1 + v²).
+Scene 22: pull × (1 − δ),  δ = 0.1035 ℓ_k² cT / r³ (≤ 1).
 
 Motion (geodesics of the static metric):
    dv/dt = −(A′/2B)∇U − v(v·∇U)B′/B + v²(B′/2B)∇U + v(v·∇U)A′/A
@@ -1994,10 +2077,8 @@ Measured against (1PN, test body, one mass):
    gyroscope (γ + ½) v × ∇U and (1+γ)/2 [3(J·n)n − J]/r³,
    binary dP/dt = −(192π/5)(2πM_c/P)^(5/3) f(e).
 
-Honest reading: in this simulator causal gravity and Einstein
-coincide by construction; the content is that the substrate
-rule produces the tensor coupling (F7.4a) and that Newton, the
-scalar stage and the fixed order fail the listed tests."""
+The paper: "Physics of Causality", doi:10.5281/zenodo.23853689.
+The scenes in plain words: Demo/README.md."""
 
 # Risky claims of the theory and the tests that measure them. "reading" is the interpretation in docs/findings.md
 # with its date; the status of the tests is loaded from the saved records.
@@ -2010,25 +2091,38 @@ PREDICTIONS = [
      "24–25 Oct: screening excluded analytically (r(0) = 1); nonlinear remainder ~0.06 open"),
     ("Motion along the geodesics of the causal-set field", ["F2.7"], "a path off the geodesic",
      "motion exactly on the geodesic (2.027 against 2.023)"),
+    ("Free fall from the order: a longest-chain history falls with Newton's acceleration", ["F5.1d", "F5.1e"],
+     "no fall, or a fall of the wrong size",
+     "2+1 PASSED twice (R = 1.07 ± 0.05, 1.10 ± 0.06); 3+1 FAILED (R = −0.13 ± 0.12); diagnosis in progress"),
     ("γ = 1: light bending from the substrate (throughput principle)", ["K.16c", "F7.1a", "F7.1b", "F7.1c"],
      "γ ≠ 1 (Cassini: |γ − 1| < 2.3·10⁻⁵)",
      "3+1: γ ≈ 1 in two runs (1.000 / 0.972, 0.948 / 0.979); cones only 1/3 as predicted; formally undecided by the "
-     "statistics of the control (27 Oct)"),
+     "precision of the control"),
+    ("The action of the order has the Einstein–Hilbert stiffness", ["F6.8a", "F6.8b2", "F6.8c2"],
+     "a stiffness other than 6 / 8 / 2 in the static sectors",
+     "holds: 6.0003, 7.983, 2.002; γ = 1 follows (0.997–1.000)"),
     ("Tensor coupling: moving matter gravitates as T_00 + T_ii, cones tilt with the flow", ["F7.4a"],
      "active mass Γ², Γ or 1 instead of Γ²(1 + v²); isotropic cones",
      "PASSED 28 Oct: R = 2.401 ± 0.053 (exact rule 2.361, energy-only 1.5625 is 16 SE away), K = 1.221 ± 0.012"),
     ("β = 1 in the discrete field", ["F1.9a"], "c away from 0 by more than 1/4 (β = 1/2 or 3/2)",
      "F1.9a INSTRUMENT FAILED (quadrature σ = 4); descriptively c(σ = 16) = −0.002 and +0.055 against +0.008 and "
      "+0.058"),
-    ("Matter arises from the dynamics of the causal order", [], "no stable structure", "not measured: the largest gap"),
+    ("The age term: an old static field is weaker at short range (scene 22)", ["F6.8a", "F6.8b2", "F6.8c2"],
+     "no deviation from 1/r² down to the scale L* where the theory places it",
+     "derived and computed (−0.10 k³ ℓ_k² T, conformal sector); bounds ℓ_k ≲ 10⁻²⁰ m if T is cosmological "
+     "(52 µm test); the meaning of T and the far-field form are open"),
+    ("Matter arises from the dynamics of the causal order", ["F3.11", "F3.12b", "F3.13b2", "F3.13d"],
+     "no stable structure",
+     "a bundle held by its own field: not obtained; a topological defect is locked only in a model extended by two "
+     "assumptions and placed by hand; spontaneous formation tested in F3.13d"),
     ("a₀ = cH₀/2π from the dynamics (flat rotation curves)", ["F6.7"], "another scale or evolution of a₀(z)",
-     "not derived (analysis F6.7, 23 Oct)"),
+     "not derived (analysis F6.7, 23 Oct); no longer claimed"),
     ("Gravitational waves: tensor modes, speed c, quadrupole formula", [],
      "scalar or dipole radiation (Hulse–Taylor pulsar, LIGO)",
-     "follows from the tensor coupling (F7.4a) at linear order; the dynamics of the order is not yet derived"),
+     "adopted with the completion (GR); the propagation of waves in the order is not computed"),
     ("Strong field: horizon, photon sphere, shadow", [], "shadow against EHT (M87*, Sgr A*)",
-     "general relativity by decision 13 (horizon 2M, photon sphere 3M, b_crit 5.196 M); derivation pending "
-     "(Jacobson's route); the scalar-stage throat is withdrawn as a prediction"),
+     "general relativity, adopted (horizon 2M, photon sphere 3M, b_crit 5.196 M); derivation open (Jacobson's "
+     "route); the scalar-stage throat is withdrawn as a prediction"),
 ]
 
 
@@ -2266,6 +2360,20 @@ def selftest():
     # 15. Counter-streaming beams (F7.4a): active mass relative to rest.
     report("beams at 0.6c, causal gravity Gamma^2 (1 + v^2)", _finish(ct_beams(MAIN_LAW())), 2.125, 1e-9)
     report("beams at 0.6c, scalar stage (rest count)", _finish(ct_beams(_law_h1())), 1.0, 1e-9)
+    # 16. Short range (scene 22): the age term weakens the pull of causal gravity by 1 - delta, Einstein not at all.
+    name = "Short range: the age of a field (prediction P2)"
+    age = (1e-19, 1.3e26)
+    drops = {}
+    for law in (MAIN_LAW(), _law_gr()):
+        bodies, _, meta = scene(name)
+        sa = Sim(law)
+        sa.bodies, sa.dt_max, sa.eta, sa.eps = bodies, meta["dt_max"], meta["eta"], meta["eps"]
+        sa.v_floor, sa.m_floor, sa.age = meta["v_floor"], meta["m_floor"], age
+        r0 = math.hypot(bodies[4].x, bodies[4].y)  # the probe at 150 um
+        sa.advance(1e11, max_steps=100000)
+        drops[law.key] = r0 - math.hypot(bodies[4].x, bodies[4].y)
+    report("age term at 150 µm, causal ÷ Einstein pull (1 - delta)", drops["CG"] / drops["GR"],
+           1.0 - float(age_delta(150e-6, age)), 2e-3)
     print("RESULT:", "all checks passed" if ok_all else "some checks FAILED")
     return 0 if ok_all else 1
 
@@ -2575,6 +2683,21 @@ def run_app(start_scene=None, autorun=False):
           wraplength=290).pack(fill="x")
     check(pilot_frame, "Camera follows the UAP", follow_var).pack(fill="x")
     pilot_frame.pack_forget()
+
+    # controls of scene 22: the non-locality scale and the reading of the age of the field
+    age_frame = tk.LabelFrame(tab_c, text="Short range (scene 22)", bg=PANEL, fg=TXT, bd=1, padx=6, pady=4)
+    tk.Label(age_frame, text="Non-locality scale ℓ_k [log₁₀ m] (a free parameter of the theory; collider bounds "
+             "suggest ≲ −19):", bg=PANEL, fg=TXT, anchor="w", justify="left", wraplength=290).pack(fill="x")
+    age_l_var = tk.DoubleVar(value=-19.0)
+    tk.Scale(age_frame, from_=-21.0, to=-17.0, resolution=0.1, orient="horizontal", variable=age_l_var, bg=PANEL,
+             fg=TXT, highlightthickness=0).pack(fill="x")
+    tk.Label(age_frame, text="What the age T of the field is (open in the theory):", bg=PANEL, fg=TXT, anchor="w",
+             justify="left", wraplength=290).pack(fill="x")
+    age_T_var = tk.StringVar(value=list(AGE_READINGS)[0])
+    ttk.Combobox(age_frame, textvariable=age_T_var, values=list(AGE_READINGS), state="readonly").pack(fill="x")
+    tk.Button(age_frame, text="Apply (the scene restarts)", command=lambda: load_scene(scene_var.get())).pack(
+        fill="x", pady=(4, 0))
+    age_frame.pack_forget()
 
     # form for adding an object to the real 3D star map
     map3d_frame = tk.LabelFrame(tab_c, text="New object in the 3D map", bg=PANEL, fg=TXT, bd=1, padx=6, pady=4)
@@ -2999,6 +3122,10 @@ def run_app(start_scene=None, autorun=False):
         """Common settings of the main simulation and of the frameworks."""
         sim.bodies = bodies
         sim.dt_max, sim.eta = meta["dt_max"], meta.get("eta", 0.02)
+        sim.eps = meta.get("eps", EPS)
+        sim.v_floor = meta.get("v_floor", 1e-12)
+        sim.m_floor = meta.get("m_floor", 1e-30)
+        sim.age = meta.get("age") if isinstance(meta.get("age"), tuple) else None
         sim.radiation = bool(meta.get("radiation"))
         if meta.get("bh"):  # strong field: no guard; the scalar stage uses its exact profile
             c = next(b for b in sim.bodies if getattr(b, "is_profile", False))
@@ -3015,12 +3142,21 @@ def run_app(start_scene=None, autorun=False):
         state["ghosts"] = []
         if meta.get("map3d"):  # the star map has no gravitational dynamics to compare
             return
-        for law in selected_laws():
+        laws = selected_laws()
+        if meta.get("age") and not any(lw.key == "GR" for lw in laws):  # scene 22 needs Einstein as the reference
+            laws.insert(0, _law_gr())
+        for law in laws:
             gs = configure_sim(Sim(law), meta, [b for b in scene(name)[0] if b.kind != "pilot"])
             state["ghosts"].append({"sim": gs, "trackers": [], "light": [], "binaries": [], "law": law})
 
+    def age_params():
+        """(l_k, cT) in metres from the controls of scene 22."""
+        return 10.0 ** float(age_l_var.get()), AGE_READINGS.get(age_T_var.get(), 1.3e26)
+
     def load_scene(name):
         bodies, state["view"], meta = scene(name)
+        if meta.get("age"):
+            meta["age"] = age_params()
         sim = configure_sim(Sim(MAIN_LAW()), meta, bodies)
         state["sim"], state["scene"], state["meta"] = sim, name, meta
         state["mass_reference"] = max((b.mass for b in sim.bodies if b.alive and b.mass > 0 and b is not sim.profile),
@@ -3075,6 +3211,10 @@ def run_app(start_scene=None, autorun=False):
             pilot_frame.pack(fill="x", padx=8, pady=(6, 0))
         else:
             pilot_frame.pack_forget()
+        if meta.get("age"):
+            age_frame.pack(fill="x", padx=8, pady=(6, 0))
+        else:
+            age_frame.pack_forget()
         speed_var.set(meta["speed"])
         out.xview_moveto(0.0)
         out.yview_moveto(0.0)
@@ -3691,7 +3831,7 @@ def run_app(start_scene=None, autorun=False):
         ]
         h1 = next((g for g in state["ghosts"] if g["law"].key == "H1"), None)
         if h1 is not None:
-            lines.append(f"   scalar stage H1 (NOT a prediction, decision 13): no horizon, throat R = "
+            lines.append(f"   scalar stage H1 (NOT a prediction; the completion is GR): no horizon, throat R = "
                          f"{info['R_throat']:.3f} M, photon sphere R = {info['R_ph']:.3f} M, b = {info['b_crit']:.4f} M "
                          f"(+{100 * (info['b_crit'] / (3 * math.sqrt(3)) - 1):.2f} %)")
         for b in sim.bodies:
@@ -3936,6 +4076,63 @@ def run_app(start_scene=None, autorun=False):
             if (dy >= 0.1 or b.landed_t is not None) and t > 0:
                 b.a_meas = 2.0 * dy / (t * t)
 
+    def measure_age_probes(sim):
+        """Pull of every probe of scene 22 relative to Newton's pull of the bare source: drop / (M t^2 / 2r0^2),
+        read while the drop is below 10 % of the starting distance (then the ratio is kept)."""
+        src = next((b for b in sim.bodies if b.alive and b.radius > 0), None)
+        if src is None:
+            return
+        for b in sim.bodies:
+            if b is src or b.kind != "mass" or not hasattr(b, "start") or getattr(b, "age_done", False):
+                continue
+            x0, y0 = b.start[0] - src.x, b.start[1] - src.y
+            r0 = math.hypot(x0, y0)
+            t = sim.t - (b.t_birth or 0.0)
+            if r0 <= 0.0 or t <= 0.0:
+                continue
+            drop = r0 - math.hypot(b.x - src.x, b.y - src.y)
+            pred = 0.5 * src.mass / (r0 * r0) * t * t
+            if pred > 0.0 and drop > 0.0:
+                b.age_ratio = drop / pred
+            if drop >= 0.1 * r0 or b.landed_t is not None:
+                b.age_done = True
+
+    def readouts_age():
+        sim = state["sim"]
+        age = sim.age
+        lines = ["SHORT RANGE: THE AGE OF A FIELD (prediction P2). The only scene where causal gravity and Einstein give "
+                 "different numbers. In causal physics a static field that has existed for a long time T pulls a little "
+                 "more weakly at very short distances: by the fraction δ(r) ≈ 0.10·ℓ_k²·cT/r³. The scale ℓ_k is a free "
+                 "parameter and what T is (the age of the universe, of the Earth's field, of the laboratory mass) is "
+                 "open. Solid trails: causal gravity; dashed: Einstein (no weakening). Formulas: paper, Sec. P2 and "
+                 "'The window of the non-locality scale'."]
+        if age is None:
+            return lines
+        ell, cT = age
+        Ls = (C_T_AGE * ell * ell * cT) ** (1.0 / 3.0)
+        d52 = float(age_delta(SHORTEST_TESTED, age))
+        verdict = ("EXCLUDED: the inverse-square law holds at 52 µm (Lee et al. 2020); the paper requires δ < 1 % there"
+                   if d52 >= 0.01 else "allowed by the 52 µm test (δ < 1 %)")
+        lines.append(f"ℓ_k = {ell:.2e} m, T: {age_T_var.get()} → δ = 1 at L* = {Ls * 1e6:.3g} µm; at 52 µm "
+                     f"δ = {d52:.3g}: {verdict}.")
+        lines.append("Beyond δ ≈ 0.3 the form of the term has not been computed; the simulator caps δ at 1, so inside "
+                     "L* the causal field vanishes (the dark disc of the field map) — outside the computed regime.")
+        ghost = next((g["sim"] for g in state["ghosts"] if g["law"].key == "GR"), None)
+        src = next((b for b in sim.bodies if b.alive and b.radius > 0), None)
+        for b in sim.bodies:
+            if b is src or b.kind != "mass" or not hasattr(b, "start") or src is None:
+                continue
+            r0 = math.hypot(b.start[0] - src.x, b.start[1] - src.y)
+            dl = float(age_delta(r0, age))
+            gb = next((o for o in ghost.bodies if o.name == b.name), None) if ghost else None
+            mc = getattr(b, "age_ratio", None)
+            mg = getattr(gb, "age_ratio", None) if gb is not None else None
+            ratio = f"{mc / mg:.3f}" if (mc is not None and mg) else "…"
+            lines.append(f"{b.name}: pull of causal gravity ÷ Einstein: predicted {1.0 - dl:.3f} (δ = {dl:.3g}), "
+                         f"measured {ratio} (over the first 10 % of the fall, where δ grows)"
+                         + ("   [δ > 0.3: not computed in the theory]" if dl > 0.3 else ""))
+        return lines
+
     def readouts_rods():
         sim = state["sim"]
         lines = ["WHAT GRAVITATES (F7.4a): each rod is a pair of beams streaming in opposite directions with the same "
@@ -3981,6 +4178,8 @@ def run_app(start_scene=None, autorun=False):
             body = readouts_gpb() + comparison_lines()
         elif meta.get("rods"):
             body = readouts_rods() + comparison_lines()
+        elif meta.get("age"):
+            body = readouts_age()
         elif meta.get("probes"):
             body = readouts_probes() + comparison_lines()
         elif meta.get("dragging"):
@@ -4162,6 +4361,9 @@ def run_app(start_scene=None, autorun=False):
         if state["meta"].get("rods"):
             for sm in [sim] + [g["sim"] for g in state["ghosts"]]:
                 measure_rod_probes(sm)
+        if state["meta"].get("age"):
+            for sm in [sim] + [g["sim"] for g in state["ghosts"]]:
+                measure_age_probes(sm)
         background_work(0.015)
         if sim.events and state.get("n_events", 0) != len(sim.events):
             state["n_events"] = len(sim.events)
