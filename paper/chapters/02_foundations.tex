@@ -182,14 +182,21 @@ bound structure, which the model does not yet have.
 \section{The action of a flow}\label{sec:action}
 % =============================================================================
 
-The Causal Resistance Functional $\mathcal R=\sum_v Z_v\Delta\tau$ (impedance $Z_v$ times the causal
-update increment) is the action of a flow along its history. Its content depends on what
-$\Delta\tau$ is. Here $\Delta\tau$ is the proper time between successive events of the flow, as counted by the order (the length of the longest chain, or equivalently the number of
-elements of a small interval). Then, for a flow with mass $m$,
+The action of a flow is its proper time as counted by the order. Here $\Delta\tau$ is the proper time between
+successive events of the flow, the length of the longest chain between them. The number of elements $N$ of the
+interval between two events measures the same quantity only through a calibrated, dimension-dependent estimator:
+its expectation grows as $\rho V_D\tau^D$ ($V_D=\pi/24$ in 3+1), so $\tau\simeq(N/\rho V_D)^{1/D}$, not $N$
+itself. For a flow with mass $m$,
 \begin{equation}\label{eq:A6}
   S_m=-\sum m\,\Delta\tau \;\longrightarrow\; -m\!\int\!\dd\tau ,
 \end{equation}
 the action of a free particle (Axiom~\ref{ax:action}).
+
+The Causal Resistance Functional of the first version, $\mathcal R=\sum_v Z_v\Delta\tau$, weights the same
+increments by the impedance $Z_v=I_v/\Pi_v$. It is not the action used in this paper: it coincides with $S_m$ only
+if $Z_v$ is proportional to the mass of the flow, and no relation between the impedance and the mass has been
+derived. It is kept as a separate functional of the resistance of the substrate (its rerouting part is measured in
+Sec.~\ref{sec:matter}); whether it is an action is open. Everything below uses $S_m$.
 
 Two consequences follow without further assumptions.
 \begin{enumerate}
@@ -362,10 +369,12 @@ advance (the slope of the width within a quarter of the free spreading in two ti
 \begin{itemize}
 \item \emph{Merging cools.} Streams that meet merge with exact four-momentum (F3.6c); internal motion becomes
   rest mass, and a hot bundle in its field holds a plateau and then contracts (F3.11).
-\item \emph{The resistance of the substrate is capacity, not topology.} When the flow must avoid a region, the
+\item \emph{In the tested rerouting, capacity weighs more than topology.} When the flow must avoid a region, the
   change of its distribution beyond the flow that is forced to move, obtained by linear programming, is
   $0.013\pm0.0003$ of the link flux if the paths vanish (narrowed cones) and $0.053\pm0.001$ if the capacity
-  drops by the same forced amount (F3.12a2, 32 sprinklings; the same at three strengths).
+  drops by the same forced amount (F3.12a2, 32 sprinklings; the same at three strengths). This holds for the
+  tested configuration (a lens in time, 2+1, one measure of the change); it is not a general identity of
+  resistance and capacity.
 \item \emph{Capacity as an elastic wall does not bind.} Streams that never merge and are reflected out of events
   that carry more than $C$ streams spread or collapse like streams without the wall; without merging, warm
   streams ($\eta=0.06$) come closest to a stationary width ($3.39$--$3.50\,\ell$ from $t\approx15$ to $45$), but
