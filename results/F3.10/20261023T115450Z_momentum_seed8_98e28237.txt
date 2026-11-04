@@ -1,0 +1,5 @@
+2+1, rho = 1; bundles radius 3, source time [0, 4), box margin 12, T = 48; field phi_i = sum F / (2 pi tau), tau >= 1; epsilon = 0.1 (from F3.8/F3.9), phi_ref = 26.927, lambda = 0.00371; flux per unit time of a single bundle mu = 84.26; window [1.25 d, 2.5 d] (linear response)
+  d = 12, f_L = 1, f_R = 2: relative acceleration a = -0.01588 +- 0.00336 (quasi-static point-line approximation -0.01505, ratio 1.055; its smallest separation in the window 8.94); change of the separation over the window -1.54 +- 0.14; a_L towards R +0.01157 +- 0.00268; dP_L/dt +1.4671 +- 0.0558, dP_R/dt -1.5434 +- 0.1518, sum -0.0762 +- 0.1791; acceleration from momentum a_P,L +0.00907 +- 0.00039 (approximation +0.01024), a_P,R -0.00463 +- 0.00041
+  4-momentum dropped at mergers (theory, no verdict): (|P| - F) / F = 4.31e-04; numerical ties in the checks: 0
+momentum: dP_L + dP_R = -0.0762 +- 0.1791 vs tolerance (|dP_L| + |dP_R|)/8 = 0.3763; both changes resolved: True
+instrument: C equals A bit for bit (coupling only through the field): OK; frame check beta' = 0.6 (choices, flux, directions): OK; mirror x -> -x (choices, flux, directions): OK

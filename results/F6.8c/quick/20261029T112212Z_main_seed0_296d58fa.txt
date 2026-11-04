@@ -1,0 +1,14 @@
+3+1, eps rho = 1 (l_k = 1); g = -dt^2 + e^(2bh)dx^2, h = cos(k z1), phase-averaged; light cones to second order (bent rays); K_hat_bb = d2E[S]/db2 / EH 2k^2 (C = 2 K_hat_bb); K_hat = conformal (F6.8a) on the same nodes
+  I1a <T2> closed form vs numerical Fermat ray: d = 3, angle 0.4: +0.693680 vs +0.693680 (rel 4.3e-07); d = 5, angle 1.1: -0.209230 vs -0.209213 (rel 7.9e-05); d = 2, angle 1.5: +0.365748 vs +0.365751 (rel 9.2e-06) (tol 0.002)
+  I1b d2V/db2 -0.0159484 vs numerical roots + finite differences -0.0159590 (rel 6.6e-04); uniform null 3.6e-15 (tol 0.002, 1e-09)
+  I2 conformal K_hat on this grid +0.673224 vs F6.8a row +0.673224 (k = 0.2, T = 40): |diff| 1.6e-10 (tol 0.001)
+  I3 null k = 0: T = 40: J_bb +5.1e-06 (boundary part -3.1e-05), 8.3e-04 in K_hat_bb units at k = 0.1 (tol 0.002)
+  I4 k = 0.2, T = 40: K_hat_bb level 1 +0.537172, level 2 +0.537172, |diff| 5.6e-08 (tol 0.002)
+  k       ages T                   K_hat_bb(T) | K_hat(T)                              K_loc_bb  K_loc     c_T,bb   c_T      phi2
+  0.1     40, 80                   +0.8517|+0.8881 +0.8485|+0.8913          +0.85498  +0.88492  +0.0808  -0.0795  +0.01684
+  0.2     40, 80                   +0.5372|+0.6732 +0.3927|+0.6383          +0.68165  +0.70818  +0.4515  +0.1092  +0.14149
+  reported (K_hat_ab of F6.8b2, same k and T): gamma(k, T) = 2 K_ab/K_bb - 1, Phi/Phi_GR = -2/(6 K - 8 K_ab^2/K_bb):
+    k = 0.1, T = 80: gamma +1.09489, Phi/Phi_GR +0.95245
+    k = 0.2, T = 40: gamma +1.46934, Phi/Phi_GR +0.79630
+    k = 0.2, T = 80: gamma +2.06071, Phi/Phi_GR +0.56692
+  reported, local parts: k = 0.1: gamma_loc +1.11592; k = 0.2: gamma_loc +1.13032

@@ -1,0 +1,8 @@
+3+1 order of F7.1c: sigma0 = 0.3, w = 4; box t [0, 14], |x|, |y|, |z| <= 6 (~27175 events, links kept 0.14); launch ring r = 3 at t = 1, 4 chains, apex of the longest chain over dT_launch = 6; longest-chain rule m 8, H 8, cylinder 3; fit over 4 from the apex
+  prediction (phi = -sigma/2, fall from rest at r_apex): a_pred = -0.02187; control sag +0.1731
+  loaded: R = -1.124 +- nan (inconclusive); v0 -0.1283 +- nan; apex r 3.30, radial velocity of the rising half +0.214; longest chains R_max = -2.212 +- nan; chains 4.0 of 4, to the end 4.0; links <v^2> 0.404
+          displacement from the apex: +0.00 -0.04 -0.09 -0.13 -0.10 -0.12 -0.22 -0.30 -0.30 -0.26 -0.24 -0.29 -0.34
+  flat  : R = +3.081 +- nan (inconclusive); v0 +0.0336 +- nan; apex r 3.36, radial velocity of the rising half +0.315; longest chains R_max = +2.111 +- nan; chains 4.0 of 4, to the end 4.0; links <v^2> 0.572
+          displacement from the apex: +0.00 +0.03 +0.05 +0.04 +0.02 -0.07 -0.08 -0.09 -0.15 -0.23 -0.31 -0.35 -0.29
+  reported: R / R_max = +0.508
+instrument: flat: no drift (|R| + 2 SE <= 1/2): FAILS; flat longest chains: no sag (|R_max| + 2 SE <= 1/2): FAILS; loaded longest chains read the geometry (1/2 < R_max -+ 2 SE < 2): FAILS

@@ -1,0 +1,784 @@
+{
+ "experiment": "e41b",
+ "lab_version": "2.13.0",
+ "saved_utc": "20261012T173140Z",
+ "config": {
+  "sizes": "500,840,1414,2000",
+  "n_seeds": 2,
+  "C": "1,4",
+  "k": "1,3,-1",
+  "global": 1,
+  "n_intervals": 40,
+  "n_action": 30,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "QUICK SMOKE TEST, not the registered run; INSTRUMENT CHECK FAILED (E38-A controls): no statement on stability; NO_SUCCESS; K1 balance holds in 8/8; K3 stable 2/8; per the registered reading: the growth hypothesis (anchor and acceptance ~ stock) is rejected, not the separation of flow from degree",
+ "notes": "sizes=[500, 840, 1414, 2000] seeds=2 C=[1.0, 4.0] k=[1, 3, -1] global=1 elapsed=32s\ncontrols: sprinkling 1+1: {'E38A': 'STABLE', 'E38B': 'GEOMETRIC(D=2.00, d*=2)'}; sprinkling 2+1: {'E38A': 'STABLE', 'E38B': 'GEOMETRIC(D=2.91, d*=3)'}; sprinkling 3+1: {'E38A': 'UNSTABLE(S1 f_P 0.122->0.110; S2 local exponents spread 0.08/0.47)', 'E38B': 'NOT_MANIFOLD_LIKE'}; originary percolation: {'E38A': 'UNSTABLE(S1 f_P 0.169->0.650; S2 local exponents spread 0.50/0.55)'}\ninstrument ok (E38-A): False; E38-B calibrated: ['1+1', '2+1']\n\nSTRUCTURE AND BOOKKEEPING at N_max (seed means):\n  regime                  accept parents   p90   max   zero  reduc fb_anc fb_acc   balance f_P by size\n  C=1 local k=1              0.9    0.85     1     2  0.151   0.08  0.000  0.000   4.4e-16 0.05/0.03/0.02/0.02\n  C=1 local k=3              8.3    1.82     4     8  0.003   0.76  0.000  0.000   2.3e-15 0.48/0.45/0.48/0.51\n  C=1 local k=inf          164.3    1.08     1     2  0.001   0.99  0.000  0.000   1.5e-16 1.00/0.76/0.83/0.54\n  C=1 global               376.6    1.11     2     2  0.000   1.00  0.000  0.000   2.6e-16 1.00/1.00/1.00/1.00\n  C=4 local k=1              0.9    0.86     1     2  0.146   0.05  0.000  0.000   2.4e-16 0.07/0.05/0.04/0.03\n  C=4 local k=3              5.1    1.54     2     6  0.004   0.69  0.000  0.000   2.4e-15 0.94/0.44/0.39/0.48\n  C=4 local k=inf           68.6    1.00     1     2  0.002   0.98  0.000  0.000   0.0e+00 0.75/0.71/0.34/0.50\n  C=4 global               198.4    1.01     1     2  0.001   0.99  0.000  0.000   0.0e+00 1.00/1.00/1.00/1.00\n\nPARENTS BY SIZE (mean after reduction; accepted before):\n  C=1 local k=1          500: 0.87 (1.0)  840: 0.85 (1.0)  1414: 0.86 (1.0)  2000: 0.85 (0.9)   hist@N_max {'0': 604, '1': 3383, '2': 11}\n  C=1 local k=3          500: 1.49 (5.2)  840: 1.63 (6.1)  1414: 1.78 (7.4)  2000: 1.82 (8.3)   hist@N_max {'0': 10, '1': 2041, '2': 1110, '3': 499, '4': 218, '5': 84, '6': 22, '7': 12}\n  C=1 local k=inf        500: 1.11 (93.8)  840: 1.09 (111.2)  1414: 1.10 (211.4)  2000: 1.08 (164.3)   hist@N_max {'0': 3, '1': 3673, '2': 321, '3': 1}\n  C=1 global             500: 1.13 (94.9)  840: 1.12 (158.5)  1414: 1.12 (265.1)  2000: 1.11 (376.6)   hist@N_max {'1': 3546, '2': 451, '3': 1}\n  C=4 local k=1          500: 0.88 (1.0)  840: 0.85 (0.9)  1414: 0.85 (0.9)  2000: 0.86 (0.9)   hist@N_max {'0': 584, '1': 3409, '2': 5}\n  C=4 local k=3          500: 1.67 (6.8)  840: 1.40 (4.0)  1414: 1.41 (4.1)  2000: 1.54 (5.1)   hist@N_max {'0': 14, '1': 2428, '2': 1081, '3': 360, '4': 98, '5': 12, '6': 3, '7': 2}\n  C=4 local k=inf        500: 1.01 (33.7)  840: 1.00 (51.9)  1414: 1.00 (24.1)  2000: 1.00 (68.6)   hist@N_max {'0': 8, '1': 3981, '2': 9}\n  C=4 global             500: 1.01 (49.9)  840: 1.01 (83.6)  1414: 1.01 (140.4)  2000: 1.01 (198.4)   hist@N_max {'0': 2, '1': 3954, '2': 42}\n\nFLOW AND DEGREE BY POSITION at N_max (flow = realised outflow per step):\n  C=1 local k=1          r_s(flow, d+) 0.06, at fixed height x past 0.12 [used 0.49]; d+ by height third 0.7/1.0/0.9; flow by third 0.005/0.024/0.044\n  C=1 local k=3          r_s(flow, d+) 0.29, at fixed height x past 0.46 [used 0.05]; d+ by height third 1.5/1.9/2.2; flow by third 0.040/0.078/0.201\n  C=1 local k=inf        r_s(flow, d+) -0.01, at fixed height x past - [used 0.00]; d+ by height third 1.1/1.1/1.1; flow by third 0.202/0.670/0.884\n  C=1 global             r_s(flow, d+) 0.11, at fixed height x past - [used 0.00]; d+ by height third 1.1/1.1/1.1; flow by third 0.190/0.744/0.867\n  C=4 local k=1          r_s(flow, d+) 0.04, at fixed height x past 0.29 [used 0.10]; d+ by height third 0.7/1.0/0.9; flow by third 0.008/0.028/0.091\n  C=4 local k=3          r_s(flow, d+) 0.22, at fixed height x past 0.00 [used 0.01]; d+ by height third 1.3/1.6/1.7; flow by third 0.048/0.120/0.477\n  C=4 local k=inf        r_s(flow, d+) 0.02, at fixed height x past - [used 0.00]; d+ by height third 1.0/1.0/1.0; flow by third 0.172/0.935/2.899\n  C=4 global             r_s(flow, d+) -0.00, at fixed height x past - [used 0.00]; d+ by height third 1.0/1.0/1.0; flow by third 0.216/1.072/3.454\n\nGEOMETRY (E38-A, E38-B vs nulls):\n  C=1 local k=1          E38-A UNSTABLE(S1 f_P 0.051->0.018; S3 seed cv 0.11/0.00) | E38-B not read (not STABLE)\n  C=1 local k=3          E38-A UNSTABLE(S3 seed cv 0.67/0.21) | E38-B not read (not STABLE)\n  C=1 local k=inf        E38-A UNSTABLE(S1 f_P 0.999->0.541; S3 seed cv 0.12/0.00) | E38-B not read (not STABLE)\n  C=1 global             E38-A STABLE | E38-B CHAIN\n  C=4 local k=1          E38-A UNSTABLE(S1 f_P 0.073->0.030) | E38-B not read (not STABLE)\n  C=4 local k=3          E38-A UNSTABLE(S1 f_P 0.937->0.484; S2 local exponents spread 0.51 | E38-B not read (not STABLE)\n  C=4 local k=inf        E38-A UNSTABLE(S1 f_P 0.751->0.504; S3 seed cv 0.29/0.00) | E38-B not read (not STABLE)\n  C=4 global             E38-A STABLE | E38-B CHAIN\n\nFRAME READING (E42a; separate from geometry; sensitivity: CA and Minkowski-ordered\nlattices, 1+1 and 2+1, N <= 8000 -- not a test of the algorithm's invariance):\n  C=1 local k=1          gamma_0 0.00; not read\n  C=1 local k=3          gamma_0 0.24; not read\n  C=1 local k=inf        gamma_0 -0.02; not read\n  C=1 global             gamma_0 0.02; not read (no geometry)\n  C=4 local k=1          gamma_0 -0.01; not read\n  C=4 local k=3          gamma_0 -0.04; not read\n  C=4 local k=inf        gamma_0 0.00; not read\n  C=4 global             gamma_0 -0.00; not read (no geometry)\n\nVERDICTS (K1 balance, K2 no degree limit, K3 E38-A stable, K4 E38-B geometric vs nulls, K5 no preferred frame):\n  C=1 local k=1          FAILS K3,K4,K5\n  C=1 local k=3          FAILS K3,K4,K5\n  C=1 local k=inf        FAILS K3,K4,K5\n  C=1 global             FAILS K4,K5\n  C=4 local k=1          FAILS K3,K4,K5\n  C=4 local k=3          FAILS K3,K4,K5\n  C=4 local k=inf        FAILS K3,K4,K5\n  C=4 global             FAILS K4,K5",
+ "controls": {
+  "sprinkling 1+1": {
+   "E38A": "STABLE",
+   "E38B": "GEOMETRIC(D=2.00, d*=2)"
+  },
+  "sprinkling 2+1": {
+   "E38A": "STABLE",
+   "E38B": "GEOMETRIC(D=2.91, d*=3)"
+  },
+  "sprinkling 3+1": {
+   "E38A": "UNSTABLE(S1 f_P 0.122->0.110; S2 local exponents spread 0.08/0.47)",
+   "E38B": "NOT_MANIFOLD_LIKE"
+  },
+  "originary percolation": {
+   "E38A": "UNSTABLE(S1 f_P 0.169->0.650; S2 local exponents spread 0.50/0.55)"
+  }
+ },
+ "instrument_ok": false,
+ "calibrated": {
+  "2": true,
+  "3": true,
+  "4": false
+ },
+ "results": {
+  "C=1 local k=1": {
+   "arm": "local",
+   "k": 1,
+   "C": 1.0,
+   "balance_worst": 4.440892098500625e-16,
+   "K1": true,
+   "K2": true,
+   "parents_max": 3,
+   "E38A": "UNSTABLE(S1 f_P 0.051->0.018; S3 seed cv 0.11/0.00)",
+   "K3": false,
+   "f_P_by_size": [
+    0.05131207863703875,
+    0.03161510402823082,
+    0.02494622623690187,
+    0.01751736638800492
+   ],
+   "per_size": {
+    "500": {
+     "accepted_mean": 0.9969939879759518,
+     "parents_mean": 0.87374749498998,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.13026052104208416,
+     "reduction_share": 0.12353395248834037,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.199
+    },
+    "840": {
+     "accepted_mean": 0.9547079856972587,
+     "parents_mean": 0.8545887961859356,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2.5,
+     "zero_parent_share": 0.1501787842669845,
+     "reduction_share": 0.10486570904874126,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.20416666666666666
+    },
+    "1414": {
+     "accepted_mean": 0.9511677282377919,
+     "parents_mean": 0.8627034677990092,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.1408351026185421,
+     "reduction_share": 0.09286762095838591,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.19271570014144274
+    },
+    "2000": {
+     "accepted_mean": 0.9232116058029014,
+     "parents_mean": 0.8516758379189595,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.15107553776888444,
+     "reduction_share": 0.07746551450768985,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.193
+    }
+   },
+   "parents_hist_Nmax": {
+    "0": 604,
+    "1": 3383,
+    "2": 11
+   },
+   "gamma0": 0.0006677171524829752,
+   "position": {
+    "dplus_third0": 0.743195660938814,
+    "flow_third0": 0.005079884972324279,
+    "dplus_third1": 0.9840280983273606,
+    "flow_third1": 0.024024380962263434,
+    "dplus_third2": 0.9002142386288727,
+    "flow_third2": 0.043679354845367606,
+    "r_s_uncond": 0.05590897327612398,
+    "r_s_fixed": 0.11539558896588911,
+    "used": 0.49409393491124254
+   },
+   "E38B": "not read (not STABLE)",
+   "d_star": null,
+   "K4": false,
+   "K5": false,
+   "frame": "not read",
+   "verdict": "FAILS K3,K4,K5"
+  },
+  "C=1 local k=3": {
+   "arm": "local",
+   "k": 3,
+   "C": 1.0,
+   "balance_worst": 2.320139545339108e-15,
+   "K1": true,
+   "K2": true,
+   "parents_max": 9,
+   "E38A": "UNSTABLE(S3 seed cv 0.67/0.21)",
+   "K3": false,
+   "f_P_by_size": [
+    0.48126582641450766,
+    0.4479864352289372,
+    0.4815917520098365,
+    0.5091293163747495
+   ],
+   "per_size": {
+    "500": {
+     "accepted_mean": 5.2374749498997994,
+     "parents_mean": 1.4879759519038076,
+     "parents_p50": 1.5,
+     "parents_p90": 2.5,
+     "parents_max": 5,
+     "zero_parent_share": 0.006012024048096192,
+     "reduction_share": 0.6453341276434464,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.028999999999999998
+    },
+    "840": {
+     "accepted_mean": 6.123957091775924,
+     "parents_mean": 1.6275327771156138,
+     "parents_p50": 1.5,
+     "parents_p90": 2.5,
+     "parents_max": 5,
+     "zero_parent_share": 0.005363528009535161,
+     "reduction_share": 0.6981722261653285,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.019642857142857142
+    },
+    "1414": {
+     "accepted_mean": 7.426043878273179,
+     "parents_mean": 1.7802547770700636,
+     "parents_p50": 1.5,
+     "parents_p90": 3.5,
+     "parents_max": 7,
+     "zero_parent_share": 0.0038924274593064405,
+     "reduction_share": 0.7431487197656153,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.014144271570014143
+    },
+    "2000": {
+     "accepted_mean": 8.25087543771886,
+     "parents_mean": 1.8216608304152075,
+     "parents_p50": 1.5,
+     "parents_p90": 3.5,
+     "parents_max": 8,
+     "zero_parent_share": 0.0025012506253126563,
+     "reduction_share": 0.7606720739596691,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.01575
+    }
+   },
+   "parents_hist_Nmax": {
+    "0": 10,
+    "1": 2041,
+    "2": 1110,
+    "3": 499,
+    "4": 218,
+    "5": 84,
+    "6": 22,
+    "7": 12,
+    "8": 1,
+    "9": 1
+   },
+   "gamma0": 0.2368483115779183,
+   "position": {
+    "dplus_third0": 1.5157494839069665,
+    "flow_third0": 0.03980656393935793,
+    "dplus_third1": 1.9476267033510402,
+    "flow_third1": 0.0780664654706138,
+    "dplus_third2": 2.1522330788667277,
+    "flow_third2": 0.2009369919805789,
+    "r_s_uncond": 0.29327554898951924,
+    "r_s_fixed": 0.46312450412415745,
+    "used": 0.05017921146953405
+   },
+   "E38B": "not read (not STABLE)",
+   "d_star": null,
+   "K4": false,
+   "K5": false,
+   "frame": "not read",
+   "verdict": "FAILS K3,K4,K5"
+  },
+  "C=1 local k=inf": {
+   "arm": "local",
+   "k": -1,
+   "C": 1.0,
+   "balance_worst": 1.5037941497568255e-16,
+   "K1": true,
+   "K2": true,
+   "parents_max": 3,
+   "E38A": "UNSTABLE(S1 f_P 0.999->0.541; S3 seed cv 0.12/0.00)",
+   "K3": false,
+   "f_P_by_size": [
+    0.9993995322899426,
+    0.7637293134723535,
+    0.8323782047834265,
+    0.5407583049246805
+   ],
+   "per_size": {
+    "500": {
+     "accepted_mean": 93.82164328657315,
+     "parents_mean": 1.1132264529058116,
+     "parents_p50": 1,
+     "parents_p90": 1.5,
+     "parents_max": 2.5,
+     "zero_parent_share": 0.0,
+     "reduction_share": 0.9881329452345973,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.002
+    },
+    "840": {
+     "accepted_mean": 111.20738974970202,
+     "parents_mean": 1.0923718712753279,
+     "parents_p50": 1,
+     "parents_p90": 1.5,
+     "parents_max": 3,
+     "zero_parent_share": 0.0005959475566150178,
+     "reduction_share": 0.9881969596881833,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.0017857142857142859
+    },
+    "1414": {
+     "accepted_mean": 211.42639773531494,
+     "parents_mean": 1.098018400566171,
+     "parents_p50": 1,
+     "parents_p90": 1.5,
+     "parents_max": 3,
+     "zero_parent_share": 0.00035385704175513094,
+     "reduction_share": 0.9944484058239556,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.0014144271570014145
+    },
+    "2000": {
+     "accepted_mean": 164.32866433216608,
+     "parents_mean": 1.080040020010005,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2.5,
+     "zero_parent_share": 0.0007503751875937968,
+     "reduction_share": 0.9933193521435859,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.00125
+    }
+   },
+   "parents_hist_Nmax": {
+    "0": 3,
+    "1": 3673,
+    "2": 321,
+    "3": 1
+   },
+   "gamma0": -0.015655429539412992,
+   "position": {
+    "dplus_third0": 1.0719388573605793,
+    "flow_third0": 0.20216713366312833,
+    "dplus_third1": 1.0867521367521369,
+    "flow_third1": 0.6701679968769724,
+    "dplus_third2": 1.0895522021837811,
+    "flow_third2": 0.8836008031958074,
+    "r_s_uncond": -0.005645613694033366,
+    "r_s_fixed": null,
+    "used": 0.0
+   },
+   "E38B": "not read (not STABLE)",
+   "d_star": null,
+   "K4": false,
+   "K5": false,
+   "frame": "not read",
+   "verdict": "FAILS K3,K4,K5"
+  },
+  "C=1 global": {
+   "arm": "global",
+   "k": 0,
+   "C": 1.0,
+   "balance_worst": 2.607496278018716e-16,
+   "K1": true,
+   "K2": true,
+   "parents_max": 3,
+   "E38A": "STABLE",
+   "K3": true,
+   "f_P_by_size": [
+    0.9995565718285481,
+    0.9997280934354398,
+    0.9998290198715516,
+    0.9998840069404613
+   ],
+   "per_size": {
+    "500": {
+     "accepted_mean": 94.89579158316633,
+     "parents_mean": 1.12625250501002,
+     "parents_p50": 1,
+     "parents_p90": 2,
+     "parents_max": 3,
+     "zero_parent_share": 0.002004008016032064,
+     "reduction_share": 0.9881307810824425,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.002
+    },
+    "840": {
+     "accepted_mean": 158.51191895113232,
+     "parents_mean": 1.1203814064362336,
+     "parents_p50": 1,
+     "parents_p90": 2,
+     "parents_max": 3,
+     "zero_parent_share": 0.0011918951132300357,
+     "reduction_share": 0.9929318641323295,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.0011904761904761906
+    },
+    "1414": {
+     "accepted_mean": 265.1174805378627,
+     "parents_mean": 1.116418966737438,
+     "parents_p50": 1,
+     "parents_p90": 2,
+     "parents_max": 3,
+     "zero_parent_share": 0.00035385704175513094,
+     "reduction_share": 0.9957873228536549,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.0007072135785007072
+    },
+    "2000": {
+     "accepted_mean": 376.5552776388194,
+     "parents_mean": 1.1133066533266633,
+     "parents_p50": 1,
+     "parents_p90": 2,
+     "parents_max": 2.5,
+     "zero_parent_share": 0.0,
+     "reduction_share": 0.9970434042432255,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.00075
+    }
+   },
+   "parents_hist_Nmax": {
+    "1": 3546,
+    "2": 451,
+    "3": 1
+   },
+   "gamma0": 0.018637577108669947,
+   "position": {
+    "dplus_third0": 1.1172192030604764,
+    "flow_third0": 0.1902199827569351,
+    "dplus_third1": 1.1187386217605484,
+    "flow_third1": 0.7444843343611158,
+    "dplus_third2": 1.1020095437903659,
+    "flow_third2": 0.8667596712911045,
+    "r_s_uncond": 0.11444184269535296,
+    "r_s_fixed": null,
+    "used": 0.0
+   },
+   "E38B": "CHAIN",
+   "d_star": null,
+   "K4": false,
+   "K5": false,
+   "frame": "not read (no geometry)",
+   "verdict": "FAILS K4,K5"
+  },
+  "C=4 local k=1": {
+   "arm": "local",
+   "k": 1,
+   "C": 4.0,
+   "balance_worst": 2.3883789437314296e-16,
+   "K1": true,
+   "K2": true,
+   "parents_max": 2,
+   "E38A": "UNSTABLE(S1 f_P 0.073->0.030)",
+   "K3": false,
+   "f_P_by_size": [
+    0.07265394401042263,
+    0.04547898496936316,
+    0.03674291732159424,
+    0.029555827621797384
+   ],
+   "per_size": {
+    "500": {
+     "accepted_mean": 0.969939879759519,
+     "parents_mean": 0.875751503006012,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 1.5,
+     "zero_parent_share": 0.12625250501002006,
+     "reduction_share": 0.09712775450776451,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.16399999999999998
+    },
+    "840": {
+     "accepted_mean": 0.9123957091775924,
+     "parents_mean": 0.8504171632896305,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 1,
+     "zero_parent_share": 0.14958283671036948,
+     "reduction_share": 0.06709700049620998,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.17797619047619045
+    },
+    "1414": {
+     "accepted_mean": 0.9033970276008492,
+     "parents_mean": 0.8471337579617835,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.15569709837225762,
+     "reduction_share": 0.0622322983943735,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.18246110325318246
+    },
+    "2000": {
+     "accepted_mean": 0.8996998499249624,
+     "parents_mean": 0.8551775887943971,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.14607303651825915,
+     "reduction_share": 0.04947993316827398,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.17025
+    }
+   },
+   "parents_hist_Nmax": {
+    "0": 584,
+    "1": 3409,
+    "2": 5
+   },
+   "gamma0": -0.007799725636220672,
+   "position": {
+    "dplus_third0": 0.7165993677985112,
+    "flow_third0": 0.00844396093785282,
+    "dplus_third1": 1.0173214418350027,
+    "flow_third1": 0.028380810229159545,
+    "dplus_third2": 0.9474929044465468,
+    "flow_third2": 0.0907225024386612,
+    "r_s_uncond": 0.03878245050791407,
+    "r_s_fixed": 0.291652746535055,
+    "used": 0.10055604075691411
+   },
+   "E38B": "not read (not STABLE)",
+   "d_star": null,
+   "K4": false,
+   "K5": false,
+   "frame": "not read",
+   "verdict": "FAILS K3,K4,K5"
+  },
+  "C=4 local k=3": {
+   "arm": "local",
+   "k": 3,
+   "C": 4.0,
+   "balance_worst": 2.3562038906034466e-15,
+   "K1": true,
+   "K2": true,
+   "parents_max": 7,
+   "E38A": "UNSTABLE(S1 f_P 0.937->0.484; S2 local exponents spread 0.51/0.75; S3 seed cv 0.47/0.17)",
+   "K3": false,
+   "f_P_by_size": [
+    0.9372600974854148,
+    0.442534519269714,
+    0.3943402028408687,
+    0.4840953376450431
+   ],
+   "per_size": {
+    "500": {
+     "accepted_mean": 6.825651302605211,
+     "parents_mean": 1.6693386773547094,
+     "parents_p50": 1.5,
+     "parents_p90": 3,
+     "parents_max": 5.5,
+     "zero_parent_share": 0.0,
+     "reduction_share": 0.7551800040555483,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.012
+    },
+    "840": {
+     "accepted_mean": 4.040524433849821,
+     "parents_mean": 1.3957091775923718,
+     "parents_p50": 1,
+     "parents_p90": 2.5,
+     "parents_max": 5,
+     "zero_parent_share": 0.00834326579261025,
+     "reduction_share": 0.6431262637960802,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.023809523809523808
+    },
+    "1414": {
+     "accepted_mean": 4.1093418259023355,
+     "parents_mean": 1.408351026185421,
+     "parents_p50": 1,
+     "parents_p90": 2.5,
+     "parents_max": 5.5,
+     "zero_parent_share": 0.007077140835102618,
+     "reduction_share": 0.6223329939218658,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.017326732673267328
+    },
+    "2000": {
+     "accepted_mean": 5.09079539769885,
+     "parents_mean": 1.5392696348174089,
+     "parents_p50": 1,
+     "parents_p90": 2.5,
+     "parents_max": 6.5,
+     "zero_parent_share": 0.0035017508754377185,
+     "reduction_share": 0.6855042657983946,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.01425
+    }
+   },
+   "parents_hist_Nmax": {
+    "0": 14,
+    "1": 2428,
+    "2": 1081,
+    "3": 360,
+    "4": 98,
+    "5": 12,
+    "6": 3,
+    "7": 2
+   },
+   "gamma0": -0.041746838101412505,
+   "position": {
+    "dplus_third0": 1.3344040614917443,
+    "flow_third0": 0.04836153734774574,
+    "dplus_third1": 1.6203326928148902,
+    "flow_third1": 0.1196034049673135,
+    "dplus_third2": 1.660947606565873,
+    "flow_third2": 0.47662622883883676,
+    "r_s_uncond": 0.2171001904410988,
+    "r_s_fixed": 0.0,
+    "used": 0.007681564245810056
+   },
+   "E38B": "not read (not STABLE)",
+   "d_star": null,
+   "K4": false,
+   "K5": false,
+   "frame": "not read",
+   "verdict": "FAILS K3,K4,K5"
+  },
+  "C=4 local k=inf": {
+   "arm": "local",
+   "k": -1,
+   "C": 4.0,
+   "balance_worst": 0.0,
+   "K1": true,
+   "K2": true,
+   "parents_max": 2,
+   "E38A": "UNSTABLE(S1 f_P 0.751->0.504; S3 seed cv 0.29/0.00)",
+   "K3": false,
+   "f_P_by_size": [
+    0.7510461097785521,
+    0.708858141891635,
+    0.3430504160142759,
+    0.5035018481081577
+   ],
+   "per_size": {
+    "500": {
+     "accepted_mean": 33.69539078156313,
+     "parents_mean": 1.0050100200400802,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.002004008016032064,
+     "reduction_share": 0.9615231828672304,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.004
+    },
+    "840": {
+     "accepted_mean": 51.85518474374255,
+     "parents_mean": 0.997020262216925,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.005363528009535161,
+     "reduction_share": 0.9693533267764034,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.006547619047619047
+    },
+    "1414": {
+     "accepted_mean": 24.123142250530783,
+     "parents_mean": 0.9953998584571833,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.006369426751592356,
+     "reduction_share": 0.9195321418939664,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.007072135785007073
+    },
+    "2000": {
+     "accepted_mean": 68.62756378189094,
+     "parents_mean": 1.0002501250625313,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.002001000500250125,
+     "reduction_share": 0.9829498285811011,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.0025
+    }
+   },
+   "parents_hist_Nmax": {
+    "0": 8,
+    "1": 3981,
+    "2": 9
+   },
+   "gamma0": 7.24874385113329e-05,
+   "position": {
+    "dplus_third0": 0.9969526727953695,
+    "flow_third0": 0.17213428415952203,
+    "dplus_third1": 1.0037092256257343,
+    "flow_third1": 0.9347735404850737,
+    "dplus_third2": 1.0005641895022594,
+    "flow_third2": 2.898921741148664,
+    "r_s_uncond": 0.024037966486815398,
+    "r_s_fixed": null,
+    "used": 0.0
+   },
+   "E38B": "not read (not STABLE)",
+   "d_star": null,
+   "K4": false,
+   "K5": false,
+   "frame": "not read",
+   "verdict": "FAILS K3,K4,K5"
+  },
+  "C=4 global": {
+   "arm": "global",
+   "k": 0,
+   "C": 4.0,
+   "balance_worst": 0.0,
+   "K1": true,
+   "K2": true,
+   "parents_max": 2,
+   "E38A": "STABLE",
+   "K3": true,
+   "f_P_by_size": [
+    0.9999753231936934,
+    0.9999905728686926,
+    0.9999921059053221,
+    0.9999934388707634
+   ],
+   "per_size": {
+    "500": {
+     "accepted_mean": 49.85571142284569,
+     "parents_mean": 1.0050100200400802,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.002004008016032064,
+     "reduction_share": 0.9798416185930077,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.002
+    },
+    "840": {
+     "accepted_mean": 83.57866507747318,
+     "parents_mean": 1.0071513706793802,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.0,
+     "reduction_share": 0.9879496378114927,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.0011904761904761906
+    },
+    "1414": {
+     "accepted_mean": 140.42781316348197,
+     "parents_mean": 1.0070771408351025,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.0,
+     "reduction_share": 0.992828501980485,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.0007072135785007072
+    },
+    "2000": {
+     "accepted_mean": 198.41645822911454,
+     "parents_mean": 1.0100050025012506,
+     "parents_p50": 1,
+     "parents_p90": 1,
+     "parents_max": 2,
+     "zero_parent_share": 0.0005002501250625312,
+     "reduction_share": 0.9949096702836342,
+     "fallback_anchor_share": 0.0,
+     "fallback_accept_share": 0.0,
+     "terminal_share": 0.0005
+    }
+   },
+   "parents_hist_Nmax": {
+    "0": 2,
+    "1": 3954,
+    "2": 42
+   },
+   "gamma0": -0.0002668620176783863,
+   "position": {
+    "dplus_third0": 1.0104590836256064,
+    "flow_third0": 0.21554285081192723,
+    "dplus_third1": 1.0090135927511357,
+    "flow_third1": 1.0717844584605183,
+    "dplus_third2": 1.0089932747118375,
+    "flow_third2": 3.4535556548379995,
+    "r_s_uncond": -0.0028696121346025623,
+    "r_s_fixed": null,
+    "used": 0.0
+   },
+   "E38B": "CHAIN",
+   "d_star": null,
+   "K4": false,
+   "K5": false,
+   "frame": "not read (no geometry)",
+   "verdict": "FAILS K4,K5"
+  }
+ },
+ "criteria": {
+  "GAMMA0_MIN": 0.05,
+  "FRAME_CALIBRATED": [
+   2,
+   3
+  ],
+  "BALANCE_TOL": 1e-09
+ }
+}

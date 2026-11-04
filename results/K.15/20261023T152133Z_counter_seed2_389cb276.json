@@ -1,0 +1,63 @@
+{
+ "id": "K.15",
+ "part": "counter",
+ "seed": 2,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_15_flux_tensor.py",
+ "test_sha256": "389cb2769f462d714c5514d98f647ba9975e39f188e176fe5f258e2c8ff5dd0c",
+ "core_sha256": "958b2e63c86a80186be4d6e827bc848b9cdc851f62724850a0a11a83d4f617d4",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T152133Z",
+ "duration_s": 1350.7,
+ "params": {
+  "D": 4,
+  "T": 7.0,
+  "half": 8.0,
+  "r_src": 4.0,
+  "t_src": 0.3,
+  "v": 0.6,
+  "win": [
+   2.5,
+   4.5
+  ],
+  "cuts": [
+   2.5,
+   3.0,
+   3.5,
+   4.0,
+   4.5
+  ],
+  "cells": [
+   2.0,
+   3.0
+  ],
+  "beta_check": 0.6,
+  "n_seeds": 64,
+  "n_se": 2.0,
+  "boot_B": 2000,
+  "tol": 0.05,
+  "mode": "counter"
+ },
+ "lines": [
+  "3+1, rho = 1, box t [0, 7], |x_i| <= 8 (~28655 events); sources in a ball of radius 4, t < 0.3, v = 0.6; window t in [2.5, 4.5]; T^ab = (1/dV4) sum F u^a u^b tau_link",
+  "  merge rule F = |P|: q_x/E -0.0147 +- 0.0086 (exp +0.0000, OK); S_xx/E +0.3397 +- 0.0017 (exp +0.3600, OK); S_yy/E +0.0000 +- 0.0000 (exp +0.0000, OK); p/E +0.1132 +- 0.0006 (exp +0.1200, OK); pi_xx/E +0.2265 +- 0.0012 (exp +0.2400, OK)",
+  "     flux in merged events 0.036, mixed flux (speed no longer v) 0.082; Landau-frame pressure p_rest/E_rest +0.1124; cells L = 2.0: p/E 0.1106, spread 0.0218 over 14 cells; cells L = 3.0: p/E 0.1136, spread 0.0148 over 15 cells",
+  "  merge rule sum of fluxes: q_x/E -0.0148 +- 0.0090 (exp +0.0000); S_xx/E +0.3435 +- 0.0015 (exp +0.3600); S_yy/E +0.0000 +- 0.0000 (exp +0.0000); p/E +0.1145 +- 0.0005 (exp +0.1200); pi_xx/E +0.2290 +- 0.0010 (exp +0.2400)",
+  "     flux in merged events 0.030, mixed flux (speed no longer v) 0.068; Landau-frame pressure p_rest/E_rest +0.1136; cells L = 2.0: p/E 0.1128, spread 0.0172 over 14 cells; cells L = 3.0: p/E 0.1144, spread 0.0132 over 15 cells",
+  "checks: expected ratios (merge rule F = |P|): OK; frame check of the tensor (relative 1e-9): OK"
+ ],
+ "data": {
+  "instrument": {
+   "expected ratios (merge rule F = |P|)": true,
+   "frame check of the tensor (relative 1e-9)": true
+  }
+ }
+}

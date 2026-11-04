@@ -1,0 +1,50 @@
+3+1 (d_s = 3), metric -Pi^2 dt^2 + Pi^(-2 gamma) dx^2, gamma = 1; box_g Pi = Pi^(2g)[(1) lap + ((1 - gamma)/p) grad^2]; R = Pi^(2g)[(2*(2*gamma - 1)/p) lap + (-2*gamma*(gamma + 1)/p**2) grad^2]
+  weak-field coefficient of (box_g - R/2) Pi: lambda_1(gamma) = 2 - 2*gamma
+N ln Pi             : regular up to u_lin(0) = -0.3; none from -0.5
+     u_lin(0) -0.03: regular solutions 1 (roots [0.969722]); weak-field branch Pi(0) 0.96972, Pi(R) 0.999232, min P +1.002, exterior charge / linear 1.0217
+     u_lin(0) -0.10: regular solutions 2 (roots [0.896243, 0.087367]); weak-field branch Pi(0) 0.89624, Pi(R) 0.997283, min P +1.005, exterior charge / linear 1.0838
+     u_lin(0) -0.20: regular solutions 2 (roots [0.779305, 0.16433]); weak-field branch Pi(0) 0.77931, Pi(R) 0.993890, min P +1.012, exterior charge / linear 1.2187
+     u_lin(0) -0.30: regular solutions 2 (roots [0.625331, 0.277723]); weak-field branch Pi(0) 0.62533, Pi(R) 0.988671, min P +1.023, exterior charge / linear 1.5065
+     u_lin(0) -0.50: regular solutions 0 (roots [])
+     u_lin(0) -0.70: regular solutions 0 (roots [])
+     u_lin(0) -0.90: regular solutions 0 (roots [])
+N Pi - 1            : regular up to u_lin(0) = -0.2; none from -0.3
+     u_lin(0) -0.03: regular solutions 2 (roots [0.969249, 0.062799]); weak-field branch Pi(0) 0.96925, Pi(R) 0.999231, min P +1.001, exterior charge / linear 1.0227
+     u_lin(0) -0.10: regular solutions 2 (roots [0.890119, 0.13471]); weak-field branch Pi(0) 0.89012, Pi(R) 0.997264, min P +1.003, exterior charge / linear 1.0915
+     u_lin(0) -0.20: regular solutions 2 (roots [0.74315, 0.26627]); weak-field branch Pi(0) 0.74315, Pi(R) 0.993621, min P +1.006, exterior charge / linear 1.2725
+     u_lin(0) -0.30: regular solutions 0 (roots [])
+     u_lin(0) -0.50: regular solutions 0 (roots [])
+     u_lin(0) -0.70: regular solutions 0 (roots [])
+     u_lin(0) -0.90: regular solutions 0 (roots [])
+N (Pi^-1 - 1)/-1    : regular up to u_lin(0) = -0.5; none from -0.7
+     u_lin(0) -0.03: regular solutions 1 (roots [0.970176]); weak-field branch Pi(0) 0.97018, Pi(R) 0.999233, min P +1.002, exterior charge / linear 1.0206
+     u_lin(0) -0.10: regular solutions 1 (roots [0.90152]); weak-field branch Pi(0) 0.90152, Pi(R) 0.997301, min P +1.008, exterior charge / linear 1.0767
+     u_lin(0) -0.20: regular solutions 1 (roots [0.803565]); weak-field branch Pi(0) 0.80357, Pi(R) 0.994069, min P +1.018, exterior charge / linear 1.1831
+     u_lin(0) -0.30: regular solutions 1 (roots [0.701578]); weak-field branch Pi(0) 0.70158, Pi(R) 0.989920, min P +1.031, exterior charge / linear 1.3405
+     u_lin(0) -0.50: regular solutions 2 (roots [0.41084, 0.282984]); weak-field branch Pi(0) 0.41084, Pi(R) 0.969409, min P +1.097, exterior charge / linear 2.4408
+     u_lin(0) -0.70: regular solutions 0 (roots [])
+     u_lin(0) -0.90: regular solutions 0 (roots [])
+N (Pi^2 - 1)/2      : regular up to u_lin(0) = -0.2; none from -0.3
+     u_lin(0) -0.03: regular solutions 2 (roots [0.968755, 0.087981]); weak-field branch Pi(0) 0.96875, Pi(R) 0.999230, min P +1.000, exterior charge / linear 1.0238
+     u_lin(0) -0.10: regular solutions 2 (roots [0.882884, 0.179636]); weak-field branch Pi(0) 0.88288, Pi(R) 0.997242, min P +1.000, exterior charge / linear 1.1001
+     u_lin(0) -0.20: regular solutions 2 (roots [0.674384, 0.401446]); weak-field branch Pi(0) 0.67438, Pi(R) 0.993064, min P +1.000, exterior charge / linear 1.3835
+     u_lin(0) -0.30: regular solutions 0 (roots [])
+     u_lin(0) -0.50: regular solutions 0 (roots [])
+     u_lin(0) -0.70: regular solutions 0 (roots [])
+     u_lin(0) -0.90: regular solutions 0 (roots [])
+N (Pi^3 - 1)/3      : regular up to u_lin(0) = -0.1; none from -0.2
+     u_lin(0) -0.03: regular solutions 2 (roots [0.968239, 0.111892]); weak-field branch Pi(0) 0.96824, Pi(R) 0.999229, min P +0.969, exterior charge / linear 1.0249
+     u_lin(0) -0.10: regular solutions 2 (roots [0.874142, 0.226332]); weak-field branch Pi(0) 0.87414, Pi(R) 0.997218, min P +0.891, exterior charge / linear 1.1100
+     u_lin(0) -0.20: regular solutions 0 (roots [])
+     u_lin(0) -0.30: regular solutions 0 (roots [])
+     u_lin(0) -0.50: regular solutions 0 (roots [])
+     u_lin(0) -0.70: regular solutions 0 (roots [])
+     u_lin(0) -0.90: regular solutions 0 (roots [])
+  Pi(0) of the weak-field branch at u_lin(0) -0.03: ln Pi 0.96972; Pi - 1 0.96925; (Pi^-1 - 1)/-1 0.97018; (Pi^2 - 1)/2 0.96875; (Pi^3 - 1)/3 0.96824
+  Pi(0) of the weak-field branch at u_lin(0) -0.10: ln Pi 0.89624; Pi - 1 0.89012; (Pi^-1 - 1)/-1 0.90152; (Pi^2 - 1)/2 0.88288; (Pi^3 - 1)/3 0.87414
+  Pi(0) of the weak-field branch at u_lin(0) -0.20: ln Pi 0.77931; Pi - 1 0.74315; (Pi^-1 - 1)/-1 0.80357; (Pi^2 - 1)/2 0.67438; (Pi^3 - 1)/3 nan
+  Pi(0) of the weak-field branch at u_lin(0) -0.30: ln Pi 0.62533; Pi - 1 nan; (Pi^-1 - 1)/-1 0.70158; (Pi^2 - 1)/2 nan; (Pi^3 - 1)/3 nan
+  Pi(0) of the weak-field branch at u_lin(0) -0.50: ln Pi nan; Pi - 1 nan; (Pi^-1 - 1)/-1 0.41084; (Pi^2 - 1)/2 nan; (Pi^3 - 1)/3 nan
+  Pi(0) of the weak-field branch at u_lin(0) -0.70: ln Pi nan; Pi - 1 nan; (Pi^-1 - 1)/-1 nan; (Pi^2 - 1)/2 nan; (Pi^3 - 1)/3 nan
+  Pi(0) of the weak-field branch at u_lin(0) -0.90: ln Pi nan; Pi - 1 nan; (Pi^-1 - 1)/-1 nan; (Pi^2 - 1)/2 nan; (Pi^3 - 1)/3 nan
+  (check 3, psi and gamma, not tested here: with the H1 ansatz it is input; 128 s)

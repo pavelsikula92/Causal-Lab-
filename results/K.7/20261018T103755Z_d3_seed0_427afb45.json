@@ -1,0 +1,52 @@
+{
+ "id": "K.7",
+ "part": "d3",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_07_chain_mirror.py",
+ "test_sha256": "427afb45a44294a89c0704c5f570456c46195ba409e87a4d03a8369f7d959e66",
+ "core_sha256": "8febfaaa6f6f6111de01bb1e190dec4ecbfc26738bbe73fb0128ddb2d9cc174b",
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261018T103755Z",
+ "duration_s": 13.2,
+ "params": {
+  "mirror_tol": 1e-12,
+  "weight_tol": 1e-06,
+  "N0": 4000,
+  "T": 1.0,
+  "n_seeds": 8,
+  "D": 3
+ },
+ "lines": [
+  "2+1 N0=4000, 8 seeds",
+  "  worst |d(P) + d(MP)|: L 0.0e+00, S 0.0e+00, U 0.0e+00, H1 0.0e+00, H2 0.0e+00, G 0.0e+00 (tol 1e-12)",
+  "  sd of the readings:  L 0.055, S 0.187, U 0.009, H1 0.055, H2 0.055, G 0.084",
+  "  chain weights sum to 1 within 4.7e-15 (tol 1e-06)"
+ ],
+ "data": {
+  "worst": {
+   "L": 0.0,
+   "S": 0.0,
+   "U": 0.0,
+   "H1": 0.0,
+   "H2": 0.0,
+   "G": 0.0
+  },
+  "sd": {
+   "L": 0.05510681346913394,
+   "S": 0.1869044365236168,
+   "U": 0.009012389734196304,
+   "H1": 0.05510681346913394,
+   "H2": 0.05510681346913394,
+   "G": 0.08373622863542506
+  },
+  "weight_worst": 4.6629367034256575e-15
+ }
+}

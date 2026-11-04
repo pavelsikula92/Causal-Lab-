@@ -1,0 +1,86 @@
+{
+ "base_seed": 0,
+ "card_sha": "7abddb30bc3d5396618f4a444db989d3ab13a8ddb99bb4985ecdf87453cbd29f",
+ "eid": "E54",
+ "elapsed_s": 5.0,
+ "lines": [
+  "instrument (2+1 via the coordinate port): N=800 NOT_MANIFOLD_LIKE -> FAILS",
+  "  3+1 N=600     INHOMOGENEOUS(spread -)                      D_MM 3.45 D_chain 2.87 homog - dS_4 0.11 bulk links 30.9 (nulls at 600)",
+  "  3+1 N=1000    NOT_MANIFOLD_LIKE                            D_MM 3.42 D_chain 5.81 homog 0.24 dS_4 -0.03 bulk links 27.4 (nulls at 1000)",
+  "  3+1 N=1500    GEOMETRIC(D=3.80, d*=4)                      D_MM 3.54 D_chain 4.05 homog 0.06 dS_4 0.05 bulk links 37.6 (nulls at 1000)",
+  "  trailing GEOMETRIC(4) sizes: 1 (need 3); N* = 1500; G3 gamma_0 = 0.19 (reported)",
+  "  null: percolation p=0.01 at N=1000: NOT_MANIFOLD_LIKE"
+ ],
+ "part": "all",
+ "payload": {
+  "gamma0": 0.19489847260469118,
+  "instrument": [
+   {
+    "d_star": null,
+    "decision": "NOT_MANIFOLD_LIKE",
+    "n": 800
+   }
+  ],
+  "n_star": 1500,
+  "per_size": [
+   {
+    "D_MM": 3.4498423242512217,
+    "D_chain": 2.8687186602754444,
+    "bulk_links": 30.9,
+    "dS4": 0.10712441602484002,
+    "d_star": 3,
+    "decision": "INHOMOGENEOUS(spread -)",
+    "homog_spread": "nan",
+    "n": 600,
+    "null_size": 600
+   },
+   {
+    "D_MM": 3.4153417609522876,
+    "D_chain": 5.809880863748118,
+    "bulk_links": 27.35,
+    "dS4": -0.026071716952866652,
+    "d_star": null,
+    "decision": "NOT_MANIFOLD_LIKE",
+    "homog_spread": 0.23713875521934824,
+    "n": 1000,
+    "null_size": 1000
+   },
+   {
+    "D_MM": 3.543098939993797,
+    "D_chain": 4.047519198830717,
+    "bulk_links": 37.6,
+    "dS4": 0.04654814128612914,
+    "d_star": 4,
+    "decision": "GEOMETRIC(D=3.80, d*=4)",
+    "homog_spread": 0.06150385231740074,
+    "n": 1500,
+    "null_size": 1000
+   }
+  ],
+  "percolation": "NOT_MANIFOLD_LIKE",
+  "trailing": 1
+ },
+ "plan": {
+  "D": 4,
+  "estimate": "many hours; memory ~2-4 GB at 128000 (coordinates, no bitsets except the nulls at 16000)",
+  "inst_sizes": [
+   800
+  ],
+  "n_action": 5,
+  "n_bulk": 20,
+  "n_intervals": 15,
+  "n_read": 1,
+  "null_cap": 1000,
+  "sizes": [
+   600,
+   1000,
+   1500
+  ],
+  "where": "local (user)"
+ },
+ "python": "3.13.16",
+ "quick": true,
+ "title": "Calibration of the geometry reading in 3+1",
+ "verdict": "INSTRUMENT_FAILS",
+ "version": "3.0.0"
+}

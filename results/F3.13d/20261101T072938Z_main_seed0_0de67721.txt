@@ -1,0 +1,20 @@
+3+1 box t [0, 30], half 7 (~82245 events, 1043 sources); random isotropic orientation per source; F3.13b transport and alignment; degree on shells R = 2 around 123 grid centres (|c| <= 3); 16 sprinklings
+        t                   5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0   25.0   27.0
+  random_0.9 : readable 5916 of 23616 shells (0.25); zero on 1.000 of readable; S (late) = 0.000 +- 0.000; persistence 0/0 = nan; site charges {}; net charge R = 4 (late) {0: 2}; core events 0.0
+        sites per slab     0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        readable           0.00   0.03   0.07   0.15   0.24   0.28   0.34   0.37   0.40   0.37   0.38   0.37
+        mean cost         0.215  0.150  0.117  0.098  0.084  0.078  0.067  0.058  0.052  0.046  0.045  0.042
+  random_0.3 : readable 1109 of 23616 shells (0.05); zero on 1.000 of readable; S (late) = 0.000 +- 0.000; persistence 0/0 = nan; site charges {}; net charge R = 4 (late) {}; core events 0.0
+        sites per slab     0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        readable           0.00   0.00   0.00   0.00   0.01   0.02   0.03   0.05   0.09   0.11   0.14   0.12
+        mean cost         0.488  0.378  0.292  0.249  0.205  0.180  0.150  0.137  0.119  0.111  0.105  0.091
+  random_0   : readable 0 of 23616 shells (0.00); zero on nan of readable; S (late) = 0.000 +- 0.000; persistence 0/0 = nan; site charges {}; net charge R = 4 (late) {}; core events 0.0
+        sites per slab     0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        readable           0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        mean cost         0.667  0.617  0.550  0.524  0.486  0.465  0.435  0.404  0.377  0.365  0.342  0.311
+  vacuum_0.9 : readable 21566 of 23616 shells (0.91); zero on 1.000 of readable; S (late) = 0.000 +- 0.000; persistence 0/0 = nan; site charges {}; net charge R = 4 (late) {0: 144}; core events 0.0
+        sites per slab     0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        readable           1.00   1.00   1.00   1.00   0.99   0.99   0.96   0.92   0.87   0.79   0.75   0.68
+        mean cost         0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+instrument: vacuum reads 0 on >= 95%: OK; random_0.9 has >= 200 readable shells: OK
+decision (random_0.9): S - 2 SE = 0.000 (pass > 0.25), S + 2 SE = 0.000 (fail < 0.1); p = nan (pass >= 0.8, fail < 0.5)

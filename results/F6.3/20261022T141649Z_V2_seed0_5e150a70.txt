@@ -1,0 +1,4 @@
+C = Q_0.99 = 5.1293; s_bg = 0.2; N = 36000
+V2 (a) Pi_sat = 1: solution after [1, 1, 1, 1] iteration(s), equal to the fixed order element for element: [True, False, True, True]
+V2 (b) window 1.5 against 3.0 on the matter solution: mismatched links [0, 0, 0, 0] of [1957128, 1966510, 1951347, 1956586] (fractions 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00; allowed 1e-05)
+     flip fraction per iteration (first sprinkling): 0.504 0.275 0.537 0.490 0.479 0.447 0.382 0.323 0.260

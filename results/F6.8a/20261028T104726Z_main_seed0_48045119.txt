@@ -1,0 +1,22 @@
+3+1, eps rho = 1 (l_k = 1); f = cos(k z1), phase-averaged; K_hat = second-order BD action density / EH value 6 k^2; past of x cut at age T
+  I1 diamond transform vs core spheroid quadrature: max |diff| = 6.52e-08 (tol 1e-06)
+  I2 Gaussian row r = 0: analytic J = +1.090600e-01, finite differences of the core operator +1.090974e-01, rel. 3.4e-04 (tol 0.002)
+  I2 Gaussian row r = 2: analytic J = +5.349010e-02, finite differences of the core operator +5.350075e-02, rel. 2.0e-04 (tol 0.002)
+  I3 phase average: averaged J = +3.032522886e-03, (J(0) + J(pi/2k))/2 = +3.032522885e-03, rel. 2.5e-11 (tol 1e-08)
+  I4 null k = 0: max |J0/J| over the rows = 5.4e-05 (tol 0.001)
+  I5 k = 0.025, T = 640: K_hat level 1 +0.989278, level 2 +0.989245, |diff| = 3.3e-05 (tol 0.002)
+  I5 k = 0.1, T = 160: K_hat level 1 +0.882508, level 2 +0.882505, |diff| = 3.0e-06 (tol 0.002)
+  I5 k = 0.3, T = 80: K_hat level 1 +0.252544, level 2 +0.252544, |diff| = 7.8e-10 (tol 0.002)
+  k        ages T                 K_hat(T)                                 K_loc      c_T = s/k^3   c_T asympt.  lin. resid.
+  0.025    320, 640, 1280         +0.98981, +0.98928, +0.98820             +0.99035   +0.1072      +0.1469      3.4e-06
+  0.035    228.571, 457.143, 914.286 +0.98159, +0.98055, +0.97860             +0.98257   +0.1017      +0.0879      2.8e-05
+  0.05     160, 320, 640          +0.96596, +0.96376, +0.95971             +0.96799   +0.1038      +0.1022      7.4e-05
+  0.07     114.286, 228.571, 457.143 +0.93982, +0.93552, +0.92757             +0.94380   +0.1038      +0.1017      1.4e-04
+  0.1      80, 160, 320           +0.89128, +0.88251, +0.86628             +0.89939   +0.1038      +0.1017      2.8e-04
+  0.14     57.1429, 114.286, 228.571 +0.81278, +0.79561, +0.76384             +0.82866   +0.1036      +0.1015      5.5e-04
+  0.2      40, 80, 160            +0.67322, +0.63827, +0.57363             +0.70555   +0.1034      +0.1012      1.1e-03
+  0.3      40, 80, 160            +0.36020, +0.25254, +0.03564             +0.46866   +0.1002      +0.1005      3.4e-04
+  0.5      40, 80, 160            -0.50648, -0.99855, -1.98118             -0.01516   +0.0983      +0.0983      3.2e-04
+  fit over k <= 0.1: K_loc = K0 - k^2 (c1 ln(1/k) + c0): K0 = 1.00005, c1 = 3.978, c0 = 0.907, rms 2.3e-05; conformal stiffness c_conf = 6 K0 = 6.0003 (EH 6)
+  K_loc changes sign at k ~ 0.494 / l_k (wavelength ~ 12.7 l_k)
+  age term (not local): K_hat(k, T) = K_loc(k) - c_T k^3 T; relative size 0.1 (k l_k)^3 (T / l_k)

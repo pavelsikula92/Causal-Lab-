@@ -1,0 +1,5 @@
+2+1: Pi = 1 -0.3 exp(-r^2/2w^2), row at r = w, quadrature level [240, 8, 96, 8, 48, 1]
+  w                   4         8        16
+  E / (a)        0.7717    0.8935    0.9501
+  box_g / (a)    0.4075    0.4075    0.4075
+  |1 - rho| decreases with w: yes; at w = 16: |rho - 1| = 0.0499 <= |rho_box - 1|/4 = 0.1481: yes

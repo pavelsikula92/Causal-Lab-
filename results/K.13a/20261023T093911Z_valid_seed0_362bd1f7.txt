@@ -1,0 +1,11 @@
+3+1, sigma = 4 l_k, R = 40, rows r = 0, 4, 8, quadrature [80, 12, 8, 3, 8, 4]
+(a) r 0: flat E[B w] -4.25986053e-02 vs K.4 -4.25986053e-02 (rel 9.4e-13)
+(a) r 4: flat E[B w] -3.46712689e-02 vs K.4 -3.46712689e-02 (rel 1.1e-12)
+(a) r 8: flat E[B w] -1.77300619e-02 vs K.4 -1.77300619e-02 (rel 1.2e-12)
+(b) r 0 one  : first order gamma = -1 -4.179853e-01, K.11 central difference -4.179874e-01, |diff| 2.10e-06 vs tol 8.79e-03; continuum -5.625000e-01
+(b) r 0 gauss: first order gamma = -1 -3.115285e-01, K.11 central difference -3.115046e-01, |diff| 2.39e-05 vs tol 7.32e-03; continuum -4.687500e-01
+(b) r 4 one  : first order gamma = -1 -1.831977e-01, K.11 central difference -1.831981e-01, |diff| 4.04e-07 vs tol 3.55e-03; continuum -2.274490e-01
+(b) r 4 gauss: first order gamma = -1 -1.061536e-01, K.11 central difference -1.061552e-01, |diff| 1.52e-06 vs tol 2.16e-03; continuum -1.379971e-01
+(b) r 8 one  : first order gamma = -1 +1.402196e-02, K.11 central difference +1.402176e-02, |diff| 2.07e-07 vs tol 3.96e-04; continuum +2.537537e-02
+(b) r 8 gauss: first order gamma = -1 +1.985234e-02, K.11 central difference +1.985063e-02, |diff| 1.70e-06 vs tol 4.81e-04; continuum +3.078187e-02
+checks: (a) Pi = 1 equals K.4: OK; (b) gamma = -1 equals K.11: OK

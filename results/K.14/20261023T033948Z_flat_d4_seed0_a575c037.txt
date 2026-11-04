@@ -1,0 +1,3 @@
+flat 3+1: Sigma t = 0, horizon t = x; a^(4) = 0.173205 (quadrature); window side L = 40, tail e^-30
+  rho 1: molecules per sprinkling 274.6042 +- 2.1612 (n 48), prediction a^(4) rho^(2/4) A = 277.1281; per unit area 0.17163 +- 0.00135 (a^(4) rho^((d-2)/d) = 0.17321); z = -1.17
+  rho 4: molecules per sprinkling 545.0833 +- 4.2325 (n 48), prediction a^(4) rho^(2/4) A = 554.2563; per unit area 0.34068 +- 0.00265 (a^(4) rho^((d-2)/d) = 0.34641); z = -2.17

@@ -1,0 +1,109 @@
+{
+ "id": "F3.10",
+ "part": "unit",
+ "seed": 8,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\F3_struktura\\F3_10_two_bundles.py",
+ "test_sha256": "98e28237ee9ec41df9844f1bf1fcfa69161642a036ddc1a87150c52d66fd7a75",
+ "core_sha256": "958b2e63c86a80186be4d6e827bc848b9cdc851f62724850a0a11a83d4f617d4",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T104204Z",
+ "duration_s": 8.2,
+ "params": {
+  "D": 3,
+  "T": 24.0,
+  "margin": 6.0,
+  "r_src": 2.0,
+  "t_src": 2.0,
+  "slab": 2.0,
+  "tau_c": 1.0,
+  "epsilon": 0.1,
+  "L_g": 2.0,
+  "min_parents": 4,
+  "beta_check": 0.6,
+  "cal_win": [
+   6.0,
+   14.0
+  ],
+  "n_cal": 1,
+  "n_seeds": 4,
+  "n_se": 2.0,
+  "boot_B": 4000,
+  "d_mass": 12.0,
+  "mode": "unit",
+  "d_unit": 8.0
+ },
+ "lines": [
+  "2+1, rho = 1; bundles radius 2, source time [0, 2), box margin 6, T = 24; field phi_i = sum F / (2 pi tau), tau >= 1; epsilon = 0.1 (from F3.8/F3.9), phi_ref = 4.390, lambda = 0.02278; flux per unit time of a single bundle mu = 20.00; window [d + 2, T - 4]",
+  "  lambda = 0: the pair equals the two separate bundles bit for bit: OK",
+  "  scalar flux conserved (sources = flux at the events without children): OK",
+  "  sign: a bundle responding only to the partner's field is kicked towards it: OK",
+  "  C equals A bit for bit (choices, flux, directions): OK",
+  "  mirror x -> -x (choices, flux, directions): OK",
+  "  frame beta' = 0.6 (choices, flux, directions boosted back): OK",
+  "  kick towards the partner: fraction of the kicked events of L 0.873, 0.907, 0.892, 0.969; total kick L +2.647, +3.805, +2.626, +1.867, R -3.201, -3.482, -2.464, -1.720",
+  "  numerical ties (first differing choice at a margin < 1e-9): mirror 0, frame 0 of 4",
+  "  theory (no verdict): the model conserves the scalar flux, not the 4-momentum: at a merger of different directions |P| > F and the excess is dropped; (|P| - F) summed / flux summed = 7.98e-05, 1.52e-04, 1.17e-04, 1.67e-04; merger events 13, 12, 13, 10"
+ ],
+ "data": {
+  "checks": {
+   "lambda = 0: the pair equals the two separate bundles bit for bit": true,
+   "scalar flux conserved (sources = flux at the events without children)": true,
+   "sign: a bundle responding only to the partner's field is kicked towards it": true,
+   "C equals A bit for bit (choices, flux, directions)": true,
+   "mirror x -> -x (choices, flux, directions)": true,
+   "frame beta' = 0.6 (choices, flux, directions boosted back)": true
+  },
+  "unit": [
+   {
+    "lambda0_equals_alone": true,
+    "flux_conserved": true,
+    "kick_L": 2.6468014827658966,
+    "kick_R": -3.200954169456027,
+    "kick_L_frac_towards": 0.873015873015873,
+    "kick_sign": true,
+    "merge_excess": 7.983309239628135e-05,
+    "n_merge": 13
+   },
+   {
+    "lambda0_equals_alone": true,
+    "flux_conserved": true,
+    "kick_L": 3.805341240227977,
+    "kick_R": -3.482026437668724,
+    "kick_L_frac_towards": 0.9074074074074074,
+    "kick_sign": true,
+    "merge_excess": 0.0001515355640695312,
+    "n_merge": 12
+   },
+   {
+    "lambda0_equals_alone": true,
+    "flux_conserved": true,
+    "kick_L": 2.6259922062919165,
+    "kick_R": -2.4639642668013204,
+    "kick_L_frac_towards": 0.8923076923076924,
+    "kick_sign": true,
+    "merge_excess": 0.00011722414591504528,
+    "n_merge": 13
+   },
+   {
+    "lambda0_equals_alone": true,
+    "flux_conserved": true,
+    "kick_L": 1.866614520384576,
+    "kick_R": -1.7199911637190364,
+    "kick_L_frac_towards": 0.9692307692307692,
+    "kick_sign": true,
+    "merge_excess": 0.00016726865028359497,
+    "n_merge": 10
+   }
+  ],
+  "lambda": 0.02277795561789233
+ }
+}

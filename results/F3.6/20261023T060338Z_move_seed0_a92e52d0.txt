@@ -1,0 +1,21 @@
+2+1 sprinkling rho = 1 (lengths in l), box t [0, 32], x [-16, 32], y [-16, 16]; source radius 4, source time [0, 4), 4-velocity beta = 0.5; 32 sprinklings (~49169 events, 181 source events); readout in the source frame
+  uniform : spreading rate v_s = +0.7821 +- 0.0034 -> spreading; centroid velocity (source frame) v_c = +0.0271 +- 0.0023
+        t         5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0
+        R_rms    4.09   5.47   7.11   8.76  10.35  11.87  13.12  14.07  14.03  13.61
+        x_c     +0.25  +0.22  +0.19  +0.24  +0.32  +0.69  +1.08  +2.22  +1.44  -1.16
+        carry   371.9  588.4  861.9 1182.4 1552.4 1870.7 2168.0 2281.9 2187.1 2066.2
+        flux     17.2   20.9   23.2   25.9   29.4   33.5   39.1   47.5   54.0   54.4
+  step    : spreading rate v_s = +0.3488 +- 0.0123 -> spreading; centroid velocity (source frame) v_c = +0.0657 +- 0.0198; mean step rapidity 0.506
+        t         5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0
+        R_rms    3.08   3.55   4.24   5.18   6.24   7.48   8.84  10.60  11.91  12.45
+        x_c     +0.21  +0.25  +0.17  +0.15  +0.40  +0.41  +0.52  +1.31  +2.26  +0.29
+        carry    69.1   53.2   45.7   38.9   35.4   33.7   32.0   34.0   34.6   29.0
+        flux    239.1  227.2  212.7  191.1  176.4  163.5  157.9  161.3  174.8  148.7
+  carried : spreading rate v_s = +0.0500 +- 0.0055 -> localized; centroid velocity (source frame) v_c = +0.0075 +- 0.0043; mean step rapidity 0.451
+        t         5.0    7.0    9.0   11.0   13.0   15.0   17.0   19.0   21.0   23.0
+        R_rms    2.94   3.10   3.14   3.27   3.39   3.46   3.55   3.65   3.70   3.74
+        x_c     +0.24  +0.29  +0.25  +0.34  +0.31  +0.37  +0.35  +0.40  +0.35  +0.37
+        carry    71.4   55.9   47.4   42.3   38.7   34.2   32.7   32.3   30.0   27.8
+        flux    259.5  263.6  279.3  274.3  271.6  263.3  262.8  280.9  280.9  267.6
+  inertia: carried centroid velocity in the source frame +0.0075 +- 0.0043 vs tolerance beta/4 = 0.1250 (alternative: at rest in the lab, v_c = -0.50)
+instrument: uniform arm spreads: OK; boosted recomputation chooses the same children: OK

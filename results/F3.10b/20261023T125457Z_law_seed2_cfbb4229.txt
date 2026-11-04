@@ -1,0 +1,7 @@
+2+1, rho = 1; F3.10 model; lambda = 0.00366 (F3.10 calibration, phi_ref = 27.357); T = 2.5 d + 6; window [1.25 d, 2.5 d]; 64 sprinklings per d; received momentum rate of the pair (B - A, towards each other positive) against the first-order prediction from branch A
+  d = 8: measured +0.9536 +- 0.0284, predicted +1.0246, ratio rho = 0.931 +- 0.018; change of the separation over the window -0.39 (limit d/4 = 2.0); resolved True, linear response True
+  d = 12: measured +0.6805 +- 0.0261, predicted +0.7491, ratio rho = 0.908 +- 0.030; change of the separation over the window -1.00 (limit d/4 = 3.0); resolved True, linear response True
+  d = 16: measured +0.5271 +- 0.0245, predicted +0.5468, ratio rho = 0.964 +- 0.038; change of the separation over the window -1.71 (limit d/4 = 4.0); resolved True, linear response True
+  d = 20: measured +0.4418 +- 0.0221, predicted +0.4325, ratio rho = 1.021 +- 0.051; change of the separation over the window -2.05 (limit d/4 = 5.0); resolved True, linear response True
+law: k_meas = 0.845, k_pred = 0.946 (discrete field of the actual partner), Delta k = -0.101 +- 0.051 (replicates without an exponent: 0 of 4000); continuum static line in the same windows k_line = 0.927; kernel 1
+instrument (256 sprinklings): C equals A bit for bit: OK; mirror x -> -x: OK; frame beta' = 0.6: OK; numerical ties 0

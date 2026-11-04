@@ -1,0 +1,31 @@
+{
+ "experiment": "e37b",
+ "lab_version": "2.5.2",
+ "saved_utc": "20261012T110339Z",
+ "config": {
+  "sizes": "500,1000,2000",
+  "b1_p": "0.3",
+  "b1_lam": "1,4",
+  "b2_h": "2,3",
+  "b2_phi": "1,0.5",
+  "n_seeds": 2,
+  "n_action": 30,
+  "n_intervals": 40,
+  "require_gate": 1,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "GATED_NOT_RUN (a non-manifold control passed the interval test in E37a; the target and the calibration come first -- run `python run.py e37a`)",
+ "notes": "",
+ "gate": {
+  "e37a_saved_utc": "20261012T110331Z",
+  "e37a_verdict": "self-test PASSED; calibrated for 1+1, 2+1, 3+1; controls NOT all rejected: transitive percolation, originary percolation; targets: 1+1 links 7.2 (gamma_L 0.18), gap 7.38, dS_2 local sd 10.40 -> eps 0.05 sd 0.43; 2+1 links 30.2 (gamma_L 0.45), gap 5.46, dS_3 local sd 16.76 -> eps 0.05 sd 0.44; 3+1 links 47.5 (gamma_L 0.63), gap 3.88, dS_4 local sd 77.56 -> eps 0.05 sd 0.78; smeared 3+1 action at eps 0.05: sprinkling 0.01, percolation 6.11, Kleitman-Rothschild -17.93",
+  "calibrated_dims": [
+   2,
+   3,
+   4
+  ],
+  "controls_ok": false
+ },
+ "ran": false
+}

@@ -1,0 +1,929 @@
+{
+ "base_seed": 0,
+ "card_sha": "24e288e268570367f60ae3207289797a617096570990713447186bb408ca59e8",
+ "eid": "E55a",
+ "elapsed_s": 595.1,
+ "lines": [
+  "2+1  N=32000  window t in [2.5, 3.5]  a=0.05  R_abs=0.4; calibration F0_tube = 1.0861 (8 sprinklings)",
+  "  radial bins (outer edges) 0.050 0.100 0.150 0.200 0.250 0.300 0.350 0.400",
+  "  F0(r) calibration       1.0861 0.0700 0.0588 0.0511 0.0456 0.0409 0.0368 0.0324",
+  "  C=0.5: k_pred 0.4604  k_meas 0.4628 +- 0.0006 (ratio 1.0054, tol 0.05); saturated outside 0/79921 = 0.00e+00 (max 0.001); tube saturated (min) 1.000; max outer offered / C 0.163 -> met",
+  "     saturated fraction per bin 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00",
+  "     measured Pi (probe): tube median 0.4812, outside median 1.0000",
+  "     reference only (uncorrected model, R145): F0(r_sat) = C gives r_sat = 0.050; measured saturated zone up to r = 0.050",
+  "  C=0.04: k_pred 0.0368  k_meas 0.0370 +- 0.0000 (ratio 1.0054, tol 0.05); saturated outside 0/79921 = 0.00e+00 (max 0.001); tube saturated (min) 1.000; max outer offered / C 0.163 -> met",
+  "     saturated fraction per bin 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00",
+  "     measured Pi (probe): tube median 0.0399, outside median 1.0000",
+  "     reference only (uncorrected model, R145): F0(r_sat) = C gives r_sat = 0.300; measured saturated zone up to r = 0.050",
+  "instrument: balance worst 1.9e-16 (tol 1e-12); C = inf stores 0; probe balance 1.9e-16, size sensitivity 1.5e-04 (tol 0.001); C < s = 1 for every C: True -> OK"
+ ],
+ "part": "d3",
+ "payload": {
+  "balance_worst": 1.9378438248002731e-16,
+  "calibration": {
+   "F0_profile": [
+    1.0860980948359975,
+    0.06997309608546658,
+    0.05881892155916384,
+    0.051105977607047035,
+    0.04555377034501396,
+    0.04087213152812858,
+    0.036831588193632435,
+    0.03241065846121293
+   ],
+   "F0_tube": 1.0860980948359975,
+   "F0_tube_seeds": [
+    1.0896108577974062,
+    1.080671136430841,
+    1.086998564920386,
+    1.0894730321061012,
+    1.0938358783050308,
+    1.0775689312433707,
+    1.0826679641267876,
+    1.0879583937580553
+   ]
+  },
+  "per_C": {
+   "0.04": {
+    "f_out": 0.0,
+    "k_meas": [
+     0.037027694366128044,
+     4.517716660149912e-05
+    ],
+    "k_pred": 0.036829085871879795,
+    "max_out_offered_over_C": 0.16272994676621302,
+    "n_sat_out": 0,
+    "ok": true,
+    "pi_out_median": 1.0,
+    "pi_tube_median": 0.03987555297660371,
+    "r_sat_measured": 0.05,
+    "r_sat_naive": 0.3,
+    "sat_profile": [
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tube_sat_min": 1.0
+   },
+   "0.5": {
+    "f_out": 0.0,
+    "k_meas": [
+     0.46284617957660057,
+     0.0005647145825187388
+    ],
+    "k_pred": 0.4603635733984975,
+    "max_out_offered_over_C": 0.16272994676621305,
+    "n_sat_out": 0,
+    "ok": true,
+    "pi_out_median": 1.0,
+    "pi_tube_median": 0.48122705776000774,
+    "r_sat_measured": 0.05,
+    "r_sat_naive": 0.05,
+    "sat_profile": [
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tube_sat_min": 1.0
+   }
+  },
+  "probe_balance": 1.869314090492249e-16,
+  "probe_size": 0.00014701093240676588,
+  "seeds": [
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 5009,
+    "n_tube": 80,
+    "per_C": {
+     "0.04": {
+      "balance": 6.767073673905717e-17,
+      "k_meas": 0.03706568152553474,
+      "max_out_offered_over_C": 0.15189205300566655,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03987095141055091,
+      "probe_balance": 0.0,
+      "probe_size": 7.822984785843534e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.4633210190691841,
+      "max_out_offered_over_C": 0.15189205300566652,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.480557727632569,
+      "probe_balance": 0.0,
+      "probe_size": 6.259078534465168e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 4898,
+    "n_tube": 76,
+    "per_C": {
+     "0.04": {
+      "balance": 1.8698493046318425e-16,
+      "k_meas": 0.036841162856142036,
+      "max_out_offered_over_C": 0.13750576804194492,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03986604275494017,
+      "probe_balance": 0.0,
+      "probe_size": 9.564283246832339e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.4605145357017754,
+      "max_out_offered_over_C": 0.13750576804194492,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.4798456217259264,
+      "probe_balance": 0.0,
+      "probe_size": 7.652379118705532e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 4919,
+    "n_tube": 70,
+    "per_C": {
+     "0.04": {
+      "balance": 1.2250736823450003e-17,
+      "k_meas": 0.03720201942632567,
+      "max_out_offered_over_C": 0.14541339286415847,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.0398883001856723,
+      "probe_balance": 1.869314090492249e-16,
+      "probe_size": 2.5158500239763626e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.4650252428290708,
+      "max_out_offered_over_C": 0.14541339286415847,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.48309013249902855,
+      "probe_balance": 1.869314090492249e-16,
+      "probe_size": 2.0127726011454072e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 5098,
+    "n_tube": 73,
+    "per_C": {
+     "0.04": {
+      "balance": 8.77213254024815e-17,
+      "k_meas": 0.036976323768255895,
+      "max_out_offered_over_C": 0.12372535842898864,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03987561057972302,
+      "probe_balance": 0.0,
+      "probe_size": 0.00011172209260779109,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.4622040471031986,
+      "max_out_offered_over_C": 0.12372535842898863,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.48123542955036364,
+      "probe_balance": 0.0,
+      "probe_size": 8.9390047390836e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 4984,
+    "n_tube": 93,
+    "per_C": {
+     "0.04": {
+      "balance": 7.84510906990647e-17,
+      "k_meas": 0.03682396322651381,
+      "max_out_offered_over_C": 0.15819772402328794,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.039866973119201336,
+      "probe_balance": 1.7100980638572626e-16,
+      "probe_size": 0.00010706605161781013,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 8.965838937035964e-17,
+      "k_meas": 0.4602995403314226,
+      "max_out_offered_over_C": 0.15819772402328794,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.47998038483528904,
+      "probe_balance": 0.0,
+      "probe_size": 8.566344444460583e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 5017,
+    "n_tube": 82,
+    "per_C": {
+     "0.04": {
+      "balance": 4.0902953538821554e-17,
+      "k_meas": 0.037155330831512144,
+      "max_out_offered_over_C": 0.12014037017233525,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.039875395221792356,
+      "probe_balance": 0.0,
+      "probe_size": 8.208285634647705e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.4644416353939018,
+      "max_out_offered_over_C": 0.12014037017233528,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.4812040474104589,
+      "probe_balance": 0.0,
+      "probe_size": 6.567347126229528e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 4977,
+    "n_tube": 102,
+    "per_C": {
+     "0.04": {
+      "balance": 1.2250736823450003e-16,
+      "k_meas": 0.03708529559834915,
+      "max_out_offered_over_C": 0.1559425941140659,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03986613350017507,
+      "probe_balance": 1.6993764459020445e-16,
+      "probe_size": 9.681015655405023e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.46356619497936447,
+      "max_out_offered_over_C": 0.15594259411406589,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.47985875243619314,
+      "probe_balance": 1.6993764459020445e-16,
+      "probe_size": 7.745869850306342e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 4965,
+    "n_tube": 72,
+    "per_C": {
+     "0.04": {
+      "balance": 4.413308917764597e-17,
+      "k_meas": 0.037104403609968736,
+      "max_out_offered_over_C": 0.1168121908753353,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.0398903167162052,
+      "probe_balance": 0.0,
+      "probe_size": 7.238760844485714e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.46380504512460924,
+      "max_out_offered_over_C": 0.11681219087533527,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.48338611861775577,
+      "probe_balance": 0.0,
+      "probe_size": 5.791504865571007e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 5099,
+    "n_tube": 77,
+    "per_C": {
+     "0.04": {
+      "balance": 9.778111042570187e-17,
+      "k_meas": 0.03710161995222504,
+      "max_out_offered_over_C": 0.1445574279900577,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.0398754953734844,
+      "probe_balance": 0.0,
+      "probe_size": 5.904976737441947e-08,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 8.691654260062388e-17,
+      "k_meas": 0.46377024940281303,
+      "max_out_offered_over_C": 0.14455742799005772,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.48121868596965184,
+      "probe_balance": 0.0,
+      "probe_size": 4.200977509194459e-07,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 4916,
+    "n_tube": 69,
+    "per_C": {
+     "0.04": {
+      "balance": 4.883455228591754e-17,
+      "k_meas": 0.03743434753228212,
+      "max_out_offered_over_C": 0.1240139021245894,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03989245111524704,
+      "probe_balance": 0.0,
+      "probe_size": 0.00012123866344893042,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 9.766910457183508e-17,
+      "k_meas": 0.46792934415352644,
+      "max_out_offered_over_C": 0.1240139021245894,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.4836996476340709,
+      "probe_balance": 0.0,
+      "probe_size": 9.700468960538444e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 4966,
+    "n_tube": 68,
+    "per_C": {
+     "0.04": {
+      "balance": 1.9378438248002731e-16,
+      "k_meas": 0.03683583596366714,
+      "max_out_offered_over_C": 0.13008460679465667,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03988084737742301,
+      "probe_balance": 0.0,
+      "probe_size": 0.00012682082492621038,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.46044794954583923,
+      "max_out_offered_over_C": 0.13008460679465667,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.4819992591123151,
+      "probe_balance": 0.0,
+      "probe_size": 1.014724403836098e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 5001,
+    "n_tube": 80,
+    "per_C": {
+     "0.04": {
+      "balance": 2.2274066951727278e-17,
+      "k_meas": 0.037045852894359944,
+      "max_out_offered_over_C": 0.16272994676621302,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.039870576150065534,
+      "probe_balance": 0.0,
+      "probe_size": 2.45677558829982e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.46307316117949937,
+      "max_out_offered_over_C": 0.16272994676621305,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.48050323587228,
+      "probe_balance": 0.0,
+      "probe_size": 1.9655088148162747e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 5041,
+    "n_tube": 80,
+    "per_C": {
+     "0.04": {
+      "balance": 1.6498670334986846e-17,
+      "k_meas": 0.03684701872801896,
+      "max_out_offered_over_C": 0.14745581827309112,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03988232561531822,
+      "probe_balance": 0.0,
+      "probe_size": 0.0001336768731547977,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.460587734100237,
+      "max_out_offered_over_C": 0.14745581827309112,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.48221532908372045,
+      "probe_balance": 0.0,
+      "probe_size": 1.0695774098956612e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 5074,
+    "n_tube": 77,
+    "per_C": {
+     "0.04": {
+      "balance": 1.447814351862273e-16,
+      "k_meas": 0.03714495959147005,
+      "max_out_offered_over_C": 0.1292529632848578,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.0398850853779474,
+      "probe_balance": 0.0,
+      "probe_size": 9.336818544924963e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.4643119948933756,
+      "max_out_offered_over_C": 0.1292529632848578,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.482618943578889,
+      "probe_balance": 0.0,
+      "probe_size": 7.470252208485739e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 4885,
+    "n_tube": 74,
+    "per_C": {
+     "0.04": {
+      "balance": 3.483052626275001e-17,
+      "k_meas": 0.03706441765881841,
+      "max_out_offered_over_C": 0.13349477123164008,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03987924131119425,
+      "probe_balance": 0.0,
+      "probe_size": 8.557795622099462e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 0.0,
+      "k_meas": 0.46330522073523017,
+      "max_out_offered_over_C": 0.13349477123164008,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.481764768245429,
+      "probe_balance": 1.7715721772638963e-16,
+      "probe_size": 6.847009403010418e-06,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   },
+   {
+    "ell": 0.04613175371610072,
+    "n_out": 5072,
+    "n_tube": 78,
+    "per_C": {
+     "0.04": {
+      "balance": 2.880578658486893e-17,
+      "k_meas": 0.03671487669460489,
+      "max_out_offered_over_C": 0.1428734364366798,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.03986934152866464,
+      "probe_balance": 1.4651380709263575e-16,
+      "probe_size": 0.00014701093240676588,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     },
+     "0.5": {
+      "balance": 7.681543089298381e-17,
+      "k_meas": 0.45893595868256104,
+      "max_out_offered_over_C": 0.1428734364366798,
+      "n_sat_out": 0,
+      "pi_out_median": 1.0,
+      "pi_tube_median": 0.48032399311141977,
+      "probe_balance": 0.0,
+      "probe_size": 1.1762968508355343e-05,
+      "sat_profile": [
+       1.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tube_sat": 1.0
+     }
+    },
+    "stored_inf_max": 0.0
+   }
+  ]
+ },
+ "plan": {
+  "C": [
+   0.5,
+   0.04
+  ],
+  "D": 3,
+  "N": 32000,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "T": 4.0,
+  "a": 0.05,
+  "estimate": "~15-25 min (about 30 s per sprinkling for links and routings in the container)",
+  "n_bins": 7,
+  "n_cal": 8,
+  "n_seeds": 16,
+  "t1": 2.5,
+  "t2": 3.5,
+  "where": "local (user)"
+ },
+ "python": "3.13.6",
+ "quick": false,
+ "title": "Screening by saturation: an inserted source with capacity-limited routing",
+ "verdict": "SUPPORTED",
+ "version": "3.3.1"
+}

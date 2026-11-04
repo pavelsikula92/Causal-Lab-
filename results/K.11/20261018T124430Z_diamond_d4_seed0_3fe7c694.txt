@@ -1,0 +1,6 @@
+3+1: 40 random diamonds in Pi = 1 -0.3 exp(-r^2/2*3^2); Monte Carlo 200000 rest-frame samples each
+  level 0 (n_mu 4, n_nu 12, n_phi 4): max |z| = 6.51, RMS z = 1.57
+  level 1 (n_mu 6, n_nu 24, n_phi 6): max |z| = 2.41, RMS z = 1.05
+  level 2 (n_mu 8, n_nu 48, n_phi 8): max |z| = 2.41, RMS z = 1.04
+  level 3 (n_mu 10, n_nu 64, n_phi 10): max |z| = 2.41, RMS z = 1.04
+  finest level: max |z| 2.41 (z_max 3.5) -> OK

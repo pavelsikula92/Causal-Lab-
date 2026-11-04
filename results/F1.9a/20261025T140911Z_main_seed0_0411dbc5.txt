@@ -1,0 +1,19 @@
+3+1, lengths in l_k; u = w = Gaussian mixture of (sigma/r) erf(r/sqrt2 sigma), 12 components, t_min = 1/12; rows r/sigma = [3.0, 4.0, 6.0]; R = 12 sigma, t_x = 3R; main [160, 16, 24, 6, 16, 8], check [80, 12, 8, 3, 8, 4]; c = dB_L[L] / |grad L|^2, beta = 1 - c/2
+  instrument gate: K.13a lin PASSED 20261023T100216Z with the current core
+  source-term bound c_src (|1 - 3 gamma| kappa rho_s L1 / |grad L1|^2): r = 3 sigma: 5.07e-01; r = 4 sigma: 3.43e-02; r = 6 sigma: 5.25e-06 -> rows in the decision (c_src <= 0.0625): [4.0, 6.0]; the others are reported only
+  r = 3 sigma (reported only: source tail), H1 gamma = +1 (prediction c = 0): c_disc(sigma = 4, 8, 16) = -0.4194 -0.2806 -0.2236; continuum of the mixture -0.1945 -0.1945 -0.1945; |dev| 0.2249 0.0861 0.0291; |main - check| 0.0080 0.0026 0.0008; linear extrapolation c_inf -0.1665
+        beta_disc = 1 - c/2: 1.2097 1.1403 1.1118; density part P / limit: 0.9256 0.9829 0.9966; cone part Q / limit: 0.5876 0.8567 0.9547; d ln|grad L| / d ln r: -1.761 -1.761 -1.761
+  r = 3 sigma (reported only: source tail), conformal gamma = -1 (control, c = 2): c_disc(sigma = 4, 8, 16) = +1.6711 +1.7747 +1.7994; continuum of the mixture +1.8055 +1.8055 +1.8055; |dev| 0.1344 0.0308 0.0061; |main - check| 0.0190 0.0063 0.0019; linear extrapolation c_inf +1.8241
+  r = 4 sigma, H1 gamma = +1 (prediction c = 0): c_disc(sigma = 4, 8, 16) = -0.1139 -0.0285 -0.0022; continuum of the mixture +0.0082 +0.0082 +0.0082; |dev| 0.1221 0.0367 0.0104; |main - check| 0.0176 0.0050 0.0010; linear extrapolation c_inf +0.0240
+        beta_disc = 1 - c/2: 1.0570 1.0142 1.0011; density part P / limit: 1.0361 1.0182 1.0069; cone part Q / limit: 0.9152 0.9818 0.9966; d ln|grad L| / d ln r: -2.010 -2.010 -2.010
+  r = 4 sigma, conformal gamma = -1 (control, c = 2): c_disc(sigma = 4, 8, 16) = +2.0806 +2.0447 +2.0221; continuum of the mixture +2.0082 +2.0082 +2.0082; |dev| 0.0724 0.0366 0.0139; |main - check| 0.0313 0.0092 0.0026; linear extrapolation c_inf +1.9994
+  r = 6 sigma, H1 gamma = +1 (prediction c = 0): c_disc(sigma = 4, 8, 16) = +0.0157 +0.0470 +0.0546; continuum of the mixture +0.0578 +0.0578 +0.0578; |dev| 0.0422 0.0108 0.0033; |main - check| 0.0897 0.0229 0.0043; linear extrapolation c_inf +0.0621
+        beta_disc = 1 - c/2: 0.9922 0.9765 0.9727; density part P / limit: 1.0531 1.0181 1.0057; cone part Q / limit: 1.0115 1.0072 1.0024; d ln|grad L| / d ln r: -2.091 -2.091 -2.091
+  r = 6 sigma, conformal gamma = -1 (control, c = 2): c_disc(sigma = 4, 8, 16) = +2.1672 +2.0951 +2.0696; continuum of the mixture +2.0578 +2.0578 +2.0578; |dev| 0.1094 0.0373 0.0118; |main - check| 0.0758 0.0197 0.0051; linear extrapolation c_inf +2.0441
+  wall control sigma 4, r = 3 sigma, h1: R = 12 sigma -0.4194, R = 24 sigma -0.4194 (difference +0.0001, tolerance 0.0625)
+  wall control sigma 4, r = 3 sigma, conf: R = 12 sigma +1.6711, R = 24 sigma +1.6710 (difference -0.0001, tolerance 0.0625)
+  wall control sigma 4, r = 4 sigma, h1: R = 12 sigma -0.1139, R = 24 sigma -0.1137 (difference +0.0002, tolerance 0.0625)
+  wall control sigma 4, r = 4 sigma, conf: R = 12 sigma +2.0806, R = 24 sigma +2.0803 (difference -0.0003, tolerance 0.0625)
+  wall control sigma 4, r = 6 sigma, h1: R = 12 sigma +0.0157, R = 24 sigma +0.0172 (difference +0.0016, tolerance 0.0625)
+  wall control sigma 4, r = 6 sigma, conf: R = 12 sigma +2.1672, R = 24 sigma +2.1651 (difference -0.0021, tolerance 0.0625)
+decision: quadrature within 0.0625: FAILS; wall within 0.0625: OK; control gamma = -1 within 0.25 at sigma 16: OK; H1 within 0.25 at sigma 16 in every decision row: yes; no growth from sigma 4: yes

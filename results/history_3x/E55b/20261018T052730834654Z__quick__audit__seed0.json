@@ -1,0 +1,80 @@
+{
+ "base_seed": 0,
+ "card_sha": "6eb00fa9f7526a6115ad920b643683d75f4fc6d4e434ddfb3b67763b675bcae3",
+ "eid": "E55b",
+ "elapsed_s": 1.1,
+ "lines": [
+  "audit (REPORTED, no verdict): 2+1 N=600, 1 sprinklings, strict trials 20000 (local 1.0 ell); C = Q_0.99 per sprinkling",
+  "  orig  : F0 quantiles 50/90/99 % 3.672 4.606 5.521; saturated fraction 0.0168",
+  "  strict: F0 quantiles 50/90/99 % 3.665 4.653 5.564; saturated fraction 0.0168",
+  "  dag   : F0 quantiles 50/90/99 % 3.194 4.334 5.002; saturated fraction 0.0000",
+  "  mixing: strict keeps 0.959 of the original edges (redundant after 0); DAG keeps 0.208, non-covering 0.747",
+  "  the strict null is interpretable only if it is mixed (kept well below 1); otherwise it is the original graph"
+ ],
+ "part": "audit",
+ "payload": {
+  "seeds": [
+   {
+    "C": 5.520609006792414,
+    "dag": {
+     "F0_q": [
+      3.194414598427772,
+      4.33445988991373,
+      5.00200350540304
+     ],
+     "sat": 0.0
+    },
+    "dag_kept": 0.2082437275985663,
+    "dag_redundant": 0.7471326164874552,
+    "orig": {
+     "F0_q": [
+      3.671867158893711,
+      4.606414334820703,
+      5.520609006792414
+     ],
+     "sat": 0.01680672268907563
+    },
+    "strict": {
+     "F0_q": [
+      3.6646499725324615,
+      4.652976644052907,
+      5.564411532052765
+     ],
+     "sat": 0.01680672268907563
+    },
+    "strict_kept": 0.9589605734767025,
+    "strict_redundant": 0,
+    "strict_swaps": 192
+   }
+  ]
+ },
+ "plan": {
+  "D": 3,
+  "N": 600,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "T": 6.0,
+  "cell": 0.1,
+  "estimate": "~45 min (strict rewiring in pure Python)",
+  "local_ell": 1.0,
+  "min_count": 3,
+  "n_cal": 1,
+  "n_perm": 4,
+  "n_rbins": 16,
+  "n_seeds": 1,
+  "q": 0.99,
+  "redundant_sample": 50,
+  "s0": 1.0,
+  "slab": 0.25,
+  "strict_trials": 20000,
+  "swaps_per_edge": 10.0,
+  "t1": 3.5,
+  "t2": 5.5,
+  "where": "local (user)"
+ },
+ "python": "3.13.16",
+ "quick": true,
+ "title": "Homogeneous driving with capacity: extra localization and persistence without feedback (baseline for E56)",
+ "verdict": "REPORTED",
+ "version": "3.3.0"
+}

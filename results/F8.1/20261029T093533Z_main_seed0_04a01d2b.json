@@ -1,0 +1,54 @@
+{
+ "id": "F8.1",
+ "part": "main",
+ "seed": 0,
+ "quick": false,
+ "status": "INSTRUMENT_FAILED",
+ "test_file": "phases\\F8_data\\F8_01_point_mass_field.py",
+ "test_sha256": "04a01d2bb8078e23bcc3eca9f88355ef3244e755826a4ddc60a6bfed590070d5",
+ "core_sha256": "40c954bae6a8a81ef4a33bb0d16a0e647582f8350212a087429e565911eea588",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261029T093533Z",
+ "duration_s": 0.0,
+ "params": {
+  "plateau_ks": [
+   0.07,
+   0.1,
+   0.14,
+   0.2
+  ],
+  "beta4_bound": 4.9e-05,
+  "r0_m": 0.001,
+  "T_readings_m": {
+   "age of the universe (13.8 Gyr)": 1.3057e+26,
+   "age of the field of the Earth (4.5 Gyr)": 4.258e+25,
+   "one year": 9461000000000000.0,
+   "one day": 25900000000000.0
+  },
+  "l_k_examples_m": [
+   1.616e-35,
+   1e-20,
+   1e-19
+  ],
+  "tol_conf": 1e-08,
+  "tol_ft": 1e-06
+ },
+ "lines": [
+  "Static field of a point mass from the three sectors (A, B, C) of the expected BD action; far field r >> L_*; units c = 1, l_k = 1 in the sectors",
+  "  I1 inputs: F6.8b2 PASSED (results\\F6.8b2\\20261028T225522Z_main_seed0_ab37eee4.json), F6.8c missing (-); same grid: False"
+ ],
+ "data": {
+  "inputs": [
+   true,
+   false,
+   false
+  ]
+ }
+}

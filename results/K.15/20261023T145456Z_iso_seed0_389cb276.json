@@ -1,0 +1,63 @@
+{
+ "id": "K.15",
+ "part": "iso",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_15_flux_tensor.py",
+ "test_sha256": "389cb2769f462d714c5514d98f647ba9975e39f188e176fe5f258e2c8ff5dd0c",
+ "core_sha256": "958b2e63c86a80186be4d6e827bc848b9cdc851f62724850a0a11a83d4f617d4",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T145456Z",
+ "duration_s": 646.9,
+ "params": {
+  "D": 4,
+  "T": 7.0,
+  "half": 8.0,
+  "r_src": 4.0,
+  "t_src": 0.3,
+  "v": 0.6,
+  "win": [
+   2.5,
+   4.5
+  ],
+  "cuts": [
+   2.5,
+   3.0,
+   3.5,
+   4.0,
+   4.5
+  ],
+  "cells": [
+   2.0,
+   3.0
+  ],
+  "beta_check": 0.6,
+  "n_seeds": 64,
+  "n_se": 2.0,
+  "boot_B": 2000,
+  "tol": 0.05,
+  "mode": "iso"
+ },
+ "lines": [
+  "3+1, rho = 1, box t [0, 7], |x_i| <= 8 (~28662 events); sources in a ball of radius 4, t < 0.3, v = 0.6; window t in [2.5, 4.5]; T^ab = (1/dV4) sum F u^a u^b tau_link",
+  "  merge rule F = |P|: q_x/E +0.0030 +- 0.0053 (exp +0.0000, OK); q_y/E +0.0002 +- 0.0055 (exp +0.0000, OK); q_z/E +0.0091 +- 0.0054 (exp +0.0000, OK); pi_xx/E -0.0012 +- 0.0014 (exp +0.0000, OK); pi_yy/E +0.0011 +- 0.0017 (exp +0.0000, OK); pi_xy/E +0.0009 +- 0.0012 (exp +0.0000, OK); p/E +0.1119 +- 0.0005 (exp +0.1200, OK)",
+  "     flux in merged events 0.079, mixed flux (speed no longer v) 0.187; Landau-frame pressure p_rest/E_rest +0.1107; cells L = 2.0: p/E 0.1071, spread 0.0204 over 13 cells; cells L = 3.0: p/E 0.1118, spread 0.0145 over 15 cells",
+  "  merge rule sum of fluxes: q_x/E +0.0028 +- 0.0054 (exp +0.0000); q_y/E +0.0003 +- 0.0056 (exp +0.0000); q_z/E +0.0090 +- 0.0053 (exp +0.0000); pi_xx/E -0.0012 +- 0.0014 (exp +0.0000); pi_yy/E +0.0012 +- 0.0017 (exp +0.0000); pi_xy/E +0.0009 +- 0.0013 (exp +0.0000); p/E +0.1128 +- 0.0004 (exp +0.1200)",
+  "     flux in merged events 0.073, mixed flux (speed no longer v) 0.171; Landau-frame pressure p_rest/E_rest +0.1117; cells L = 2.0: p/E 0.1096, spread 0.0176 over 13 cells; cells L = 3.0: p/E 0.1128, spread 0.0127 over 15 cells",
+  "checks: expected ratios (merge rule F = |P|): OK; frame check of the tensor (relative 1e-9): OK"
+ ],
+ "data": {
+  "instrument": {
+   "expected ratios (merge rule F = |P|)": true,
+   "frame check of the tensor (relative 1e-9)": true
+  }
+ }
+}

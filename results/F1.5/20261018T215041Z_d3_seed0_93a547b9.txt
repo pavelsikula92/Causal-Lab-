@@ -1,0 +1,11 @@
+2+1 self-consistent field (a), lengths in l_k: Gaussian source sigma = 8, R = 100, 48 nodes, 94 rows, quadrature [160, 8, 48, 6, 24, 1]; far-field window [24, 50]
+  flat operator: A_flat = 65.89673 per unit source (continuum flat 63.93220)
+  P1 coupling k = A_curved(q_lin) / A_flat = 0.3363; prediction 1/D = 0.3333 (continuum (a) 0.3326, box_g 0.9917); |k - 1/D| = 0.0029 (tol 0.1667) -> met
+  q               0.0025      0.005       0.01       0.02
+  Pi(0) causal    0.8918     0.8144     0.7074     0.5807
+  s causal set    0.8260     0.7091     0.5600     0.4021
+  s (a)           0.8249     0.7088     0.5623     0.4083
+  s box_g         0.5842     0.4299     0.2916     no sol
+  P2 nonlinearity: RMS(s_cs - s_a) = 0.0034 vs RMS(1 - s_a)/4 = 0.1013 -> met
+  iterations           7          7          9         15   (q_lin: 6)
+instrument: self-consistent solves converged: OK; residuals: OK; residuals 1.2e-07, 1.0e-05, 1.7e-05, 2.7e-05, 3.7e-05

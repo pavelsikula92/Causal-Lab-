@@ -1,0 +1,121 @@
+{
+ "base_seed": 7,
+ "card_sha": "7abddb30bc3d5396618f4a444db989d3ab13a8ddb99bb4985ecdf87453cbd29f",
+ "eid": "E54",
+ "elapsed_s": 2363.2,
+ "lines": [
+  "instrument (2+1 via the coordinate port): N=4000 GEOMETRIC(D=2.90, d*=3); N=8000 GEOMETRIC(D=2.96, d*=3) -> OK",
+  "  3+1 N=8000    GEOMETRIC(D=3.82, d*=4)                      D_MM 3.53 D_chain 4.11 homog 0.11 dS_4 -0.08 bulk links 126.0 (nulls at 8000)",
+  "  3+1 N=16000   NOT_MANIFOLD_LIKE                            D_MM 3.59 D_chain 4.20 homog 0.06 dS_4 -0.12 bulk links 194.4 (nulls at 16000)",
+  "  3+1 N=32000   GEOMETRIC(D=3.81, d*=4)                      D_MM 3.67 D_chain 3.94 homog 0.09 dS_4 0.40 bulk links 268.9 (nulls at 16000)",
+  "  3+1 N=64000   GEOMETRIC(D=3.89, d*=4)                      D_MM 3.66 D_chain 4.13 homog 0.21 dS_4 0.15 bulk links 388.5 (nulls at 16000)",
+  "  3+1 N=128000  GEOMETRIC(D=3.82, d*=4)                      D_MM 3.72 D_chain 3.93 homog 0.13 dS_4 -0.29 bulk links 565.6 (nulls at 16000)",
+  "  trailing GEOMETRIC(4) sizes: 3 (need 3); N* = 32000; G3 gamma_0 = 0.53 (reported)",
+  "  null: percolation p=0.01 at N=16000: NOT_MANIFOLD_LIKE"
+ ],
+ "part": "all",
+ "payload": {
+  "gamma0": 0.5333056303902166,
+  "instrument": [
+   {
+    "d_star": 3,
+    "decision": "GEOMETRIC(D=2.90, d*=3)",
+    "n": 4000
+   },
+   {
+    "d_star": 3,
+    "decision": "GEOMETRIC(D=2.96, d*=3)",
+    "n": 8000
+   }
+  ],
+  "n_star": 32000,
+  "per_size": [
+   {
+    "D_MM": 3.5320195273743593,
+    "D_chain": 4.1066232247217584,
+    "bulk_links": 125.9525,
+    "dS4": -0.07771255044131486,
+    "d_star": 4,
+    "decision": "GEOMETRIC(D=3.82, d*=4)",
+    "homog_spread": 0.1138500630731869,
+    "n": 8000,
+    "null_size": 8000
+   },
+   {
+    "D_MM": 3.5896822317590704,
+    "D_chain": 4.200094376918305,
+    "bulk_links": 194.3725,
+    "dS4": -0.1194169691080392,
+    "d_star": null,
+    "decision": "NOT_MANIFOLD_LIKE",
+    "homog_spread": 0.06436302935981075,
+    "n": 16000,
+    "null_size": 16000
+   },
+   {
+    "D_MM": 3.671751868685533,
+    "D_chain": 3.944166213916885,
+    "bulk_links": 268.85,
+    "dS4": 0.40019154385921435,
+    "d_star": 4,
+    "decision": "GEOMETRIC(D=3.81, d*=4)",
+    "homog_spread": 0.08932665401880513,
+    "n": 32000,
+    "null_size": 16000
+   },
+   {
+    "D_MM": 3.65660646546894,
+    "D_chain": 4.13206107811463,
+    "bulk_links": 388.485,
+    "dS4": 0.14801651812883632,
+    "d_star": 4,
+    "decision": "GEOMETRIC(D=3.89, d*=4)",
+    "homog_spread": 0.2077410157653503,
+    "n": 64000,
+    "null_size": 16000
+   },
+   {
+    "D_MM": 3.71865004016945,
+    "D_chain": 3.9260718559470815,
+    "bulk_links": 565.6424999999999,
+    "dS4": -0.29382399143381704,
+    "d_star": 4,
+    "decision": "GEOMETRIC(D=3.82, d*=4)",
+    "homog_spread": 0.12732306334510213,
+    "n": 128000,
+    "null_size": 16000
+   }
+  ],
+  "percolation": "NOT_MANIFOLD_LIKE",
+  "trailing": 3
+ },
+ "plan": {
+  "D": 4,
+  "estimate": "many hours; memory ~2-4 GB at 128000 (coordinates, no bitsets except the nulls at 16000)",
+  "inst_sizes": [
+   4000,
+   8000
+  ],
+  "n_action": 60,
+  "n_bulk": 200,
+  "n_intervals": 60,
+  "n_read": 2,
+  "null_cap": 16000,
+  "sizes": [
+   8000,
+   16000,
+   32000,
+   64000,
+   128000
+  ],
+  "where": "local (user)"
+ },
+ "python": "3.13.6",
+ "quick": false,
+ "reference_verdict": "SUPPORTED",
+ "replication_of": "20261013T161015960663Z__registered__all__seed0.json",
+ "same_verdict": true,
+ "title": "Calibration of the geometry reading in 3+1",
+ "verdict": "SUPPORTED",
+ "version": "3.0.0"
+}

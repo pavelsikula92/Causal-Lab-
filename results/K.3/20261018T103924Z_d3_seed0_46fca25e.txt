@@ -1,0 +1,9 @@
+2+1: softened A5' profile eps=0.2 soft=0.05 R=0.5; diamonds H=0.1; radii 0.10 0.14 0.18 0.22 0.26 0.30 0.34 0.38 0.42
+  Pi(r): 0.699 0.756 0.802 0.840 0.872 0.900 0.924 0.946 0.966
+  rho=1e+05 (ell 0.0215): r = 0.991, max err 0.069 -> meets; flat dev 0.018; null r = -0.656
+     Pi_order 0.760 0.865 0.912 0.947 1.005 1.096 1.115 1.124 1.176
+  rho=4e+05 (ell 0.0136): r = 0.999, max err 0.052 -> meets; flat dev 0.012; null r = -0.128
+     Pi_order 0.775 0.863 0.923 0.973 1.019 1.051 1.100 1.128 1.169
+  rho=1.6e+06 (ell 0.0085): r = 0.998, max err 0.036 -> meets; flat dev 0.010; null r = 0.081
+     Pi_order 0.788 0.857 0.921 0.986 1.032 1.050 1.103 1.123 1.140
+instrument (flat reads flat within 0.05): OK; null fails (good)

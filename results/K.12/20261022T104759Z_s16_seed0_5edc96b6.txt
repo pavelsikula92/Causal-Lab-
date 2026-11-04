@@ -1,0 +1,14 @@
+2+1, lengths in l_k: source sigma = 16, q = 0.0025; field (a) self-consistent, R = 200, 28 nodes, 54 rows, quadrature [240, 8, 96, 8, 48, 1], geometry spline; 4 iterations, residual 9.5e-06; motion region: b = 20, T = 80
+  this part: sigma = 16, R = 200; Pi(0) cs 0.7202 continuum 0.7099; P_cs = +3.7708, P_a = +3.3542, P_cs/P_a = 1.124
+     slope ratio cs/continuum at r = 20, 40, 60: 1.158 1.097 1.049
+     flux r dPi/dr at r = 48, 50, 100, 150, 180:  cs 0.1267 0.1267 0.1147 0.0870 0.0207   continuum 0.1180 0.1186 0.1197 0.1197 0.1197
+     Gauss deficit 1 - flux(R/2)/flux(3 sigma): cs +0.095, continuum -0.014
+  check level [160, 8, 48, 6, 24, 1]: P_cs = +3.7709, Pi(0) 0.7202; |P_cs(main) - P_cs(check)| = 0.0001 vs P_a/64 = 0.0524
+  decision: |P_cs - P_a| = 0.4166 vs P_a/16 = 0.2096 (a quarter of the F2.7 band P_a/4)
+  for comparison (re-read from saved records, analysed the same way):
+  F2.7 field (20261022T040243Z): sigma = 8, R = 100; Pi(0) cs 0.7113 continuum 0.7099; P_cs = +2.0230, P_a = +1.6771, P_cs/P_a = 1.206
+     slope ratio cs/continuum at r = 10, 20, 30: 1.245 1.129 1.056
+     flux r dPi/dr at r = 24, 25, 50, 75, 90:  cs 0.1288 0.1285 0.1162 0.0859 0.0207   continuum 0.1180 0.1186 0.1197 0.1197 0.1197
+     Gauss deficit 1 - flux(R/2)/flux(3 sigma): cs +0.098, continuum -0.014
+  P_cs / P_a against sigma (all fields above): sigma 8 R 100: 1.206; sigma 16 R 200: 1.124
+instrument: field solve converged: OK; field residual: OK; quadrature converged: OK

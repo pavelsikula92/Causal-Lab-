@@ -1,0 +1,66 @@
+{
+ "experiment": "e44a",
+ "lab_version": "2.15.0",
+ "saved_utc": "20261012T184523Z",
+ "config": {
+  "sizes": "4000,8000,16000",
+  "n_seeds": 2,
+  "dims": "4",
+  "n_pairs": 20,
+  "min_interval": 50,
+  "quick": 0
+ },
+ "seed": 0,
+ "verdict": "SIGN NOT CONFIRMED (3+1 SHORTEST_NOT_SEPARATED)",
+ "notes": "sizes=[4000, 8000, 16000] seeds=2 pairs/seed=20 min_interval=50 elapsed=21s\n\nd    N      interval  steps L/S     dev L / S        polygon tau L / S\n3+1  4000        169     7/2      0.164 / 0.429    0.643 / 0.500\n3+1  8000        388     9/2      0.154 / 0.441    0.649 / 0.464\n3+1  16000       699    10/2      0.146 / 0.463    0.618 / 0.369\n     slope dev_long -0.08, slope tau_short -0.22 -> SHORTEST_NOT_SEPARATED",
+ "results": {
+  "4": {
+   "medians": {
+    "dev_long": [
+     0.16388668356553415,
+     0.15382482393718305,
+     0.14573831774171742
+    ],
+    "dev_short": [
+     0.42896357877264096,
+     0.440864408925225,
+     0.46317820118165776
+    ],
+    "tau_long": [
+     0.6433686735203024,
+     0.6489554932939396,
+     0.6175806300712079
+    ],
+    "tau_short": [
+     0.5004386236265419,
+     0.464269743651673,
+     0.3688791893879551
+    ],
+    "steps_long": [
+     7.0,
+     9.0,
+     10.0
+    ],
+    "steps_short": [
+     2.0,
+     2.0,
+     2.0
+    ],
+    "interval": [
+     169.0,
+     388.0,
+     699.0
+    ]
+   },
+   "slope_dev_long": -0.0846591958574687,
+   "slope_tau_short": -0.22002236990388807,
+   "longest_tracks": true,
+   "shortest_deviates": false,
+   "verdict": "SHORTEST_NOT_SEPARATED"
+  }
+ },
+ "criteria": {
+  "SHORT_TAU_FACTOR": 0.5,
+  "LONG_DEV_FACTOR": 0.5
+ }
+}

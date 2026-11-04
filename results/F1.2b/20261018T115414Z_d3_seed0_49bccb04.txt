@@ -1,0 +1,14 @@
+2+1 N=32000 eps=0.2: ell = 0.0291, l_k = 0.0497; Gaussian source sigma = 0.05, q = 1.0; band t in [0.8, 1.0]; 353 rows per sprinkling; 16 calibration + 16 test sprinklings
+  L            0.100 0.135 0.183 0.247 0.333 0.450
+  L / ell      3.44 4.65 6.28 8.48 11.46 15.48
+  expected <E[B]u_e>_L (units of q) 0.4322 0.2666 0.1497 0.0820 0.0451 0.0246
+  calibration (field without source): bias -0.0806 0.0623 0.0392 -0.0288 -0.1989 0.0740
+               z -0.30 0.25 0.12 -0.10 -1.11 0.61;  RMS error 1.0568 0.9743 1.2854 1.0940 0.7239 0.4777;  p_cal = 0.477 +- 0.222
+  test (source field u_e):            bias -0.0274 -0.0213 0.0861 0.0311 0.0804 0.0778
+               z -0.18 -0.15 0.75 0.33 1.11 1.32;  RMS error 0.5826 0.5613 0.4526 0.3632 0.2915 0.2415;  p_test = 0.626 +- 0.113
+  null (permuted kernel weights):     bias 1.5695 1.2572 1.0005 0.6282 0.3520 0.0522
+               z 13.14 13.99 19.66 11.93 7.52 1.18
+  A agreement (max |z_test| <= 3.0): met (max |z| 1.32)
+  B scaling: p_test 0.626 vs p_cal 0.477, |dp| = 0.149 (allowed 0.497), p_min 0.1 -> met
+  null meets A: no (good) (max |z_null| 19.66)
+instrument: field residual: OK; calibration unbiased: OK; calibration exponent defined: OK (field residual 3.41e-03 q, tol 0.05)

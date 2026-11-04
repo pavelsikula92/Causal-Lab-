@@ -1,0 +1,10 @@
+2+1 cylinder T = 7.0, N = 56000, s0 = 1.0; analysis |x| < 0.4, t in [3.5, 5.5); C = Q_0.99 = 5.0742 (8 calibration sprinklings, own stream); copied pulse, rule 'main', omega = 1.0; 128 sprinklings = 64 pairs; dQ_crit = 0.2 CHOSEN FROM DATA (command line), confirmation sprinklings independent of the search and of F3.3d
+  earlier confirmations: none
+  no pulse: saturated 0.0092; Delta_pers +0.0211 +- 0.0055; E_loc +0.0077 +- 0.0039   (F3.2: +0.006 +- 0.006, +0.004 +- 0.004)
+  pulse: saturated 0.0611; events carrying a pulse 0.0392; Delta_pers +0.0119 +- 0.0047; E_loc +0.0171 +- 0.0033
+  paired d_pers = -0.0092 +- 0.0065 (margin 0.05) -> EQUIVALENT; d_loc = +0.0095 +- 0.0043 (margin 0.05) -> EQUIVALENT
+  switch-off at t = 5.5; the last slab before it, then the slabs of 0.25 after it:
+     saturated fraction  no pulse 0.0099 0.0000 0.0000 0.0000 0.0000 0.0000; pulse 0.1038 0.0057 0.0001 0.0000 0.0000 0.0000
+     carrying a pulse    0.0701 0.0029 0.0001 0.0000 0.0000 0.0000
+     r_s with the last slab before (nan: no saturated cells left): no pulse +0.127 +nan +nan +nan +nan; pulse +0.279 +0.130 +nan +nan +nan  (reported)
+instrument: control arm = route_capacity: OK; balance: OK; invalid statistics: OK; boosted order bit-identical: OK (invalid 0/192 (worst value))

@@ -1,0 +1,95 @@
+{
+ "experiment": "e44c",
+ "lab_version": "2.15.0",
+ "saved_utc": "20261012T184300Z",
+ "config": {
+  "n": 10000,
+  "n_seeds": 3,
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "QUICK SMOKE TEST; EQUIVALENCE_EXACT; s0=0.05 eta +0.340 vs +0.226: VIOLATION_REPRODUCED",
+ "notes": "n=10000 seeds=3 elapsed=1s\nenvironment Pi_env = 0.75 (1 + 0.6 x); non-factorised w = (Pi_env - s0 Z)^2 + 0.01\n\nfactorised Z_B in (0.5, 1.0, 2.0, 4.0): identical chains in 3/3 seeds -> EQUIVALENCE_EXACT; mid displacement -0.0068 +- 0.0242 (continuum 0.0584)\n\nnon-factorised s0 = 0.01:\n  Z     measured d          continuum d\n  0.5   +0.0407 +- 0.0267    0.1095\n  1     +0.0407 +- 0.0267    0.1101\n  2     +0.0407 +- 0.0267    0.1113\n  4     +0.0888 +- 0.0326    0.1138\n  eta = (d(4) - d(0.5)) / d(1) = +1.180 +- 1.180; continuum +0.039 -> REPRODUCED (reported only)\nnon-factorised s0 = 0.05:\n  Z     measured d          continuum d\n  0.5   +0.0888 +- 0.0326    0.1119\n  1     +0.0888 +- 0.0326    0.1151\n  2     +0.0888 +- 0.0326    0.1219\n  4     +0.1189 +- 0.0603    0.1379\n  eta = (d(4) - d(0.5)) / d(1) = +0.340 +- 0.340; continuum +0.226 -> REPRODUCED\n\nMICROSCOPE (|eta| <~ 1e-15, quoted from memory) in this model: a body-dependent shift of the saturation must satisfy Delta(s0 Z) <~ 3.8e-16 (alpha = 2, Pi = 0.75); i.e. the body may enter Pi only as a factor. Model calculation.",
+ "identical_seeds": 3,
+ "factorised_disp": [
+  -0.0068256508924395415,
+  0.024152899794603444
+ ],
+ "factorised_cont": 0.05836256110706771,
+ "nonfactorised": {
+  "0.01": {
+   "disp": {
+    "0.5": [
+     0.040726077787464204,
+     0.02673271658717568
+    ],
+    "1.0": [
+     0.040726077787464204,
+     0.02673271658717568
+    ],
+    "2.0": [
+     0.040726077787464204,
+     0.02673271658717568
+    ],
+    "4.0": [
+     0.08877126486699465,
+     0.032583562028345885
+    ]
+   },
+   "eta": 1.1797155456575568,
+   "eta_se": 1.179715545657557,
+   "eta_cont": 0.03906694043902782,
+   "disp_cont": {
+    "0.5": 0.10949335415624264,
+    "1.0": 0.11008983462537175,
+    "2.0": 0.11130041865238821,
+    "4.0": 0.11379422716849447
+   },
+   "reproduced": true
+  },
+  "0.05": {
+   "disp": {
+    "0.5": [
+     0.08877126486699465,
+     0.032583562028345885
+    ],
+    "1.0": [
+     0.08877126486699465,
+     0.032583562028345885
+    ],
+    "2.0": [
+     0.08877126486699465,
+     0.032583562028345885
+    ],
+    "4.0": [
+     0.11891538176337767,
+     0.06030240072453089
+    ]
+   },
+   "eta": 0.33957065883366366,
+   "eta_se": 0.33957065883366366,
+   "eta_cont": 0.22555433628546828,
+   "disp_cont": {
+    "0.5": 0.11191467404607308,
+    "1.0": 0.11507871783864143,
+    "2.0": 0.12190396016740135,
+    "4.0": 0.13787117786875053
+   },
+   "reproduced": true
+  }
+ },
+ "microscope_delta_bound": 3.7500000000000003e-16,
+ "criteria": {
+  "ETA_REL": 0.5,
+  "Z_GRID": [
+   0.5,
+   1.0,
+   2.0,
+   4.0
+  ],
+  "S0_GRID": [
+   0.01,
+   0.05
+  ]
+ }
+}

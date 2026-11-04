@@ -1,0 +1,3 @@
+3+1 N=24000: closed-surface and node-set identities worst 5.9e-16 (tol 1e-09)
+  no source -> flux max 0; capacity balance 0.0e+00; C = inf vs uniform routing 0.0e+00
+  impulse response decay rate (reported) - per unit t

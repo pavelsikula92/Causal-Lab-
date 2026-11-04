@@ -1,0 +1,1396 @@
+{
+ "experiment": "e37d",
+ "lab_version": "2.7.0",
+ "saved_utc": "20261012T114200Z",
+ "config": {
+  "sizes": "2000,4000,8000",
+  "c1_c": "2,4,8,16,32",
+  "l1_c": "4,8,16",
+  "l1_kappa": "2,8",
+  "l2_c": "4,16",
+  "l2_K": "8,16,32",
+  "n_seeds": 3,
+  "n_action": 80,
+  "n_intervals": 60,
+  "require_gate": 1,
+  "quick": 0
+ },
+ "seed": 0,
+ "verdict": "gate passed (E37a calibrated ['1+1', '2+1', '3+1']); growth audits ok; NO_CANDIDATE; C1: interval test passes 0/5, past fraction 0.03-0.84; L1r: interval test passes 0/6, past fraction 0.08-0.53; L1a: interval test passes 0/6, past fraction 0.18-0.85; L2: interval test passes 0/6, past fraction 0.19-0.77; links per element over all cells 2.0-5.8",
+ "notes": "sizes=[2000, 4000, 8000] seeds=3 n_action=80 elapsed=360s\ngate: E37a saved 20261012T113559Z, calibrated for ['1+1', '2+1', '3+1'], controls rejected: True, signature v2\n\nTARGETS (E37a, largest size):\n  1+1: links 8.5 (gamma_L 0.12), past fraction 0.531 (by size 0.525/0.530/0.531), overlap ratio 1.03, N/H 46.5\n  2+1: links 52.0 (gamma_L 0.39), past fraction 0.252 (by size 0.247/0.252/0.252), overlap ratio 0.65, N/H 186.2\n  3+1: links 106.2 (gamma_L 0.58), past fraction 0.106 (by size 0.110/0.108/0.106), overlap ratio 0.54, N/H 432.8\n\n  arm  knobs            interval label                              D_MM  D_ch    sd   links by size gammaL past fr. by size   ov.r     N/H    dS_2/3/4 .05 crit I/L/A/P\n  C1   c=2              NOT_MANIFOLD_LIKE(D_MM 2.60 vs D_chain 3.3  2.60  3.38  0.30     1.9/2.0/2.0   0.01   0.05/0.04/0.03   0.79   229.0    -1.5/1.4/4.6 -...\n  C1   c=4              NOT_MANIFOLD_LIKE(spread 0.52 > 0.4)        2.97  3.24  0.52     3.2/3.3/3.4   0.05   0.24/0.20/0.17   0.81   123.2   -5.6/3.7/13.4 -...\n  C1   c=8              NOT_MANIFOLD_LIKE(spread 0.72 > 0.4)        3.00  3.03  0.72     4.0/4.4/4.7   0.11   0.51/0.46/0.42   0.85    71.5   -7.7/5.5/17.9 -...\n  C1   c=16             NOT_MANIFOLD_LIKE(spread 0.87 > 0.4; scale  2.52  2.37  0.87     4.3/4.9/5.3   0.15   0.74/0.70/0.67   0.91    41.4   -6.8/4.6/14.4 -...\n  C1   c=32             NOT_MANIFOLD_LIKE(spread 0.83 > 0.4; scale  2.33  2.16  0.83     4.1/4.7/5.3   0.19   0.88/0.86/0.84   0.96    24.2    -5.0/3.0/9.5 -...\n  L1r  c=4 kappa=2      NOT_MANIFOLD_LIKE(spread 0.52 > 0.4; D_MM   2.98  3.76  0.52     3.0/3.2/3.3   0.07   0.21/0.17/0.14   0.76   131.9   -4.6/3.6/12.1 -...\n  L1r  c=4 kappa=8      NOT_MANIFOLD_LIKE(spread 0.43 > 0.4)        2.85  3.37  0.43     2.8/3.0/3.1   0.08   0.14/0.10/0.08   0.68   150.2    -2.8/2.9/8.9 -...\n  L1r  c=8 kappa=2      NOT_MANIFOLD_LIKE(spread 0.60 > 0.4)        3.10  3.02  0.60     3.9/4.2/4.4   0.09   0.40/0.36/0.33   0.82    83.5   -6.2/5.8/17.3 -...\n  L1r  c=8 kappa=8      NOT_MANIFOLD_LIKE(spread 0.51 > 0.4)        2.94  3.05  0.51     3.8/4.0/4.5   0.13   0.22/0.18/0.16   0.76   104.6   -4.6/4.1/13.2 -...\n  L1r  c=16 kappa=2     NOT_MANIFOLD_LIKE(spread 0.71 > 0.4; size   3.04  2.88  0.71     4.3/4.7/5.2   0.13   0.60/0.56/0.53   0.87    57.7   -7.3/5.6/16.9 -...\n  L1r  c=16 kappa=8     NOT_MANIFOLD_LIKE(spread 0.60 > 0.4)        2.96  3.15  0.60     4.5/5.0/5.8   0.18   0.33/0.28/0.24   0.74    83.3   -5.1/5.3/15.0 -...\n  L1a  c=4 kappa=2      NOT_MANIFOLD_LIKE(spread 0.52 > 0.4; scale  3.10  3.51  0.52     3.3/3.4/3.5   0.05   0.25/0.22/0.19   0.80   125.1   -6.4/4.0/14.5 -...\n  L1a  c=4 kappa=8      NOT_MANIFOLD_LIKE(spread 0.45 > 0.4)        3.19  3.59  0.45     3.5/3.6/3.7   0.04   0.25/0.21/0.18   0.86   139.3   -7.4/3.0/13.1 -...\n  L1a  c=8 kappa=2      NOT_MANIFOLD_LIKE(spread 0.73 > 0.4; size   3.04  2.74  0.73     4.2/4.6/4.9   0.10   0.59/0.55/0.51   0.87    60.5   -7.6/5.1/16.4 -...\n  L1a  c=8 kappa=8      NOT_MANIFOLD_LIKE(spread 0.66 > 0.4; size   2.98  2.69  0.66     4.7/5.1/5.5   0.12   0.60/0.56/0.52   0.87    55.7   -8.7/3.8/14.5 -...\n  L1a  c=16 kappa=2     NOT_MANIFOLD_LIKE(spread 0.84 > 0.4; scale  2.39  2.23  0.84     4.3/4.7/5.3   0.15   0.83/0.81/0.78   0.94    31.0   -6.1/3.3/10.9 -...\n  L1a  c=16 kappa=8     NOT_MANIFOLD_LIKE(spread 0.78 > 0.4; scale  2.17  2.05  0.78     4.2/4.7/5.3   0.17   0.88/0.86/0.85   0.95    22.2    -4.9/2.4/8.1 -...\n  L2   c=4 K=8          NOT_MANIFOLD_LIKE(spread 0.56 > 0.4)        3.11  3.55  0.56     3.1/3.2/3.3   0.05   0.32/0.28/0.25   0.84   108.7   -5.0/5.5/16.1 -...\n  L2   c=4 K=16         NOT_MANIFOLD_LIKE(spread 0.52 > 0.4)        3.03  3.46  0.52     3.1/3.2/3.3   0.05   0.28/0.24/0.21   0.82   115.5   -5.2/4.7/14.9 -...\n  L2   c=4 K=32         NOT_MANIFOLD_LIKE(spread 0.49 > 0.4)        3.14  3.50  0.49     3.1/3.3/3.4   0.05   0.26/0.22/0.19   0.80   121.9   -5.4/4.4/14.5 -...\n  L2   c=16 K=8         NOT_MANIFOLD_LIKE(spread 0.77 > 0.4; scale  2.57  2.39  0.77     3.8/4.2/4.5   0.13   0.80/0.78/0.77   0.94    32.8   -4.9/4.4/12.1 -...\n  L2   c=16 K=16        NOT_MANIFOLD_LIKE(spread 0.77 > 0.4; scale  2.65  2.52  0.77     4.0/4.4/4.8   0.13   0.77/0.75/0.73   0.93    36.4   -6.0/4.5/13.5 -...\n  L2   c=16 K=32        NOT_MANIFOLD_LIKE(spread 0.78 > 0.4; scale  2.72  2.42  0.78     4.2/4.7/5.1   0.13   0.75/0.73/0.70   0.93    38.6   -6.2/4.8/14.1 -...\n\ncrit I/L/A/P  interval / links (gamma_L and count) / smeared action / past\n              fraction (within 30% of the target and constant in N);\n              + met, - failed, . not evaluated (no calibrated d*).\nov.r          overlap ratio: pasts of an element's links vs random equal-height\n              pairs; a 2+1 / 3+1 sprinkling is below 1 (E37a).\ngrowth audits: all ok",
+ "gate": {
+  "e37a_saved_utc": "20261012T113559Z",
+  "calibrated_dims": [
+   2,
+   3,
+   4
+  ],
+  "controls_ok": true,
+  "signature_version": 2
+ },
+ "gate_satisfied": true,
+ "cells": {
+  "C1:2": {
+   "arm": "C1",
+   "knobs": [
+    2
+   ],
+   "label": "NOT_MANIFOLD_LIKE(D_MM 2.60 vs D_chain 3.38)",
+   "numbers": {
+    "D_MM": 2.595738743428228,
+    "D_chain": 3.3815543783297652,
+    "D_sd": 0.2956190814586538,
+    "D_MM_small": 2.364366358251573,
+    "D_MM_large": 2.833204468080415,
+    "size_drift": 0.21729882857956317,
+    "height_exponent": 0.11925604334986235,
+    "D_height": 8.385319283705334,
+    "D": 2.9886465608789967,
+    "heights": [
+     29.666666666666668,
+     30,
+     35
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.013161273218217731,
+   "links_upper": 1.9635,
+   "links_by_size": [
+    1.928,
+    1.9508333333333332,
+    1.9635
+   ],
+   "past_fraction_by_size": [
+    0.05471164881311872,
+    0.03770555876679542,
+    0.02776719584407066
+   ],
+   "overlap_ratio": 0.7933066661422773,
+   "per_layer": 228.95622895622895,
+   "dS_eps005_by_d": {
+    "2": -1.5059538143214035,
+    "3": 1.392048836500227,
+    "4": 4.647777802103339
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "4"
+  },
+  "C1:4": {
+   "arm": "C1",
+   "knobs": [
+    4
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.52 > 0.4)",
+   "numbers": {
+    "D_MM": 2.971192328939651,
+    "D_chain": 3.2354172592553354,
+    "D_sd": 0.5158519755432309,
+    "D_MM_small": 2.7748255136987914,
+    "D_MM_large": 3.2025108837102985,
+    "size_drift": 0.27208586968239024,
+    "height_exponent": 0.1609640474436808,
+    "D_height": 6.212567439010794,
+    "D": 3.103304794097493,
+    "heights": [
+     52,
+     53.666666666666664,
+     65
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.05185247785447339,
+   "links_upper": 3.3869166666666666,
+   "links_by_size": [
+    3.152,
+    3.3015,
+    3.3869166666666666
+   ],
+   "past_fraction_by_size": [
+    0.23810272120235096,
+    0.19618766701682205,
+    0.16750283483745343
+   ],
+   "overlap_ratio": 0.8127649335238173,
+   "per_layer": 123.21578811708807,
+   "dS_eps005_by_d": {
+    "2": -5.565828611995998,
+    "3": 3.746871582342221,
+    "4": 13.418364029629354
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "4"
+  },
+  "C1:8": {
+   "arm": "C1",
+   "knobs": [
+    8
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.72 > 0.4)",
+   "numbers": {
+    "D_MM": 3.002621827696809,
+    "D_chain": 3.0287041645571753,
+    "D_sd": 0.718253656785092,
+    "D_MM_small": 3.07619499992749,
+    "D_MM_large": 2.9364895336948393,
+    "size_drift": 0.3880922334453012,
+    "height_exponent": 0.21038693441399373,
+    "D_height": 4.753146875709625,
+    "D": 3.0156629961269923,
+    "heights": [
+     83.66666666666667,
+     94.66666666666667,
+     112
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.11286952667539041,
+   "links_upper": 4.7235000000000005,
+   "links_by_size": [
+    4.039333333333333,
+    4.415166666666667,
+    4.7235000000000005
+   ],
+   "past_fraction_by_size": [
+    0.5097684417193961,
+    0.4616115788419044,
+    0.42463791989048993
+   ],
+   "overlap_ratio": 0.8487808347158952,
+   "per_layer": 71.49927883872839,
+   "dS_eps005_by_d": {
+    "2": -7.725115860255066,
+    "3": 5.508745602968418,
+    "4": 17.940459034579064
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "C1:16": {
+   "arm": "C1",
+   "knobs": [
+    16
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.87 > 0.4; scale drift 2.99 -> 2.18)",
+   "numbers": {
+    "D_MM": 2.522234026950173,
+    "D_chain": 2.366763055316946,
+    "D_sd": 0.867219071390752,
+    "D_MM_small": 2.9853068643436322,
+    "D_MM_large": 2.1751930483987962,
+    "size_drift": 0.32487891302056005,
+    "height_exponent": 0.19927468824513703,
+    "D_height": 5.018198792863515,
+    "D": 2.4444985411335596,
+    "heights": [
+     146.66666666666666,
+     167,
+     193.33333333333334
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.14952249069907136,
+   "links_upper": 5.311333333333333,
+   "links_by_size": [
+    4.317,
+    4.853833333333333,
+    5.311333333333333
+   ],
+   "past_fraction_by_size": [
+    0.7386036083817611,
+    0.7043559938565379,
+    0.6715199153126633
+   ],
+   "overlap_ratio": 0.9101594243144802,
+   "per_layer": 41.43152913339249,
+   "dS_eps005_by_d": {
+    "2": -6.832778764446658,
+    "3": 4.625155219106167,
+    "4": 14.393126606693311
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "C1:32": {
+   "arm": "C1",
+   "knobs": [
+    32
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.83 > 0.4; scale drift 3.00 -> 1.88)",
+   "numbers": {
+    "D_MM": 2.3325607157227446,
+    "D_chain": 2.158567210062873,
+    "D_sd": 0.8270497149606316,
+    "D_MM_small": 2.997761969349085,
+    "D_MM_large": 1.8809711635246156,
+    "size_drift": 0.4810029101330049,
+    "height_exponent": 0.23317813828191172,
+    "D_height": 4.288566704272262,
+    "D": 2.245563962892809,
+    "heights": [
+     239.33333333333334,
+     278.6666666666667,
+     330.6666666666667
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.1899052380662338,
+   "links_upper": 5.278416666666667,
+   "links_by_size": [
+    4.056666666666667,
+    4.721666666666667,
+    5.278416666666667
+   ],
+   "past_fraction_by_size": [
+    0.8771000513498195,
+    0.8556923584372216,
+    0.8372524977828294
+   ],
+   "overlap_ratio": 0.9609767301690559,
+   "per_layer": 24.212913425830546,
+   "dS_eps005_by_d": {
+    "2": -5.0320585252757395,
+    "3": 3.0435833839270647,
+    "4": 9.53846849418716
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1r:4,2": {
+   "arm": "L1r",
+   "knobs": [
+    4,
+    2.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.52 > 0.4; D_MM 2.98 vs D_chain 3.76; scale drift 2.69 -> 3.36)",
+   "numbers": {
+    "D_MM": 2.98050671626576,
+    "D_chain": 3.757597904417853,
+    "D_sd": 0.520785245882667,
+    "D_MM_small": 2.692170937287301,
+    "D_MM_large": 3.3562281912466765,
+    "size_drift": 0.3173193311837772,
+    "height_exponent": 0.18925581162686506,
+    "D_height": 5.283853591622277,
+    "D": 3.3690523103418064,
+    "heights": [
+     46.666666666666664,
+     54.333333333333336,
+     60.666666666666664
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.06531923800976358,
+   "links_upper": 3.3055,
+   "links_by_size": [
+    3.0193333333333334,
+    3.1658333333333335,
+    3.3055
+   ],
+   "past_fraction_by_size": [
+    0.20600944872662305,
+    0.16537935311698132,
+    0.13797163399086773
+   ],
+   "overlap_ratio": 0.755406969488426,
+   "per_layer": 131.9243397957019,
+   "dS_eps005_by_d": {
+    "2": -4.634563228404027,
+    "3": 3.5823808506592663,
+    "4": 12.093470253599211
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "4"
+  },
+  "L1r:4,8": {
+   "arm": "L1r",
+   "knobs": [
+    4,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.43 > 0.4)",
+   "numbers": {
+    "D_MM": 2.848526292050034,
+    "D_chain": 3.3740439556355537,
+    "D_sd": 0.42598386868425936,
+    "D_MM_small": 2.5955384430065656,
+    "D_MM_large": 3.1622267081002065,
+    "size_drift": 0.38204080366995186,
+    "height_exponent": 0.05623736462920631,
+    "D_height": 17.78177207615202,
+    "D": 3.111285123842794,
+    "heights": [
+     49.333333333333336,
+     50,
+     53.333333333333336
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.07591031170789761,
+   "links_upper": 3.14775,
+   "links_by_size": [
+    2.833333333333333,
+    2.9833333333333334,
+    3.14775
+   ],
+   "past_fraction_by_size": [
+    0.13688798379245662,
+    0.10240670035409351,
+    0.08263600999060539
+   ],
+   "overlap_ratio": 0.6793681276981095,
+   "per_layer": 150.15514623357763,
+   "dS_eps005_by_d": {
+    "2": -2.838471294427906,
+    "3": 2.8610697751483,
+    "4": 8.91627166282933
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "4"
+  },
+  "L1r:8,2": {
+   "arm": "L1r",
+   "knobs": [
+    8,
+    2.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.60 > 0.4)",
+   "numbers": {
+    "D_MM": 3.1047204737175584,
+    "D_chain": 3.0176583828126247,
+    "D_sd": 0.6014273563352909,
+    "D_MM_small": 3.0572195087018676,
+    "D_MM_large": 3.15420946205874,
+    "size_drift": 0.39795534142952693,
+    "height_exponent": 0.21086607592642576,
+    "D_height": 4.742346513570607,
+    "D": 3.0611894282650915,
+    "heights": [
+     71.66666666666667,
+     85.66666666666667,
+     96
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.09084008899904912,
+   "links_upper": 4.436249999999999,
+   "links_by_size": [
+    3.9113333333333333,
+    4.1985,
+    4.436249999999999
+   ],
+   "past_fraction_by_size": [
+    0.40300685820002996,
+    0.3611533260923817,
+    0.3267908890852872
+   ],
+   "overlap_ratio": 0.8150429175958388,
+   "per_layer": 83.48444734583349,
+   "dS_eps005_by_d": {
+    "2": -6.197206579666643,
+    "3": 5.800911396709124,
+    "4": 17.321878813833536
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "3"
+  },
+  "L1r:8,8": {
+   "arm": "L1r",
+   "knobs": [
+    8,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.51 > 0.4)",
+   "numbers": {
+    "D_MM": 2.937428041621994,
+    "D_chain": 3.054368344966951,
+    "D_sd": 0.5123468358218164,
+    "D_MM_small": 2.6994892604379856,
+    "D_MM_large": 3.2376877312090073,
+    "size_drift": 0.3158569233783055,
+    "height_exponent": 0.22658631408280705,
+    "D_height": 4.413329216496921,
+    "D": 2.9958981932944724,
+    "heights": [
+     56,
+     69.33333333333333,
+     76.66666666666667
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.12832589040584394,
+   "links_upper": 4.495666666666667,
+   "links_by_size": [
+    3.763,
+    4.040333333333334,
+    4.495666666666667
+   ],
+   "past_fraction_by_size": [
+    0.22398409203000855,
+    0.18448765272735176,
+    0.15705350690928657
+   ],
+   "overlap_ratio": 0.7642071081846297,
+   "per_layer": 104.55840455840456,
+   "dS_eps005_by_d": {
+    "2": -4.568254641059849,
+    "3": 4.076691445094481,
+    "4": 13.194118797713928
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "4"
+  },
+  "L1r:16,2": {
+   "arm": "L1r",
+   "knobs": [
+    16,
+    2.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.71 > 0.4; size drift 0.60)",
+   "numbers": {
+    "D_MM": 3.0403346096197006,
+    "D_chain": 2.876440548527747,
+    "D_sd": 0.709393822265373,
+    "D_MM_small": 3.2253908717138984,
+    "D_MM_large": 2.8784953221559895,
+    "size_drift": 0.6031946764584668,
+    "height_exponent": 0.196050344000842,
+    "D_height": 5.100730657201526,
+    "D": 2.9583875790737237,
+    "heights": [
+     105.66666666666667,
+     126.66666666666667,
+     138.66666666666666
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.13310417433896152,
+   "links_upper": 5.21025,
+   "links_by_size": [
+    4.332333333333333,
+    4.740666666666667,
+    5.21025
+   ],
+   "past_fraction_by_size": [
+    0.6014659767787717,
+    0.5599907624195661,
+    0.5255289875170304
+   ],
+   "overlap_ratio": 0.8708267635979622,
+   "per_layer": 57.69699152044371,
+   "dS_eps005_by_d": {
+    "2": -7.263267783027947,
+    "3": 5.577142667639356,
+    "4": 16.944409029898868
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1r:16,8": {
+   "arm": "L1r",
+   "knobs": [
+    16,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.60 > 0.4)",
+   "numbers": {
+    "D_MM": 2.964599509601006,
+    "D_chain": 3.1477623717624006,
+    "D_sd": 0.6008369044320591,
+    "D_MM_small": 2.7303956575112047,
+    "D_MM_large": 3.2619765851935276,
+    "size_drift": 0.29747330396882443,
+    "height_exponent": 0.18950459504731534,
+    "D_height": 5.276916898771351,
+    "D": 3.0561809406817035,
+    "heights": [
+     74.33333333333333,
+     90.33333333333333,
+     96.66666666666667
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.181889026924181,
+   "links_upper": 5.817583333333333,
+   "links_by_size": [
+    4.521,
+    5.003333333333333,
+    5.817583333333333
+   ],
+   "past_fraction_by_size": [
+    0.32652717770686174,
+    0.2793640546730469,
+    0.23877841472657818
+   ],
+   "overlap_ratio": 0.7401783187755325,
+   "per_layer": 83.34060427083682,
+   "dS_eps005_by_d": {
+    "2": -5.071352554652018,
+    "3": 5.251310579498667,
+    "4": 14.950260410796512
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "3"
+  },
+  "L1a:4,2": {
+   "arm": "L1a",
+   "knobs": [
+    4,
+    2.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.52 > 0.4; scale drift 2.83 -> 3.43)",
+   "numbers": {
+    "D_MM": 3.097015020931091,
+    "D_chain": 3.51430342975157,
+    "D_sd": 0.5171626598567786,
+    "D_MM_small": 2.831372858358615,
+    "D_MM_large": 3.4326253900204997,
+    "size_drift": 0.40099236544483574,
+    "height_exponent": 0.1828969901294972,
+    "D_height": 5.467558538234918,
+    "D": 3.3056592253413304,
+    "heights": [
+     49.666666666666664,
+     56,
+     64
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.047883857180282555,
+   "links_upper": 3.50975,
+   "links_by_size": [
+    3.284333333333333,
+    3.376333333333333,
+    3.50975
+   ],
+   "past_fraction_by_size": [
+    0.2546902495222941,
+    0.22101528361843123,
+    0.1864275417095714
+   ],
+   "overlap_ratio": 0.8007662824083985,
+   "per_layer": 125.06203473945409,
+   "dS_eps005_by_d": {
+    "2": -6.3665519613863975,
+    "3": 3.998697088299107,
+    "4": 14.504852979278379
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "3"
+  },
+  "L1a:4,8": {
+   "arm": "L1a",
+   "knobs": [
+    4,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.45 > 0.4)",
+   "numbers": {
+    "D_MM": 3.1932015782137264,
+    "D_chain": 3.592152713118439,
+    "D_sd": 0.4516880385262933,
+    "D_MM_small": 2.98039133538623,
+    "D_MM_large": 3.44918264691781,
+    "size_drift": 0.41529963457772556,
+    "height_exponent": 0.20060261304963733,
+    "D_height": 4.984979930209378,
+    "D": 3.3926771456660827,
+    "heights": [
+     43.666666666666664,
+     55.666666666666664,
+     57.666666666666664
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.04151881345458593,
+   "links_upper": 3.736666666666667,
+   "links_by_size": [
+    3.5276666666666667,
+    3.6293333333333333,
+    3.736666666666667
+   ],
+   "past_fraction_by_size": [
+    0.2450043529555214,
+    0.20633830350254628,
+    0.17517242760131982
+   ],
+   "overlap_ratio": 0.8615824701868514,
+   "per_layer": 139.30222959122995,
+   "dS_eps005_by_d": {
+    "2": -7.375625156330211,
+    "3": 2.9639482755389794,
+    "4": 13.111345512963544
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "4"
+  },
+  "L1a:8,2": {
+   "arm": "L1a",
+   "knobs": [
+    8,
+    2.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.73 > 0.4; size drift 0.65)",
+   "numbers": {
+    "D_MM": 3.0401163856671096,
+    "D_chain": 2.7412715083095973,
+    "D_sd": 0.731369391529151,
+    "D_MM_small": 3.304817692043192,
+    "D_MM_large": 2.822210652703992,
+    "size_drift": 0.6490094253967982,
+    "height_exponent": 0.20208825332353814,
+    "D_height": 4.948333134430261,
+    "D": 2.8906939469883532,
+    "heights": [
+     100,
+     110,
+     132.33333333333334
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.10151535079670812,
+   "links_upper": 4.8910833333333334,
+   "links_by_size": [
+    4.249,
+    4.619666666666666,
+    4.8910833333333334
+   ],
+   "past_fraction_by_size": [
+    0.5930494894349435,
+    0.5472339904548658,
+    0.513999760057865
+   ],
+   "overlap_ratio": 0.8712057264302845,
+   "per_layer": 60.47504635835929,
+   "dS_eps005_by_d": {
+    "2": -7.607999394584346,
+    "3": 5.061296069802271,
+    "4": 16.412166874575725
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1a:8,8": {
+   "arm": "L1a",
+   "knobs": [
+    8,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.66 > 0.4; size drift 0.56)",
+   "numbers": {
+    "D_MM": 2.979747721931441,
+    "D_chain": 2.6943306331766643,
+    "D_sd": 0.6607951456477498,
+    "D_MM_small": 3.259406537277149,
+    "D_MM_large": 2.749926269543115,
+    "size_drift": 0.5564734191333018,
+    "height_exponent": 0.22616802035091,
+    "D_height": 4.421491590404578,
+    "D": 2.8370391775540527,
+    "heights": [
+     105,
+     123.33333333333333,
+     143.66666666666666
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.11657867517107677,
+   "links_upper": 5.496583333333334,
+   "links_by_size": [
+    4.676333333333333,
+    5.1305,
+    5.496583333333334
+   ],
+   "past_fraction_by_size": [
+    0.59532100923325,
+    0.5614952373687342,
+    0.5215616532422269
+   ],
+   "overlap_ratio": 0.869666807590664,
+   "per_layer": 55.706727135298564,
+   "dS_eps005_by_d": {
+    "2": -8.65868909551043,
+    "3": 3.777750055336205,
+    "4": 14.529717884976906
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1a:16,2": {
+   "arm": "L1a",
+   "knobs": [
+    16,
+    2.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.84 > 0.4; scale drift 2.97 -> 1.98)",
+   "numbers": {
+    "D_MM": 2.390115877667995,
+    "D_chain": 2.2252019350948844,
+    "D_sd": 0.8379162109036501,
+    "D_MM_small": 2.97402729863461,
+    "D_MM_large": 1.9792526412990508,
+    "size_drift": 0.436249930380048,
+    "height_exponent": 0.19948653151717896,
+    "D_height": 5.012869753133605,
+    "D": 2.3076589063814397,
+    "heights": [
+     195.66666666666666,
+     229.66666666666666,
+     258
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.14814227538028935,
+   "links_upper": 5.2508333333333335,
+   "links_by_size": [
+    4.276,
+    4.731833333333333,
+    5.2508333333333335
+   ],
+   "past_fraction_by_size": [
+    0.825825027871556,
+    0.8050441612401523,
+    0.7819450100497654
+   ],
+   "overlap_ratio": 0.9369999694091263,
+   "per_layer": 31.03293760356293,
+   "dS_eps005_by_d": {
+    "2": -6.054524310915928,
+    "3": 3.326739396764195,
+    "4": 10.930506665926304
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L1a:16,8": {
+   "arm": "L1a",
+   "knobs": [
+    16,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.78 > 0.4; scale drift 2.74 -> 1.77)",
+   "numbers": {
+    "D_MM": 2.1733501436089377,
+    "D_chain": 2.0504209720312554,
+    "D_sd": 0.7812386601168194,
+    "D_MM_small": 2.7403511797250153,
+    "D_MM_large": 1.7650765132796853,
+    "size_drift": 0.3927640530018832,
+    "height_exponent": 0.26024234669794283,
+    "D_height": 3.8425721743151837,
+    "D": 2.111885557820097,
+    "heights": [
+     251.66666666666666,
+     305,
+     361
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.16704212202761723,
+   "links_upper": 5.323416666666667,
+   "links_by_size": [
+    4.223,
+    4.708166666666667,
+    5.323416666666667
+   ],
+   "past_fraction_by_size": [
+    0.8782956725780143,
+    0.8616685124273097,
+    0.8470084295877
+   ],
+   "overlap_ratio": 0.9524003446089554,
+   "per_layer": 22.188952801197697,
+   "dS_eps005_by_d": {
+    "2": -4.860455367561578,
+    "3": 2.4247886846750504,
+    "4": 8.074635022347335
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L2:4,8": {
+   "arm": "L2",
+   "knobs": [
+    4,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.56 > 0.4)",
+   "numbers": {
+    "D_MM": 3.110856458393149,
+    "D_chain": 3.5494853083177245,
+    "D_sd": 0.5590969417111767,
+    "D_MM_small": 2.8890710198987413,
+    "D_MM_large": 3.3829430518902277,
+    "size_drift": 0.4232488544973121,
+    "height_exponent": 0.1850250222527669,
+    "D_height": 5.404674393898341,
+    "D": 3.3301708833554367,
+    "heights": [
+     57,
+     67.66666666666667,
+     73.66666666666667
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.049528129303318194,
+   "links_upper": 3.2953333333333332,
+   "links_by_size": [
+    3.0766666666666667,
+    3.1766666666666667,
+    3.2953333333333332
+   ],
+   "past_fraction_by_size": [
+    0.3169807386306313,
+    0.28157280565358284,
+    0.24864079063134273
+   ],
+   "overlap_ratio": 0.8410338528331261,
+   "per_layer": 108.70610870610871,
+   "dS_eps005_by_d": {
+    "2": -4.967024503472527,
+    "3": 5.455210262416605,
+    "4": 16.12325188459627
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "3"
+  },
+  "L2:4,16": {
+   "arm": "L2",
+   "knobs": [
+    4,
+    16.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.52 > 0.4)",
+   "numbers": {
+    "D_MM": 3.034539124730751,
+    "D_chain": 3.45829179487247,
+    "D_sd": 0.5198884793032749,
+    "D_MM_small": 2.791779736358876,
+    "D_MM_large": 3.3324651696784713,
+    "size_drift": 0.3337769176699412,
+    "height_exponent": 0.19832948498199446,
+    "D_height": 5.042114641152756,
+    "D": 3.246415459801611,
+    "heights": [
+     52.666666666666664,
+     63.333333333333336,
+     69.33333333333333
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.04810393453606703,
+   "links_upper": 3.3405,
+   "links_by_size": [
+    3.125,
+    3.228666666666667,
+    3.3405
+   ],
+   "past_fraction_by_size": [
+    0.27818728068765497,
+    0.24268692790736926,
+    0.20889238450060846
+   ],
+   "overlap_ratio": 0.8223856189579369,
+   "per_layer": 115.54636166468222,
+   "dS_eps005_by_d": {
+    "2": -5.16506323877481,
+    "3": 4.734361767921503,
+    "4": 14.864095016342803
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "3"
+  },
+  "L2:4,32": {
+   "arm": "L2",
+   "knobs": [
+    4,
+    32.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.49 > 0.4)",
+   "numbers": {
+    "D_MM": 3.1442507682768337,
+    "D_chain": 3.5004219739039435,
+    "D_sd": 0.4912083792256576,
+    "D_MM_small": 2.9243553979382946,
+    "D_MM_large": 3.412277190040186,
+    "size_drift": 0.434221342805055,
+    "height_exponent": 0.1966165644802475,
+    "D_height": 5.086041466767984,
+    "D": 3.3223363710903886,
+    "heights": [
+     50,
+     60,
+     65.66666666666667
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.052633325194614076,
+   "links_upper": 3.375166666666667,
+   "links_by_size": [
+    3.1376666666666666,
+    3.2623333333333333,
+    3.375166666666667
+   ],
+   "past_fraction_by_size": [
+    0.2631906969157878,
+    0.2208688906343378,
+    0.18590534047847015
+   ],
+   "overlap_ratio": 0.8026134840867513,
+   "per_layer": 121.85227707615768,
+   "dS_eps005_by_d": {
+    "2": -5.420212424458226,
+    "3": 4.391186946041241,
+    "4": 14.547992384265541
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "3"
+  },
+  "L2:16,8": {
+   "arm": "L2",
+   "knobs": [
+    16,
+    8.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.77 > 0.4; scale drift 3.14 -> 2.17; size drift 0.52)",
+   "numbers": {
+    "D_MM": 2.5731197681076687,
+    "D_chain": 2.393804369592498,
+    "D_sd": 0.7695768386347708,
+    "D_MM_small": 3.1415506445567494,
+    "D_MM_large": 2.1720391029266466,
+    "size_drift": 0.5243276256927247,
+    "height_exponent": 0.2851280009530654,
+    "D_height": 3.5071967560443453,
+    "D": 2.4834620688500832,
+    "heights": [
+     164.33333333333334,
+     204.33333333333334,
+     244
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.1289838497555698,
+   "links_upper": 4.491,
+   "links_by_size": [
+    3.755666666666667,
+    4.168333333333333,
+    4.491
+   ],
+   "past_fraction_by_size": [
+    0.8043103596204441,
+    0.7845177050856137,
+    0.7700648692112279
+   ],
+   "overlap_ratio": 0.9417826154170522,
+   "per_layer": 32.788353896274366,
+   "dS_eps005_by_d": {
+    "2": -4.915303110475237,
+    "3": 4.39295931128326,
+    "4": 12.136268553854093
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L2:16,16": {
+   "arm": "L2",
+   "knobs": [
+    16,
+    16.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.77 > 0.4; scale drift 3.23 -> 2.25; size drift 0.54)",
+   "numbers": {
+    "D_MM": 2.651156701709018,
+    "D_chain": 2.518544371583297,
+    "D_sd": 0.7671887775073415,
+    "D_MM_small": 3.233863877007631,
+    "D_MM_large": 2.246889385095225,
+    "size_drift": 0.5398229669663124,
+    "height_exponent": 0.2541706095591223,
+    "D_height": 3.9343651956242063,
+    "D": 2.584850536646157,
+    "heights": [
+     154.66666666666666,
+     192,
+     220
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.13204087260667213,
+   "links_upper": 4.845916666666667,
+   "links_by_size": [
+    4.035333333333333,
+    4.406666666666666,
+    4.845916666666667
+   ],
+   "past_fraction_by_size": [
+    0.773115769688036,
+    0.7530862175617554,
+    0.7303466263794135
+   ],
+   "overlap_ratio": 0.9296244589028422,
+   "per_layer": 36.38861469134758,
+   "dS_eps005_by_d": {
+    "2": -6.024191657441738,
+    "3": 4.535273259027633,
+    "4": 13.471093871970027
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  },
+  "L2:16,32": {
+   "arm": "L2",
+   "knobs": [
+    16,
+    32.0
+   ],
+   "label": "NOT_MANIFOLD_LIKE(spread 0.78 > 0.4; scale drift 3.29 -> 2.32; size drift 0.55)",
+   "numbers": {
+    "D_MM": 2.719459959590798,
+    "D_chain": 2.4220015460960367,
+    "D_sd": 0.7837759812620069,
+    "D_MM_small": 3.2917834605868848,
+    "D_MM_large": 2.3190155671654793,
+    "size_drift": 0.5495273441047175,
+    "height_exponent": 0.2399354351051493,
+    "D_height": 4.167787886611079,
+    "D": 2.570730752843417,
+    "heights": [
+     148.66666666666666,
+     179,
+     207.33333333333334
+    ],
+    "sizes": [
+     2000,
+     4000,
+     8000
+    ]
+   },
+   "gamma_links": 0.13425521973173762,
+   "links_upper": 5.059166666666667,
+   "links_by_size": [
+    4.2,
+    4.658,
+    5.059166666666667
+   ],
+   "past_fraction_by_size": [
+    0.7547222292177306,
+    0.7288875218098945,
+    0.7040695472029366
+   ],
+   "overlap_ratio": 0.9258490152116434,
+   "per_layer": 38.59503246658011,
+   "dS_eps005_by_d": {
+    "2": -6.1729970531201355,
+    "3": 4.784794356706385,
+    "4": 14.127410010934511
+   },
+   "d_star": null,
+   "criteria": {
+    "interval": false,
+    "links": null,
+    "action": null,
+    "past_fraction": null
+   },
+   "passes": false,
+   "past_fraction_nearest_target": "2"
+  }
+ },
+ "candidates": [],
+ "per_arm": {
+  "C1": {
+   "n_manifold": 0,
+   "D_range": 0.0,
+   "D_min": null,
+   "D_max": null,
+   "follows_knobs": false,
+   "past_fraction_range": [
+    0.02776719584407066,
+    0.8372524977828294
+   ]
+  },
+  "L1r": {
+   "n_manifold": 0,
+   "D_range": 0.0,
+   "D_min": null,
+   "D_max": null,
+   "follows_knobs": false,
+   "past_fraction_range": [
+    0.08263600999060539,
+    0.5255289875170304
+   ]
+  },
+  "L1a": {
+   "n_manifold": 0,
+   "D_range": 0.0,
+   "D_min": null,
+   "D_max": null,
+   "follows_knobs": false,
+   "past_fraction_range": [
+    0.17517242760131982,
+    0.8470084295877
+   ]
+  },
+  "L2": {
+   "n_manifold": 0,
+   "D_range": 0.0,
+   "D_min": null,
+   "D_max": null,
+   "follows_knobs": false,
+   "past_fraction_range": [
+    0.18590534047847015,
+    0.7700648692112279
+   ]
+  }
+ },
+ "audit_failures": 0,
+ "criteria": {
+  "D_TOL": 0.6,
+  "GAMMA_TOL": 0.2,
+  "LINKS_FACTOR": 2.0,
+  "ACTION_TOL": 1.0,
+  "ACTION_EPS": 0.05,
+  "PAST_TOL": 0.3
+ }
+}

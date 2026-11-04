@@ -1,0 +1,8 @@
+2+1 order of F7.1b: sigma0 = 0.45, w = 8; box t [0, 32], |x|, |y| <= 18 (~47728 events); ring r0 = 8 at t0 = 7, 40 chains, fit over 22; longest-chain rule, memory 8, horizon 8 links
+  prediction (phi = -sigma/3): a_pred = -0.01123; longest-chain sag +0.6844
+  loaded: R = +0.337 +- 0.049 (does not fall); v0 -0.1580 +- 0.0095; longest chains R_max = +0.863 +- 0.064; chains to the end 39.0 of 40; 22.8 links per chain
+          displacement: -0.01 -0.17 -0.46 -0.82 -1.25 -1.72 -2.22 -2.74 -3.28 -3.68 -3.86 -4.01
+  flat  : R = +0.148 +- 0.081 (does not fall); v0 +0.0274 +- 0.0119; longest chains R_max = -0.314 +- 0.089; chains to the end 40.0 of 40; 29.9 links per chain
+          displacement: +0.01 +0.06 +0.09 +0.09 +0.16 +0.17 +0.20 +0.26 +0.25 +0.23 +0.20 +0.17
+  reported: R / R_max = +0.391
+instrument: flat: no drift (|R| + 2 SE <= 1/2): OK; flat longest chains: no sag (|R_max| + 2 SE <= 1/2): OK; loaded longest chains read the geometry (1/2 < R_max -+ 2 SE < 2): OK

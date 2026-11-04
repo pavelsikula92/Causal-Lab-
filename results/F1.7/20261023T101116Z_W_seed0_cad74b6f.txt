@@ -1,0 +1,8 @@
+3+1 (d_s = 3), metric -Pi^2 dt^2 + Pi^(-2 gamma) dx^2, gamma = 1; box_g Pi = Pi^(2g)[(1) lap + ((1 - gamma)/p) grad^2]; R = Pi^(2g)[(2*(2*gamma - 1)/p) lap + (-2*gamma*(gamma + 1)/p**2) grad^2]
+  weak-field coefficient of (box_g - R/2) Pi: lambda_1(gamma) = 2 - 2*gamma
+W ln Pi             : u_lin(0) = -0.0001: Pi(0) - 1 = -1.0000e-04; max |u - u_lin| / max |u_lin| = 2.85e-05 (allowed 0.01) -> OK
+W Pi - 1            : u_lin(0) = -0.0001: Pi(0) - 1 = -1.0001e-04; max |u - u_lin| / max |u_lin| = 7.86e-05 (allowed 0.01) -> OK
+W (Pi^-1 - 1)/-1    : u_lin(0) = -0.0001: Pi(0) - 1 = -9.9998e-05; max |u - u_lin| / max |u_lin| = 2.15e-05 (allowed 0.01) -> OK
+W (Pi^2 - 1)/2      : u_lin(0) = -0.0001: Pi(0) - 1 = -1.0001e-04; max |u - u_lin| / max |u_lin| = 1.29e-04 (allowed 0.01) -> OK
+W (Pi^3 - 1)/3      : u_lin(0) = -0.0001: Pi(0) - 1 = -1.0002e-04; max |u - u_lin| / max |u_lin| = 1.79e-04 (allowed 0.01) -> OK
+W negative control f = Pi (equation (a)): linear coefficient +0.000e+00 -> no weak-field response, as derived

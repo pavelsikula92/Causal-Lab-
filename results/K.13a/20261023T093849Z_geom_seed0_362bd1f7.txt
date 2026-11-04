@@ -1,0 +1,41 @@
+H1 geometry, sigma = 4 l_k, 3+1
+(a) Fermat: 16 pairs x gamma (1, 0), e = [0.04, 0.02, 0.01]: smallest log2 ratio of |T_opt - T_lin| 1.969 (needs >= 1.75)
+     pair 0 gamma +1 L 6.49 U 2.757: |T_opt - T_lin| 4.50e-03 1.13e-03 2.83e-04  slopes 1.99 2.00
+     pair 0 gamma +0 L 6.49 U 2.757: |T_opt - T_lin| 1.60e-03 4.03e-04 1.01e-04  slopes 1.99 2.00
+     pair 1 gamma +1 L 9.09 U 4.660: |T_opt - T_lin| 9.52e-03 2.39e-03 5.99e-04  slopes 1.99 2.00
+     pair 1 gamma +0 L 9.09 U 4.660: |T_opt - T_lin| 3.41e-03 8.57e-04 2.15e-04  slopes 1.99 2.00
+     pair 2 gamma +1 L 5.60 U 3.784: |T_opt - T_lin| 1.23e-02 3.14e-03 7.93e-04  slopes 1.97 1.99
+     pair 2 gamma +0 L 5.60 U 3.784: |T_opt - T_lin| 4.18e-03 1.06e-03 2.67e-04  slopes 1.98 1.99
+     pair 3 gamma +1 L 1.88 U 0.964: |T_opt - T_lin| 2.31e-03 5.85e-04 1.47e-04  slopes 1.98 1.99
+     pair 3 gamma +0 L 1.88 U 0.964: |T_opt - T_lin| 7.77e-04 1.96e-04 4.93e-05  slopes 1.99 1.99
+     pair 4 gamma +1 L 6.91 U 4.826: |T_opt - T_lin| 1.48e-02 3.74e-03 9.43e-04  slopes 1.98 1.99
+     pair 4 gamma +0 L 6.91 U 4.826: |T_opt - T_lin| 5.05e-03 1.28e-03 3.22e-04  slopes 1.98 1.99
+     pair 5 gamma +1 L 12.04 U 7.872: |T_opt - T_lin| 2.71e-02 6.90e-03 1.74e-03  slopes 1.97 1.99
+     pair 5 gamma +0 L 12.04 U 7.872: |T_opt - T_lin| 9.18e-03 2.33e-03 5.87e-04  slopes 1.98 1.99
+     pair 6 gamma +1 L 7.52 U 5.679: |T_opt - T_lin| 1.90e-02 4.83e-03 1.22e-03  slopes 1.98 1.99
+     pair 6 gamma +0 L 7.52 U 5.679: |T_opt - T_lin| 6.48e-03 1.64e-03 4.14e-04  slopes 1.98 1.99
+     pair 7 gamma +1 L 11.81 U 7.813: |T_opt - T_lin| 2.83e-02 7.23e-03 1.83e-03  slopes 1.97 1.98
+     pair 7 gamma +0 L 11.81 U 7.813: |T_opt - T_lin| 9.55e-03 2.43e-03 6.12e-04  slopes 1.98 1.99
+(b) interval volumes: 20 diamonds, quadrature [6, 16, 8] vs Monte Carlo (400000 samples): max |z| 2.73 (needs <= 3.5)
+     L 3.39 tau 2.33 r_x 6.36: A1 0.63652 vs 0.63448 (z +1.46); A2 1.9336 vs 1.9305 (z +0.94)
+     L 8.98 tau 2.52 r_x 4.86: A1 0.56869 vs 0.57011 (z -0.80); A2 2.0303 vs 2.0339 (z -0.90)
+     L 2.75 tau 2.56 r_x 7.33: A1 0.61226 vs 0.61185 (z +0.29); A2 1.8647 vs 1.8704 (z -1.79)
+     L 9.93 tau 1.19 r_x 3.28: A1 0.059047 vs 0.059134 (z -0.53); A2 0.18593 vs 0.18624 (z -0.35)
+     L 9.63 tau 2.58 r_x 6.42: A1 2.4356 vs 2.4233 (z +2.46); A2 6.2574 vs 6.2382 (z +0.67)
+     L 10.38 tau 2.27 r_x 5.93: A1 1.7261 vs 1.7267 (z -0.18); A2 4.1891 vs 4.1822 (z +0.31)
+     L 6.90 tau 3.46 r_x 6.21: A1 10.396 vs 10.387 (z +0.40); A2 28.641 vs 28.667 (z -0.43)
+     L 4.74 tau 0.68 r_x 3.87: A1 0.011116 vs 0.011085 (z +1.33); A2 0.032831 vs 0.032763 (z +0.74)
+     L 7.94 tau 1.98 r_x 5.05: A1 0.71825 vs 0.71737 (z +0.58); A2 2.0062 vs 2.003 (z +0.41)
+     L 5.74 tau 1.67 r_x 5.49: A1 0.28031 vs 0.28052 (z -0.36); A2 0.82589 vs 0.82477 (z +0.47)
+     L 4.46 tau 0.59 r_x 6.38: A1 0.0076111 vs 0.0076224 (z -0.74); A2 0.022189 vs 0.022357 (z -2.47)
+     L 7.25 tau 3.08 r_x 7.91: A1 0.4994 vs 0.49864 (z +0.54); A2 1.7604 vs 1.7589 (z +0.31)
+     L 9.06 tau 2.04 r_x 1.22: A1 1.355 vs 1.3601 (z -1.70); A2 3.5283 vs 3.5435 (z -2.33)
+     L 5.64 tau 3.00 r_x 1.03: A1 6.8478 vs 6.8077 (z +2.73); A2 19.595 vs 19.584 (z +0.36)
+     L 0.42 tau 1.41 r_x 6.56: A1 0.13444 vs 0.13393 (z +1.72); A2 0.40339 vs 0.40265 (z +1.14)
+     L 7.20 tau 1.39 r_x 0.33: A1 0.32883 vs 0.32865 (z +0.26); A2 0.89382 vs 0.89526 (z -1.02)
+     L 3.93 tau 0.84 r_x 3.87: A1 0.041223 vs 0.041247 (z -0.29); A2 0.11967 vs 0.12017 (z -1.92)
+     L 7.71 tau 2.70 r_x 5.46: A1 1.2494 vs 1.2485 (z +0.29); A2 3.8667 vs 3.8705 (z -0.33)
+     L 10.58 tau 2.11 r_x 4.22: A1 0.88274 vs 0.88369 (z -0.46); A2 2.4087 vs 2.4058 (z +0.23)
+     L 9.03 tau 0.66 r_x 0.40: A1 0.012818 vs 0.012761 (z +1.91); A2 0.034495 vs 0.034449 (z +0.67)
+(c) thin intervals: 40/40 within tolerance; worst relative error 2.06e-10 (L = 82.4)
+checks: (a) Fermat: OK; (b) interval volumes: OK; (c) thin intervals: OK

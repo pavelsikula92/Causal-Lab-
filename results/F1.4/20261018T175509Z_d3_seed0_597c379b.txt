@@ -1,0 +1,9 @@
+2+1 self-consistent field (a), lengths in l_k: core sigma = 8 (q = 0.01), shell r0 = 30 w = 4 (q = 0.001); R = 100, 55 nodes, 108 rows, quadrature [160, 8, 48, 6, 24, 1]
+  Pi(0): core 0.7099, shell 0.9150, both 0.6712   (continuum (a): 0.7099, 0.9014, 0.6678)
+  r                         0          8         30         50
+  deficit causal     +0.04624   +0.04338   +0.02820   +0.01347
+  deficit (a)        +0.05654   +0.05373   +0.03819   +0.02253
+  deficit box_g      +0.15645   +0.14853   +0.10626   +0.06423
+  S: RMS(Delta_cs - Delta_a) = 0.01010 vs RMS(Delta_a)/4 = 0.01105 (r <= 50) -> met; sign of the deficit (causal set): positive everywhere (the joint well is shallower than the sum: weakening)
+  iterations: core 11, shell 7, both 9
+instrument: self-consistent solves converged: OK; residuals: OK; residuals 2.4e-05, 1.8e-05, 3.5e-05

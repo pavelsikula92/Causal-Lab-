@@ -1,0 +1,10 @@
+2+1, rho = 1; bundles radius 2, source time [0, 2), box margin 6, T = 24; field phi_i = sum F / (2 pi tau), tau >= 1; epsilon = 0.1 (from F3.8/F3.9), phi_ref = 5.922, lambda = 0.01689; flux per unit time of a single bundle mu = 21.38; window [d + 2, T - 4]
+  lambda = 0: the pair equals the two separate bundles bit for bit: OK
+  scalar flux conserved (sources = flux at the events without children): OK
+  sign: a bundle responding only to the partner's field is kicked towards it: OK
+  C equals A bit for bit (choices, flux, directions): OK
+  mirror x -> -x (choices, flux, directions): OK
+  frame beta' = 0.6 (choices, flux, directions boosted back): OK
+  kick towards the partner: fraction of the kicked events of L 0.947, 0.928, 0.961, 0.963; total kick L +2.308, +1.491, +2.164, +2.836, R -2.559, -1.581, -1.615, -2.121
+  numerical ties (first differing choice at a margin < 1e-9): mirror 0, frame 0 of 4
+  theory (no verdict): the model conserves the scalar flux, not the 4-momentum: at a merger of different directions |P| > F and the excess is dropped; (|P| - F) summed / flux summed = 8.47e-05, 1.72e-04, 1.33e-05, 3.27e-04; merger events 17, 16, 11, 14

@@ -1,0 +1,151 @@
+{
+ "id": "F1.7",
+ "part": "W",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\F1_pole\\F1_07_field_equation_benchmark.py",
+ "test_sha256": "cad74b6fcc54fe138da63873d21db7cb1969c8c399f78e2fbd4680267ebc2892",
+ "core_sha256": "958b2e63c86a80186be4d6e827bc848b9cdc851f62724850a0a11a83d4f617d4",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T101116Z",
+ "duration_s": 1.2,
+ "params": {
+  "gamma": 1.0,
+  "d_s": 3,
+  "kappa": 1.0,
+  "sigma": 8.0,
+  "R_over_sigma": 50.0,
+  "rmin_over_sigma": 0.0001,
+  "n_shoot": 160,
+  "shoot_rtol": 1e-10,
+  "tol": 1e-08,
+  "max_nodes": 200000,
+  "lin_tol": 1e-06,
+  "scale_tol": 1e-06,
+  "weak_u0": -0.0001,
+  "weak_tol": 0.01,
+  "strengths": [
+   -0.03,
+   -0.1,
+   -0.2,
+   -0.3,
+   -0.5,
+   -0.7,
+   -0.9
+  ],
+  "ks": [
+   -1.0,
+   2.0,
+   3.0
+  ],
+  "scale_sigmas": [
+   4.0,
+   16.0
+  ],
+  "scale_u0": -0.3,
+  "mode": "W"
+ },
+ "lines": [
+  "3+1 (d_s = 3), metric -Pi^2 dt^2 + Pi^(-2 gamma) dx^2, gamma = 1; box_g Pi = Pi^(2g)[(1) lap + ((1 - gamma)/p) grad^2]; R = Pi^(2g)[(2*(2*gamma - 1)/p) lap + (-2*gamma*(gamma + 1)/p**2) grad^2]",
+  "  weak-field coefficient of (box_g - R/2) Pi: lambda_1(gamma) = 2 - 2*gamma",
+  "W ln Pi             : u_lin(0) = -0.0001: Pi(0) - 1 = -1.0000e-04; max |u - u_lin| / max |u_lin| = 2.85e-05 (allowed 0.01) -> OK",
+  "W Pi - 1            : u_lin(0) = -0.0001: Pi(0) - 1 = -1.0001e-04; max |u - u_lin| / max |u_lin| = 7.86e-05 (allowed 0.01) -> OK",
+  "W (Pi^-1 - 1)/-1    : u_lin(0) = -0.0001: Pi(0) - 1 = -9.9998e-05; max |u - u_lin| / max |u_lin| = 2.15e-05 (allowed 0.01) -> OK",
+  "W (Pi^2 - 1)/2      : u_lin(0) = -0.0001: Pi(0) - 1 = -1.0001e-04; max |u - u_lin| / max |u_lin| = 1.29e-04 (allowed 0.01) -> OK",
+  "W (Pi^3 - 1)/3      : u_lin(0) = -0.0001: Pi(0) - 1 = -1.0002e-04; max |u - u_lin| / max |u_lin| = 1.79e-04 (allowed 0.01) -> OK",
+  "W negative control f = Pi (equation (a)): linear coefficient +0.000e+00 -> no weak-field response, as derived"
+ ],
+ "data": {
+  "rows": [
+   [
+    "ln Pi",
+    {
+     "u0": -0.0001,
+     "success": true,
+     "Pi0": 0.9998999971488959,
+     "Pi_min": 0.9998999971488959,
+     "Pi_R": 0.9999974932007313,
+     "monotone": true,
+     "P_min": 1.0000050136142475,
+     "charge": 0.0010027197075039359,
+     "charge_lin": 0.0010026513098524003,
+     "dev_lin": 2.8516028975618108e-05,
+     "regular": true
+    }
+   ],
+   [
+    "Pi - 1",
+    {
+     "u0": -0.0001,
+     "success": true,
+     "Pi0": 0.9998999921449819,
+     "Pi_min": 0.9998999921449819,
+     "Pi_R": 0.9999974931944406,
+     "monotone": true,
+     "P_min": 1.0000025068118434,
+     "charge": 0.0010027222237536035,
+     "charge_lin": 0.0010026513098524003,
+     "dev_lin": 7.855492209017426e-05,
+     "regular": true
+    }
+   ],
+   [
+    "(Pi^-1 - 1)/-1",
+    {
+     "u0": -0.0001,
+     "success": true,
+     "Pi0": 0.9999000021521426,
+     "Pi_min": 0.9999000021521426,
+     "Pi_R": 0.9999974932070218,
+     "monotone": true,
+     "P_min": 1.0000075204103547,
+     "charge": 0.001002717191273468,
+     "charge_lin": 0.0010026513098524003,
+     "dev_lin": 2.1519759231922122e-05,
+     "regular": true
+    }
+   ],
+   [
+    "(Pi^2 - 1)/2",
+    {
+     "u0": -0.0001,
+     "success": true,
+     "Pi0": 0.9998999871404003,
+     "Pi_min": 0.9998999871404003,
+     "Pi_R": 0.9999974931881499,
+     "monotone": true,
+     "P_min": 1.0000000000031422,
+     "charge": 0.001002724740022471,
+     "charge_lin": 0.0010026513098524003,
+     "dev_lin": 0.00012860069636501563,
+     "regular": true
+    }
+   ],
+   [
+    "(Pi^3 - 1)/3",
+    {
+     "u0": -0.0001,
+     "success": true,
+     "Pi0": 0.999899982135151,
+     "Pi_min": 0.999899982135151,
+     "Pi_R": 0.9999974931818593,
+     "monotone": true,
+     "P_min": 0.9998999921390578,
+     "charge": 0.001002727256310539,
+     "charge_lin": 0.0010026513098524003,
+     "dev_lin": 0.00017865314752113823,
+     "regular": true
+    }
+   ]
+  ],
+  "control_coefficient": 0.0
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "id": "K.8",
+ "part": "d3",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_08_probe.py",
+ "test_sha256": "f4fb04eabcf47771b9cd6fac9615083bc8425abaaace74a8ccb38a2632cab2e1",
+ "core_sha256": "8febfaaa6f6f6111de01bb1e190dec4ecbfc26738bbe73fb0128ddb2d9cc174b",
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261018T103819Z",
+ "duration_s": 12.1,
+ "params": {
+  "balance_tol": 1e-09,
+  "size_tol": 0.001,
+  "shift_tol": 0.001,
+  "probe_rel": 1e-06,
+  "probe_factor": 10.0,
+  "N": 16000,
+  "T": 4.0,
+  "R": 0.5,
+  "R_abs": 0.4,
+  "a": 0.05,
+  "C_source": 0.5,
+  "q_homog": 0.9,
+  "D": 3
+ },
+ "lines": [
+  "2+1 N=16000",
+  "  inserted source: C = 0.5, saturated 0.010, min Pi_meas 0.333; balance 0.0e+00, size sensitivity 3.6e-07, background shift 4.0e-08 -> OK",
+  "  homogeneous driving: C = 4.263, saturated 0.063, min Pi_meas 0.212; balance 1.1e-16, size sensitivity 8.9e-06, background shift 9.9e-07 -> OK"
+ ],
+ "data": {
+  "inserted source": {
+   "marked_balance": 0.0,
+   "size_sensitivity": 3.596900914892842e-07,
+   "background_shift": 3.9965613707337866e-08,
+   "C": 0.5,
+   "saturated": 0.010125,
+   "pi_min": 0.3330002809611695
+  },
+  "homogeneous driving": {
+   "marked_balance": 1.0842021724855044e-16,
+   "size_sensitivity": 8.92365430793518e-06,
+   "background_shift": 9.915270473559445e-07,
+   "C": 4.263479607480003,
+   "saturated": 0.0633125,
+   "pi_min": 0.2122188566714863
+  }
+ }
+}

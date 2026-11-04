@@ -1,0 +1,7 @@
+3+1 weighted representation: eps = 0.1, soft = 0.2, b = 0.5, T = 1.0; P1 = 0.0432 (Pi^2 eta), P2 = 0.0776 (Pi^4 eta); Delta = 0.0108; 256 seeds per size
+  N0=32000   H1 +0.0466 +- 0.0026   H2 +0.0760 +- 0.0026   H2-H1 +0.0293 +- 0.0023   excess H1-P1 +0.0035 +- 0.0026 (+8.1%)   H2-P2 -0.0016   rule B: SPECIFIC (valid 256)
+  N0=64000   H1 +0.0524 +- 0.0026   H2 +0.0799 +- 0.0025   H2-H1 +0.0275 +- 0.0023   excess H1-P1 +0.0093 +- 0.0026 (+21.5%)   H2-P2 +0.0023   rule B: SPECIFIC (valid 256)
+  largest N: H1 in P1 +- Delta yes; H2 above the band yes; H2 matches P2 yes; H2 = H1 within Delta no -> SPECIFIC
+  error of H1 does not grow with N: yes (|H1-P1| 0.0035 at 32000 -> 0.0093 at 64000)
+  excess trend: e(32000) - e(64000) = -0.0058 +- 0.0037 -> PERSISTENT
+instrument: mirror identity (eps = 0, largest N): OK; path weights sum to 1: OK; 1+1 E44b check: OK; invalid seeds: OK (mirror worst H1 0.0e+00, H2 0.0e+00; 1+1 0.0678 +- 0.0102 vs 0.0584; weights within 0.0e+00)

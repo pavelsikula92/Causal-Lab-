@@ -1,0 +1,12 @@
+2+1 cylinder T = 7.0, N = 56000, s0 = 1.0; analysis |x| < 0.4, t in [3.5, 5.5); C = Q_0.99 = 5.0497 (8 calibration sprinklings, own stream); pulse rule 'main', omega = 1.0, dQ_crit = 0.2 (CHOSEN FROM DATA, F3.3e search); channel 'source', Pi_sat = 0.5, m = 2.0; 128 sprinklings = 64 pairs
+  saturated fraction: base 0.0100, threshold 0.0755, combined 0.0000; pulse carried: threshold 0.0496, combined 0.0000
+  combined: Pi of saturated events (median) nan; min Pi 0.519
+  Delta_pers: base -0.0076 +- 0.0054; threshold +0.0079 +- 0.0035; combined undefined   (F3.2: +0.006 +- 0.006)
+  E_loc:      base +0.0035 +- 0.0036; threshold +0.0145 +- 0.0026; combined undefined   (F3.2: +0.004 +- 0.004)
+  paired combined - base: d_pers = undefined (margin 0.05) -> INCONCLUSIVE; d_loc = undefined (margin 0.05) -> INCONCLUSIVE; no saturation
+  reported, combined - threshold (what the channel adds): d_pers = undefined; d_loc = undefined
+  switch-off at t = 5.5; the last slab before it, then the slabs of 0.25 after it:
+     base      saturated 0.0118 0.0000 0.0000 0.0000 0.0000 0.0000; r_s +0.364 +nan +nan +nan +nan
+     threshold saturated 0.1267 0.0088 0.0004 0.0000 0.0000 0.0000; pulse 0.0874 0.0046 0.0001 0.0000 0.0000 0.0000; r_s +0.339 +0.143 +nan +nan +nan
+     combined  saturated 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000; pulse 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000; r_s +nan +nan +nan +nan +nan
+instrument: base arm = route_capacity: OK; balance: OK; invalid statistics: OK; boosted order bit-identical: OK (invalid 0/192)

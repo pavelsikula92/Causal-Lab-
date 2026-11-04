@@ -1,0 +1,61 @@
+{
+ "id": "K.15",
+ "part": "conserve",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\K_meridla\\K_15_flux_tensor.py",
+ "test_sha256": "389cb2769f462d714c5514d98f647ba9975e39f188e176fe5f258e2c8ff5dd0c",
+ "core_sha256": "958b2e63c86a80186be4d6e827bc848b9cdc851f62724850a0a11a83d4f617d4",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261023T145507Z",
+ "duration_s": 642.0,
+ "params": {
+  "D": 4,
+  "T": 7.0,
+  "half": 8.0,
+  "r_src": 4.0,
+  "t_src": 0.3,
+  "v": 0.6,
+  "win": [
+   2.5,
+   4.5
+  ],
+  "cuts": [
+   2.5,
+   3.0,
+   3.5,
+   4.0,
+   4.5
+  ],
+  "cells": [
+   2.0,
+   3.0
+  ],
+  "beta_check": 0.6,
+  "n_seeds": 64,
+  "n_se": 2.0,
+  "boot_B": 2000,
+  "tol": 0.05,
+  "mode": "conserve"
+ },
+ "lines": [
+  "3+1, rho = 1, box t [0, 7], |x_i| <= 8 (~28661 events); sources in a ball of radius 4, t < 0.3, v = 0.6; window t in [2.5, 4.5]; T^ab = (1/dV4) sum F u^a u^b tau_link",
+  "  merge rule F = |P|: largest relative change of the 4-momentum on the cuts 6.00e-17 (mean 2.92e-17); change of the energy component from the first to the last cut +0.00e+00; flux ending at the wall in the window 0; flux in merged events 0.076",
+  "  merge rule sum of fluxes: largest relative change of the 4-momentum on the cuts 1.90e-02 (mean 6.65e-03); change of the energy component from the first to the last cut -6.65e-03; flux ending at the wall in the window 0; flux in merged events 0.070",
+  "checks: 4-momentum conserved on the cuts (F = |P|, relative 1e-9): OK; no flux ends at the wall in the window: OK"
+ ],
+ "data": {
+  "instrument": {
+   "4-momentum conserved on the cuts (F = |P|, relative 1e-9)": true,
+   "no flux ends at the wall in the window": true
+  }
+ }
+}

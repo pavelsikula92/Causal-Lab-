@@ -1,0 +1,20 @@
+Static field of a point mass from the three sectors (A, B, C) of the expected BD action; far field r >> L_*; units c = 1, l_k = 1 in the sectors
+  I1 inputs: F6.8b2 PASSED (results\F6.8b2\20261028T225522Z_main_seed0_ab37eee4.json), F6.8c FAILED (results\F6.8c\20261029T105249Z_main_seed0_296d58fa.json); same grid: True
+  I2 conformal K_hat of F6.8b2 vs F6.8c on the same rows: max |diff| 0.0e+00 (tol 1e-08)
+  I3 Fourier identity: quadrature -1.206839365e-02 vs closed form -1.206839365e-02 (rel 1.1e-11; eps -> 0 limit -1.213122e-02) (tol 1e-06)
+  per k (linear fits in T, same grid): a = c_T (conformal), b = c_T,ab (mixed), c = c_T,bb (optical); rho = -3a + 8b - 4c; gamma_loc = 2 K_loc,ab / K_loc,bb - 1
+    k = 0.05 : a +0.1100  b +0.1549  c +13.2044  rho -51.9083  gamma_loc +0.55626  (outside the plateau, reported only)
+    k = 0.07 : a +0.1098  b +0.1966  c +1.3288  rho -4.0716  gamma_loc +0.94559
+    k = 0.1  : a +0.1096  b +0.1953  c +0.5011  rho -0.7713  gamma_loc +1.03266
+    k = 0.14 : a +0.1095  b +0.1951  c +0.4556  rho -0.5903  gamma_loc +1.06899
+    k = 0.2  : a +0.1092  b +0.1946  c +0.4515  rho -0.5769  gamma_loc +1.11790
+    k = 0.3  : a +0.0997  b +0.2649  c +0.8477  rho -1.5707  gamma_loc +0.25708  (outside the plateau, reported only)
+  plateau k = 0.07, 0.1, 0.14, 0.2: a = 0.1095, b = 0.1954, c = 0.6843; rho = -1.5025 +- 1.7474 (half spread)
+  far field (r >> L_*): Phi/Phi_N = 1 - (4/pi) rho l_k^2 T / r^3 = 1 +1.9131 l_k^2 T / r^3; light (Phi + Psi): 1 +1.2906 (+- 1.6676) l_k^2 T / r^3; gamma(k) = 1 + +0.9777 k^3 l_k^2 T
+  torsion balance, |beta_4| <= 4.9e-05 (r0 = 1 mm): l_k^2 T <= 2.561e-14 m^3
+    T = age of the universe (13.8 Gyr) (1.31e+26 m): l_k <= 1.40e-20 m; L_* = 3.71e-15 m (l_k = 1.616e-35), 2.70e-05 m (l_k = 1e-20), 1.25e-04 m (l_k = 1e-19); beta_4 = +6.52e-35, +2.50e-05, +2.50e-03
+    T = age of the field of the Earth (4.5 Gyr) (4.26e+25 m): l_k <= 2.45e-20 m; L_* = 2.56e-15 m (l_k = 1.616e-35), 1.86e-05 m (l_k = 1e-20), 8.62e-05 m (l_k = 1e-19); beta_4 = +2.13e-35, +8.15e-06, +8.15e-04
+    T = one year (9.46e+15 m): l_k <= 1.65e-15 m; L_* = 1.55e-18 m (l_k = 1.616e-35), 1.12e-08 m (l_k = 1e-20), 5.22e-08 m (l_k = 1e-19); beta_4 = +4.73e-45, +1.81e-15, +1.81e-13
+    T = one day (2.59e+13 m): l_k <= 3.14e-14 m; L_* = 2.17e-19 m (l_k = 1.616e-35), 1.57e-09 m (l_k = 1e-20), 7.30e-09 m (l_k = 1e-19); beta_4 = +1.29e-47, +4.95e-18, +4.95e-16
+  gamma at long wavelength from the local fits: 2 K0_ab / K0_bb - 1 = 2 x 0.99790 / 1.55913 - 1 = +0.28007 (EH 1; the fits are good to ~1e-3, far coarser than Cassini's 2.3e-5: a consistency check, not that bound)
+  NOTE: F6.8c status FAILED: C(0) = 2 is not established; the far-field numbers are conditional on it

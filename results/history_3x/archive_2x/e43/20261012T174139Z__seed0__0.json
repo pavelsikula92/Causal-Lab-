@@ -1,0 +1,529 @@
+{
+ "experiment": "e43",
+ "lab_version": "2.14.0",
+ "saved_utc": "20261012T174139Z",
+ "config": {
+  "sizes": "500,1000,2000",
+  "n_seeds": 2,
+  "n_read": 1,
+  "n_intervals": 40,
+  "n_action": 30,
+  "only": "",
+  "quick": 1
+ },
+ "seed": 0,
+ "verdict": "QUICK SMOKE TEST, not the registered run; certificate valid; calibrated for 1+1; NO CANDIDATE CERTIFIED",
+ "notes": "sizes=[500, 1000, 2000] seeds=2 read seeds=1 elapsed=72s; flux checks worst 4.4e-15\n\n  subject                  kind      G1 G2 G3 G4 G5  E38-B                               D_MM  D_ch   gam0  ov.v4    s99\n  sprinkling 1+1           positive  +  +  +  +  +  GEOMETRIC(D=1.94, d*=2)             1.95  1.93   0.18   1.46   0.06\n  sprinkling 2+1           positive  +  +  +  +  .  GEOMETRIC(D=2.93, d*=3)             2.80  3.05   0.46   1.61   0.17\n  sprinkling 3+1           positive  .  +  +  +  +  GEOMETRIC(D=3.79, d*=4)             3.53  4.05   0.70   1.23   0.06\n  originary percolation    negative  .  .  +  .  +  ACTION_MISMATCH(dS_3 1.83)          3.10  2.92   0.42   1.00  -0.43\n  seq null of 2+1          negative  .  .  +  .  +  NOT_MANIFOLD_LIKE                   2.32  2.21   0.14   1.00  -0.08\n  CA lattice 2+1           negative  .  .  .  +  .  NOT_MANIFOLD_LIKE                   2.34  3.85   0.00   1.94   0.33\n  Minkowski lattice 2+1    negative  +  .  +  +  .  NOT_MANIFOLD_LIKE                   2.58  4.55   0.34   1.54  -0.04\n  E38-A C1 c=32            candidate +  .  +  .  +  NOT_MANIFOLD_LIKE                   1.81  1.53   0.25   1.00  -0.02\n  E38-A C2 r=1 a=1         candidate +  .  +  .  +  NOT_MANIFOLD_LIKE                   1.92  1.59   0.11   1.00  -0.09\n  E38-A C2 r=1 a=4         candidate +  .  +  .  +  NOT_MANIFOLD_LIKE                   1.46  1.29   0.16   1.00   0.05\n  E38-A C2 r=2 a=4         candidate +  .  +  .  +  NOT_MANIFOLD_LIKE                   2.37  2.21   0.15   1.00  -0.00\n  E38-A L2 c=16 K=16       candidate +  .  +  .  +  NOT_MANIFOLD_LIKE                   2.14  1.68   0.20   1.00   0.01\n  E41-B C=1 local k=3      candidate .  .  .  +  .  CHAIN                               1.37  1.22  -0.05   1.52   0.37\n  E39 replay R4 of 2+1     candidate .  .  +  .  +  ACTION_MISMATCH(dS_4 3.26)          3.64  3.73   0.46   1.00  -0.19\n\nG1 E38-A STABLE; G2 E38-B GEOMETRIC vs tp/seq/layered nulls; G3 bulk link growth gamma_0 >= 0.05; G4 matched overlap ratio (v4) >= 1.2; G5 uniform-routing load p90/p95/p99 slopes <= 0.1.\ncalibrated: 1+1 yes, 2+1 NO, 3+1 NO\nnegative controls: originary percolation: rejected by G1,G2,G4; seq null of 2+1: rejected by G1,G2,G4; CA lattice 2+1: rejected by G1,G2,G3,G5; Minkowski lattice 2+1: rejected by G2,G5\ncandidates: E38-A C1 c=32: REJECTED (G2,G4); E38-A C2 r=1 a=1: REJECTED (G2,G4); E38-A C2 r=1 a=4: REJECTED (G2,G4); E38-A C2 r=2 a=4: REJECTED (G2,G4); E38-A L2 c=16 K=16: REJECTED (G2,G4); E41-B C=1 local k=3: REJECTED (G1,G2,G3,G5); E39 replay R4 of 2+1: REJECTED (G1,G2,G4)",
+ "results": {
+  "sprinkling 1+1": {
+   "kind": "positive",
+   "known_d": 2,
+   "gates": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true
+   },
+   "E38A": "STABLE",
+   "E38B": "GEOMETRIC(D=1.94, d*=2)",
+   "d_star": 2,
+   "gamma0": 0.1788528129989038,
+   "overlap_v4": 1.4564030088701754,
+   "flux_slopes": {
+    "rel_p90": -0.012036214110157314,
+    "rel_p95": 0.01633208627269062,
+    "rel_p99": 0.0646784576313938,
+    "rel_max": 0.4254146728324301
+   },
+   "D_MM": 1.9516238676478679,
+   "D_chain": 1.925593767037154,
+   "f_P": [
+    0.536070788597236,
+    0.5132842468821228,
+    0.536880553615769
+   ],
+   "bulk_links": [
+    5.524590163934427,
+    6.644688644688645,
+    7.077341708664666
+   ],
+   "all_pass": true
+  },
+  "sprinkling 2+1": {
+   "kind": "positive",
+   "known_d": 3,
+   "gates": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": false
+   },
+   "E38A": "STABLE",
+   "E38B": "GEOMETRIC(D=2.93, d*=3)",
+   "d_star": 3,
+   "gamma0": 0.46255805454428545,
+   "overlap_v4": 1.6080434656119038,
+   "flux_slopes": {
+    "rel_p90": 0.03606850228629982,
+    "rel_p95": 0.07340629022627665,
+    "rel_p99": 0.17478750015375144,
+    "rel_max": -0.17987651829433218
+   },
+   "D_MM": 2.803936356871418,
+   "D_chain": 3.0490860642163007,
+   "f_P": [
+    0.24497450106990776,
+    0.2608178082820794,
+    0.25174012085253183
+   ],
+   "bulk_links": [
+    16.446023302938197,
+    22.889429056821285,
+    31.206763821184445
+   ],
+   "all_pass": false
+  },
+  "sprinkling 3+1": {
+   "kind": "positive",
+   "known_d": 4,
+   "gates": {
+    "G1": false,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true
+   },
+   "E38A": "UNSTABLE(S1 f_P 0.128->0.107)",
+   "E38B": "GEOMETRIC(D=3.79, d*=4)",
+   "d_star": 4,
+   "gamma0": 0.7016419936713557,
+   "overlap_v4": 1.2271573510405471,
+   "flux_slopes": {
+    "rel_p90": 0.027179549052885988,
+    "rel_p95": -0.04475441448941674,
+    "rel_p99": 0.0627626726677223,
+    "rel_max": 0.35449903854115566
+   },
+   "D_MM": 3.530706406421814,
+   "D_chain": 4.051273079906726,
+   "f_P": [
+    0.1282601040608716,
+    0.11114514224999061,
+    0.10653480068044935
+   ],
+   "bulk_links": [
+    19.973257418909593,
+    34.95154870458822,
+    52.77529549640047
+   ],
+   "all_pass": false
+  },
+  "originary percolation": {
+   "kind": "negative",
+   "known_d": null,
+   "gates": {
+    "G1": false,
+    "G2": false,
+    "G3": true,
+    "G4": false,
+    "G5": true
+   },
+   "E38A": "UNSTABLE(S1 f_P 0.159->0.639; S2 local exponents spread 0.37/0.41)",
+   "E38B": "ACTION_MISMATCH(dS_3 1.83)",
+   "d_star": 3,
+   "gamma0": 0.4228285635370065,
+   "overlap_v4": 1.0008727949402352,
+   "flux_slopes": {
+    "rel_p90": -0.21661467091321945,
+    "rel_p95": -0.2757336741606186,
+    "rel_p99": -0.43431379123231834,
+    "rel_max": -0.3945701519337027
+   },
+   "D_MM": 3.096421680169442,
+   "D_chain": 2.917489135740367,
+   "f_P": [
+    0.15889772271891625,
+    0.3542822981388384,
+    0.6390267291365659
+   ],
+   "bulk_links": [
+    2.9303559966424726,
+    4.7779225614296355,
+    5.266093253716173
+   ],
+   "all_pass": false
+  },
+  "seq null of 2+1": {
+   "kind": "negative",
+   "known_d": null,
+   "gates": {
+    "G1": false,
+    "G2": false,
+    "G3": true,
+    "G4": false,
+    "G5": true
+   },
+   "E38A": "UNSTABLE(S1 f_P 0.729->0.824)",
+   "E38B": "NOT_MANIFOLD_LIKE",
+   "d_star": null,
+   "gamma0": 0.14137218640217297,
+   "overlap_v4": 1.0020155801562347,
+   "flux_slopes": {
+    "rel_p90": 0.0010512277319394076,
+    "rel_p95": -0.03959830782997424,
+    "rel_p99": -0.07511888746363476,
+    "rel_max": 0.05162637865764047
+   },
+   "D_MM": 2.3196725761408743,
+   "D_chain": 2.2065463060221564,
+   "f_P": [
+    0.7285893168117453,
+    0.7797603098988936,
+    0.8240118388225137
+   ],
+   "bulk_links": [
+    4.066420507596979,
+    4.758393595041323,
+    4.945850988700565
+   ],
+   "all_pass": false
+  },
+  "CA lattice 2+1": {
+   "kind": "negative",
+   "known_d": null,
+   "gates": {
+    "G1": false,
+    "G2": false,
+    "G3": false,
+    "G4": true,
+    "G5": false
+   },
+   "E38A": "UNSTABLE(S1 f_P 0.307->0.274)",
+   "E38B": "NOT_MANIFOLD_LIKE",
+   "d_star": null,
+   "gamma0": 0.0,
+   "overlap_v4": 1.9408687203763102,
+   "flux_slopes": {
+    "rel_p90": 0.1706865682374293,
+    "rel_p95": 0.14860449820918936,
+    "rel_p99": 0.3266739302358529,
+    "rel_max": 0.3556966049234746
+   },
+   "D_MM": 2.336769768222439,
+   "D_chain": 3.847501638524116,
+   "f_P": [
+    0.3074996272193634,
+    0.29062010962146284,
+    0.2744046771412887
+   ],
+   "bulk_links": [
+    5,
+    5,
+    5
+   ],
+   "all_pass": false
+  },
+  "Minkowski lattice 2+1": {
+   "kind": "negative",
+   "known_d": null,
+   "gates": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": true,
+    "G5": false
+   },
+   "E38A": "STABLE",
+   "E38B": "NOT_MANIFOLD_LIKE",
+   "d_star": null,
+   "gamma0": 0.34018531080061004,
+   "overlap_v4": 1.544972432819232,
+   "flux_slopes": {
+    "rel_p90": 0.011684948601239415,
+    "rel_p95": 0.22862789513662707,
+    "rel_p99": -0.04185245611563257,
+    "rel_max": 0.856061671739495
+   },
+   "D_MM": 2.5782819991545693,
+   "D_chain": 4.546407507957669,
+   "f_P": [
+    0.2526187488910501,
+    0.25750746889236253,
+    0.25101329109574866
+   ],
+   "bulk_links": [
+    7.782608695652174,
+    9.74712643678161,
+    12.346478873239437
+   ],
+   "all_pass": false
+  },
+  "E38-A C1 c=32": {
+   "kind": "candidate",
+   "known_d": null,
+   "gates": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": false,
+    "G5": true
+   },
+   "E38A": "STABLE",
+   "E38B": "NOT_MANIFOLD_LIKE",
+   "d_star": null,
+   "gamma0": 0.24543202963881958,
+   "overlap_v4": 1.0026021947113513,
+   "flux_slopes": {
+    "rel_p90": 0.07326388099774125,
+    "rel_p95": 0.06974892387651915,
+    "rel_p99": -0.01982722904651952,
+    "rel_max": 0.03544037143544827
+   },
+   "D_MM": 1.811967345438461,
+   "D_chain": 1.5322141454435048,
+   "f_P": [
+    0.9194957204884504,
+    0.8944138526916569,
+    0.8745365085022031
+   ],
+   "bulk_links": [
+    2.2977093559422874,
+    2.8267560664112388,
+    3.22893942910188
+   ],
+   "all_pass": false
+  },
+  "E38-A C2 r=1 a=1": {
+   "kind": "candidate",
+   "known_d": null,
+   "gates": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": false,
+    "G5": true
+   },
+   "E38A": "STABLE",
+   "E38B": "NOT_MANIFOLD_LIKE",
+   "d_star": null,
+   "gamma0": 0.11499842992461817,
+   "overlap_v4": 1.0009064824127867,
+   "flux_slopes": {
+    "rel_p90": -0.022506625690995003,
+    "rel_p95": -0.07718791488071705,
+    "rel_p99": -0.08819551172496994,
+    "rel_max": -0.19737597907245
+   },
+   "D_MM": 1.9234890834741236,
+   "D_chain": 1.5918705441161385,
+   "f_P": [
+    0.8313519142061045,
+    0.8595626900914881,
+    0.893692334454766
+   ],
+   "bulk_links": [
+    3.322408963585434,
+    3.6997155627793576,
+    3.8966288667746665
+   ],
+   "all_pass": false
+  },
+  "E38-A C2 r=1 a=4": {
+   "kind": "candidate",
+   "known_d": null,
+   "gates": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": false,
+    "G5": true
+   },
+   "E38A": "STABLE",
+   "E38B": "NOT_MANIFOLD_LIKE",
+   "d_star": null,
+   "gamma0": 0.15539723908881387,
+   "overlap_v4": 1.0009260644337004,
+   "flux_slopes": {
+    "rel_p90": 0.0227873846900517,
+    "rel_p95": 0.030950508489793242,
+    "rel_p99": 0.05137383398811189,
+    "rel_max": 0.135045198171991
+   },
+   "D_MM": 1.4588902083451103,
+   "D_chain": 1.2877639268468686,
+   "f_P": [
+    0.9280207093634396,
+    0.9433568955112188,
+    0.9563381077234809
+   ],
+   "bulk_links": [
+    2.7680104516610675,
+    2.8733158311868436,
+    3.433414097792991
+   ],
+   "all_pass": false
+  },
+  "E38-A C2 r=2 a=4": {
+   "kind": "candidate",
+   "known_d": null,
+   "gates": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": false,
+    "G5": true
+   },
+   "E38A": "STABLE",
+   "E38B": "NOT_MANIFOLD_LIKE",
+   "d_star": null,
+   "gamma0": 0.15451420097175572,
+   "overlap_v4": 1.0019553483708248,
+   "flux_slopes": {
+    "rel_p90": -0.08221285499486357,
+    "rel_p95": -0.062205156480529024,
+    "rel_p99": -0.004404534084917399,
+    "rel_max": -0.04323945944106095
+   },
+   "D_MM": 2.3677501564125123,
+   "D_chain": 2.2065768945727338,
+   "f_P": [
+    0.6853814165681225,
+    0.7208428308511932,
+    0.7448817756881292
+   ],
+   "bulk_links": [
+    3.286785379568885,
+    3.7956970421026615,
+    4.071909949164851
+   ],
+   "all_pass": false
+  },
+  "E38-A L2 c=16 K=16": {
+   "kind": "candidate",
+   "known_d": null,
+   "gates": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": false,
+    "G5": true
+   },
+   "E38A": "STABLE",
+   "E38B": "NOT_MANIFOLD_LIKE",
+   "d_star": null,
+   "gamma0": 0.2025853508902766,
+   "overlap_v4": 1.0016074191382967,
+   "flux_slopes": {
+    "rel_p90": 0.05829569983348138,
+    "rel_p95": 0.03321130505716626,
+    "rel_p99": 0.01487878842068261,
+    "rel_max": 0.07437117857019362
+   },
+   "D_MM": 2.144803517494438,
+   "D_chain": 1.6767395706909076,
+   "f_P": [
+    0.8265062128038461,
+    0.8098101430560547,
+    0.7735103634480103
+   ],
+   "bulk_links": [
+    2.4310064935064934,
+    3.1312375249501,
+    3.2192496229260934
+   ],
+   "all_pass": false
+  },
+  "E41-B C=1 local k=3": {
+   "kind": "candidate",
+   "known_d": null,
+   "gates": {
+    "G1": false,
+    "G2": false,
+    "G3": false,
+    "G4": true,
+    "G5": false
+   },
+   "E38A": "UNSTABLE(S1 f_P 0.642->0.448; S2 local exponents spread 0.58/0.67; S3 seed cv 0.93/0.25)",
+   "E38B": "CHAIN",
+   "d_star": null,
+   "gamma0": -0.053726203836644414,
+   "overlap_v4": 1.5233765788625961,
+   "flux_slopes": {
+    "rel_p90": 0.2091953690330915,
+    "rel_p95": 0.29137608114858565,
+    "rel_p99": 0.37088475974230123,
+    "rel_max": 0.61015445565054
+   },
+   "D_MM": 1.3692771166352031,
+   "D_chain": 1.2209914255177916,
+   "f_P": [
+    0.6423895496357304,
+    0.8996378711655133,
+    0.44826170725213843
+   ],
+   "bulk_links": [
+    2.015334008097166,
+    2.209406494960806,
+    1.870684878647261
+   ],
+   "all_pass": false
+  },
+  "E39 replay R4 of 2+1": {
+   "kind": "candidate",
+   "known_d": null,
+   "gates": {
+    "G1": false,
+    "G2": false,
+    "G3": true,
+    "G4": false,
+    "G5": true
+   },
+   "E38A": "UNSTABLE(S3 seed cv 0.11/0.02)",
+   "E38B": "ACTION_MISMATCH(dS_4 3.26)",
+   "d_star": 4,
+   "gamma0": 0.4594742388073243,
+   "overlap_v4": 1.0029739030845142,
+   "flux_slopes": {
+    "rel_p90": -0.003919232618360413,
+    "rel_p95": -0.18780479213873705,
+    "rel_p99": -0.18697514158059558,
+    "rel_max": 0.5026394904188161
+   },
+   "D_MM": 3.6419082734828407,
+   "D_chain": 3.7303279136478675,
+   "f_P": [
+    0.30419629949658644,
+    0.2864950602083792,
+    0.3140938327147502
+   ],
+   "bulk_links": [
+    18.00989885284322,
+    24.7218154916316,
+    34.02853494532904
+   ],
+   "all_pass": false
+  }
+ },
+ "calibrated": {
+  "2": true,
+  "3": false,
+  "4": false
+ },
+ "instrument_ok": true,
+ "certificates": {
+  "E38-A C1 c=32": "REJECTED (G2,G4)",
+  "E38-A C2 r=1 a=1": "REJECTED (G2,G4)",
+  "E38-A C2 r=1 a=4": "REJECTED (G2,G4)",
+  "E38-A C2 r=2 a=4": "REJECTED (G2,G4)",
+  "E38-A L2 c=16 K=16": "REJECTED (G2,G4)",
+  "E41-B C=1 local k=3": "REJECTED (G1,G2,G3,G5)",
+  "E39 replay R4 of 2+1": "REJECTED (G1,G2,G4)"
+ },
+ "criteria": {
+  "GAMMA0_MIN": 0.05,
+  "OVERLAP_MIN": 1.2,
+  "FLUX_SLOPE_MAX": 0.1
+ }
+}

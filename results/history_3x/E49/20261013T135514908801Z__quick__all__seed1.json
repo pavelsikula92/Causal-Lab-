@@ -1,0 +1,40 @@
+{
+ "base_seed": 1,
+ "card_sha": "ad65827b6d7e72e5fef714100e31a22b9cf829924ba7d4f6cf530eedf14042ce",
+ "eid": "E49",
+ "elapsed_s": 1.2,
+ "lines": [
+  "base seed K = 1; determinism check: '(skipped in the smoke test)' -> OK",
+  "  e44c: same verdict",
+  "     replicate: QUICK SMOKE TEST; EQUIVALENCE_EXACT; s0=0.05 eta +0.979 vs +0.226: VIOLATION_REPRODUCED"
+ ],
+ "part": "all",
+ "payload": {
+  "determinism": {
+   "ok": true,
+   "verdict": "(skipped in the smoke test)"
+  },
+  "rows": {
+   "e44c": {
+    "missing": [],
+    "phrases": [
+     "EQUIVALENCE_EXACT",
+     "VIOLATION_REPRODUCED"
+    ],
+    "same": true,
+    "verdict": "QUICK SMOKE TEST; EQUIVALENCE_EXACT; s0=0.05 eta +0.979 vs +0.226: VIOLATION_REPRODUCED"
+   }
+  }
+ },
+ "plan": {
+  "check_determinism": 0,
+  "estimate": "2-3 hours (E43 alone 30-60 minutes)",
+  "experiments": "e44c",
+  "where": "local (user)"
+ },
+ "python": "3.13.16",
+ "quick": true,
+ "title": "Independent replication of the 2.x archive",
+ "verdict": "SUPPORTED",
+ "version": "3.0.0"
+}

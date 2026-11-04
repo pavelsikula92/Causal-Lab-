@@ -1,0 +1,10 @@
+2+1 expected nonlocal operator, lengths in l_k: Gaussian source sigma = 1, q = 1, Q = 6.2832; R = 80; window [10, 40]
+  prediction: g = +0 (ln r), amplitude A_pred = Q / omega_2 = 1.00000
+  res1 (204 rows): g = -0.080, A/A_pred = 1.0522, residual 6.0e-04 q
+  res2 (388 rows): g = -0.080, A/A_pred = 1.0546, residual 4.3e-04 q
+  convergence |dg| = 0.000 (tol 0.05), |A1/A2 - 1| = 0.0023 (tol 0.02)
+  S shape: |g - g_pred| = 0.080 (tol 0.25) -> met; nearest candidate law: ln r
+  M strength: |A/A_pred - 1| = 0.0546 (tol 0.1) -> met
+  reported only: g in [10, 20.0] = -0.080, in [20.0, 40] = -0.100; deviation from the continuum solution (u(R) = 0) 0.1220
+  local (u - u_continuum) / |u_continuum| at r = 10: +0.0593, 20: +0.1304, 40: +0.2849
+instrument: convergence of g: OK; convergence of amplitude: OK; field residual: OK

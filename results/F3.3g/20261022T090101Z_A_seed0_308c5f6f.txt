@@ -1,0 +1,233 @@
+2+1 cylinder T = 9.0, N = 72000, R_abs = 0.4; C = Q_0.99 = 5.0339 (8 calibration sprinklings, own stream); ignition s_ign = 5.0 in t [3.0, 4.0); pulse 'main', dQ_crit = 0.2, channel 'capacity', Pi_sat = 0.5, m = 2.0; 128 sprinklings (stream F3.3g-A); slabs of 0.25 from t = 3.0 (early [4.5, 5.0], late [8.0, 8.5]); tolerance r0/4 = 0.0375
+  s_bg 0:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       149.1  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.913  0.997  1.006  0.997   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.818  0.985  0.983  0.984   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop  90.46 193.59 232.83 260.61   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       149.1  178.0  182.7  178.9    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150  0.137   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.913  0.997  1.006  0.997  0.114   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.818  0.985  0.983  0.984  0.020   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 148.26 380.18 486.14 579.21   0.02   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   123.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 1.000; R_rms early 0.115 late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  184.8  191.8   21.0    1.4    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.152  0.164  0.255  0.303  0.115   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  0.998  0.947  0.199  0.066  0.101   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.967  0.848  0.037  0.008  0.009   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 645.92 757.39 841.95 832.00   7.45   0.44   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.0  184.8  191.8   21.0    1.4    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.1:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.984   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 153.50 249.21 287.55 311.82   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  179.0    1.7    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150  0.188  0.283   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997  0.099  0.040   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.983  0.013  0.002   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 305.52 466.90 581.86 651.64   0.28   0.01   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.0  182.7  178.9    0.5    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 1.000; R_rms early 0.257 late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.2  194.1  209.3   45.5   10.0    1.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.162  0.182  0.275  0.308  0.258  0.238   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.996  0.963  0.888  0.271  0.113  0.070  0.048   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.984  0.873  0.711  0.067  0.013  0.010  0.002   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 709.53 804.83 859.02 845.93  17.36   3.45   0.34   0.01   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.2  194.1  209.3   45.5   10.0    1.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.15:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.984   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 185.44 277.00 314.89 337.41   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  179.3    3.1    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150  0.199  0.279   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.996  0.107  0.042   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.982  0.013  0.002   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 337.57 494.57 607.80 671.40   0.57   0.02   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.0  182.7  179.0    1.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 1.000; R_rms early 0.265 late nan; growth undefined; ring (late) 0.0000
+        N       179.6  179.2  202.4  223.2   73.0   27.7    8.6    1.3    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.151  0.171  0.196  0.288  0.310  0.273  0.250  0.305   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.993  0.932  0.853  0.328  0.186  0.122  0.075  0.048   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.976  0.798  0.640  0.098  0.033  0.015  0.007  0.003   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 740.86 823.14 865.47 857.54  29.05  10.23   3.05   0.44   0.02   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  179.2  202.4  223.2   73.0   27.7    8.6    1.3    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.2:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.984   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 217.38 304.79 342.23 363.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.8  179.9    5.3    0.2    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.151  0.215  0.317   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.005  0.994  0.123  0.040   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.978  0.015  0.002   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 369.49 522.10 633.34 689.62   1.05   0.03   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.0  182.7  179.2    2.0    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 1.000; R_rms early 0.294 late nan; growth undefined; ring (late) 0.0000
+        N       179.6  183.0  216.2  245.0  110.0   66.2   39.9   21.9    9.3    3.2    0.6    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.155  0.184  0.215  0.304  0.319  0.296  0.291  0.269  0.256  0.266  0.216   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.976  0.893  0.816  0.383  0.280  0.231  0.173  0.123  0.104  0.082  0.096   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.938  0.712  0.569  0.132  0.073  0.051  0.030  0.017  0.015  0.010  0.012   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 771.34 837.79 875.22 877.80  46.72  26.81  15.66   8.04   3.28   1.07   0.20   0.03   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  183.0  216.2  245.0  110.0   66.2   39.9   21.9    9.3    3.2    0.6    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.25:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.984   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 249.31 332.58 369.57 388.58   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.9  181.2    8.6    0.5    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.152  0.227  0.334   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.005  0.989  0.145  0.040   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.982  0.965  0.020  0.002   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 401.41 549.44 657.74 705.84   1.77   0.07   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.0  182.8  179.6    3.4    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 0.930; R_rms early 0.316 late 0.269; growth -0.0561 +- 0.0117; ring (late) 0.0002
+        N       179.7  193.0  238.2  277.3  169.8  139.2  123.2  111.8   95.4   82.8   69.1   56.2   45.6   35.6   26.2   18.9   13.5    7.7    4.9    2.9    1.6    1.1
+        R_rms   0.150  0.166  0.204  0.238  0.318  0.331  0.316  0.316  0.313  0.310  0.306  0.294  0.295  0.291  0.289  0.288  0.277  0.269  0.281  0.269  0.258  0.270
+        B       0.998  0.938  0.847  0.785  0.455  0.395  0.386  0.364  0.338  0.311  0.283  0.256  0.237  0.214  0.202  0.185  0.170  0.149  0.134  0.130  0.136  0.113
+        C_drop  0.982  0.838  0.621  0.516  0.186  0.143  0.135  0.122  0.106  0.092  0.079  0.067  0.059  0.050  0.044  0.037  0.032  0.025  0.020  0.019  0.021  0.014
+        Q_drop 800.46 852.36 892.92 907.15  77.49  62.18  55.31  49.02  41.09  35.14  29.02  23.37  18.46  14.21  10.29   7.28   5.19   2.81   1.78   1.04   0.57   0.35
+        pulse   179.7  193.0  238.2  277.3  169.8  139.2  123.2  111.8   95.4   82.8   69.1   56.2   45.6   35.6   26.2   18.9   13.5    7.7    4.9    2.9    1.6    1.1
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.3:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.984   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 281.25 360.37 396.90 414.17   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  183.1  183.1   13.2    0.6    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.154  0.234  0.334   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.004  0.981  0.173  0.042   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.981  0.943  0.028  0.002   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 433.29 576.53 681.17 720.50   2.86   0.13   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.0  182.8  180.4    5.4    0.2    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 0.000; R_rms early 0.344 late 0.353; growth +0.0091 +- 0.0010; ring (late) 0.1763
+        N       181.1  214.3  274.8  330.0  254.6  254.9  266.2  276.8  285.3  298.4  307.9  314.4  319.7  324.6  332.4  336.6  337.1  343.0  346.5  351.6  352.1  359.7
+        R_rms   0.151  0.186  0.231  0.266  0.335  0.346  0.344  0.344  0.346  0.348  0.348  0.349  0.350  0.350  0.351  0.353  0.352  0.353  0.353  0.353  0.352  0.355
+        B       0.994  0.881  0.801  0.763  0.530  0.512  0.526  0.534  0.542  0.549  0.560  0.563  0.567  0.571  0.576  0.578  0.581  0.583  0.585  0.589  0.592  0.594
+        C_drop  0.973  0.700  0.541  0.485  0.253  0.239  0.251  0.260  0.266  0.275  0.284  0.289  0.292  0.297  0.303  0.305  0.306  0.309  0.311  0.316  0.319  0.322
+        Q_drop 827.56 872.73 924.57 952.64 127.89 128.51 136.71 144.47 149.75 157.45 163.89 168.54 171.95 175.13 179.53 182.34 183.58 186.03 189.12 192.87 193.50 200.22
+        pulse   181.1  214.3  274.8  330.0  254.6  254.9  266.2  276.8  285.3  298.4  307.9  314.4  319.7  324.6  332.4  336.6  337.1  343.0  346.5  351.6  352.1  359.7
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.4:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.984   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 345.12 415.95 451.58 465.35   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early 0.199 late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  185.0  190.6   24.0    2.2    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.152  0.162  0.251  0.307  0.199   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.996  0.997  0.952  0.217  0.063  0.077   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.963  0.862  0.043  0.006  0.009   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 496.94 629.68 722.35 746.12   6.25   0.45   0.01   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.0  183.4  183.7   12.0    0.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 0.000; R_rms early 0.374 late 0.379; growth +0.0051 +- 0.0005; ring (late) 0.4754
+        N       215.0  338.6  446.7  533.2  521.7  566.8  603.8  636.4  661.0  688.0  695.6  708.9  715.9  719.7  723.4  730.4  732.5  738.2  737.8  736.9  729.3  739.0
+        R_rms   0.180  0.259  0.305  0.331  0.368  0.372  0.373  0.375  0.376  0.377  0.377  0.378  0.378  0.378  0.379  0.378  0.379  0.379  0.378  0.379  0.378  0.380
+        B       0.911  0.792  0.772  0.780  0.693  0.715  0.735  0.751  0.766  0.776  0.782  0.787  0.792  0.794  0.792  0.799  0.800  0.800  0.802  0.801  0.797  0.800
+        C_drop  0.747  0.533  0.504  0.520  0.442  0.472  0.499  0.523  0.544  0.561  0.570  0.579  0.584  0.587  0.588  0.596  0.597  0.597  0.599  0.600  0.593  0.599
+        Q_drop 885.95 975.44 1072.00 1137.94 326.54 365.13 397.96 428.00 449.09 471.24 481.33 492.21 498.40 502.56 504.08 512.05 513.73 515.99 519.22 518.80 511.37 526.80
+        pulse   215.0  338.6  446.7  533.2  521.7  566.8  603.8  636.4  661.0  688.0  695.6  708.9  715.9  719.7  723.4  730.4  732.5  738.2  737.8  736.9  729.3  739.0
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.5:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.984   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 408.99 471.53 506.26 516.52   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early 0.275 late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.4  191.0  201.9   40.7    6.5    0.6    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.159  0.175  0.267  0.307  0.278  0.215   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.995  0.974  0.910  0.265  0.092  0.063  0.057   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.982  0.902  0.757  0.064  0.008  0.006  0.003   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 559.97 679.47 757.11 770.90  11.85   1.51   0.11   0.01   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  178.1  185.9  190.0   21.8    2.8    0.2    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 0.000; R_rms early 0.386 late 0.387; growth +0.0014 +- 0.0004; ring (late) 0.6533
+        N       314.5  568.2  722.9  804.3  823.4  860.1  887.7  907.9  914.3  925.6  923.4  925.6  930.7  933.1  934.5  935.7  935.1  939.2  939.4  934.0  929.9  939.0
+        R_rms   0.239  0.329  0.358  0.369  0.384  0.385  0.385  0.386  0.386  0.387  0.386  0.387  0.387  0.387  0.388  0.387  0.387  0.387  0.386  0.387  0.387  0.387
+        B       0.825  0.808  0.838  0.860  0.836  0.851  0.863  0.871  0.877  0.878  0.880  0.880  0.883  0.883  0.882  0.885  0.884  0.884  0.885  0.883  0.881  0.885
+        C_drop  0.591  0.565  0.623  0.668  0.659  0.686  0.706  0.721  0.730  0.733  0.737  0.737  0.741  0.741  0.741  0.746  0.744  0.743  0.744  0.742  0.738  0.746
+        Q_drop 980.24 1182.08 1353.34 1441.21 628.18 671.07 700.50 725.32 731.17 741.24 742.87 743.51 747.88 751.53 750.76 753.68 752.81 755.22 756.82 752.78 747.08 768.10
+        pulse   314.5  568.2  722.9  804.3  823.4  860.1  887.7  907.9  914.3  925.6  923.4  925.6  930.7  933.1  934.5  935.7  935.1  939.2  939.4  934.0  929.9  939.0
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.6:
+     control: died 1.000; R_rms early nan late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.0  182.7  178.9    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.150  0.144   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.997  1.006  0.997  0.090   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.985  0.983  0.984  0.009   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 472.87 527.11 560.94 567.70   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early 0.279 late nan; growth undefined; ring (late) 0.0000
+        N       179.6  181.0  203.2  219.6   66.9   19.3    4.2    0.7    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.153  0.172  0.192  0.280  0.305  0.278  0.271  0.199   nan  0.108   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        B       0.998  0.986  0.928  0.865  0.325  0.159  0.103  0.065  0.061   nan  0.104   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        C_drop  0.982  0.962  0.787  0.661  0.096  0.025  0.017  0.005  0.004   nan  0.010   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan   nan
+        Q_drop 621.28 724.93 787.66 798.55  22.03   5.33   1.00   0.13   0.01   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+        pulse   179.6  179.0  192.4  200.7   39.1    9.9    1.9    0.2    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     bistable: died 0.000; R_rms early 0.391 late 0.392; growth +0.0004 +- 0.0003; ring (late) 0.7833
+        N       958.1 1013.3 1049.3 1064.0 1059.2 1061.8 1064.2 1068.7 1065.4 1071.7 1068.6 1069.8 1069.2 1071.3 1074.3 1071.6 1071.5 1072.3 1071.3 1067.6 1070.0 1077.2
+        R_rms   0.382  0.385  0.386  0.387  0.392  0.392  0.391  0.391  0.391  0.392  0.392  0.392  0.392  0.392  0.392  0.392  0.392  0.392  0.391  0.392  0.392  0.392
+        B       0.906  0.924  0.936  0.941  0.928  0.929  0.931  0.932  0.934  0.932  0.935  0.933  0.934  0.934  0.934  0.935  0.935  0.933  0.934  0.931  0.934  0.937
+        C_drop  0.766  0.804  0.830  0.842  0.833  0.835  0.837  0.838  0.841  0.840  0.843  0.843  0.843  0.843  0.844  0.845  0.844  0.841  0.840  0.840  0.841  0.848
+        Q_drop 1682.56 1754.14 1825.42 1832.16 950.08 954.86 958.08 965.23 961.71 964.64 964.09 965.86 963.10 965.34 966.93 966.70 966.21 965.77 965.78 963.42 962.78 987.24
+        pulse   958.1 1013.3 1049.3 1064.0 1059.2 1061.8 1064.2 1068.7 1065.4 1071.7 1068.6 1069.8 1069.2 1071.3 1074.3 1071.6 1071.5 1072.3 1071.3 1067.6 1070.0 1077.2
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  s_bg 0.8:
+     control: died 1.000; R_rms early 0.158 late nan; growth undefined; ring (late) 0.0000
+        N       179.6  178.1  183.0  179.5    1.8    0.4    0.2    0.1    0.1    0.1    0.1    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+        R_rms   0.150  0.150  0.150  0.151  0.184  0.208  0.178  0.133  0.149  0.147  0.172  0.176  0.231   nan  0.163   nan  0.122  0.053  0.207  0.177  0.240  0.363
+        B       0.998  0.996  1.005  0.995  0.109  0.103  0.093  0.117  0.100  0.078  0.090  0.072  0.052   nan  0.072   nan  0.250  0.221  0.057  0.063  0.052  0.031
+        C_drop  0.982  0.984  0.981  0.980  0.017  0.031  0.012  0.016  0.016  0.006  0.011  0.006  0.003   nan  0.006   nan  0.168  0.084  0.004  0.004  0.003  0.001
+        Q_drop 600.61 638.28 670.34 670.15   0.34   0.05   0.04   0.02   0.02   0.01   0.02   0.01   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.01   0.00
+        pulse     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+     threshold: died 1.000; R_rms early 0.298 late nan; growth undefined; ring (late) 0.0000
+        N       184.6  216.9  258.7  286.7  171.9  119.6   88.1   66.1   44.5   30.0   18.4   11.3    5.8    3.5    1.4    0.6    0.3    0.1    0.1    0.0    0.0    0.0
+        R_rms   0.155  0.188  0.219  0.240  0.307  0.314  0.299  0.297  0.284  0.286  0.277  0.257  0.252  0.252  0.233  0.207  0.235  0.140  0.185  0.190  0.249  0.254
+        B       0.982  0.877  0.821  0.788  0.477  0.388  0.346  0.299  0.255  0.206  0.161  0.144  0.109  0.102  0.104  0.099  0.089  0.151  0.119  0.092  0.049  0.048
+        C_drop  0.941  0.689  0.573  0.521  0.203  0.135  0.108  0.083  0.060  0.042  0.028  0.022  0.013  0.012  0.013  0.014  0.013  0.034  0.036  0.015  0.003  0.002
+        Q_drop 729.75 811.06 867.09 884.30  73.97  47.74  33.87  23.78  15.15   9.49   5.63   3.26   1.57   0.90   0.33   0.15   0.05   0.01   0.01   0.00   0.01   0.00
+        pulse   181.4  197.8  228.0  248.8  116.5   77.3   56.0   40.2   25.9   16.7   10.0    5.8    3.0    1.6    0.7    0.2    0.1    0.0    0.0    0.0    0.0    0.0
+     bistable: died 0.000; R_rms early 0.397 late 0.397; growth +0.0000 +- 0.0003; ring (late) 0.9360
+        N      1199.6 1213.2 1219.5 1220.2 1221.7 1221.0 1222.8 1224.4 1218.1 1226.5 1217.8 1219.5 1221.3 1222.9 1223.7 1220.5 1220.4 1224.2 1222.9 1220.3 1222.5 1225.8
+        R_rms   0.396  0.396  0.396  0.396  0.398  0.398  0.397  0.397  0.397  0.397  0.397  0.398  0.397  0.397  0.397  0.397  0.397  0.397  0.397  0.397  0.397  0.397
+        B       0.979  0.983  0.985  0.986  0.982  0.982  0.984  0.984  0.985  0.983  0.984  0.983  0.985  0.984  0.984  0.984  0.985  0.984  0.984  0.983  0.985  0.986
+        C_drop  0.939  0.948  0.952  0.955  0.955  0.954  0.955  0.954  0.955  0.955  0.955  0.956  0.957  0.957  0.957  0.956  0.956  0.955  0.953  0.955  0.956  0.959
+        Q_drop 2191.82 2208.56 2246.67 2231.98 1338.42 1337.81 1340.72 1347.46 1340.06 1344.35 1338.01 1339.18 1338.80 1340.91 1341.59 1340.40 1338.50 1339.78 1340.45 1338.68 1339.80 1367.16
+        pulse  1199.6 1213.2 1219.5 1220.2 1221.7 1221.0 1222.8 1224.4 1218.1 1226.5 1217.8 1219.5 1221.3 1222.9 1223.7 1220.5 1220.4 1224.2 1222.9 1220.3 1222.5 1225.8
+     -> bistable arm FAILED; control arm alone FAILED; value FAILED
+  part A: values passing: none; confirm a passing value with the B parts (--set s_bg=...)
+instrument: control arm = route_capacity: OK; balance: OK; boosted order bit-identical: OK

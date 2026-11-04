@@ -1,0 +1,5 @@
+2+1
+  (a) covering check vs brute force on a random DAG: equal (15 redundant of 89)
+  (b) original links N=4000: redundant edges 0
+  (c) DAG null N=16000: forward True, no duplicates True, degrees exact True, original edges kept 0.147 (max 0.5); non-covering edges 0.873 (reported)
+  (d) strict null N=1500: redundant after 0, degrees exact True; accepted 3414 of 300000 trials, original edges kept 0.902 (reported)

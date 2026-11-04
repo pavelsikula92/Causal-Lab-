@@ -1,0 +1,10 @@
+2+1 cylinder T = 7.0, N = 56000, s0 = 1.0; analysis |x| < 0.4, t in [3.5, 5.5); C = Q_0.9 = 4.4032 (8 calibration sprinklings); carried stock vs discarded; 128 sprinklings = 64 pairs
+  saturated (holding stock) fraction of the analysis events: no memory 0.0801, carried stock 0.0990; mean held stock per event 0.0224 vs 0.0296
+  Delta_pers: no memory +0.0001 +- 0.0024, carried +0.0007 +- 0.0022   (F3.2: +0.006 +- 0.006)
+  E_loc:      no memory -0.0068 +- 0.0021, carried -0.0083 +- 0.0018   (F3.2: +0.004 +- 0.004)
+  paired d_pers = +0.0006 +- 0.0016 (margin 0.05) -> EQUIVALENT; d_loc = -0.0015 +- 0.0014 (margin 0.05) -> EQUIVALENT
+  switch-off at t = 5.5; the last slab before it, then the slabs of 0.25 after it:
+     saturated fraction  no memory 0.0831 0.0006 0.0000 0.0000 0.0000 0.0000; carried 0.1051 0.0011 0.0000 0.0000 0.0000 0.0000
+     mean held stock     no memory 0.0234 0.0001 0.0000 0.0000 0.0000 0.0000; carried 0.0321 0.0002 0.0000 0.0000 0.0000 0.0000
+     r_s with the last slab before (nan: no saturated cells left): no memory +0.158 +nan +nan +nan +nan; carried +0.193 +nan +nan +nan +nan  (reported)
+instrument: control arm = route_capacity: OK; balance: OK; invalid statistics: OK; boosted order bit-identical: OK (invalid 0/192)

@@ -1,0 +1,9 @@
+2+1, lengths in l_k: source sigma = 8, q = 0.01; field (a) self-consistent, R = 100, 28 nodes, 54 rows, quadrature [240, 8, 96, 8, 48, 1], geometry spline; Pi_cs(0) = 0.7113 (continuum (a) 0.7099), 13 iterations, residual 3.7e-05
+  motion: b = 10, T = 40, N0 = 32000, rho_c = 1.910 per l_k^3 (eps = 0.524); 512/512 valid seeds
+  Pi along the path r = b ... b + T/2:  causal set 0.7569 0.7958 0.8311 0.8598 0.8830   continuum (a) 0.7457 0.7777 0.8081 0.8341 0.8559
+  predictions (mid-time displacement): P_a = +1.6771 (geodesic of Pi_a^2 eta); alternatives: none +0.0000, box_g +3.4934, flat no static solution; d_alt = 1.6771, band d_alt/4 = 0.4193
+  reported: P_cs = +2.0230 (geodesic in the causal-set field), P2_a = +3.3220 (Pi_a^4 eta, for H2)
+  H1 = +2.0272 +- 0.0714 (sd 1.584); |H1 - P_a| = 0.3501, relative 0.209; H1 / P_a = 1.209
+  H2 = +3.7396 +- 0.0684 (P2_a +3.3220, H2 / P2_a = 1.126; reported only)
+  decision: |H1 - P_a| + 2 SE = 0.4928, |H1 - P_a| - 2 SE = 0.2074 vs band 0.4193
+instrument: field solve converged: OK; field residual: OK; mirror identity: OK; weights: OK; invalid seeds: OK; eps <= 1: OK (mirror worst 0.0e+00, weights worst 0.0e+00)

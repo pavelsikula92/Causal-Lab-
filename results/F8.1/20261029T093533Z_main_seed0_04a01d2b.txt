@@ -1,0 +1,2 @@
+Static field of a point mass from the three sectors (A, B, C) of the expected BD action; far field r >> L_*; units c = 1, l_k = 1 in the sectors
+  I1 inputs: F6.8b2 PASSED (results\F6.8b2\20261028T225522Z_main_seed0_ab37eee4.json), F6.8c missing (-); same grid: False
