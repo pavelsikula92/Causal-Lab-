@@ -10,9 +10,8 @@ of four verdicts: passed, failed, undecided or instrument failed. Negative resul
 never rescued by changing its criteria. The tests are ordered by the phases of the roadmap, and every phase belongs to
 one part of the theory (`docs/roadmap.md`). The paper that reports the tests is in `paper/`.
 
-This is the work of an independent researcher (a test engineer, self-taught in physics); the code and the text were
-developed with the assistance of an AI system, as stated in the paper. It is not peer reviewed. Independent
-replication and criticism are the point of making it open.
+This is an attempt to apply QA methods to scientific research. I am primarily a test engineer, and natural science is
+my passion. The work is not peer reviewed; independent replication and criticism are the reason it is open.
 
 ## Citation
 
