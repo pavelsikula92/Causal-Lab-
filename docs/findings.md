@@ -89,6 +89,8 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     F5.1c FAILED; its criteria were fixed before the run (R132). Replicated on new sprinklings. Open: the velocity jump
     at the apex and the excess over R_max (1.44 and 1.25). The same rule in 3+1 does not fall (F5.1e, FAILED 30 Oct,
     below): the result holds in 2+1 only.
+  - **Note 8 Nov (F5.1-diag2, decides nothing):** in 3+1 the rule takes the velocity of the region in which it reads
+    the order (here a cylinder at rest in the frame of the source); covariance of the rule in 2+1 is not tested.
 
 - **F4.1 (d3 and d4): flows that meet stick together: contact transfers momentum, the merged flow stops in the
   centre-of-momentum frame and the kinetic energy turns into rest mass; the rule has no bounce** (mechanism, 2+1,
@@ -544,6 +546,25 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Does not hold
 
+- **F3.13d: no defect arises by itself: the alignment of disordered orientations leaves no locked defect at the scale
+  R = 2** (mechanism, 3+1, box t [0, 30], half 7, ~82 200 events, 1 043 sources, 16 sprinklings, FAILED 1 Nov by the
+  criteria approved before the run; deciding kappa = 0.9, changed from 0.3 with the author's approval before the full
+  run because kappa 0.3 was unreadable; instrument OK: vacuum 0 on 21 566 of 21 566 readable shells, random_0.9 5 916
+  readable shells).
+  - **Sites:** S = 0.000 ± 0.000 (fail < 0.1); not one shell of 5 916 readable at kappa 0.9 (1 109 at kappa 0.3) read a
+    non-zero degree; persistence undefined (no site); net charge on R = 4 read twice, 0 both times.
+  - **Smoothing:** mean cost per carrying event 0.215 -> 0.042 (kappa 0.9), 0.488 -> 0.091 (0.3), 0.667 -> 0.311 (no
+    alignment); readability rises to 0.37-0.40 at kappa 0.9 from t ~ 17; the vacuum loses readability late (0.68 at
+    t = 27) as merging thins the flow.
+
+  Reading. With an orientation carried by the flow and its alignment (the two assumptions added in F3.13a/b), disorder
+  at the sources does not leave behind a locked defect that can be read at the scale R = 2 inside a region of radius 5:
+  whatever knots exist at the scale of single events are untied, or leave through the boundary, before the field is
+  resolved. The hedgehog of F3.13b2 is therefore a configuration that is stable once made but is not made by this
+  dynamics: in this branch the defect remains put in by hand. Limits: one size of the region (sources r < 5), one scale of
+  reading (R = 2), a cold flow at rest without a field, and a field resolved only from t ~ 13 on; a larger region could
+  keep defects that here escape. The branch of a carried orientation does not, as tested, create particles by itself.
+
 - **F3.12b search: capacity as an elastic wall does not hold a bundle in its own field; without merging a warm bundle
   (η = 0.06) comes closest to a stationary width of all F3 runs, but even there the classification gives no bound arm**
   (mechanism, exploration, 2+1, F3.11 set-up, 32 sprinklings of ~49 000 events, 201 source events, RECORDED 31 Oct;
@@ -608,6 +629,8 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     A possible cause (a hypothesis, not tested): in 3+1 the effect of the field on the lengths L(p, q) over the horizon
     is below one link, so the choice of q* is decided by the tie-breakers rather than by the geometry. A new rule or a
     rescaled one would be a new hypothesis with its own criteria (R132). F5.1d stays PASSED for 2+1.
+  - **Diagnosis 7 Nov (decides nothing):** the tie-breaker hypothesis above does not hold; see "Fall diagnostic"
+    under Undecided (descriptive).
 
 - **F5.1c: a flow that continues its history as the longest chain moves inwards in an order curved by matter, but does
   not fall with the Newtonian acceleration** (mechanism, 2+1, order of F7.1b σ0 = 0.45, 32 + 32 sprinklings of
@@ -1192,6 +1215,38 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Discoveries
 
+- **F5.1-diag2: the longest-chain rule of F5.1c/d/e has no inertia of its own; the velocity of the history goes to the
+  velocity of the region in which the rule reads the order** (diagnostic, DESCRIPTIVE, decides no registered test;
+  flat 3+1, density 1, box t [0, 28], |x| ≤ 11, |y|, |z| ≤ 7.5, 8 sprinklings of ~138 500 events, 16 starts each, the
+  registered rule m = H = 8 unchanged, only the cylinder of LocalLinks moves with u along the throw; the cylinder at
+  rest reproduces the registered rule in 8 of 8 checks; run by the author 8 Nov, 10 019 s with 8 processes).
+  - **Late velocity (s ∈ [6, 12] after the start of the walk, along the throw; SE over sprinklings), arms (v, u):**
+    R = 4: (0, 0) +0.025 ± 0.025, (0.3, 0) −0.027 ± 0.027, (0.3, 0.3) +0.321 ± 0.029, (0, 0.3) +0.305 ± 0.032;
+    R = 6: −0.014 ± 0.026, +0.049 ± 0.026, +0.351 ± 0.025, +0.272 ± 0.033. The thrown history had +0.237 (measured
+    velocity of the history with the nominal 0.3), the history at rest +0.052.
+  - **Paired differences (same start, same history):** co-moving − at rest +0.348 ± 0.042 (R 4) and +0.302 ± 0.025
+    (R 6); pulled − at rest +0.280 ± 0.047 and +0.286 ± 0.043; thrown − at rest in the cylinder at rest −0.052 ± 0.025
+    and +0.063 ± 0.031. The history takes over ~95 % of the velocity of the cylinder and keeps none (R 4) or at most a
+    third (R 6) of its own.
+  - **At the wall (within 0.5 of the cylinder surface, mean per step):** horizon set Q 32 % (R 4) / 21 % (R 6), tie set
+    of min L(p, q) 34 % / 26 %, the chosen target 71–76 % / 53–58 %, mean distance of the target 0.90 R / 0.87 R.
+  - **Reading against the outcomes declared before the run:** the cylinder is the medium (both paired differences
+    > 0 by 7–12 SE). Not as declared: the effect is not smaller at R = 6; the velocity locks to u at both radii. The
+    laboratory itself is not the medium, the time top of F5.1e was not the cut (the thrown history loses its velocity
+    in the cylinder at rest also here).
+  - **Mechanism (inferred, not tested separately):** both criteria of the target are minima, min L(p, q) and then the
+    fewest events n(p, q). A diamond between p and q that leaves the region is cut by it, which lowers both L and n.
+    The rule therefore prefers targets whose diamonds stick out of the region (the target is at the wall in 3/4 of the
+    steps, while only 1/3 of the candidates are), and the velocity follows the region. In the continuum the volume of a
+    diamond does not depend on its boost; the preference comes only from the cut. The horizon set (all q with
+    L(v, q) = H) is unbounded along the light cone, so any finite region cuts it.
+  - **Consequences:** the "medium at rest" of the 3+1 fall (F5.1-diag) is the cylinder fixed at the apex; together
+    with the turn at the apex it gives the terminal velocity of F5.1e. In 2+1 (F5.1d) the cylinder was also at rest in
+    the frame of the source; the fall there was measured from rest in that frame, so F5.1d PASSED does not show that the
+    rule is covariant (R132: the verdict stays). A rule of motion that does not depend on a region (or reads it in the
+    frame of the history itself) is a new hypothesis with its own criteria (F5.1f), and inertia in the flat order must
+    be its first instrument.
+
 - **F3.8 search: a retarded field with range contracts the bundle for the first time, but no bound state arose:
   ε = 0.1 slowly collapses, ε = 0.5 collapses and rebounds** (mechanism, exploration, 32 sprinklings 2+1,
   ~49 200 events, RECORDED; candidate according to the rule in the header: none). Field φ = Σ F/(2πτ) through the flow
@@ -1494,6 +1549,79 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   fixed separately.
 
 ## Undecided (descriptive)
+
+- **F5.1-diag3: without the cylinder the thrown history keeps most of its velocity (Binf − A0 = +0.24 ± 0.08), but
+  the frozen inertia criterion is not met because of the statistics; where the admissible region is asymmetric about
+  the history, the target follows it** (diagnostic, DESCRIPTIVE, UNDECIDED by the criteria frozen before the run; flat
+  3+1, density 1, box t [0, 26], |x| ≤ 11, |y|, |z| ≤ 9.5, 8 sprinklings of ~206 400 events, 8 starts each, v 0 and
+  0.3, the registered rule m = H = 8 computed by a new engine without bitsets (future cone of p, one bit per tied
+  target), which reproduces walk_history exactly on the cylinder R = 4 in 16 of 16 checks; time cap t_v + 9; run by
+  the author 8 Nov, 14 205 s with 8 processes).
+  - **Late velocity (s ∈ [6, 12]), late − history, SE over sprinklings (in brackets SE over the 64 walks):**
+    A0 (cylinder R 4 at rest): v 0 +0.011, −0.014 ± 0.096; v 0.3 −0.021, **−0.288 ± 0.043** (0.033).
+    Binf (whole box, only diamonds inside): v 0 +0.044, +0.018 ± 0.084 (0.047); v 0.3 +0.219, **−0.048 ± 0.087**
+    (0.044). Bplain (whole box, all candidates): v 0 +0.061, +0.035 ± 0.064; v 0.3 +0.209, −0.058 ± 0.070.
+    C2 (diamonds ≥ 2 from the faces): v 0 +0.226, +0.175 ± 0.068; v 0.3 +0.295, +0.029 ± 0.036.
+  - **Paired differences of v_late:** Binf − A0 +0.033 ± 0.067 (v 0) and **+0.240 ± 0.077** (v 0.3; walk SE 0.050);
+    Binf − Bplain −0.017 ± 0.046 and +0.010 ± 0.082; C2 − Binf **+0.144 ± 0.060** (v 0) and +0.044 ± 0.096 (v 0.3).
+  - **Readings frozen before the run:** inertia restored in Binf (|late − hist| + 2 SE < 0.1): not met for v 0
+    (0.19) nor v 0.3 (0.22), with the walk SE 0.11 and 0.14; the point estimates are compatible with keeping the
+    velocity and with losing up to ~0.2. Admissibility matters (|Binf − Bplain| > 2 SE): no. The boundary still reaches
+    the decision (|C2 − Binf| > 2 SE): yes at v 0, no at v 0.3. The alternative reading "Binf does not keep the
+    velocity, so the loss is in the rule" cannot be drawn either.
+  - **Reported, not evaluated:** the events between p and the tied targets, n(p, q), are ~1 210 in the cylinder and
+    ~2 110 in the box: the cylinder removed ~43 % of every diamond (the cut of F5.1-diag2 seen directly). The ties of
+    min L(p, q) have 67–73 candidates in A0, 133–137 in Binf, 200–213 in Bplain, 50–54 in C2; their excess
+    L(p, q) − L(p, v) − L(v, q) is 0.02–0.11 (aligned candidates exist), the fewest events leave one candidate in
+    99–100 % of steps. Binf removes 43–50 % of the horizon set, C2 84–85 %. In C2 the history at rest drifts along the
+    throw direction for both signs of the throw (+0.33 for the starts at x = −2.5, +0.13 for x = +2.5), i.e. towards
+    the middle of the box, where the admissible region is larger. Per-walk SD of the late velocity ~0.35.
+
+  Reading. The braking of F5.1e / F5.1-diag2 is mostly the cylinder: in the box the thrown history loses 0.05 ± 0.09
+  of 0.27 instead of 0.29 ± 0.04. Whether the rule keeps the velocity to within 0.1 is undecided at this precision.
+  The same sensitivity as in F5.1-diag2 appears in another form: the choice follows the shape of the readable region
+  wherever it is asymmetric about the history (C2). A computation of the rule therefore needs a region much larger
+  than the diamonds and a flat arm with the same geometry, so that the drift of the region is subtracted.
+  - **Design error found after the run:** the start was the event nearest to a point with a jitter of 0.5, so starts
+    of the same sprinkling collapsed onto one event: in Binf v 0.3, 22 of 64 walks repeat another walk exactly. The
+    effective number of walks is smaller and the SE over walks is too optimistic; the SE over sprinklings stands.
+    Repeated with distinct starts as F5.1-diag3b.
+
+- **Fall diagnostic (diag/fall_layers, 7 Nov): the tie-breakers do not decide the fall in either dimension; in 3+1
+  the history behaves like a body in a medium at rest in the laboratory (a kick at the apex, then a terminal velocity),
+  and the suspect is the computation cylinder fixed at the apex** (diagnostic, DESCRIPTIVE, decides nothing; 2+1 with
+  the parameters of F5.1d, 3 + 3 sprinklings, 12 histories each, run in the container; 3+1 with the parameters of
+  F5.1e, 8 + 8 sprinklings of ~105 000 / ~98 000 events, 60 histories each, run by the author; the variant "earliest"
+  reproduces the registered rule exactly in both).
+  - **Layer 1, geometry (tube of longest chains between fixed events):** 3+1 loaded sag +0.432 ± 0.084 (rule scale,
+    dT 14.8) and +0.386 ± 0.083 (control, dT 16), flat −0.033 ± 0.085 and −0.117 ± 0.087; loaded − flat 0.47 ± 0.12
+    and 0.50 ± 0.12 against the geometry 0.61 and 0.71. 2+1 loaded +0.59 ± 0.30 and +0.89 ± 0.28 against 0.53 and
+    0.68, flat −0.25 ± 0.27 and −0.05 ± 0.35. The order carries the gravity in both dimensions.
+  - **Layer 2, the decision in a step:** level-1 ties (minimal L(p, q)) have 63 / 71 candidates in 3+1 (loaded /
+    flat) and 21 / 43 in 2+1, in 95–100 % of steps; the fewest events n(p, q) leave more than one candidate in 1 % of
+    steps in 3+1 and in 3–27 % in 2+1. The last tie-breaker shifts the radial velocity of the target by +0.056 ± 0.015
+    (3+1 loaded), +0.020 ± 0.007 (3+1 flat), +0.008 ± 0.005 (2+1 loaded).
+  - **Layer 3, the fall:** R = a / a_pred for earliest / latest / random: 3+1 loaded −0.14 / −0.21 / −0.19 (± 0.13),
+    flat +0.32 / +0.28 / +0.29 (± 0.20); 2+1 loaded 1.10 / 1.07 / 1.14 (± 0.38), flat 0.59 / 0.46 / 0.60 (± 0.36).
+    The tie-breaker changes R by less than its error in every sprinkling. The hypothesis written in F5.1e (the choice
+    is decided by the tie-breakers rather than by the geometry) does not hold.
+  - **Shape in 3+1 (earliest, loaded − flat displacement from the apex at τ = 0, 2.2, 4.4, 6.0, 8.2, 10.4, 12):**
+    0, −0.27, −0.53, −0.62, −0.73, −0.85, −0.90 against the prediction ½ a_pred τ² = 0, −0.05, −0.21, −0.40, −0.74,
+    −1.18, −1.58. The velocity jump at the apex is −0.168 ± 0.019 loaded and −0.018 ± 0.035 flat. The flat history
+    moves out by 0.21 in the first ~3–4 units of time and then stays (0.21–0.25). Flat throws (48 walks): v 0 history
+    −0.073 → walk −0.004 ± 0.051; v 0.3 history +0.176 → walk +0.061 ± 0.051, acceleration along −0.011 ± 0.006. In
+    2+1 the flat throws instead gained velocity (+0.22 → +0.41 ± 0.10, then −0.021 ± 0.005).
+  - **The "wide" arm is not readable:** the cylinder ×1.5 (3+1) and ×2 (2+1) reaches beyond the box (|x| ≤ 8 / 18),
+    so it measures the cylinder and the edge of the box together (3+1 loaded +0.14 ± 0.18, flat +0.50 ± 0.21).
+
+  Reading (a hypothesis, not tested). In 3+1 the geometry turns the history inwards at the apex, and then its velocity
+  relaxes in ~4 units of time: in the flat order to rest, in the loaded order to a terminal inward velocity, hence the
+  linear displacement of F5.1e. This is how a body moves in a medium at rest in the laboratory. A candidate for that
+  frame: the cylinder of LocalLinks is fixed at the apex, with radius 4 in 3+1, narrower than the reach of the horizon
+  (H = 8 links ≈ 7.4 units of time); it removes more of the candidates that continue the velocity and so pulls the
+  target back towards its axis. In 2+1 the cylinder (12) is wider than the reach (~9.6) and the rule fell. Not tested:
+  the velocity kept in a flat order as a function of the cylinder radius, with a box large enough. F5.1e stays FAILED
+  (R132).
 
 - **F3.13c: the moving hedgehog keeps its charge and moves with its source; its rest-frame cost is 0.99 of the cost at
   rest at β = 0.3 and 0.87 at β = 0.6, but the difference measures the finite box, not the defect** (mechanism, 3+1,
