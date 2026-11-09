@@ -1550,6 +1550,31 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Undecided (descriptive)
 
+- **F5.1-diag3b: without the cylinder the walk keeps the velocity of the history it is given; the frozen reference
+  (the whole launch chain) was itself bent by the cylinder, so the verdict is UNDECIDED** (diagnostic, DESCRIPTIVE,
+  UNDECIDED by the criteria frozen before the run; flat 3+1, the box, order, rule and engine of F5.1-diag3, 8 new
+  sprinklings of ~206 400 events, 16 distinct starts each (128 of 128 distinct), v 0 and 0.3; engine 16 of 16; run by
+  the author 9 Nov, 10 029 s with 8 processes).
+  - **Frozen primary Delta = v_walk − v_ref** (least-squares slope over s ∈ [0, 12] minus the velocity of the whole
+    launch chain; SE over sprinklings, over walks in brackets): A0 v 0 −0.016 ± 0.017, **A0 v 0.3 −0.285 ± 0.011**
+    (instrument OK); Binf v 0 +0.034 ± 0.022 (0.023), **Binf v 0.3 −0.099 ± 0.017** (0.025). KEPT needs
+    |Delta| + 2 SE < 0.1 for both v: v 0 0.078 yes, v 0.3 0.133 no; LOST needs Delta + 2 SE < −0.1: −0.065 no.
+    Verdict UNDECIDED. Paired Binf − A0 +0.050 ± 0.031 (v 0) and **+0.186 ± 0.020** (v 0.3).
+  - **Reported, not evaluated (found after the run):** the history handed to the rule (the first half of the launch
+    chain) moves at v_hist = +0.204 ± 0.017, the whole chain at v_ref = +0.295 ± 0.003. Relative to the history it was
+    given, the walk in Binf keeps its velocity: v_walk − v_hist = −0.009 ± 0.016 (v 0.3), acceleration −0.003 ±
+    0.005; in the cylinder −0.194 ± 0.021. The bend is not the cut: on a small flat order (40 chains, 9 Nov) the first
+    half minus the whole chain was −0.222 ± 0.037 both with the cylinder of chain_between at radius 4 and at radius 7;
+    it belongs to chain_between itself (it steps along the tube of maximal chains to the earliest child). The
+    history at rest in Binf accelerates along the throw, a = +0.018 ± 0.005 (v_walk − v_hist +0.052 ± 0.019), towards
+    the middle of the box (its start lay at x = −+2.5), as in C2 of F5.1-diag3. Per-walk SD of the slope ~0.25 (late
+    slope ~0.35). Shared events between walks of one arm 0.21–0.30.
+
+  Reading. The braking of F5.1e / F5.1-diag2 is the cylinder: without it the walk continues with the velocity of its
+  history to within ±0.03 (2 SE). This comparison was not frozen and decides nothing (R132); the frozen reference was
+  wrong because the launch chain built by chain_between is bent. Repeated relative to the history handed to the rule,
+  with centred starts and a tolerance of 0.05, as F5.1-diag3c.
+
 - **F5.1-diag3: without the cylinder the thrown history keeps most of its velocity (Binf − A0 = +0.24 ± 0.08), but
   the frozen inertia criterion is not met because of the statistics; where the admissible region is asymmetric about
   the history, the target follows it** (diagnostic, DESCRIPTIVE, UNDECIDED by the criteria frozen before the run; flat
