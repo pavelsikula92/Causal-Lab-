@@ -274,3 +274,29 @@ Note of the laboratory: the test that the author called F7.2 has the ID F7.4a in
 assigned to the Shapiro delay, and F7.4a follows the postponed F7.4 (tensor gravity from the momentum of the flow).
 Unlike F7.4 it puts in neither the trace reversal nor a Green function. The tensor structure can arise only from the
 response rule of the order.
+
+
+## 14. H5: inertia of a locked defect from a conservative dynamics of the order (10 Nov)
+
+**Decision:** a locked defect must move as a whole through its own internal binding. No carrier flow enters the base
+hypothesis. The card is `docs/H5_card_draft.md`.
+
+| point | decision |
+|---|---|
+| D1 | the field lives on all events of the order, valued in an internal target space |
+| D2 | the dynamics is conservative and of second order (relaxation cannot supply inertia) |
+| D2′ | in 1+1 it is implemented through the retarded Green function of the order (½ × the causal relation) |
+| D3 | 1+1 first, with the sine-Gordon kink as the analytic reference |
+| D4 / H5-D | the potential is to be derived from the Axiom of finite capacity of the flow through events, last and separately |
+| BD operator | stays in the laboratory as a separate instrument; it is not the dynamical base of H5 |
+| 3+1 | postponed (Johnston's propagator is supported on links; the light-cone problem returns) |
+| K₀ | removed from H5 and from its interpretation (a superseded version of the model, not a parameter of the theory) |
+
+Conditions of the author:
+- the instrument first (H5-0): stability, dispersion, convergence, independence of the order of computation;
+- the rest mass and the inertial mass are measured independently;
+- if the capacity axiom does not give the sine-Gordon potential, that is a result about the admissible localised
+  configurations, not a failure of the instrument.
+
+Note of the laboratory: the BD operator in retarded form amplified the Poisson noise in the development probes (a
+constant field diverged within two units of time). The Green function of the order was stable.

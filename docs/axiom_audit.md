@@ -103,6 +103,7 @@ F6.1 is its local analogue.
 | Local relation of the dynamic order (F6.3b) | **✗** | ✓ | **✗** | ✓ | input (H1) | **proxy** (F0.6 dynamic, quick runs) |
 | Self-consistent iteration of the order and the flow over the whole region (F6.3b) | ✓ | **✗** | ✓ | ✗ | a choice of solution | the present depends on the future → **proxy** |
 | Action W = Σ Π on maximal chains (F2) | ✓ | ✓ | ✓ | ✓ | input | **firm ground** (chains are covariant); a difference of ~10 % against the geodesic open |
+| Longest-chain continuation towards the events H links ahead, min L(p, q), fewest events, earliest (F5.1c/d/e; added 9 Nov) | ✓ (the last tie-breaker and the step of chain_between use time order) | **✗** (reads the order H = 8 links in the future of the history) | **✗ in practice** (the history takes the velocity of the region: F5.1-diag2) | **✗** (the horizon set is unbounded along the light cone; the result depends on the wall: F5.1-diag2, F5.1-diag3) | input | **proxy** (recorded 9 Nov with the author's agreement); the verdicts of F5.1c–e stay, what changes is what may be read from them as physics |
 | Geometry H1 (−Π²dt² + Π⁻²dx²) and γ = 1 | – | – | ✓ | ✓ | **input** | γ = 1 is put in, a test of γ is tautological (decision 1) |
 | Field equation B_g f(Π) = ρ_s, f = ln Π | ✓ | ? | ✓ | ✓ | input | the static radial solver is an instrument of the continuum, not a dynamics |
 | Bridge to SI, G = κc³ℓ_d²/(4πλ₁ħ) | – | – | – | – | **input** | a conditional bridge (decision 8) |

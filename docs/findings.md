@@ -546,6 +546,37 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Does not hold
 
+- **F5.1g: a flow whose memory is the common flow-past of its parents does not hold together and depends on the
+  region; shared equally among its admissible continuations it spreads at ~0.65 c and fills the box, like radiation,
+  not like matter** (mechanism, flat 3+1, density 1, box t [0, 24], |x| <= 9, |y|, |z| <= 7, 8 sprinklings of
+  ~84 700 events, 2 sources per velocity (v 0 and 0.3), launch tube r_s 1.5 for 5 units, then free for 10; branches
+  G0 (memory = parents), G1 (carried direction of F3.6), G2 (the hypothesis, regions B and A), G3 (borrowed memory);
+  FAILED: M5 on 10 Nov by the criteria frozen in the card; run by the author, 55 231 s with 8 processes).
+  - **Instrument (G1) OK:** Delta −0.016 ± 0.008 (v 0) and −0.010 ± 0.011 (v 0.3), width at the end 1.84 / 1.74,
+    growth 0.080 / 0.052; the carried direction keeps its velocity and holds together (as F3.6).
+  - **M5 fails:** M5a: of ~24 000 flow events only 579 are untainted in both regions (0.00 of the flow, the test needs
+    0.10), and 129 of them differ; M5b: the width in region A is 29 % (v 0) and 23 % (v 0.3) smaller than in B
+    (± 0.024), and the centre differs by 0.180 ± 0.046 at v 0.3.
+  - **Descriptive (decides nothing):** G2 spreads ballistically: the width across grows from 1.85 to 4.5 in the first
+    4 units (~0.65 per unit) and then stops at ~4.8–5.2 against the walls (half width 7); G0 and G3 the same (5.8 and
+    4.8). The flow involves ~24 000 events (G0, G2) against 240 for G1. The centre at v 0.3: G1 moves 1.54 → 4.41 in
+    10 units (0.29); G2 moves only 1.22 → 2.00 in the first 4 units (~0.2), then jumps to 6.9 once the back of the flow
+    reaches the near wall, so Delta(G2, 0.3) = +0.350 ± 0.032 is a product of the box. Memory diagnostics of G2: |M|
+    1.3–1.4, age 3.5–3.6 links, 2.6–2.7 flow parents, eta_common 0.57–0.58, 13.3–13.4 admissible children, D_min > 0
+    in 12 % of the events (G0: 47 %). Growth G0 − G2 +0.073 ± 0.035 (v 0) and +0.042 ± 0.030 (v 0.3): the common memory
+    slows the spread only slightly; G3 − G2 −0.017 ± 0.051 and +0.014 ± 0.049: whether the memory is the event's own
+    or borrowed makes no difference.
+  - **Design errors found after the run:** the growth of the width was read over the second half of the walk, when the
+    flow had already reached the walls, so the frozen growth criterion measured the box (0.08 instead of ~0.65); the
+    sources at v 0.3 started 6.75 from the near wall and 11.25 from the far one, so the walls cut the flow
+    asymmetrically. Neither changes the verdict (M5 is checked first and fails in both of its parts).
+  - **Reading:** equal sharing among the admissible continuations branches the flow at every event (13 admissible
+    children), so the flow spreads at a large fraction of c whatever its memory; the zero-deficit condition and the
+    common flow-past do not confine it. A free flow of this kind behaves like radiation. Coherence was shown only by a
+    flow that does not branch (G1, the carried direction, which uses coordinates, M3). In the theory matter is a
+    locked defect, i.e. a bound structure; the inertia and the fall of matter should be tested on a bound object, not
+    on a free flow (a new hypothesis, R132).
+
 - **F3.13d: no defect arises by itself: the alignment of disordered orientations leaves no locked defect at the scale
   R = 2** (mechanism, 3+1, box t [0, 30], half 7, ~82 200 events, 1 043 sources, 16 sprinklings, FAILED 1 Nov by the
   criteria approved before the run; deciding kappa = 0.9, changed from 0.3 with the author's approval before the full
@@ -965,6 +996,30 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Instrument failures (no conclusion about the theory)
 
+- **F5.1f-a: INSTRUMENT_FAILED (the proxy braked too little on these histories); descriptively the shared flow is
+  not finite in 3+1: the same walker takes the same path in two regions in only 10 % of the histories** (mechanism,
+  flat 3+1, density 1, box t [0, 27], |x| <= 10, |y|, |z| <= 8.5, 8 sprinklings of ~156 000 events, 128 histories of
+  ~9 links (v 0 and 0.3), 8 walkers each, memory m = 8; rule: the flow shared equally among the children c of the
+  last event with min L(p, c); run by the author 9 Nov, 10 662 s with 8 processes).
+  - **Instrument:** the proxy of F5.1d on the same histories braked by Delta_h = −0.092 ± 0.034 at v 0.3 (+2 SE =
+    −0.024, the criterion needs < −0.05); in F5.1-diag3c on shorter histories (~4 links, history velocity 0.278) it
+    braked by −0.243 ± 0.036. The threshold was calibrated on different histories; this is a design error. By the
+    criteria the run gives no conclusion about the rule.
+  - **Descriptive (decides nothing):** M5 identity (walker 0 in region A = in region B): 0.102 of 128 histories (v 0
+    0.078, v 0.3 0.125), against the required 0.95. Per step: 316 children of v in the window, of which 120–127 have
+    their diamond inside the box; the admissible set has 6.3–6.4 members; the smallest deficit is > 0 on average 0.41–
+    0.42 (in 26 % of the walkers at v 0 its mean exceeds 0.5), while for the launch histories of F5.1-diag4 it was 0 in
+    every case. The flow disperses fast: per-walker SD of the velocity 0.37–0.38, spread at the end of 10 units 3.2–
+    3.5 along the throw and 3.7–3.8 across. Centre: Delta_h −0.041 ± 0.011 (v 0) and −0.029 ± 0.017 (v 0.3); at v 0 it
+    depends on the sign of the throw direction (−0.007 for +x, −0.075 for −x), i.e. a drift fixed in the laboratory.
+  - **Reading (a hypothesis):** equal sharing among the children with the smallest coarse L lets the walkers step to
+    strongly boosted children (rapidities up to ~3 in F5.1-diag4); after a few steps their own history p -> v is no
+    longer a timelike longest chain, the deficit rises above 0, the admissible set is then decided by which children
+    the box admits, and the paths depend on the region. One link carries no proper time (a link has no events inside),
+    so L(p, c) does not distinguish an aligned child from a boosted one well enough to confine a flow of single
+    events. A rule for a free flow needs either weights that suppress boosted continuations by an invariant of the
+    order, or a flow that is a bundle of events rather than a single chain (F3.6); both are new hypotheses (R132).
+
 - **F3.13b: the readability requirement failed; every readable shell shows a locked charge and the hedgehog keeps a
   core cost that the twist loses** (mechanism, 3+1, box t [0, 20], half 7, ~54 800 events, ~1 050 sources,
   16 sprinklings, INSTRUMENT FAILED 31 Oct; the verdict and the criteria stand). New rule approved by the author:
@@ -1319,6 +1374,21 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Derived consequences (no test)
 
+- **The fall rule of F5.1c/d/e is a proxy by the criteria of the axiom audit (9 Nov, the author's agreement)**
+  (classification of a rule, no test). The rule chooses the next step from the events H = 8 links ahead of the
+  history, i.e. from its future, against M4 ("the state of an event depends only on its causal past") and criterion
+  (b) of the audit. Its result depends on the region in which the order is read, against M5 ("finite and well defined
+  without a wall of the region or a regulator") and criterion (d): the horizon set is unbounded along the light cone,
+  and the diagnostics F5.1-diag2 and F5.1-diag3 showed that the history takes the velocity of the cylinder and follows
+  the shape of the admissible region. Its last tie-breaker and the step of chain_between choose the earliest event,
+  i.e. by a linear extension (M4). The rule was introduced after the audit (F5.1c, 29 Oct) without being checked
+  against criteria (a)–(d); this is a design error of the laboratory. The verdicts stay: F5.1d PASSED and F5.1e FAILED
+  by their criteria (R132); what changes is what may be read from them as physics. The fall in 2+1 shows that a rule
+  of this family can carry the gravity of the order into a moving history; it does not show that matter falls by a
+  rule of the theory. A rule that satisfies M3–M5 uses only the past of the history (Axiom of the action: Δτ between
+  successive events; Axiom of momentum: the memory of the flow) and finite intervals; F5.1-diag3c, already running,
+  is evaluated by its frozen criteria as a property of the proxy.
+
 - **Carrying by the flow alone does not give Newton; it leads back to the geodesic with inertia** (on paper, 29 Oct, on
   the author's picture of tilted cones). In the river picture of a static field (Painlevé–Gullstrand, space flows
   towards the mass at a speed v(r)) the rule "keep the velocity relative to the local flow" gives the acceleration
@@ -1549,6 +1619,48 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   fixed separately.
 
 ## Undecided (descriptive)
+
+- **F5.1-diag3c: the proxy rule without the cylinder keeps most of the velocity of its history, but slows down
+  gradually even in the whole box; UNDECIDED by the frozen criteria** (diagnostic of the proxy of F5.1c/d/e,
+  DESCRIPTIVE; flat 3+1, box t [0, 26], |x| <= 11, |y|, |z| <= 9.5, 8 new sprinklings of ~206 500 events, 16 distinct
+  starts per sprinkling and velocity (256 of 256 distinct), starts centred so that the walk is symmetric in the box;
+  engine 16 of 16; run by the author 9 Nov, 11 721 s with 8 processes).
+  - **Frozen primary Delta_h = v_walk − v_hist** (slope over the whole walk minus the velocity of the history handed
+    to the rule; SE over sprinklings, over walks in brackets): A0 (cylinder R 4) v 0 +0.009 ± 0.020, **v 0.3 −0.243 ±
+    0.036** (instrument OK); Binf v 0 −0.001 ± 0.019 (0.025), **v 0.3 −0.022 ± 0.027** (0.020). KEPT needs |Delta_h| +
+    2 SE < 0.05 for both v: v 0 0.039 yes, v 0.3 0.076 no; LOST needs Delta_h + 2 SE < −0.05: +0.032 no. Verdict
+    UNDECIDED. Paired Binf − A0 −0.010 ± 0.023 (v 0) and **+0.221 ± 0.036** (v 0.3).
+  - **Reported, not evaluated:** in Binf at v 0.3 the walk decelerates steadily: quadratic fit a = −0.0119 ± 0.0033,
+    first three steps +0.262, late half +0.216 against the history +0.278 (late − history −0.061 ± 0.030); at v 0 a =
+    +0.0025 ± 0.0030. The launch chains were nearly straight this time (first half − whole −0.031 ± 0.025 at v 0.3,
+    against −0.091 in F5.1-diag3b, whose starts lay off the middle of the box); the explanation of the bend in
+    F5.1-diag3b as a property of chain_between alone is therefore not confirmed. Shared events between walks 0.30–0.57.
+
+  Reading. Without the cylinder the proxy keeps the velocity to within its precision on average over the walk, but it
+  loses ~0.06 by the late half even in the whole box: what remains of the boundaries of the laboratory (the box and the
+  time cap t_v + 9, both at rest) still brakes it weakly. This agrees with its classification as a proxy (M5); the
+  rule for F5.1f is built from the past only (F5.1-diag4).
+
+- **F5.1-diag4 (2+1): the set of admissible continuations of a history is finite without a wall: about 8 children of
+  the last event, within ~3 units of time and space, always with no deficit against the memory** (diagnostic,
+  DESCRIPTIVE, decides nothing; flat 2+1, density 1, 4 sprinklings of ~35 000 events (box t [0, 34], |x|, |y| <= 16;
+  repeated with t [0, 40] and larger windows), 320 histories (first half of a longest chain, v 0 and 0.3), memory
+  m = 8; run in the container 9 Nov).
+  - **The question (the author's reading of superposition):** only p (m steps back) and v (the last event) are fixed;
+    the next layer is the set of admissible continuations, the children c of v with L(p, c) = L(p, v) + 1 (the
+    history through v stays a longest chain from p), or the smallest deficit if none reaches it. A rule that shares
+    the flow among them is finite (M5) only if this set is finite.
+  - **Result:** the children of v in the window grow with the window without limit (3.2, 8.4, 17.9, 30.8, 43.4, 56,
+    75 for dt_w = 1.5, 2.5, 4, 6, 8, 10, 13), the admissible set does not: 3.2, 6.0, 7.7, 7.9, 8.0 and then 8.7 / 7.6
+    (v 0 / 0.3) unchanged from dt_w = 8 to 13. The set equals the set of the largest window in 0.89–0.97 of the
+    histories at dt_w = 4–6 and in 1.00 from dt_w = 8; it does not depend on the box (12 or 16: 1.00). The smallest
+    deficit is 0 in every history. The set reaches ~3.1 in time and ~3.0 in space from v, and contains children up to a
+    rapidity ~2.4 relative to the history.
+  - **Reading:** min L(p, c) over the children tames the light cone: the set is finite without a wall, as the
+    continuum suggests (deficit ~ distance along the cone), but its size (~8) and spread (rapidity up to 2.4) are
+    large. A rule that shares the flow equally among them is finite; its velocity noise per step will be large, and
+    whether the centre of the shared flow keeps the velocity is the question of F5.1f-a. 3+1 is to be run by the
+    author (diag/band.py --dim 3).
 
 - **F5.1-diag3b: without the cylinder the walk keeps the velocity of the history it is given; the frozen reference
   (the whole launch chain) was itself bent by the cylinder, so the verdict is UNDECIDED** (diagnostic, DESCRIPTIVE,
