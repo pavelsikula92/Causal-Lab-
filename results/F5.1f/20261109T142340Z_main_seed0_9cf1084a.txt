@@ -1,0 +1,8 @@
+flat 3+1 order, density 1, box t [0, 27], |x| <= 10, |y|, |z| <= 8.5 (~155993 events); the flow is shared among the children c of v with min L(p, c) (memory 8); 8 walkers per history; walk 10 + 1
+  finite (M5): walker 0 has the same path in region A as in region B in 0.102 of 128 histories (v 0: 0.078, v 0.3: 0.125); criterion >= 0.95
+  v 0.0 (64 histories, 512 walkers, memory 8.0): v_hist +0.005, centre -0.036; Delta_h -0.041 +- 0.011; proxy +0.030 +- 0.031
+          per step: admissible set 6.4 (deficit +0.42), children 316.5, inside 126.6, window 39310; per-walker SD of v_walk 0.377; spread at the end along 3.24, across 3.80; stopped 0.04
+  v 0.3 (64 histories, 512 walkers, memory 8.0): v_hist +0.193, centre +0.164; Delta_h -0.029 +- 0.017; proxy -0.092 +- 0.034
+          per step: admissible set 6.3 (deficit +0.41), children 315.5, inside 119.6, window 39263; per-walker SD of v_walk 0.371; spread at the end along 3.54, across 3.70; stopped 0.02
+instrument: the proxy brakes (Delta_h + 2 SE < -0.05): FAILS
+  finite: False; kept: False; lost: False
