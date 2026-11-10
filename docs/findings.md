@@ -1620,6 +1620,42 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Undecided (descriptive)
 
+- **H5-0 development rows (1+1): the retarded Green function of the order (1/2 x the causal relation) carries a
+  sine-Gordon kink with its charge, velocity, contraction and energy, and its inertial mass approaches its rest energy
+  as the density grows: M_in = 8.62 / 8.34 / 8.13 against E = 8.09 / 8.06 / 8.03 at rho = 100 / 200 / 400; the BD
+  operator in retarded form diverges** (development, DESCRIPTIVE, decides nothing; card docs/H5_card_draft.md rev. 3;
+  1+1 Poisson sprinkling in the domain of dependence |x| <= X - t of the initial slice, X 26 (kinks) / 20 (waves), T 10,
+  16 sprinklings per density, `diag/h5_instrument.py`, Fenwick engine; run in the container 10 Nov, 66 s).
+  - **Rule:** phi(x) = phi_0(x) - (1/2 rho) sum over y < x (the order), t_y >= 0, of [sin phi(y) + f chi(t_y)];
+    phi_0 the free wave of the initial data (d'Alembert, the launch); V = 1 - cos phi.
+  - **BD in retarded form (probe P-a):** the sum over the past has mean -1.0 (normalisation right) but per-event sd
+    0.5-1.1 with sum |K| ~ 7-11; a constant field diverges within ~2 units of time. Recorded as the failure of the
+    differential form as an evolution; the BD operator stays an instrument for other tests (decision 14).
+  - **I4:** two linear extensions (t, t + 0.5x), two engines (Fenwick, brute-force blocks) and two regions (the same
+    events) agree to <= 1.4e-15 relative.
+  - **I1 vacuum (amplitude 0.01, k in (0.25, 4]):** rms last / first 1.041 / 0.988 / 0.971 against the exact 1.033 /
+    0.982 / 0.967; relative error in the last slab 0.150 / 0.107 / 0.074 (falls as rho^(-1/2)). No growth.
+  - **I2 dispersion:** omega / sqrt(k^2 + 1) within 0.001 at every k (0.5, 1, 2, 4) and density; at rho = 400 the
+    mass shift omega - k is reproduced to 1.000 / 1.000 / 0.999 / 0.999.
+  - **I3 and H5-A (rest):** rms error against the exact kink 0.121 / 0.116 / 0.046; drift of the centre over 9 units
+    +0.11 +- 0.09 / +0.07 +- 0.09 / -0.03 +- 0.04 (the common drift of probe P-b was noise); Q 0.996 (readout on the
+    plateaus 5-7 from the centre: 0.997 on the exact kink); w 0.999; E 8.093 / 8.058 / 8.026 (the same readout on the
+    exact field 8.008-8.011).
+  - **H5-B (free motion):** v = 0.3 gives 0.318 +- 0.014 / 0.302 +- 0.009 / 0.302 +- 0.003; v = 0.6 gives 0.597 +-
+    0.007 / 0.597 +- 0.006 / 0.599 +- 0.003; w gamma 0.995-1.004; E / gamma 7.98-8.13 (readout on exact 7.98-8.01).
+  - **H5-C (kick f = 0.05 for 1 <= t < 3, paired with the rest kink):** Delta(gamma v) 0.0726 +- 0.0042 / 0.0750 +-
+    0.0036 / 0.0770 +- 0.0027 against 0.0785 for M = 8, i.e. M_in = 2 pi Q f tau / Delta(gamma v) = 8.62 / 8.34 / 8.13;
+    M_in / E = 1.065 / 1.035 / 1.013 (SE ~ 0.035-0.06): the excess roughly halves with each doubling of the density.
+
+  Reading (development): the order's own retarded Green function is a working conservative dynamics in 1+1. It is
+  stable, it reproduces the dispersion, it converges, and it carries a topological defect with the continuum
+  properties. Two limits apply. In a Lorentz-invariant sprinkling with a covariant rule, a moving kink is in
+  distribution a boosted resting kink (the lesson of F3.13c): once H5-A holds, H5-B is largely fixed by symmetry. M_in
+  = E follows from the momentum balance of the field, which holds on average when the rule is invariant in
+  distribution. What is not fixed by symmetry: that the discrete sum is stable at all (BD is not), the size of the
+  discreteness corrections (M_in / E - 1 ~ rho^(-1)?), and the separation from a relaxational dynamics (H5-E, not yet
+  run). The frozen numbers of H5-0 and H5-A to H5-C are proposed from these rows (card, section 3).
+
 - **F5.1-diag3c: the proxy rule without the cylinder keeps most of the velocity of its history, but slows down
   gradually even in the whole box; UNDECIDED by the frozen criteria** (diagnostic of the proxy of F5.1c/d/e,
   DESCRIPTIVE; flat 3+1, box t [0, 26], |x| <= 11, |y|, |z| <= 9.5, 8 new sprinklings of ~206 500 events, 16 distinct
