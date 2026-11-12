@@ -1,6 +1,12 @@
 # Card H5: inertia of a locked causal defect
 
-Revision 4, 10 Nov 2026: the criteria of section 8 with the author's four additions, for freezing. Test ID F3.14a.
+**FROZEN** by the author on 10 Nov 2026, 12:05 (revision 4). Test ID F3.14a, file
+`phases/F3_structure/F3_14a_field_defect_inertia.py`; helpers `phases/F3_structure/field1d.py`. No number or condition of
+section 8 changes after this point (R132).
+
+**Result:** F3.14a PASSED on 10 Nov 2026 (run by the author, seed 0, 176 s). Replication with seed 1:
+INSTRUMENT_FAILED on the drift of the rest kink alone (|+0.058| + 2 x 0.045 = 0.148 > 0.1); all other conditions met.
+Not replicated. The drift tolerance lay at the resolving power of the test (a design error; findings, "Holds").
 
 - Revision 1: 10 Nov 2026.
 - Revision 2: 10 Nov 2026, after the author's decisions D1–D4, his three technical conditions and the order of the
@@ -351,7 +357,7 @@ Per slab of width 1, inside the domain of dependence |x| < X − t − 2:
 
 **Motion** is x_c moving with the identity kept. **Deformation** is a failure of the identity, whatever x_c does.
 
-## 8. Frozen criteria (revision 4, for freezing by the author)
+## 8. Frozen criteria (revision 4, frozen 10 Nov 2026, 12:05)
 
 Test ID **F3.14a**: *Inertia of a localised defect of a field of the causal order*.
 - Branch: a defect of a field of the order (separate from F3.13, which tested a topological defect of an orientation
@@ -495,3 +501,23 @@ condition, the dependence on ρ) say whether this vanishes for w ≫ ℓ.
 - **The flow of the Axiom of continuity as the conserved current of this dynamics:** an interpretation, for the
   author.
 - **The potential from the finite capacity of the flow:** H5-D, derived and compared last; K₀ plays no part.
+
+## Revision F3.14b (frozen by the author on 10 Nov 2026, 19:09): the sample only
+
+The replication of F3.14a failed on the drift of the rest kink alone. The tolerance 0.1 lay at the resolving power
+(design error; findings). The wandering study measured the spread (a random walk in momentum; findings, Discoveries).
+
+**Changed, only the sample:**
+- deciding density ρ = 800 with **128** new sprinklings, seed label "F3.14b";
+- the controls (telegraph Γ = 2, 5, V = 0, causality-blind) on the first 32 of them;
+- ρ = 100, 200, 400 reported with 32 each;
+- I3 compares ρ = 100 with ρ = 800.
+
+**Why these numbers.** At ρ = 800 the sd of the drift over 9 units is ~0.16 (the wandering law). With a margin of 1.5,
+2 SE ≈ 0.04 < 0.1.
+
+**Unchanged:** every tolerance, readout and verdict rule of section 8.
+
+**Test file:** `phases/F3_structure/F3_14b_field_defect_inertia_rev.py`. Smoke run OK (10 Nov).
+
+**Result:** PASSED (seed 0, r_M 0.9988 ± 0.0077) and REPLICATED (seed 1, r_M 0.9895 ± 0.0079), 10 Nov.

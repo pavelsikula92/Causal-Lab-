@@ -1,0 +1,27 @@
+1+1, Phi = g L tanh(x/L), g 0.05, L 10.0; trapezoid |x| <= 26 - t, T 10; deciding density 800 with 128 sprinklings; reported 400 with 32
+references: D_geo -2.1638; D_cont mu 0.25: -2.0980, mu 1: -2.1451, mu 4: -2.1578; launched (mu 1, v 0.3) D_cont +0.4235
+  I4 order (curved order): 1.12e-15
+  I4 engine (curved order): 1.26e-15
+  I4 region (curved order): 1.40e-15
+--- rho 800 (DECIDING)
+  M 4 (mu 0.25): D -2.0969 +- 0.0044 (sd 0.050); a = D / D_cont 0.9995 +- 0.0021; D / D_geo 0.9691; flat D +0.0029 +- 0.0052 (sd 0.058)
+  M 8 (mu 1): D -2.1508 +- 0.0129 (sd 0.146); a = D / D_cont 1.0026 +- 0.0060; D / D_geo 0.9940; flat D +0.0109 +- 0.0140 (sd 0.158)
+  M 16 (mu 4): D -2.1429 +- 0.0357 (sd 0.404); a = D / D_cont 0.9931 +- 0.0165; D / D_geo 0.9904; flat D +0.0177 +- 0.0361 (sd 0.409)
+  WEP M 4 vs 8: eta +0.0004 +- 0.0048 (sd 0.054); raw D_i / D_j - 1 -0.0217 +- 0.0047
+  WEP M 8 vs 16: eta +0.0397 +- 0.0156 (sd 0.176); raw D_i / D_j - 1 +0.0336 +- 0.0155
+  WEP M 4 vs 16: eta +0.0461 +- 0.0197 (sd 0.223); raw D_i / D_j - 1 +0.0171 +- 0.0192
+  counting null (M 8): D -0.0033 +- 0.0153 (curved -2.1508)
+  launched v 0.3 against the field (reported): D +0.4188 +- 0.0146; continuum +0.4235; ratio 0.9890
+--- rho 400 (reported)
+  M 4 (mu 0.25): D -2.1020 +- 0.0109 (sd 0.062); a = D / D_cont 1.0019 +- 0.0052; D / D_geo 0.9715; flat D +0.0189 +- 0.0163 (sd 0.092)
+  M 8 (mu 1): D -2.1650 +- 0.0308 (sd 0.174); a = D / D_cont 1.0093 +- 0.0144; D / D_geo 1.0006; flat D +0.0387 +- 0.0434 (sd 0.245)
+  M 16 (mu 4): D -2.1726 +- 0.0967 (sd 0.547); a = D / D_cont 1.0069 +- 0.0448; D / D_geo 1.0041; flat D +0.0265 +- 0.1191 (sd 0.674)
+  WEP M 4 vs 8: eta -0.0026 +- 0.0111 (sd 0.063); raw D_i / D_j - 1 -0.0246 +- 0.0109
+  WEP M 8 vs 16: eta +0.0634 +- 0.0469 (sd 0.265); raw D_i / D_j - 1 +0.0572 +- 0.0466
+  WEP M 4 vs 16: eta +0.0718 +- 0.0583 (sd 0.330); raw D_i / D_j - 1 +0.0421 +- 0.0567
+  counting null (M 8): D -0.0586 +- 0.0371 (curved -2.1650)
+  launched v 0.3 against the field (reported): D +0.3737 +- 0.0394; continuum +0.4235; ratio 0.8824
+instrument: I4 order: OK; I4 engine: OK; I4 region: OK; flat M 4: OK; fall resolved M 4: OK; flat M 8: OK; fall resolved M 8: OK; flat M 16: OK; fall resolved M 16: OK; counting null: OK
+passed conditions: fall M 4: yes; fall M 8: yes; fall M 16: yes; WEP M 4 vs 8: yes; WEP M 8 vs 16: no; WEP M 4 vs 16: no
+failed conditions: fall M 4: no; fall M 8: no; fall M 16: no; WEP M 4 vs 8: no; WEP M 8 vs 16: no; WEP M 4 vs 16: no
+(466s)

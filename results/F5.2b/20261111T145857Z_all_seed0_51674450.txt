@@ -1,0 +1,17 @@
+1+1 growth rule, rho 800, kappa 0.003, kinks at -3 and 3, T 20, 256 sprinklings, paired with kappa = 0
+  A0 True, A1 True (4 sprinklings)
+  A3 density: realised / Pi^2 0.9998 +- 0.0001; intervals near A: count / proper area 0.9972 +- 0.0023, count / coordinate area 0.6211 +- 0.0027
+  M_A 4, M_B 8: B towards A -0.5586 (continuum -0.5430), r_B 1.0288 +- 0.0170; A towards B +1.0779 (continuum +1.0676), r_A 1.0097 +- 0.0025; third law M_A dA / (M_B |dB|) 0.965; null B -0.0343 +- 0.0289
+    L at the end x = -15, -9, -3, 3, 9, 15 (discrete / continuum): -0.062/-0.071 -0.161/-0.169 -0.248/-0.255 -0.274/-0.282 -0.191/-0.199 -0.096/-0.104
+  M_A 8, M_B 8: B towards A -1.1125 (continuum -1.0945), r_B 1.0165 +- 0.0094; A towards B +1.0854 (continuum +1.0945), r_A 0.9917 +- 0.0089; third law M_A dA / (M_B |dB|) 0.976; null B -0.0343 +- 0.0289
+    L at the end x = -15, -9, -3, 3, 9, 15 (discrete / continuum): -0.104/-0.115 -0.231/-0.241 -0.341/-0.350 -0.341/-0.350 -0.231/-0.241 -0.104/-0.115
+  M_A 16, M_B 8: B towards A -2.1598 (continuum -2.1417), r_B 1.0085 +- 0.0059; A towards B +1.0560 (continuum +1.0947), r_A 0.9646 +- 0.0392; third law M_A dA / (M_B |dB|) 0.978; null B -0.0343 +- 0.0289
+    L at the end x = -15, -9, -3, 3, 9, 15 (discrete / continuum): -0.185/-0.199 -0.359/-0.370 -0.501/-0.516 -0.460/-0.472 -0.305/-0.319 -0.121/-0.138
+  M_A 8, M_B 4: B towards A -1.0845 (continuum -1.0676), r_B 1.0158 +- 0.0027; A towards B +0.5304 (continuum +0.5430), r_A 0.9769 +- 0.0160; third law M_A dA / (M_B |dB|) 0.978; null B -0.0034 +- 0.0101
+    L at the end x = -15, -9, -3, 3, 9, 15 (discrete / continuum): -0.097/-0.104 -0.192/-0.199 -0.274/-0.282 -0.248/-0.255 -0.161/-0.169 -0.062/-0.071
+  M_A 8, M_B 8, launched v 0.3: B towards A -0.6251 (continuum -0.6228), r_B 1.0038 +- 0.0142; A towards B +1.1471 (continuum +1.1251), r_A 1.0195 +- 0.0085; third law M_A dA / (M_B |dB|) 1.835; null B +0.0166 +- 0.0253; separation change -1.7722 (continuum -1.7479), r_sep 1.0139 +- 0.0079
+  level 3 universality: u = r_B(M_B 4) - r_B(M_B 8) at M_A 8 = -0.0007 +- 0.0081
+instrument: A0 earlier events unchanged: OK; A1 order of computation: OK; A3a density: OK; A3b intervals (proper): OK; null M_A 4, M_B 8: OK; null M_A 8, M_B 8: OK; null M_A 16, M_B 8: OK; null M_A 8, M_B 4: OK; null M_A 8, M_B 8, launched v 0.3: OK
+passed conditions: level 1: counted proper times change: yes; level 2: r_B M_A 4: yes; level 2: r_B M_A 8: yes; level 2: r_B M_A 16: yes; A2 covariance (launched): yes; level 3: universality: yes
+failed conditions: level 2: r_B M_A 4: no; level 2: r_B M_A 8: no; level 2: r_B M_A 16: no; A2 covariance (launched): no; level 3: universality: no
+(5065s)

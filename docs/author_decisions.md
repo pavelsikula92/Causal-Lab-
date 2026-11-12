@@ -300,3 +300,176 @@ Conditions of the author:
 
 Note of the laboratory: the BD operator in retarded form amplified the Poisson noise in the development probes (a
 constant field diverged within two units of time). The Green function of the order was stable.
+
+
+## 15. The chain from the field to gravity: the response comes from the action of the order, capacity in saturation (10 Nov)
+
+**Decision:** the author accepts the chain of `docs/derivations/field_and_throughput.md`, section 6:
+
+  φ → energy (the local contribution 𝓔_v, not yet defined on the order) → the source of the response of the order
+  (the action of the order, R2) → clocks, cones, density (throughput) → the resistance that a probe feels.
+
+The capacity acts in a strong field (saturation, A5′).
+
+Reason (the author's): F3.7 showed clearly which way not to go. A response from the load alone (R1) gives a field
+without range, which heats a bundle and does not bind it.
+
+Notes of the laboratory:
+- The other decisions of the note (φ as the phase of the clocks, the distinction of the three currents, the definition
+  of 𝓔_v, the intrinsic initial data) stay open.
+- The active gravitational mass (F5.2b) needs 𝓔_v and a dimension from 2+1 on; in 1+1 the throughput is degenerate.
+
+
+## 16. Direction B (2+1): the four decisions (11 Nov)
+
+**Decisions:**
+
+| | decision |
+|---|---|
+| D1 | the proper time τ in the Green function of the order (1/2πτ in 2+1) is estimated from the **longest chain**, τ̂ = L_max / (α₃ ρ^{1/3}). α₃ is calibrated before freezing, also at several levels of thinning (so that a change of density is not taken for a change of proper time). The interval count N ≈ (π/12) ρ τ³ is a diagnostic only. A coordinate stage of the instrument is allowed for development (form of G, calibration of α₃, comparison of the estimators, near-cone and finite-size biases); coordinate τ must not enter a frozen test. |
+| D2 | develop a discrete gradient. Order of work: ∇φ from the causal neighbourhood → T_ab → its components against the continuum → its trace → only then the gradient in the load. Signature and normalisation of the Lagrangian are fixed before freezing; T = −½(∂φ)² + 3V is the target expression of the chosen convention, not yet a verified discrete identity. |
+| D3 | the local rest frame of matter as the timelike eigenvector of T^a_b (T^a_b u^b = λ u^a, u·u = −1, future-pointing) is accepted as a **candidate**, needing its own instrument and its own card. No unique timelike eigenvector → no cut and the event is marked unclassifiable (no fallback to coordinates). The direction of a link relative to u must be read relationally; coordinates only for development. The strength of the cut must be a function of the load or of Π fixed in advance, not tuned to the bending of light. It must be stated whether only the propagation changes or the relation ≺ itself, and how transitivity is kept. Thinning alone does not narrow the cones. In 2+1, γ = 2 is a coefficient of the theory, not the PPN parameter of general relativity. |
+| D4 | a domain wall (the kink extended along y) is the first 2+1 object. Energy per unit length; the dependence on the box size in y is followed. The 1/r law belongs to a localised defect (B4). |
+
+**Stages:**
+- B0 (Green function, intrinsic τ, stability, dispersion, convergence): approved.
+- B1 (inertia and stability of the wall): approved.
+- B2 (response in a prescribed order, the intrinsic rest frame and the narrowing of cones): approved conditionally.
+- B3 (causal growth with a dynamic change of the relation, active mass): approved as the next phase.
+- B4 (localised defect, radial response): a separate research goal.
+
+**Two boundaries:**
+- B2 (a prescribed order, motion in its response) and B3 (matter changes the relation during causal growth) are
+  different experiments. The two changes must not be switched on together.
+- Success in B2 is not a confirmation of the active mass. It shows a consistent mechanism by which the stress tensor
+  fixes the rest frame and the rest frame affects propagation. The active mass is tested in B3.
+
+
+## 17. B0: the calibration of the Green weight of the longest chain (11 Nov, 18:45)
+
+**Decisions:**
+
+| | decision |
+|---|---|
+| condition | the weight of a pair with longest chain L is calibrated by **E[w(L) \| τ] = G(τ)** (the expected contribution at a given proper time equals the continuum Green function), not by E[G(τ) \| L]. The aim is to keep the expected Green integral of a source, not to estimate G at a known L. |
+| scaling | w(L; ρ) = ρ^{1/3} w̃(L), s = ρ^{1/3} τ; checked on independent sprinklings at several densities. |
+| method | two moment conditions on the residual r(s) = E[w̃(L) \| s] − 1/(2πs): ∫₀^{s_max} s r ds = 0 and ∫₀^{s_max} s² r ds = 0. They cancel the leading error for a smooth source with local pair measure (a s − b s² + O(s³ ln s)) ds. s_max is set at the calibration and then frozen; it is never changed according to which source comes out better. |
+| form | w̃(1) = a (links separately), w̃(L) = c / (L + β) for L ≥ 2; three parameters with a > 0, c > 0, β > −2 (a positive, monotonically falling tail). The scratch values a ≈ 0.257, c ≈ 0.200, β ≈ 0.74 are a starting point only, not frozen constants. |
+| free table | only a fallback, opened as a new calibration hypothesis if the parametric form fails the independent validation; never a switch because the parametric form gives an unwelcome result. |
+| validity | sources smooth on the scale ℓ ≫ ρ^{−1/3}, on the base Poisson order (homogeneous, unthinned, causally convex region). |
+
+**What is exact and what is not.** The calibration is not "exact by construction". Exact (within the numerical
+uncertainty) are the two enforced moment conditions. The accuracy of the whole Green integral for the declared class of
+sources is a consequence to be tested. The two moments do not make r(s) = 0 pointwise, so the local error is reported
+next to the moments (the scratch value E[w | s]/G ≈ 1.36 at s = 1–1.5 must not hide behind a zero total bias).
+
+**Why the calibration does not depend on the source (on the base order).** The past of a source event y and the open
+interval I(y, x) are disjoint; Poisson increments in disjoint regions are independent; a causally convex region does not
+cut the interval. So P(L | τ) does not depend on J(y) when J(y) is fixed by the past of y.
+
+**Limit.** This does not hold automatically for a dynamically thinned order (B3): there the realisation of the end
+point x is decided from its past, and conditioning on x being realised can change the distribution of the events in
+I(y, x). The B0 calibration is a calibration of the Green function on the base Poisson order; its transfer to the
+dynamic order needs its own check.
+
+**Checks required before B0 is closed:**
+
+| check | requirement |
+|---|---|
+| density | w ∝ ρ^{1/3} on independent sprinklings |
+| links L = 1 | bias and uncertainty reported separately |
+| moment 1, moment 2 | zero within the calibration uncertainty |
+| smooth source | several widths and orientations not used in the fit |
+| non-smooth source | reported as a diagnostic outside the declared class, not as an automatic failure |
+| dynamic thinning | whether the conditional P(L \| τ) stays usable (for B3) |
+
+
+## 18. The aim of the classical programme: gravity and the dimensions of spacetime; the defect is a test body (11 Nov, 20:17)
+
+**Decision.** The classical programme asks one question: **how the causal order carries gravity, and what changes with
+the dimension** (1+1 → 2+1 → 3+1). What a particle is belongs to the quantum part, which is built on the classical base
+afterwards.
+
+**Consequences:**
+- The kink (and any later localised defect) is a **test body**: the simplest localised energy that keeps its shape on
+  the order and can be weighed, launched and let fall. Results with it are statements about the order and gravity, not
+  about the nature of particles or matter.
+- The field φ and its potential are chosen as an instrument. That matter does not arise from the order by itself
+  (F3.2, F3.3, F3.13d) is not a gap of the classical programme.
+- In 2+1 and 3+1 a plain scalar has no stable localised soliton (Derrick). The localised test body for the 1/r law (B4)
+  is chosen pragmatically, as an instrument, and recorded as such, so that it does not later turn into a claim about
+  particles.
+- What each dimension adds: 1+1 counting alone (inertia, universal fall, active mass); 2+1 the change of the relation
+  (bending of light, γ of the theory) and a force falling with distance; 3+1 Huygens (the Green function on the cone
+  only) and the comparison with general relativity, including γ = 1.
+
+
+## 19. D2: how to break the circle gradient ↔ frame (11 Nov, 20:23)
+
+The development rows of D2 (findings, Undecided, 11 Nov evening) showed that a compact neighbourhood of an event needs a
+frame, while the frame of D3 is to come from T_ab, which needs the gradient; and that the pointwise T_ab of one scalar
+field has a degenerate timelike eigenspace wherever the gradient is spacelike (every wall and kink).
+
+**Decisions (the laboratory's recommendation, accepted):**
+- **The load (B-b) without components:** only the scalar (d phi)^2 = 1/2 box(phi^2) + phi V'(phi) is used (signature
+  +, −, −; box phi = −V'(phi) is the field rule itself), so the load needs no frame.
+- **The rest frame (D3) from coarse-grained matter:** the timelike eigenvector of T_ab summed over a region (the momentum
+  of the defect), not the pointwise T_ab. For localised matter the sum converges over a Lorentz invariant region because
+  the source is compact. For a wall the boost along the wall stays free (physical).
+- The self-consistent iteration (frame → compact interval → gradient → frame) is kept as a fallback.
+
+
+## 20. B0 is closed; the intrinsic instrument of 2+1 is variant B (11 Nov, 23:17)
+
+**Decision.** Stage B0 (the Green function of the order in 2+1 as a field evolution) is closed as a development stage.
+The intrinsic instrument for the frozen tests of direction B is **variant B**: the longest chain from the order (forward
+dynamic programme over the links) with the weight of decision 17, w(1) = a ρ^{1/3}, w(L ≥ 2) = c ρ^{1/3}/(L + β),
+a = 0.2733, c = 0.2131, β = 1.203 (diag/out/b0_weight_calib_20261111T174914.json). Coordinate τ stays a development
+reference only; variant A (one α₃) is not used (its ω bias of 1–3 % does not shrink with ρ).
+
+**What B0 established (findings, Undecided, B0 development rows):**
+- algorithm: links identical to core.order.links; L from sources equal to an independent interval chain on 373 / 373
+  pairs; forward kernel equal to the backward DP to 3e-15; the field independent of the linear extension to 3e-15;
+- calibration: the moments of r(s) zero on an independent sample; density scaling and boost independence of
+  E[w] / E[G] to ~0.01; Green integral 0.996–1.006 at ρ 200 for sources not used in the fit;
+- field (ρ 25 → 50): ω/ω_c 1.004–1.007 → 1.000–1.002; vacuum λ 0.0068 → 0.0038; the wall moves at the launched
+  velocity;
+- the growth of the vacuum seen with coordinate τ came from its cap (λ follows the cap).
+
+**Open items carried into B1 (reported there, not hidden):**
+- the noise of single events is larger under B (per-event rms in the wall core 0.30 against 0.20 at ρ 25); a
+  distortion of the profile is not resolved;
+- single waves decay by 1.2–3.0 % over T = 6 at ρ 50 (shrinking with ρ);
+- the dynamic thinning (B3) needs its own check of P(L | τ) (decision 17);
+- cost: the intrinsic field is O(N · E_H), ~7 min per run at ρ 50, T 6.
+
+
+## 21. B1 is frozen as F3.15 with the proposals of the card, revision 1 (12 Nov, 11:01)
+
+**Decision.** The author left the open choices of the B1 card to Claude ("dodej test a uvidíme", 12 Nov, 11:01). They are
+fixed as proposed in docs/B1_card_draft.md, revision 1, without change after the development rows; the card is frozen as
+revision 2 and implemented as **F3.15** (phases/F3_structure/F3_15_wall_inertia_2p1.py). Seed 0 decides; a replication
+uses seed 1.
+
+**The choices:**
+- deciding density ρ 30, T 8, pyramid X = T + 8, Y = T + 2.5, band |y| < 2; **32 sprinklings** × 4 arms (rest, v 0.3,
+  v 0.6, kick f 0.05 for t ∈ [1, 3));
+- the slab rule: the last slab is not read in any arm (geometric; at v 0.6 the plateau window leaves the pyramid);
+- tolerances (rule of 10 Nov, derivations in the card): rest Q 0.01, drift 0.15, w 0.05, E 0.05; velocity 0.03,
+  contraction 0.05, width 0.05, energy 0.05 (each v); r_M 0.10;
+- instrument: I1 vacuum |λ_eff| + 2 SE < 0.02 and I2 dispersion per k < 0.015 (4 sprinklings, the B0 waves); I3 the rest
+  wall at ρ 60 (8 sprinklings) |w/w_ex − 1| + 2 SE < 0.05; I4 kernel, linear extension, region < 1e-12;
+- controls on 8 sprinklings: telegraph Γ = 1, 2 (launched and kick; instrument, as F3.14b), V = 0 readout check
+  (instrument), causality-blind (a PASSED condition, as F3.14b). The blind sum keeps the weights of each source and
+  randomises only the receiving events (uniform over all later events): in 2+1 the weight depends on the pair, so the
+  unit-weight form of F3.14b does not transfer;
+- the y-box dependence is not part of B1 (reported later on a subsample, if wanted).
+
+**One change after the smoke run (quick, ρ 10, decides nothing), before the deciding run:** the telegraph damping is
+Γ = 1, 2 instead of the 2, 5 of F3.14b. At Γ = 5 the wall dissolved (Q 0.83 → 0.3, width 1.4 → 8) instead of
+stopping; the most likely cause is that the source of ψ = e^{Γt/2}φ grows as e^{Γt/2} and so weights the region near the
+cone, where the chain weight is pointwise least accurate (decision 17: E[w | s]/G from 0.42 to 1.46). At Γ = 2 the wall
+stayed intact. Recorded as a limit of the intrinsic instrument for fast-growing sources (relevant for B3).
+
+**Why the author's choices could be delegated:** none of them was taken after seeing a deciding run; the tolerances follow
+the rule of 10 Nov from the development rows, and the development rows decide nothing.

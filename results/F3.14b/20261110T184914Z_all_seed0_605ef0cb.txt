@@ -1,0 +1,51 @@
+1+1, trapezoid |x| <= X - t, T 10; deciding density 800 with 128 sprinklings (controls on the first 32); densities [100.0, 200.0, 400.0, 800.0] otherwise 32 each; Green function of the order; engine Fenwick (numba)
+  I4 order: largest relative difference 1.76e-15 (4 sprinklings, N 10948)
+  I4 engine: largest relative difference 1.40e-15 (4 sprinklings, N 10948)
+  I4 region: largest relative difference 1.26e-15 (4 sprinklings, N 10948)
+  rho 100 I1: delta1 +0.0153 +- 0.0038; error last slab 0.153
+  rho 100 I2 k 0.5: delta2 -0.00003 +- 0.00081
+  rho 100 I2 k 1: delta2 +0.00039 +- 0.00045
+  rho 100 I2 k 2: delta2 +0.00000 +- 0.00023
+  rho 100 I2 k 4: delta2 -0.00001 +- 0.00007
+  rho 200 I1: delta1 +0.0033 +- 0.0030; error last slab 0.105
+  rho 200 I2 k 0.5: delta2 +0.00015 +- 0.00048
+  rho 200 I2 k 1: delta2 -0.00012 +- 0.00029
+  rho 200 I2 k 2: delta2 -0.00004 +- 0.00012
+  rho 200 I2 k 4: delta2 -0.00000 +- 0.00006
+  rho 400 I1: delta1 +0.0008 +- 0.0012; error last slab 0.075
+  rho 400 I2 k 0.5: delta2 -0.00033 +- 0.00028
+  rho 400 I2 k 1: delta2 -0.00019 +- 0.00017
+  rho 400 I2 k 2: delta2 -0.00016 +- 0.00007
+  rho 400 I2 k 4: delta2 -0.00004 +- 0.00003
+  rho 800 I1: delta1 +0.0006 +- 0.0007; error last slab 0.054
+  rho 800 I2 k 0.5: delta2 +0.00019 +- 0.00013
+  rho 800 I2 k 1: delta2 +0.00010 +- 0.00008
+  rho 800 I2 k 2: delta2 -0.00004 +- 0.00003
+  rho 800 I2 k 4: delta2 +0.00002 +- 0.00001
+  I3 eps(rho): 100: +0.0249 +- 0.0021, 200: +0.0192 +- 0.0013, 400: +0.0110 +- 0.0007, 800: +0.0088 +- 0.0003
+  rho 100 H5-A rest: Q - Q_ex -0.0001 +- 0.0001; drift +0.0752 +- 0.0621; w/w_ex - 1 +0.0021 +- 0.0016; (E - E_ex)/8 +0.0104 +- 0.0005; M_rest = E 8.0934
+  rho 100 H5-B v 0.3: v_meas - v +0.0154 +- 0.0071; C - 1 -0.0062 +- 0.0026; e_B +0.0149 +- 0.0023; Q - Q_ex +0.0001 +- 0.0001
+  rho 100 H5-B v 0.6: v_meas - v -0.0022 +- 0.0051; C - 1 +0.0032 +- 0.0046; e_B +0.0046 +- 0.0045; Q - Q_ex +0.0001 +- 0.0001
+  rho 100 H5-C kick: Delta p +0.0778 +- 0.0033 (continuum M = 8: 0.0785); Q_kick 0.9959; M_in 8.0475; r_M = M_in / M_rest 0.9943 +- 0.0411; reported: gamma v [4,7) - [7,10) +0.0027 +- 0.0061, field momentum P after the kick +0.6910 (continuum 0.6283)
+  rho 200 H5-A rest: Q - Q_ex +0.0000 +- 0.0001; drift +0.0622 +- 0.0605; w/w_ex - 1 +0.0001 +- 0.0015; (E - E_ex)/8 +0.0055 +- 0.0003; M_rest = E 8.0546
+  rho 200 H5-B v 0.3: v_meas - v +0.0128 +- 0.0049; C - 1 -0.0031 +- 0.0018; e_B +0.0088 +- 0.0015; Q - Q_ex +0.0000 +- 0.0001
+  rho 200 H5-B v 0.6: v_meas - v +0.0045 +- 0.0027; C - 1 -0.0034 +- 0.0030; e_B +0.0073 +- 0.0028; Q - Q_ex +0.0000 +- 0.0001
+  rho 200 H5-C kick: Delta p +0.0765 +- 0.0027 (continuum M = 8: 0.0785); Q_kick 0.9961; M_in 8.1808; r_M = M_in / M_rest 1.0157 +- 0.0358; reported: gamma v [4,7) - [7,10) +0.0050 +- 0.0040, field momentum P after the kick +0.6689 (continuum 0.6283)
+  rho 400 H5-A rest: Q - Q_ex +0.0000 +- 0.0000; drift -0.0602 +- 0.0368; w/w_ex - 1 -0.0006 +- 0.0007; (E - E_ex)/8 +0.0025 +- 0.0001; M_rest = E 8.0292
+  rho 400 H5-B v 0.3: v_meas - v -0.0044 +- 0.0034; C - 1 +0.0010 +- 0.0013; e_B +0.0010 +- 0.0010; Q - Q_ex -0.0001 +- 0.0001
+  rho 400 H5-B v 0.6: v_meas - v -0.0005 +- 0.0021; C - 1 +0.0002 +- 0.0021; e_B +0.0014 +- 0.0019; Q - Q_ex +0.0000 +- 0.0000
+  rho 400 H5-C kick: Delta p +0.0769 +- 0.0014 (continuum M = 8: 0.0785); Q_kick 0.9962; M_in 8.1436; r_M = M_in / M_rest 1.0142 +- 0.0178; reported: gamma v [4,7) - [7,10) +0.0069 +- 0.0032, field momentum P after the kick +0.5484 (continuum 0.6283)
+  rho 800 H5-A rest: Q - Q_ex -0.0000 +- 0.0000; drift +0.0146 +- 0.0146; w/w_ex - 1 -0.0001 +- 0.0003; (E - E_ex)/8 +0.0013 +- 0.0000; M_rest = E 8.0208
+  rho 800 H5-B v 0.3: v_meas - v +0.0015 +- 0.0014; C - 1 -0.0008 +- 0.0005; e_B +0.0016 +- 0.0004; Q - Q_ex +0.0000 +- 0.0000
+  rho 800 H5-B v 0.6: v_meas - v +0.0006 +- 0.0009; C - 1 -0.0007 +- 0.0009; e_B +0.0016 +- 0.0008; Q - Q_ex +0.0000 +- 0.0000
+  rho 800 H5-C kick: Delta p +0.0781 +- 0.0006 (continuum M = 8: 0.0785); Q_kick 0.9961; M_in 8.0111; r_M = M_in / M_rest 0.9988 +- 0.0077; reported: gamma v [4,7) - [7,10) +0.0046 +- 0.0011, field momentum P after the kick +0.6304 (continuum 0.6283)
+  H5-E Gamma 2 v0.3: p_Gamma +0.0020, p_cons +0.3191, p_cons - p_Gamma +0.3171 +- 0.0052
+  H5-E Gamma 2 kick: p_Gamma +0.0021, p_cons +0.0814, p_cons - p_Gamma +0.0792 +- 0.0045
+  H5-E Gamma 5 v0.3: p_Gamma +0.0050, p_cons +0.3191, p_cons - p_Gamma +0.3141 +- 0.0065
+  H5-E Gamma 5 kick: p_Gamma +0.0045, p_cons +0.0814, p_cons - p_Gamma +0.0768 +- 0.0061
+  V = 0 readout check: L 0.0005 (conservative 1.0026); D_L +1.0021 +- 0.0016; reported: width (last 3 slabs) 88.57, velocity +6.431
+  blind control: L 0.3731 (conservative 1.0026); D_L +0.6295 +- 0.0027; reported: width (last 3 slabs) 53.27, velocity +9.597
+instrument: I4 order < 1e-12: OK; I4 engine < 1e-12: OK; I4 region < 1e-12: OK; I1 amplitude ratio: OK; I1 error last slab: OK; I2 k 0.5: OK; I2 k 1: OK; I2 k 2: OK; I2 k 4: OK; I3 convergence: OK; H5-A Q: OK; H5-A drift: OK; H5-A width: OK; H5-A energy: OK; H5-E Gamma 2 v0.3: OK; H5-E Gamma 2 kick: OK; H5-E Gamma 5 v0.3: OK; H5-E Gamma 5 kick: OK; V = 0 readout check: OK
+passed conditions: H5-B v 0.3 velocity: yes; H5-B v 0.3 contraction: yes; H5-B v 0.3 energy: yes; H5-B v 0.3 identity Q: yes; H5-B v 0.6 velocity: yes; H5-B v 0.6 contraction: yes; H5-B v 0.6 energy: yes; H5-B v 0.6 identity Q: yes; H5-C r_M: yes; blind control separated: yes
+failed conditions: H5-B v 0.3 velocity: no; H5-B v 0.3 contraction: no; H5-B v 0.3 energy: no; H5-B v 0.6 velocity: no; H5-B v 0.6 contraction: no; H5-B v 0.6 energy: no; H5-C r_M: no
+(2241s)

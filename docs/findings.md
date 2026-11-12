@@ -10,6 +10,301 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Holds
 
+- **F5.2b: under a causal growth rule of the order (candidates realised with probability Pi^2 computed from the realised
+  causal past, ln Pi = -(kappa/2 rho) sum of the load 2V), matter thins its future order, and a test defect falls towards
+  it as the continuum response predicts, in proportion to the source's energy (r_B = 1.029 / 1.017 / 1.009 for M_A 4 /
+  8 / 16) and independently of its own mass (u = -0.0007 +- 0.0081), also for a moving system (r_sep 1.014 +- 0.008)
+  (seed 0 PASSED; replication pending)** (mechanism, 1+1, rho 800, kappa 0.003, two fields interacting only through the
+  order, kinks at -3 and +3, T 20, 256 sprinklings each paired with kappa = 0; card docs/F5_2b_card_draft.md rev. 1,
+  run by the author 11 Nov without changes, 5065 s; results/F5.2b/).
+  - **Instrument:**
+    - A0 and A1 hold;
+    - density: realised / Pi^2 = 0.9998 +- 0.0001;
+    - intervals near A: count / proper area 0.9972 +- 0.0023;
+    - null: the B displacement at kappa = 0 is zero within 2 SE for every combination.
+  - **Level 1 (growth):** count / coordinate area 0.6211 +- 0.0027. The counted proper times near matter are 38 % shorter.
+  - **Level 2 (active response), r_B = mean d_B / d_cont:** 1.0288 +- 0.0170 (M_A 4), 1.0165 +- 0.0094 (8), 1.0085 +-
+    0.0059 (16). B moved -0.559 / -1.113 / -2.160 against the continuum -0.543 / -1.095 / -2.142, i.e. 1 : 1.99 : 3.87.
+  - **Level 3 (universality):** u = r_B(M_B 4) - r_B(M_B 8) = -0.0007 +- 0.0081.
+  - **A2 (boosted launch, v 0.3):** separation change -1.772 against -1.748, r_sep 1.0139 +- 0.0079.
+  - **Reported:**
+    - r_A (A towards B) 1.010 / 0.992 / 0.965 / 0.977;
+    - third law M_A d_A / (M_B |d_B|) 0.965-0.978 for the static combinations (the 1.835 of the launched arm is not a
+      meaningful ratio there);
+    - L at the end 2-10 % below the continuum in magnitude (partly the slab average of a growing field);
+    - the excess of the falls over the continuum is now 1-3 %, smaller for the heavier source.
+
+  Reading (declared before the run). A causal growth rule of the order, which uses only the realised past, the counts and
+  independent marks, makes matter thin its future order (slower counted clocks). A test defect then falls towards the
+  source in proportion to the source's energy and independently of its own mass, as box_g L = -kappa q predicts, and
+  this holds also for a moving system. With F3.14b and F5.2a3, the inertial, passive and active mass come from one field
+  and one rule (1+1). All three levels of the author's list are met, including level 3, which closes the test of the
+  active mass. The rule is a candidate for the Axiom of the dynamics of the order.
+
+  Limits:
+  - 1+1: a scalar response (R2), no 1/r, and the potential of a static source grows;
+  - the causal relation does not change (conformal flatness), as it will have to in 2+1;
+  - kappa is chosen (G is not derived);
+  - the potential is chosen;
+  - the card was run without a separate freezing note; its text was not changed between the smoke run and the run.
+
+- **F3.14c: a field defect at rest on the 1+1 order makes a random walk in momentum with the diffusion constant
+  predicted by the shot noise of the order, D_p = (32/15) mu^(5/2) / rho, with no free constant: R = 1.016 / 0.991 /
+  0.882 / 1.008 (+- 0.05) in the four cells (seed 0 PASSED; replication pending)** (mechanism, 1+1, flat, kink at rest,
+  T 30, 1024 sprinklings per cell, mu 0.25 / 1 x rho 400 / 800; card docs/F3_14c_card_draft.md frozen 10 Nov 22:56;
+  run by the author 11 Nov, 11 018 s; results/F3.14c/). Derivation: docs/derivations/swerves_of_a_defect.md.
+  - **Instrument:** no fit lost in the decided cells. The readout check (an exact kink moved along a synthetic random
+    walk of the predicted D_v, read like the data) returns its truth: 1.000 +- 0.000 (paired).
+  - **R = D_p,meas rho / ((32/15) mu^(5/2))**, from the variance of the windowed velocity increments:
+    - M 4: 1.016 +- 0.053 (rho 400), 0.991 +- 0.052 (800);
+    - M 8: 0.882 +- 0.048 (400), 1.008 +- 0.055 (800);
+    - density scaling: R(800) - R(400) = -0.025 +- 0.074 (M 4), +0.126 +- 0.072 (M 8).
+  - **Reported:**
+    - M 16 at rho 800: R = 0.898 +- 0.045 (1.7 % of fits lost).
+    - The second estimator (cubic growth of Var x): 1.077 / 1.007 / 0.880 / 0.990 / 0.883.
+    - Exponent of the spread 1.44-1.48 (random walk in momentum: 1.5).
+    - Mean drift zero within 1 SE.
+
+  Reading (declared before the run). The wandering of a bound defect on the order is the shot noise with which the
+  order samples its own binding, with the predicted constant and the predicted scaling: 1/rho, and mu^(5/2), i.e. M^5
+  at M w = 8, over a factor 32 in D_p between M 4 and M 8, without any fitted parameter. The swerves of causal set
+  theory are thereby derived for a bound object, set by its internal structure (int V'^2 (d phi)^2), and zero in the
+  vacuum.
+
+  Not resolved at this precision: the corrections beyond the leading order. M 8 at rho 400 lies 2.5 SE below 1, and M 16
+  lies 10 % below.
+
+  Limits:
+  - 1+1 only (in 3+1 the Green function sits on links);
+  - the potential is chosen;
+  - no number for real particles follows.
+
+- **F3.14b (revision of F3.14a for resolving power): a defect of a field of the 1+1 order keeps its identity, its
+  velocity and its Lorentz contraction, and its inertial mass equals its rest energy to 0.8 %: r_M = 0.9988 +- 0.0077
+  (PASSED, REPLICATED: seed 0 and seed 1)** (mechanism, 1+1, deciding density 800 with 128 sprinklings, controls on 32,
+  rho 100 / 200 / 400 with 32 each; criteria of card docs/H5_card_draft.md rev. 4 unchanged; run by the author 10 Nov,
+  2241 s; results/F3.14b/).
+  - **Replication (seed 1, run by the author 10 Nov, 1079 s): PASSED.**
+    - Instrument OK; I3 eps 0.0255 / 0.0197 / 0.0120 / 0.0086; drift at 800 +0.004 +- 0.013.
+    - H5-B at 800: v 0.3 +0.0013 +- 0.0014, v 0.6 -0.0007 +- 0.0008; C - 1 within 0.0007.
+    - **H5-C: r_M = 0.9895 +- 0.0079** (seed 0: 0.9988 +- 0.0077).
+    - Telegraph stops; blind L 0.375.
+    - **The reported deceleration after the kick did not recur:** gamma v [4, 7) - [7, 10) = -0.0003 +- 0.0011 (seed 0:
+      +0.0046 +- 0.0011). The open point below is closed as a fluctuation of seed 0 plus the readout effect of +0.0011
+      found in the continuum.
+  - **Instrument (all OK):**
+    - I3 eps 0.0249 / 0.0192 / 0.0110 / 0.0088 (monotonic);
+    - H5-A at 800: drift +0.015 +- 0.015 (2 SE 0.03 against the tolerance 0.1), (E - E_ex)/8 +0.0013, M_rest 8.021;
+    - H5-E: the telegraph kink stops (p 0.002-0.005 against 0.319 and 0.081);
+    - V = 0: L 0.0005.
+  - **H5-B at 800:** v 0.3: v_meas - v +0.0015 +- 0.0014, C - 1 -0.0008 +- 0.0005; v 0.6: +0.0006 +- 0.0009, -0.0007 +-
+    0.0009; e_B +0.0016.
+  - **H5-C at 800:** Delta p 0.0781 +- 0.0006 against 0.0785; M_in 8.011 against M_rest 8.021; r_M 0.9988 +- 0.0077.
+    At rho 100 / 200 / 400: 0.994 / 1.016 / 1.014.
+  - **Blind control:** L 0.373 against 1.003.
+  - **Reported:**
+    - The field momentum after the kick is 0.6304 against 2 pi f tau = 0.6283.
+    - gamma v over [4, 7) exceeds gamma v over [7, 10) by +0.0046 +- 0.0011, about 6 % of the kick. The momentum of the
+      field is conserved, so this is probably the readout of the centre being shifted by the uniform vacuum oscillation
+      left after the switch-off (period 2 pi).
+      - **Checked the same evening (decides nothing).** The continuum kicked kink, read with the same fit on 600 000
+        random points, gives +0.0011 (P conserved at 0.6283; the vacuum oscillates with an amplitude ~0.08). The
+        readout explains a quarter of the effect.
+      - The discrete excess +0.0035 +- 0.0011 (3 SE) is open. Earlier values: +0.003 to +0.007 at rho 100-400 in F3.14a
+        and F3.14b, each within 1-2 SE.
+      - Candidate: after the switch-off the vacuum oscillates, so V' != 0 everywhere and the shot noise of the order
+        (docs/derivations/swerves_of_a_defect.md) acts on the whole field. The kink may then pass momentum to that
+        radiation while the total momentum stays conserved. Needs a dedicated diagnostic (the kink's local momentum
+        against time, several densities).
+    - At rho 100 and 200, v 0.3 runs +0.015 / +0.013 (2 SE) fast: a discreteness effect at low density.
+
+- **F5.2a3 (revision of F5.2a2 for resolving power): in a 1+1 order whose only change is the number of events, kinks of
+  mass 4, 8 and 16 fall as their continuum bodies to 0.1-0.8 %, and alike within ~1.5 % (PASSED, REPLICATED: seed 0
+  and seed 1)** (mechanism, 1+1,
+  512 sprinklings at density 800, 32 at 400 reported; criteria of card docs/F5_2a_card_draft.md rev. 2 unchanged; run
+  by the author 10 Nov, 2316 s; results/F5.2a3/).
+  - **Instrument OK:** I4 <= 1.5e-15; flat |D| <= 0.048; counting null D +0.0003 +- 0.0067 against -2.145 with counting.
+  - **Falls:** a = 0.9991 +- 0.0010 / 1.0001 +- 0.0028 / 0.9976 +- 0.0079.
+  - **Equivalence (frozen statistic, mean of the paired ratios a_i / a_j - 1):** (4, 8) +0.0018 +- 0.0021, (8, 16)
+    +0.0291 +- 0.0072, (4, 16) +0.0359 +- 0.0090. All within the tolerance.
+  - **The launched arm:** 1.003 +- 0.015 of its continuum. The implementation error of F5.2a is gone.
+  - **The non-zero eta of the pairs with M 16 is a bias of the statistic, not a violation (derived after the run;
+    decides nothing).**
+    - The mean of a ratio is biased by the variance of its denominator: E[1/a] ~ (1/a)(1 + CV^2).
+    - The fall of M 16 has CV = 0.387 / 2.15 = 0.18, so the bias is CV^2 = 0.032, which matches the measured +0.029 and
+      +0.036.
+    - The ratio of the means (SE by bootstrap) gives (4, 8) -0.0010 +- 0.0021, (8, 16) +0.0025 +- 0.0062 and (4, 16)
+      +0.0015 +- 0.0075. The paired differences a_i - a_j give the same. No violation is resolved, at the level of
+      ~1.5 % (2 SE).
+    - The same bias explains the replication of F5.2a2 (+0.040, +0.046).
+  - **Replication (seed 1, run by the author 10 Nov, 3535 s; results/F5.2a3/20261110T202629Z_all_seed1_81a79075.json):
+    PASSED.**
+    - Instrument OK; counting null +0.012 +- 0.007.
+    - a = 0.9965 +- 0.0010 / 0.9949 +- 0.0028 / 0.9928 +- 0.0078.
+    - Frozen eta: +0.0046 / +0.0277 / +0.0373, with the same bias of the mean of ratios.
+    - Ratio of means, or paired differences: (4, 8) +0.0015 +- 0.0022, (8, 16) +0.0021 +- 0.0059, (4, 16) +0.0037 +-
+      0.0075.
+    - Launched arm 1.028.
+    - **Observed in both runs (decides nothing):** at rho 800 all masses fall 0.1-0.7 % less than their continuum
+      bodies (M 4: 0.9991 and 0.9965). A small discreteness correction, common to all masses, so it does not touch the
+      equivalence.
+  - **Lesson for future cards:** compare means (a ratio of means, or paired differences of D), not means of ratios,
+    when the denominator is noisy.
+
+- **F5.2a2: in a 1+1 order whose only change is the number of events per coordinate area, the kink of F3.14a under
+  the unchanged rule falls as its continuum body, and kinks of mass 4, 8 and 16 fall alike: the weak equivalence
+  principle from counting, within 2 % (seed 0 PASSED; replication seed 1 UNDECIDED on two WEP pairs with M 16: not
+  replicated)** (mechanism, 1+1, Phi = g L tanh(x/L), g 0.05,
+  L 10, trapezoid |x| <= 26 - t, T 10, 128 sprinklings at the deciding density 800, 32 at 400 reported; PASSED 10 Nov by
+  the frozen criteria of card docs/F5_2a_card_draft.md rev. 2, unchanged from F5.2a; corrected sprinkling; run by the
+  author, 463 s; results/F5.2a2/).
+  - **Replication (seed 1, run by the author 10 Nov, 466 s): UNDECIDED.**
+    - Instrument OK.
+    - Falls: a = 0.9995 +- 0.0021 / 1.0026 +- 0.0060 / 0.9931 +- 0.0165.
+    - eta (4, 8) +0.0004 +- 0.0048 (passes); eta (8, 16) +0.0397 +- 0.0156 and (4, 16) +0.0461 +- 0.0197. Each is above
+      0.06 with 2 SE and not FAILED.
+    - The launched arm: ratio 0.989 +- 0.035.
+    - Not replicated. The runs are not pooled (R132).
+  - **Design error, the same as in F3.14a:** the resolving power was set from 16 development sprinklings, which
+    underestimated the wandering of the narrow kink M 16.
+    - Expected SE of eta (4, 16): 0.010. Actual: 0.015 (seed 0) and 0.020 (seed 1).
+    - sd of D for flat M 16 at rho 800: 0.28 in development, 0.41-0.44 here.
+    - The tolerance 0.06 then sat within 2 SE of an offset of 0.02-0.04.
+  - **Rule:** phi(x) = phi_0(x) - (1/2 rho) sum over the causal past of mu sin phi. It is the rule of F3.14a,
+    unchanged; it knows nothing about the metric. The order is that of flat spacetime with event density rho Omega^2.
+  - **Instrument:** I4 <= 1.8e-15; flat control |D| <= 0.023 for every mass; the fall is resolved; counting null
+    (every term divided by Omega^2) D -0.022 +- 0.013 against -2.154 with counting.
+  - **Fall** (a = D / D_cont, the continuum body with the same initial data and readout):
+    - M 4: 0.9999 +- 0.0020;
+    - M 8: 1.0042 +- 0.0054;
+    - M 16: 1.0189 +- 0.0149.
+  - **Equivalence:** eta (4, 8) -0.0017 +- 0.0041, (8, 16) +0.0055 +- 0.0115, (4, 16) +0.0077 +- 0.0146 (tolerance
+    0.06 with 2 SE).
+  - **Reported:**
+    - The raw D_4 / D_8 - 1 = -0.024 +- 0.004 is the continuum finite-size effect (the wide kink falls 2.2 % less than a
+      point in the continuum too); the order reproduces it.
+    - Launched against the field: ratio to the continuum 0.93 +- 0.03.
+    - At rho 400: M 16 a = 0.961 +- 0.042, eta (8, 16) +0.11 +- 0.05. The narrow kink (w = 0.5) is coarsely resolved at
+      the lower density.
+
+  Reading (declared before the run). In an order whose only change is the number of events, a bound defect falls as
+  its continuum body in the geometry the number defines, and defects of mass 4, 8 and 16 fall alike within the
+  resolving power of 6 %. The measured violation is |eta| <~ 1-3 % (2 SE); this is not a claim at the level of
+  MICROSCOPE. With the counting removed it does not fall: the fall comes from the number of events. With F3.14a,
+  inertia and passive gravitational mass come from the same rule.
+
+  Limits:
+  - 1+1, where density and clock rate go together (the kink falls towards the sparser order), unlike 3+1;
+  - the geometry is prescribed (no back-reaction: F5.2b);
+  - the potential is chosen (H5-D);
+  - the launch, the readout and the counting null use coordinates.
+
+- **F5.2a2: a defect of a field of the order falls in a 1+1 order whose only change is the number of events, as its
+  continuum body in the geometry that the number defines, and kinks of mass 4, 8 and 16 fall alike within 1.5 %; with the
+  counting removed it does not fall** (mechanism, 1+1, Phi = g L tanh(x/L), g 0.05, L 10, sprinkling of density
+  rho exp(2 Phi) in |x| <= 26 - t, T 10, 128 new sprinklings at the deciding density 800, 32 at 400 reported; PASSED
+  10 Nov by the criteria of card docs/F5_2a_card_draft.md rev. 2, frozen 13:53, unchanged from F5.2a; run by the author,
+  463 s; results/F5.2a2/). Revision of F5.2a (implementation error in the sprinkling, no conclusion). Not yet
+  replicated with another seed.
+  - **Rule:** that of F3.14a, unchanged; it knows nothing about the metric. In 1+1 every metric is conformally flat,
+    so the order is that of flat spacetime and only the number of events per coordinate area changes.
+  - **Instrument (all OK):**
+    - I4 <= 1.8e-15;
+    - flat control |D| <= 0.023 for every mass;
+    - fall resolved;
+    - counting null D -0.022 +- 0.013 against -2.154 curved (the same order with every term divided by Omega^2).
+  - **Fall (a = D / D_cont):** 0.9999 +- 0.0020 (M 4), 1.0042 +- 0.0054 (M 8), 1.0189 +- 0.0149 (M 16).
+  - **WEP (eta of a, paired):** (4, 8) -0.0017 +- 0.0041, (8, 16) +0.0055 +- 0.0115, (4, 16) +0.0077 +- 0.0146.
+  - **The finite size of the body is reproduced.** The raw ratio of falls (4, 8) is -0.0237 +- 0.0040: the wide kink
+    (w = 2) falls 2.4 % less than the narrow one, as the continuum extended body does (-0.022). The order reproduces
+    the tidal and non-equilibrium effect of an extended body, not only the geodesic.
+  - **Reported, rho 400 (32 sprinklings):** M 4 and M 8 as at 800. The narrowest kink (M 16, w = 0.5) falls 0.961 +-
+    0.042 and eta (8, 16) +0.11 +- 0.05: a resolution effect of the narrow kink at the lower density (about 400 events
+    per unit width squared), gone at 800. The launched arm against the field: 0.93 +- 0.03 (rho 800), 1.06 +- 0.09
+    (rho 400) of its continuum.
+
+  Reading (declared before the run). In an order whose only change is the number of events, a bound defect falls as
+  its continuum body in the geometry the number defines, and defects of different mass fall alike. This is the weak
+  equivalence principle from counting, at the resolving power of this experiment (6 %; achieved about 1.5 %; not a claim
+  at the level of MICROSCOPE). The fall comes from the counting: with the counting removed the kink does not fall. With
+  F3.14a, inertia and passive gravitational mass come from the same rule.
+
+  Limits:
+  - 1+1, where the density and the clock rate are the same function, so the kink falls towards the sparser order,
+    opposite to 3+1;
+  - the geometry is prescribed (no back-reaction: F5.2b);
+  - the potential is chosen;
+  - the launch, the readout and the counting null use coordinates.
+
+- **F3.14a (seed 0 PASSED, replication seed 1 INSTRUMENT_FAILED on the drift alone; not replicated): a topological
+  defect of a field on all events of a 1+1 causal order, evolved by the retarded Green function
+  of the order (1/2 x the causal relation), has inertia: it keeps its identity at rest, keeps its velocity and Lorentz
+  contraction when launched, and answers a force with an inertial mass equal to its rest energy (r_M = 0.994 +- 0.019),
+  while an overdamped dynamics stops it and a causality-blind sum dissolves it** (mechanism, 1+1, sine-Gordon kink,
+  trapezoid |x| <= 26 - t, T 10, ~170 000 events per arm at the deciding density 400, 32 new sprinklings per density
+  100 / 200 / 400; PASSED 10 Nov by the criteria of card docs/H5_card_draft.md rev. 4, frozen by the author at 12:05;
+  run by the author, 176 s; results/F3.14a/20261110T111802Z_all_seed0_e37cf249.json). Hypothesis H5 of
+  docs/cosmogenesis.md; decisions 14 (D1-D4, D2').
+  - **Replication (seed 1, run by the author 10 Nov, 193 s; results/F3.14a/20261110T112302Z_all_seed1_e37cf249.json):
+    INSTRUMENT_FAILED by one condition, the drift of the rest kink.**
+    - The drift was +0.0575 +- 0.0452, so |mean| + 2 SE = 0.148 > 0.1.
+    - Every other condition was met as in seed 0: I1-I4, Q, width, energy, H5-E, V = 0; H5-B at both velocities; H5-C
+      r_M = 0.9953 +- 0.0217; blind control D_L 0.618 +- 0.004.
+    - The PASSED of seed 0 stands under its own criterion but is **not replicated**. The two runs are not pooled after
+      the fact (R132).
+  - **Design error (found after the replication):** the drift tolerance 0.1 lay at the resolving power of the test. At
+    32 sprinklings the spread of the end position of the rest kink is sd 0.26-0.27 (both seeds), so 2 SE = 0.09 alone
+    nearly fills the tolerance. Seed 0 passed with 0.098. The card estimated SE ~ 0.025 from the 16 development
+    sprinklings, where the spread was sd 0.144; why the development sample was narrower is open (an F-test puts it at
+    p ~ 0.01). Pooled descriptively, the two seeds give a mean drift of +0.027 +- 0.032: no systematic drift is seen.
+  - **Observed (descriptive, decides nothing): the kink wanders.** The spread of its displacement grows with time faster
+    than linearly.
+    - Rest kink at rho 400: sd 0.03 / 0.08 / 0.14 / 0.26 at dt 2 / 4 / 6 / 9; the local exponent is ~1.3-1.5, between
+      ballistic (1) and a random walk in momentum (1.5).
+    - It falls slowly with the density: 0.43 / 0.31 / 0.26 at dt 9 for rho 100 / 200 / 400.
+    - It is smaller for a moving kink: 0.11 at v = 0.6, roughly as time dilation and the relativistic mass 1/gamma^3
+      would make it.
+    - A candidate for a momentum diffusion of a bound object from discreteness, the "swerves" of Dowker, Henson and
+      Sorkin (2004), which have not been computed for a bound object. To be separated from readout noise and from the
+      noisy radiation background of the field before anything is claimed.
+  - **Rule:** phi(x) = phi_0(x) - (1/2 rho) sum over y < x (the order), t_y >= 0, of [sin phi(y) + f chi(t_y)]; phi_0 the
+    free wave of the initial data (the launch, the only place where coordinates enter the dynamics).
+  - **Instrument (all OK at rho 400):**
+    - I4: order, engine and region agree to <= 1.05e-15;
+    - I1: delta1 +0.0022 +- 0.0019, error last slab 0.075;
+    - I2: |omega / sqrt(k^2 + 1) - 1| <= 0.00013 at every k;
+    - I3: eps 0.0254 / 0.0178 / 0.0135 (monotonic);
+    - H5-A: Q - Q_ex 0.0000, drift -0.004 +- 0.047, w / w_ex - 1 +0.0005, (E - E_ex)/8 +0.0027;
+    - H5-E: the telegraph kink stops (p_Gamma 0.002-0.007 against 0.312 launched and 0.077 kicked; separation 10-57 SE);
+    - V = 0: L 0.0005 against 1.001.
+  - **H5-B (rho 400):**
+    - v 0.3: v_meas - v -0.0000 +- 0.0035, C - 1 -0.0004 +- 0.0013, e_B +0.0021 +- 0.0010;
+    - v 0.6: v_meas - v +0.0006 +- 0.0021, C - 1 -0.0019 +- 0.0022, e_B +0.0024 +- 0.0018;
+    - Q - Q_ex 0.0000.
+  - **H5-C:** Delta p 0.0784 +- 0.0015 against 0.0785 for M = 8; M_in 7.985 against M_rest = E 8.032; r_M = 0.9941 +-
+    0.0186. At rho 100 / 200: r_M 1.015 +- 0.049 / 0.988 +- 0.034. The apparent rho^(-1) trend of the development rows
+    (1.065 / 1.035 / 1.013, 16 sprinklings) did not recur: no discreteness correction of the mass ratio is resolved at
+    the 2 % level.
+  - **Blind control:** L 0.376 against 1.001 (D_L 0.625 +- 0.003); width 54 at the end.
+  - **Reported:** the free motion after the kick is kept (gamma v [4, 7) - [7, 10) +0.0006 +- 0.0038); the field
+    momentum after the kick 0.619 against 2 pi f tau = 0.628.
+
+  Reading (declared before the run). The order has a conservative dynamics of its own: a sum over the causal past,
+  stable where the BD operator in retarded form is not. In it, a defect of a field on all events has inertia with
+  M_in = M_rest within 2 %, without a carrier flow and without any source after its launch, while a relaxational
+  dynamics with the same potential does not give it. The causal structure carries it: a sum over a random set of the
+  same size dissolves the kink.
+
+  Limits, stated before the run:
+  - in a Lorentz-invariant sprinkling with a covariant rule, a moving kink is in distribution a boosted resting kink,
+    so H5-B is largely fixed by symmetry once H5-A holds; the content is the stability of the discrete sum, the absence
+    of resolved discreteness corrections, and the separation from relaxation and from a causality-blind sum;
+  - 1+1 (no transverse directions);
+  - the potential is chosen (H5-D derives it from the finite capacity of the flow);
+  - the internal target space is an input;
+  - the launch uses coordinates;
+  - nothing about gravity (F5.1i).
+
 - **F3.13b2: a hedgehog of the carried orientation is locked: a dynamics that relaxes every unprotected distortion
   does not remove it, randomising its core does not erase its charge, and its core keeps a cost that a twist without
   charge loses** (mechanism, 3+1, revision of F3.13b, box t [0, 20], half 7, ~54 900 events, ~1 045 sources,
@@ -996,6 +1291,32 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Instrument failures (no conclusion about the theory)
 
+- **F5.2a: the free fall of a field defect in a 1+1 order of nonuniform density came out UNDECIDED, but the run had an
+  implementation error, found after the run: the sprinkling had 0.808 of the density the rule assumes. No conclusion**
+  (mechanism, 1+1, 128 sprinklings at rho 800, run by the author 10 Nov, 326 s; results/F5.2a/).
+  - **Verdict by the frozen criteria:** UNDECIDED.
+    - Instrument OK: I4 <= 1.4e-15; flat control |D| <= 0.018; counting null D -0.020 +- 0.013 against -2.14 curved.
+    - a = D / D_cont 1.0174 +- 0.0023 (M 4), 0.9997 +- 0.0054 (M 8), 1.0304 +- 0.0143 (M 16: 0.059 > 0.05 with 2 SE,
+      not FAILED).
+    - eta (4, 8) +0.020 +- 0.004, (8, 16) -0.011 +- 0.012, (4, 16) +0.013 +- 0.015.
+    - The launched arm (reported) gave D +0.717 +- 0.014 against +0.4235 in the continuum.
+  - **The error:** field1d_curved.sprinkle_curved drew the number of points for the area of the trapezoid but placed
+    them in the whole box [0, T] x [-X, X] and dropped those outside. The density was therefore rho (2XT - T^2)/(2XT)
+    exp(2 Phi) = 0.808 rho exp(2 Phi) (measured 0.795 rho), while the rule normalises with rho. Every arm ran with an
+    effective coupling 0.808 mu: kinks 11 % wider and lighter than the continuum references they were compared with.
+    The development rows of the card had the same error.
+  - **How it was found:** the launched arm stayed at ratio 1.7 against its continuum from rho 400 to 6400 (a bias that
+    does not shrink with density). A deterministic quadrature of the same rule on a null grid agreed with the
+    continuum (and so did two continuum readouts, to <= 0.2 %); the field of the Poisson version differed from the
+    quadrature by up to 0.35 even in a flat order. The point count settled it: 318 per unit area at rho 400.
+  - **Corrected (sprinkle_curved2: points placed in the trapezoid, then thinned):** in a development check (16
+    sprinklings, rho 800, decides nothing), D / D_cont = 0.996 +- 0.005 / 0.994 +- 0.016 / 1.022 +- 0.040 and the
+    launched arm 0.95 +- 0.09.
+  - **Follow-up:** the revision F5.2a2 with the same frozen criteria and new seeds. F3.14a is not affected: its
+    sprinkling (field1d.sprinkle_trapezoid) places the points in the trapezoid.
+  - **Lesson for the instrument:** a test of a new sprinkling must count its points against the intended density
+    before any dynamics; added to the instrument checks of future cards.
+
 - **F5.1f-a: INSTRUMENT_FAILED (the proxy braked too little on these histories); descriptively the shared flow is
   not finite in 3+1: the same walker takes the same path in two regions in only 10 % of the histories** (mechanism,
   flat 3+1, density 1, box t [0, 27], |x| <= 10, |y|, |z| <= 8.5, 8 sprinklings of ~156 000 events, 128 histories of
@@ -1270,6 +1591,96 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Discoveries
 
+- **Growth probe (direction A, 1+1): with the causal growth rule "a candidate event is realised with probability Pi^2,
+  ln Pi = -(kappa/2 rho) sum over the realised causal past of the load 2V", matter thins its future order, the counted
+  proper times shrink near it, and a second defect falls towards it in proportion to its mass (1 : 1.97 : 3.86 for
+  M_A 4 : 8 : 16), independently of its own mass, and the two attract each other mutually (M_A dx_A = M_B dx_B)**
+  (development, DESCRIPTIVE, decides nothing; approved by the author 11 Nov 11:59 with his corrections; diag/growth_probe.py;
+  rho 800, kappa 0.003, kinks A at -3 and B at +3 as two separate fields interacting only through the order, T 20,
+  32 sprinklings per combination, each paired with kappa = 0 on the same candidates and marks; run in the container
+  11 Nov, 925 s; diag/out/growth_probe_20261111T111825.json).
+  - **Rule and normalisation (after the author's correction):**
+    - every candidate carries an independent mark u fixed at the sprinkling, and is realised iff u < e^{2L};
+    - L = -(kappa / 2 rho) sum over the realised y < x of q, with q = 2 V_A + 2 V_B and rho the candidate (= proper)
+      density;
+    - the realised density rho Pi^2 carries the factor Pi^2, so the continuum law is (d_t^2 - d_x^2) L = -kappa Pi^2 q,
+      i.e. box_g L = -kappa q in ds^2 = Pi^2 (dt^2 - dx^2);
+    - the fields use the unchanged rule of F3.14a on the realised events.
+  - **A0 / A1:**
+    - a change of later marks leaves every earlier event unchanged;
+    - two linear extensions give the same realised set and fields to <= 3.7e-13.
+  - **A3, density and intervals:**
+    - realised fraction / mean Pi^2 per x bin = 1.000 +- 0.002;
+    - for realised timelike pairs near A, the realised count inside the interval / (rho x proper area) = 1.004-1.006,
+      against 0.49-0.72 for the coordinate area;
+    - the counting measures the proper times of the metric Pi^2 (dt^2 - dx^2), so clocks near matter slow down.
+  - **A4, continuum** (three coupled wave equations): L at the end within 3-7 % of the continuum (partly the slab average
+    of a growing field). The displacements below are within 2-5 % of the continuum.
+  - **A5, active source** (M_B = 8): B moves towards A by
+    - -0.571 +- 0.020 (M_A 4; continuum -0.543);
+    - -1.126 +- 0.025 (M_A 8; -1.095);
+    - -2.201 +- 0.030 (M_A 16; -2.142).
+  - **A6, universality** (M_A = 8): B moves by -1.086 +- 0.008 (M_B 4) and -1.126 +- 0.025 (M_B 8). The continuum gives
+    -1.068 and -1.095 (finite size); the ratios to it are 1.017 and 1.029.
+  - **Mutual attraction:** A moves towards B by +0.61 (M_B 4) and +1.10 to +1.17 (M_B 8). M_A dx_A = M_B dx_B within
+    the noise (4.4 / 4.6; 17.6 / 17.6), as Newton's third law requires.
+  - **A7, null:** every displacement is relative to the paired kappa = 0 run.
+  - **A2, covariance with a boosted launch:** not yet run.
+
+  Reading (development).
+  - All three levels of the author's list are met descriptively:
+    1. growth: the source changes the probability of realising future events;
+    2. active response: the change of the order moves a test defect;
+    3. universality: the active mass is the energy of the source, and the acceleration does not depend on the test
+       mass.
+  - With F3.14b and F5.2a3, inertial, passive and active mass come from one field and one causal growth rule, in 1+1.
+  - The rule is causal, independent of the order of computation, and uses only the order, counts and marks. It is a
+    candidate for the Axiom of the dynamics of the order.
+
+  Limits:
+  - 1+1: the response is a scalar (R2), with no 1/r; the potential of a static source grows linearly in space and time;
+  - in 1+1 the cones need not change (conformal flatness); in 2+1 the relation itself will have to change;
+  - the discrete falls exceed the continuum by 2-5 %, not yet explained;
+  - kappa is a chosen coupling (G is not derived).
+
+- **Wandering study (1+1): a field defect at rest on the causal order makes a random walk in momentum, with a diffusion
+  constant D_p proportional to 1/rho (= l^2) and rising steeply with the mass, D_p ~ 2.7 l^2 / w^5 = 2.7 l^2 (M/8)^5**
+  (development, DESCRIPTIVE, decides nothing; diag/wander.py; flat 1+1, rule of F3.14a unchanged, kink at rest, T 30,
+  trapezoid |x| <= 40 - t, mu 0.25 / 1 / 4 (M 4 / 8 / 16, w 2 / 1 / 0.5), rho 200 / 400 / 800, 32 sprinklings each (up to
+  1.2 million events per run); run in the container 10 Nov, 596 s; diag/out/wander_20261110T171302.json).
+  - **Time law:**
+    - the spread of the position grows with an exponent 1.45-1.55 between dt 9 and 29 (1.32 for M 16 at rho 200, where 10
+      of 32 fits are lost), i.e. Var x ~ t^3, a random walk in momentum;
+    - the earlier exponent 1.4 (to dt 9) was a mixture with early terms;
+    - the variance of the fitted local velocity grows linearly in t.
+  - **Two independent readouts agree on the diffusion of the velocity, D_v** (from Var x = (2/3) D_v t^3, and from
+    Var v = 2 D_v t):
+    - mu 1: 2.2e-4 / 1.8e-4 (rho 200), 1.06e-4 / 1.19e-4 (400), 5.0e-5 / 4.5e-5 (800);
+    - mu 4 at 800: 2.38e-4 / 2.45e-4.
+  - **Density:** D_p rho is constant within each mass: mu 1: 2.84 / 2.71 / 2.57; mu 4: 45.9 / 48.1 / 48.7; mu 0.25:
+    0.06-0.10. So D_p ~ 1/rho: Poisson noise of the order.
+  - **Mass:** D_p rho = 0.09 / 2.7 / 48 for M 4 / 8 / 16, an exponent 4.2-4.9 per doubling. Dimensional analysis with
+    the width as the only scale (M w = 8) gives M^5.
+    - One dimensionless law, sd/w = A (rho w^2)^(-1/2) (t/w)^(3/2), collapses all nine cases with A = 0.16-0.18 (0.12-0.13
+      for the poorly resolved M 16).
+    - The heavier, narrower kink sees the graininess more.
+  - **No mean drift** (all within 1 SE of zero).
+
+  Reading (development). A bound object on a Lorentz-invariant discrete order receives random kicks of momentum from
+  the discreteness. Their rate grows as the object becomes small compared with the discreteness (rho w^2). This is the
+  "swerves" of causal set theory (Dowker, Henson and Sorkin 2004), here for a bound object, with a measured law, not a
+  postulated diffusion constant.
+
+  Limits:
+  - 1+1 only; the law is dimension-dependent, and no extrapolation to 3+1 is justified;
+  - the potential is chosen;
+  - whether the kicks come from the dynamics of the defect or from the noisy radiation of its own field is not
+    separated.
+
+  **Practical consequence:** the wandering sets the resolving power of every test of this branch. The replications of
+  F3.14a and F5.2a2 failed because 16 development sprinklings underestimated it. The revisions must size their samples
+  from this law with a margin.
+
 - **F5.1-diag2: the longest-chain rule of F5.1c/d/e has no inertia of its own; the velocity of the history goes to the
   velocity of the region in which the rule reads the order** (diagnostic, DESCRIPTIVE, decides no registered test;
   flat 3+1, density 1, box t [0, 28], |x| ≤ 11, |y|, |z| ≤ 7.5, 8 sprinklings of ~138 500 events, 16 starts each, the
@@ -1373,6 +1784,27 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   reading of the field therefore needs a large L/ℓ, i.e. a denser sprinkling, not more rows of the operator.
 
 ## Derived consequences (no test)
+
+- **The swerves of a defect are the shot noise of the order sampling its own binding: D_p = (1/2 rho) int V'(phi)^2
+  phi_x^2 dx = (32/15) mu^(5/2) / rho for the sine-Gordon kink, with no free constant** (derived 10 Nov at the leading
+  order; docs/derivations/swerves_of_a_defect.md).
+  - **Why:** in 1+1 the retarded Green function is exactly 1/2 inside the cone, so the rule of F3.14a is exactly the
+    continuum field with point sources (1/rho) sum V'(phi_y) delta(z - y). The difference from the continuous source
+    is Poisson shot noise, white in spacetime, of variance V'^2 / rho. The momentum balance dP/dt = int s phi_x dx then
+    gives the diffusion.
+  - **Compared with the wandering study (development):** D_p rho measured
+    - 0.06-0.10 for M 4 (prediction 0.067);
+    - 1.5-3.2 for M 8 across rho 200-3200 (2.13);
+    - 46-49 for M 16 (68; the narrow kink is coarsely resolved).
+    - Agreement within the precision (~25-30 %) for M 4 and 8.
+  - **Content:**
+    - the vacuum does not swerve (V' = 0);
+    - kicks come from internal structure, int V'^2 (d phi)^2, not from mass alone;
+    - the noise is Lorentz invariant in distribution, so the diffusion is set in the rest frame (as in the swerves of
+      Dowker, Henson and Sorkin), consistent with the smaller wandering of the moving kinks of F3.14a;
+    - the formula gives the resolving power of future tests in advance.
+  - **Limits:** 1+1 only (in 3+1 the Green function sits on links); leading order (no feedback on the profile); no
+    number for real particles.
 
 - **The fall rule of F5.1c/d/e is a proxy by the criteria of the axiom audit (9 Nov, the author's agreement)**
   (classification of a rule, no test). The rule chooses the next step from the events H = 8 links ahead of the
@@ -1619,6 +2051,275 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   fixed separately.
 
 ## Undecided (descriptive)
+
+- **B1 development rows (2+1, intrinsic instrument, variant B; 12 Nov 2026; decide nothing): the domain wall keeps
+  its velocity, contraction and charge; the inertial mass from a kick is 0.948 ± 0.028 of the rest energy (not resolved
+  from 1).** `diag/b1_dev.py`, ρ 30, T 8, 8 sprinklings, arms rest / v 0.3 / v 0.6 / kick (f 0.05, t ∈ [1, 3)) on the
+  same sprinkling; `diag/out/b1_dev_20261112T023039.json`. Slab rule t ∈ [0, T − 1) (the last slab at v 0.6 leaves the
+  pyramid; set geometrically for all arms, recorded in the card draft, revision 1). Mean ± SE (sd per sprinkling):
+  - velocity: v 0.3 +0.0019 ± 0.0058 (sd 0.0165); v 0.6 −0.0019 ± 0.0050 (sd 0.0141); rest drift +0.016 ± 0.059;
+  - contraction C − 1: −0.006 ± 0.005 and −0.002 ± 0.006; width against the exact readout +1.6 % (rest), +1.0 %, +1.4 %;
+  - charge Q − Q_ex: within 2e-4 in all arms;
+  - energy per unit length (noise-debiased): rest +1.2 % ± 0.3 %, v 0.3 +1.3 % ± 0.4 %, v 0.6 +0.2 % ± 0.9 %; the plain
+    estimator +7 / +7 / +4 %; the debiased energy per slab rises with time (rest 8.01 → 8.2–8.5, sd 0.04 → 0.4):
+    fluctuation energy in the readout window;
+  - kick: Δ(γv) 0.0816 ± 0.0025 against the continuum 0.0785 (+4 %, 1.2 SE); r_M = 0.948 ± 0.028, per-sprinkling sd
+    0.085 (with the slope window [4, 8) instead of [4, 7): 0.961);
+  - cost: N ≈ 80 000, 455 s per run per core.
+  Reading: in development the transverse dimension and the intrinsic weight leave the inertial quantities of the wall
+  within a few percent of the continuum; whether r_M deviates is not resolved. They fix the proposed tolerances and the
+  sample size of B1 (32 sprinklings; binding condition r_M) in docs/B1_card_draft.md, revision 1. Nothing is decided.
+
+- **D2 development rows (2+1): the gradient of the field from a compact past neighbourhood is accurate to 1-8 %, but an
+  intrinsic neighbourhood (the links) is not compact and fails; and the pointwise T_ab of one scalar field does not fix
+  a unique rest frame where the gradient is spacelike** (development, DESCRIPTIVE, decides nothing; decision 16 D2;
+  diag/d2_gradient.py; run in the container 11 Nov evening).
+  - **Convention (development, to be fixed before freezing):** signature (+, -, -), L = 1/2 (d phi)^2 - V,
+    T_ab = d_a phi d_b phi - g_ab L, trace T = -1/2 (d phi)^2 + 3V in 2+1 (the same convention gives T = 2V in 1+1, the
+    load of F5.2b).
+  - **Set-up:** exact fields evaluated on the events of a sprinkling (so that only the estimator is tested): a sine-Gordon
+    wall moving at 0.3, a Klein-Gordon plane wave k = (1, 0.5) of amplitude 0.5, a moving Gaussian lump; 300 targets;
+    fit of phi(u) - phi(v) on the displacement with linear and quadratic terms, from the causal past only.
+  - **E1, coordinate neighbourhood 0 < t_v - t_u <= h (development proxy):** at h = 0.5 the rms error of the gradient is
+    0.4-1.4 % (wall), 4-8 % (wave), 2.5-6 % (lump) of |grad phi|; the error of (d phi)^2 2-25 %, of the trace 0-9 %. It
+    grows with h (truncation of the one-sided quadratic fit) and does not shrink with rho at fixed h (the fields are
+    exact; there is no noise to average). With an evolved field the shot noise will favour a larger h: a bias-variance
+    choice still to be measured.
+  - **E2, the past links of v and of its parents (an intrinsic neighbour set):** errors 25-125 % of |grad phi|, bias up
+    to 1.8 in T_xx. The links run along the light cone to the edge of the box (median 1 000 / 3 400 neighbours at rho
+    50 / 200): the set is not compact, so a local fit fails.
+  - **Structural observations (on paper, checked against the formulas):**
+    - A compact neighbourhood of an event needs a timelike direction (a frame): Lorentz invariant neighbour sets of a
+      causal set are not compact. The gradient needs a frame, and the frame of D3 is to come from T_ab, which needs the
+      gradient: a circle to be broken.
+    - For one scalar field, T^a_b = d^a phi d_b phi - delta^a_b L has the eigenvector grad phi and a degenerate
+      eigenspace orthogonal to it. Where grad phi is timelike the rest frame is unique (u ~ grad phi); where it is
+      spacelike (every wall and kink, moving or not) every timelike u orthogonal to grad phi is an eigenvector: in 2+1
+      the boost along the wall is free. This is physical for a wall (it has no velocity along itself), but it means that
+      the rest frame of a defect cannot be read pointwise; it needs T_ab summed over a region (the momentum of the
+      defect), or another source of the frame.
+    - Where u ~ grad phi (timelike gradient), the rapidity of a link e relative to u is relational:
+      cosh(eta) = |delta phi along the link| / (tau_link |grad phi|), with |grad phi|^2 = (d phi)^2 a scalar. The scalar
+      (d phi)^2 = 1/2 box(phi^2) + phi V'(phi) needs only box(phi^2), because box phi = -V'(phi) is the field rule itself.
+  - **The load without a gradient (decision 19; diag/d2_load.py):** in the growth rule the load enters only through its
+    Green integral, and box(phi^2) = -2 phi J + K (K = 2 (d phi)^2) gives
+    **G*K = phi^2 - chi_0 + 2 G*(phi J)** (chi_0 the free wave of the data of phi^2). So G*T = -G*K/4 + 3 G*V needs phi
+    at the event, the free wave of the data and two more Green sums on the same chains: no gradient, no frame.
+    - Checked on the intrinsic field (weight B), T 4, 4 sprinklings, 400 targets near the centre line; ratio of means
+      (SE over sprinklings), rms per target relative to the continuum:
+      - wall at rest: identity / continuum 0.997 +- 0.007 (rho 25), 0.998 +- 0.002 (rho 50); rms 0.053 / 0.037;
+      - wall at 0.3: 1.001 +- 0.010 / 0.996 +- 0.004; rms 0.057 / 0.040;
+      - the same discrete sum of the EXACT K (same weights): 0.998-1.009, but rms 0.08-0.10: the identity is about half
+        as noisy as summing the kinetic term itself;
+      - G*T by the identity route / continuum: walls 1.004-1.005 (rho 25), 1.001-1.009 (rho 50);
+      - plane wave k = (1, 0), amplitude 0.1: identity / continuum 1.070 +- 0.013 (rho 25), 1.031 +- 0.008 (rho 50);
+        G*V of the evolved field is off by the same amount (1.059 / 1.029) while the direct sum of the exact K is
+        0.997 / 0.991. The excess belongs to the evolved wave (its amplitude), not to the identity, and halves when rho
+        doubles.
+    - Reading (development): the kinetic part of the 2+1 load is available from the order without derivatives, to
+      better than 1 % on walls at rho 50. The remaining error of waves is the error of the field itself.
+  - **The rest frame of matter (decision 19; diag/d3_frame.py; exact fields on pyramid sprinklings, rho 50 / 150,
+    25 targets per cell; error = relative rapidity eta between the estimated and the true four-velocity; window of
+    chain lengths [k, k + 2) with k = 1.3 rho^(1/3) tau, tau = 1, 2, 3):**
+    - **F1a, world tube seen from the event** (core events, V above a threshold, in the past at chain distance k; mean
+      direction): on the core 0.02-0.10; **off the core it points from the source to the event**: 0.25-0.8 at a
+      rest-frame distance of 1-2. Unusable off the core.
+    - **F1b, world tube from pairs of core events** (fully intrinsic in the selection): 0.04-0.37 (typically 0.1-0.2),
+      no improvement with rho or tau (the chords inside a tube of finite width tilt).
+    - **F2r, summed T_ab with the gradient of the E1 fit** (h = 3 rho^(-1/3)) over the loaded events of the past with
+      L <= k: lumps 0.002-0.04 on and off the core (moving at rapidity 0, 0.31, 0.55); a second lump at rest 4.5 away
+      leaves the frame local (0.005-0.027); walls 0.05-0.10 (the boost along the wall is free: an expected, physical
+      degeneracy).
+    - **Caveats:** (1) all test fields move rigidly. Then u is an exact eigenvector of the pointwise T_ab, so any sum
+      keeps it: with the exact gradient F2 is exact and tests nothing, and with the E1 gradient only the gradient noise
+      is tested. Non-rigid configurations (an evolved field, radiation, two bodies with different velocities that
+      overlap) are still needed. (2) F2r uses the coordinate gradient of the development stage: the circle
+      gradient <-> frame is not broken by it.
+    - Reading (development): coarse-grained T_ab is the best of the three routes on rigid configurations; the fully
+      intrinsic route through the world tube (F1b) reaches only ~0.1-0.2 in rapidity.
+- **B0 development rows (2+1): with the Green function 1/(2 pi tau) (coordinate tau, a declared development proxy) the
+  field rule carries a domain wall as the 1+1 kink and reproduces the 2+1 dispersion including k_y != 0; the longest
+  chain estimates proper time with alpha_3 ~ 1.2, the same at a given realised density whatever the thinning, but it
+  underestimates the Green weight near the cone by 20-40 %** (development, DESCRIPTIVE, decides nothing; decision 16;
+  diag/b0_green2p1.py, diag/b0_chain_calib.py; run in the container 11 Nov).
+  - **Field (pyramid |x| <= T + 8 - t, |y| <= T + 3 - t, T 6, 8 sprinklings, rho 50 / 100, ~83 000 / 166 000 events,
+    cap tau >= 0.68 rho^(-1/3)):**
+    - wall at rest: velocity -0.003 / -0.001 (+- 0.004);
+    - wall launched at 0.3: 0.293 +- 0.004 / 0.302 +- 0.003;
+    - rms against the 1+1 kink at the end 0.117 / 0.095 (falls with rho);
+    - plane waves omega / sqrt(k^2 + 1) = 0.993-0.996 (rho 50) and 0.996-0.997 (rho 100) for k = (1, 0), (0, 1), (1, 1),
+      (2, 1), approaching 1;
+    - vacuum: rms ratio 1.13-1.15 against the exact 1.00-1.04, relative error 0.26 / 0.20 at amplitude 0.01. Not
+      clearly growing; a longer run is needed.
+    - Cost: ~9 s / ~33 s per run (brute force over pairs).
+  - **Longest chain** (L links between y < x, intervals sprinkled in their rest frame; 400 pairs per cell):
+    - alpha = L / ((rho_real)^(1/3) tau), for s = rho_real^(1/3) tau >= 4: 1.19 / 1.20 / 1.23 at rho_real 25 / 50 / 100.
+      It grows slowly with s (finite size); for s < 1 it is 2.0-2.5 (L = 1 for short intervals).
+    - **Thinning:** at the same realised density, alpha is the same whatever the thinning: 1.202 / 1.211 / 1.207 (rho_real
+      50 from rho 50 p 1, rho 100 p 0.5, rho 200 p 0.25); 1.188 / 1.187 (rho_real 25). The longest chain reads the
+      realised density, not the candidate density.
+    - The spread of tau_hat / tau for s >= 4 is 0.10-0.12.
+    - **Near the cone (s < 2):** mean 1/tau_hat / mean 1/tau = 0.60-0.81. The Green weight from a single alpha is biased
+      low by 20-40 %.
+    - Interval count / (pi/12 rho_real tau^3) = 0.90-1.04 (diagnostic).
+
+  Reading (development).
+  - The 2+1 Green function works as a field evolution: walls behave as kinks, and the dispersion converges, also for
+    waves with k_y != 0.
+  - The longest chain is a sound intrinsic clock that follows the realised density.
+  - A single alpha is not enough near the cone. Proposal: a weight table w(L) = E[1/(2 pi tau) | L], calibrated under
+    the volume measure of the past (tau^2 d tau). [Superseded 11 Nov evening, decision 17: the calibration condition is
+    E[w(L) | tau] = G(tau) with two moment conditions; the calibration is not "exact by construction", the accuracy of
+    the Green integral is a consequence to be tested.]
+  - Open:
+    - the cost: L for all pairs in the past is out of reach at full size, and needs an algorithm;
+    - the stability of the vacuum over longer times.
+  - **Addendum, 11 Nov evening (diag/b0_chain_alg.py, container):**
+    - **Algorithm for L (the author's plan):** dynamic programming from each source over the past links, in time order,
+      L_s(s) = 0, L_s(v) = 1 + max over links u -> v of L_s(u). The links (a numba version of the shell method, lam 25)
+      are identical to core.order.links.links_csr (7 832 events, 163 607 links). L_s(v) equals an independent longest
+      chain inside the interval on 373 / 373 random pairs.
+    - **Costs (rho 100, pyramid T, X = T + 8, Y = T + 3):** links 33-65 per event (they grow with the box: the shell
+      reaches far along the cone); building the links 3.4 / 10 / 22 / 44 s at N 52 000 / 82 000 / 119 000 / 165 000; the
+      DP 2.7 / 8 / 13 / 25 ms per source, so 2 / 11 / 26 / 68 min for all N sources on one core.
+    - **The table depends on the source (confirmed):** the posterior mean E[1/(2 pi tau) | L] differs between a
+      near-cone pair measure (~ tau d tau, which dominates in a finite box) and the bulk measure (~ tau^2 d tau): w(1) =
+      0.195 / 0.138 rho^(1/3), w(2) = 0.084 / 0.077; from L = 4 within 3 %. So the posterior table is not valid for all
+      sources.
+    - **Calibration under decision 17 (diag/b0_weight_calib.py; s_max = 6, beta from the rms relative residual over s in
+      [2, 20], both declared in the script before the run; 40 000 + 8 000 intervals, an independent sample of the same
+      size):** a = 0.2733 +- 0.0038, c = 0.2131 +- 0.0005, beta = 1.203 +- 0.039 (bootstrap 200); equivalent tail alpha
+      2 pi c = 1.339; rms relative tail residual 0.021.
+      - Moments of r over [0, 6] / moments of G on the independent sample: first +0.0018 +- 0.0025, second -0.0001 +-
+        0.0031 (zero within the calibration uncertainty).
+      - **Links alone (L = 1):** their share of the error is +0.082 +- 0.002 (first moment) and +0.059 +- 0.001
+        (second), compensated by L >= 2.
+      - **Pointwise E[w~ | s] / G (independent sample):** 1.135 at s 0.5-1, **1.458 at 1-1.5**, 1.255 at 1.5-2, 0.99 at
+        2-2.5, **0.93 at 2.5-3.5**, 0.95-0.99 at 3.5-6, 0.995-1.004 beyond 6. The local error is large; only the integral
+        is unbiased.
+    - **Validation on pyramid sprinklings (diag/b0_weight_valid.py; |x|, |y| <= T + 2 - t, T 4; 8 sprinklings per
+      density; 150 targets each at t in [2.5, 3.5], |x|, |y| < 1; L by backward DP over the links; none of these
+      configurations was used in the fit):**
+      - **Density scaling and boost independence:** E[w~] / E[G] per bin of s is the same at rho 50 / 100 / 200 and in
+        the three rapidity classes (eta < 0.5, 0.5-1.5, > 1.5) to about 0.01, and equals the calibration curve
+        (e.g. 1.469 / 1.482 / 1.478 at s 1-1.5; 0.940 / 0.945 / 0.944 at s 3-4).
+      - **Green integral, ratio of means sum I_hat / sum I** (coordinate tau with the cap | intrinsic A, alpha_3 1.2 |
+        intrinsic B, the table):
+        - rho 50: 0.92-0.93 | 0.99-1.01 | 0.978-0.995 (SE 0.005-0.01);
+        - rho 100: 0.953-0.957 | 1.019-1.022 | 1.006-1.013 (SE 0.003-0.008);
+        - rho 200: 0.952-0.965 | 0.999-1.018 | 0.996-1.006 (SE 0.002-0.004).
+        The coordinate variant is biased by the cap (-7 / -5 / -4 %); A is about 1 % above B at every density.
+      - **Dependence on the source (paired with the homogeneous source in the same sprinkling, B):** at rho 200 the walls
+        of width 1 and 0.5 at 0 and 35 degrees -0.3 to -0.4 % (+- 0.13-0.31 %), the blob of width 1 -1.0 +- 0.3 %;
+        at rho 100 all within 1.3 SE of zero; at rho 50 -0.8 to -1.7 %. The coordinate variant shows the same pattern
+        (blob -1.3 +- 0.5 % at rho 200), A slightly more (blob -1.9 +- 0.3 %).
+      - **Outside the declared class (diagnostic):** a wall of width 0.1, -1.9 +- 0.9 % at rho 200; a step, -0.3 +- 0.2 %.
+      - rms per-target relative error (shot noise of the sum): 4-6 % at rho 200, similar for all three variants.
+      - Cost: links 1.2 / 1.6 / 5.5 s, backward DP 1-5 ms per target (N 14 000 / 28 000 / 56 000).
+    - **Long vacuum (diag/b0_vacuum_long.py; coordinate tau with the cap, rho 50, T 12, 8 random waves, 4 sprinklings
+      per amplitude):** A / A_exact grows steadily to 1.36 / 1.39 / 1.36 at t = 12 for amplitudes 0.003 / 0.01 / 0.03;
+      lambda_eff = +0.024 / +0.024 / +0.025 (first half) and +0.028 / +0.031 / +0.025 (second half) per unit time,
+      SE 0.001-0.002. Exponential growth at a constant rate, independent of the amplitude (linear), not an initial
+      transient and not a constant bias. Relative error grows about linearly to 0.50.
+      - **Predictions written before the runs at rho 25 and 100 (amplitude 0.01):** multiplicative shot noise of the
+        sum (heating) gives lambda ~ 1 / rho (0.05 at 25, 0.013 at 100); the near-cone cap bias gives lambda ~
+        rho^(-1/3) (0.033 / 0.021); an instability of the rule itself gives lambda independent of rho.
+      - **Result (amplitude 0.01, 4 sprinklings):** lambda_eff (first / second half) = 0.035 / 0.043 at rho 25, 0.024 /
+        0.031 at rho 50, 0.020 / 0.022 at rho 100 (SE 0.0005-0.003). 1/rho is excluded (0.012 expected at 100). A power
+        law gives exponent about 0.4-0.5; lambda_inf + b/rho (lambda_inf ~ 0.013) fits too. Three points do not
+        separate them. lambda is larger in the second half at every density.
+      - **Mechanism under test:** the cap removes weight in a thin shell at the cone (the coordinate variant's integral
+        is -7 / -5 / -4 % at rho 50 / 100 / 200, scaling like the cap). A kernel concentrated at the cone has a
+        Fourier transform that is complex for timelike (omega > k) modes, so its deficit can give the massive modes a
+        growth rate. **Predictions written before the run (rho 50, same sprinklings and modes, cap factor 0.5 and 2):**
+        if the cap drives the growth, lambda follows the cap (~0.012 at 0.5, ~0.05 at 2); if shot noise drives it, a
+        smaller cap gives more noise and a larger lambda (the opposite direction).
+      - **Result:** lambda_eff (first / second half) = 0.0137 / 0.0184 at cap factor 0.5, 0.024 / 0.031 at 1, 0.046 /
+        0.057 at 2 (SE 0.002-0.003). lambda follows the cap almost proportionally, as predicted for the cap mechanism and
+        opposite to shot noise. A linear extrapolation to cap 0 leaves 0.003 (first half) / 0.006 (second half): small,
+        not separated from zero by three points.
+      - **Reading (development):** the growth of the vacuum seen with coordinate tau comes mainly from the cap of the
+        development proxy, not from the rule. It does not close the vacuum question: the intrinsic weight B is unbiased
+        only in the integral; near the cone it has its own deficit (E[w~] / E[G] ~ 0.42 at s < 0.5) and an excess at
+        s 0.5-2. The vacuum must be measured with the intrinsic variants (stage 3) before B0 is closed.
+    - **Intrinsic field, stage 3 (diag/b0_chain_field.py; forward DP from every source over the links of its future,
+      general source J, threshold eps_J = 0):** instrument checks: the forward kernel equals the backward DP of the
+      validation to 3e-15 (30 targets); the field under the linear extension t + 0.3 x equals the time-ordered field to
+      3e-15.
+      - **rho 25, T 6, 4 sprinklings, the same sprinklings and initial data for the three variants** (coordinate with the
+        cap | A, alpha_3 1.2 | B, the table; ~100 s per intrinsic run against 2 s for the coordinate one):
+        - wall at rest: velocity -0.013 / -0.009 / -0.008 (+- 0.01); launched at 0.3: 0.300 / 0.293 / 0.298 (+- 0.011);
+          rms against the 1+1 kink at the end 0.16-0.17 / 0.24-0.25 / 0.26 (the intrinsic variants distort the wall
+          more);
+        - plane waves, omega / omega_c: 0.993-0.996 / 1.009-1.035 / 1.004-1.007; amplitude last / first quarter (energy
+          proxy): 1.10-1.19 / 1.12-1.16 / 0.96-0.98;
+        - vacuum (8 waves, |x|, |y| <= T + 4 - t): lambda_eff +0.030 +- 0.002 / +0.036 +- 0.002 / +0.007 +- 0.002.
+      - Reading (development): the table B removes most of the growth of the vacuum and of the waves, and gives the best
+        dispersion; A (one alpha) is biased in omega by 1-3.5 % and grows like the coordinate variant. B leaves a small
+        decay of single waves (2-4 % over T 6) and a small residual growth of the vacuum, and distorts the wall more than
+        the coordinate variant.
+      - **rho 50, T 6, 4 sprinklings (run by the author, 11 Nov evening, diag/out/b0_chain_field_20261111T191554.json;
+        ~410 s per intrinsic run):**
+        - wall at rest: velocity -0.001 / +0.003 / +0.003 (+- 0.002-0.004); launched at 0.3: 0.297 / 0.300 / 0.302
+          (+- 0.004-0.006); rms against the kink at the end 0.107-0.113 / 0.193-0.195 / 0.203;
+        - plane waves, omega / omega_c: 0.993-0.996 / 1.008-1.030 / **0.9996-1.0020**; amplitude last / first quarter:
+          1.07-1.15 / 1.05-1.07 / **0.970-0.988**;
+        - vacuum: lambda_eff +0.025 +- 0.003 / +0.020 +- 0.001 / **+0.0038 +- 0.0006**.
+      - **From rho 25 to rho 50 (variant B):** omega / omega_c 1.004-1.007 -> 1.000-1.002 (converges to 1); the decay of
+        single waves 2.4-3.8 % -> 1.2-3.0 %; lambda of the vacuum 0.0068 -> 0.0038 (about 1/rho^0.8, towards zero);
+        rms of the wall 0.26 -> 0.20 (factor 1.29; the coordinate variant 0.165 -> 0.11, factor 1.5). A keeps a bias of
+        omega of 1-3 % that does not shrink (one alpha is not enough). The velocity of the wall is right in all three.
+      - Reading (development): B is the intrinsic instrument that converges in dispersion, amplitude and vacuum. Open:
+        whether the larger rms of the wall under B is noise (the scatter of the chain weight) or a distortion of the
+        profile; to be separated by the profile averaged over sprinklings against the scatter between them.
+      - **Noise or distortion (diag/b0_wall_profile.py; wall at rest, rho 25, T 6, 4 sprinklings, last slab, |y| < 2,
+        bins of 0.25 in x):** per-event rms in the core |x| < 2: coordinate 0.20, B 0.30; in the tails 0.13 / 0.22. The
+        bias of the profile (mean over sprinklings) is 0.09 / 0.07 in the core and 0.03 / 0.04 in the tails, with an SE
+        of ~0.03-0.08: not resolved for either variant. The scatter of the bin means between sprinklings (it includes the
+        wandering of the wall) is 0.13 / 0.16. So the larger rms of the wall under B is mostly the noise of single events
+        (the scatter of the chain weight), not a resolved distortion of the profile. The coordinate variant shows a bias
+        of up to +0.15 at the centre (its cap).
+
+- **Load candidates (1+1): 2V(phi_v)/rho, the trace of the energy-momentum tensor per event, summed over the world tube
+  of a kink gives M times its proper time in every frame and in a nonuniform order; the BD-based kinetic estimators are
+  unusable per event** (development, DESCRIPTIVE, decides nothing; docs/derivations/field_and_throughput.md, section 5;
+  decision 15; diag/load_candidates.py; 1+1, rho 400, eps 0.1, 8 sprinklings per arm, slab t in [4, 6), |x - x_kink| <
+  6; run in the container 10 Nov, 557 s).
+  - **Target:** the sum over the slab of the per-event contribution equals -M dtau (M = 8 sqrt(mu)).
+  - **V2 = -2V(phi_v)/rho** (sum / (-dtau), discrete / the same estimator on the exact field):
+    - rest: 8.02 +- 0.06 / 8.00;
+    - v 0.3: 8.09 +- 0.04 / 8.03;
+    - v 0.6: 7.86 +- 0.06 / 7.95;
+    - mu 4 (M 16): 16.21 +- 0.18 / 15.96;
+    - curved order of F5.2a2 (target M with Omega at the centre): 7.84 +- 0.07.
+    - Zero in the vacuum (|.| <= 7e-5 per unit area). The centroid follows the kink (-0.01, 1.497, 3.021 against 0,
+      1.5, 3.0).
+    - For a plane wave (amplitude 0.3, k 1): -0.0446 per area, equal to the continuum trace m^2 A^2 / 2 on the exact
+      field. V2 measures the trace of T, not the energy and not the Lagrangian.
+  - **The BD-based kinetic estimators are unusable at this density.**
+    - grad (difference form): 4.4 +- 4.7 (rest), 3.3 +- 4.3 (v 0.3), -0.9 +- 7.9 (v 0.6), the same on the exact field.
+    - phiB (not shift invariant): wrong and noisy (vacuum per area -9.9 +- 17.6).
+    - The per-event fluctuation of the BD sum (probe P-a) dominates.
+
+  - **Independent check by the author** (new sprinklings, --base 1, 16 per arm, 10 Nov). V2, sum / (-dtau):
+    - rest 7.96 +- 0.04; v 0.3 8.06 +- 0.07; v 0.6 7.88 +- 0.09; M 16: 16.03 +- 0.25; curved 7.69 +- 0.11;
+    - vacuum <= 1e-4 per area; plane wave -0.0443 (exact -0.0446).
+    - grad and phiB are again unusable (rest: 1.0 +- 4.3; vacuum per area of phiB -6.5 +- 13.6).
+  - **Note on the curved target:** the target in the curved arm used Omega at the centre but not the velocity of the
+    falling kink. At t ~ 5 the kink moves at v ~ g t ~ 0.25, so dtau carries an extra sqrt(1 - v^2) ~ 0.97 and the
+    target is ~7.75. Both runs (7.84, 7.69) agree with it.
+  Reading (development). In 1+1 the kinetic term of a scalar field is conformal, so the trace of its energy-momentum
+  tensor is exactly 2V(phi). The local, frame-free, phase-periodic quantity 2V(phi_v)/rho is therefore the trace per
+  event. On a soliton (dust: no net stress) it is the rest-mass density, and its sum over the world tube is M dtau, the
+  action of a flow of the Axiom of the action of a flow (S = -sum m dtau).
+
+  It is consistent with F5.2a2: in 1+1 the counting couples to matter only through Omega^2 V'.
+
+  Limits:
+  - the identity is special to 1+1; in 3+1 the trace has a kinetic part, and a discrete gradient estimator better than
+    the BD sums is needed;
+  - the trace is the scalar source (enough for matter at rest); moving matter and pressure need the tensor (the
+    throughput principle in 3+1 is the tensor coupling).
 
 - **H5-0 development rows (1+1): the retarded Green function of the order (1/2 x the causal relation) carries a
   sine-Gordon kink with its charge, velocity, contraction and energy, and its inertial mass approaches its rest energy
