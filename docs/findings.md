@@ -2171,9 +2171,18 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   - Noise: the diagonal model underestimates the variance of the constant-source sum by 3–10×; var ≈ 2.6 var_diag + F
     with F 0.53 (ρ 30) and 0.47 (ρ 60), a kernel-independent part that barely falls with density. The sd of the field
     itself falls by 0.83–0.87 from ρ 30 to 60 (ρ^−1/4 would be 0.84).
-  - Open: the measured normalisation is above (A3) by 0.5 % at ρ 30 and 0.27 % at ρ 60 for every kernel alike (∝ 1/ρ);
-    the nonlinear rule with the counterterm, k ≥ 2 and the growth exponent of the noise are not measured. Cost ∝ ρ^2.6
-    (325 s → 1960 s per sprinkling).
+  - The normalisation agrees with (A3) within the scatter between sprinklings (checked 14 Nov in the container, 6 new
+    sprinklings at ρ 30: K1 −0.0006 ± 0.0012, MV16 −0.0009 ± 0.0012; 4 at ρ 10: −0.003 ± 0.0025). The +0.5 % of the
+    runs above came from the sprinklings themselves: seed 0 (11000) alone is +0.010 (reproduced), seed 1 +0.0006. The
+    per-sprinkling sd is 0.003 at ρ 30 and is shared by all kernels, because they are evaluated on the same pairs; the
+    "every kernel alike, ∝ 1/ρ" reading of the two densities was wrong.
+  - Noise of the constant-source sum: most of the "kernel-independent floor" was the deterministic spread of t²/2
+    inside a time slab of width 0.5 (var 0.22–0.54 at t 3.25–5.25), a readout artifact. With the expectation at each
+    event's own t removed (6 sprinklings, ρ 30): var = 2.59 var_diag + 0.19 (before: 2.7 var_diag + 0.53). The
+    overdispersion 2.6 against independent pairs comes from pairs of one event sharing intervals; the remaining 0.19
+    is not explained.
+  - Open: the nonlinear rule with the counterterm, k ≥ 2 and the growth exponent of the noise (diag/c0_ct.py). Cost ∝
+    ρ^2.6 (325 s → 1960 s per sprinkling).
 
 - **B3 diagnostics of the deficit of F5.2d (13 Nov 2026; decide nothing): the 5 % deficit of the potential comes from
   the coordinate proxy for the cones (the binned midpoint potential of B3a), not from the Green weight, not from the
