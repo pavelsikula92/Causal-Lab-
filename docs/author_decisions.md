@@ -574,3 +574,20 @@ relativity has a different weak limit there.
   as ρ + Σp in the rest frame of the source.
 - The identity of decision 19 (the load without the components of T) gives only the trace; ρ + Σp needs the
   components in the rest frame, i.e. the frame of the source (decision 19: from the coarse-grained T_ab of the defect).
+
+## 25. C0: the apex term is removed by the local counterterm; MV2+ct and MV8+ct go on, MVA is a reference (13 Nov, 22:49)
+
+**What the development found (docs/findings.md, "C0 development rows"; diag/c0_apex.py, diag/c0_minvar.py v2):** the
+deficit at the apex of the cone and the mean dynamics of the linear 3+1 rule are the exact continuum expectation of the
+layer kernel at finite density (predicted before the run, confirmed at ρ 30 and 60). Their integrated part, the apex
+term δ = (a/8√π) Σ w_n H_n ∝ ρ^−1/2, shifts the mass. It can be removed from the continuum alone in two ways: the local
+counterterm φ(v) − δ J(v) = φ0(v) − c Σ w J(u) (ct), or the constraint Σ w H_n = 0 in the kernel (MVA). At equal
+systematics the constraint was about twice as noisy.
+
+**Decision.**
+- The apex term is removed by the local counterterm (+ct), with δ computed from (A2) for the kernel and the density, no
+  measured number.
+- The candidates of the next development phase are **MV2+ct** (the accurate one) and **MV8+ct** (the quiet one).
+- MVA (MVA8, MVA16) stays as a comparison reference, not as a candidate branch.
+- **The card C0 is frozen only after** the nonlinear response (J = μ sin φ with the counterterm), the higher modes
+  (k ≥ 2) and the long-time noise (its growth exponent) are measured.
