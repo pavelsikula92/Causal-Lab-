@@ -2154,6 +2154,27 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Undecided (descriptive)
 
+- **C0 development rows (3+1, layer kernels of the retarded Green function; 13 Nov 2026; decide nothing; card C0 NOT
+  frozen): the deficit at the apex of the cone and the whole mean dynamics of the linear rule are the exact continuum
+  expectation of each kernel at finite density, predicted before the run with no free parameter and confirmed at
+  ρ 30 and ρ 60.** diag/c0_apex.py ((A1)–(A3)), diag/c0_minvar.py v2, predictions docs/c0_apex_predictions.md
+  (committed before the run), runs diag/out/c0_minvar_20261113T170016.json (v1, ρ 30, seeds 0–3) and
+  c0_minvar_20261113T190335.json (v2, ρ 30 and 60, seeds 0, 1); X 7, T 6.
+  - ε(r) of all 12 kernel rows within ±0.01 of (A1) at both densities (the MVA rows within ±0.017, noisier); the mean
+    amplitude deviations of wave0 and wave1 (μ 1, k 0 and 1) within ±0.02 for the quiet kernels, ±0.05 for MVA.
+  - The integrated apex term δ = (a/8√π) Σ w_n H_n (Σ w = 0) acts as μ_eff = μ/(1 + δμ) and scales as ρ^−1/2 (MV16:
+    −0.18 at ρ 30, −0.13 at ρ 60). The second constraint Σ w = 0 removes the 1/r² tail of the links.
+  - Removing it, both from the continuum: the counterterm (MV<m>+ct) and the constraint Σ w H_n = 0 (MVA<m>). Largest
+    systematic deviation |amp-dev| over t ≤ 4.75 at ρ 30 → 60, with the field sd at t 4.75 (wave0) at ρ 60: MV2+ct
+    0.05 → 0.04, sd 0.54; MV8+ct 0.11 → 0.07, sd 0.33; MV16+ct 0.20 → 0.13, sd 0.27; MVA8 0.10 → 0.03, sd 1.04;
+    MVA16 0.15 → 0.07, sd 0.71. At equal systematics the constraint is noisier than the counterterm.
+  - Noise: the diagonal model underestimates the variance of the constant-source sum by 3–10×; var ≈ 2.6 var_diag + F
+    with F 0.53 (ρ 30) and 0.47 (ρ 60), a kernel-independent part that barely falls with density. The sd of the field
+    itself falls by 0.83–0.87 from ρ 30 to 60 (ρ^−1/4 would be 0.84).
+  - Open: the measured normalisation is above (A3) by 0.5 % at ρ 30 and 0.27 % at ρ 60 for every kernel alike (∝ 1/ρ);
+    the nonlinear rule with the counterterm, k ≥ 2 and the growth exponent of the noise are not measured. Cost ∝ ρ^2.6
+    (325 s → 1960 s per sprinkling).
+
 - **B3 diagnostics of the deficit of F5.2d (13 Nov 2026; decide nothing): the 5 % deficit of the potential comes from
   the coordinate proxy for the cones (the binned midpoint potential of B3a), not from the Green weight, not from the
   dynamics of the source, not from the density.** diag/b3_diag.py (a copy of the frozen kernel with an option of a
