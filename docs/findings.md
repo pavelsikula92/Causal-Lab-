@@ -40,6 +40,9 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   - **Diagnosed the same day (decides nothing; Undecided, "B3 diagnostics"):** the deficit comes from the binned
     midpoint potential of the B3a cones (finer bins give +9 %), not from the weight (0.999 with a weak field) nor from
     the dynamics of the source.
+  - **Read after decision 24 (13 Nov, the verdict stays, R132):** the load of this test was the trace of T, the scalar
+    (Nordström-type) branch. The PASS confirms the response of the grown order to the trace; it is **not** a
+    confirmation of the tensor source ρ + Σp of decision 24, under which a static wall in 2+1 does not gravitate.
 
 - **F5.2c (B2, 2+1, a prescribed curved order of the theory, intrinsic instrument): the order moves walls of a field as
   the continuum metric does: the kink stays (its tension cancels its weight; D_K -0.040 +- 0.022 against -0.44 for a
@@ -105,6 +108,9 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   (PASSED, REPLICATED: seed 0 and seed 1)** (mechanism, 1+1, rho 800, kappa 0.003, two fields interacting only through the
   order, kinks at -3 and +3, T 20, 256 sprinklings each paired with kappa = 0; card docs/F5_2b_card_draft.md rev. 1,
   run by the author 11 Nov without changes, 5065 s; results/F5.2b/).
+  - **Read after decision 24 (13 Nov, the verdict stays, R132):** the load 2V is the trace of T. For the static kinks of
+    the level 1-3 arms it equals ρ + Σp of decision 24 (both give E); the launched arm A2 tested the scalar branch only
+    (trace E/γ against γE(1 + v²)).
   - **Replication (seed 1, run by the author 13 Nov, 4098 s): PASSED.**
     - Instrument OK; density realised / Pi^2 0.9999 +- 0.0001; intervals near A count / proper area 1.0022 +- 0.0020;
       the nulls at kappa = 0 within 2 SE.

@@ -526,3 +526,51 @@ its redshifted phase (diag/b3_continuum.py).
 md5 5a1028555a2b5c2fefced0705b5e0057; helpers diag/b3_growth.py 6bada302b8418ec1d4c0763d86f5df38,
 diag/b3_continuum.py 3890f3a8630a7b918058ec9dc2d491f1). ρ 30, κ 0.01, T 9, kink sources μ 1 and 0.25, 32 sprinklings,
 each paired with κ = 0; tolerances by the rule of 10 Nov from the development rows (card, section 4). Seed 0 decides.
+
+
+## 24. The active source of gravity is ρ + Σp in every dimension (13 Nov, 15:37)
+
+**Decision (the author's):** the source of the response of the order is
+
+    ρ_active = T_ab u^a u^b + h^ab T_ab = ρ + Σ_i p_i,   h^ab = g^ab + u^a u^b,
+
+in the local rest frame u of the source, **in every dimension**. It is the rule of the substrate tested in F7.4a ("every
+flow narrows the cone in its own rest frame, the capacity deficits add"), taken as a general rule; it is not adjusted to
+the dimension-dependent weak limit of general relativity.
+
+**Why:** consistency of the theory. F7.4a tests the addition of capacity deficits in the local frame of a flow; if that
+mechanism is the rule of the substrate, it must not be replaced in 2+1 by another combination only because general
+relativity has a different weak limit there.
+
+**The boundary of interpretation:**
+- In 3+1, ρ + Σp is the source of the Newtonian potential of general relativity (½(ρ + 3p) in R_00); the agreement
+  with GR is specific to 3+1.
+- In D spacetime dimensions general relativity gives ((D − 3)ρ + Σp)/(D − 2); in 2+1 only Σp (dust does not gravitate,
+  point masses make conical defects). In 2+1 the rule (a) is therefore a prediction of the causal substrate of its
+  own, not a reproduction of Einstein's gravity.
+- A scalar ρ_active put into one scalar equation does not settle the question: for moving sources, anisotropic
+  stresses and a general spacetime the response must be tensorial (the cones narrowed and tilted, as in F7.4a). That
+  is open (B3b, C3).
+
+**Consequences for the laboratory (recorded now, before any new run):**
+- **The trace of T as the load (decisions 15 and 19, direction B) is the scalar branch (Nordström type).** For static
+  dust it coincides with ρ + Σp; for anything with stress or motion it does not:
+
+  | source | trace (direction B so far) | ρ + Σp (decision 24) |
+  |---|---|---|
+  | static kink in 1+1 | E | E |
+  | kink in 1+1 moving at v | E/γ | γE(1 + v²) |
+  | static wall in 2+1 | 2E | 0 |
+  | wall in 3+1 | 3E | −E (repels) |
+  | light | 0 | 2E |
+
+- **F5.2b and F5.2d keep their verdicts (R132)**: they passed their own criteria, which tested the response to the
+  trace. They are **not** read as a confirmation of the tensor source. F5.2b's static arms are the same under both
+  sources; its launched arm (A2) and all of F5.2d tested the scalar branch only.
+- In 2+1 under (a) a static kink wall does not gravitate (ρ + Σp = 0). An object uniform along y with energy E and
+  tension σ has the active mass E − σ, the same combination as its passive weight in the order of the theory
+  (docs/derivations/walls_in_curved_order.md); derived, not tested. A test of the active side in 2+1 under (a) needs a
+  source with ρ + Σp ≠ 0 (a breather wall, a launched wall, light), and the load of the growth rule must be computed
+  as ρ + Σp in the rest frame of the source.
+- The identity of decision 19 (the load without the components of T) gives only the trace; ρ + Σp needs the
+  components in the rest frame, i.e. the frame of the source (decision 19: from the coarse-grained T_ab of the defect).
