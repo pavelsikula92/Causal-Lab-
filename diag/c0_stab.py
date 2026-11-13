@@ -26,7 +26,7 @@ import numpy as np
 
 from core.stats.parallel import parallel_map, default_workers
 from diag.c0_links4 import sprinkle4
-from diag.c0_layers4 import layers4, evolve_layers
+from diag.c0_layers4 import layers4, evolve_layers, layers_evolve_multi
 from diag.c0_dev import kernel
 
 
@@ -50,33 +50,35 @@ def task(rho, kname, seed, X=9.5, T=8.0):
     t, x, y, z = sprinkle4(rho, X, T, 5000 + seed)
     coef, lam = kernel(kname)
     a0 = time.time()
-    ptr, idx, lay = layers4(t, x, y, z, (24 * lam / (math.pi * rho)) ** 0.25, coef.size - 1)
-    sec_l = time.time() - a0
-    out = {"rho": rho, "kernel": kname, "seed": seed, "N": int(t.size), "pairs": int(idx.size), "sec_layers": sec_l,
-           "modes": {}}
-    for mode in MODES:
-        out["modes"][mode] = _mode(t, x, y, z, ptr, idx, lay, coef, rho, mode, seed, X, T)
+    # fused computation (memory O(modes x N); the pairs of S16 at T 8 do not fit in memory, 13 Nov)
+    data = [_data(t, x, y, z, mode, seed, T) for mode in MODES]
+    phi0 = np.array([d[0] for d in data])
+    lin = np.array([d[2] for d in data])
+    c = 1 / (2 * math.pi * math.sqrt(6 * rho))
+    phis, npairs = layers_evolve_multi(t, x, y, z, (24 * lam / (math.pi * rho)) ** 0.25, coef, phi0, lin, c, 1.0)
+    out = {"rho": rho, "kernel": kname, "seed": seed, "N": int(t.size), "pairs": int(npairs),
+           "sec_layers": time.time() - a0, "modes": {}}
+    for i, mode in enumerate(MODES):
+        out["modes"][mode] = _rows(t, x, y, z, phis[i], data[i][1], data[i][3], X, T)
     out["sec"] = time.time() - a0
     return out
 
 
-def _mode(t, x, y, z, ptr, idx, lay, coef, rho, mode, seed, X, T):
-    c = 1 / (2 * math.pi * math.sqrt(6 * rho))
-    nopre = np.zeros(t.size, np.bool_)
+def _data(t, x, y, z, mode, seed, T):
     rng = np.random.default_rng(9000 + seed)
     A = 0.05
     if mode == "wave0":
-        phi0, ex, lin = A * np.ones(t.size), A * np.cos(t), True
-    elif mode == "wave1":
-        phi0, ex, lin = A * np.cos(x) * np.cos(t), A * np.cos(x) * np.cos(math.sqrt(2) * t), True
-    elif mode == "probe":
-        A = 0.05
-        phi0, ex, lin = A * rng.normal(size=t.size), np.zeros(t.size), True
-    else:
-        A = float(mode[2:])
-        P = pendulum(A, T)
-        phi0, ex, lin = A * np.ones(t.size), P(t), False
-    phi = evolve_layers(ptr, idx, lay, coef, phi0, nopre, ex, c, 1.0, lin)
+        return A * np.ones(t.size), A * np.cos(t), True, A
+    if mode == "wave1":
+        return A * np.cos(x) * np.cos(t), A * np.cos(x) * np.cos(math.sqrt(2) * t), True, A
+    if mode == "probe":
+        return A * rng.normal(size=t.size), np.zeros(t.size), True, A
+    A = float(mode[2:])
+    P = pendulum(A, T)
+    return A * np.ones(t.size), P(t), False, A
+
+
+def _rows(t, x, y, z, phi, ex, A, X, T):
     dev = (phi - ex) / A
     inner = (np.abs(x) < X - t - 0.3) & (np.abs(y) < X - t - 0.3) & (np.abs(z) < X - t - 0.3)
     rows = []

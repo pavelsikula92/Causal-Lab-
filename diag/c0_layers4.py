@@ -84,3 +84,49 @@ if _nb is not None:
                     s += a * (mu * phi[u] if linear else mu * math.sin(phi[u]))
             phi[v] = phi0[v] - c * s
         return phi
+
+
+if _nb is not None:
+    @_nb.njit(cache=True)
+    def layers_evolve_multi(t, x, y, z, tc, coef, phi0, lin, c, mu):
+        """Fused: for every event in time order, find its past pairs with n <= kmax events in the interval
+        (kmax = coef.size - 1), and update all M fields at once (phi0: M x N; lin[m]: linear J = mu phi, else
+        mu sin phi). No pairs are stored (memory O(M N)). Returns (phi, number of pairs)."""
+        M, N = phi0.shape
+        kmax = coef.size - 1
+        phi = np.empty((M, N))
+        tc2 = tc * tc
+        cand = np.empty(N, np.int64)
+        s = np.zeros(M)
+        npairs = 0
+        for j in range(N):
+            m = 0
+            for k in range(j - 1, -1, -1):
+                dt = t[j] - t[k]
+                if dt <= 0.0:
+                    continue
+                q = dt * dt - (x[j] - x[k]) ** 2 - (y[j] - y[k]) ** 2 - (z[j] - z[k]) ** 2
+                if q > 0.0 and q <= tc2:
+                    cand[m] = k
+                    m += 1
+            for i in range(M):
+                s[i] = 0.0
+            for a in range(m):
+                u = cand[a]
+                cnt = 0
+                for b in range(a):
+                    w = cand[b]
+                    dt = t[w] - t[u]
+                    if dt > 0.0 and dt * dt > (x[w] - x[u]) ** 2 + (y[w] - y[u]) ** 2 + (z[w] - z[u]) ** 2:
+                        cnt += 1
+                        if cnt > kmax:
+                            break
+                if cnt <= kmax:
+                    npairs += 1
+                    wgt = coef[cnt]
+                    if wgt != 0.0:
+                        for i in range(M):
+                            s[i] += wgt * (mu * phi[i, u] if lin[i] else mu * math.sin(phi[i, u]))
+            for i in range(M):
+                phi[i, j] = phi0[i, j] - c * s[i]
+        return phi, npairs
