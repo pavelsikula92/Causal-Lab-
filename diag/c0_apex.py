@@ -126,3 +126,44 @@ def norm_pred(w, rho, tb, X=7.0, lam=22.0, dt=0.005):
         wt = np.clip(X - tg[m] - 0.3, 0, None) ** 3
         out.append(float(np.sum(S[m] * wt) / np.sum(0.5 * tg[m] ** 2 * wt)))
     return out
+
+
+def dyn_pred_nl0(w, rho, A, tb, X=7.0, ct=0.0, mu=1.0, lam=22.0, dt=0.005):
+    """Nonlinear (J = mu sin phi), spatially homogeneous: f - ct mu sin f = A - int F_0(D) mu sin f(t - D) dD with F_0
+    of (A3), against the pendulum f'' = -mu sin f, f(0) = A, f'(0) = 0. Returns (f - exact)/A slab-averaged as dyn_pred.
+    This is the expectation of the kernel without the feedback of the noise; for a nonlinear J the noise also
+    renormalizes the source (E sin(phi + eta) = exp(-var/2) sin phi for Gaussian eta), which is measured, not predicted."""
+    T = max(tb) + 0.3
+    tg = np.arange(0.0, T + dt, dt)
+    F = F_k(w, rho, 0, tg, lam)
+    d = ct * mu
+    f = np.zeros_like(tg)
+    J = np.zeros_like(tg)
+    for i in range(tg.size):
+        s = 0.5 * F[i] * J[0] if i > 0 else 0.0
+        if i > 1:
+            s += np.dot(F[1:i], J[i - 1:0:-1])
+        rhs = A - dt * s
+        p = rhs
+        for _ in range(50):
+            dp = (p - d * math.sin(p) - rhs) / (1.0 - d * math.cos(p))
+            p -= dp
+            if abs(dp) < 1e-14:
+                break
+        f[i] = p
+        J[i] = mu * math.sin(p)
+    ex = pendulum(A, tg, mu)
+    dev = (f - ex) / A
+    out = []
+    for b in tb:
+        m = np.abs(tg - b) < 0.25
+        wt = np.clip(X - tg[m] - 0.3, 0, None) ** 3
+        out.append(float(np.sum(dev[m] * wt) / np.sum(wt)))
+    return out
+
+
+def pendulum(A, tg, mu=1.0):
+    from scipy.integrate import solve_ivp
+    sol = solve_ivp(lambda t, y: [y[1], -mu * math.sin(y[0])], (0.0, float(tg[-1])), [A, 0.0], t_eval=tg,
+                    rtol=1e-11, atol=1e-12, method="DOP853")
+    return sol.y[0]
