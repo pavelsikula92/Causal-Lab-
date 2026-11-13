@@ -1,0 +1,22 @@
+F3.15 (B1, 2+1, intrinsic weight variant B; a 0.2733, c 0.2131, beta 1.2026); deciding rho 30, T 8, 32 sprinklings; controls on 8; base seed 0; mean +- SE over sprinklings
+  I4: forward/backward kernel 1.7e-15, linear extension 4.9e-16, region 0.0e+00
+  I1 vacuum: lambda_eff +0.0052 +- 0.0025
+  I2 k1_0: omega/omega_c - 1 +0.0086 +- 0.0009
+  I2 k0_1: omega/omega_c - 1 +0.0067 +- 0.0009
+  I2 k1_1: omega/omega_c - 1 +0.0032 +- 0.0011
+  I2 k2_1: omega/omega_c - 1 +0.0028 +- 0.0004
+  I3 rho 60: w/w_ex - 1 +0.0067 +- 0.0022; reported: eps (mean |w - w_ex|/w_ex) rho 30 +0.0231 +- 0.0013, rho 60 +0.0140 +- 0.0021
+  rest: Q - Q_ex -0.0003 +- 0.0001; drift -0.0175 +- 0.0212; w/w_ex - 1 +0.0162 +- 0.0015; (E - E_ex)/8 +0.0161 +- 0.0028; M_rest 8.1398; reported: plain E/8 - 1 +0.0788 +- 0.0029
+  v 0.3: v_meas - v +0.0002 +- 0.0033; C - 1 -0.0020 +- 0.0019; w/w_ex - 1 +0.0141 +- 0.0019; e_B +0.0163 +- 0.0025; Q - Q_ex -0.0003 +- 0.0001
+  v 0.6: v_meas - v -0.0008 +- 0.0024; C - 1 -0.0034 +- 0.0020; w/w_ex - 1 +0.0128 +- 0.0024; e_B +0.0063 +- 0.0034; Q - Q_ex -0.0002 +- 0.0001
+  kick: Delta(gamma v) +0.0786 +- 0.0010 (continuum 0.0785); Q_kick 0.9959; r_M = M_in / M_rest 0.9779 +- 0.0117; reported: gamma v after the kick +0.0738 +- 0.0067
+  telegraph Gamma 1 v0.3: p_Gamma +0.0051, p_cons +0.2948, p_cons - p_Gamma +0.2897 +- 0.0103
+  telegraph Gamma 1 kick: p_Gamma +0.0101, p_cons +0.0662, p_cons - p_Gamma +0.0561 +- 0.0102
+  telegraph Gamma 2 v0.3: p_Gamma +0.0171, p_cons +0.2948, p_cons - p_Gamma +0.2777 +- 0.0114
+  telegraph Gamma 2 kick: p_Gamma +0.0189, p_cons +0.0662, p_cons - p_Gamma +0.0474 +- 0.0111
+  V = 0 readout check: L 0.0391 (conservative 1.0129); D_L +0.9738 +- 0.0307; reported: width (last 3 read slabs) 5.32, velocity +0.741
+  blind control: L 0.5691 (conservative 1.0129); D_L +0.4438 +- 0.0342; reported: width (last 3 read slabs) 3.42, velocity +0.957
+instrument: I4 kernel, order, region: OK; I1 vacuum: OK; I2 k1_0: OK; I2 k0_1: OK; I2 k1_1: OK; I2 k2_1: OK; I3 rest wall at rho_i3: OK; rest Q: OK; rest drift: OK; rest w: OK; rest E: OK; telegraph Gamma 1 v0.3: OK; telegraph Gamma 1 kick: OK; telegraph Gamma 2 v0.3: OK; telegraph Gamma 2 kick: OK; V = 0 readout check: OK
+passed conditions: v 0.3 velocity: yes; v 0.3 contraction C: yes; v 0.3 width w/w_ex: yes; v 0.3 energy e_B: yes; v 0.3 Q: yes; v 0.6 velocity: yes; v 0.6 contraction C: yes; v 0.6 width w/w_ex: yes; v 0.6 energy e_B: yes; v 0.6 Q: yes; r_M: yes; blind control separated: yes
+failed conditions: v 0.3 velocity: no; v 0.3 contraction C: no; v 0.3 width w/w_ex: no; v 0.3 energy e_B: no; v 0.6 velocity: no; v 0.6 contraction C: no; v 0.6 width w/w_ex: no; v 0.6 energy e_B: no; r_M: no
+cost: 363 s per wall arm at rho 30 (14930s)

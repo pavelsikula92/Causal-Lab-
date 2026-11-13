@@ -2,3 +2,7 @@ build/
 dist/ 
 *.exe 
 __pycache__/ 
+diag/out/*_cache/
+diag/out/b2_dev_fields/
+sync_tmp/
+results/*/quick/

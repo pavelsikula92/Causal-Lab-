@@ -10,13 +10,109 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Holds
 
+- **F5.2d (B3a, 2+1, the active side of the growth): an order that grows with its density and its cones set by the
+  potential that a static wall produces from its realised past through the order's own Green weight carries the
+  potential, the slowed clocks and the narrowed cones of the continuum, in proportion to the wall's load: r_L 0.953 +-
+  0.005 (load 16) and 0.923 +- 0.013 (load 8), u +0.030 +- 0.009, clocks near/far 0.893 against 0.879 (seed 0 PASSED;
+  replication pending)** (mechanism, 2+1, rho 30, kappa 0.01, T 9, 32 sprinklings x 2 sources x (kappa, 0); card
+  docs/B3_card_draft.md rev. 2, decision 23; B3a and the active side chosen by the author 13 Nov; run by the author
+  13 Nov unchanged, 8865 s; results/F5.2d/20261113T100111Z_all_seed0_decef7cc.json).
+  - **Instrument (all OK):** A0 exact on 2 sprinklings; no overflow (lowest L -0.352); density - 1 -0.0003 +- 0.0006 and
+    -0.0005 +- 0.0007; cones near/far 0.7695 +- 0.0025 against 0.7637 and 0.9150 +- 0.0030 against 0.9104 (the rule
+    realises the cones it was given).
+  - **Passed conditions (|x| + 2 SE against the tolerance):** potential |r_L - 1| 0.057 / 0.06 (load 16, the binding
+    condition) and 0.103 / 0.12 (load 8); active mass |u| 0.048 / 0.12; clocks ratio - 1 +0.016 +- 0.008 (0.031 /
+    0.06) and +0.009 +- 0.006 (0.021 / 0.06); clocks slowed near the source in both.
+  - **Reported:** r_L per slab 0.991 / 0.993 / 0.931 (load 16) and 0.944 / 0.965 / 0.905 (load 8); L at x = 0 in the last
+    slab -0.211 against -0.221 and -0.086 against -0.096; kink drift +0.030 +- 0.020 (kappa 0: +0.025 +- 0.021); the
+    kink at load 16 is 24 % narrower than the continuum in the last slab (it breathes after the switch-on).
+
+  Reading (declared in the card). A causal growth rule that reads only the realised past (counts, chains, independent
+  marks) and lets the density and the cones follow the potential that matter produces through the order's own Green
+  weight makes, around a static wall, the order of the theory in 2+1, in proportion to the wall's load: active mass
+  from the order, with the relation changing. **Open, resolved and not explained:** the potential of the order is
+  shallower than the continuum by 5 % (load 16, 9 SE) and 8 % (load 8, 6 SE), and the deficit grows with time
+  (1 % at t 5.5-6.5, 7-10 % at t 7.5); the development rows (4 sprinklings) had 0.994 +- 0.017. The clocks agree within
+  2 % (the order's clocks slowed 1.6 % less, consistent with a shallower potential). The binding condition passed with a
+  margin of 0.003. Candidates: the calibration of the chain weight in a deepening order, the binned midpoint of the
+  cones, the dynamics of the kink after the switch-on (its width). Limits: the cones are cut in coordinates in the rest
+  frame of the static source (B3a; B3b open); one geometry, one kappa, one density; seed 0 only.
+  - **Diagnosed the same day (decides nothing; Undecided, "B3 diagnostics"):** the deficit comes from the binned
+    midpoint potential of the B3a cones (finer bins give +9 %), not from the weight (0.999 with a weak field) nor from
+    the dynamics of the source.
+
+- **F5.2c (B2, 2+1, a prescribed curved order of the theory, intrinsic instrument): the order moves walls of a field as
+  the continuum metric does: the kink stays (its tension cancels its weight; D_K -0.040 +- 0.022 against -0.44 for a
+  test particle), the breather wall falls as the continuum (r_B 1.035 +- 0.041) and a launched kink follows the curved
+  cones (slope - 0.3 = +0.0091 +- 0.0030, continuum +0.013) (seed 0 PASSED; replication pending)** (mechanism, 2+1,
+  exact sprinkling of -Pi^2 dt^2 + Pi^-2 (dx^2 + dy^2), Pi^2 = (x + 24)/24, rho 30, T 8, 32 sprinklings x 3 arms, the
+  flat control on 8; card docs/B2_card_draft.md rev. 2, decision 22; run by the author 12-13 Nov unchanged, 13818 s;
+  results/F5.2c/20261112T233449Z_all_seed0_817e17b7.json).
+  - **Instrument (all OK):** links identical to the brute-force transitive reduction (curved and flat); I4 4.2e-16 / 0;
+    density N/(rho V_proper) - 1 -0.0007 +- 0.0005; kink at rest Q - Q_ex -0.0000, w/w_ex - 1 +0.0128 +- 0.0016; the
+    breather on the flat order D_0 +0.075 +- 0.059 (in units of the curved fall; |D_0| + 2 SE 0.19 against 0.25).
+  - **Passed conditions (|x| + 2 SE against the tolerance):** kink stays |D_K| 0.083 / 0.10; launched kink against the
+    continuum dv_L -0.0040 +- 0.0030 (0.010 / 0.02); faster than flat cones: slope - 0.3 - 2 SE = +0.0031 > 0;
+    breather |r_B - 1| 0.116 / 0.15.
+  - **Reported:** the energy centroid of the breather r 1.108 +- 0.076 (continuum fall of the centroid -0.30; the
+    profile centre -0.81).
+
+  Reading (declared in the card). The order of the theory, prescribed and read only through its relation by the rule of
+  B1, gives the passive response of extended bodies in 2+1 as the continuum metric does: no spurious force from the
+  gradient of the density of events (1.7x across the domain) on a wall whose tension equals its energy, the right fall of
+  a wall with little tension (the passive weight is E - sigma, docs/derivations/walls_in_curved_order.md), and motion
+  along the narrower and wider cones. Open, not resolved: D_K -0.040 is 1.8 SE from 0 (9 % of a test particle's fall);
+  the cones effect is measured at 0.009 against 0.013 (dv_L -0.004, 1.3 SE). Limits: one profile and one density; an
+  exact sprinkling of a chosen metric, not an order produced by matter (B3); walls only (B4); seed 0 only.
+
+- **F3.15 (B1, 2+1, intrinsic instrument, variant B): a domain wall of a field on all events of a 2+1 causal order,
+  evolved by the Green weight read from the order alone (the longest chain), keeps its identity at rest, keeps its
+  velocity and Lorentz contraction when launched, and its inertial mass from a kick equals its rest energy per unit
+  length: r_M = 0.9779 +- 0.0117 (seed 0 PASSED; replication pending)** (mechanism, 2+1, rho 30, T 8, 32 sprinklings
+  x 4 arms, controls on 8, I3 at rho 60 with 8; card docs/B1_card_draft.md rev. 2, decision 21; run by the author
+  12 Nov unchanged, 6 workers, 14930 s; results/F3.15/20261112T155654Z_all_seed0_47794a19.json).
+  - **Instrument (all OK):**
+    - I4: kernel forward/backward 1.7e-15, linear extension 4.9e-16, region 0;
+    - I1 vacuum: lambda_eff +0.0052 +- 0.0025; I2 omega/omega_c - 1: +0.0086 (1,0), +0.0067 (0,1), +0.0032 (1,1),
+      +0.0028 (2,1), each +- 0.0004-0.0011;
+    - I3 at rho 60: w/w_ex - 1 +0.0067 +- 0.0022; eps 0.0231 (rho 30) -> 0.0140 (rho 60);
+    - rest: Q - Q_ex -0.0003, drift -0.018 +- 0.021, w/w_ex - 1 +0.0162 +- 0.0015, (E - E_ex)/8 +0.0161 +- 0.0028
+      (M_rest 8.140);
+    - telegraph stops: p_Gamma 0.005 / 0.017 (Gamma 1 / 2) against p_cons 0.295 (v 0.3), 0.010 / 0.019 against 0.066
+      (kick);
+    - V = 0: L 0.039 against 1.013.
+  - **Passed conditions (|x| + 2 SE against the tolerance):**
+    - v 0.3: velocity +0.0002 +- 0.0033 (0.007 / 0.03), C - 1 -0.0020 +- 0.0019 (0.006 / 0.05), w/w_ex - 1 +0.0141
+      +- 0.0019 (0.018 / 0.05), e_B +0.0163 +- 0.0025 (0.021 / 0.05), Q within 3e-4;
+    - v 0.6: velocity -0.0008 +- 0.0024 (0.006), C - 1 -0.0034 +- 0.0020 (0.007), w/w_ex - 1 +0.0128 +- 0.0024
+      (0.018), e_B +0.0063 +- 0.0034 (0.013);
+    - kick: Delta(gamma v) 0.0786 +- 0.0010 against the continuum 0.0785; **r_M 0.9779 +- 0.0117 (0.046 / 0.10)**;
+    - blind control separated: L 0.569 against 1.013, D_L +0.444 +- 0.034 (D_L - 2 SE 0.375 > 0.2).
+  - **Reported:** plain E/8 - 1 +0.079 (the noise-debiased readout removes it); gamma v after the kick 0.074 +- 0.007.
+
+  Reading (declared in the card). In 2+1, with the retarded weight taken from the order alone (no coordinates, no
+  continuum Green function), a field wall behaves as an inertial body: it keeps its velocity, contracts by gamma, carries
+  the energy of the exact solution and resists a force with an inertial mass equal to its rest energy, within about 2 %
+  (r_M 1 is inside 2 SE). The instrument offsets of width and energy (+1.3-1.6 %) are those of the development rows and
+  of I3, and shrink with density (eps 0.023 -> 0.014). A relaxational dynamics stops the wall and a causality-blind sum
+  does not hold it. Limits: one density for the decision; seed 0 only; telegraph only at Gamma 1, 2 (at Gamma 5 the
+  intrinsic weight dissolves the wall, decision 21); the y-box dependence was not part of B1.
+
 - **F5.2b: under a causal growth rule of the order (candidates realised with probability Pi^2 computed from the realised
   causal past, ln Pi = -(kappa/2 rho) sum of the load 2V), matter thins its future order, and a test defect falls towards
   it as the continuum response predicts, in proportion to the source's energy (r_B = 1.029 / 1.017 / 1.009 for M_A 4 /
   8 / 16) and independently of its own mass (u = -0.0007 +- 0.0081), also for a moving system (r_sep 1.014 +- 0.008)
-  (seed 0 PASSED; replication pending)** (mechanism, 1+1, rho 800, kappa 0.003, two fields interacting only through the
+  (PASSED, REPLICATED: seed 0 and seed 1)** (mechanism, 1+1, rho 800, kappa 0.003, two fields interacting only through the
   order, kinks at -3 and +3, T 20, 256 sprinklings each paired with kappa = 0; card docs/F5_2b_card_draft.md rev. 1,
   run by the author 11 Nov without changes, 5065 s; results/F5.2b/).
+  - **Replication (seed 1, run by the author 13 Nov, 4098 s): PASSED.**
+    - Instrument OK; density realised / Pi^2 0.9999 +- 0.0001; intervals near A count / proper area 1.0022 +- 0.0020;
+      the nulls at kappa = 0 within 2 SE.
+    - **r_B 1.042 +- 0.018 / 1.026 +- 0.010 / 1.015 +- 0.006** (M_A 4 / 8 / 16; seed 0: 1.029 / 1.017 / 1.009);
+      universality u -0.013 +- 0.008 (seed 0: -0.001 +- 0.008); launched r_sep 1.018 +- 0.008 (seed 0: 1.014).
+    - Reported: the excess of the falls over the continuum recurs in both seeds (1.5-4 %, smaller for the heavier
+      source), and the potential at the end is 2-12 % shallower than the continuum at large |x| in both; r_A at M_A 16
+      1.068 +- 0.040 (seed 0: 0.965 +- 0.039), third law 1.076 (0.978): noisy.
   - **Instrument:**
     - A0 and A1 hold;
     - density: realised / Pi^2 = 0.9998 +- 0.0001;
@@ -2051,6 +2147,47 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   fixed separately.
 
 ## Undecided (descriptive)
+
+- **B3 diagnostics of the deficit of F5.2d (13 Nov 2026; decide nothing): the 5 % deficit of the potential comes from
+  the coordinate proxy for the cones (the binned midpoint potential of B3a), not from the Green weight, not from the
+  dynamics of the source, not from the density.** diag/b3_diag.py (a copy of the frozen kernel with an option of a
+  fixed load q = 4V of the flat static kink); diag/out/b3_diag_20261113T112003.json; mu 1, T 9, 4 sprinklings each,
+  r_L over t 5-8 (F5.2d: 0.953 +- 0.005):
+  - the weight alone (fixed load, kappa 0.001, an almost flat order): r_L 0.999 +- 0.009;
+  - fixed load, kappa 0.01, bins 0.25 x 0.5 (as F5.2d): 0.952 +- 0.008, the same deficit without any field dynamics;
+  - fixed load, finer bins 0.125 x 0.25: **1.088 +- 0.014**, an excess growing in time (1.01 at t 5.25, 1.12 at 7.75);
+  - fixed load, density: rho 20 0.942 +- 0.008, rho 30 0.952 +- 0.008, rho 45 0.952 +- 0.007 (no convergence at fixed
+    bins: a fixed-scale effect of the bins);
+  - the dynamic source (F5.2d's rule): rho 30 0.985 +- 0.008, rho 45 0.946 +- 0.009.
+  Reading: the potential of the grown order depends on the resolution of the binned estimate of Pi at the midpoint of a
+  pair by -5 % (coarse: the cusp of the potential at the source is smoothed) to +9 % (fine: few events per bin, the
+  noise of the estimate). The agreement of F5.2d is therefore limited to about +-5-10 % by the B3a proxy. The verdict of
+  F5.2d stays (R132); its bins were fixed before the run, and no bin size is to be chosen afterwards to reach 1. The
+  remedy is B3b: cones read from the order, without bins and coordinates.
+
+- **B3 development rows (2+1, growth with density and cones from the potential, B3a; 13 Nov 2026; decide nothing): the
+  grown order carries the potential of a static wall as the continuum (r_L 0.99 ± 0.02 for load 16, 1.04 ± 0.05 for
+  load 8), its clocks near/far 0.899 ± 0.022 (continuum 0.878) and cones 0.759 ± 0.008 (0.762).** diag/b3_growth.py,
+  diag/b3_continuum.py, diag/out/b3_dev_20261113T071448.json; ρ 30, κ 0.01, T 9, 4 sprinklings. Found on the way
+  (before freezing): the flat free wave needs gravity switched on after t ≈ 3 (else the rule differs from the theory by
+  1.6–2.5×); the load identity needs a quadratic vanishing on both vacua (φ² made the potential asymmetric); the cone of
+  a pair must be read at its midpoint, not at the parent (else r_L 1.6). They fix card docs/B3_card_draft.md revision 2
+  (F5.2d). Nothing is decided.
+
+- **B2 development rows (2+1, a prescribed curved order of the theory, intrinsic instrument; 12 Nov 2026; decide
+  nothing): in the continuum a kink wall does not fall in the order of the theory (its tension cancels the weight); in
+  the exact sprinkling the discrete kink stays (D_K +0.02 ± 0.03 against −0.44 for a test particle), the breather wall
+  falls as the continuum (r_B 0.96 ± 0.05) and the launched kink follows the curved cones (slope − 0.3 = +0.022 ± 0.007,
+  continuum +0.013).** Order: Π² = (x + ℓ)/ℓ, ℓ 24, exact relation (optical metric = hyperbolic plane), ρ 30, T 8;
+  diag/b2_curved.py (links identical to the brute-force transitive reduction; density −0.2 %; continuum solver converged
+  to 1e-5), diag/b2_dev.py, diag/b2_breather_readout.py; derivation docs/derivations/walls_in_curved_order.md (the
+  passive weight of a wall uniform along y is E − σ).
+  - kink at rest (n 4): D_K +0.020 ± 0.029 (sd 0.057); w/w_ex − 1 +0.016 ± 0.003;
+  - kink launched at 0.3 (n 4): slope − continuum slope +0.0086 ± 0.0067 (sd 0.013);
+  - breather ω 0.7 (n 6): r_B by the profile fit 0.961 ± 0.054 (sd 0.132); by the energy centroid of B1 0.82 ± 0.16
+    (sd 0.40), too noisy, replaced before freezing; flat order (n 2): D₀ −0.14, +0.08;
+  - cost ~900 s per curved arm, ~1150 s per flat arm (one core of the container).
+  They fix the design and the tolerances of B2 (docs/B2_card_draft.md, revision 2; F5.2c). Nothing is decided.
 
 - **B1 development rows (2+1, intrinsic instrument, variant B; 12 Nov 2026; decide nothing): the domain wall keeps
   its velocity, contraction and charge; the inertial mass from a kick is 0.948 ± 0.028 of the rest energy (not resolved

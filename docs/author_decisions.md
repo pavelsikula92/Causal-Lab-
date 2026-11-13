@@ -473,3 +473,56 @@ stayed intact. Recorded as a limit of the intrinsic instrument for fast-growing 
 
 **Why the author's choices could be delegated:** none of them was taken after seeing a deciding run; the tolerances follow
 the rule of 10 Nov from the development rows, and the development rows decide nothing.
+
+
+## 22. B2 is frozen as F5.2c: walls in a prescribed curved order of the theory (12 Nov, 21:00)
+
+**Decision.** The author asked for B2 to be prepared and delivered as a test ("ano prosím, dodej pak test pustím ho u
+sebe", 12 Nov, 17:01), as for B1 (decision 21). The choices below were made by Claude after the development rows and
+before any deciding run; card docs/B2_card_draft.md, revision 2; test **F5.2c**
+(phases/F5_gravity/F5_02c_walls_curved_2p1.py). Seed 0 decides; a replication uses seed 1.
+
+**What B2 became, and why (the continuum, before any discrete run):** in the metric of the theory
+ds² = −Π² dt² + Π⁻² (dx² + dy²) a wall uniform along y has the passive weight E − σ (energy minus tension;
+docs/derivations/walls_in_curved_order.md). The kink (σ = E) does not fall at all; it is an exact static solution at
+every position. "The wall falls as the continuum" (decision 16) therefore became three conditions: the kink stays, the
+breather wall (ω 0.7, σ/E 0.22) falls as the continuum, and a launched kink follows the cones of the order.
+
+**The choices:**
+- the order: an exact sprinkling of the metric of the theory with Π² = (x + ℓ)/ℓ, ℓ 24 (closed causal relation: the
+  optical metric is the hyperbolic plane), density ρ 30 per proper volume, domain of dependence of −13 ≤ x ≤ 22,
+  |y| ≤ 12.5, T 8. Not the link-cutting rule of F7.1b: that rule reads speeds in coordinates (a proxy in the audit) and
+  is itself undecided (γ 1.85); a prescribed order in B2 should be the order of the theory itself. The rule-produced
+  order is B3;
+- the field rule of F3.15 unchanged (variant B, frozen constants); φ₀ and the exact reference from the y-independent
+  continuum solver in the same metric;
+- arms: kink at rest, kink launched at proper velocity 0.3, breather ω 0.7 (the same events); the breather on a flat
+  order (ℓ = ∞, −16 ≤ x ≤ 22) as the control;
+- readouts as B1 (band |y| < 2, slab rule); the breather centre from a fit of its profile (the energy centroid of B1
+  is too noisy for an object that oscillates once in the run: per-sprinkling sd 0.40 against 0.13; reported);
+- 32 sprinklings; the flat control on 8;
+- tolerances by the rule of 10 Nov from the development rows (card, section 4);
+- the light bending γ is not part of B2: in an exact sprinkling it is built into the relation.
+
+
+## 23. B3a is frozen as F5.2d: the active side of the growth in 2+1 (13 Nov, 08:30)
+
+**The author's choices (13 Nov, 07:35 and 07:50):** B3 goes by B3a, the cones of new events are cut in the rest frame of
+the static source (the coordinate frame for a wall at rest, decision 19; a declared proxy as F7.1b; the intrinsic
+reading of the frame is B3b); and B3 is the active side only. The fall of a test body moves to B4: walls do not fall in
+the order of the theory (B2, F5.2c), and in the continuum the fall of a breather in a deepening potential is swamped by
+its redshifted phase (diag/b3_continuum.py).
+
+**What the development found, before freezing (diag/b3_continuum.py, diag/b3_growth.py):**
+- the rule with the flat free wave differs from the theory by 1.6–2.5× if gravity acts from t = 0; with gravity
+  switched on from t 3 to 4 the free wave is constant where the order is curved, and the rule agrees with the theory
+  within 1–2 %;
+- the load identity of decision 19 with f = φ² amplified the calibration error of the weight (f = 4π² on a plateau,
+  the potential became asymmetric and the kink drifted); with f = φ(2π − φ)/2, zero on both vacua, it does not;
+- the cone at the parent alone made long near-null links too wide where the potential deepens in time (r_L 1.6 at
+  ρ 10); the cone from the binned potential at the midpoint of the pair gives r_L 1.00.
+
+**Decision.** Card docs/B3_card_draft.md, revision 2; test **F5.2d** (phases/F5_gravity/F5_02d_growth_active_2p1.py,
+md5 5a1028555a2b5c2fefced0705b5e0057; helpers diag/b3_growth.py 6bada302b8418ec1d4c0763d86f5df38,
+diag/b3_continuum.py 3890f3a8630a7b918058ec9dc2d491f1). ρ 30, κ 0.01, T 9, kink sources μ 1 and 0.25, 32 sprinklings,
+each paired with κ = 0; tolerances by the rule of 10 Nov from the development rows (card, section 4). Seed 0 decides.
