@@ -2152,6 +2152,15 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   keeps using ρ_s as a fixed coordinate function without √−g (F1.7, K.12). For the definition of mass (κ ↔ G) it must be
   fixed separately.
 
+- **C1b, the interval volume in the theory metric to first order (14 Nov; docs/derivations/c1b_volume_first_order.md;
+  diag/c1b_volume.py; no test).** Metric −Π²dt² + Π⁻²dx², Π⁻² = 1 + 2a g, a uniform ball R 1.5 (first-order vacuum
+  outside), relation by the straight-ray delay. The exact mean holds for any relation that respects t; the volume of
+  an interval is an exact 3D integral. ε = V/((π/24)τ_g⁴) − 1 per unit a: 0.00000 for every pair whose diamond lies
+  in vacuum (tangential, radial, oblique, grazing; l 3–6, τ 0.15–1.5) and for the flat controls; +2.6 through the
+  centre of the ball (l 6), +2.3 at impact 0.75, +0.1 for a short pair inside. Consequence: to first order the
+  nonlocal weight of the instrument is tied to the Ricci curvature along the pair; Weyl curvature does not enter
+  (symmetry argument in the derivation). Not covered: second order, the bending of rays, the finite-ρ mean.
+
 ## Undecided (descriptive)
 
 - **C0 development rows after decision 25 (3+1, counterterm kernels; 14 Nov 2026; decide nothing; card C0 NOT frozen):
