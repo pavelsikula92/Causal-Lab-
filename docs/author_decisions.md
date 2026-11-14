@@ -591,3 +591,37 @@ systematics the constraint was about twice as noisy.
 - MVA (MVA8, MVA16) stays as a comparison reference, not as a candidate branch.
 - **The card C0 is frozen only after** the nonlinear response (J = μ sin φ with the counterterm), the higher modes
   (k ≥ 2) and the long-time noise (its growth exponent) are measured.
+
+## 26. C0: MV8+ct is the kernel, MV2+ct the reference; the nonlinear response against two predictions (14 Nov, 05:03)
+
+**What the development found (docs/findings.md, "C0 development rows after decision 25"):**
+- The linear modes k = 0–3 follow the predicted finite-density expectation of the kernel.
+- The nonlinear modes deviate from it as the substrate noise renormalizes the source, μ sin φ → μ e^(−s²/2) sin φ.
+- MV8+ct is about 1.6× quieter than MV2+ct and softens the potential less: −0.64 against −0.94 at A 2, t 6.75, ρ 30.
+  Its linear systematics against the continuum are larger (0.16 against 0.07 at ρ 30), predicted, and falling with ρ.
+
+**Decision.**
+- **MV8+ct is the main kernel of C0; MV2+ct is a reference check.** For C0 the nonlinear behaviour weighs more than
+  the accuracy of the linear limit (B4 follows).
+- Predictable systematics is not zero systematics. The card keeps both separately: the deviation from the continuum,
+  and the agreement with the predicted expectation.
+- The nonlinear response is compared with two predictions of different status:
+  - **A. The noise-free continuum**, J = μ sin φ: the reference limit without fluctuations of the substrate. The
+    difference measures the total finite-density and fluctuation deviation from the classical continuum.
+  - **B. The fluctuation-corrected mean response**, J_eff = μ e^(−s²(t,ρ)/2) sin φ with the measured s. Agreement tests
+    whether the fluctuations explain the measured softening. It holds for zero-mean Gaussian fluctuations of the phase
+    and the corresponding averaging, so the card checks that condition directly: the Gaussianity of the fluctuations,
+    their correlation with φ, and ⟨sin φ⟩ against e^(−s²/2) sin⟨φ⟩ event by event.
+- The evaluation reports separately:
+  - the nonlinear deviation (measurement against A);
+  - the renormalization (measurement against B);
+  - the residual (the part B does not explain);
+  - the density scaling of s and of the renormalization;
+  - the time scaling of s and of the renormalization.
+- **No tolerance against the continuum may grow with the measured noise** (no rubber ruler). The tolerances are fixed
+  in advance from the development rows; the noise-free deviation, the independently computed correction and the
+  residual are reported side by side.
+- s² ∝ t² ρ^−1/2 is a tested approximation, not a confirmed law (s grows as t^0.85–1.2, so s² as t^1.7–2.4).
+- For B4: the large amplitude of an oscillon means a larger change of its effective potential, which does not imply a
+  longer life (frequency, profile, radius and radiation channels change). B4 is not tuned on assumed robustness to
+  noise; first the effective potential as a function of amplitude, time and density must be known.
