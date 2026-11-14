@@ -65,3 +65,10 @@ readout has an error. That would be an instrument error, not physics.
 Run: `python -m diag.c0_late --workers 4` (diag/c0_late.py md5 a74a98110fdd99f5114ef6ffe5026afd, LF line ends). ρ 20 and 30, X 7 and 8.5, T 6,
 16 fresh sprinklings per configuration (seeds 15000+ and 16000+). Kernels MV8+ct and MV2+ct, through diag/c0_card.task
 unchanged.
+
+**Change of the run, 14 Nov, 10:25, before any result was read.** One sprinkling at ρ 30, X 8.5 took 4 040 s (the
+search for candidates is O(N²) in the events, and X 8.5 has 2.2× the events), so the full plan would take about 7 h.
+P3 is answered instead by the number of sprinklings: `python -m diag.c0_late --xs 7 --n 32 --workers 4` (ρ 20 and 30,
+X 7, 32 fresh sprinklings each, seeds 15000–15031). The 4 finished sprinklings at ρ 30, X 8.5 are read from the cache
+with `--xs 8.5 --rhos 30 --n 4`. The predictions P1–P3 are unchanged.
+

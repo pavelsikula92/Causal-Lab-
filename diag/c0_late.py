@@ -12,6 +12,13 @@ Configurations: rho 20 and 30, X 7 and 8.5, T 6, 16 fresh sprinklings each (seed
 kernels MV8+ct and MV2+ct (diag/c0_card.task, unchanged).
 
     python -m diag.c0_late --workers 4
+    python -m diag.c0_late --xs 7 --n 32 --workers 4     (14 Nov, 10:25: X 8.5 dropped for cost, see below)
+
+Change 14 Nov, 10:25 (before any result was read): one sprinkling at rho 30, X 8.5 took 4 040 s, not ~700 s. The search
+for candidates scans all earlier events, O(N^2), and X 8.5 has 2.2x the events. The full plan would take about 7 h.
+P3 asks whether the residual shrinks with the statistics or stays at -0.02; more sprinklings at X 7 answer the same
+question at a fraction of the cost. The 4 finished sprinklings at rho 30, X 8.5 stay in the cache and are read with
+--xs 8.5 --rhos 30 --n 4.
 """
 from __future__ import annotations
 
@@ -120,8 +127,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=0)
     ap.add_argument("--n", type=int, default=N)
+    ap.add_argument("--xs", type=str, default=",".join(f"{x:g}" for x in XS))
+    ap.add_argument("--rhos", type=str, default=",".join(f"{r:g}" for r in RHOS))
     a = ap.parse_args()
-    jobs = [(rho, s, X) for X in sorted(XS, reverse=True) for rho in sorted(RHOS, reverse=True) for s in range(a.n)]
+    xs = [float(v) for v in a.xs.split(",")]
+    rhos = [float(v) for v in a.rhos.split(",")]
+    jobs = [(rho, s, X) for X in sorted(xs, reverse=True) for rho in sorted(rhos, reverse=True) for s in range(a.n)]
     t0 = time.time()
     res = parallel_map(job, jobs, default_workers(a.workers), print,
                        lambda i, r, d, nn: f"[C0 late] {d}/{nn}: rho {r['rho']:g} X {r['X']:g} seed {r['seed']} "
@@ -130,8 +141,8 @@ def main():
     json.dump(res, open(fn, "w"))
     print("saved", fn)
     allr = {}
-    for X in XS:
-        for rho in RHOS:
+    for X in xs:
+        for rho in rhos:
             allr[(rho, X)] = analyse([r for r in res if r["rho"] == rho and r["X"] == X], X)
     print("#### P1 pooled (inverse-variance) over the four configurations, last two slabs, meas - (A3):")
     for name, _ in C.KERNELS:
