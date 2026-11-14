@@ -1,10 +1,17 @@
 # Card C0: the retarded Green function of a 3+1 order and the field it carries
 
-**Revision 0.1 (structure after decision 26), 14 Nov 2026, NOT frozen.** Decisions 25 and 26. The tolerances follow
-the rule of 10 Nov (2 SE at the card's number of sprinklings + the largest development offset + a margin) and are filled
-from the development rows of diag/c0_card.py, which runs the instrument and every readout in the card's configuration
-(dev seeds 13000+; the card runs on fresh seeds). Every number marked [ ] is open. Helpers: diag/c0_apex.py (the
-continuum expectation), diag/c0_minvar.py (kernels), diag/c0_ct_renorm.py (J_eff), diag/c0_links4.py (sprinkling).
+**Revision 1 (tolerances from the development rows), 14 Nov 2026, ready for freezing, NOT frozen.** Decisions 25 and
+26. Test **F3.16** (phases/F3_structure/F3_16_green_3p1.py, md5 3de531220105c4c332e23a88b56899fd). Helpers:
+- diag/c0_card.py 1f2fc1071acc0e480a6f34a14a5af08f
+- diag/c0_apex.py 12c93bbaff2d1ee384848da128c90d4d
+- diag/c0_ct.py 8da25cd17f5df94e725441696efda5c2
+- diag/c0_ct_renorm.py 9686e935fbd7d924f62f2ca877d305e9
+- diag/c0_minvar.py 5b31241ec688e2eceec4bd326a11f63f
+- diag/c0_links4.py 0f160d3dc53ef91b6f6c80624dba4a5b
+
+The tolerances follow the rule of 10 Nov and are derived by diag/c0_card_tol.py (md5
+00fa61213a3f889de5b0ae8fdcca1371) from the development rows diag/out/c0_card_dev_20261114T052221.json (seeds 13000–
+13003 at ρ 30 and 60). The rule: tolerance = 1.25 × (development value + 2 SE at the card's n), rounded up.
 
 ## 1. Hypothesis
 
@@ -26,7 +33,8 @@ and with noise that accumulates without a growing mode.
 - Kernel: **MV8+ct** (decision 26). MV2+ct is computed on the same pairs as a reference check and decides nothing.
 - Enumeration: pairs with ρV ≤ 22, layers n ≤ 16.
 - The counterterm is solved per event (Newton; 1 − δμ cos φ > 0, unique).
-- Domain: pyramids X 7, T 6; densities ρ 30 and 60; [16 and 4] sprinklings; seeds [ ].
+- Domain: pyramids X 7, T 6; densities ρ 30 (16 sprinklings) and ρ 60 (4); seeds derive_seed(base, "F3.16", ρ, k);
+  base 0 decides (`python run.py F3.16`).
 - Coordinates only in the readouts.
 
 ## 3. Readouts
@@ -52,28 +60,35 @@ and with noise that accumulates without a growing mode.
 - **Noise**: the sd of the remainder by time; its growth exponent p (sd ∝ t^p, t 1.5–5.5); sd(ρ 60)/sd(ρ 30) per slab.
   The scaling s² ∝ t² ρ^−1/2 is a tested approximation, not a law (decision 26).
 
-## 4. Criteria (to be fixed from the development rows of diag/c0_card.py; structure only)
+## 4. Criteria (revision 1; MV8+ct decides)
 
-No tolerance against the continuum grows with the measured noise (decision 26): every tolerance below is a fixed
-number set before the run.
+No tolerance grows with the measured noise (decision 26). Every condition on its own: |·| + 2 SE < tolerance on the
+PASSED side, |·| − 2 SE > tolerance on the FAILED side. Sign criteria: difference − 2 SE > 0 (PASSED), + 2 SE < 0
+(FAILED). Verdict order: INSTRUMENT_FAILED → FAILED → PASSED → UNDECIDED.
 
-| level | condition | tolerance | derivation |
-|---|---|---|---|
-| instrument | max_r \|ε(r) − (A1)\|, r < 2.5, each ρ | [ ] | [ ] |
-| instrument | \|normalisation − 1\|, each ρ | [ ] | [ ] (per-sprinkling sd 0.003 at ρ 30) |
-| instrument | max \|amp-dev − (A3)\|, linear k = 0–3 and nonlinear A 0.5, each ρ | [ ] | [ ] |
-| linear (A) | max \|amp-dev\|, k = 0–3, ρ 60 | [ ] | [ ] |
-| convergence | max \|amp-dev\|(ρ 60) < max \|amp-dev\|(ρ 30), k = 0–3 | − 2 SE | [ ] |
-| nonlinear (A) | max \|amp-dev\| against the pendulum, A 0.5, 1, 2, ρ 60 | [ ] | [ ] |
-| nonlinear (A) | max \|amp-dev\| against sine-Gordon, A 1 cos x, ρ 60 | [ ] | [ ] |
-| nonlinear (B) | residual max \|meas − B\|, A 0.5, 1, 2, each ρ | [ ] | [ ] |
-| conditions of B | \|skewness\|, \|excess kurtosis\|, \|direct check\| | [ ] | [ ] |
-| noise | growth exponent p, every mode | p < [ ] | [ ] |
-| noise | sd(ρ 60)/sd(ρ 30) | [ ] (ρ^−1/4 = 0.84) | [ ] |
-| scaling | renormalization max \|B − (A3)\| (ρ 60) < (ρ 30), A 1, 2 | − 2 SE | [ ] |
+| level | condition | ρ 30 | ρ 60 | development (ρ 30 / ρ 60) |
+|---|---|---|---|---|
+| instrument | max_r \|ε(r) − (A1)\|, r < 2.5 | 0.013 | 0.008 | 0.0080 / 0.0038 |
+| instrument | \|normalisation − 1\| (t ≥ 3) | 0.011 | 0.005 | 0.0060 / 0.0006 |
+| instrument | max \|amp-dev − (A3)\|, linear k 0–3 and nonlinear A 0.5 | 0.065 | 0.045 | 0.014 (lin1, SE 0.035) / 0.014 |
+| linear (A) | max \|amp-dev\|, k 0–3 | — | 0.09 | — / 0.062 |
+| nonlinear (A) | max \|amp-dev\| against the pendulum, A 0.5 / 1 / 2 | — | 0.085 / 0.105 / 0.285 | — / 0.064 / 0.079 / 0.205 |
+| nonlinear (A) | max \|amp-dev\| against sine-Gordon, A 1 cos x | — | 0.09 | — / 0.061 |
+| nonlinear (B) | residual max \|meas − B\|, A 0.5 / 1 / 2 | 0.02 / 0.025 / 0.065 | 0.015 / 0.025 / 0.04 | 0.007 / 0.008 / 0.028; 0.005 / 0.004 / 0.011 |
+| conditions of B | \|direct check\| | 0.017 | 0.012 | 0.011 / 0.0065 |
+| conditions of B | \|skewness\|, t ≥ 1.5 | 0.34 | 0.385 | 0.25 / 0.30 |
+| conditions of B | \|excess kurtosis\|, t ≥ 1.5 | 0.69 | 0.715 | 0.51 / 0.53 |
+| noise | growth exponent p, every mode | 1.45 | 1.45 | 1.14 / 1.11 |
+| convergence | max \|amp-dev\|(30) − (60), k 0–3 | sign | | +0.024 … +0.045 |
+| noise | 1 − sd(60)/sd(30) at t 4.75, every mode | sign | | +0.08 … +0.18 |
+| scaling | renormalization(30) − (60), A 1 and 2 | sign | | +0.020 ± 0.013, +0.060 ± 0.023 |
 
-Every condition on its own: |·| + 2 SE on the PASSED side, |·| − 2 SE on the FAILED side. Verdict order:
-INSTRUMENT_FAILED → FAILED → PASSED → UNDECIDED.
+The instrument level is the agreement with the predictions of the kernel itself ((A1), (A3)). The physics levels
+are the deviation from the continuum (A), the explanation of the nonlinear softening by the fluctuations (B and its
+conditions), and the scaling with density and time.
+
+Risk declared now: the renormalization of A 1 falls by +0.020 ± 0.013 in the development rows; at the card's n it may
+end UNDECIDED.
 
 ## 5. Reading declared now
 
@@ -86,7 +101,7 @@ or the noise has a growing mode.
 
 **Limits:**
 - flat order only (no gravity);
-- T ≤ [ ] (the noise accumulates; long-lived objects need another formulation);
+- T ≤ 6 (the noise accumulates; long-lived objects need another formulation; the development rows reach T 8);
 - the counterterm is a finite-density correction derived in the continuum;
 - J local, μ 1;
 - one kernel family.
@@ -97,17 +112,14 @@ or the noise has a growing mode.
   docs/c0_apex_predictions.md.
 - **ρ 20 and ρ 30, X 9.5, T 8**: diag/c0_ct.py, run diag/out/c0_ct_20261114T010642.json, predictions
   docs/c0_ct_predictions.md; check diag/c0_ct_renorm.py.
-- **The card's configuration**: diag/c0_card.py, [the development run], seeds 13000+.
+- **The card's configuration**: diag/c0_card.py, run diag/out/c0_card_dev_20261114T052221.json, seeds 13000–13003,
+  ρ 30 and 60 (the tolerances above).
 
-## 7. Open before freezing
+## 7. Settled before freezing
 
-- **Normalisation: settled (14 Nov).** It agrees with (A3) within the scatter between sprinklings. The per-sprinkling sd
-  of 0.003 at ρ 30 is shared by all kernels and enters the SE of the criterion. The earlier +0.5 % was seed 0 (+0.010)
-  and its neighbours.
-- **The noise readout must remove the expectation at each event's own t** (S − E[S](t_v)). Without it, the deterministic
-  spread of t²/2 in a slab of width 0.5 (var 0.22–0.54) poses as a kernel-independent floor. After removal, var =
-  2.6 var_diag + 0.19 at ρ 30.
-- **For the field modes the same holds**: the deviation from the exact solution is already taken event by event at the
-  event's own t, so their sd is not affected.
-- Tolerances from the development rows of diag/c0_card.py.
-- The number of sprinklings from the cost (ρ 60 is about 6× ρ 30).
+- **Normalisation**: it agrees with (A3) within the scatter between sprinklings (per-sprinkling sd 0.003–0.005 at
+  ρ 30, shared by all kernels).
+- **Noise readout**: it removes the expectation at each event's own t; the field modes are read event by event.
+- **Nonlinear**: compared with A and B separately (decision 26). The conditions of B are measured directly; in the
+  development rows the direct check is ≤ 0.011, and the skewness and kurtosis are small after t 1.5.
+- **Kernel**: MV8+ct (decision 26).

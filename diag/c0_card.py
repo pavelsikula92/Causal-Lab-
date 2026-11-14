@@ -137,8 +137,8 @@ def _ES(w, rho, tg):
     return np.concatenate([[0.0], np.cumsum(0.5 * (F0[1:] + F0[:-1]) * dt)])
 
 
-def task(rho, seed, X=X0, T=T0):
-    t, x, y, z = sprinkle4(rho, X, T, SEED0 + seed)
+def task(rho, seed, X=X0, T=T0, seed0=SEED0):
+    t, x, y, z = sprinkle4(rho, X, T, seed0 + seed)
     RS = rows(rho)
     W = np.array([r[1] for r in RS])
     ctd = np.array([r[2] for r in RS])
@@ -289,6 +289,48 @@ def analyse(R):
             o["modes"][mname] = mo
         out[name] = o
     return out
+
+
+def card_stats(R):
+    """analyse() of one density (silent) plus, per mode, the growth exponent with its SE over sprinklings, the
+    per-sprinkling sd, and for the nonlinear homogeneous rows the largest |skewness|, |excess kurtosis| (t >= 1.5) and
+    |direct check| (all slabs) with their SE. The card's readouts (docs/C0_card_draft.md)."""
+    import contextlib
+    import io
+    with contextlib.redirect_stdout(io.StringIO()):
+        A = analyse(R)
+    tb = np.array(R[0]["t"])
+    n = len(R)
+
+    def mx(Xa):
+        mean = Xa.mean(0)
+        j = int(np.argmax(np.abs(mean)))
+        return (float(abs(mean[j])), float(Xa[:, j].std(ddof=1) / math.sqrt(Xa.shape[0])))
+
+    for name, _ in KERNELS:
+        for m in MODES:
+            D = np.array([r["k"][name]["modes"][m[0]] for r in R])
+            ps = [growth(tb, D[i, :, 1]) for i in range(n)]
+            mo = A[name]["modes"][m[0]]
+            mo["p"] = (float(np.mean(ps)), float(np.std(ps, ddof=1) / math.sqrt(n)))
+            mo["sd_seeds"] = D[:, :, 1].tolist()
+            if not m[1] and m[2] == 0:
+                late = tb >= 1.5
+                mo["skew"] = mx(D[:, late, 2])
+                mo["kurt"] = mx(D[:, late, 3])
+                mo["direct"] = mx(D[:, :, 4])
+    return A
+
+
+def sd_ratio(A_lo, A_hi, name, mode, t=4.75, tb=None):
+    """sd(high density)/sd(low density) of a mode at time t, with its SE (independent sprinklings)."""
+    tb = np.arange(0.25, T0 - 0.4, 0.5) if tb is None else tb
+    j = int(np.argmin(np.abs(tb - t)))
+    a = np.array(A_lo[name]["modes"][mode]["sd_seeds"])[:, j]
+    b = np.array(A_hi[name]["modes"][mode]["sd_seeds"])[:, j]
+    r = b.mean() / a.mean()
+    se = r * math.sqrt((a.std(ddof=1) / a.mean()) ** 2 / a.size + (b.std(ddof=1) / b.mean()) ** 2 / b.size)
+    return float(r), float(se)
 
 
 def main():
