@@ -217,7 +217,7 @@ def grid_at(ts, xs, f, ev):
     return v0 * (1 - at) + v1 * at
 
 
-def compare(R, verbose=True):
+def compare(R, verbose=True, mode=0, return_bins=False):
     """The measured paired difference D against the exact mean (this module) and the continuum xi scan."""
     import math as m_
     from diag import c1_conf as C
@@ -227,7 +227,7 @@ def compare(R, verbose=True):
     X, T = R[0]["X"], R[0]["T"]
     w = minvar(8)
     ct = delta(w, rho)
-    ts, xs, fc = mean_field(rho, C.A_WELL, C.L_WELL, w, ct, T=T)
+    ts, xs, fc = mean_field(rho, C.A_WELL, C.L_WELL, w, ct, T=T, mode=mode)
     _, _, ff = mean_field(rho, 0.0, C.L_WELL, w, ct, T=T, Xg=1.0)
     nt, nx = np.array(R[0]["flat"]["S"]).shape
     Dm, Dp = [], []
@@ -269,7 +269,61 @@ def compare(R, verbose=True):
                     c2 += (mean[i, j] - pred[i, j]) ** 2 / (se[i, j] ** 2 + 0.005 ** 2)
                     nn += 1
                     mx = max(mx, abs(mean[i, j] - pred[i, j]))
-        out[(lo, hi)] = (c2 / nn, mx, nn)
+        out[(lo, hi)] = (c2 / nn if nn else float('nan'), mx, nn)
         if verbose:
-            print(f"  t {lo}-{hi}: chi2/bin {c2 / nn:.2f} ({nn} bins, SE floor 0.005), max |meas - exact mean| {mx:.3f}")
+            print(f"  t {lo}-{hi}: chi2/bin {out[(lo, hi)][0]:.2f} ({nn} bins, SE floor 0.005), max |meas - exact mean| {mx:.3f}")
+    if return_bins:
+        return out, {"Dm": Dm, "Dp": Dp, "xc": xc, "tcs": tcs}
     return out
+
+
+def card_stats(R, floor=0.005, flat_floor=0.002):
+    """The readouts of card C1 (docs/C1_card.md) at one density: per bin (t >= 1, |x| <= 2.5) the paired difference with
+    its SE over pairs and the two predictions (the exact mean, mode 0; the conformally coupled Green function smeared by
+    the same flat kernel, mode 1); the centre window (|x| < 0.75, t >= 4.5) per pair; the flat parents per time bin
+    against the flat (A3)."""
+    import math as m_
+    from diag import c1_conf as C
+    n = len(R)
+    X = R[0]["X"]
+    _, b0 = compare(R, verbose=False, return_bins=True, mode=0)
+    _, b1 = compare(R, verbose=False, return_bins=True, mode=1)
+    Dm, P0, P1 = b0["Dm"], np.nanmean(b0["Dp"], 0), np.nanmean(b1["Dp"], 0)
+    xc, tcs = b0["xc"], b0["tcs"]
+    mean = np.nanmean(Dm, 0)
+    se = np.nanstd(Dm, 0, ddof=1) / m_.sqrt(n)
+    sel = [(i, j) for i in range(tcs.size) for j in range(xc.size)
+           if tcs[i] >= 1.0 and abs(xc[j]) <= 2.5 and np.isfinite(mean[i, j]) and se[i, j] > 0]
+    bins = [(float(tcs[i]), float(xc[j]), float(mean[i, j]), float(se[i, j]), float(P0[i, j]), float(P1[i, j]))
+            for i, j in sel]
+    cen = [(i, j) for i, j in sel if abs(xc[j]) < 0.75 and tcs[i] >= 4.5]
+    d_loc = np.array([np.nanmean([Dm[k, i, j] - P1[i, j] for i, j in cen]) for k in range(n)])
+    d_ex = np.array([np.nanmean([Dm[k, i, j] - P0[i, j] for i, j in cen]) for k in range(n)])
+    pred = float(np.mean([P0[i, j] - P1[i, j] for i, j in cen]))
+    # flat parents against the flat (A3), per time bin over the inner events with |x| <= 2.5
+    from diag.c0_apex import delta
+    from diag.c0_minvar import minvar
+    rho = R[0]["rho"]
+    w = minvar(8)
+    ts, xs, ff = mean_field(rho, 0.0, C.L_WELL, w, delta(w, rho), T=R[0]["T"], Xg=1.0)
+    fmid = ff[:, ff.shape[1] // 2]
+    nt = np.array(R[0]["flat"]["S"]).shape[0]
+    flat = []
+    for r in R:
+        ev = np.array(r["flat"]["ev"])
+        m = np.abs(ev[:, 1]) <= 2.5
+        ib = np.floor(ev[m, 0] / C.TB_W).astype(int)
+        Sm = np.bincount(ib, weights=None, minlength=nt).astype(float)
+        Sp = np.bincount(ib, weights=np.interp(ev[m, 0], ts, fmid), minlength=nt)
+        Sx = np.array(r["flat"]["S"])
+        Nx = np.array(r["flat"]["N"])
+        cols = np.abs(xc) <= 2.5
+        with np.errstate(invalid="ignore", divide="ignore"):
+            flat.append(Sx[:, cols].sum(1) / Nx[:, cols].sum(1) - Sp / Sm)
+    flat = np.array(flat)
+    fm = np.nanmean(flat, 0)
+    fs = np.nanstd(flat, 0, ddof=1) / m_.sqrt(n)
+    flat_items = [(float(tcs[i]), float(fm[i]), float(fs[i])) for i in range(nt) if tcs[i] >= 0.5 and np.isfinite(fm[i])]
+    return {"n": n, "bins": bins, "centre_local": (float(d_loc.mean()), float(d_loc.std(ddof=1) / m_.sqrt(n))),
+            "centre_exact": (float(d_ex.mean()), float(d_ex.std(ddof=1) / m_.sqrt(n))), "centre_pred": pred,
+            "flat": flat_items}

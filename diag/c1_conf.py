@@ -61,8 +61,14 @@ def ricci(x):
 
 
 def task(rho, seed, X=7.0, T=6.0):
-    t, x, y, z = sprinkle4(rho, X, T, 21000 + seed)
-    keep = np.random.default_rng(31000 + seed).uniform(size=t.size) < omega(x) ** 4
+    return task_seeds(rho, 21000 + seed, 31000 + seed, X, T, seed)
+
+
+def task_seeds(rho, s_sprinkle, s_thin, X=7.0, T=6.0, label=None):
+    """One pair: the flat sprinkling (seed s_sprinkle) and its curved child (thinning seed s_thin)."""
+    seed = s_sprinkle if label is None else label
+    t, x, y, z = sprinkle4(rho, X, T, s_sprinkle)
+    keep = np.random.default_rng(s_thin).uniform(size=t.size) < omega(x) ** 4
     w = minvar(8)
     ct = delta(w, rho)
     c = 1.0 / (2.0 * math.pi * math.sqrt(6.0 * rho))
