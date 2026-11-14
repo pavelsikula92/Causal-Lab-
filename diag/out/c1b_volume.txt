@@ -1,0 +1,23 @@
+controls (flat to first order; eps must vanish)
+constant g = 1                     l 4.00 tau 0.70: V0 check 1.000000; dV/V0  -265.2245; -dtau4  +265.2245; eps/a -0.00000
+uniform field g = z                l 4.00 tau 0.70: V0 check 1.000000; dV/V0    -0.0000; -dtau4    +0.0000; eps/a +0.00000
+uniform field g = x                l 4.00 tau 0.70: V0 check 1.000000; dV/V0  -795.6735; -dtau4  +795.6735; eps/a -0.00000
+vacuum (the whole diamond outside the ball R 1.5)
+tangential, b 3                    l 4.00 tau 0.40: V0 check 1.000000; dV/V0  -376.9625; -dtau4  +376.9625; eps/a +0.00000
+tangential, b 3                    l 4.00 tau 0.80: V0 check 1.000000; dV/V0   -95.6472; -dtau4   +95.6472; eps/a +0.00000
+tangential, b 3                    l 4.00 tau 1.50: V0 check 1.000000; dV/V0   -28.5483; -dtau4   +28.5483; eps/a -0.00000
+tangential, b 2.5, long            l 6.00 tau 0.40: V0 check 1.000000; dV/V0  -916.4078; -dtau4  +916.4078; eps/a +0.00000
+radial, r 2.2 to 5.2               l 3.00 tau 0.40: V0 check 1.000000; dV/V0  -195.2657; -dtau4  +195.2657; eps/a -0.00000
+oblique                            l 3.94 tau 0.40: V0 check 1.000000; dV/V0  -367.3121; -dtau4  +367.3121; eps/a -0.00000
+tangential, b 2.5, long            l 6.00 tau 0.80: V0 check 1.000000; dV/V0  -230.6259; -dtau4  +230.6259; eps/a -0.00000
+radial, r 2.2 to 5.2               l 3.00 tau 0.80: V0 check 1.000000; dV/V0   -50.1067; -dtau4   +50.1067; eps/a +0.00000
+oblique                            l 3.94 tau 0.80: V0 check 1.000000; dV/V0   -93.2426; -dtau4   +93.2426; eps/a +0.00000
+matter (the segment crosses the ball)
+through the centre                 l 6.00 tau 0.40: V0 check 1.000000; dV/V0 -1825.3450; -dtau4 +1827.9366; eps/a +2.59164
+b 0.75                             l 6.00 tau 0.40: V0 check 1.000000; dV/V0 -1675.6866; -dtau4 +1678.0204; eps/a +2.33386
+inside, centre, short              l 1.00 tau 0.40: V0 check 1.000000; dV/V0   -79.9064; -dtau4   +80.0000; eps/a +0.09363
+grazing b 1.6 (vacuum)             l 6.00 tau 0.15: V0 check 1.000000; dV/V0 -8875.0565; -dtau4 +8875.0565; eps/a -0.00000
+through the centre                 l 6.00 tau 0.80: V0 check 1.000000; dV/V0  -457.4657; -dtau4  +460.0240; eps/a +2.55825
+b 0.75                             l 6.00 tau 0.80: V0 check 1.000000; dV/V0  -419.9926; -dtau4  +422.2956; eps/a +2.30299
+inside, centre, short              l 1.00 tau 0.80: V0 check 1.000000; dV/V0   -24.3366; -dtau4   +24.4444; eps/a +0.10785
+grazing b 1.6 (vacuum)             l 6.00 tau 0.15: V0 check 1.000000; dV/V0 -8875.0565; -dtau4 +8875.0565; eps/a -0.00000

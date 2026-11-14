@@ -1,0 +1,64 @@
+F3.16 (C0: 3+1 Green function, MV8 + counterterm; MV2+ct reported); X 7, T 6; rho 30 (16 sprinklings), 60 (4 sprinklings); base seed 0; mean +- SE
+rho 30, MV8+ct:
+  eps rho 30: 0.0031 +- 0.0020 (tolerance 0.013)
+  |norm - 1| rho 30: 0.0009 +- 0.0008 (tolerance 0.011)
+  max |amp-dev - (A3)| rho 30 (nl0_A0.5): 0.0320 +- 0.0117 (tolerance 0.065)
+  residual |meas - B| A 0.5 rho 30: 0.0172 +- 0.0117 (tolerance 0.02)
+  residual |meas - B| A 1 rho 30: 0.0173 +- 0.0104 (tolerance 0.025)
+  residual |meas - B| A 2 rho 30: 0.0239 +- 0.0126 (tolerance 0.065)
+  |direct| rho 30 (nl0_A2): 0.0119 +- 0.0009 (tolerance 0.017)
+  |skew| rho 30 (nl0_A2): 0.2730 +- 0.0070 (tolerance 0.34)
+  |kurt| rho 30 (nl0_A2): 0.5023 +- 0.0132 (tolerance 0.69)
+  growth exponent p rho 30 (lin2): 1.1481 +- 0.0060 (tolerance 1.45)
+     lin0      max|A| 0.111  max|meas-(A3)| 0.018  p 0.79  sd 0.04 0.16 0.25 0.27 0.37
+     lin1      max|A| 0.109  max|meas-(A3)| 0.011  p 0.99  sd 0.03 0.10 0.13 0.20 0.25
+     lin2      max|A| 0.085  max|meas-(A3)| 0.010  p 1.15  sd 0.03 0.07 0.13 0.17 0.22
+     lin3      max|A| 0.096  max|meas-(A3)| 0.010  p 1.14  sd 0.02 0.06 0.11 0.16 0.20
+     nl0_A0.5  max|A| 0.113  max|meas-(A3)| 0.032  max|meas-B| 0.017  renorm 0.015  p 0.77  sd 0.04 0.15 0.25 0.27 0.35
+     nl0_A1    max|A| 0.140  max|meas-(A3)| 0.083  max|meas-B| 0.017  renorm 0.065  p 0.73  sd 0.04 0.14 0.24 0.27 0.31
+     nl0_A2    max|A| 0.344  max|meas-(A3)| 0.211  max|meas-B| 0.024  renorm 0.187  p 0.97  sd 0.02 0.09 0.19 0.24 0.26
+     nl1_A1    max|A| 0.115  p 0.95  sd 0.03 0.09 0.12 0.18 0.24
+     reported, MV2+ct: max|A| lin0 0.047, lin1 0.052, lin2 0.052, lin3 0.051, nl0_A0.5 0.064, nl0_A1 0.171, nl0_A2 0.409, nl1_A1 0.094; eps 0.0042; norm +0.0007
+rho 60, MV8+ct:
+  eps rho 60: 0.0023 +- 0.0042 (tolerance 0.008)
+  |norm - 1| rho 60: 0.0011 +- 0.0010 (tolerance 0.005)
+  max |amp-dev - (A3)| rho 60 (nl0_A0.5): 0.0294 +- 0.0078 (tolerance 0.045)
+  residual |meas - B| A 0.5 rho 60: 0.0188 +- 0.0078 (tolerance 0.015)
+  residual |meas - B| A 1 rho 60: 0.0231 +- 0.0056 (tolerance 0.025)
+  residual |meas - B| A 2 rho 60: 0.0335 +- 0.0073 (tolerance 0.04)
+  |direct| rho 60 (nl0_A2): 0.0092 +- 0.0008 (tolerance 0.012)
+  |skew| rho 60 (nl0_A2): 0.2762 +- 0.0109 (tolerance 0.385)
+  |kurt| rho 60 (nl0_A2): 0.5533 +- 0.0329 (tolerance 0.715)
+  growth exponent p rho 60 (lin3): 1.1151 +- 0.0098 (tolerance 1.45)
+     lin0      max|A| 0.062  max|meas-(A3)| 0.017  p 0.72  sd 0.03 0.15 0.22 0.24 0.33
+     lin1      max|A| 0.053  max|meas-(A3)| 0.013  p 0.92  sd 0.02 0.09 0.12 0.18 0.21
+     lin2      max|A| 0.061  max|meas-(A3)| 0.014  p 1.09  sd 0.02 0.07 0.12 0.16 0.19
+     lin3      max|A| 0.062  max|meas-(A3)| 0.008  p 1.12  sd 0.02 0.06 0.10 0.15 0.19
+     nl0_A0.5  max|A| 0.065  max|meas-(A3)| 0.029  max|meas-B| 0.019  renorm 0.011  p 0.71  sd 0.03 0.15 0.21 0.23 0.32
+     nl0_A1    max|A| 0.092  max|meas-(A3)| 0.069  max|meas-B| 0.023  renorm 0.046  p 0.66  sd 0.03 0.14 0.21 0.22 0.28
+     nl0_A2    max|A| 0.228  max|meas-(A3)| 0.161  max|meas-B| 0.033  renorm 0.127  p 0.81  sd 0.02 0.09 0.16 0.19 0.21
+     nl1_A1    max|A| 0.065  p 0.89  sd 0.02 0.09 0.11 0.17 0.20
+     reported, MV2+ct: max|A| lin0 0.030, lin1 0.036, lin2 0.031, lin3 0.028, nl0_A0.5 0.045, nl0_A1 0.130, nl0_A2 0.302, nl1_A1 0.066; eps 0.0036; norm +0.0009
+  linear (A) max |amp-dev| rho 60 (lin0): 0.0620 +- 0.0040 (tolerance 0.09)
+  nonlinear (A) A 0.5 rho 60: 0.0646 +- 0.0038 (tolerance 0.085)
+  nonlinear (A) A 1 rho 60: 0.0916 +- 0.0058 (tolerance 0.105)
+  nonlinear (A) A 2 rho 60: 0.2278 +- 0.0073 (tolerance 0.285)
+  nonlinear (A) A 1 cos x rho 60: 0.0647 +- 0.0064 (tolerance 0.09)
+  convergence lin0: +0.0492 +- 0.0053 (sign)
+  convergence lin1: +0.0565 +- 0.0062 (sign)
+  convergence lin2: +0.0237 +- 0.0003 (sign)
+  convergence lin3: +0.0336 +- 0.0003 (sign)
+  noise falls lin0: +0.1081 +- 0.0083 (sign)
+  noise falls lin1: +0.1564 +- 0.0067 (sign)
+  noise falls lin2: +0.1244 +- 0.0127 (sign)
+  noise falls lin3: +0.0797 +- 0.0116 (sign)
+  noise falls nl0_A0.5: +0.1038 +- 0.0083 (sign)
+  noise falls nl0_A1: +0.0988 +- 0.0085 (sign)
+  noise falls nl0_A2: +0.1711 +- 0.0086 (sign)
+  noise falls nl1_A1: +0.1611 +- 0.0071 (sign)
+  renormalization falls nl0_A1: +0.0192 +- 0.0119 (sign)
+  renormalization falls nl0_A2: +0.0595 +- 0.0146 (sign)
+instrument: eps rho 30: OK; |norm - 1| rho 30: OK; max |amp-dev - (A3)| rho 30 (nl0_A0.5): OK; eps rho 60: FAILS; |norm - 1| rho 60: OK; max |amp-dev - (A3)| rho 60 (nl0_A0.5): FAILS
+passed conditions: residual |meas - B| A 0.5 rho 30: no; residual |meas - B| A 1 rho 30: no; residual |meas - B| A 2 rho 30: yes; |direct| rho 30 (nl0_A2): yes; |skew| rho 30 (nl0_A2): yes; |kurt| rho 30 (nl0_A2): yes; growth exponent p rho 30 (lin2): yes; residual |meas - B| A 0.5 rho 60: no; residual |meas - B| A 1 rho 60: no; residual |meas - B| A 2 rho 60: no; |direct| rho 60 (nl0_A2): yes; |skew| rho 60 (nl0_A2): yes; |kurt| rho 60 (nl0_A2): yes; growth exponent p rho 60 (lin3): yes; linear (A) max |amp-dev| rho 60 (lin0): yes; nonlinear (A) A 0.5 rho 60: yes; nonlinear (A) A 1 rho 60: yes; nonlinear (A) A 2 rho 60: yes; nonlinear (A) A 1 cos x rho 60: yes; convergence lin0: yes; convergence lin1: yes; convergence lin2: yes; convergence lin3: yes; noise falls lin0: yes; noise falls lin1: yes; noise falls lin2: yes; noise falls lin3: yes; noise falls nl0_A0.5: yes; noise falls nl0_A1: yes; noise falls nl0_A2: yes; noise falls nl1_A1: yes; renormalization falls nl0_A1: no; renormalization falls nl0_A2: yes
+failed conditions: residual |meas - B| A 0.5 rho 30: no; residual |meas - B| A 1 rho 30: no; residual |meas - B| A 2 rho 30: no; |direct| rho 30 (nl0_A2): no; |skew| rho 30 (nl0_A2): no; |kurt| rho 30 (nl0_A2): no; growth exponent p rho 30 (lin2): no; residual |meas - B| A 0.5 rho 60: no; residual |meas - B| A 1 rho 60: no; residual |meas - B| A 2 rho 60: no; |direct| rho 60 (nl0_A2): no; |skew| rho 60 (nl0_A2): no; |kurt| rho 60 (nl0_A2): no; growth exponent p rho 60 (lin3): no; linear (A) max |amp-dev| rho 60 (lin0): no; nonlinear (A) A 0.5 rho 60: no; nonlinear (A) A 1 rho 60: no; nonlinear (A) A 2 rho 60: no; nonlinear (A) A 1 cos x rho 60: no; convergence lin0: no; convergence lin1: no; convergence lin2: no; convergence lin3: no; noise falls lin0: no; noise falls lin1: no; noise falls lin2: no; noise falls lin3: no; noise falls nl0_A0.5: no; noise falls nl0_A1: no; noise falls nl0_A2: no; noise falls nl1_A1: no; renormalization falls nl0_A1: no; renormalization falls nl0_A2: no
+cost: 2054 s per sprinkling (6952s)

@@ -1,0 +1,47 @@
+F3.16b (C0 revision b: 3+1 Green function, MV8 + counterterm); X 7, T 6; rho 30 (16 sprinklings), 60 (12 sprinklings); base seed 1
+instrument: 110 items, t_crit 5.29 / 5.99 (rho 30 / 60 df); floor 0.002; the six largest |d|/SE_eff:
+  lin2 t 5.25 rho 30: d -0.0175, SE 0.0064, z 2.60 (t_crit 5.29) OK
+  lin1 t 4.25 rho 60: d -0.0094, SE 0.0037, z 2.25 (t_crit 5.99) OK
+  lin0 t 4.75 rho 30: d +0.0116, SE 0.0066, z 1.68 (t_crit 5.29) OK
+  eps shell 7 rho 60: d -0.0044, SE 0.0018, z 1.65 (t_crit 5.99) OK
+  lin0 t 5.25 rho 60: d +0.0160, SE 0.0097, z 1.62 (t_crit 5.99) OK
+  lin1 t 3.75 rho 60: d -0.0059, SE 0.0032, z 1.56 (t_crit 5.99) OK
+physics (M = max_j |d_j| + 2 SE_j; p = mean + 2 SE):
+  B_0.5_30: M 0.0374 (tolerance 0.055) passed yes
+  B_0.5_60: M 0.0329 (tolerance 0.045) passed yes
+  B_1_30: M 0.0296 (tolerance 0.04) passed yes
+  B_1_60: M 0.0252 (tolerance 0.04) passed yes
+  B_2_30: M 0.0397 (tolerance 0.065) passed yes
+  B_2_60: M 0.0297 (tolerance 0.04) passed yes
+  direct_30: M 0.0110 (tolerance 0.014) passed yes
+  direct_60: M 0.0070 (tolerance 0.011) passed yes
+  skew_30: M 0.2899 (tolerance 0.41) passed yes
+  skew_60: M 0.2925 (tolerance 0.31) passed yes
+  kurt_30: M 0.5977 (tolerance 0.6) passed yes
+  kurt_60: M 0.5527 (tolerance 0.615) passed yes
+  p_30: M 1.1724 (tolerance 1.2) passed yes
+  p_60: M 1.1170 (tolerance 1.15) passed yes
+  lin_cont_60: M 0.0656 (tolerance 0.08) passed yes
+  nl_cont_0.5_60: M 0.0684 (tolerance 0.075) passed yes
+  nl_cont_1_60: M 0.0854 (tolerance 0.1) passed yes
+  nl_cont_2_60: M 0.2058 (tolerance 0.25) passed yes
+  nl1_cont_60: M 0.0691 (tolerance 0.09) passed yes
+sign criteria (difference +- SE):
+  conv_lin0: +0.0567 +- 0.0052 passed yes
+  conv_lin1: +0.0472 +- 0.0042 passed yes
+  conv_lin2: +0.0232 +- 0.0002 passed yes
+  conv_lin3: +0.0334 +- 0.0001 passed yes
+  noise_lin0: +0.1186 +- 0.0078 passed yes
+  noise_lin1: +0.1236 +- 0.0079 passed yes
+  noise_lin2: +0.1074 +- 0.0063 passed yes
+  noise_lin3: +0.0906 +- 0.0077 passed yes
+  noise_nl0_A0.5: +0.1161 +- 0.0078 passed yes
+  noise_nl0_A1: +0.1135 +- 0.0080 passed yes
+  noise_nl0_A2: +0.1846 +- 0.0089 passed yes
+  noise_nl1_A1: +0.1313 +- 0.0079 passed yes
+  renorm_1: +0.0191 +- 0.0003 passed yes
+  renorm_2: +0.0597 +- 0.0008 passed yes
+instrument failures: none
+not passed: none
+failed: none
+cost: 254 s per sprinkling (1798s)

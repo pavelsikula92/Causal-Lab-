@@ -625,3 +625,75 @@ systematics the constraint was about twice as noisy.
 - For B4: the large amplitude of an oscillon means a larger change of its effective potential, which does not imply a
   longer life (frequency, profile, radius and radiation channels change). B4 is not tuned on assumed robustness to
   noise; first the effective potential as a function of amplitude, time and density must be known.
+
+## 27. Card C0 revision 1 is frozen as F3.16 (14 Nov, 06:29)
+
+The author started the deciding run of card docs/C0_card_draft.md revision 1 (commit 3488bde). The model, the
+readouts, the criteria and the tolerances are those of the card; nothing is changed after the run (R132).
+
+**Test F3.16**: phases/F3_structure/F3_16_green_3p1.py, md5 3de531220105c4c332e23a88b56899fd.
+
+**Helpers:**
+- diag/c0_card.py 1f2fc1071acc0e480a6f34a14a5af08f
+- diag/c0_apex.py 12c93bbaff2d1ee384848da128c90d4d
+- diag/c0_ct.py 8da25cd17f5df94e725441696efda5c2
+- diag/c0_ct_renorm.py 9686e935fbd7d924f62f2ca877d305e9
+- diag/c0_minvar.py 5b31241ec688e2eceec4bd326a11f63f
+- diag/c0_links4.py 0f160d3dc53ef91b6f6c80624dba4a5b
+
+The md5 sums are of the files with LF line ends, as in the repository; a Windows checkout with CRLF has the same
+content.
+
+**Tolerances**: diag/c0_card_tol.py (md5 00fa61213a3f889de5b0ae8fdcca1371) from the development rows
+diag/out/c0_card_dev_20261114T052221.json, seeds 13000–13003.
+
+**The deciding run**: base seed 0; ρ 30 with 16 sprinklings, ρ 60 with 4; MV8+ct decides, MV2+ct is reported.
+
+**Risk declared before the run**: the fall of the renormalization at A 1 with density (development +0.020 ± 0.013)
+may end UNDECIDED.
+
+## 28. C0 revision b: statistical criteria; card F3.16b frozen (14 Nov, 15:49)
+
+**What led here.**
+- F3.16 ended INSTRUMENT_FAILED by design errors of its criteria (docs/findings.md).
+- The late deviation was a fluctuation: the mean of the linear rule obeys (A3) exactly
+  (docs/derivations/c0_mean_exactness.md, diag/c0_late.py).
+- A bootstrap of the new development rows (diag/out/c0_card_b_dev_20261114T120302.json, seeds 19000+, at the card's
+  numbers of sprinklings) showed that the tolerance 1.25 (|dev| + 2 SE) on about 45 near-zero quantities passes data
+  identical to the development in 1 % of cases.
+
+**Decision (the author confirmed the proposal of 14 Nov, ~15:40, and started the run).**
+- **Instrument criteria** (predictions exact in expectation: ε of 10 shells against (A1), the normalisation, (A3) of
+  the linear rows in every slab) become a significance test: |d| / √(SE² + 0.002²) < t_crit. t_crit is Student t with
+  n − 1 degrees of freedom at family-wise α 1 % over all items (Bonferroni).
+- **Physics tolerances** keep the rule of 10 Nov (the development value + 2 SE + a margin), with a statistical margin:
+  the statistic is the maximum over slabs of |d_j| + 2 SE_j, and the tolerance is its development value + z SE (the
+  bootstrap SE of the statistic), with z one-sided at family-wise 5 % over the criteria.
+- **Sign criteria** as before; the SE of the renormalization comes from a jackknife over the sprinklings.
+- In the bootstrap of the development this form passes 89 %, UNDECIDED 10 %, INSTRUMENT_FAILED 1 % (optimistic, the
+  same data).
+- This form is the default for later cards with many near-zero criteria, unless the author decides otherwise.
+
+**Frozen.** Card docs/C0_card_b.md.
+- **Test F3.16b**: phases/F3_structure/F3_16b_green_3p1_rev.py, md5 a58572c4c3cacc7ef602def7316e1362.
+- **Helpers**: diag/c0_card_b.py 2148fa9ace3716a0e613cae488746b0f, diag/c0_fast.py
+  1dc98997a7e414a7d7eeb0b7a8b6a5da (bit-identical to diag/c0_card.evolve_card), and the helpers of decision 27.
+- **Run**: ρ 30 with 16 sprinklings and ρ 60 with 12; base seed 0 decides.
+
+## 29. Card C1 is frozen as F5.3 (14 Nov, 19:00)
+
+**The author's instruction (14 Nov, 18:43):** "Dost dobrý, na chvilku se vzdálím tak jak bude ten test rovnou ho můžeš
+pustit." ("Good, I'll step away for a while; as soon as the test is ready, you can start it straight away.") The run
+was started by Claude through the computer-use link (VS Code, Terminal → Run Task "Lab: F5.3").
+
+**What led here.** docs/findings.md, "C1 development rows": on a conformally flat planar well the C0 rule follows its
+exact mean (the curved volume along each pair), which is not a local ξR field. The author agreed on 18:39 to fix this
+as a property of the substrate with a card (option 1 of 18:3x).
+
+**Frozen.** Card docs/C1_card.md.
+- **Test F5.3**: phases/F5_gravity/F5_03_field_curved_order_3p1.py, md5 4ff14c8a75c4dba678b999a669d287bd.
+- **Helpers**: diag/c1_conf.py 7f05b01eefdbef0ce2899846fe8ae4eb, diag/c1_apex.py e12a8e24b2983f522abf4ae3b53d31e6,
+  diag/c0_fast.py 1dc98997a7e414a7d7eeb0b7a8b6a5da, and the helpers of decisions 27 and 28.
+- **Criteria**: the form of decision 28 (significance tests against predictions computed by frozen code; one sign
+  criterion).
+- **Run**: ρ 30 and 60, 8 pairs each, base seed 0 decides.
