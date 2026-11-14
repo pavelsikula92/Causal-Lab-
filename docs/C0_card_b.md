@@ -68,7 +68,7 @@ The statistic is M = max over slabs (and over amplitudes for the conditions of B
 | nonlinear (A) against the pendulum, A 0.5 / 1 / 2 | — | 0.075 / 0.1 / 0.25 | — / 0.064 / 0.088 / 0.216 |
 | nonlinear (A) against sine-Gordon, A 1 cos x | — | 0.09 | — / 0.072 |
 
-Derivation: .
+Derivation: `python -m diag.c0_card_b --derive3 diag/out/c0_card_b_dev_20261114T120302.json`.
 
 ### Physics, sign criteria
 
