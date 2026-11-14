@@ -1,10 +1,10 @@
 # Card C0: the retarded Green function of a 3+1 order and the field it carries
 
-**Revision 0 (skeleton), 14 Nov 2026, NOT frozen.** Decision 25: the card is frozen only after the nonlinear response,
-the higher modes and the long-time noise have been measured (diag/c0_ct.py, the run of 13/14 Nov). The tolerances
-follow the rule of 10 Nov (2 SE at the card's number of sprinklings + the largest development offset + a margin) and
-are filled from those development rows. Every number marked [ ] is open. Helpers: diag/c0_apex.py (the continuum
-expectation), diag/c0_minvar.py (kernels), diag/c0_ct.py (counterterm, modes, noise), diag/c0_links4.py (sprinkling).
+**Revision 0.1 (structure after decision 26), 14 Nov 2026, NOT frozen.** Decisions 25 and 26. The tolerances follow
+the rule of 10 Nov (2 SE at the card's number of sprinklings + the largest development offset + a margin) and are filled
+from the development rows of diag/c0_card.py, which runs the instrument and every readout in the card's configuration
+(dev seeds 13000+; the card runs on fresh seeds). Every number marked [ ] is open. Helpers: diag/c0_apex.py (the
+continuum expectation), diag/c0_minvar.py (kernels), diag/c0_ct_renorm.py (J_eff), diag/c0_links4.py (sprinkling).
 
 ## 1. Hypothesis
 
@@ -23,38 +23,54 @@ and with noise that accumulates without a growing mode.
 
 ## 2. Model
 
-- Kernel: [MV2+ct or MV8+ct, the author's choice after the night run]. The other candidate and MVA8 are computed on the
-  same pairs as references and decide nothing.
+- Kernel: **MV8+ct** (decision 26). MV2+ct is computed on the same pairs as a reference check and decides nothing.
 - Enumeration: pairs with ρV ≤ 22, layers n ≤ 16.
 - The counterterm is solved per event (Newton; 1 − δμ cos φ > 0, unique).
-- Domain: pyramids X [ ], T [ ]; densities ρ [30 and 60]; [ ] sprinklings per density; seed [ ] decides.
+- Domain: pyramids X 7, T 6; densities ρ 30 and 60; [16 and 4] sprinklings; seeds [ ].
 - Coordinates only in the readouts.
 
 ## 3. Readouts
 
-- **ε(r)**: the kernel's sum per unit cone measure r dr, resolved by the distance r of the pair (sample events in a late
-  time window), against (A1).
-- **Normalisation**: the constant-source sum against t²/2 and against (A3).
-- **Modes**: the amplitude deviation of the mode from the exact solution, by projection on cos(kx), in slabs of time.
+- **ε(r)**: the kernel's sum per unit cone measure r dr, by shells r < 2.5 (sample events at t ∈ [3.5, 5.5)), against
+  (A1).
+- **Normalisation**: the constant-source sum against its expectation at each event's own t, S/E[S](t_v) − 1, t ≥ 3.
+- **Modes**: the amplitude deviation of the mode from the exact solution, by projection on cos(kx), in slabs
+  |t − b| < 0.25 of the inner events.
   - Linear k = 0, 1, 2, 3 (data A cos(kx) cos(kt), μ 1).
-  - Nonlinear homogeneous A = 0.5, 1, 2 (against the pendulum) and A = 1 cos x (against 1+1 sine-Gordon).
-- **Noise**: the sd of the remainder by time, with the deterministic spread of the slab removed (see 7); its growth
-  exponent p (sd ∝ t^p); its density scaling.
+  - Nonlinear homogeneous A = 0.5, 1, 2 (exact: the pendulum).
+  - Nonlinear A = 1 cos x (exact: 1+1 sine-Gordon).
+- **Comparisons (decision 26), each reported separately**:
+  - **A**, the noise-free continuum: amp-dev itself. Linear and nonlinear.
+  - **(A3)**, the finite-density expectation of the kernel without noise, predicted.
+  - **B**, the fluctuation-corrected mean response J_eff = μ e^(−s²/2) sin f, with s the measured sd of the same row,
+    pooled over the sprinklings of the density. Nonlinear homogeneous rows.
+  - **Residual** = measurement − B.
+  - **Renormalization** = B − (A3).
+- **Conditions of B**, for the nonlinear homogeneous rows per slab:
+  - the skewness and excess kurtosis of the event noise η;
+  - the direct check ⟨sin φ⟩ − e^(−s²/2) ⟨sin(φ − η)⟩, which is zero for zero-mean Gaussian noise independent of φ.
+- **Noise**: the sd of the remainder by time; its growth exponent p (sd ∝ t^p, t 1.5–5.5); sd(ρ 60)/sd(ρ 30) per slab.
+  The scaling s² ∝ t² ρ^−1/2 is a tested approximation, not a law (decision 26).
 
-## 4. Criteria (to be fixed from the development rows; structure only)
+## 4. Criteria (to be fixed from the development rows of diag/c0_card.py; structure only)
+
+No tolerance against the continuum grows with the measured noise (decision 26): every tolerance below is a fixed
+number set before the run.
 
 | level | condition | tolerance | derivation |
 |---|---|---|---|
-| instrument | \|ε(r) − (A1)\| per shell, r < 2.5, each ρ | [ ] | [ ] |
-| instrument | \|normalisation − (A3)\|, each ρ | [ ] | [ ] (per-sprinkling sd 0.003 at ρ 30, see 7) |
-| linear | \|amp-dev − (A3) prediction\|, k = 0–3, t ≤ [ ] | [ ] | [ ] |
-| linear | max \|amp-dev\| (against the continuum), k = 0–3, t ≤ [ ], ρ 60 | [ ] | [ ] |
+| instrument | max_r \|ε(r) − (A1)\|, r < 2.5, each ρ | [ ] | [ ] |
+| instrument | \|normalisation − 1\|, each ρ | [ ] | [ ] (per-sprinkling sd 0.003 at ρ 30) |
+| instrument | max \|amp-dev − (A3)\|, linear k = 0–3 and nonlinear A 0.5, each ρ | [ ] | [ ] |
+| linear (A) | max \|amp-dev\|, k = 0–3, ρ 60 | [ ] | [ ] |
 | convergence | max \|amp-dev\|(ρ 60) < max \|amp-dev\|(ρ 30), k = 0–3 | − 2 SE | [ ] |
-| nonlinear | max \|amp-dev\| against the pendulum, A = 0.5, 1, 2, t ≤ [ ] | [ ] | [ ] |
-| nonlinear | max \|amp-dev\| against sine-Gordon, A = 1 cos x | [ ] | [ ] |
-| noise | growth exponent p of the sd, every mode | p < [ ] (no growing mode) | [ ] |
-| noise | sd(ρ 60)/sd(ρ 30) at fixed t | [ ] (ρ^−1/4 = 0.84) | [ ] |
-| noise | sd/A independent of A for the nonlinear modes at small A | [ ] | [ ] |
+| nonlinear (A) | max \|amp-dev\| against the pendulum, A 0.5, 1, 2, ρ 60 | [ ] | [ ] |
+| nonlinear (A) | max \|amp-dev\| against sine-Gordon, A 1 cos x, ρ 60 | [ ] | [ ] |
+| nonlinear (B) | residual max \|meas − B\|, A 0.5, 1, 2, each ρ | [ ] | [ ] |
+| conditions of B | \|skewness\|, \|excess kurtosis\|, \|direct check\| | [ ] | [ ] |
+| noise | growth exponent p, every mode | p < [ ] | [ ] |
+| noise | sd(ρ 60)/sd(ρ 30) | [ ] (ρ^−1/4 = 0.84) | [ ] |
+| scaling | renormalization max \|B − (A3)\| (ρ 60) < (ρ 30), A 1, 2 | − 2 SE | [ ] |
 
 Every condition on its own: |·| + 2 SE on the PASSED side, |·| − 2 SE on the FAILED side. Verdict order:
 INSTRUMENT_FAILED → FAILED → PASSED → UNDECIDED.
@@ -91,9 +107,5 @@ or the noise has a growing mode.
   2.6 var_diag + 0.19 at ρ 30.
 - **For the field modes the same holds**: the deviation from the exact solution is already taken event by event at the
   event's own t, so their sd is not affected.
-- **Nonlinear criterion**: the deviation of the nonlinear modes is the renormalization of the source by the noise
-  (docs/findings.md, 14 Nov). The criterion must say what it compares with:
-  - the continuum (then the tolerance includes the softening, growing as s² ∝ t² ρ^−1/2); or
-  - the mean field with μ e^(−s²/2) (a consistency check with the measured s); or both.
-- The choice of the kernel (MV2+ct or MV8+ct).
-- The number of sprinklings and the time limit T from the cost (ρ 60 is about 6× ρ 30).
+- Tolerances from the development rows of diag/c0_card.py.
+- The number of sprinklings from the cost (ρ 60 is about 6× ρ 30).
