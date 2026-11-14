@@ -517,13 +517,17 @@ def main():
     ap.add_argument("--a", type=float, default=0.05)
     ap.add_argument("--seeds", type=str, default="0-7")
     ap.add_argument("--workers", type=int, default=0)
+    ap.add_argument("--X", type=float, default=7.0)
+    ap.add_argument("--T", type=float, default=6.0)
     a = ap.parse_args()
+    gains(a.a)                     # the table is computed once here; the workers load it from the disk
+    gains(0.0)
     if a.predict:
         predict(a.rho, a.a)
         return
     lo, hi = (int(v) for v in a.seeds.split("-"))
     t0 = time.time()
-    res = parallel_map(cached, [(a.rho, a.a, s) for s in range(lo, hi + 1)], default_workers(a.workers), print,
+    res = parallel_map(cached, [(a.rho, a.a, s, a.X, a.T) for s in range(lo, hi + 1)], default_workers(a.workers), print,
                        lambda i, r, d, n: f"[C1b] {d}/{n}: rho {r['rho']:g} a {r['a']} seed {r['seed']} "
                                           f"{r['flat']['sec'] + r['curved']['sec']:.0f}s ({time.time() - t0:.0f}s)")
     buf = io.StringIO()
