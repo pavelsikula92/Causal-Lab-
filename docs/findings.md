@@ -2154,6 +2154,34 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Undecided (descriptive)
 
+- **C0 development rows after decision 25 (3+1, counterterm kernels; 14 Nov 2026; decide nothing; card C0 NOT frozen):
+  the linear modes k = 0–3 follow the continuum expectation of the kernel predicted before the run; the nonlinear
+  modes deviate from it exactly as the noise renormalizes the source, μ sin φ → μ e^(−s²/2) sin φ; the noise grows as
+  t^(0.85–1.2), with no growing mode, and falls as ρ^−1/4.** diag/c0_ct.py, predictions docs/c0_ct_predictions.md,
+  run diag/out/c0_ct_20261114T010642.json (on the author's machine); ρ 20 and 30, X 9.5, T 8, seeds 0, 1; check
+  diag/c0_ct_renorm.py.
+  - Linear k = 0, 1, 2, 3, all 6 rows, both densities: amp-dev within ±0.03 of the prediction to t 5.75, within ±0.07
+    at t 6.75 (1 100–1 750 events per slab). The largest deviation from the continuum to t 6.75:
+    - MV2+ct: 0.10 at ρ 20, 0.07 at ρ 30;
+    - MV8+ct: 0.25 at ρ 20, 0.16 at ρ 30 (k = 0; the higher modes 0.11–0.12).
+  - Nonlinear, homogeneous, against the pendulum:
+    - A 0.5 follows the noise-free prediction.
+    - A 1 and A 2 fall below it from t ≈ 3.5. For A 2 at t 6.75: MV2+ct −0.94 (prediction −0.06), MV8+ct −0.64
+      (−0.19), the same in MV2, MV8, MVA.
+    - The mean field with the source weakened by the measured noise, μ e^(−s²/2) sin f, reproduces every nonlinear row
+      within ±0.05 at both densities (e.g. MV8+ct, ρ 30, A 2: −0.10 −0.21 −0.47 −0.65 against measured −0.10 −0.21
+      −0.45 −0.64).
+    - The noise of the substrate thus acts on the nonlinear field as fluctuations do in field theory: it softens the
+      potential by the factor of the self-consistent harmonic approximation. s is measured, not predicted.
+  - nl1_A1 (A 1 cos x, against 1+1 sine-Gordon): MV2+ct within 0.09, MV8+ct within 0.14.
+  - Noise:
+    - The growth exponent p is 0.83–0.96 for k = 0 and 1.1–1.2 for k = 2, 3 (linear rows); there is no exponential
+      growth.
+    - sd(ρ 30)/sd(ρ 20) at t 6.75 is 0.89–0.91 (ρ^−1/4: 0.904).
+    - sd/A falls with A for the nonlinear modes (sin saturates).
+    - MV8+ct is about 1.6× quieter than MV2+ct (sd of lin0 at t 6.75 at ρ 30: 0.50 against 0.82).
+  - Cost: X 9.5, T 8 takes 2 970 s (ρ 20) and 7 740 s (ρ 30) per sprinkling.
+
 - **C0 development rows (3+1, layer kernels of the retarded Green function; 13 Nov 2026; decide nothing; card C0 NOT
   frozen): the deficit at the apex of the cone and the whole mean dynamics of the linear rule are the exact continuum
   expectation of each kernel at finite density, predicted before the run with no free parameter and confirmed at

@@ -91,5 +91,9 @@ or the noise has a growing mode.
   2.6 var_diag + 0.19 at ρ 30.
 - **For the field modes the same holds**: the deviation from the exact solution is already taken event by event at the
   event's own t, so their sd is not affected.
+- **Nonlinear criterion**: the deviation of the nonlinear modes is the renormalization of the source by the noise
+  (docs/findings.md, 14 Nov). The criterion must say what it compares with:
+  - the continuum (then the tolerance includes the softening, growing as s² ∝ t² ρ^−1/2); or
+  - the mean field with μ e^(−s²/2) (a consistency check with the measured s); or both.
 - The choice of the kernel (MV2+ct or MV8+ct).
 - The number of sprinklings and the time limit T from the cost (ρ 60 is about 6× ρ 30).
