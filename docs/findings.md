@@ -2792,6 +2792,20 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   that a discrete order built according to the principle (density = 1/c) has a geometry with γ = 1. Why the substrate
   conserves throughput it does not derive.
 
+- **C1 development rows, the spherical well (14 Nov; diag/c1_sphere.py; decides nothing).** g = Ω(r)²η in 3D,
+  Ω = 1 − 0.15 e^(−r²/(2·1.5²)), flat cones, 8 flat / curved pairs at ρ 60 (X 7, T 6, cut λ 100), the C0 rule
+  unchanged. Predictions written before the run (diag/out/c1_sphere_pred_rho60.txt; the solver's flat case equals the
+  1D (A3) to 4e-4, converged in the grid and the quadrature to 0.004).
+
+  Raw: D = ⟨φ⟩_curved − ⟨φ⟩_flat in 74 bins of (t, r) with t ≥ 1: against the exact mean χ²/bin 0.71, max z 2.39;
+  against the local conformally coupled model with the same smearing χ²/bin 23.3, max z 16.3 (floor 0.005). In the
+  centre late: t 5.25, r 0.75 +0.027 ± 0.018 (exact −0.005, local −0.281); t 5.75, r 0.75 +0.389 ± 0.023 (exact
+  +0.367, local +0.050). At r ≥ 3 the two models differ by ≤ 0.02 and the rows do not separate them.
+
+  Reading: the rows follow the exact mean in 3D as in the planar well of F5.3, and the departure from the local model
+  is larger (up to 0.3–0.4 in the centre). Development only: one density, one shape, the criteria were not frozen.
+  Predictions for ρ 30 are written (diag/out/c1_sphere_pred_rho30.txt), not yet run.
+
 ## Open questions
 
 - Will the author explicitly adopt the Lorentz-invariant substrate to which the tests lead (F0.3, F1.8, F6.1, F6.2),
