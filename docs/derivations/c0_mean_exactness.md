@@ -70,5 +70,5 @@ unchanged.
 search for candidates is O(N²) in the events, and X 8.5 has 2.2× the events), so the full plan would take about 7 h.
 P3 is answered instead by the number of sprinklings: `python -m diag.c0_late --xs 7 --n 32 --workers 4` (ρ 20 and 30,
 X 7, 32 fresh sprinklings each, seeds 15000–15031). The 4 finished sprinklings at ρ 30, X 8.5 are read from the cache
-with `--xs 8.5 --rhos 30 --n 4`. The predictions P1–P3 are unchanged.
+with `--xs 8.5 --rhos 30 --n 4`. The predictions P1–P3 are unchanged. diag/c0_late.py md5 97aea6e61ad371dfe5aea1409ae3bc55.
 
