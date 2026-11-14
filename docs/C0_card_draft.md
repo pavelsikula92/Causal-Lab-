@@ -95,7 +95,9 @@ or the noise has a growing mode.
 
 - **ρ 30 and ρ 60, X 7, T 6**: diag/c0_minvar.py v1 and v2. See docs/findings.md, "C0 development rows", and
   docs/c0_apex_predictions.md.
-- **ρ 20 and ρ 30, X 9.5, T 8**: diag/c0_ct.py, [the night run of 13/14 Nov], predictions docs/c0_ct_predictions.md.
+- **ρ 20 and ρ 30, X 9.5, T 8**: diag/c0_ct.py, run diag/out/c0_ct_20261114T010642.json, predictions
+  docs/c0_ct_predictions.md; check diag/c0_ct_renorm.py.
+- **The card's configuration**: diag/c0_card.py, [the development run], seeds 13000+.
 
 ## 7. Open before freezing
 
