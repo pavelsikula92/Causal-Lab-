@@ -546,6 +546,29 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   of GR put in. The prediction of the age term (the far-field law, the window of ℓ_k) now depends on the asymptotics of
   the optical sector for kT → ∞ (F6.8e, analytically like c_T).
 
+
+- **F6.8e3: the age term of the optical (ν²) sector of the expected BD action grows as (kT)⁵, not linearly: α = 4.9999
+  between n = kT = 3 072 and 6 144** (chain, 3+1, PASSED 15 Nov; second revision of F6.8e, card
+  docs/F6_8e3_card_draft.md, decision 32; run by Claude in its Linux workspace, 4 452 s;
+  results/F6.8e3/20261115T231453Z_main_seed0_6a4f9826.json).
+  - **Instruments OK:** I0 long double (eps 1.08e-19); I1 stable V''/V0 against F6.8c ≤ 1.7e-12; I2 α₀ at two
+    quadrature levels at the judged pair 4.99994 / 5.00015 (2.1e-4, tol 0.01); I3 conformal c_T = 0.1016 at n = 384
+    (1.9 % from 0.1035); I4 tail 7.8e-6; I5 α₀ at k = 0.13 and 0.21 equal to 7.4e-6.
+  - **The exponent** at k = 0.13 (bulk density ρ_bb, full p-profile): α = 4.9841, 4.9960, 4.9990, 4.9997, 4.9999 for
+    n = 192 → 384 → … → 6 144 (predicted 5).
+  - **Reported:** c5 = 3.05e-7 (F6.8e 3.05e-7, F6.8e2 3.06e-7); the optical stiffness K̂_bb changes sign near n* ≈ 45
+    (T ≈ 350 ℓ_k at k = 0.13, the local part neglected); the ratio I(0.13)/I(0.21) differs from (k₁/k₂)⁵ by 0.05 %;
+    at the development wavenumber k = 0.12, n = 24 the age slope is 1.109 k² per unit n (F6.8c2 full rows 1.244; the
+    development of F6.8e gave 1.19). The conformal density on the same nodes is constant to n = 768 and drifts by ≤ 4 %
+    beyond (double-precision path, as in F6.8e2); it enters no criterion at those n.
+  - **Not blind:** F6.8e and F6.8e2 had recorded α = 5.000 before this card was frozen (decision 32).
+
+  Reading (declared in the card of F6.8e, section 6): the b² coefficient of the expected BD action in the optical
+  sector grows with the age of a static field as T⁵. The static quadratic form of the order has no limit for old fields
+  in this sector; the age term of P2 in its conformal form does not describe it, and γ(k, T) and Φ(k, T) of the
+  propagator are dominated by it beyond n*. Limits: second order in b only (the expansion fails near b²(kT)⁴ ~ 1);
+  the bulk of the past only (the layer and boundary terms of the age cut are not computed at large n); one field shape
+  (a phase-averaged plane wave), static.
 - **F6.8b2: the mixed coefficient also arises by itself: c_mix = 7.983 (EH 8); in the local part the mixed sector
   stands in the covariant ratio to the conformal one, beyond the leading order the sectors differ** (chain, 3+1,
   deterministic expectation value, PASSED 28–29 Oct; ερ = 1, ℓ_k = 1; revision of F6.8b, whose instruments failed).
@@ -1791,6 +1814,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   neither is a verdict: both failed on instrument checks whose tolerances or ranges the card set wrongly. The exponent
   itself was never the failing item. How to close F6.8e (a third revision, or a decision of the author on what the
   record shows) is the author's decision.
+  Closed by the third revision F6.8e3 (decision 32): PASSED 15 Nov, α = 4.9999 at n 3 072 → 6 144 (Holds).
 
 - **F6.8d, the age term of the mixed sector (15 Nov; card docs/F6_8d_card_draft.md, decision 31; run by Claude in its
   Linux workspace, results/F6.8d/20261115T220032Z): INSTRUMENT_FAILED** on I2:

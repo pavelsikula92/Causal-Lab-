@@ -1,0 +1,18 @@
+3+1, eps rho = 1 (l_k = 1); optical (nu^2) bulk pair density of F6.8c with the stable second-order volume; p = k r cos(n, k)
+  I0 long double eps 1.08e-19 (need <= 1e-18)
+  I1 stable V''/V0 vs F6.8c: k 0.7 L 2: -1.5948447932e-02 vs -1.5948447932e-02 (rel 6.4e-13); k 0.12 L 5: -1.1322552886e-02 vs -1.1322552886e-02 (rel 4.8e-13); k 0.12 L 20: -2.2401519437e-01 vs -2.2401519437e-01 (rel 1.7e-12) (tol 1e-09)
+  I2 k 0.13, n 3072 -> 6144: alpha_0 level 1 4.99994, level 2 5.00015 (|diff| 2.1e-04, tol 0.01)
+  I3 conformal c_T at k 0.13, n 384: 0.1016 (F6.8a asymptotic 0.1035; rel 1.9e-02, tol 0.03)
+  I4 tail k 0.13, n 6144: |I(p = 24)| / |I(p = 0)| = 7.8e-06 (tol 0.001)
+  I5 alpha_0 at n 3072 -> 6144: k 0.13 4.99994, k 0.21 4.99994 (|diff| 7.4e-06, tol 0.01)
+  reported n 3072: I(k 0.13) / I(k 0.21) = 9.095522e-02, (k ratio)^5 9.091181e-02
+  reported n 6144: I(k 0.13) / I(k 0.21) = 9.095569e-02, (k ratio)^5 9.091181e-02
+  k      n      r          rho_bb          F'_bb(n) = -a4 rho_bb / k^5   rho_conf        alpha(n_prev -> n)
+  0.13   192    1476.9     -4.786347e-02   +2.105096e+03                  -4.336034e-07   
+  0.13   384    2953.8     -7.574175e-01   +3.331217e+04                  -4.329692e-07   4.9841
+  0.13   768    5907.7     -1.208525e+01   +5.315244e+05                  -4.328097e-07   4.9960
+  0.13   1536   11815      -1.932296e+02   +8.498481e+06                  -4.314203e-07   4.9990
+  0.13   3072   23631      -3.091133e+03   +1.359519e+08                  -4.168284e-07   4.9997
+  0.13   6144   47262      -4.945623e+04   +2.175147e+09                  -4.281201e-07   4.9999
+  reported k 0.13: c5 = F'(n) / (5 n^4) at n 6144 = 3.0529e-07; K_hat_bb changes sign near n* ~ 45.4 (T ~ 350 l_k; local part neglected)
+  reported (development wavenumber, seen): k 0.12, n 24: age slope in units of k^2 1.109 per unit n (F6.8c2 full rows, n 16 -> 24: 1.244)
