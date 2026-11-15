@@ -2942,21 +2942,48 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Open questions
 
-- Will the author explicitly adopt the Lorentz-invariant substrate to which the tests lead (F0.3, F1.8, F6.1, F6.2),
-  and rewrite the axioms accordingly (locality, dimension, time, derivation of the Lorentz factor)? (axiom audit,
-  section 0)
+Updated 15 Nov 2026 (the author's agreement, 21:40). Closed questions are kept below with the result that closed them.
 
-- Does one order in 3+1 distinguish the field from the null model at a higher N (larger L/ℓ)?
+**Open, in the author's order of work (15 Nov, 14:24)**
+- What is the asymptotic static propagator of the action of the order, and from it the far field of a point source
+  (F8.1, P1)? The age terms of the sectors differ (conformal linear in T; development: mixed ∝ (kT)³, optical ∝ (kT)⁵;
+  F6.8d and F6.8e2 decide).
+- Are the different age terms of the sectors physics (the history of a static field in its rest frame) or a product
+  of the age cut? A covariant quadratic action gives B/8 = A/6 for any age dependence, so an independent test must tell
+  (docs/derivations/f68d_sectors_beyond_leading_order.md).
+- Dynamic and nonlinear gravity: the thermodynamic completion (decisions 9 and 13) is a programme, not yet a derivation.
+- Does a test body fall in 3+1? The longest chains do not (F5.1e); the field of the order in 3+1 is now available (C0,
+  F3.16b) and a fall of a field structure on a curved order is not yet tested (direction C).
+- The matter sector: how is the stability of a topological defect linked to its energy, momentum and inertia (in 2+1
+  the wall's inertial mass equals its rest energy, F3.15, replicated)?
+
+**Open, earlier**
+- Is non-locality a property of nature or of the instrument (F0.4)? New evidence: on a curved 3+1 order the order-only
+  field follows its exact mean, a Green function weighted by the curved volume along each near-null pair, and not the
+  local conformally coupled field (F5.3, C1; replication pending); the age terms of the action are accumulated by long
+  near-null pairs (F6.8a, F6.8e). Whether the non-locality survives the limit of vanishing pair length is open.
+- What is the dynamics of the order: a local rule, or a weighted sum over orders (F6)?
+- Does one order in 3+1 distinguish the throughput field (A5′) from the null model at a higher N (larger L/ℓ)?
 - Is the positive bias of A5′ at large scales (in both dimensions, not significant) chance or a systematic effect?
-- Does a persistent localised structure arise with feedback without tuning (F3.3)?
-- Does such a structure have inertia and a gravitational field (F4, F5)?
 - Why do maximal chains of Σ Π lie about 10 % above the geodesic of Π²η, while Σ Π² lies exactly on the geodesic of
   Π⁴η, and why does this not change with N (F2.5 d3)? Is the continuum limit of the action W = Σ Π really the geodesic
   of Π²η?
 - Why does the self-consistent field (a) on the causal set in 2+1 not have a constant flux r·dΠ/dr outside the source
   and flatten towards the wall R, while near the source it is steeper (F2.7)? Is it an edge effect of the instrument (it
   moves with the wall at a larger R), or non-local screening (it stays at the same r)?
-- Is non-locality a property of nature or of the instrument (F0.4)?
+
+**Deferred to the quantum part (decision 18)**
 - Will the narrowing of the future cones at the place of slow clocks (c_eff = cΠ² from F7) hold the saturated region
   together, when uniform splitting of the flow into the whole cone dissolves it at the speed of light (F3.3g A)?
-- What is the dynamics of the order: a local rule, or a weighted sum over orders (F6)?
+
+**Closed**
+- *Will the author adopt the Lorentz-invariant substrate to which the tests lead (F0.3, F1.8, F6.1, F6.2), and rewrite
+  the axioms accordingly?* Adopted: the paper of November 2026 (*Physics of Causality*, Part II "Causal Physics on a
+  Lorentz-Invariant Substrate", axioms in Part IV) is built on it.
+- *Does a persistent localised structure arise with feedback without tuning (F3.3)?* No (F3.2, F3.3, F3.13d). By
+  decision 18 this is not a gap of the classical programme: a defect is a test body, what a particle is belongs to the
+  quantum part.
+- *Does such a structure have inertia and a gravitational field (F4, F5)?* For test bodies in 2+1, yes: a field wall
+  keeps velocity and contraction and has an inertial mass equal to its rest energy (F3.15, replicated); walls respond to
+  a prescribed curved order of the theory (F5.2c) and the growth of the order has an active side (F5.2d, scalar branch).
+  The 3+1 version is the open question "Does a test body fall in 3+1?" above.
