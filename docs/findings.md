@@ -987,6 +987,13 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   volume along each near-null pair, and departs as predicted from the local conformally coupled field with the same
   smearing.
 
+  **Replication, seed 1 (15 Nov, by the author, unchanged test; results/F5.3/20261115T204145Z_all_seed1_20971f3c.json,
+  1 129 s): PASSED.** Instrument (flat parents): largest z 2.22 of 6.18. P1: every bin within t_crit of the exact mean
+  (largest z 2.18 of 8.70; χ²/bin 0.59 / 0.39 at ρ 30 / 60; the local model 33.5 / 36.3). P2: D − local +0.148 ± 0.011
+  at ρ 30 (predicted +0.141) and +0.165 ± 0.012 at ρ 60 (+0.148); D − exact +0.006 ± 0.011 and +0.017 ± 0.012. The test
+  hash of this run (20971f3c) differs from seed 0 (d80b9514) only by the CRLF line endings of the Windows checkout; the
+  LF-normalised file is the frozen one.
+
 ## Does not hold
 
 - **F5.1g: a flow whose memory is the common flow-past of its parents does not hold together and depends on the
@@ -2960,7 +2967,7 @@ Updated 15 Nov 2026 (the author's agreement, 21:40). Closed questions are kept b
 **Open, earlier**
 - Is non-locality a property of nature or of the instrument (F0.4)? New evidence: on a curved 3+1 order the order-only
   field follows its exact mean, a Green function weighted by the curved volume along each near-null pair, and not the
-  local conformally coupled field (F5.3, C1; replication pending); the age terms of the action are accumulated by long
+  local conformally coupled field (F5.3, C1; replicated); the age terms of the action are accumulated by long
   near-null pairs (F6.8a, F6.8e). Whether the non-locality survives the limit of vanishing pair length is open.
 - What is the dynamics of the order: a local rule, or a weighted sum over orders (F6)?
 - Does one order in 3+1 distinguish the throughput field (A5′) from the null model at a higher N (larger L/ℓ)?
