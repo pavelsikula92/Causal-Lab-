@@ -62,23 +62,120 @@ prediction only when nothing was calibrated on the test data.
 | C1 | 3+1 | F5.3 | the field of C0 on a curved order: the exact mean, not a local field |
 | C1b | 3+1 | development only | the metric of the theory with tilted cones |
 
-## Order of work (the author, 15 Nov 14:24)
+## Programme of the classical theory (the author, 15 Nov 22:32; replaces the order of 14:24)
 
-1. **The age dependence of the optical and mixed sectors:** F6.8e2 and F6.8d.
-2. **The asymptotic static propagator.** Without it the far field of a point source (F8.1, P1) cannot be fixed
-   reliably.
-3. **The covariance of the sectors.** Different age terms may be physics or a problem of the age cut, and an
-   independent test must tell which.
-4. **Dynamic and nonlinear gravity.** The thermodynamic completion (decision 9, path A of decision 13) is a programme,
-   not yet a derivation.
-5. **The matter sector:** the stability of a topological defect linked to its energy, momentum and inertia.
+**A. The dynamics of the causal substrate** (blocking). Close what evolves:
+- what an event is and how it arises;
+- how new causal links arise;
+- what limits their creation and transfer;
+- how local capacity and throughput change;
+- how the causal flow is defined;
+- how the flow is conserved when the substrate changes.
 
-Before the next version of the paper:
-- replications of F5.2c and F5.3;
-- the pending items of the order above.
+Three quantities must stay distinct and must not stand in for each other because they behave alike in some
+simulation:
 
-The paper states how things are. Negative and failed tests stay in the working documentation, with a pointer from the
-appendix, and only the negatives that shape the theory enter the main text.
+| Quantity | Physical role |
+|---|---|
+| K₀ | capacity of an event |
+| Π | local throughput and rate of clocks |
+| Φ | causal flow |
+
+Output: one evolution equation of the substrate, its conservation laws and precisely defined local quantities.
+
+**B. The action and the variational principle** (blocking). For the resistance functional R = Σ Z_v Δτ_v,
+Z_v = I_v / Π_v, decide:
+- what I_v is;
+- how it is measured or derived from the local configuration;
+- what Δτ_v means;
+- whether R is the action or another functional of the substrate;
+- how the equations of motion follow from it.
+
+With Δτ = Π Δt the throughput cancels (Z Δτ = I Δt); it must be clear what then carries the gravitational influence of
+Π. The relation of R to the expected BD action of the order (F6.8, the geometric limit of the paper) is to be settled
+here.
+
+Output: the definition of the action, its variational equations, the conservation laws, the weak-field limit and the
+conditions of validity, derived without inserting the wanted result.
+
+**C. Classical gravity** (main physical aim):
+- **C.1 Static field:** the source ρ_s, κ and G, point and extended sources, weak and strong field, several sources.
+  The same equation must hold for different source configurations, not only for one calibration geometry. The
+  asymptotic static propagator belongs here and is derived from the action fixed in B.
+- **C.2 Moving sources:** a dynamic equation with retarded response, transfer of energy and momentum, and a source
+  that arises from the dynamics of the substrate, not an inserted profile.
+- **C.3 Tension and energy as a source:** an unambiguous tensor source T_ab (or its substrate equivalent): how it
+  arises, how it is conserved, how it relates to the causal flow and how it transforms between frames.
+- **C.4 The full metric:** beyond −Π²c²dt² + Π⁻²dx², covering:
+  - rotating sources and g₀ᵢ;
+  - time-dependent fields;
+  - gravitational waves;
+  - general configurations.
+
+  No missing terms are added to reproduce a wanted result; they must follow from the dynamics of the substrate.
+
+**D. Matter and inertia** (second pillar):
+
+| Problem | Required result |
+|---|---|
+| Origin of a defect | spontaneous, not placed by hand |
+| Stability | long-term conservation of the topological class |
+| Energy | finite and measurable |
+| Momentum | defined from the dynamics of the substrate |
+| Inertia | resistance to a change of the state of motion |
+| Motion | free motion without an inserted rule |
+| Interaction | collision, scattering, merging or annihilation |
+
+Three experimental questions stay separate, and one successful test cannot stand for the other two:
+1. Does a stable defect exist?
+2. Does it have its own inertia?
+3. Does its gravitational response equal its inertial mass?
+
+Only after all three may the theory claim to explain the equivalence of gravitational and inertial mass.
+
+**E. Classical and relativistic limits:**
+1. the free particle and the law of inertia;
+2. motion in a homogeneous field;
+3. the Newtonian limit of several sources;
+4. the equivalence principle;
+5. bending of light;
+6. gravitational redshift and time dilation;
+7. perihelion shift;
+8. frame dragging;
+9. gravitational waves and their energy transfer.
+
+Each with three separate results: an analytic derivation, a numerical test on the discrete substrate, and a
+comparison with experiment or observation. What is a prediction and what is an adopted limit or a calibration input
+is recorded.
+
+**F. A final consistency test of the whole classical theory.** One common set of tests, each with a hypothesis,
+measurement and criteria frozen in advance (R132 stays a fixed procedural rule):
+
+| Area | Must hold |
+|---|---|
+| Causality | no forbidden causal cycles |
+| Locality | a clearly defined range of local interactions |
+| Conservation | energy, momentum and flow by the derived laws |
+| Lorentz covariance | correct behaviour under a change of frame |
+| Newtonian limit | correct classical gravity |
+| Relativistic limit | correct metric and equations of motion |
+| Equivalence | the same response of inertial and gravitational mass |
+| Stability | a stable vacuum and physically admissible solutions |
+
+**Not now:**
+- no new independent physical sectors;
+- no more experiments without a clear link to a specific open equation;
+- no further numerical agreements with GR before the dynamic equation is closed;
+- no new parameters introduced to improve an agreement;
+- no geometric property declared a physical law before it is clear whether it belongs to the substrate, the measuring
+  instrument or the chosen kernel.
+
+**Running and finishing (15 Nov):** F6.8e2 and F6.8d (age terms of the action; they belong to B/C.1 and are finished
+as frozen); the replication of F5.2c.
+
+**Before the next version of the paper:** the replications, and A and B at least as recorded decisions. The paper
+states how things are. Negative and failed tests stay in the working documentation, with a pointer from the appendix,
+and only the negatives that shape the theory enter the main text.
 
 ## Dependencies
 
@@ -87,7 +184,8 @@ K ─▶ F0 ─▶ F1 ─▶ F2 ─┐
        └─▶ F3 ─▶ F4 ─┴─▶ F5 ─▶ F7 ─▶ F8
            F3 ──────────▶ F5 ─────────▶ F8
 F6 (parallel branch) ┄┄▶ F7 (partial inputs), F8.1, F8.2 and F8.5
-F6.8 (action of the order) ──▶ static propagator ──▶ F8.1 (P1), the window of l_k (P2)
+A (substrate) ──▶ B (action) ──▶ C (gravity) ──▶ E (limits) ──▶ F (consistency); D (matter) ──▶ E
+B ──▶ static propagator (C.1) ──▶ F8.1 (P1), the window of l_k (P2)
 ```
 
 ## Rules
