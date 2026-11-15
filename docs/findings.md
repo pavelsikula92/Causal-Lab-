@@ -2854,6 +2854,25 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   is larger (up to 0.3–0.4 in the centre). Development only: one density, one shape, the criteria were not frozen.
   Predictions for ρ 30 are written (diag/out/c1_sphere_pred_rho30.txt), not yet run.
 
+- **C1b development rows, the theory metric with tilted cones (15 Nov; diag/c1b_tilt.py; decides nothing).**
+  g = −Π²dt² + Π⁻²dx², Π⁻² = 1 + 2a g, a uniform ball R 1.5 (first-order vacuum outside), a 0.05. The relation is the
+  travel time of the true (bent) ray: the straight-ray relation is not transitive at the scale of the intervals the
+  rule uses (violations up to 0.04), the bent-ray table keeps them below 6e-6. Density ρΠ⁻² by thinning; the C0 rule
+  unchanged; 8 flat / curved pairs at ρ 60 (X 7, T 6), seeds 81000+ / 91000+. Predictions written before the run
+  (diag/out/c1b_tilt_pred_rho60_a0.05.txt): D in the centre +0.13 (t 2) to −0.20 (t 5), present in the vacuum and
+  falling like the potential; exact − proper-time kernel at most 0.014 inside the ball and 0.002 in the vacuum. The
+  convergence check of the solver in finer quadratures did not finish (the container restarted); not repeated.
+
+  Raw: inside the ball (r < 1.5), 30 bins with t ≥ 1: against the exact mean χ²/bin 0.93 (max z 1.87); against the
+  proper-time kernel 1.19 (max z 2.61). Vacuum (r > 1.5), 51 bins: 0.35 (max z 1.71) and 0.41 (max z 1.71). Floor
+  0.005.
+
+  Reading: on the order of the theory metric, with tilted cones, the field of the C0 rule follows its exact mean
+  inside the source and in the vacuum. As predicted the exact mean is close to the local kernel in the geodesic proper
+  time here (the nonlocal weight comes only from pairs crossing matter, and a 0.05 is weak), so these rows do not
+  separate the two; the inside bins lean to the exact mean (0.93 against 1.19), not significantly. Development only:
+  one density, one source, criteria not frozen.
+
 ## Open questions
 
 - Will the author explicitly adopt the Lorentz-invariant substrate to which the tests lead (F0.3, F1.8, F6.1, F6.2),
