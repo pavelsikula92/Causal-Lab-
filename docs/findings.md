@@ -2887,6 +2887,26 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   time here (predicted difference ≤ 0.014 inside, ≤ 0.002 in the vacuum), so these rows do not separate the two.
   Development only: one density, one source, criteria not frozen. The rows say nothing about Ricci against Weyl.
 
+- **F6.8e development: the optical age term at large ages (15 Nov; diag/f68e_dev.py, card docs/F6_8e_card_draft.md;
+  decides nothing).** The s-integrated bulk pair density of the optical sector (the integrand of F6.8c) is not stable in
+  F6.8c's formulation beyond r ~ 100: for a long interval V''/V0 has a τ-independent part growing as (kL)⁴ (−25.4,
+  −348, −5 343 at L = 100, 200, 400, k = 0.12), which the BD moments remove; the surviving part is ~1e-9 of it, the
+  size of the per-pair quadrature error of F6.8c (bulk and surface integrals that cancel to O(L⁴/τ²)). The density at
+  r = 200 and 400 changed by factors 2–4 between quadrature levels. A stable instrument (coordinates following the bent
+  ray, unit Jacobian; 80-bit long double; tip-clustered nodes) agrees with F6.8c where F6.8c is converged to 1e-12 and
+  is stable between levels to 1e-11 (r = 100) and 5e-4 (r = 400).
+
+  Raw (k = 0.12, phase advance p = 0): I(r) = −7.40e-7, −9.06e-7, −6.17e-6, −1.10e-4, −2.95e-3, −9.01e-2, −2.85, −90.9
+  at r = 50 ... 6 400 (doubling): local exponent 0.29, 2.77, 4.16, 4.74, 4.93, 4.98, 4.995. Conformal density on the
+  same nodes: exponent → 1 (profile integration gives c_T = 0.105, F6.8a 0.1035). The p-profile has a fixed shape
+  (width ~10); I(k, r) = k⁵Ψ(kr) to 1e-3 (k 0.12 against 0.2). At n = kT = 24 (k = 0.12) the bulk density gives an age
+  slope of 1.19 k² per unit n against 1.24 from the full rows of F6.8c2 (n 16 → 24).
+
+  Reading (development): the optical age term grows as (kT)⁵ (bulk density ∝ r⁴), not linearly. The verdicts of F6.8c
+  and F6.8c2 are not affected (R132; F6.8c2 rows had T ≤ 167). The layer and boundary terms of the age cut at large
+  ages are not computed. To be decided by F6.8e (card draft, judged range n 1 536 → 3 072 not computed in the
+  development).
+
 ## Open questions
 
 - Will the author explicitly adopt the Lorentz-invariant substrate to which the tests lead (F0.3, F1.8, F6.1, F6.2),
