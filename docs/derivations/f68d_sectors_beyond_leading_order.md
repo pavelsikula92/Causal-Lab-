@@ -58,3 +58,35 @@ conformal sectors as functions of the spatial pair length r, and the cumulative 
 - **Age origin:** D(R) builds up over r ~ 1/k and beyond, together with the age term.
 
 Development rows come first, then a card.
+
+## 6. Development rows (15 Nov, after §1–5; decides nothing)
+
+diag/f68d_dev.py, outputs diag/out/f68d_dev_k0.2.txt, f68d_dev_k0.1.txt, f68d_dev_k0.2b.txt, f68d_shell_far.txt.
+
+**Mixed bulk density at long pair lengths** (k = 0.2, full s range, angle-integrated):
+
+| r | 20 | 50 | 100 | 200 | 400 | 800 |
+|---|---|---|---|---|---|---|
+| ρ_ab | −3.91e−4 | −8.47e−5 | −1.075e−4 | −3.05e−4 | −1.11e−3 | −4.3e−3 |
+| levels 1 vs 2 | 5e−8 | 6e−6 | 7e−5 | 1.5e−4 | 1.8e−3 | 1.3e−2 |
+| local exponent | | | | 1.50 | 1.87 | 1.96 |
+| ρ_c | −3.27e−5 | −6.72e−6 | −4.26e−6 | −3.84e−6 | −3.75e−6 | −3.73e−6 |
+
+- The conformal density tends to a constant, the linear age term.
+- The mixed density grows as r², so the mixed age term grows as (kT)³ and not linearly.
+- With F6.8e (optical density ∝ r⁴, age term ∝ (kT)⁵) this is a pattern: each factor of the optical index brings
+  (kL)², the focusing of long intervals by ν.
+- **Consequence.** The linear reading of F6.8b2 (c_T,ab ≈ 0.195; three ages at kT = 8–16) is pre-asymptotic. The
+  verdict of F6.8b2 stands (R132).
+- **A hypothesis to test, not a result.** A cubic age term of the form k² c₃ n³, read at fixed n by a linear fit
+  over the ages, produces an intercept bias ∝ k². The recorded Δ ≈ 0.46 k² has exactly this form, so the local parts
+  may be covariant (Δ_loc = 0), with Δ an artefact of the linear age model.
+
+**Cumulative difference without an age cut** (cut in the pair length R instead of the time):
+
+| | R 8 | 17 | 33 | 41 | 60 | 80 | 128 |
+|---|---|---|---|---|---|---|---|
+| D(R), k = 0.2 | +0.038 | +0.013 | +0.0045 | +0.0030 | −0.0026 | −0.014 | −0.084 |
+
+At k = 0.1, D = +0.021, +0.012, +0.0036, +0.0011, −0.0011 at R ≈ 9, 17, 32, 65, 128. The local part settles to a
+small value by kR ≈ 6–10, and then the long-pair accumulation takes over.

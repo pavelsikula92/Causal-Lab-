@@ -63,6 +63,7 @@ def main():
     ap.add_argument("--k", type=float, default=0.1)
     ap.add_argument("--R", type=float, default=120.0)
     ap.add_argument("--mult", type=float, default=1.0)
+    ap.add_argument("--step", type=float, default=0.0, help="print D every step units of R (0: powers of 2)")
     a = ap.parse_args()
     k = a.k
     rs, wr = r_nodes(k, a.R, a.mult)
@@ -70,6 +71,8 @@ def main():
     Iab, Ic = 6.0, 0.5
     print(f"k {k:g}; D(R) = K_hat_ab - K_hat accumulated over pair lengths up to R (no age cut)")
     marks = sorted(set([1, 2, 4, 8, 16, 32, 64, 128, 256, 512]) & set(range(int(a.R) + 1)))
+    if a.step > 0:
+        marks = sorted(set(marks) | set(np.arange(a.step, a.R + 1e-9, a.step).tolist()))
     j = 0
     for r, w in zip(rs, wr):
         rab, rc = shell(k, float(r), a.mult)
