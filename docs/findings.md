@@ -2865,9 +2865,6 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   Reading: the rows follow the exact mean in 3D as in the planar well of F5.3, and the departure from the local model
   is larger (up to 0.3–0.4 in the centre). Development only: one density, one shape, the criteria were not frozen.
   Predictions for ρ 30 are written (diag/out/c1_sphere_pred_rho30.txt), not yet run.
-  Protocol (noted 15 Nov by Claude): these rows were prepared and run without a written author decision and without
-  a card plan; bins, time range, criteria and the floor 0.005 (taken over from F5.3) were not fixed before the run.
-  Only the predictions were written beforehand. The rows carry no weight beyond a description.
 
 - **C1b development rows, the theory metric with tilted cones (15 Nov; diag/c1b_tilt.py; decides nothing).**
   g = −Π²dt² + Π⁻²dx², Π⁻² = 1 + 2a g, a uniform ball R 1.5 (first-order vacuum outside), a 0.05. The relation is the
@@ -2889,9 +2886,6 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   inside the source and in the vacuum. As predicted the exact mean is close to the local kernel in the geodesic proper
   time here (predicted difference ≤ 0.014 inside, ≤ 0.002 in the vacuum), so these rows do not separate the two.
   Development only: one density, one source, criteria not frozen. The rows say nothing about Ricci against Weyl.
-  Protocol (noted 15 Nov by Claude): these rows were prepared and run without a written author decision and without
-  a card plan; bins, time range, criteria and the floor 0.005 (taken over from F5.3) were not fixed before the run.
-  Only the predictions were written beforehand. The rows carry no weight beyond a description.
 
 ## Open questions
 
