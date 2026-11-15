@@ -1733,6 +1733,23 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   author's uncommitted findings.md on 14 Nov about 22:04 with its own older copy; the original wording of this entry
   is lost, the numbers and the verdict are taken from the sources named.)
 
+- **F6.8e, the asymptotic age term of the optical sector (15 Nov; card docs/F6_8e_card_draft.md, decision 30 and its
+  revision 1; run by Claude in its Linux workspace, results/F6.8e/20261115T134513Z): INSTRUMENT_FAILED** on I5, the
+  k⁵ scaling between k = 0.15 and 0.25: the ratio of the densities is 7.793e-2 against (0.15/0.25)⁵ = 7.776e-2, a
+  relative difference of 2.2e-3 and 2.3e-3 at n = 192 and 1 536 against the tolerance 1e-3. The tolerance was set from
+  the development pair k = 0.12 / 0.2 (8e-4); the difference is a small correction to the form k² F(kT) that grows with
+  k, not noise (stable between n and between levels). All other instrument items passed: I1 the stable V'' against
+  F6.8c 2e-12; I2 levels 1.2e-5 and 2.2e-5; I3 conformal c_T 0.1022 (0.1035); I4 tail 7.8e-6.
+
+  Recorded, not a verdict (R132): α = 4.937, 4.984, 4.996, 4.999, 5.000 between n = 96 … 3 072 (k = 0.15), predicted
+  5; c5 = 3.05e-7; the optical stiffness changes sign near n* ≈ 43. The conformal density on the same rows is constant
+  (the linear age term). The development row k = 0.12, n = 24 gives an age slope of 1.109 k² per unit n against 1.244
+  from the full rows of F6.8c2.
+
+  Reading: the instrument item that failed checks the form k² F(kT), not the exponent; the design fault is the
+  tolerance of I5. The exponent of the bulk optical age term is not decided by this run. A revision (another I5 form
+  or tolerance, judged on rows not computed here) is the author's decision.
+
 ## Discoveries
 
 - **Growth probe (direction A, 1+1): with the causal growth rule "a candidate event is realised with probability Pi^2,

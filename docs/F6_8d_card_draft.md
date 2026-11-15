@@ -44,6 +44,25 @@ moments in the τ⁶ part.
 - **What is new.** The development reached n = 640, at k = 0.2 and p = 0 only. The judged pair n = 1 536 → 3 072 was
   not computed before this card.
 
+## 4a. What is measured (after the author's remarks of 14:19)
+
+- **ρ_ab is an action density, not a pair count.** It is the second-order action contributed by pairs of length r,
+  s-integrated with the BD kernel, per unit r. In the bulk it is dJ_ab/dT. The local (T-independent) part does not
+  enter a derivative, and at n ≥ 96 only the age part is left.
+- **Control on what the sectors share.** The conformal density on the same nodes, measure and normalisation has the
+  known linear age term. The exponent difference α_ab − α_c removes the pair measure r² dr, the angular band 1/kr, the
+  s quadrature and the binning; the prediction is 2.
+- **Further controls:** I2 (levels) and I5 (k⁵ scaling).
+- **Δ is diagnostic only.** It is not computed here, is no condition of any status and is not used as support.
+
+**Separation of the data.**
+- The reformulation came after the development of F6.8e and uses the same instrument family.
+- The development rows of this test are not counted as confirmation.
+- The deciding pair n = 1 536 → 3 072 at k = 0.15, with the full p-profile, was not computed before the test.
+- **If the F6.8e result is known before F6.8d is frozen,** the freezing decision records it. F6.8d does not change any
+  number because of it.
+- **The pattern across sectors** (α − 1 = 0, 2, 4) is a working hypothesis. This test decides only the mixed sector.
+
 ## 5. Criteria
 
 **Instrument** (as F6.8e):
@@ -58,8 +77,8 @@ moments in the τ⁶ part.
 
 | Status | Condition |
 |---|---|
-| PASSED | \|α_ab − 3\| ≤ 0.1 |
-| FAILED | \|α_ab − 3\| > 0.5, in particular a linear term (α_ab ≈ 1) |
+| PASSED | \|α_ab − 3\| ≤ 0.1 and \|(α_ab − α_c) − 2\| ≤ 0.1 |
+| FAILED | either > 0.5, in particular a linear term (α_ab ≈ 1) |
 | UNDECIDED | otherwise |
 
 **Reported, not judged:**

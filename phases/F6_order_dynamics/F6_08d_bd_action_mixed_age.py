@@ -53,11 +53,34 @@ Instrument (INSTRUMENT_FAILED if any fails)
   I3 the conformal control on the same nodes: c_T within 3 % of 0.1035;
   I4 tail |I_ab(r, 24)| / |I_ab(r, 0)| <= 1e-3 at the largest n;
   I5 the form k^2 F(kT): I_ab(0.15, n/0.15) / I_ab(0.25, n/0.25) = (0.15/0.25)^5 at p = 0 for n = 192 and 1536, <= 1e-3.
-Status (alpha_ab between n = 1536 and 3072 at k = 0.15)
--------------------------------------------------------
-  PASSED     |alpha_ab - 3| <= 0.1: the mixed age term grows as (kT)^3; the departure of the mixed sector from the
-             conformal one at large ages is age-made (the focusing of long pairs), not a linear non-covariant term;
-  FAILED     |alpha_ab - 3| > 0.5 (in particular alpha_ab near 1: a linear age term as read in F6.8b2);
+What is measured, and why it is the age term and not a count of pairs (the author's remarks of 14:19)
+----------------------------------------------------------------------------------------------------
+rho_ab(r) is not a number of pairs: it is the second-order action density contributed by pairs of spatial length r,
+s-integrated with the BD kernel (whose moments remove the tau^0, tau^2, tau^4 parts), per unit r. In the bulk it is
+the derivative of the mixed second-order action with respect to the age, d J_ab / dT, so the T-independent (local)
+part does not enter it at all, and at n >= 96 (r >= 640) the age part is all that is left. Two controls separate it
+from the geometry of the pair measure:
+  * the conformal density on the same nodes, measure and normalisation (rho_c, the known linear age term): the
+    exponent DIFFERENCE alpha_ab - alpha_c removes everything the two sectors share (the number of pairs, r^2 dr, the
+    angular band 1/kr, the s quadrature, the binning); the prediction is alpha_ab - alpha_c = 2;
+  * the level check I2 and the k-scaling I5.
+Delta (the T-independent difference) is a diagnostic only: it is not computed here, is not a condition of any status
+and is not used as support.
+
+Separation of the data
+----------------------
+The reformulation of F6.8d was made after the development of F6.8e (optical density ~ r^4) and uses the same
+instrument family; the development rows of this test (k = 0.2, p = 0, r <= 3200; angle-integrated k = 0.2, r <= 800,
+double precision) are not counted as confirmation. The deciding numbers are the pair n = 1536 -> 3072 at k = 0.15 with
+the full p-profile, not computed before this test. The pattern across sectors (alpha - 1 = 0, 2, 4 for conformal, mixed,
+optical) is a working hypothesis; this test decides only the mixed sector.
+
+Status (n = 1536 -> 3072 at k = 0.15; both quantities from the same rows)
+-------------------------------------------------------------------------
+  PASSED     |alpha_ab - 3| <= 0.1 and |(alpha_ab - alpha_c) - 2| <= 0.1: the mixed age term grows as (kT)^3, beyond
+             what the two sectors share;
+  FAILED     |alpha_ab - 3| > 0.5 or |(alpha_ab - alpha_c) - 2| > 0.5 (in particular alpha_ab near 1: a linear age term
+             as read in F6.8b2);
   UNDECIDED  otherwise.
 Reported, not judged: alpha_ab at every pair of n; c3 = F'_ab / (3 n^2) at the largest n; the ratio of the mixed to the
 conformal age slope at each n (F6.8b2 read 1.78 at n = 8-16).
@@ -96,8 +119,8 @@ TEST = {
               "tip-clustered nodes); k = 0.15, n = kT = 96 ... 3072; profile in the phase advance p; local exponent",
     "prediction": "alpha_ab -> 3 (rho_ab ~ r^2), from the first-order (kL)^2 focusing that survives the BD moments",
     "criterion": "INSTRUMENT: I0 long double; I1 pieces vs F6.8b2 <= 1e-9 rel.; I2 levels <= 1e-3; I3 conformal c_T within "
-                 "3 % of 0.1035; I4 tail <= 1e-3; I5 k^5 scaling <= 1e-3. alpha_ab (n 1536 -> 3072, k 0.15): PASSED "
-                 "|alpha_ab - 3| <= 0.1; FAILED > 0.5; UNDECIDED otherwise.",
+                 "3 % of 0.1035; I4 tail <= 1e-3; I5 k^5 scaling <= 1e-3. At n 1536 -> 3072, k 0.15: PASSED |alpha_ab - 3| "
+                 "<= 0.1 and |(alpha_ab - alpha_c) - 2| <= 0.1; FAILED either > 0.5; UNDECIDED otherwise.",
     "null_model": "a linear mixed age term (alpha_ab = 1), as read by F6.8b2",
     "level": "chain",
     "meters": [],
@@ -287,6 +310,7 @@ def run(p, ctx):
     lines.append("  k      n      r          rho_ab          F'_ab(n) = -a4 rho_ab / (2 k^5)   slope ratio mixed/conf   "
                  "alpha_ab")
     alphas = {}
+    alphc = {}
     for k in pks:
         prev = None
         for n in ns:
@@ -296,11 +320,13 @@ def run(p, ctx):
             al = ""
             if prev is not None:
                 a_ = 1.0 + math.log(pr["rho_ab"] / prev[1]) / math.log(n / prev[0])
+                ac = 1.0 + math.log(pr["rho_c"] / prev[2]) / math.log(n / prev[0])
                 alphas[(k, n)] = a_
-                al = f"{a_:.4f}"
+                alphc[(k, n)] = ac
+                al = f"{a_:.4f} (conformal {ac:.4f}, difference {a_ - ac:.4f})"
             lines.append(f"  {k:<6g} {n:<6g} {n / k:<10.5g} {pr['rho_ab']:+.6e}   {Fab:+.6e}                      "
                          f"{Fab / Fc:+.4f}                   {al}")
-            prev = (n, pr["rho_ab"])
+            prev = (n, pr["rho_ab"], pr["rho_c"])
         Fab = -_A4 * prof[(k, ns[-1])]["rho_ab"] / (2.0 * k ** 5)
         lines.append(f"  reported k {k:g}: c3 = F'_ab(n) / (3 n^2) at n {ns[-1]:g} = {Fab / (3.0 * ns[-1] ** 2):.4e}")
     if not inst_ok:
@@ -308,7 +334,8 @@ def run(p, ctx):
     elif len(ns) < 2 or (not ctx.quick and len(ks) < 2):
         status = "UNDECIDED"
     else:
-        dev_ = [abs(alphas[(k, ns[-1])] - float(p["alpha_pred"])) for k in pks]
+        dev_ = [abs(alphas[(k, ns[-1])] - float(p["alpha_pred"])) for k in pks] + \
+               [abs(alphas[(k, ns[-1])] - alphc[(k, ns[-1])] - (float(p["alpha_pred"]) - 1.0)) for k in pks]
         if all(d <= float(p["tol_pass"]) for d in dev_):
             status = "PASSED"
         elif any(d > float(p["tol_fail"]) for d in dev_):
@@ -316,6 +343,7 @@ def run(p, ctx):
         else:
             status = "UNDECIDED"
     data = {"profiles": {f"{k}_{n}": v for (k, n), v in prof.items()},
-            "alphas": {f"{k}_{n}": v for (k, n), v in alphas.items()}, "levels": rl, "zero": rz, "tail": rt, "pairs": rp,
+            "alphas": {f"{k}_{n}": v for (k, n), v in alphas.items()},
+            "alphas_conf": {f"{k}_{n}": v for (k, n), v in alphc.items()}, "levels": rl, "zero": rz, "tail": rt, "pairs": rp,
             "p_nodes": pn.tolist(), "p_weights": wp.tolist()}
     return Result(status, lines, data)
