@@ -945,8 +945,9 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   28).** Seed 0 (by the author): UNDECIDED. Instrument: all 110 items within t_crit (largest z 3.03 of 5.29). Not
   passed: the residual against B at A 1, ρ 30 (M 0.0433 against 0.04; the last slab t 5.25, d −0.028 ± 0.008).
   Passed: the other 18 tolerance criteria and all 14 sign criteria. No FAILED condition.
-  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs: the original entry was
-  overwritten by mistake when the container copy of this file was written into the author's folder.)
+  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs. Claude overwrote the
+  author's uncommitted findings.md on 14 Nov about 22:04 with its own older copy; the original wording of this entry
+  is lost, the numbers and the verdict are taken from the sources named.)
 
   **Replication, seed 1 (14 Nov 22:28, by the author; new sprinklings, the same criteria): PASSED.** Instrument: all 110
   items within t_crit (largest z 2.60, lin2 t 5.25 ρ 30, of 5.29). All 19 tolerance criteria passed, B_1_30 now
@@ -962,8 +963,9 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   docs/C1_card.md, decision 29): PASSED.** P1: every bin within t_crit of the exact mean (largest z 4.78 of 8.70;
   χ²/bin 1.10 / 0.55; the local conformally coupled model 38.2 / 33.9). P2: D − local +0.151 ± 0.010 at ρ 30
   (predicted +0.141) and +0.159 ± 0.012 at ρ 60 (+0.148). Instrument (flat parents): largest z 2.70 of 6.18.
-  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs: the original entry was
-  overwritten by mistake when the container copy of this file was written into the author's folder.)
+  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs. Claude overwrote the
+  author's uncommitted findings.md on 14 Nov about 22:04 with its own older copy; the original wording of this entry
+  is lost, the numbers and the verdict are taken from the sources named.)
 
   Reading: on a curved order the order-only field follows its exact mean, a Green function weighted by the curved
   volume along each near-null pair, and departs as predicted from the local conformally coupled field with the same
@@ -1727,8 +1729,9 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   renormalisation falls at A 1 (+0.019 ± 0.012, the declared risk). Passed: linear and nonlinear against the continuum
   at ρ 60, convergence k 0–3, noise falls in every mode (8–17 %), p ≤ 1.15, the conditions of B (direct ≤ 0.012).
   Design errors of the card; the revision is F3.16b (statistical criteria, decision 28).
-  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs: the original entry was
-  overwritten by mistake when the container copy of this file was written into the author's folder.)
+  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs. Claude overwrote the
+  author's uncommitted findings.md on 14 Nov about 22:04 with its own older copy; the original wording of this entry
+  is lost, the numbers and the verdict are taken from the sources named.)
 
 ## Discoveries
 
@@ -2196,9 +2199,13 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   outside), relation by the straight-ray delay. The exact mean holds for any relation that respects t; the volume of
   an interval is an exact 3D integral. ε = V/((π/24)τ_g⁴) − 1 per unit a: 0.00000 for every pair whose diamond lies
   in vacuum (tangential, radial, oblique, grazing; l 3–6, τ 0.15–1.5) and for the flat controls; +2.6 through the
-  centre of the ball (l 6), +2.3 at impact 0.75, +0.1 for a short pair inside. Consequence: to first order the
-  nonlocal weight of the instrument is tied to the Ricci curvature along the pair; Weyl curvature does not enter
-  (symmetry argument in the derivation). Not covered: second order, the bending of rays, the finite-ρ mean.
+  centre of the ball (l 6), +2.3 at impact 0.75, +0.1 for a short pair inside. For this source, to first order, the
+  departure of the weights from the proper-time kernel comes only from pairs whose diamond crosses the ball.
+  Correction 15 Nov: the symmetry argument first written here ("Weyl curvature does not enter") is wrong, a scalar
+  such as ∫ f E_ij x^i x^j over the diamond (E the electric part of the Weyl tensor) is not excluded. The zeros are a
+  numerical result for the pairs tested; why they vanish (possibly the harmonic g outside the ball) is not shown, and
+  that the nonlocality is tied to the Ricci curvature in general is not shown. Not covered: second order, the bending
+  of rays, the finite-ρ mean.
 
 ## Undecided (descriptive)
 
@@ -2840,6 +2847,11 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   that a discrete order built according to the principle (density = 1/c) has a geometry with γ = 1. Why the substrate
   conserves throughput it does not derive.
 
+- **C1 development, a plateau with walls: where the nonlocality lives (14 Nov; diag/c1_shape.py; decides nothing).**
+  The entry written on 14 Nov was lost when Claude overwrote the author's uncommitted findings.md (about 22:04). It is
+  not reconstructed: its wording and the numbers it cited are not available. The predictions can be regenerated with
+  python -m diag.c1_shape --predict (σ quadrature ns 30; ns 10 gave a false early onset).
+
 - **C1 development rows, the spherical well (14 Nov; diag/c1_sphere.py; decides nothing).** g = Ω(r)²η in 3D,
   Ω = 1 − 0.15 e^(−r²/(2·1.5²)), flat cones, 8 flat / curved pairs at ρ 60 (X 7, T 6, cut λ 100), the C0 rule
   unchanged. Predictions written before the run (diag/out/c1_sphere_pred_rho60.txt; the solver's flat case equals the
@@ -2853,6 +2865,9 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   Reading: the rows follow the exact mean in 3D as in the planar well of F5.3, and the departure from the local model
   is larger (up to 0.3–0.4 in the centre). Development only: one density, one shape, the criteria were not frozen.
   Predictions for ρ 30 are written (diag/out/c1_sphere_pred_rho30.txt), not yet run.
+  Protocol (noted 15 Nov by Claude): these rows were prepared and run without a written author decision and without
+  a card plan; bins, time range, criteria and the floor 0.005 (taken over from F5.3) were not fixed before the run.
+  Only the predictions were written beforehand. The rows carry no weight beyond a description.
 
 - **C1b development rows, the theory metric with tilted cones (15 Nov; diag/c1b_tilt.py; decides nothing).**
   g = −Π²dt² + Π⁻²dx², Π⁻² = 1 + 2a g, a uniform ball R 1.5 (first-order vacuum outside), a 0.05. The relation is the
@@ -2865,13 +2880,18 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
   Raw: inside the ball (r < 1.5), 30 bins with t ≥ 1: against the exact mean χ²/bin 0.93 (max z 1.87); against the
   proper-time kernel 1.19 (max z 2.61). Vacuum (r > 1.5), 51 bins: 0.35 (max z 1.71) and 0.41 (max z 1.71). Floor
-  0.005.
+  0.005. The low vacuum value is the floor, not a conservative noise estimate: the vacuum bins have SE ≈ 0.003 (median),
+  below the floor; without the floor (from the printed table, 3 decimals, 48 bins with SE > 0) the vacuum gives
+  χ²/bin 1.24, inside 1.13. The two χ² are computed on the same data and are correlated; their difference is not a
+  test of which model holds.
 
   Reading: on the order of the theory metric, with tilted cones, the field of the C0 rule follows its exact mean
   inside the source and in the vacuum. As predicted the exact mean is close to the local kernel in the geodesic proper
-  time here (the nonlocal weight comes only from pairs crossing matter, and a 0.05 is weak), so these rows do not
-  separate the two; the inside bins lean to the exact mean (0.93 against 1.19), not significantly. Development only:
-  one density, one source, criteria not frozen.
+  time here (predicted difference ≤ 0.014 inside, ≤ 0.002 in the vacuum), so these rows do not separate the two.
+  Development only: one density, one source, criteria not frozen. The rows say nothing about Ricci against Weyl.
+  Protocol (noted 15 Nov by Claude): these rows were prepared and run without a written author decision and without
+  a card plan; bins, time range, criteria and the floor 0.005 (taken over from F5.3) were not fixed before the run.
+  Only the predictions were written beforehand. The rows carry no weight beyond a description.
 
 ## Open questions
 
