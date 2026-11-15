@@ -3,100 +3,120 @@
 Opened 15 Nov 2026 at the author's request. **Status: notes only. Nothing here is a result, a test or a part of the
 theory yet.**
 
-Astrophysical tests come after the classical base, in the author's order of work of 15 Nov 2026 (roadmap):
-- the age terms of the sectors (F6.8e2, F6.8d);
-- the asymptotic static propagator;
-- the covariance of the sectors;
-- dynamic and nonlinear gravity.
+Astrophysical tests come after the classical base. In particular they wait for the asymptotic static propagator of
+the action of the order, which fixes the far field of a point source (F8.1, P1), and for the age terms of the sectors
+(F6.8d, F6.8e2). An astrophysical test before that would have no derived prediction to test.
 
-Without the propagator the theory has no derived far field of a point source. An astrophysical test before that would
-test parameters put in by hand, not the theory.
+## 1. Motivation (the author, 15 Nov)
 
-## 1. The motive (the author, 15 Nov)
+- The author expects the theory to bear on dark matter and dark energy. Astrophysical tests are to decide it.
+- Gravity is still a mystery, as fire and electricity once were. Understanding it may carry technological potential.
+  If it exists, it lies where the theory differs from general relativity: gravity as the response of the causal
+  order, which might be changed by other means than mass. This is a question, not a claim.
 
-Gravity is still a mystery, as fire and electricity once were. Understanding came first and technology followed, by
-decades, through exact and testable equations.
+## 2. Where the present theory could depart from Newton and Einstein
 
-The theory may explain dark matter and dark energy, but that is for astrophysical tests to decide. There may also be
-a technological potential: if gravity is the response of the causal order, the order might be influenced otherwise
-than by matter. This is speculation.
+**Features of the theory that are not in GR:**
+- **Non-locality.** On a curved 3+1 order the order-only field follows its exact mean, a Green function weighted by
+  the curved volume along each near-null pair, and not the local conformally coupled field (F5.3, C1, replicated).
+- **Memory of age.** The static response of the action depends on how long the field has existed:
+  - the conformal age term is linear in T (F6.8a);
+  - development, decided by F6.8d and F6.8e2: mixed ∝ (kT)³, optical ∝ (kT)⁵.
 
-## 2. What the present theory could bring to these scales (open, not results)
+**Unknowns.** Where a departure would fall (which length scale, which field strength) is open. The rough development
+numbers point to large scales:
+- the optical stiffness changes sign near kT ≈ 43, i.e. at wavelengths of order T/7 for a field of age T;
+- the expansion in the field strength b breaks near b²(kT)⁴ ~ 1.
 
-- **Non-locality.** On a curved order the order-only field follows a Green function weighted by the curved volume
-  along whole near-null pairs, and not a local field (F5.3, C1, replicated). This is a finite-density result on one
-  conformally flat well.
-- **Memory of age.** A static field responds according to how long it has existed (the age terms of the action, F6.8).
-  - Development: in the optical sector the formal second-order coefficient grows as (kT)⁵; in the mixed sector as
-    (kT)³ (F6.8e2 and F6.8d decide).
-  - The age ties a departure from Newton to a time, in the end to the age of the source or of the universe. This is
-    reminiscent of a₀ = cH₀/2π in MOND, but the analogy is not derived.
-  - The development numbers point rather to large scales, and the dependence on the field strength (the breakdown near
-    b²(kT)⁴ ~ 1) goes the opposite way from MOND, where weak fields depart.
-- **What must be derived first:** the static propagator from the action of the order (F8.1), giving the far field of a
-  point source and the scale (if any) at which it departs from Newton, with no parameter fitted to galaxies.
+The dependence on the field strength goes the other way than in MOND: stronger fields depart earlier. Nothing here is
+a prediction yet.
 
-## 3. The old GTS validators (archive; ideas, not tests)
+## 3. Old GTS scripts (archive; reviewed 15 Nov, not to be revived as they are)
 
-Two scripts from the GTS period were shown on 15 Nov.
+### 3.1 CROSS-SCALE VALIDATOR (GTS, Phase 4 kernel)
 
-**"Cross-scale validator".** A tanh map from the baryonic acceleration g_bar, χ = ln(g_bar/a₀), to an effective
-dimension D_eff: 2.05 below a₀ ("compression", dark-matter-like), 3 on a plateau, up to 3.6 above a threshold near
-white dwarfs ("expansion"). From D_eff it builds a ratio of potentials Φ/Φ_N = γ^p.
+**What it does.** It maps the baryonic acceleration g_bar to χ = ln(g_bar / a₀), with a₀ = cH₀/2π. From χ, a tanh
+gives an effective dimension D_eff:
+- compression towards 2.05 below a₀ (meant as dark matter);
+- a plateau D = 3 in between;
+- expansion towards 3.6 above a "vacuum rigidity" χ = 36.5015 (white dwarfs, neutron stars).
 
-**"Redshift WD validation" (test 8).** An observational layer that does not evolve a causal kernel.
-- It maps catalogue values (logg, mass) into the phase space χ_obs = ln(g/a₀).
-- It computes the GR gravitational redshift and a mapped D_eff, c_eff, Z*.
-- Its rule: deviations from GR are allowed only where D_eff > 3 (the "rigidity barrier").
-- If a catalogue has an observed redshift column, it computes the residuals obs − GR and obs − GTS.
+From D_eff it builds a ratio Φ_GTS/Φ_Newton = (3/D_eff)^p. It prints the ratio for point objects and two galaxies.
 
-**Why neither is a test by today's rules:**
-- **The law sought is put in.**
-  - a₀ = cH₀/2π (the MOND coincidence) is inserted by hand.
-  - The steepness 3.0 is chosen to "align with MOND".
-  - VACUUM_RIGIDITY = 36.5015 (six significant digits) and CHI_PIVOT = 36.5 are tuned so that the expansion regime
-    switches on at white dwarfs.
-  - GAIN, POWER, IV_AMP and β_excess are free.
-  - The roadmap rule: the laboratory must not put the law it looks for into the result.
-- **The ratio is not derived.** γ^p with a chosen p does not follow from "flux ~ 1/r^(D−1)". A change of dimension
-  would change the r-dependence, not a factor at one point.
-- **No criterion, no comparison.** Rotation curves are not compared with observed velocities; the redshift residuals
-  have no criterion fixed before the evaluation.
-- **Not covariant.** A local acceleration is not an invariant: a freely falling observer does not feel it. A dimension
-  set by g needs a defined frame.
-- **Constrained regimes.**
-  - The gravitational redshift of white dwarfs is measured (Sirius B about 80 km/s) and agrees with GR within its
-    errors.
-  - Neutron stars are constrained by binary pulsars and NICER mass–radius measurements.
-  - Any expansion regime there has to pass these first.
+**Why it would not pass today:**
+- **It inserts the law it looks for.** a₀ = cH₀/2π is the MOND coincidence put in by hand. The steepness 3.0 is chosen
+  "to align with the MOND interpolation". VACUUM_RIGIDITY = 36.5015 has six significant digits: it is placed so that
+  the expansion starts at white dwarfs. The laboratory must not put the law it looks for into the result (roadmap,
+  Aim).
+- **The ratio is not derived.** (3/D_eff)^p with a hand-chosen p does not follow from "flux ∝ 1/r^(D−1)", which would
+  change the r-dependence, not a factor at one radius.
+- **It is not a test.** It has no criterion and no comparison with data: the rotation curves are not compared with
+  observed velocities.
+- **Physical obstacles:**
+  - the local acceleration is not an invariant (a freely falling observer feels none), so "dimension by g" needs a
+    defined frame;
+  - the expansion regime would change the gravitational redshift of white dwarfs, which is measured (Sirius B,
+    about 80 km/s) and agrees with GR;
+  - neutron stars are constrained by binary pulsars and NICER mass–radius measurements.
 
-**What stays useful:**
-- **The intuition.** The vacuum may respond differently to weak and strong fields, with a scale at which gravity
-  departs from Newton. This is legitimate, but today the scale must come from the theory.
-- **The data pipeline of test 8.** It reads WD catalogues: Jiménez-Esteban 2023, MWDD, Gaia samples, logg → g,
-  r = √(GM/g), and the robust CSV header handling. It can be reused for a real test once a derived prediction exists.
-- **White dwarfs as a test bed.** Their gravitational redshift is an independent observable, with g ~ 10⁶ m/s², where
-  any strong-field departure would show.
+**What remains:** the intuition that the vacuum responds differently to weak and strong fields, with a scale where
+gravity departs from Newton. Today such a scale must come out of the theory (the propagator), not out of a parameter.
+The age terms tie departures to the age of the field, and so in the end to cosmological time, which recalls the cH₀
+in a₀; where the scale falls is not known.
 
-## 4. How an astrophysical test must be built (when the time comes)
+### 3.2 REDSHIFT WD VALIDATION, test 8 (catalog mapping)
 
-1. **The prediction from the theory:** the static propagator (F8.1), with every parameter fixed in the laboratory and
-   nothing fitted to the astrophysical data. Derived, calibrated and predicted are kept apart (gate F8).
-2. **A frozen card** with the data set, the selection, the observable, the criterion and the null model (GR, and MOND
-   as an alternative), fixed before the data are read.
-3. **The data:**
-   - galaxy rotation curves (e.g. the SPARC catalogue) for the weak field;
-   - white-dwarf gravitational redshifts for the strong field.
-4. **Checks where MOND-like ideas break:** weak lensing, the Bullet Cluster (offset of mass and gas), the acoustic peaks
-   of the CMB, the solar system and binary pulsars. A theory that replaces dark matter must pass all of them, not only
-   the rotation curves.
-5. **Replication on an independent catalogue,** and negative results kept.
+**What it does.** It reads white-dwarf catalogues (Jiménez-Esteban 2023, MWDD, Gaia samples) and converts log g
+(cgs) to g. It estimates the radius from r = √(GM/g) and computes the GR gravitational redshift
+z_GR = (1 − 2GM/rc²)^(−1/2) − 1. It then maps χ_obs = ln(g/a₀) through a tanh into "I_v, Π, Z*, D_eff, c_eff". It
+allows a departure z_GTS = z_GR · Z*^β only where D_eff > 3 (the "rigidity barrier"). If a catalogue has an observed
+redshift or radial-velocity column, it reports the residuals obs − GR and obs − GTS. The catalogues used had none.
 
-## 5. Open points to come back to
+**Assessment:**
+- **The mapping is inserted, not derived:**
+  - the pivot χ = 36.5 is the same tuned number;
+  - the gain is 30;
+  - α_g = 0.007297 is the fine-structure constant without a reason;
+  - the amplitude 0.15 and β are free.
+- **The barrier rule cannot fail.** With a tuned pivot, "deviations only where D_eff > 3" can be placed wherever the
+  data allow.
+- **Without observed redshifts it tests nothing.** The headers it was run on contain none.
+- **Worth keeping: the data layer.** Robust catalogue ingestion (headers starting with '#', column normalisation),
+  log g → g, r from M and g, and z_GR are the right infrastructure for a later test.
 
-- At what scale, if any, does the far field of the order's action depart from Newton, and does it depend on the field
-  strength, the acceleration or the age?
-- Does the memory of age give a dependence on the history of a galaxy (old versus young systems)?
-- Dark energy: is there a route from the growth of the order (the passage of time) to an accelerated expansion, and
-  what would it predict for w(z)?
-- Technology: what would it take to change the order other than by matter, and is any such handle in the theory?
+**Why white dwarfs are a good test bed.** Gravitational redshifts of white dwarfs are measured:
+- Sirius B and 40 Eri B;
+- wide binaries and common-proper-motion pairs, where the space velocity is known from the companion;
+- large spectroscopic samples of DA white dwarfs.
+
+They test the mass–radius relation together with z_GR. A theory that departs from GR in compact objects must pass
+them.
+
+## 4. What an astrophysical test must be (methodology of the laboratory)
+
+1. **A derived prediction.** The far-field law and any scale come from the propagator of the action of the order
+   (F8.1). The parameters are fixed by the laboratory, never fitted on the astrophysical data used for the test (F8:
+   derived, calibrated and predicted kept apart).
+2. **A frozen card.** The data set, the selection, the criterion and the null model (GR / Newton) are fixed before
+   the evaluation.
+3. **Several independent witnesses together:**
+   - rotation curves (for example SPARC) and the radial-acceleration relation;
+   - gravitational lensing (galaxies, clusters, the Bullet cluster);
+   - cluster dynamics;
+   - the cosmic microwave background and baryon acoustic oscillations;
+   - the solar system (perihelia, Cassini γ);
+   - binary pulsars;
+   - white-dwarf redshifts.
+
+   MOND-like alternatives pass the first and fail others. A replacement of dark matter has to pass all at once.
+4. **Dark energy.** The age terms suggest that the static response depends on the history of the field; whether this
+   reaches cosmological scales requires the dynamic (non-static) response of the order, which is the fourth item of
+   the author's order of work (dynamic and nonlinear gravity).
+
+## 5. Order (when the classical base stands)
+
+1. Asymptotic static propagator → far field of a point source → P1 (deviation from 1/r and from γ = 1, with the scale).
+2. A first confrontation where the theory is already constrained: the solar system and white-dwarf redshifts (the
+   theory must not fail where GR is tested precisely).
+3. Galaxies: rotation curves and lensing with the same prediction, no parameter refit.
+4. Cosmology: after the dynamic response of the order.
