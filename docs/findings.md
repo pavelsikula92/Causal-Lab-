@@ -71,7 +71,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 - **F3.15 (B1, 2+1, intrinsic instrument, variant B): a domain wall of a field on all events of a 2+1 causal order,
   evolved by the Green weight read from the order alone (the longest chain), keeps its identity at rest, keeps its
   velocity and Lorentz contraction when launched, and its inertial mass from a kick equals its rest energy per unit
-  length: r_M = 0.9779 +- 0.0117 (seed 0 PASSED; replication pending)** (mechanism, 2+1, rho 30, T 8, 32 sprinklings
+  length: r_M = 0.9779 +- 0.0117 (seed 0 PASSED; replication seed 1 PASSED, r_M 0.9523 +- 0.0105)** (mechanism, 2+1, rho 30, T 8, 32 sprinklings
   x 4 arms, controls on 8, I3 at rho 60 with 8; card docs/B1_card_draft.md rev. 2, decision 21; run by the author
   12 Nov unchanged, 6 workers, 14930 s; results/F3.15/20261112T155654Z_all_seed0_47794a19.json).
   - **Instrument (all OK):**
@@ -92,6 +92,22 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     - kick: Delta(gamma v) 0.0786 +- 0.0010 against the continuum 0.0785; **r_M 0.9779 +- 0.0117 (0.046 / 0.10)**;
     - blind control separated: L 0.569 against 1.013, D_L +0.444 +- 0.034 (D_L - 2 SE 0.375 > 0.2).
   - **Reported:** plain E/8 - 1 +0.079 (the noise-debiased readout removes it); gamma v after the kick 0.074 +- 0.007.
+  - **Replication, seed 1 (15 Nov, by the author, unchanged test, 6 workers, 29 738 s;
+    results/F3.15/20261115T163024Z_all_seed1_47794a19.json): PASSED.**
+    - Instrument all OK: I4 1.6e-15 / 4.9e-16 / 0; I1 lambda_eff +0.0092 +- 0.0024; I2 +0.0056, +0.0066, +0.0035,
+      +0.0021; I3 at rho 60 w/w_ex - 1 +0.0105 +- 0.0023, eps 0.0218 (rho 30) -> 0.0150 (rho 60); rest Q -0.0002,
+      drift -0.041 +- 0.018, w/w_ex - 1 +0.0144 +- 0.0010, (E - E_ex)/8 +0.0141 +- 0.0022 (M_rest 8.124); telegraph
+      p_Gamma 0.007 / 0.022 against p_cons 0.315 (v 0.3), 0.010 / 0.023 against 0.081 (kick); V = 0: L 0.039 against
+      1.005.
+    - v 0.3: velocity -0.0000 +- 0.0032, C - 1 +0.0009 +- 0.0020, w/w_ex - 1 +0.0153 +- 0.0019, e_B +0.0124 +- 0.0022;
+      v 0.6: velocity +0.0007 +- 0.0020, C - 1 -0.0043 +- 0.0026, w/w_ex - 1 +0.0100 +- 0.0026, e_B +0.0030 +- 0.0035;
+      Q within 2e-4.
+    - Kick: Delta(gamma v) 0.0809 +- 0.0009 against the continuum 0.0785; **r_M 0.9523 +- 0.0105**; blind control
+      separated (L 0.555, D_L +0.450 +- 0.017).
+    - Reported: plain E/8 - 1 +0.077; gamma v after the kick 0.075 +- 0.005.
+    - Note: r_M is lower than seed 0 (0.9779 +- 0.0117; difference -0.026 +- 0.016, 1.6 SE) and 4.5 SE below 1; both runs
+      are inside the tolerance (|r_M - 1| + 2 SE = 0.069 against 0.10). The kick of seed 1 is 3 % above the continuum
+      (seed 0: 0.1 %).
 
   Reading (declared in the card). In 2+1, with the retarded weight taken from the order alone (no coordinates, no
   continuum Green function), a field wall behaves as an inertial body: it keeps its velocity, contracts by gamma, carries
