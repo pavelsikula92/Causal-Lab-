@@ -2,6 +2,12 @@
 F6.8e -- The asymptotic age term of the optical (nu^2) sector of the expected BD action in 3+1
 =============================================================================================
 
+Revision 1 (15 Nov 2026, 13:2x, before any result; the author's choice "Revize před během"): the first full run in
+Claude's workspace was stopped at 175 of 277 tasks by the workspace's two-hour limit per process; nothing of it was
+printed or saved. To fit the limit the profile is computed at one wavenumber (k = 0.15; the k^5 scaling is exact, a
+second wavenumber adds no information about alpha) with 10 + 6 instead of 12 + 8 nodes in p; k = 0.25 stays only in
+the scaling check I5. Nothing else changes.
+
 Why this test exists (15 Nov 2026; the author's order of work "B, then C, then A, then D", 08:30)
 ---------------------------------------------------------------------------------------------
 F6.8c2 found that the optical sector weakens with the age T of the static field faster than linearly
@@ -71,10 +77,10 @@ Instrument (INSTRUMENT_FAILED if any fails)
   I4 the tail: |I(r, 24)| / |I(r, 0)| <= 1e-3 at the largest n (the p-range holds the profile);
   I5 the form k^2 F(kT): I(k = 0.15, n / 0.15) / I(k = 0.25, n / 0.25) = (0.15 / 0.25)^5 at p = 0 for n = 192 and 1536:
      relative difference <= 1e-3.
-Status (alpha between n = 1536 and 3072, at each of the two k)
-------------------------------------------------------------
-  PASSED     |alpha - 5| <= 0.1 at both k: the optical age term grows as (kT)^5;
-  FAILED     |alpha - 5| > 0.5 at either k (in particular alpha near 1, a linear term, or below, saturation);
+Status (alpha between n = 1536 and 3072 at k = 0.15; revision 1)
+------------------------------------------------------------------
+  PASSED     |alpha - 5| <= 0.1: the optical age term grows as (kT)^5;
+  FAILED     |alpha - 5| > 0.5 (in particular alpha near 1, a linear term, or below, saturation);
   UNDECIDED  otherwise.
 Reported, not judged: alpha at every successive pair of n; c5 = F'(n) / (5 n^4) at the largest n; the age n* at which
 the optical stiffness K_hat_bb changes sign, n* ~ (K0 / (k^2 c5))^(1/5) (local part neglected); the k = 0.12 slope at
@@ -115,21 +121,21 @@ TEST = {
     "prediction": "the optical age term grows as (kT)^5 (alpha -> 5), from the (kL)^4 focusing of long intervals that survives "
                   "the BD moments in the tau^6 part",
     "criterion": "INSTRUMENT: I0 long double eps <= 1e-18; I1 stable V'' vs F6.8c <= 1e-9 rel.; I2 levels <= 1e-3; I3 "
-                 "conformal c_T within 3 % of 0.1035; I4 tail <= 1e-3; I5 k^5 scaling <= 1e-3. alpha at "
-                 "both k (n 1536 -> 3072): PASSED |alpha - 5| <= 0.1; FAILED > 0.5 at either k; UNDECIDED otherwise.",
+                 "conformal c_T within 3 % of 0.1035; I4 tail <= 1e-3; I5 k^5 scaling (k 0.15 vs 0.25) <= 1e-3. alpha at "
+                 "k = 0.15 (n 1536 -> 3072): PASSED |alpha - 5| <= 0.1; FAILED > 0.5; UNDECIDED otherwise.",
     "null_model": "a linear age term as in the conformal and mixed sectors (alpha = 1), or saturation (alpha < 1)",
     "level": "chain",
     "meters": [],
     "depends_on": ["F6.8a", "F6.8c", "F6.8c2"],
-    "params": {"ks": [0.15, 0.25], "ns": [96.0, 192.0, 384.0, 768.0, 1536.0, 3072.0],
-               "p_panels": [[0.0, 12.0, 12], [12.0, 24.0, 8]], "lev1": [16, 24, 16, 16], "lev2": [24, 32, 24, 16],
+    "params": {"ks": [0.15, 0.25], "profile_ks": [0.15], "ns": [96.0, 192.0, 384.0, 768.0, 1536.0, 3072.0],
+               "p_panels": [[0.0, 12.0, 10], [12.0, 24.0, 6]], "lev1": [16, 24, 16, 16], "lev2": [24, 32, 24, 16],
                "scale_ns": [192.0, 1536.0], "dev_row": [0.12, 24.0], "c_T_ref": 0.1035,
                "tol_pair": 1e-9, "tol_level": 1e-3, "tol_cT": 0.03, "tol_tail": 1e-3, "tol_scale": 1e-3,
                "tol_pass": 0.1, "tol_fail": 0.5, "alpha_pred": 5.0},
     "parts": {"main": {}},
-    "quick": {"ks": [0.15], "ns": [48.0, 96.0], "p_panels": [[0.0, 12.0, 4], [12.0, 24.0, 2]], "scale_ns": [],
+    "quick": {"ks": [0.15], "profile_ks": [0.15], "ns": [48.0, 96.0], "p_panels": [[0.0, 12.0, 4], [12.0, 24.0, 2]], "scale_ns": [],
               "dev_row": None, "lev1": [16, 16, 8, 8], "lev2": [16, 24, 8, 8]},
-    "estimate": "~270 pair-density evaluations of 30-100 s each (long double): ~1 h with 8 processes, ~3 h with 2; "
+    "estimate": "~125 pair-density evaluations of 30-100 s each (long double): ~1 h with 2 processes; "
                 "memory < 0.5 GB per process; needs 80-bit long double (Linux / WSL)",
 }
 
@@ -339,10 +345,11 @@ def run(p, ctx):
     pn, wp = _p_nodes(p["p_panels"])
     lev1 = tuple(p["lev1"])
     lev2 = tuple(p["lev2"])
-    jobs = [("dens", (k, n / k, float(pp), lev1)) for k in ks for n in ns for pp in pn]
+    pks = [float(k) for k in p.get("profile_ks", ks)]
+    jobs = [("dens", (k, n / k, float(pp), lev1)) for k in pks for n in ns for pp in pn]
     n_main = len(jobs)
-    tail = [("dens", (k, ns[-1] / k, 24.0, lev1)) for k in ks]
-    lv = [("dens", (k, n / k, 0.0, lev2)) for k in ks for n in sorted({ns[0], ns[-1]})]
+    tail = [("dens", (k, ns[-1] / k, 24.0, lev1)) for k in pks]
+    lv = [("dens", (k, n / k, 0.0, lev2)) for k in pks for n in sorted({ns[0], ns[-1]})]
     zn = sorted({ns[0], ns[-1]} | {float(n) for n in p.get("scale_ns", [])})
     sc = [("dens", (k, n / k, 0.0, lev1)) for k in ks for n in zn]          # p = 0 at level 1 (I2, I4, I5)
     dev = []
@@ -374,7 +381,7 @@ def run(p, ctx):
                  + f" (tol {p['tol_pair']:g})")
     # profiles
     prof = {}
-    for k in ks:
+    for k in pks:
         for n in ns:
             r = n / k
             vb = np.array([find(main, k, r, float(pp))["bb"] for pp in pn])
@@ -397,7 +404,7 @@ def run(p, ctx):
             ok2 &= abs(x["bb"] - y["bb"]) / abs(x["bb"]) <= float(p["tol_level"])
     # I3 conformal control
     ok3 = True
-    for k in ks:
+    for k in pks:
         cT = -(16.0 / 3.0) * _A4 * prof[(k, ns[-1])]["rho_c"] / k ** 5
         d = abs(cT - float(p["c_T_ref"])) / float(p["c_T_ref"])
         ok3 &= d <= float(p["tol_cT"])
@@ -429,7 +436,7 @@ def run(p, ctx):
 
     lines.append("  k      n      r          rho_bb          F'_bb(n) = -a4 rho_bb / k^5   rho_conf        alpha(n_prev -> n)")
     alphas = {}
-    for k in ks:
+    for k in pks:
         prev = None
         for n in ns:
             pr = prof[(k, n)]
@@ -442,7 +449,7 @@ def run(p, ctx):
             lines.append(f"  {k:<6g} {n:<6g} {n / k:<10.5g} {pr['rho_bb']:+.6e}   {Fp:+.6e}                  "
                          f"{pr['rho_c']:+.6e}   {al}")
             prev = (n, pr["rho_bb"])
-    for k in ks:
+    for k in pks:
         Fp = -_A4 * prof[(k, ns[-1])]["rho_bb"] / k ** 5
         c5 = Fp / (5.0 * ns[-1] ** 4)
         nstar = (1.0 / (k * k * c5)) ** 0.2 if c5 > 0 else float("nan")
@@ -457,10 +464,10 @@ def run(p, ctx):
 
     if not inst_ok:
         status = "INSTRUMENT_FAILED"
-    elif len(ks) < 2 or len(ns) < 2:
+    elif len(ns) < 2 or (not ctx.quick and len(ks) < 2):
         status = "UNDECIDED"
     else:
-        last = [alphas[(k, ns[-1])] for k in ks]
+        last = [alphas[(k, ns[-1])] for k in pks]
         dev_ = [abs(a_ - float(p["alpha_pred"])) for a_ in last]
         if all(d <= float(p["tol_pass"]) for d in dev_):
             status = "PASSED"

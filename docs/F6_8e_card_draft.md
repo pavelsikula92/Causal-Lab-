@@ -1,6 +1,7 @@
-# Card F6.8e (draft): the asymptotic age term of the optical sector
+# Card F6.8e: the asymptotic age term of the optical sector
 
-**15 Nov 2026. Draft for the author's decision; not frozen.** The order of work is the author's (08:30: "B, then C,
+**15 Nov 2026. Frozen by decision 30 (10:23); revision 1 before any result (13:2x, the author's choice "Revize před
+během"), see section 7.** The order of work is the author's (08:30: "B, then C,
 then A, then D"; B = F6.8e and F6.8d).
 
 **Test**: phases/F6_order_dynamics/F6_08e_bd_action_optical_asymptotic.py (md5 in the decision that freezes it).
@@ -123,3 +124,16 @@ T⁵, not linearly. The static quadratic form of the order has no limit for old 
   change the slope).
 - Whether the cut itself shapes the sectors is F6.8d.
 - One field shape (a plane wave, phase-averaged), static.
+
+## 7. Revision 1 (15 Nov, 13:2x, before any result)
+
+The first full run, in Claude's workspace, was stopped at 175 of 277 tasks by the workspace's two-hour limit per
+process. Nothing of it was printed or saved; the result table is written only at the end. To fit the limit:
+- the profile is computed at one wavenumber, k = 0.15. The k⁵ scaling is exact, so a second wavenumber adds no
+  information about α; k = 0.25 stays only in the scaling check I5;
+- the p nodes are 10 + 6 instead of 12 + 8.
+
+**Status (revised):** α between n = 1 536 and 3 072 at k = 0.15. PASSED |α − 5| ≤ 0.1; FAILED |α − 5| > 0.5;
+UNDECIDED otherwise. The instrument conditions are unchanged.
+
+Test md5 9178baf0348e46dd8b74fe758cc9edde (LF).
