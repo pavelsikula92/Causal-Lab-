@@ -1792,6 +1792,33 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   itself was never the failing item. How to close F6.8e (a third revision, or a decision of the author on what the
   record shows) is the author's decision.
 
+- **F6.8d, the age term of the mixed sector (15 Nov; card docs/F6_8d_card_draft.md, decision 31; run by Claude in its
+  Linux workspace, results/F6.8d/20261115T220032Z): INSTRUMENT_FAILED** on I2:
+  - I2, two quadrature levels at p = 0: 2.9e-6 at the smallest age (k = 0.15, n = 96) but 1.7e-3 against 1e-3 at the
+    largest (n = 3 072, r = 20 480; −1.848352e+01 against −1.845166e+01). The check sits at the judged age, where the
+    instrument no longer holds three digits.
+  - Passed: I0 (long double, eps 1.08e-19); I1 against F6.8b2 ≤ 9.3e-14; I3 conformal c_T = 0.1022 at n = 3 072
+    (1.3 % from 0.1035); I4 tail 1.1e-4; I5 the kT-shape independent of k, 9.7e-4 against 1e-3 (the deviation of the
+    ratio from (k1/k2)^5 is 0.36 % at n = 192 and 0.46 % at n = 1 536, reported).
+
+  Recorded, not a verdict (R132), k = 0.15:
+
+  | n pair | 96→192 | 192→384 | 384→768 | 768→1 536 | 1 536→3 072 (judged) |
+  |---|---|---|---|---|---|
+  | α_ab (mixed) | 2.9761 | 2.9944 | 2.9985 | 3.0000 | 3.0149 |
+  | α_c (conformal, same nodes) | 0.9939 | 0.9987 | 0.9996 | 1.0001 | 1.0092 |
+  | α_ab − α_c | 1.9823 | 1.9957 | 1.9989 | 1.9999 | 2.0058 |
+
+  - c3 = F'_ab/(3n²) = 1.45e-4 at n = 3 072; the ratio of the mixed to the conformal age slope grows as n² (39.8 at
+    n = 96, 4.0e4 at n = 3 072).
+  - At the judged pair both exponents rise by 0.01-0.015 together, where the level check failed; at the pair before it
+    they are 3.0000 and 1.0001.
+
+  Reading: the item that failed is again a check placed at the largest age, where the instrument loses digits (as I3 of
+  F6.8e2). The exponent of the bulk mixed age term is not decided by this run. The record shows α_ab → 3 and
+  α_ab − α_c → 2 up to n = 1 536, in agreement with the prediction of the card, but the pair on which the card judged is
+  the one the instrument did not hold. How to close F6.8d is the author's decision.
+
 ## Discoveries
 
 - **Growth probe (direction A, 1+1): with the causal growth rule "a candidate event is realised with probability Pi^2,
