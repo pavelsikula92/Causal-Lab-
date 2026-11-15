@@ -52,7 +52,7 @@ moments in the τ⁶ part.
 - **Control on what the sectors share.** The conformal density on the same nodes, measure and normalisation has the
   known linear age term. The exponent difference α_ab − α_c removes the pair measure r² dr, the angular band 1/kr, the
   s quadrature and the binning; the prediction is 2.
-- **Further controls:** I2 (levels) and I5 (k⁵ scaling).
+- **Further controls:** I2 (levels) and I5 (the kT-shape does not depend on k).
 - **Δ is diagnostic only.** It is not computed here, is no condition of any status and is not used as support.
 
 **Separation of the data.**
@@ -71,7 +71,9 @@ moments in the τ⁶ part.
 - I2: two levels, ≤ 10⁻³;
 - I3: conformal c_T within 3 %;
 - I4: tail ≤ 10⁻³;
-- I5: k⁵ scaling, ≤ 10⁻³.
+- I5: the ratio of the densities at k = 0.15 and 0.25 is the same at n = 192 and 1 536, ≤ 10⁻³. This is taken over
+  from F6.8e2: F6.8e failed on the stricter form "ratio = (0.15/0.25)⁵" because the normalisation carries a small
+  k-dependence (about 0.6 k⁴, independent of n). The deviation from (k₁/k₂)⁵ is reported.
 
 **Status** (α_ab between n = 1 536 and 3 072 at k = 0.15):
 
