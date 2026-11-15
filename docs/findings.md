@@ -1773,6 +1773,25 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   tolerance of I5. The exponent of the bulk optical age term is not decided by this run. A revision (another I5 form
   or tolerance, judged on rows not computed here) is the author's decision.
 
+- **F6.8e2, revision of F6.8e (15 Nov; card docs/F6_8e2_card_draft.md, decision 31; run by Claude in its Linux
+  workspace, results/F6.8e2/20261115T213651Z): INSTRUMENT_FAILED** on three items, all design faults of the card:
+  - I3, the conformal control at the largest age (k = 0.1, n = 6 144, r = 61 440): c_T = 0.0611 against 0.1035. The
+    conformal density on the same rows is constant to n = 1 536 (−1.169e-7, −1.168e-7, −1.170e-7, −1.156e-7) and then
+    departs (−1.255e-7 at n = 3 072, −7.01e-8 at n = 6 144). The conformal path is computed in double precision and
+    loses its digits at r ≳ 3e4; the check was placed where its own instrument does not reach.
+  - I5, the k1/k2 ratio at two ages: 1.7e-3 against 1e-3. The ratio R = I(0.1)/I(0.18) is 5.2349e-2 at n = 384 and
+    5.2260e-2 at n = 3 072; its deviation from (k1/k2)^5 is 1.1-1.3 % (at k 0.15 / 0.25 in F6.8e: 0.2 %).
+  - I2, levels at the smallest age (n = 192): 1.2e-3 against 1e-3 (6.3e-4 at n = 6 144).
+  Passed: I1 against F6.8c 2e-12; I4 tail 8.5e-6.
+
+  Recorded, not a verdict (R132): the optical density at k = 0.1 gives α = 4.984, 4.996, 4.999, 5.000, 5.000 between
+  n = 192 ... 6 144 (predicted 5); c5 = 3.06e-7 (F6.8e: 3.05e-7); the optical stiffness changes sign near n* ≈ 50.
+
+  Reading: two runs (F6.8e, F6.8e2) at three wavenumbers give the same exponent 5.000 of the optical bulk age term, but
+  neither is a verdict: both failed on instrument checks whose tolerances or ranges the card set wrongly. The exponent
+  itself was never the failing item. How to close F6.8e (a third revision, or a decision of the author on what the
+  record shows) is the author's decision.
+
 ## Discoveries
 
 - **Growth probe (direction A, 1+1): with the causal growth rule "a candidate event is realised with probability Pi^2,
