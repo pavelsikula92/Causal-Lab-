@@ -749,3 +749,11 @@ in the exponent (levels and the two wavenumbers within 0.01 at the judged pair);
 k = 0.13 and 0.21; judged α at k = 0.13, n 3 072 → 6 144. The exponent is not blind (F6.8e, F6.8e2 recorded 5.000).
 
 **Run**: deterministic, in Claude's Linux workspace, after F6.8d; output copied into results unchanged.
+
+
+## 33. F6.8d is not closed as a physical failure (15 Nov, 23:03)
+
+**The author's decision:** F6.8d is not closed as a physical failure. The verdict INSTRUMENT_FAILED stays unchanged.
+I2 failed on numerical precision at the largest age (two quadrature levels 1.7e-3 against 1e-3 at n = 3 072), not on
+the physical hypothesis. The exponents stay undecided. The values up to n = 1 536 (α_ab 3.0000, α_ab − α_c 1.9999) are
+supporting development data, not a substitute for the deciding check.

@@ -1817,7 +1817,11 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   Reading: the item that failed is again a check placed at the largest age, where the instrument loses digits (as I3 of
   F6.8e2). The exponent of the bulk mixed age term is not decided by this run. The record shows α_ab → 3 and
   α_ab − α_c → 2 up to n = 1 536, in agreement with the prediction of the card, but the pair on which the card judged is
-  the one the instrument did not hold. How to close F6.8d is the author's decision.
+  the one the instrument did not hold.
+
+  The author (decision 33, 23:03): not closed as a physical failure; the verdict stays; I2 failed on numerical
+  precision, not on the hypothesis; the exponents stay undecided, and the values up to n = 1 536 are supporting
+  development data, not a substitute for the deciding check.
 
 ## Discoveries
 
