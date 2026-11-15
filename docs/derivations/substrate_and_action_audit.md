@@ -20,11 +20,11 @@ it is tested.
 |---|---|---|---|---|
 | event | Ax. Primacy of events; 02 §1 | element of a causal set | yes (sprinkling) | how an event **arises** is undefined (growth open, decision 7) |
 | link | 03 symbols; 02 §1 | u ≺ v with nothing between | yes | not an independent object: the links of a new event are fixed by its past (section 2, A.2) |
-| K₀ | book §15; 02 §1.2; decision 14 | a bound on the **degree** of an event | refuted (F0.3) | the programme of 22:32 lists K₀ as "capacity of an event"; the paper calls the capacity **C**, a bound on the **flow** (section 2, A.1) |
+| K₀ | book §15; 02 §1.2; decision 14 | a bound on the **degree** of an event | tested: F0.3 (E42b) asked whether the stiffness I can be read from the degree; it cannot (the degree grows with N, clustering 0); K.10: E42b not robust to the seed | the programme of 22:32 lists K₀ as "capacity of an event"; the paper calls the capacity **C**, a bound on the **flow** (section 2, A.1) |
 | C | Ax. Finite capacity; 03 | the largest flow an event passes on | only as a calibration (Q₀.₉₉ of the flow under unit driving) | depends on the density and the region (axiom audit §2); supported by F1.8, not robust to the seed |
 | Π | Ax. Local response; 03 ("permeability, read as the clock rate") | a state of every event, 0 < Π ≤ 1 | as a **readout** of the order: clocks (K.3, K.16b/c) | state of the event or readout of the geometry? (section 3, B.2); the programme calls it "local throughput", the paper's throughput is q = ρ_c c_eff, a different quantity |
 | Φ (flow) | book ("Φ(v) = Σ w Φ(u)"); paper uses **F** | flow carried by an event, with u^a (Ax. Momentum) | in tests (F1.1, F3.6, K.15) | the symbol Φ is also the temporal potential (rule_from_action, F6.8 sectors), φ the clock potential (02 §2) and φ the kink field (F3.14a) |
-| I_v | Ax. Local response (I ≥ 1); decision 10 | "resistance of the order to reconfiguration" | **no** | two candidate definitions, neither adopted: F0.5 (density of diamonds in the world tube) and the author's rerouting cost (F3.12a2) |
+| I_v | Ax. Local response (I ≥ 1); decision 10 | "resistance of the order to reconfiguration" | **no** | one candidate tested and failed: I from the degree (F0.3); two open, neither adopted: F0.5 (density of diamonds in the world tube) and the author's rerouting cost (F3.12a2) |
 | Z_v | Ax. Local response | I_v/Π_v | no (I is not defined) | — |
 | Δτ | Ax. Action of a flow; 02 §4 | proper time between successive events of a flow = longest chain | yes on a given order | in R it carries an event index (Δτ_v); in the book also "time as a number of updates" (remnant B, axiom audit §0) |
 | R | 02 §4; Ax. Action status; book 5.8 | Σ_v Z_v Δτ_v, "minimum" (book) | no | its relation to S_m and to S_BD is open (section 3) |
@@ -36,8 +36,10 @@ it is tested.
 
 ### A.1 K₀ and C are not the same quantity in the documents
 
-- **K₀** was the bound on the degree, deg(v) ≤ K₀ (book §15). The laboratory refuted it (F0.3: the degree grows with
-  N), the paper explains why it cannot hold on a Lorentz-invariant substrate (02 §1.2, Bombelli–Henson–Sorkin), and
+- **K₀** was the bound on the degree, deg(v) ≤ K₀ (book §15). The laboratory tested it in F0.3 (E42b, "Can the
+  stiffness I be read from the degree of an event?"): the degree grows with N and the clustering is 0, so neither a
+  bound K₀ nor a reading of I from the degree holds (K.10: E42b is not robust to the seed, so the numbers are weak, the
+  growth of the degree with N is not), the paper explains why it cannot hold on a Lorentz-invariant substrate (02 §1.2, Bombelli–Henson–Sorkin), and
   decision 14 removed K₀ from H5 "as a superseded version of the model, not a parameter of the theory".
 - **C** is the capacity in the paper: a bound on the flow through an event (Ax. Finite capacity). Its only realisation
   is a calibration from the flow itself (axiom audit §2), so it is not yet an intrinsic quantity of the order.
@@ -220,7 +222,8 @@ as the dynamics of the substrate.
 
 Each item lists the options found in the documents and what each one implies. The audit recommends none.
 
-**A1. K₀.** Is K₀ in the programme the capacity C of the paper (a bound on the flow)?
+**A1. K₀.** F0.3 tested K₀ as the degree (and I read from it) and it did not hold. Is K₀ in the programme the capacity
+C of the paper (a bound on the flow)?
 - (a) Yes: one name for one quantity; decision 14 and 02 §1.2 keep their content (the degree bound stays refuted).
 - (b) No, K₀ is a bound on relations: it contradicts F0.3 and Ax. Lorentz-invariant substrate, and the choice of
   substrate A would have to be reopened.
@@ -256,7 +259,7 @@ They are different principles (B.4).
 go); (2) a resistance functional of rerouting (A, saturation); (3) I as the stiffness of the order, i.e. the second
 variation of S_BD; (4) a stability or Lyapunov functional. Or R is retired as superseded, with S_m and S_BD kept.
 
-**B4. I_v.** If I_v stays a local quantity: F0.5 (density of diamonds in the world tube, "independent of Π") or the
+**B4. I_v.** The degree is excluded as a reading of I (F0.3). If I_v stays a local quantity: F0.5 (density of diamonds in the world tube, "independent of Π") or the
 rerouting cost of F3.12a2? Note for F0.5: in P1 every count in the world tube depends on the geometry, and the geometry
 is set by Π (ρ_c = Π⁻²); "independent of Π" may not be possible for a count of the order.
 
