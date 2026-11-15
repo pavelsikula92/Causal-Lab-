@@ -16,20 +16,23 @@ the action of the order, which fixes the far field of a point source (F8.1, P1),
 
 ## 2. Where the present theory could depart from Newton and Einstein
 
-**Features of the theory that are not in GR:**
-- **Non-locality.** On a curved 3+1 order the order-only field follows its exact mean, a Green function weighted by
-  the curved volume along each near-null pair, and not the local conformally coupled field (F5.3, C1, replicated).
-- **Memory of age.** The static response of the action depends on how long the field has existed:
-  - the conformal age term is linear in T (F6.8a);
-  - development, decided by F6.8d and F6.8e2: mixed ∝ (kT)³, optical ∝ (kT)⁵.
+**Features of the present work that might lead to departures from GR.** None is a prediction yet.
 
-**Unknowns.** Where a departure would fall (which length scale, which field strength) is open. The rough development
-numbers point to large scales:
-- the optical stiffness changes sign near kT ≈ 43, i.e. at wavelengths of order T/7 for a field of age T;
-- the expansion in the field strength b breaks near b²(kT)⁴ ~ 1.
+- **Non-locality of the field response.** On a curved 3+1 order the order-only field follows its exact mean, a Green
+  function weighted by the curved volume along each near-null pair, and not the local conformally coupled field (F5.3,
+  C1, replicated). This is a statement about the response of a field, not about the fall of a body: that a localised
+  structure accelerates towards a source has not been shown in 3+1 (F5.1e; open question).
+- **Age dependence of the static response of the action.** The conformal age term is linear in T (F6.8a). In
+  development, the mixed and optical sectors grow faster, ∝ (kT)³ and ∝ (kT)⁵. Three steps stand between this and a
+  prediction:
+  1. F6.8d and F6.8e2 must decide the exponents.
+  2. An independent test must decide whether the age dependence is physical (the history of a static field in its rest
+     frame) or an artefact of the age cut.
+  3. The asymptotic static propagator must be derived from the action.
 
-The dependence on the field strength goes the other way than in MOND: stronger fields depart earlier. Nothing here is
-a prediction yet.
+  Only then can a departure from GR, its scale and its dependence on the field strength be stated. Development numbers
+  (the sign change of the optical stiffness near kT ≈ 43; the breakdown of the expansion in the field strength b near
+  b²(kT)⁴ ~ 1) are not to be read as scales of a prediction.
 
 ## 3. Old GTS scripts (archive; reviewed 15 Nov, not to be revived as they are)
 
@@ -61,8 +64,7 @@ From D_eff it builds a ratio Φ_GTS/Φ_Newton = (3/D_eff)^p. It prints the ratio
 
 **What remains:** the intuition that the vacuum responds differently to weak and strong fields, with a scale where
 gravity departs from Newton. Today such a scale must come out of the theory (the propagator), not out of a parameter.
-The age terms tie departures to the age of the field, and so in the end to cosmological time, which recalls the cH₀
-in a₀; where the scale falls is not known.
+Whether the age dependence of the action provides one is open (section 2).
 
 ### 3.2 REDSHIFT WD VALIDATION, test 8 (catalog mapping)
 
@@ -109,9 +111,9 @@ them.
    - white-dwarf redshifts.
 
    MOND-like alternatives pass the first and fail others. A replacement of dark matter has to pass all at once.
-4. **Dark energy.** The age terms suggest that the static response depends on the history of the field; whether this
-   reaches cosmological scales requires the dynamic (non-static) response of the order, which is the fourth item of
-   the author's order of work (dynamic and nonlinear gravity).
+4. **Dark energy.** Whether the history of a field matters on cosmological scales needs, after the steps of section 2,
+   the dynamic (non-static) response of the order: the fourth item of the author's order of work (dynamic and nonlinear
+   gravity).
 
 ## 5. Order (when the classical base stands)
 
