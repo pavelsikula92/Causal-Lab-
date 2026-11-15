@@ -719,3 +719,33 @@ bulk density growing as r⁵, i.e. an optical age term ∝ (kT)⁵.
   stopped at 175 of 277 tasks by the workspace's two-hour limit per process; nothing of it was printed or saved. Before
   any result, the profile is computed at one wavenumber (k = 0.15; k = 0.25 only in the scaling check I5) with 10 + 6
   nodes in p. Status on α (n 1 536 → 3 072) at k = 0.15. Test md5 9178baf0348e46dd8b74fe758cc9edde (LF); card section 7.
+
+## 31. F6.8e2 and F6.8d are frozen; both run by Claude in its workspace (15 Nov, 21:2x)
+
+**The author's choice (15 Nov, 21:2x):** "Zmrazit a pustit obě" ("freeze and run both"), after the instruction of 21:14
+("ano") to prepare the revision of F6.8e and to fix I5 in F6.8d.
+
+**What led here.** F6.8e ended INSTRUMENT_FAILED on I5 (the k⁵ normalisation; docs/findings.md). F6.8d was
+reformulated by the author's choice of 13:0x and his remarks of 14:19 (an action density, not a pair count; the
+conformal-difference control; Δ diagnostic only; separation of the data).
+
+**Frozen.**
+- **F6.8e2**: card docs/F6_8e2_card_draft.md; test phases/F6_order_dynamics/F6_08e2_bd_action_optical_asymptotic_rev.py,
+  md5 507378756bb4692d5270b2a10ef08b79 (LF). Judged: α at k = 0.1, n 3 072 → 6 144. The F6.8e record of α (seen) is
+  not a confirmation.
+- **F6.8d**: card docs/F6_8d_card_draft.md; test phases/F6_order_dynamics/F6_08d_bd_action_mixed_age.py, md5
+  9442f6b3b1482afd9422a93f1e1efe13 (LF). Judged: α_ab and α_ab − α_c at k = 0.15, n 1 536 → 3 072. Its form of I5 was
+  taken over from F6.8e2 after the F6.8e result was known; no number of F6.8d changed because of the F6.8e exponent.
+- **Run**: deterministic, in Claude's Linux workspace (long double), F6.8e2 first; outputs copied into results unchanged.
+
+## 32. F6.8e3, the second revision of F6.8e, is frozen and run by Claude (15 Nov, 22:4x)
+
+**The author's instruction (15 Nov, 22:38):** "dobrá ale test by se měl opravit a spustit poté znovu" ("fine, but the
+test should be fixed and then run again"), after F6.8e2 ended INSTRUMENT_FAILED on I3, I5 and I2.
+
+**Frozen.** Card docs/F6_8e3_card_draft.md; test phases/F6_order_dynamics/F6_08e3_bd_action_optical_asymptotic_rev2.py,
+md5 b25a87203b72285904e2fe8f25424965 (LF). The instrument checks are stated
+in the exponent (levels and the two wavenumbers within 0.01 at the judged pair); the conformal control at n = 384;
+k = 0.13 and 0.21; judged α at k = 0.13, n 3 072 → 6 144. The exponent is not blind (F6.8e, F6.8e2 recorded 5.000).
+
+**Run**: deterministic, in Claude's Linux workspace, after F6.8d; output copied into results unchanged.
