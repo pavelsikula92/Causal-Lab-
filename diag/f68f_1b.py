@@ -31,14 +31,23 @@ between N and 2N (reported, criterion 1e-4 of the author). Newton on v for the r
 Not here: the error of the Penrose approximation itself (finite k sigma and finite b), which needs the exact medium
 (the brute force of 1a on long thin intervals): see the dev log.
 
-Run: python diag/f68f_1b.py   (output diag/out/f68f_1b.txt)
+Run from the repository root:
+    python -m diag.f68f_1b --workers 8                      the grid below (eps x p), 128 phases
+    python -m diag.f68f_1b --eps 4,12 --p 0,2 --n-theta 64 --no-onset
+Output diag/out/f68f_1b_<UTC time>.json and .txt; every point is cached (diag/out/f68f_1b_cache/), so an interrupted
+run resumes. The first run (16 Nov, before this form) is diag/out/f68f_1b.txt.
 """
+from __future__ import annotations
+
+import argparse
 import math
 import os
-import sys
 import time
 
 import numpy as np
+
+from core.stats.parallel import default_workers, parallel_map
+from diag import f68f_common as C
 
 EPS_GRID = [0.0, 1.0, 2.0, 4.0, 8.0, 9.0, 9.5, 9.8, 9.87, 9.95, 10.0, 10.5, 12.0, 16.0, 40.0]
 P_GRID = [0.0, 1.0, 2.0, 4.0, 8.0]
@@ -181,8 +190,8 @@ def volume_A(v, eps, p, th, N):
     return A, np.min(E1[1:], 0), np.min(E2[:-1], 0), W
 
 
-def point(eps, p, N=4000):
-    ths = 2 * math.pi * np.arange(N_TH) / N_TH
+def point(eps, p, N=4000, n_th=N_TH):
+    ths = 2 * math.pi * np.arange(n_th) / n_th
     if eps == 0.0:
         return {"A": 1.0, "dA": 0.0, "nbr_max": 1, "frac_multi": 0.0, "jumps": 0, "minW": 1.0, "Amin": 1.0,
                 "Amax": 1.0, "conj_viol": 0}
@@ -206,9 +215,9 @@ def point(eps, p, N=4000):
             "A2": float(A2.mean())}
 
 
-def eps_branch_onset(p, N=1000, lo=0.5, hi=40.0):
+def eps_branch_onset(p, N=1000, lo=0.5, hi=40.0, n_th=N_TH):
     """Smallest eps at which some theta has more than one ray (a fold of the family from x reaches y)."""
-    ths = 2 * math.pi * np.arange(N_TH) / N_TH
+    ths = 2 * math.pi * np.arange(n_th) / n_th
 
     def multi(e):
         return max(len(r) for r in branches(e, p, ths, N)) > 1
@@ -223,33 +232,59 @@ def eps_branch_onset(p, N=1000, lo=0.5, hi=40.0):
     return 0.5 * (lo + hi), hi - lo
 
 
+NAME = "f68f_1b"
+CODE = C.code_md5([os.path.abspath(__file__)])
+
+
+def job_point(eps, p, n_th):
+    return C.cached(NAME, CODE, point, (eps, p, 4000, n_th))
+
+
+def job_onset(p, n_th):
+    return C.cached(NAME, CODE, eps_branch_onset, (p, 1000, 0.5, 40.0, n_th))
+
+
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--eps", type=str, default=",".join(f"{e:g}" for e in EPS_GRID))
+    ap.add_argument("--p", type=str, default=",".join(f"{x:g}" for x in P_GRID))
+    ap.add_argument("--n-theta", type=int, default=N_TH)
+    ap.add_argument("--no-onset", action="store_true", help="skip the bisection for the onset of a second ray")
+    ap.add_argument("--workers", type=int, default=0)
+    a = ap.parse_args()
     t0 = time.time()
+    epss, ps = C.floats(a.eps), C.floats(a.p)
+    jobs = [(e, p, a.n_theta) for p in ps for e in epss]
+    res = parallel_map(job_point, jobs, default_workers(a.workers), print,
+                       lambda i, r, d, n: f"[f68f_1b] {d}/{n}: eps {jobs[i][0]:g} p {jobs[i][1]:g} A {r['A']:.8f} "
+                                          f"({time.time() - t0:.0f}s)")
+    ons = [] if a.no_onset else parallel_map(job_onset, [(p, a.n_theta) for p in ps], default_workers(a.workers), print,
+                                             lambda i, r, d, n: f"[f68f_1b] onset {d}/{n} ({time.time() - t0:.0f}s)")
     lines = ["F6.8f-dev step 1b: plane-wave (Penrose) limit of the interval volume; first-arrival ray; "
              "development, decides nothing", "",
-             "A = theta average (128 phases) of V / V0 at fixed sigma; dA = max over theta |A(N) - A(2N)|, N = 4000 "
-             "(numerical error of the Jacobi solution); nbr = largest number of rays x -> y in the window; multi = "
-             "fraction of theta with more than one ray; jumps = switches of the first-arrival branch around theta "
-             "(cut locus); minE1(1) = smallest E1(1) of the first-arrival ray; conj = phases with E1 or E2 <= 0 "
-             "inside (must be 0)", ""]
-    for p in P_GRID:
-        lines.append(f"p = {p}")
+             f"A = theta average ({a.n_theta} phases) of V / V0 at fixed sigma; dA = max over theta |A(N) - A(2N)|, "
+             "N = 4000 (numerical error of the Jacobi solution); nbr = largest number of rays x -> y in the window; "
+             "multi = fraction of theta with more than one ray; jumps = jumps of psi'(0) > 0.5 of the first-arrival ray "
+             "between neighbouring phases (NOT a reliable count of branch switches); minE1(1) = smallest E1(1) of the "
+             "first-arrival ray; conj = phases with E1 or E2 <= 0 inside (must be 0)", ""]
+    data = []
+    for ip, p in enumerate(ps):
+        lines.append(f"p = {p:g}")
         lines.append("     eps      A            Amin        Amax        dA         nbr  multi   jumps  minE1(1)    conj")
-        for eps in EPS_GRID:
-            r = point(eps, p)
-            lines.append(f"  {eps:6.2f}  {r['A']:.8f}  {r['Amin']:.6f}  {r['Amax']:.6f}  {r['dA']:.1e}   {r['nbr_max']:3d}  "
+        for e in epss:
+            r = res[jobs.index((e, p, a.n_theta))]
+            data.append({"eps": e, "p": p, **r})
+            lines.append(f"  {e:6.2f}  {r['A']:.8f}  {r['Amin']:.6f}  {r['Amax']:.6f}  {r['dA']:.1e}   {r['nbr_max']:3d}  "
                          f"{r['frac_multi']:.3f}   {r['jumps']:3d}   {r['minW']:+.3e}  {r['conj_viol']}")
-            print(lines[-1], flush=True)
-        ob = eps_branch_onset(p)
-        lines.append(f"  onset of a second ray (fold reaches y), smallest over theta: eps = "
-                     f"{'none below 40' if ob is None else f'{ob[0]:.4f} +- {ob[1]:.1e}'}")
+        if ons:
+            ob = ons[ip]
+            lines.append(f"  onset of a second ray (fold reaches y), smallest over theta: eps = "
+                         f"{'none below 40' if ob is None else f'{ob[0]:.4f} +- {ob[1]:.1e}'}")
         lines.append("")
-        print(lines[-2], flush=True)
     lines.append(f"cost {time.time() - t0:.0f} s")
-    txt = "\n".join(lines)
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_1b.txt"), "w") as fh:
-        fh.write(txt + "\n")
-    print(txt)
+    stem = C.save(NAME, vars(a), CODE, {"points": data, "onset": dict(zip([f"{p:g}" for p in ps], ons))}, lines, t0)
+    print("\n".join(lines))
+    print("saved", stem + ".json")
 
 
 if __name__ == "__main__":
