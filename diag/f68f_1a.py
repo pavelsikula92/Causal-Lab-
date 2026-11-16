@@ -28,20 +28,29 @@ Reported per row and b:
 Compared with gamma, beta of F6.8e3 (second_order_volume_stable, fixed sigma) and with the same second-order
 instrument at fixed tau (dt' = dt'' = 0, the small-b prediction for fixed tau).
 
-Run: python diag/f68f_1a.py [workers]   (output diag/out/f68f_1a.txt)
+The comparison values come from the 80-bit instrument of F6.8e3: the script refuses to run without an 80-bit long
+double (Linux or WSL).
+
+Run from the repository root (one job = one volume, cached in diag/out/f68f_1a_cache/):
+    python -m diag.f68f_1a --workers 8                 the four rows, b = 0.01 ... 0.16, 8 phases, both parametrisations
+    python -m diag.f68f_1a --levels --workers 8        quadrature levels of the exact volume, rows 2 and 4, fixed tau
+Output diag/out/f68f_1a_<UTC time>.json and .txt (or f68f_1a_levels_...). The runs of 16 Nov before this form are
+diag/out/f68f_1a.txt and diag/out/f68f_1a_levels.txt.
 """
+from __future__ import annotations
+
+import argparse
 import inspect
 import math
 import os
-import sys
 import time
-from multiprocessing import Pool
 
 import numpy as np
 from numpy.polynomial import chebyshev as C
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from phases.F6_order_dynamics import F6_08e3_bd_action_optical_asymptotic_rev2 as E3  # noqa: E402
+from core.stats.parallel import default_workers, parallel_map
+from diag import f68f_common as Cm
+from phases.F6_order_dynamics import F6_08e3_bd_action_optical_asymptotic_rev2 as E3
 
 M_RAY = 14
 Q_RAY = 56
@@ -189,8 +198,9 @@ def _fixed_tau_instrument():
     return ns["second_order_volume_fixed_tau"]
 
 
-def task(args):
-    k, CO, L, tau, b, th, mode, lev = args
+def task(k, CO, L, tau, b, th, mode, lev):
+    """V and T(x, y) of one pair; V = nan where the pair is not timelike at fixed tau (no interval)."""
+    lev = tuple(lev)
     if mode == "sigma":
         T = pair_T(k, CO, L, b, th) if b != 0 else L
         dt = math.sqrt(T * T + tau * tau)
@@ -198,14 +208,12 @@ def task(args):
         dt = math.sqrt(L * L + tau * tau)
         T = pair_T(k, CO, L, b, th) if b != 0 else L
         if T >= dt:
-            return args, float("nan"), T          # the pair is not timelike at fixed tau: no interval
-    V = volume(k, CO, L, dt, b, th, *lev)
-    return args, V, T
+            return {"V": float("nan"), "T": T}
+    return {"V": volume(k, CO, L, dt, b, th, *lev), "T": T}
 
 
 def check_fermat():
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    import f68f_dev as S0
+    from diag import f68f_dev as S0
     rows = []
     rng = np.random.default_rng(1)
     for _ in range(6):
@@ -231,88 +239,96 @@ BS = [0.01, 0.02, 0.04, 0.08, 0.16]
 N_TH = 8
 
 
+NAME = "f68f_1a"
+CODE = Cm.code_md5([os.path.abspath(__file__)])
+LEV1 = [16, 12, 16, None]
+LEV2 = [24, 16, 24, None]
+LEV3 = [32, 24, 32, None]
+
+
+def job(*args):
+    return Cm.cached(NAME, CODE, task, args)
+
+
+def _R(res, sel, b):
+    V0 = [r["V"] for (a, r) in res if sel(a) and a[4] == 0.0][0]
+    rr = [(a[5], r["V"], r["T"]) for (a, r) in res if sel(a) and a[4] == b]
+    Vs = np.array([v for (_, v, _) in rr])
+    ths = np.array([t for (t, _, _) in rr])
+    Ts = np.array([t for (_, _, t) in rr])
+    return 2 * (Vs.mean() / V0 - 1) / b ** 2, 2 * (Vs * np.exp(-1j * ths)).mean() / (b * V0), Ts, V0
+
+
 def main():
-    workers = int(sys.argv[1]) if len(sys.argv) > 1 else 2
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--levels", action="store_true", help="quadrature levels of rows 2 and 4 at fixed tau")
+    ap.add_argument("--workers", type=int, default=0)
+    a = ap.parse_args()
+    Cm.ld_guard()
     t0 = time.time()
-    lines = ["F6.8f-dev step 1a: exact interval volume of short intervals at finite b (development, decides nothing)", ""]
-    lines.append("Fermat instrument against the exact Snell first arrival of step 0 (k = 1):")
-    for r in check_fermat():
-        lines.append("  z1 %+.3f z2 %+.3f X %.3f b %.2f: Snell %.15f  Fermat %.15f  rel %.1e" % r)
-    lines.append("")
-    lev = (16, 12, 16, None)
     ths = [2 * math.pi * j / N_TH for j in range(N_TH)]
     jobs = []
-    for (k, CO, L, tau) in ROWS:
-        jobs.append((k, CO, L, tau, 0.0, 0.0, "sigma", lev))
-        for b in BS:
-            for th in ths:
-                for mode in ("sigma", "tau"):
-                    jobs.append((k, CO, L, tau, b, th, mode, lev))
-    lev2 = (24, 16, 24, None)
-    k0, CO0, L0, tau0 = ROWS[0]
-    jobs.append((k0, CO0, L0, tau0, 0.0, 0.0, "sigma", lev2))
-    for b in (0.01, 0.04):
-        for th in ths:
-            jobs.append((k0, CO0, L0, tau0, b, th, "sigma", lev2))
-    cdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_1a_cache")
-    os.makedirs(cdir, exist_ok=True)
-
-    def key(a):
-        return "_".join(repr(x) for x in a[:7]) + "_" + "-".join(repr(x) for x in a[7][:3])
-
-    done = {}
-    for fn in os.listdir(cdir):
-        with open(os.path.join(cdir, fn)) as fh:
-            kk, V, T = fh.read().split()
-            done[kk] = (float(V), float(T))
-    todo = [a for a in jobs if key(a) not in done]
-    print(f"jobs {len(jobs)}, cached {len(jobs) - len(todo)}, to compute {len(todo)}", flush=True)
-    with Pool(workers) as pool:
-        for a, V, T in pool.imap_unordered(task, todo, chunksize=1):
-            kk = key(a)
-            with open(os.path.join(cdir, f"{abs(hash(kk)) % 10 ** 12:012d}_{len(done)}.txt"), "w") as fh:
-                fh.write(f"{kk} {V!r} {T!r}\n")
-            done[kk] = (V, T)
-    res_all = [(a,) + done[key(a)] for a in jobs]
-    res = [x for x in res_all if x[0][7] == lev]
-    res2 = [x for x in res_all if x[0][7] == lev2]
-    fixed_tau = _fixed_tau_instrument()
-    for (k, CO, L, tau) in ROWS:
-        V0n = [V for (a, V, T) in res if a[:4] == (k, CO, L, tau) and a[4] == 0.0][0]
-        V0 = math.pi * tau ** 4 / 24
-        beta_s, gam_s = E3.second_order_volume_stable(k, CO, L, [tau * tau], 24, 16, 16)
-        beta_t, gam_t = fixed_tau(k, CO, L, [tau * tau], 24, 16, 16)
-        lines.append(f"row k = {k}, CO = {CO}, L = {L}, tau = {tau} (kL = {k * L:.2f}, k tau = {k * tau:.2f}); "
-                     f"V0 numeric / exact - 1 = {V0n / V0 - 1:+.2e}")
-        lines.append(f"  second order (F6.8e3 instrument): fixed sigma gamma {gam_s[0]:+.6e}, beta {beta_s[0]:.6e}; "
-                     f"fixed tau gamma {gam_t[0]:+.6e}, beta {beta_t[0]:.6e}")
-        lines.append("     b      eps=b(kL)^2  max|d(tau2)|/tau2   R_sigma(b)      R_tau(b)        B_sigma(b)                 B_tau(b)")
-        for b in BS:
-            out = {}
-            for mode in ("sigma", "tau"):
-                rr = [(a[5], V, T) for (a, V, T) in res if a[:4] == (k, CO, L, tau) and a[4] == b and a[6] == mode]
-                Vs = np.array([V for (_, V, _) in rr])
-                ths_ = np.array([t for (t, _, _) in rr])
-                Ts = np.array([T for (_, _, T) in rr])
-                R = 2 * (Vs.mean() / V0n - 1) / b ** 2
-                B = 2 * (Vs * np.exp(-1j * ths_)).mean() / (b * V0n)
-                out[mode] = (R, B, np.max(np.abs(L * L - Ts * Ts)) / tau ** 2)
-            lines.append(f"  {b:6.3f}  {b * (k * L) ** 2:9.4f}   {out['sigma'][2]:.3e}        {out['sigma'][0]:+.6e}  "
-                         f"{out['tau'][0]:+.6e}  {out['sigma'][1]:.6e}  {out['tau'][1]:.6e}")
+    if a.levels:
+        for r in (ROWS[1], ROWS[3]):
+            for lev in (LEV2, LEV3):
+                jobs.append(r + (0.0, 0.0, "tau", lev))
+                jobs += [r + (b, th, "tau", lev) for b in (0.01, 0.02) for th in ths]
+    else:
+        for r in ROWS:
+            jobs.append(r + (0.0, 0.0, "sigma", LEV1))
+            jobs += [r + (b, th, mode, LEV1) for b in BS for th in ths for mode in ("sigma", "tau")]
+        jobs.append(ROWS[0] + (0.0, 0.0, "sigma", LEV2))
+        jobs += [ROWS[0] + (b, th, "sigma", LEV2) for b in (0.01, 0.04) for th in ths]
+    out = parallel_map(job, jobs, default_workers(a.workers), print,
+                       lambda i, r, d, n: f"[f68f_1a] {d}/{n} ({time.time() - t0:.0f}s)")
+    res = list(zip(jobs, out))
+    lines = ["F6.8f-dev step 1a: exact interval volume of short intervals at finite b (development, decides nothing)", ""]
+    data = {"jobs": [{"args": list(j[:7]) + [j[7][:3]], **r} for j, r in res]}
+    if a.levels:
+        for r in (ROWS[1], ROWS[3]):
+            for lev in (LEV2, LEV3):
+                sel = (lambda x, r=r, lev=lev: x[:4] == r and x[7] == lev)
+                R1 = _R(res, sel, 0.01)[0]
+                R2 = _R(res, sel, 0.02)[0]
+                lines.append(f"{r} {tuple(lev[:3])} R_tau(0.01) {R1:+.8e} R_tau(0.02) {R2:+.8e} extrapolated "
+                             f"{R1 - (R2 - R1) / 3:+.8e}")
+        lines.append(f"cost {time.time() - t0:.0f} s")
+        stem = Cm.save(NAME + "_levels", vars(a), CODE, data, lines, t0)
+    else:
+        lines.append("Fermat instrument against the exact Snell first arrival of step 0 (k = 1):")
+        for r in check_fermat():
+            lines.append("  z1 %+.3f z2 %+.3f X %.3f b %.2f: Snell %.15f  Fermat %.15f  rel %.1e" % r)
         lines.append("")
-    V02 = [V for (a, V, T) in res2 if a[4] == 0.0][0]
-    for b in (0.01, 0.04):
-        V1 = np.array([V for (a, V, T) in res if a[:4] == ROWS[0] and a[4] == b and a[6] == "sigma"])
-        V2 = np.array([V for (a, V, T) in res2 if a[4] == b])
-        V01 = [V for (a, V, T) in res if a[:4] == ROWS[0] and a[4] == 0.0][0]
-        lines.append(f"level check, first row, fixed sigma, b = {b}: R_sigma {2 * (V1.mean() / V01 - 1) / b ** 2:+.6e} "
-                     f"(levels {lev[:3]}) against {2 * (V2.mean() / V02 - 1) / b ** 2:+.6e} (levels {lev2[:3]})")
-    lines.append(f"levels: n_sig, n_te, n_phi = {lev[:3]}, ray basis M = {M_RAY}, Q = {Q_RAY}, n_theta = {N_TH}; "
-                 f"cost {time.time() - t0:.0f} s, {workers} processes")
-    txt = "\n".join(lines)
-    print(txt)
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_1a.txt"), "w") as fh:
-        fh.write(txt + "\n")
+        fixed_tau = _fixed_tau_instrument()
+        for (k, CO, L, tau) in ROWS:
+            sel_s = (lambda x, r=(k, CO, L, tau): x[:4] == r and x[7] == LEV1 and (x[6] == "sigma" or x[4] == 0.0))
+            sel_t = (lambda x, r=(k, CO, L, tau): x[:4] == r and x[7] == LEV1 and (x[6] == "tau" or x[4] == 0.0))
+            V0 = math.pi * tau ** 4 / 24
+            V0n = _R(res, sel_s, BS[0])[3]
+            beta_s, gam_s = E3.second_order_volume_stable(k, CO, L, [tau * tau], 24, 16, 16)
+            beta_t, gam_t = fixed_tau(k, CO, L, [tau * tau], 24, 16, 16)
+            lines.append(f"row k = {k}, CO = {CO}, L = {L}, tau = {tau} (kL = {k * L:.2f}, k tau = {k * tau:.2f}); "
+                         f"V0 numeric / exact - 1 = {V0n / V0 - 1:+.2e}")
+            lines.append(f"  second order (F6.8e3 instrument): fixed sigma gamma {gam_s[0]:+.6e}, beta {beta_s[0]:.6e}; "
+                         f"fixed tau gamma {gam_t[0]:+.6e}, beta {beta_t[0]:.6e}")
+            lines.append("     b      eps=b(kL)^2  max|d(tau2)|/tau2   R_sigma(b)      R_tau(b)        B_sigma(b)                 B_tau(b)")
+            for b in BS:
+                Rs, Bs, Ts, _ = _R(res, sel_s, b)
+                Rt, Bt, _, _ = _R(res, sel_t, b)
+                lines.append(f"  {b:6.3f}  {b * (k * L) ** 2:9.4f}   {np.max(np.abs(L * L - Ts * Ts)) / tau ** 2:.3e}        "
+                             f"{Rs:+.6e}  {Rt:+.6e}  {Bs:.6e}  {Bt:.6e}")
+            lines.append("")
+        sel1 = (lambda x: x[:4] == ROWS[0] and x[7] == LEV1 and x[6] == "sigma")
+        sel2 = (lambda x: x[:4] == ROWS[0] and x[7] == LEV2)
+        for b in (0.01, 0.04):
+            lines.append(f"level check, first row, fixed sigma, b = {b}: R_sigma {_R(res, sel1, b)[0]:+.6e} (levels "
+                         f"{tuple(LEV1[:3])}) against {_R(res, sel2, b)[0]:+.6e} (levels {tuple(LEV2[:3])})")
+        lines.append(f"levels: n_sig, n_te, n_phi = {tuple(LEV1[:3])}, ray basis M = {M_RAY}, Q = {Q_RAY}, "
+                     f"n_theta = {N_TH}")
+        lines.append(f"cost {time.time() - t0:.0f} s")
+        stem = Cm.save(NAME, vars(a), CODE, data, lines, t0)
+    print("\n".join(lines))
+    print("saved", stem + ".json")
 
 
 if __name__ == "__main__":

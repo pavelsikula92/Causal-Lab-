@@ -15,17 +15,23 @@ resolve windows of width c / alpha; a grid point exactly at a tie (p = 0: theta 
 full weight instead. This file locates the cut loci, computes alpha = |d(S_b - S_a)/dtheta| (envelope theorem:
 dS/dtheta = -eps int sin(p s + theta + psi) ds along a fixed-end stationary ray), A_a and A_b, and reports dA(q).
 
-Run: python diag/f68f_1b_cut.py [eps p ...]   (output appended to diag/out/f68f_1b_cut.txt)
+Run from the repository root (one job = one point (eps, p), cached in diag/out/f68f_1b_cut_cache/):
+    python -m diag.f68f_1b_cut --points 9.87:0,12:0,40:0,12:1,16:1,40:1,16:2,40:2,40:4 --workers 8
+Output diag/out/f68f_1b_cut_<UTC time>.json and .txt. The partial run of 16 Nov before this form (p = 0, eps 9.95 -
+16, stopped by a restart of the container) is diag/out/f68f_1b_cut_partial.txt.
 """
+from __future__ import annotations
+
+import argparse
 import math
 import os
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import f68f_1b as B  # noqa: E402
+from core.stats.parallel import default_workers, parallel_map
+from diag import f68f_1b as B
+from diag import f68f_common as C
 
 N = 4000
 QS = [0.5, 0.25, 0.125]
@@ -112,27 +118,42 @@ def cut_loci(eps, p, n_th=B.N_TH):
     return found
 
 
+NAME = "f68f_1b_cut"
+CODE = C.code_md5([os.path.abspath(__file__), B.__file__])
+
+
+def job(eps, p, n_th):
+    return C.cached(NAME, CODE, cut_loci, (eps, p, n_th))
+
+
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--points", type=str, required=True, help="eps:p,eps:p,...")
+    ap.add_argument("--n-theta", type=int, default=B.N_TH)
+    ap.add_argument("--workers", type=int, default=0)
+    a = ap.parse_args()
     t0 = time.time()
+    pts = C.pairs(a.points)
+    jobs = [(e, p, a.n_theta) for (e, p) in pts]
+    res = parallel_map(job, jobs, default_workers(a.workers), print,
+                       lambda i, r, d, n: f"[f68f_1b_cut] {d}/{n}: eps {jobs[i][0]:g} p {jobs[i][1]:g}, {len(r)} cut loci "
+                                          f"({time.time() - t0:.0f}s)")
     lines = ["F6.8f-dev step 1b: cut loci in theta (switch of the first-arrival ray) and their contribution to the "
              "theta-mean at finite q, dA = (A_a + A_b) c / (6 pi alpha), c = q^2/2; development, decides nothing", ""]
-    args = [float(a) for a in sys.argv[1:]]
-    pts = list(zip(args[1::2], args[0::2])) if args else [(p, e) for p in B.P_GRID for e in B.EPS_GRID if e > 0]
-    for (p, eps) in pts:
-        if True:
-            f = cut_loci(eps, p)
-            if not f:
-                continue
-            for (thc, alpha, Aa, Ab, gap, ok) in f:
-                d = {q: (Aa + Ab) * (q * q / 2) / (6 * math.pi * alpha) for q in QS}
-                lines.append(f"  p {p:3.1f} eps {eps:6.2f}: theta_c {thc:.6f}  alpha {alpha:.4e}  A_a {Aa:.5f}  A_b {Ab:.5f}  "
-                             f"|dS| {gap:.1e}  no-conj {ok}  dA(1/2) {d[0.5]:.2e}  dA(1/4) {d[0.25]:.2e}  dA(1/8) {d[0.125]:.2e}")
-                print(lines[-1], flush=True)
+    data = []
+    for (e, p), f in zip(pts, res):
+        if not f:
+            lines.append(f"  p {p:3.1f} eps {e:6.2f}: no cut locus (one ray at every phase)")
+        for (thc, alpha, Aa, Ab, gap, ok) in f:
+            d = {q: (Aa + Ab) * (q * q / 2) / (6 * math.pi * alpha) for q in QS}
+            lines.append(f"  p {p:3.1f} eps {e:6.2f}: theta_c {thc:.6f}  alpha {alpha:.4e}  A_a {Aa:.5f}  A_b {Ab:.5f}  "
+                         f"|dS| {gap:.1e}  no-conj {ok}  dA(1/2) {d[0.5]:.2e}  dA(1/4) {d[0.25]:.2e}  dA(1/8) {d[0.125]:.2e}")
+        data.append({"eps": e, "p": p, "cut_loci": [{"theta_c": c[0], "alpha": c[1], "A_a": c[2], "A_b": c[3],
+                                                     "dS": c[4], "no_conj": c[5]} for c in f]})
     lines.append(f"cost {time.time() - t0:.0f} s")
-    txt = "\n".join(lines)
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_1b_cut.txt"), "a") as fh:
-        fh.write(txt + "\n")
-    print(txt)
+    stem = C.save(NAME, vars(a), CODE, data, lines, t0)
+    print("\n".join(lines))
+    print("saved", stem + ".json")
 
 
 if __name__ == "__main__":
