@@ -78,8 +78,21 @@ def main():
     pn, wp = _p_nodes(P_PANELS)
     jobs = [(k, n, float(pp)) for n in ns for pp in pn]
     t0 = time.time()
+    cdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_layer_cache")
+    os.makedirs(cdir, exist_ok=True)
+    done = {}
+    for fn in os.listdir(cdir):
+        with open(os.path.join(cdir, fn)) as fh:
+            kk, n_, p_, b_, l_ = fh.read().split()
+            done[(float(kk), float(n_), float(p_))] = (float(b_), float(l_))
+    todo = [a for a in jobs if a not in done]
+    print(f"jobs {len(jobs)}, cached {len(jobs) - len(todo)}", flush=True)
     with Pool(workers) as pool:
-        res = pool.map(task, jobs, chunksize=1)
+        for kk, n_, p_, b_, l_ in pool.imap_unordered(task, todo, chunksize=1):
+            with open(os.path.join(cdir, f"{n_:.0f}_{p_!r}.txt"), "w") as fh:
+                fh.write(f"{kk!r} {n_!r} {p_!r} {b_!r} {l_!r}\n")
+            done[(kk, n_, p_)] = (b_, l_)
+    res = [a + done[a] for a in jobs]
     lines = ["F6.8f-dev step 0': the layer of the age cut at second order (flat cut), k = 0.12; slope = -a4 rho / k^5 "
              "(units of k^2 per unit n); development, decides nothing", "",
              "  n      bulk (r = T, F6.8e3)   exact with layer      layer / bulk      (layer/bulk) * n^2"]
