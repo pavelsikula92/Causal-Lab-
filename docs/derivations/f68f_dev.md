@@ -407,3 +407,44 @@ Two levels do not prove asymptotic convergence in b.
 - **Grid:** ε = 0, 1, 2, 4, 8, 9, 9.5, 9.8, 9.87, 9.95, 10, 10.5, 12, 16, 40; p = 0, 1, 2, 4, 8; q = 1/2, 1/4, 1/8.
 - **ε = 40:** exploratory if the q-convergence fails. The κ check is reported separately there, not waived.
 
+
+### Step 1b: results in the plane-wave limit q → 0, b → 0 (diag/out/f68f_1b.txt, 2 463 s)
+
+**Numerics.** Mean of A over 128 phases. The numerical error of the Jacobi solution, |A(N) − A(2N)| (N = 4 000), is
+≤ 1e-10 everywhere except at ε = 9.87, p = 0 (1.9e-8, next to the divergence below). No phase has E₁ or E₂ ≤ 0
+inside the interval on the first-arrival ray.
+
+**The onset of a second ray** (bisection in ε on the 128 phases):
+
+| p | 0 | 1 | 2 | 4 | 8 |
+|---|---|---|---|---|---|
+| ε of the onset | 9.8699 ± 0.0024 | 10.692 | 12.146 | 18.716 | none below 40 |
+
+At p = 0 this is π² = 9.8696, an output of the computation. The caustic moves to larger ε with p.
+
+**Ā (mean over θ) and its range:**
+
+| ε | p = 0 | p = 1 | p = 2 | p = 4 | p = 8 |
+|---|---|---|---|---|---|
+| 1 | 0.99950 | 0.99952 | 0.99958 | 0.99976 | 1.00002 |
+| 4 | 0.99189 | 0.99225 | 0.99324 | 0.99622 | 1.00034 |
+| 8 | 0.96405 | 0.96608 | 0.97132 | 0.98491 | 1.00133 |
+| 9.87 | 1.57529 (max 85.5) | 0.94056 | 0.95288 | 0.97696 | 1.00202 |
+| 12 | 0.86561 | 0.87276 | 0.89868 | 0.96558 | 1.00295 |
+| 16 | 0.79911 | 0.80395 | 0.82034 | 0.93408 | 1.00514 |
+| 40 | 0.64255 (0.627–0.684) | 0.64456 | 0.65120 | 0.69196 | 1.02802 (0.730–1.366) |
+
+**Readings (development):**
+- **Small ε:** Ā − 1 ∝ ε² (p = 0: −5.0e-4 ε²). The sign changes between p = 4 and p = 8. This is the plane-wave
+  second-order coefficient; its link to γ of F6.8e3 in the needle limit is part of 1c.
+- **p = 0, θ = 0, ε = π²:** the straight ray is both the minimising ray and conjugate (a pitchfork, the cusp of the
+  cut locus). A of that phase diverges (85 on the nearest grid point, 9.87). On both sides A is finite. At p ≥ 1 there
+  is no such point on the grid: the folds that appear are generic and the minimising ray avoids them.
+- **Large ε (40):**
+  - Ā falls to 0.64 at small p, with a narrow range (0.63–0.68) although up to 5 rays exist.
+  - At p = 8, Ā rises above 1, still with a single ray.
+  - The plane-wave volume does not blow up with ε; it is the multi-ray structure that changes.
+- **The column "jumps" is unreliable** (it counts jumps of ψ′(0) > 0.5 between neighbouring phases, which also occur
+  with one ray). To be replaced by the switch of the minimising branch (the sign of the action difference of two
+  branches), with ε_c and ε_cut stored separately, as the revised criteria ask.
+- **Not yet done:** finite q, finite b, and the brute force at ε = 2, 4.
