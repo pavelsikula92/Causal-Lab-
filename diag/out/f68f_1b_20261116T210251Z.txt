@@ -1,0 +1,10 @@
+F6.8f-dev step 1b: plane-wave (Penrose) limit of the interval volume; first-arrival ray; development, decides nothing
+
+A = theta average (128 phases) of V / V0 at fixed sigma; dA = max over theta |A(N) - A(2N)|, N = 4000 (numerical error of the Jacobi solution); nbr = largest number of rays x -> y in the window; multi = fraction of theta with more than one ray; jumps = jumps of psi'(0) > 0.5 of the first-arrival ray between neighbouring phases (NOT a reliable count of branch switches); minE1(1) = smallest E1(1) of the first-arrival ray; conj = phases with E1 or E2 <= 0 inside (must be 0)
+
+p = 1
+     eps      A            Amin        Amax        dA         nbr  multi   jumps  minE1(1)    conj
+    1.00  0.99952418  0.969530  1.035431  1.6e-14     1  0.000     0   +8.453e-01  0
+  onset of a second ray (fold reaches y), smallest over theta: eps = 10.6920 +- 2.4e-03
+
+cost 234 s
