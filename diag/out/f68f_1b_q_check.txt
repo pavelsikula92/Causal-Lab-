@@ -1,0 +1,11 @@
+eps   4.0 p 0.0 theta 0.70:  q 0.500 exact 1.0749817 expansion 1.0749825 diff -7.9e-07  q 0.250 exact 1.0749419 expansion 1.0749419 diff -5.0e-08  q 0.125 exact 1.0749318 expansion 1.0749318 diff -3.1e-09
+eps   4.0 p 2.0 theta 2.00:  q 0.500 exact 0.9026600 expansion 0.9026600 diff -5.1e-09  q 0.250 exact 0.9026002 expansion 0.9026002 diff -1.7e-10  q 0.125 exact 0.9025852 expansion 0.9025852 diff -5.4e-11
+Traceback (most recent call last):
+  File "/home/claude/gh/Causal-Lab-/diag/f68f_1b_q.py", line 291, in <module>
+    main()
+    ~~~~^^
+  File "/home/claude/gh/Causal-Lab-/diag/f68f_1b_q.py", line 249, in main
+    ex = exact_check(eps, p, th)
+  File "/home/claude/gh/Causal-Lab-/diag/f68f_1b_q.py", line 238, in exact_check
+    raise RuntimeError("support wider than the search window")
+RuntimeError: support wider than the search window

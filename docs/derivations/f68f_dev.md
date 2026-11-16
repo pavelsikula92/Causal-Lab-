@@ -463,3 +463,42 @@ At p = 0 this is π² = 9.8696, an output of the computation. The caustic moves 
   with one ray). To be replaced by the switch of the minimising branch (the sign of the action difference of two
   branches), with ε_c and ε_cut stored separately, as the revised criteria ask.
 - **Not yet done:** finite q, finite b, and the brute force at ε = 2, 4.
+
+### Step 1b at finite q (b → 0): first results (diag/f68f_1b_q.py, diag/out/f68f_1b_q.txt, 1 266 s)
+
+**Method.** A(q) = 32√2/(πq⁴) ∫ds √(s(1−s)) ∫dψ [q²/2 − Φ]₊^{3/2}:
+- the direction out of the plane of k is integrated exactly;
+- Φ = G₁ + G₂ − S_min is expanded around every ray to fourth order in the transverse offset (K, c₃, c₄ from the
+  variational equations of order 1–3), which gives the factor 1 + c(5c₃²/(2K³) − c₄/K²), c = q²/2 − (S_b − S_min);
+- every ray with S_b − S_min < q²/2 adds its own needle.
+
+**Checks:**
+- K reproduces A_PW of step 1b to all digits.
+- The exact needle (boundary-value problems solved by Newton at every node, no expansion) against the expansion,
+  diag/out/f68f_1b_q_check.log:
+  - ε = 4, p = 0, θ = 0.7: −7.9e-7, −5.0e-8 and −3.1e-9 at q = 1/2, 1/4, 1/8;
+  - ε = 4, p = 2, θ = 2: −5.1e-9 and below.
+  - **The check stopped at the third point** (ε = 12, p = 1, θ = 0.3): the support of the needle was wider than the
+    search window (fixed at 1.6 × the paraxial width). The window must be adaptive. The remaining check points were
+    not computed.
+
+**Results, δ_A = |Ā(1/8) − Ā(1/4)| / max(1, …) (criterion 1e-3):**
+- **Away from caustics δ_A ≤ 2e-5** at every p and ε, also at ε = 40 (1.3e-5 to 3.9e-5). The q-convergence holds
+  there. The largest pairwise phase difference is ≤ 3e-4 at ε = 40.
+- **Near the caustics the expansion is not valid**, and the numbers there are not results:
+  - "corr", the largest relative q² correction at q = 1/4, exceeds 0.1;
+  - p = 0, ε = 9.5–10.5: A(1/2) at ε = 9.8 is negative and A diverges at ε = 9.87;
+  - smaller in p = 1 near ε = 10 (δ_A up to 1.5e-3, corr 0.07) and p = 4 near ε = 16 (corr 0.018).
+
+  These points need the exact needle with all branches, as the criteria for the caustic neighbourhood say.
+- **A grid artefact at p = 0, ε ≥ 10.5.** Ā(q) is about 0.011 above A_PW for every q (ε = 12: 0.8766 against 0.8656),
+  not ∝ q².
+  - The cause: θ = 0 and π lie exactly on the grid. At p = 0 the two branches born at the pitchfork have exactly equal
+    action there, so both needles are counted at every q.
+  - The A_PW column (and Ā of step 1b) takes one of them.
+  - In the continuum the double count holds only in a window of θ of width ∝ q² around the cut locus. Its weight is
+    O(q²), not 1/128.
+  - To fix: locate the cut loci in θ and add their contribution analytically, instead of sampling ties.
+
+**Not yet done:** the exact needle near caustics (adaptive window, all branches), the cut-locus contribution, finite b
+(κ = 10√ε, 20√ε), the brute force at ε = 2, 4.
