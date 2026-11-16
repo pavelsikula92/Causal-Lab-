@@ -375,3 +375,35 @@ the Jacobi solution (reported separately), the position of the conjugate point a
 - **Proposal** (to be decided before the finite-σ run): fix κ so that b ≤ 0.01 (κ = √(100ε), at least 10). Take
   kσ = 1/2, 1/4, 1/8, i.e. δ = (kσ)² = 1/4, 1/16, 1/64. Apply the criteria of the author to kσ = 1/4 → 1/8 in place
   of L/σ = 8 → 16, and report the b-dependence separately (two κ).
+  In my message I wrote "κ ≳ 20 at ε = 40"; that was wrong (κ = 20 gives b = 0.1). κ ≥ 10√ε = 63.2.
+
+**Revised working criteria (the author, 16 Nov 17:42; replace the L/σ form above; a development protocol, not a
+verdict).** κ = kL, q = kσ, ε = bκ², L/σ = κ/q. The limit needs κ → ∞ (b = ε/κ² → 0) and q → 0 independently.
+
+| Level | κ | b |
+|---|---|---|
+| 1 | 10√ε | 0.01 |
+| 2 | 20√ε | 0.0025 |
+| 3, only if 1 and 2 disagree | 40√ε | 0.000625 |
+
+Two levels do not prove asymptotic convergence in b.
+
+| Check | Criterion |
+|---|---|
+| volume, q = 1/4 → 1/8 | δ_A = \|Ā(1/8) − Ā(1/4)\| / max(1, \|Ā(1/8)\|, \|Ā(1/4)\|) ≤ 1e-3; Ā the mean over the same 128 phases θ_j = 2πj/128, compared pairwise phase by phase |
+| numerical error of the Jacobi fields and of the volume integral | δ_J ≤ 1e-4, by a change of step and a tighter tolerance; the quadrature error reported separately and included |
+| brute force at moderate ε | δ_brute ≤ 1e-3 in the same normalisation, at ε = 2 and 4, outside caustics, only between comparable configurations (finite-κ, q corrections included or extrapolated on both sides) |
+| conjugate point | \|ε_c(1/8) − ε_c(1/4)\| ≤ 0.01 |
+
+- **Record with every mean:** the distribution of the pairwise differences over θ, the number of switches of the
+  minimising branch, and the range of A.
+- **Two different events, stored separately:**
+  - ε_c, the conjugate point of a continued stationary branch (zero of E₁(1));
+  - ε_cut, where the first arrival starts to be realised by another branch.
+
+  For each ε_c, record whether it lies on the minimising branch or on another one. The minimising ray has no interior
+  conjugate point, so ε_c is not required on it. Near the cut locus the smooth criterion for A is not used: the
+  position of the switch and the volume on both sides are.
+- **Grid:** ε = 0, 1, 2, 4, 8, 9, 9.5, 9.8, 9.87, 9.95, 10, 10.5, 12, 16, 40; p = 0, 1, 2, 4, 8; q = 1/2, 1/4, 1/8.
+- **ε = 40:** exploratory if the q-convergence fails. The κ check is reported separately there, not waived.
+
