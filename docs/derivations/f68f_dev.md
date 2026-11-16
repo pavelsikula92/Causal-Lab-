@@ -475,7 +475,7 @@ At p = 0 this is π² = 9.8696, an output of the computation. The caustic moves 
 **Checks:**
 - K reproduces A_PW of step 1b to all digits.
 - The exact needle (boundary-value problems solved by Newton at every node, no expansion) against the expansion,
-  diag/out/f68f_1b_q_check.log:
+  diag/out/f68f_1b_q_check.txt:
   - ε = 4, p = 0, θ = 0.7: −7.9e-7, −5.0e-8 and −3.1e-9 at q = 1/2, 1/4, 1/8;
   - ε = 4, p = 2, θ = 2: −5.1e-9 and below.
   - **The check stopped at the third point** (ε = 12, p = 1, θ = 0.3): the support of the needle was wider than the
