@@ -5,5 +5,6 @@ __pycache__/
 diag/out/*_cache/
 diag/out/b2_dev_fields/
 sync_tmp/
-results/*/quick/diag/out/f68f_1a_cache/
+results/*/quick/
+diag/out/f68f_1a_cache/
 diag/out/f68f_layer_cache/
