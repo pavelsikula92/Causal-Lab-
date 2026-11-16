@@ -68,6 +68,10 @@ before any number.
    - For g = −dt² + n² dx² (ultrastatic), σ is exactly the proper time of the pair along its geodesic.
    - **So the per-pair object at finite b is Ṽ(σ) = V at Δt = √(T_xy² + σ²).** The b² check against γ of F6.8e3 at
      fixed τ is meaningful only for short intervals (L = 2, 5, 20, as I1 of F6.8e).
+   - **Correction (same day, 0′ below):** F6.8c already parametrises the past this way. In its header: "s = l2 (dt² −
+     T(x,y)²) (fixed cone)", with dt' and dt'' in l', l'' and the measure m = 1/(2 l2 dt) giving (ln m)' and (ln m)''.
+     The γ of F6.8c/e/e3 is therefore already at fixed σ, and the b² check against it is direct at any L. What is new
+     at finite b is only that T_xy, dt and m must be taken exactly, not to second order.
 
 2. **The structure of Ṽ/V0 and what survives the BD moments.**
    - Ṽ/V0 = A + B σ² + C σ⁴ + D σ⁶ + …. The moments remove A, B and C; the survivor is D (and higher).
@@ -90,3 +94,84 @@ before any number.
 - **1b:** A(ε, p) for long intervals in the plane-wave limit up to ε ≈ 40, against brute force at moderate ε. This shows
   where the nonlinearity starts and what the caustic at π² does to the volume.
 - **1c:** D at finite ε, by the (kσ)² expansion, checked against F6.8e3 at small ε.
+
+## Step 0′: σ, the Jacobian and the BD moments with the age cut (16 Nov, the author's order of 10:34)
+
+The author asked for two things before 1b: whether σ is invariant, and an analytic check of what the BD moments remove
+when the age cut is finite.
+
+### σ and the change of variable
+
+**Derived here: σ is the Lorentzian distance of the pair.**
+- In the optical sector, g = −dt² + h, with h = n² dx² (ultrastatic, g_tt = −1).
+- Take a timelike curve from x to y. Its spatial path has h-length ℓ and it takes the time Δt. Its proper time is
+  ∫√(1 − v²) dt, with v the h-speed. By concavity this is ≤ Δt √(1 − (ℓ/Δt)²), with equality at constant speed.
+- The supremum over curves takes the shortest spatial path, ℓ = T_xy, the h-distance (the first arrival, the global
+  minimum, so caustics are included). Hence sup τ = √(Δt² − T_xy²) = σ.
+- The Lorentzian distance (the supremum of proper time over causal curves) is a coordinate-free quantity. Its expression
+  through t and T_xy uses the Killing time t of the static field.
+- This holds in the optical sector, where Ω = 1. With a conformal factor Ω ≠ 1, σ stays a valid integration variable
+  (T_xy is the optical distance, which the light cones fix), but it is no longer the proper time.
+
+**The Jacobian.**
+- s = l2 σ² at fixed spatial end points gives ds = 2 l2 Δt dΔt. The pair measure dΔt becomes m ds with
+  m = 1/(2 l2 Δt), where Δt = √(T_xy(b)² + s/l2).
+- m depends on b through T_xy. This is part of the integrand (the terms (ln m)' and (ln m)'' of F6.8c), not an artefact
+  of the parametrisation. At finite b it must be taken exactly.
+
+### The BD moments (computed)
+
+M_j[g] = ∫₀^∞ s^j g(s²) ds for the three kernel functions of the expansion (kernel_derivs of F6.8a, BD coefficients −1,
+9, −16, 8; w = s², s = l2 τ²):
+
+| j (power τ^2j) | 0 | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|---|
+| g0 = g_k | −1.6e-16 | −3.2e-16 | −4.3e-16 | +0.500 | +2.659 |
+| g1 = w g_k' | +4.9e-16 | +8.9e-16 | +2.1e-15 | −1.000 | −6.647 |
+| g2 = w² g_k'' | −2.0e-15 | −3.9e-15 | −9.9e-15 | +3.000 | +23.26 |
+
+- The parts τ⁰, τ², τ⁴ of each coefficient vanish to rounding, for all three kernel functions; τ⁶ is the first that
+  survives.
+- With m ≈ 1/(2 l2 L)(1 − s/(2 l2 L²) + …) for a long pair, the s-dependence of m moves a coefficient to higher
+  moments with factors 1/L².
+
+### The age cut, exactly
+
+The past of x is cut at Δt ≤ T. With the flat cut (b = 0 in the cut), s ≤ l2 (T² − r²), i.e. r ≤ R(s) = √(T² − s/l2).
+Exchanging the order of the integrals, per direction:
+
+  J(T) = ∫₀^∞ ds ∫₀^{R(s)} r² dr m F(s, r),     dJ/dT = ∫₀^{l2 T²} ds (T/R) R² m F(s, R(s)),
+
+with F = Σ g_i(s²) P_i(s, r) the second-order integrand. This is exact.
+
+- **F6.8e/e3 computed only the leading term,** the bulk density at r = T over the full s range: ∫ ds T² m F(s, T).
+  The rest is the layer of pairs with r close to T: expand in R − T = −s/(2 l2 T) − s²/(8 l2² T³) − ….
+- **The layer term of order n** carries (R − T)ⁿ ∂ⁿ_r [r m F]. It adds n powers of s, with a factor T⁻ⁿ from (R − T)ⁿ
+  and about T⁻ⁿ from ∂ⁿ_r (the coefficients are powers of r).
+
+**Answers to the author's four questions:**
+
+| Question | Answer |
+|---|---|
+| Which terms cancel exactly? | In the bulk at full s range, A, B and C (τ⁰, τ², τ⁴) for all three kernel functions, to rounding. Truncation at s_max is exponentially small (g ∝ e^{−s²}) except in the layer r ≈ T. |
+| Which cancel only as T → ∞? | In the layer: C first contributes at n = 1 (relative ~ T⁻²), B at n = 2 (~ T⁻⁴), A at n = 3 (~ T⁻⁶), each times its own size. |
+| Does the age edge produce a contribution from A − 1? | Yes, but only at n = 3: about (A − 1) M₃ s³/T⁶ against the bulk survivor D M₃. A − 1 is ~10⁹ D at r = 400 (F6.8e card), and T⁶ = 4e15 at T = 400, so the ratio is ~10⁻⁷ there and falls further with T. |
+| Does that contribution give the optical term of F6.8e3? | No. The F6.8e3 term is the n = 0 bulk density, i.e. the τ⁶ survivor D (and higher), with A, B, C removed by the moments. The edge corrections are a separate, decreasing piece. |
+
+**What is not settled analytically:**
+1. **The b-dependence of the cut.** With b in the cut, R(s) is defined through T_xy(b). The region in r moves with b,
+   which is the explicit boundary term of F6.8c. It is ≤ 2.4e-3 and falls as T⁻⁴ in the k = 0 null of F6.8c, but it is
+   not computed at large n.
+2. **The size of the C and B layer terms at moderate n.** At n = 24 (k = 0.12) the record shows bulk against full rows:
+   1.19 (F6.8e development) or 1.109 (F6.8e3 report) against 1.244 (F6.8c2 full rows). That is a 4–11 % difference,
+   so the layer is not negligible there.
+   - Proposed check: compute dJ/dT exactly at second order with the stable instrument at r = R(s), at n = 24, 96 and
+     384. It should approach the bulk value as 1/n² if the analysis is right, and its value at n = 24 should explain the
+     4–11 %.
+
+**For 1b and 1c:**
+- A(ε, p) does not create the response. It is removed by the moments and enters the edge only at n = 3.
+- 1b is still useful, as the map of where the nonlinearity and the caustics start in the cross-section, and as the
+  zeroth order of 1c. But the response is in D (and higher).
+- **1c and 1d carry the result.** The quantity to compare with F6.8e3 is the full s-integrated bulk density (all g_i
+  with their moments) at small ε, as the author asked: not D or A alone.
