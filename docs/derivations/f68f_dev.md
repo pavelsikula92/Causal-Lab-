@@ -656,7 +656,7 @@ This is the "D survivor" of step 0′ (the τ⁶ part), now at finite ε.
 ### The check against F6.8e3 (the author's check 1, b → 0)
 At large n, the F6.8e3 bulk density per direction must be
 
-  bulk(p) = 2 μ₃ k⁵ n⁵ C₂(p) / l₂⁴,   C₂(p) = lim ⟨ŝ₄A₀^{−2}⟩_θ / ε²,
+  bulk(p) = 4 μ₃ k⁵ n⁵ C₂(p) / l₂⁴,   C₂(p) = lim ⟨ŝ₄A₀^{−2}⟩_θ / ε²   (corrected; see below: first written with 2),
 
 with no free constant; corrections are O(1/n²) and O(k²). This compares two independent codes in their common range:
 - the F6.8e3 second-order instrument (80-bit, finite n);

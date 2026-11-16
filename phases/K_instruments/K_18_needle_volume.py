@@ -34,7 +34,7 @@ Parts and criteria (the author's working criteria of 16 Nov 17:42 where given; [
   qconv    delta_A = |mean A(1/8) - mean A(1/4)| / max(1, ...) <= 1e-3 at every (eps, p) of the range (series; the
            pairwise distribution over the phases is reported): FAILED otherwise.
   e3       b -> 0 against the F6.8e3 instrument (an independent code): the F6.8e3 bulk density per direction at
-           k = 0.12, n = 384 against 2 mu_3 k^5 n^5 C2(p) / l2^4 from the series (C2 from eps 0.1, 0.2 by
+           k = 0.12, n = 384 against 4 mu_3 k^5 n^5 C2(p) / l2^4 from the series (C2 from eps 0.1, 0.2 by
            Richardson): relative difference of the p-integrated density <= 5e-3 [proposal; expected O(1/n^2) = 7e-6 and
            O(k^2) ~ 1e-3]: FAILED otherwise. Needs an 80-bit long double (Linux / WSL).
 NOT INCLUDED, blocking the freeze: the author's criterion "agreement with brute force at moderate eps (2, 4) <= 1e-3"
@@ -188,7 +188,7 @@ def run(p, ctx):
             prof.append((4 * c[0] - c[1]) / 3 if abs(e2 - 2 * e1) < 1e-12 else c[0])
         prof = np.array(prof)
         L2, MU3 = S.L2, S.MU3
-        pred = 2 * MU3 * k ** 5 * n ** 5 * prof / L2 ** 4
+        pred = 4 * MU3 * k ** 5 * n ** 5 * prof / L2 ** 4
         meas = np.array([b["bulk"] for b in bulk])
         rel = abs(float((wp * meas).sum()) / float((wp * pred).sum()) - 1.0)
         ok_e3 = rel <= p["tol_e3"]

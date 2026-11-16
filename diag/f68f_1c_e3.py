@@ -4,7 +4,7 @@ F6.8f-dev, step 1c: the b -> 0 check of the series against F6.8e3 (development, 
 
 docs/derivations/f68f_dev.md, step 1c. At large n the F6.8e3 bulk density per direction must be
 
-    bulk(p) = 2 mu_3 k^5 n^5 C2(p) / l2^4,   C2(p) = lim_{eps -> 0} < s4hat A0^-2 >_theta / eps^2,
+    bulk(p) = 4 mu_3 k^5 n^5 C2(p) / l2^4,   C2(p) = lim_{eps -> 0} < s4hat A0^-2 >_theta / eps^2,
 
 with no free constant (corrections O(1/n^2), O(k^2)). Reads the records of diag.f68f_1c (two small eps, C2 by
 Richardson) and of diag.f68f_layer --bulk-only (the same p nodes) given on the command line, and compares them.
@@ -47,7 +47,7 @@ def main():
     ps = np.array(pts[0]["p"])
     if p.size != ps.size or np.max(np.abs(p - ps)) > 1e-12:
         raise SystemExit("the p nodes of the two records differ")
-    pred = 2 * MU3 * k ** 5 * n ** 5 * C2 / L2 ** 4
+    pred = 4 * MU3 * k ** 5 * n ** 5 * C2 / L2 ** 4
     lines = [f"F6.8f-dev step 1c: b -> 0 check against F6.8e3 at k = {k:g}, n = {n:g} (C2 from eps {e1:g}, {e2:g}); "
              "development, decides nothing", "",
              "     p        F6.8e3 bulk        series prediction     ratio"]

@@ -35,7 +35,7 @@ Three ways of computing it:
 | jacobi | δ_J = max \|A₀(N) − A₀(2N)\| ≤ 1e-4; series A₀ against plane-wave A₀ ≤ 1e-9 | author (δ_J); proposal (A₀) | INSTRUMENT_FAILED |
 | series | \|A_exact − A_series\| ≤ 1e-6 at q = 1/2, 1/4 on 12 phases; at most 2 window failures of the exact needle | proposal | INSTRUMENT_FAILED |
 | qconv | δ_A(1/4 → 1/8) ≤ 1e-3 at every (ε, p) of the range | author | FAILED |
-| e3 | b → 0 against the F6.8e3 instrument (an independent code): p-integrated bulk density at k = 0.12, n = 384 against 2μ₃k⁵n⁵C₂(p)/l₂⁴, within 5e-3 | proposal | FAILED |
+| e3 | b → 0 against the F6.8e3 instrument (an independent code): p-integrated bulk density at k = 0.12, n = 384 against 4μ₃k⁵n⁵C₂(p)/l₂⁴, within 5e-3 | proposal | FAILED |
 
 **Verdict:** INSTRUMENT_FAILED if single, jacobi or series fails; PASSED if qconv and e3 pass; FAILED otherwise.
 

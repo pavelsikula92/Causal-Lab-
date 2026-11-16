@@ -30,7 +30,8 @@ term below s^3; the first survivor (mu_3 = 1/2) gives
     s4hat = -e4 + 5 e2 e3 - 5 e2^3,  e2 = a1/2, e3 = a2/2 - a1^2/8, e4 = a3/2 - a1 a2/4 + a1^3/16,  a_j = A_j / A_0.
 
 At small eps, < s4hat A_0^{-2} > = C2(p) eps^2, and the bulk density of F6.8e3 at large n must be
-    bulk(p) = 2 mu_3 k^5 n^5 C2(p) / l2^4      (no free constant; corrections O(1/n^2) and O(k^2)).
+    bulk(p) = 4 mu_3 k^5 n^5 C2(p) / l2^4      (no free constant; corrections O(1/n^2) and O(k^2)); the bulk of F6.8e3 is
+    the full second derivative in b (d^2/db^2, as K_hat_bb = (d^2 E/db^2) / (2 k^2) in F6.8c), hence 4, not 2.
 That is the check of this file against F6.8e3. The finite-eps age term is Phi(eps) = int dp < s4hat A_0^{-2} >_theta
 (per unit of the prefactor above); Phi(eps) / (Phi_2 eps^2) = 1 is the second-order extrapolation (the null model).
 
