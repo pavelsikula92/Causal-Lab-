@@ -1,0 +1,7 @@
+F6.8f-dev step 0': the layer of the age cut at second order (flat cut); development, decides nothing
+
+k = 0.12; slope = -a4 rho / k^5 (units of k^2 per unit n); p panels auto, N_S 16
+
+  n      bulk (r = T, F6.8e3)   exact with layer      layer / bulk      (layer/bulk) * n^2
+   1536  +8.5005355464e+06
+cost 1335 s

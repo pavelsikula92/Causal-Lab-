@@ -4,8 +4,8 @@
 decision, with the md5 of the test file and of the helper files.
 
 **Test:** phases/K_instruments/K_18_needle_volume.py.
-**Helpers (frozen with the card by md5):** diag/f68f_1b.py, diag/f68f_1c.py, diag/f68f_1b_exact.py,
-diag/f68f_common.py. Precedent: the frozen card of B3 listed its diag helpers with md5.
+**Helpers (frozen with the card by md5):** diag/f68f_1b.py, diag/f68f_1c.py, diag/f68f_1b_exact.py, diag/f68f_1d.py,
+diag/f68f_layer.py, diag/f68f_common.py. Precedent: the frozen card of B3 listed its diag helpers with md5.
 
 ## 1. What the instrument measures
 
@@ -14,10 +14,14 @@ to flat space at the same σ: A(ε, p, θ; q). It is computed in the scaling lim
 p = k∥T, at q = kσ. F6.8f uses it for the age term of the expected BD action at finite ε. Derivations are in
 docs/derivations/f68f_dev.md, steps 1b and 1c.
 
-Three ways of computing it:
+Four ways of computing it:
 - **Plane wave, A₀:** from the Jacobi fields of the first-arrival ray (step 1b).
-- **The q² series to q⁶:** from the Taylor series (order 8) of the first-arrival actions (step 1c).
-- **The exact needle:** lower envelopes of the ray families, no expansion (step 1b). Used as the independent check.
+- **The q² series to q⁶:** from the Taylor series (order 8) of the first-arrival actions (step 1c). This is what
+  F6.8f uses.
+- **The exact needle:** lower envelopes of the ray families of the scaling limit, no expansion (step 1b). It checks
+  the series.
+- **The brute force at finite κ and b:** exact rays of the real 3+1 medium, lower envelopes, the interval volume
+  integrated directly; no expansion in b, q or 1/κ (step 1d). It checks the scaling limit itself.
 
 ## 2. Range
 
@@ -35,25 +39,43 @@ Three ways of computing it:
 | jacobi | δ_J = max \|A₀(N) − A₀(2N)\| ≤ 1e-4; series A₀ against plane-wave A₀ ≤ 1e-9 | author (δ_J); proposal (A₀) | INSTRUMENT_FAILED |
 | series | \|A_exact − A_series\| ≤ 1e-6 at q = 1/2, 1/4 on 12 phases; at most 2 window failures of the exact needle | proposal | INSTRUMENT_FAILED |
 | qconv | δ_A(1/4 → 1/8) ≤ 1e-3 at every (ε, p) of the range | author | FAILED |
-| e3 | b → 0 against the F6.8e3 instrument (an independent code): p-integrated bulk density at k = 0.12, n = 384 against 4μ₃k⁵n⁵C₂(p)/l₂⁴, within 5e-3 | proposal | FAILED |
+| e3 | b → 0 against the F6.8e3 instrument (an independent code): p-integrated bulk density at k = 0.12, n = 1536 against 4μ₃k⁵n⁵C₂(p)/l₂⁴, within 5e-3 | proposal | FAILED |
+| brute | finite κ = 10√ε and 20√ε (b = 0.01, 0.0025) at the 8 series points with ε = 2, 4, q = 1/4, 1/8: the 1/κ² extrapolation A_ext = (4A₂₀ − A₁₀)/3 within 1e-3 of the series; the ratio of the level differences (A₁₀ − A_s)/(A₂₀ − A_s) in [3.5, 4.5] where \|A₁₀ − A_s\| > 1e-4 (below that the instrument's ~1e-6 error moves the ratio: 5.01 at a difference of 1.5e-5 in development) | author (1e-3, levels); proposal (extrapolation, ratio) | FAILED |
 
-**Verdict:** INSTRUMENT_FAILED if single, jacobi or series fails; PASSED if qconv and e3 pass; FAILED otherwise.
+**Verdict:** INSTRUMENT_FAILED if single, jacobi or series fails; PASSED if qconv, e3 and brute pass; FAILED otherwise.
 
-## 4. What is missing, and blocks the freeze
+**Why brute compares the extrapolation.** The finite-κ volume differs from the scaling limit by a physical O(b) =
+O(1/κ²) correction, not by an instrument error. The raw differences in development reach 3.7e-3 at κ = 10√ε (ε = 4,
+p = 4) and 9.4e-4 at 20√ε. The configuration comparable with the series is κ → ∞. The author decides whether his 1e-3
+applies to the extrapolation (as proposed) or to the raw level 20√ε.
 
-The author's criterion **"agreement with brute force at moderate ε (2, 4) ≤ 1e-3"**, with the two levels κ = 10√ε and
-20√ε (b = 0.01 and 0.0025), needs the exact interval volume at finite κ and b in the real medium. That instrument is
-not built. A draft was removed untested on 16 Nov.
+## 4. The brute force (formerly missing; built 16–17 Nov night, diag/f68f_1d.py)
 
-The chord-centred brute force of step 1a cannot be used here. The ray bends by about ε/κ, while the needle has width
-q/(2κ); at ε = 2, q = 1/4 that is 16 times its width, so the chord lies outside the interval.
+- **The geometry.** The medium is stratified along k, so the optical distance depends only on the separation along k
+  (Δz), the horizontal distance ρ and the start phase. Rays are integrated as graphs z(ρ) with the exact Lagrangian
+  n(z)√(1 + z′²). At each ρ node the first arrival τ(Δz) is the lower envelope over the family.
+- **The volume.** V = ∫dl dX dY n³ h₊, h = Δt − T_x − T_y, with Δt fixed by σ. The Y root at each (l, X), Gauss in Y,
+  a fine grid in X, Gauss in l.
+- **A fault found and fixed before any use.** The Y root used plain regula falsi. At isolated (l, X) points it stalled
+  with one end fixed (a = 0), which gave Y*² = root/2 (ratio 1/√2 exactly). In flat space that gave A = 0.99939
+  instead of 1.0000032. Now it uses the Illinois variant with an explicit convergence error. The flat test agrees with
+  exact distances to 4e-9.
+- **The development rows (step 1d)** are 10 points at ε = 2 and 4, p 0–4, q = 1/8, 1/4, 1/2:
+  - |A_ext − A_series| ≤ 3.7e-6;
+  - the ratio of the level differences is 3.97–4.07 where the difference is above 1e-4 (the 1/κ² form), and 5.01, 3.75 at differences of 1.5e-5, 3e-5 (instrument noise ~1e-6);
+  - cost 16–40 s per volume.
+  - The card's 8 points (other phases) were not computed.
 
-**The author decides one of two things:**
-- (a) part e3 (an independent code, but only at b → 0) replaces the brute force for this card, and the finite-κ check
-  becomes a separate card;
-- (b) the card waits for the finite-κ instrument.
+**Still for the author:** the freeze itself (the md5 of the test file and the six helpers).
 
 ## 5. Development rows already seen (decide nothing)
+
+- e3 (b → 0 against F6.8e3, k = 0.12):
+  - +2.9e-3 at n = 384, −5.5e-4 at n = 1536;
+  - per direction, a part c/n² (+3.7e-3 at n = 384) and a remainder of about −8e-4 that does not vanish with n (the
+    extrapolation n → ∞ gives 0.99922). It is smooth in p (+7e-4 at p = 0.16 to −2.9e-3 at p = 12.4). This could be
+    O(k²) or the F6.8e3 quadrature; not separated.
+  - Hence n = 1536 in the card: the 1/n² part is 2e-4 there.
 
 - Series against the exact needle, after the two fixes of the exact needle (window coverage, quintic Hermite):
   - three phases at ε = 2 and 4: ≤ 5e-9 (q = 1/2), ≤ 2e-8 (1/4), ≤ 1.2e-7 (1/8);

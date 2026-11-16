@@ -703,3 +703,100 @@ with no free constant; corrections are O(1/n²) and O(k²). This compares two in
   below δ_A (1e-3), so the readings of those tables stand. The minΦ = −3.4e-7 at ε = 16, p = 4 is of the same origin
   (the cubic interpolation) and is not repeated with the fixed version at the phases checked. That row is still not
   used until rerun.
+
+### Step 1c: the b → 0 check at n = 1536 (diag/out/f68f_1c_e3_20261116T233417Z.txt; F6.8e3 bulk diag/out/f68f_layer_20261116T233417Z.json)
+The question left open at n = 384 (ratio 1.0029): is the residual c/n² or O(k²)?
+- **n = 1536, k = 0.12:** p-integrated F6.8e3/series = 0.999449 (−5.5e-4). Pure c/n² would give +1.8e-4.
+- **Per direction, extrapolated as c/n² from 384 and 1536:** the total is 0.99922. The ratio runs smoothly from 1.0007
+  (p = 0.16) to 0.9971 (p = 12.4). The directions p > 12 carry little weight, and their F6.8e3 values have lost digits
+  at n = 1536 (values quantised at ~1e-3 absolute).
+- **Reading.** The residual has two parts:
+  - c/n²: +3.7e-3 at n = 384;
+  - a remainder of about −8e-4 that does not vanish with n. This is O(k²) or the F6.8e3 quadrature; it is not
+    separated (that needs another k; k = 0.06 has lost its digits, k = 0.085 is not run).
+- **Consequence.** The agreement of two independent codes in the b → 0 limit is at the 1e-3 level, with no free
+  constant. The K.18 draft now uses n = 1536 (the 1/n² part is 2e-4 there).
+
+## Step 1d: the needle volume at finite κ and b in the real medium (17 Nov, night; diag/f68f_1d.py)
+
+The author's 1b protocol asks for agreement with brute force at moderate ε (2, 4), at the levels κ = 10√ε and 20√ε.
+The chord-centred brute force of step 1a cannot do it: the ray bends by ~ε/κ, far beyond the needle width q/(2κ).
+
+### The instrument
+- **The medium.** n = exp(b cos(k·w + θ)) is stratified along k. The optical distance between two events depends only
+  on their separation along k (Δz), the horizontal distance ρ and the start phase.
+- **The families.** For the families from x (phase θ) and from y (phase κ cos α + θ), rays are integrated as graphs
+  z(ρ) with the exact Lagrangian n(z)√(1 + z′²) (RK4; the excess τ = T − ρ carried separately), with the slope
+  derivatives.
+- **The tables.** At each ρ node the first arrival τ(Δz) is the lower envelope over the family (quintic Hermite in
+  z), tabulated on a window around the ray. It is interpolated by 7-point Lagrange in ρ and cubic Hermite in Δz.
+- **The volume.** V = ∫dl dX dY n³ h₊, with h = Δt − T_x − T_y and Δt = √(T_xy² + σ²) (fixed σ), normalised by
+  πσ⁴/24. Per (l, X) the root Y* of h = 0, Gauss in Y on [0, Y*], a fine grid in X, Gauss in l.
+- **No expansion** in b, q or 1/κ.
+
+### A fault found in the flat test, and fixed
+- **The symptom.** In flat space (ε = 1e-9, κ = 20, q = 1/4) the instrument gave A = 0.99939. The same code with exact
+  distances in place of the tables gave 1.0000032.
+- **Not the tables.** Recorded over all 4297 calls, the tables agree with exact distances to ≤ 1.2e-10 with no
+  infinities.
+- **The cause.** The Y root used plain regula falsi. At isolated (l, X) points it stalled with one end fixed at
+  a = 0. The returned Y*² = (a + b)/2 was then half the root (Y* off by exactly 1/√2 at those points, on about half
+  of the slices).
+- **The fix.** The Illinois variant, plus an explicit "Y root not converged" error. Flat test after the fix: 1.0000031721
+  (tables) against 1.0000031764 (exact distances), 4e-9.
+
+### Against the series (development, decides nothing; diag/out/f68f_1d_20261116T233144Z, …233451Z, …233644Z)
+| ε | p | θ | q | A(10√ε) − series | A(20√ε) − series | ratio | extrapolated − series |
+|---|---|---|---|---|---|---|---|
+| 2 | 1 | 1 | 1/4 | −5.66e-4 | −1.41e-4 | 4.00 | +3.7e-8 |
+| 4 | 2 | 2 | 1/4 | −1.19e-3 | −2.97e-4 | 4.00 | −2.7e-7 |
+| 2 | 0 | 0.5 | 1/8 | −1.72e-4 | −4.23e-5 | 4.07 | +1.0e-6 |
+| 4 | 0 | 3 | 1/8 | −1.48e-5 | −2.96e-6 | 5.01 | +1.0e-6 |
+| 4 | 4 | 1 | 1/8 | −3.74e-3 | −9.38e-4 | 3.99 | −3.0e-6 |
+| 4 | 1 | 5 | 1/8 | −4.82e-4 | −1.21e-4 | 3.98 | −9.1e-7 |
+| 2 | 0 | 0.5 | 1/2 | −2.17e-4 | −5.44e-5 | 4.00 | −6.2e-8 |
+| 4 | 0 | 3 | 1/2 | +3.02e-5 | +8.07e-6 | 3.75 | +6.8e-7 |
+| 4 | 4 | 1 | 1/2 | −3.71e-3 | −9.30e-4 | 3.99 | −3.7e-6 |
+| 4 | 1 | 5 | 1/2 | −5.10e-4 | −1.28e-4 | 3.97 | −1.1e-6 |
+
+- **The finite-κ corrections are O(1/κ²).** Dividing b by 4 divides them by 3.97–4.07 wherever they are above 1e-4. Where they are
+  ~1e-5 the instrument's own ~1e-6 error shows in the ratio (5.01, 3.75).
+- **After the 1/κ² extrapolation, the brute force agrees with the series to ≤ 3.7e-6** at all ten points. This checks
+  the whole chain: rays, Jacobi fields, q² series and the scaling limit, against the real 3+1 medium.
+- **For the author's 1e-3.** The raw difference at κ = 10√ε exceeds it at ε = 4, p = 4 (3.7e-3); at 20√ε it is
+  9.4e-4. These are physical O(b) corrections, not instrument errors. The K.18 draft compares the extrapolation; the
+  author decides.
+- **Cost:** 16–40 s per volume.
+
+## Step 2: the assembly of K_eff (17 Nov, night; the author's order of 22:49, point 2; diag/f68f_keff.py)
+
+### From Φ to K_eff
+The goal of 09:59: E_opt(k, T, b) = ∂E[S_BD]/∂b and K_eff = (E_opt(b) − E_opt(0))/b. In the scaling limit the age
+density per unit age n = kT is dE/dn = c Φ(bn²) (step 1c); c C₂ is the b² coefficient of F6.8e3. At fixed k and n:
+- E(b, n) = c ∫₀ⁿ Φ(bm²) dm;
+- E_opt = c ∫₀ⁿ m² Φ′(bm²) dm = (c/2b^{3/2}) M(ε), with M(ε) = ∫₀^ε √u Φ′(u) du;
+- E_opt(0) = 0, because Φ is even in ε (check 4);
+- K_eff = (c/2b^{5/2}) M(ε);
+- K₂ = lim_{b→0} K_eff = (2/5) c C₂ n⁵: the (kT)⁵ law of F6.8e3.
+
+So **R(ε) = K_eff/K₂ = M(ε)/((4/5)C₂ε^{5/2})**:
+- All K_eff curves of (b, k, T) collapse onto R. "Several (b, k, T) per ε" of 09:59 is automatic in the scaling limit;
+  the departures from it are the O(b) corrections of step 1d.
+- R = 1 is the null model (the second-order extrapolation from F6.8e3).
+- At fixed b: K_eff(T) = K₂(T) R(bk²T²).
+- Local exponent: γ_T = d ln|K_eff|/d ln T = 2 d ln|M|/d ln ε. It is 5 for the second order, 0 for a static limit.
+- Convergence of K_eff with T needs ∫^∞ √u Φ′ du to converge, i.e. Φ to approach its limit faster than u^{−1/2}: the
+  criterion of step 1c, now for K_eff.
+
+### Computation
+- **By parts, without Φ′:** M(ε) = √ε Φ(ε) − ½∫₀^ε u^{−1/2}Φ(u) du = √ε Φ(ε) − ∫₀^{√ε} Φ(t²) dt.
+- **The t integral** by Gauss–Legendre on panels in t = √u. Φ(t²) is smooth and even in t; in u the integrand would be
+  ~u^{3/2} at 0.
+- **Φ(ε)** = Σ_p w_p ⟨ŝ₄A₀^{−2}⟩_θ from diag.f68f_1c (its per-job cache is reused).
+- **Selftest:** Φ = u² gives R = 1, and Φ = u³ gives M = (6/7)ε^{7/2}, both to 2e-16.
+
+### The proposed card (written before any K_eff row was seen)
+The F6.8f card draft (docs/F6_8f_card_draft.md) was rewritten around K_eff at 23:40 UTC, while the development run
+below had printed no values:
+- judged ε = 0.25, 1, 2, 4 (panel ends);
+- readings A / B / C as PASSED / FAILED / UNDECIDED, by the sign of M and γ_T(2 → 4) against 2.5 and 5.

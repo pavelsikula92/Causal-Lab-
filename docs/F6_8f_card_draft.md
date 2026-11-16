@@ -1,59 +1,94 @@
-# Card F6.8f (draft, not frozen): the optical age term of the expected BD action at finite amplitude
+# Card F6.8f (draft, not frozen): the static response K_eff of the optical sector at finite amplitude
 
-**16 Nov 2026, night.** Prepared on the author's order of 22:49 (point 3). Not frozen: the criteria below are
-proposals for the author's decision.
+**16 Nov 2026, night.** Prepared on the author's order of 22:49 (point 3), for the goal of 09:59. Not frozen: the
+criteria below are proposals for the author's decision. **They were written at 23:40 UTC, before any K_eff row of the
+development was seen** (the development run of step 2 had finished 4 of 84 jobs and printed no values).
 
 **Test:** phases/F6_order_dynamics/F6_08f_bd_action_optical_finite_amplitude.py.
-**Instrument:** K.18 (draft).
+**Instrument:** K.18 (draft). **Assembly:** diag/f68f_keff.py (step 2 of docs/derivations/f68f_dev.md).
 
 ## 1. Question
 
-Does the second-order extrapolation describe the optical age term of the expected BD action up to ε = b(kT)² = 4, and
-how does the full term depart from it?
+Does K_eff = (E_opt(b) − E_opt(0))/b, with E_opt = ∂E[S_BD]/∂b of the optical sector, keep the second-order growth
+(kT)⁵, bend towards saturation, or change sign on ε = b(kT)² ≤ 4?
 
-## 2. What the development found (docs/derivations/f68f_dev.md, steps 0–1c)
+## 2. From the development (steps 1c and 2; decides nothing)
 
-- **The age derivative at finite b, exactly.** dE[S]/dT at finite b is an integral over the events of the past of x at
-  time distance T (first arrival ≤ T).
-- **The scaling limit.** In the limit κ → ∞, b → 0 at fixed ε, p only near-cone pairs count. Per direction the density
-  is (T/2l₂) ∫ds ⟨g₀(s²A)⟩_θ, with A the needle volume.
-- **The BD moments select the q⁶ order.** μ₀ = μ₁ = μ₂ = 0, so the survivor is dE/dn ∝ k⁵ Φ(ε), with
-  Φ(ε) = ∫dp ⟨ŝ₄A₀^{−2}⟩_θ. At small ε, Φ = C₂ε², which is the (kT)⁵ law of F6.8e3.
-- **The static limit of an old field exists if and only if ε^{−1/2}Φ(ε) is integrable at infinity.**
+- **The age density.** In the scaling limit (κ = kT → ∞, b → 0 at fixed ε, p) it is dE/dn = c Φ(bn²), with
+  Φ(ε) = ∫dp ⟨ŝ₄A₀^{−2}⟩_θ from the needle volumes of K.18. The constant cC₂ is the b² coefficient of F6.8e3.
+  Checked: the p-profile and the constant agree with F6.8e3 to 5.5e-4 at n = 1536.
+- **K_eff at fixed k and age n,** with M(ε) = ∫₀^ε √u Φ′(u) du:
+  - E_opt = (c/2b^{3/2}) M(ε);
+  - K_eff = (c/2b^{5/2}) M(ε);
+  - K₂ = lim_{b→0} K_eff = (2/5)cC₂n⁵.
+- **One curve.** All K_eff curves of (b, k, T) collapse onto R(ε) = K_eff/K₂ = M(ε)/((4/5)C₂ε^{5/2}).
+  - Null model (the second-order extrapolation from F6.8e3): R = 1.
+  - At fixed b: K_eff(T) = K₂(T)·R(bk²T²).
+  - Local exponent: γ_T = d ln|K_eff|/d ln T = 2 d ln|M|/d ln ε. It is 5 for the second order and → 0 for a static
+    limit.
+- **Computation.** M = √εΦ(ε) − ∫₀^{√ε} Φ(t²) dt, by Gauss–Legendre on panels in t = √u.
+  - Selftest of the assembly: Φ = u², u³ exact to 2e-16.
 
 ## 3. What this card can and cannot decide
 
-- **It can:** on ε ≤ 4 (the calibrated range of K.18), decide whether the second order still describes the transition
-  region.
-- **It cannot:** decide the readings A, B, C of the author's message of 09:59, which are statements about Φ at ε → ∞.
-  That needs the multi-ray range: K.18b, with the cut loci, and a card F6.8g up to ε ~ 40 and beyond.
+- **The calibrated range.** K.18 is calibrated for ε ≤ 4: one ray per phase; the first caustic is at ε = π² for p = 0.
+- **It can:** read the K_eff curve on that range: whether it keeps the second-order growth, bends, or changes sign.
+- **It cannot:** decide whether an old field (ε → ∞) has a finite static response. That is a property of Φ at large ε.
+  It needs the multi-ray range: K.18 extended with the cut loci, and a card F6.8g. **Reading A here is an indication
+  on ε ≤ 4, not a proof of the static limit.**
 
 ## 4. Quantities and proposed criteria
 
-- **Definitions:**
-  - N(ε) = Φ(ε)/(C₂ε²);
-  - C₂ from ε = 0.1 and 0.2 by Richardson;
-  - judged ε = 0.25, 1, 2, 4.
-- **Development rows (seen, decide nothing):** only ε = 0.1, 0.2, 0.5, 3. The judged rows are not seen. The quick run
-  of the test also uses ε = 0.5 and 3 only.
-- **INSTRUMENT_FAILED:**
-  - K.18 not PASSED;
-  - b → 0 against F6.8e3 beyond 5e-3;
-  - more than one ray at some phase;
-  - linear term of Φ above 1e-8.
-- **Hypothesis H2, the second order holds on ε ≤ 4:**
-  - PASSED if |N(ε) − 1| ≤ 0.05 at every judged ε;
-  - FAILED if |N(4) − 1| > 0.2 or Φ changes sign;
-  - UNDECIDED otherwise.
-- **Recorded, no verdict:** the local exponent a(ε) = d ln|Φ|/d ln ε between judged neighbours. This indicates the
-  static limit: a < 2 is weaker than the second order, and a < −1/2 at large ε would be needed for reading A.
-- **Level:** mechanism.
+**Grid.**
+- Judged ε = 0.25, 1, 2, 4: the ends of the t panels [0, ½], [½, 1], [1, √2], [√2, 2], with G = 4 Gauss nodes each.
+- C₂ from ε = 0.1, 0.2 by Richardson.
+- Development used only:
+  - ε = 0.1, 0.2, 0.5, 3;
+  - the nodes of panels ending at 0.5 and 3, at reduced resolution (16 phases, 4 directions).
+  - The judged rows at full resolution are not seen.
+- γ_T on the judged intervals 0.25 → 1, 1 → 2, 2 → 4: γ = 2 ln(M_b/M_a)/ln(ε_b/ε_a).
+
+**INSTRUMENT_FAILED** if any of:
+- K.18 not PASSED (separate record);
+- more than one ray at some phase;
+- stationarity of the ray (linear term of the action sum) above 1e-8;
+- |R(G) − R(G−1)| above 1e-3 at a judged ε;
+- Φ with 128 against 64 phases above 1e-3 (relative) at a judged ε.
+
+**Readings (the author's A, B, C of 09:59, made operational on ε ≤ 4):**
+
+| Reading | Status | Condition (proposal) |
+|---|---|---|
+| A: the K_eff curve bends towards saturation | PASSED | M keeps the sign of C₂ at every judged ε, γ_T(2 → 4) ≤ 2.5 (at most half the second-order exponent), and γ_T decreases over the three intervals |
+| B: K_eff grows or changes sign | FAILED | M changes sign at a judged ε, or γ_T(2 → 4) ≥ 5 (no slowdown against the second order) |
+| C: only young fields | UNDECIDED | otherwise: the curve departs from the second order without a bend that reaches A |
+
+**For the author to decide:**
+- The thresholds 2.5 and 5. A stricter A would be γ_T(2 → 4) ≤ 1.
+- My reading of C ("only young fields": the computation describes young fields, with no statement about the static
+  limit). Correct it if C meant something else.
+
+**Recorded with every status:**
+- R(ε) and N(ε) = Φ/(C₂ε²) at the judged ε (null model R = N = 1);
+- |R − 1| against 0.05 (whether the second order still holds at ε = 4).
+
+**Level:** mechanism.
 
 ## 5. The author's checks of 09:59
 
-1. b → 0 against F6.8e3: part e3 of K.18 and the C₂ comparison.
-2. Zero age: Φ(ε → 0) → 0.
-3. k = 0: A = 1, so Φ = 0.
-4. Both signs of b: Φ is even in ε. This is exact: A(−ε, θ) = A(ε, θ + π).
-5. Conformal and mixed sectors: not computed here; unchanged.
-6. Stable instrument: K.18.
+1. **b → 0:** R, N → 1 as ε → 0. F6.8e3 itself is compared in K.18 part e3.
+2. **Zero age:** M ~ ε^{5/2} → 0.
+3. **k = 0:** Φ = 0, computed at ε = 0 at every direction.
+4. **Both signs of b:** exact. n(−b, θ) = n(b, θ + π), and an even number of phases maps the grid onto itself. So
+   K_eff(−b) = K_eff(b).
+5. **Conformal and mixed sectors:** no code path here; unchanged.
+6. **Stable instrument:** K.18, and the G and phase checks above.
+
+## 6. Cost
+
+- Full run:
+  - 22 + 12 values of ε × 16 directions × 128 phases of the series, ~115 s each;
+  - the phase check at 64 phases.
+  - About 9 h with 2 processes, 2–3 h with 8.
+  - No 80-bit long double is needed (float64 only); not yet run on Windows.
+- Quick run: development ε only (0.5, 3), G = 3, 8 phases, 3 directions.
