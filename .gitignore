@@ -8,3 +8,4 @@ sync_tmp/
 results/*/quick/
 diag/out/f68f_1a_cache/
 diag/out/f68f_layer_cache/
+diag/out/f68f_layer_cache_bad_p/

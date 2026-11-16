@@ -92,14 +92,14 @@ def main():
     done = {}
     for fn in os.listdir(cdir):
         with open(os.path.join(cdir, fn)) as fh:
-            kk, n_, p_, b_, l_ = fh.read().split()
+            kk, n_, p_, b_, l_ = fh.read().replace("np.float64(", "").replace(")", "").split()
             done[(float(kk), float(n_), float(p_))] = (float(b_), float(l_))
     todo = [a for a in jobs if a not in done]
     print(f"jobs {len(jobs)}, cached {len(jobs) - len(todo)}", flush=True)
     with Pool(workers) as pool:
         for kk, n_, p_, b_, l_ in pool.imap_unordered(task, todo, chunksize=1):
             with open(os.path.join(cdir, f"{n_:.0f}_{p_!r}.txt"), "w") as fh:
-                fh.write(f"{kk!r} {n_!r} {p_!r} {b_!r} {l_!r}\n")
+                fh.write(f"{float(kk)!r} {float(n_)!r} {float(p_)!r} {float(b_)!r} {float(l_)!r}\n")
             done[(kk, n_, p_)] = (b_, l_)
     res = [a + done[a] for a in jobs]
     lines = ["F6.8f-dev step 0': the layer of the age cut at second order (flat cut), k = 0.12; slope = -a4 rho / k^5 "
