@@ -82,6 +82,10 @@ def save(name: str, args: Dict[str, Any], code: Dict[str, str], data: Any, lines
     os.makedirs(OUT, exist_ok=True)
     stamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     stem = os.path.join(OUT, f"{name}_{stamp}")
+    i = 1
+    while os.path.exists(stem + ".json"):           # two runs in the same second: never overwrite
+        stem = os.path.join(OUT, f"{name}_{stamp}_{i}")
+        i += 1
     rec = {"script": name, "time_utc": stamp, "duration_s": round(time.time() - t0, 1), "args": _plain(args),
            "code_md5": code, "data": _plain(data)}
     with open(stem + ".json", "w") as fh:
