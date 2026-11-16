@@ -13,7 +13,7 @@ instrument of F6.8e3 (same integrand F as its pair_density, same s nodes, same p
 
 Not included: the explicit b-dependence of the cut (the boundary term of F6.8c), as in F6.8e3.
 
-Run: python diag/f68f_layer.py [workers]   (output diag/out/f68f_layer.txt)
+Run: python diag/f68f_layer.py [workers] [n list, e.g. 16,20,24] [output tag]   (output diag/out/f68f_layer<tag>.txt)
 """
 import math
 import os
@@ -73,7 +73,8 @@ def task(args):
 def main():
     workers = int(sys.argv[1]) if len(sys.argv) > 1 else 2
     k = 0.12
-    ns = [24.0, 96.0, 384.0]
+    ns = [float(x) for x in sys.argv[2].split(",")] if len(sys.argv) > 2 else [24.0, 96.0, 384.0]
+    tag = sys.argv[3] if len(sys.argv) > 3 else ""
     pn, wp = _p_nodes(P_PANELS)
     jobs = [(k, n, float(pp)) for n in ns for pp in pn]
     t0 = time.time()
@@ -96,7 +97,7 @@ def main():
     lines.append(f"  cost {time.time() - t0:.0f} s, {workers} processes")
     txt = "\n".join(lines)
     print(txt)
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_layer.txt")
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", f"f68f_layer{tag}.txt")
     with open(out, "w") as fh:
         fh.write(txt + "\n")
 

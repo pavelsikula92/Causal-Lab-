@@ -175,3 +175,27 @@ with F = Σ g_i(s²) P_i(s, r) the second-order integrand. This is exact.
   zeroth order of 1c. But the response is in D (and higher).
 - **1c and 1d carry the result.** The quantity to compare with F6.8e3 is the full s-integrated bulk density (all g_i
   with their moments) at small ε, as the author asked: not D or A alone.
+
+### Step 0′, numerical: the layer of the flat age cut (16 Nov; diag/f68f_layer.py, diag/out/f68f_layer.txt)
+
+dJ/dT computed exactly at second order (flat cut) with the stable instrument of F6.8e3 (lev1, the same s and p nodes as
+its pair_density), against its bulk term alone. k = 0.12; age slope −a₄ρ/k⁵ in units of k² per unit n. Cost 3 972 s on
+2 processes. Development, decides nothing.
+
+| n | bulk (r = T, as F6.8e3) | exact with layer | layer / bulk | (layer / bulk) · n² |
+|---|---|---|---|---|
+| 24 | 1.109022 | 1.489463 | +0.343 | 198 |
+| 96 | 137.4478 | 142.4668 | +0.0365 | 337 |
+| 384 | 33 320.06 | 33 399.55 | +0.00239 | 352 |
+
+- **The 1/n² law holds asymptotically.** (layer/bulk)·n² changes by 4.5 % between n = 96 and 384 and approaches a
+  constant c ≈ 3.5e2. At n = 24 the higher layer terms are still large (198 instead of ~350). So the layer is a relative
+  correction ≈ c/n²: 0.24 % at n = 384, below 1e-4 from n ≈ 2 000.
+- **Effect on the exponent of F6.8e3.** Between n and 2n the layer shifts the local exponent by
+  log₂[(1 + c/4n²)/(1 + c/n²)] ≈ −1.08 c/n²: −1.0e-2 at n = 192, −1.6e-4 at n = 1 536, −4e-5 at n = 3 072. The exponent
+  5 is the large-n limit and is unchanged; the reported values α = 4.9841 … 4.9999 would move down by these amounts.
+- **The prediction for n = 24 failed.** I expected the layer to explain the 4–11 % gap to the F6.8c2 full rows (1.244).
+  It moves the value from 1.109 to 1.489, past 1.244, so the layer alone does not explain the gap.
+- **The comparison at n = 24 is not like for like.** The F6.8c2 number is a secant: (K̂_bb(n = 16) − K̂_bb(n = 24))/(8 k²)
+  = (0.741976 − 0.598664)/(8 · 0.0144) = 1.244, and it contains the explicit b-dependent cut. The values here are the
+  derivative at n = 24 with the flat cut. A check of the secant with the layer (n = 16, 20, 24, Simpson) is running.
