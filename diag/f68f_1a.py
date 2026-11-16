@@ -134,7 +134,7 @@ def volume(k, CO, L, dt, b, th, n_sig=16, n_te=12, n_phi=16, npan=None):
     flo = ell(lo + 1e-12)
     if np.any(flo <= 0):
         return float("nan")                      # the chord leaves the diamond: prolate coordinates do not apply
-    hi = np.full(TE.shape, dt / L)
+    hi = np.full(TE.shape, max(dt / L, 1.0 + 1e-3))     # dt / L < 1 is possible when T(x, y) < L
     fhi = ell(hi)
     for _ in range(60):
         bad = fhi >= 0
