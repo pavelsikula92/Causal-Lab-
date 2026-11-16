@@ -15,7 +15,7 @@ the curve v -> (psi(s; v), S(s; v)), with quintic Hermite interpolation in v (dS
 in advance: every ray, every fold and every cut locus is in the envelope. The psi integral is done on a fine grid
 over a window that is widened until Phi > q^2/2 at both ends.
 
-Run: python diag/f68f_1b_exact.py [eps p ...]   (output diag/out/f68f_1b_exact.txt)
+Run: python diag/f68f_1b_exact.py [eps p ...] [--workers N]   (output diag/out/f68f_1b_exact.txt)
 """
 import math
 import os
@@ -160,31 +160,44 @@ def phase_A(eps, p, th, Smin, psi_rays, qs=QS):
     return {q: 32 * math.sqrt(2) / (math.pi * q ** 4) * tot[q] for q in qs}, worst
 
 
-def point(eps, p, n_th=B.N_TH):
+def _phase_job(args):
+    eps, p, th, roots = args
+    vv = B.newton(roots, eps, p, np.full(roots.size, th), 4000)
+    _, _, S = B.end_state(vv, eps, p, np.full(vv.size, th), 4000)
+    Smin = float(S.min())
+    near = vv[S - Smin < max(QS) ** 2 / 2]
+    paths = B.integrate(near, eps, p, np.full(near.size, th), N_RK)[:, 0, :]   # (N_RK + 1, n)
+    xs, _ = np.polynomial.legendre.leggauss(N_S)
+    sn = 0.5 * (xs + 1.0)
+    sg = np.linspace(0, 1, N_RK + 1)
+    psi_rays = [np.interp(sn, sg, paths[:, j]) for j in range(paths.shape[1])]
+    return phase_A(eps, p, th, Smin, psi_rays)
+
+
+def point(eps, p, n_th=B.N_TH, workers=1):
     ths = 2 * math.pi * np.arange(n_th) / n_th
     roots = B.branches(eps, p, ths, 1000)
-    out = {q: np.zeros(n_th) for q in QS}
-    worst = 0.0
-    for i, th in enumerate(ths):
-        vv = B.newton(roots[i], eps, p, np.full(roots[i].size, th), 4000)
-        _, _, S = B.end_state(vv, eps, p, np.full(vv.size, th), 4000)
-        Smin = float(S.min())
-        near = vv[S - Smin < max(QS) ** 2 / 2]
-        paths = B.integrate(near, eps, p, np.full(near.size, th), N_RK)[:, 0, :]   # (N_RK + 1, n)
-        xs, _ = np.polynomial.legendre.leggauss(N_S)
-        sn = 0.5 * (xs + 1.0)
-        sg = np.linspace(0, 1, N_RK + 1)
-        psi_rays = [np.interp(sn, sg, paths[:, j]) for j in range(paths.shape[1])]
-        A, w = phase_A(eps, p, th, Smin, psi_rays)
-        worst = min(worst, w)
-        for q in QS:
-            out[q][i] = A[q]
+    jobs = [(eps, p, th, roots[i]) for i, th in enumerate(ths)]
+    if workers > 1:
+        from multiprocessing import Pool
+        with Pool(workers) as pool:
+            res = pool.map(_phase_job, jobs, chunksize=1)
+    else:
+        res = [_phase_job(j) for j in jobs]
+    out = {q: np.array([r[0][q] for r in res]) for q in QS}
+    worst = min(r[1] for r in res)
     return out, worst
 
 
 def main():
     t0 = time.time()
-    args = [float(a) for a in sys.argv[1:]]
+    argv = sys.argv[1:]
+    workers = 1
+    if "--workers" in argv:
+        i = argv.index("--workers")
+        workers = int(argv[i + 1])
+        argv = argv[:i] + argv[i + 2:]
+    args = [float(a) for a in argv]
     pts = list(zip(args[0::2], args[1::2])) if args else [(4.0, 2.0)]
     lines = ["F6.8f-dev step 1b at finite q, b -> 0: exact needle with all branches (lower envelopes), mean over 128 "
              "phases; development, decides nothing", "",
@@ -193,7 +206,7 @@ def main():
     lines.append("     eps    p     A(1/2)       A(1/4)       A(1/8)       delta_A    pair       minPhi     cost")
     for (eps, p) in pts:
         t1 = time.time()
-        r, worst = point(eps, p)
+        r, worst = point(eps, p, workers=workers)
         a = {q: float(r[q].mean()) for q in QS}
         dA = abs(a[0.125] - a[0.25]) / max(1.0, abs(a[0.125]), abs(a[0.25]))
         pair = float(np.max(np.abs(r[0.125] - r[0.25])))
