@@ -222,6 +222,12 @@ its pair_density), against its bulk term alone. k = 0.12; age slope −a₄ρ/k�
   F6.8e3 instrument at n = 16 and 24. F6.8c2 has 36 Gauss nodes per half of cos ∈ [−1, 1] at n = 24; the F6.8e3
   panels have 16. The F6.8e development row (1.19 at n = 24 against 1.109) already showed that the n = 24 value
   depends on the quadrature.
+- **The p quadrature is not the cause** (diag/f68f_pconv.py, diag/out/f68f_pconv.txt, 2 788 s): the bulk slope at
+  n = 24 with 48 p nodes is 1.1090252, against 1.109022 with the 16 nodes of F6.8e3, a difference of 3e-6. Remaining
+  candidates, not checked:
+  - the s quadrature (16 nodes) and the levels of the volume instrument;
+  - the quadrature of F6.8c2 itself (mult = 1, no mult = 2 row at k = 0.12);
+  - a difference of definition between the two codes.
 - **For F6.8e3 nothing changes:** the layer falls as 1/n² and the exponent is a large-n statement. **For the static
   limit it matters:** at finite age the layer and probably the boundary are not small, so a finite-age response needs
   the full cut, not the bulk.
