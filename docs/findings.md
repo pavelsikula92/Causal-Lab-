@@ -47,7 +47,8 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 - **F5.2c (B2, 2+1, a prescribed curved order of the theory, intrinsic instrument): the order moves walls of a field as
   the continuum metric does: the kink stays (its tension cancels its weight; D_K -0.040 +- 0.022 against -0.44 for a
   test particle), the breather wall falls as the continuum (r_B 1.035 +- 0.041) and a launched kink follows the curved
-  cones (slope - 0.3 = +0.0091 +- 0.0030, continuum +0.013) (seed 0 PASSED; replication pending)** (mechanism, 2+1,
+  cones (slope - 0.3 = +0.0091 +- 0.0030, continuum +0.013) (seed 0 PASSED; replication seed 1 INSTRUMENT_FAILED on
+  the flat control)** (mechanism, 2+1,
   exact sprinkling of -Pi^2 dt^2 + Pi^-2 (dx^2 + dy^2), Pi^2 = (x + 24)/24, rho 30, T 8, 32 sprinklings x 3 arms, the
   flat control on 8; card docs/B2_card_draft.md rev. 2, decision 22; run by the author 12-13 Nov unchanged, 13818 s;
   results/F5.2c/20261112T233449Z_all_seed0_817e17b7.json).
@@ -67,6 +68,19 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   along the narrower and wider cones. Open, not resolved: D_K -0.040 is 1.8 SE from 0 (9 % of a test particle's fall);
   the cones effect is measured at 0.009 against 0.013 (dv_L -0.004, 1.3 SE). Limits: one profile and one density; an
   exact sprinkling of a chosen metric, not an order produced by matter (B3); walls only (B4); seed 0 only.
+  - **Replication, seed 1 (16 Nov, by the author, unchanged test (hash 817e17b7), 16 164 s;
+    results/F5.2c/20261116T011234Z_all_seed1_817e17b7.json): INSTRUMENT_FAILED** on the flat control: the breather on
+    the flat order D_0 -0.152 +- 0.091 (in units of the curved fall), |D_0| + 2 SE 0.335 against 0.25 (seed 0:
+    +0.075 +- 0.059, 0.19). The other instrument items OK: links identical to the brute-force reduction (curved 1 143 /
+    11 190, flat 992 / 9 035); I4 5.4e-16 / 0; density -0.0002 +- 0.0006; kink at rest Q - Q_ex -0.0001 +- 0.0001,
+    w/w_ex - 1 +0.0125 +- 0.0012.
+  - **Recorded, not a verdict (R132):** D_K -0.007 +- 0.021 (|x| + 2 SE 0.050 / 0.10); dv_L +0.0038 +- 0.0035
+    (0.011 / 0.02); slope - 0.3 = +0.0169 +- 0.0035 (continuum +0.013); r_B 0.943 +- 0.039 (|r_B - 1| + 2 SE 0.135 /
+    0.15); the energy centroid r 1.010 +- 0.081. The script lists all physics conditions as met.
+  - The control that failed runs on 8 sprinklings (the curved arms on 32); its SE is 0.091 against 0.059 at seed 0, and
+    D_0 is 1.7 SE from 0. The seed-0 verdict PASSED stands (R132); the replication does not confirm it, because its
+    instrument did not hold. How to close it (for example a revision of the flat control with more sprinklings, under a
+    new ID) is the author's decision.
 
 - **F3.15 (B1, 2+1, intrinsic instrument, variant B): a domain wall of a field on all events of a 2+1 causal order,
   evolved by the Green weight read from the order alone (the longest chain), keeps its identity at rest, keeps its
