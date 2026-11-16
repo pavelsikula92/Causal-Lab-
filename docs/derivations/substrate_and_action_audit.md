@@ -390,3 +390,57 @@ This section does that. It decides nothing.
 **For C.1 now:** under A2-B + B6-full the static propagator of a real body is not available from the second variation.
 C.1 can be derived now only in form 4, or for the local part with the explicit statement that its condition fails for
 real fields. Option 1 is the computation that would tell whether the full action has a usable static limit at all.
+
+## 8. The author's working conclusions after section 7 (16 Nov, 09:59; not frozen)
+
+- **A2-B accepted as a working conclusion.** The only dynamical object is H; Π = 𝒫[H] is not varied and has no
+  independent equation. It is a relative temporal response of the order: a constant value is not locally measurable,
+  and the physical content is carried by ∇ ln Π, or by the ratio of clocks at two places.
+- **For C.1:** no propagator of a separate scalar field Π. The response of H has to give at least two geometric
+  outputs, the temporal one (read as the relative rate of clocks) and the spatial one (the cones, the spatial metric).
+  These are two outputs of the same substrate, not automatically two new degrees of freedom. The Whittaker equation is
+  a static reference condition, not C.1 itself; the temporal part does not settle the spatial response or γ.
+- **B6-full: the second variation is not enough for an old field.** The deciding parameter is ε = b(kT)². Once
+  ε² ≫ 1 the second variation describes only the neighbourhood of b = 0. From the T⁵ term neither the size nor the
+  sign of the correction for an old static field can be inferred, and no condition for the local approximation can be
+  derived from it.
+- **New development branch F6.8f-dev: the optical response at finite amplitude.**
+  - Aim: whether the expected BD action gives a usable static response at finite b and large T. Not a test of gravity.
+  - Quantity: E_opt(k, T, b) = ∂E[S_BD]/∂b and K_eff(k, T, b) = [E_opt(b) − E_opt(0)]/b, with the projection on the
+    optical sector exactly as in F6.8e3. For b → 0 it must reproduce F6.8e3 (a check, not a result).
+  - Grid (development, not criteria): |ε| = 0, 0.1, 0.25, 0.5, 1, 2, 4, each at several combinations of b, k and T, to
+    see whether the physics is governed by b(kT)² or the scaling holds only in the perturbative limit.
+  - Checks: the b → 0 limit; zero age; k → 0; both signs of b; the conformal and mixed sectors not broken; convergence
+    with the stable instrument of F6.8e.
+  - Output: the curves K_eff(k, T, b), their sign, convergence, saturation and T-dependence.
+  - Readings: (A) the response converges at large T: on to the full static C.1, B6-full stays a candidate; (B) it grows
+    without bound or changes sign: the expected BD action gives no usable old configuration, options 2 or 3 of §7.3
+    open, a local propagator does not solve it; (C) a static response exists only for young fields: option 4 is
+    legitimate as a limited result, and C.1 must not be presented as the propagator of a real old body.
+  - None of this changes F6.8e3 or F6.8d.
+- **B3:** R is not used as a basis of gravitational dynamics. It can stay only if it is shown what it measures and with
+  which discriminating experiment; otherwise retiring it is more reasonable.
+- **Order of work:** F6.8f-dev; the static limit; C.1; B3.
+
+**Notes by Claude on the design (16 Nov):**
+1. **Both signs of b, phase-averaged.** For ν = b cos kz the change b → −b is the phase shift z → z + π/k. The
+   phase-averaged action is therefore exactly even in b, and check 4 is met identically. It tests something only per
+   phase, before the average (as a code check).
+2. **The core of the F6.8e instrument is perturbative.** The shifted coordinates z = w + bδ use the first-order
+   deviation of the ray. At finite b this core must be replaced; the long double and the tip clustering can stay.
+   - The medium is stratified, n = e^{b cos kz}. Snell's invariant q = n sin θ (θ measured from the z-axis) is
+     conserved along a ray. The travel time and the transverse displacement between two points are therefore 1D
+     quadratures in z, with turning points where n(z) = q.
+   - The first arrival is the minimum over the ray branches, so caustics are included exactly, with no expansion in
+     b. Its derivative in b is ∫ cos(kz) n dl along the arriving ray (Fermat's principle), so E_opt can be computed
+     directly as well as by differences.
+3. **Where the nonlinearity starts (derived here, paraxial, one line).** A ray perpendicular to k obeys
+   z'' = ∂_z ln n = −bk sin kz. About the layer of largest index (kz₀ = 0 for b > 0) neighbouring rays oscillate with
+   ω = k√b (a guided ray), so rays leaving a point refocus at L_f = π/(k√b): the first caustic lies at b(kL)² = π² ≈ 10.
+   Rays along k do not focus in this way.
+   - The τ-independent part ∝ b²(kL)⁴ = ε² is the onset of this focusing.
+   - The grid should therefore reach beyond the first caustic, to ε ≈ 20–40, not only to 4.
+4. **Precision.** At second order the BD moments cancel the τ⁰, τ², τ⁴ parts of V(τ) and leave ~10⁻⁹ of them. At finite
+   b the same structural cancellation is expected, so the exact travel time must be accurate to ~10⁻¹³ relative. This
+   is the main risk of the branch.
+5. **Status of F6.8d:** INSTRUMENT_FAILED, with the exponents undecided (decision 33), not UNDECIDED.

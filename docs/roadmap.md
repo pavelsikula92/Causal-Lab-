@@ -170,8 +170,18 @@ measurement and criteria frozen in advance (R132 stays a fixed procedural rule):
 - no geometric property declared a physical law before it is clear whether it belongs to the substrate, the measuring
   instrument or the chosen kernel.
 
-**Running and finishing (15 Nov):** F6.8e2 and F6.8d (age terms of the action; they belong to B/C.1 and are finished
-as frozen); the replication of F5.2c.
+**State (16 Nov):** F6.8e3 PASSED (optical age term ∝ (kT)⁵ at second order); F6.8d INSTRUMENT_FAILED, exponents
+undecided (decision 33); the replication of F5.2c INSTRUMENT_FAILED on the flat control (seed 0 PASSED stands).
+
+**Working order (the author, 16 Nov 09:59; working positions, not frozen; docs/derivations/substrate_and_action_audit.md
+§7–8):**
+1. **F6.8f-dev**, the optical response at finite amplitude: does the expected BD action give a usable static response
+   at finite b and large age T? The second variation holds only for ε² = b²(kT)⁴ ≪ 1, and real static fields lie at
+   10⁴⁰–10⁵⁵.
+2. **The static limit:** does an old field have a defined response at all?
+3. **C.1:** only then the joint response of the temporal and spatial parts, derived from H (A2-B: Π = 𝒫[H], not a
+   separate field).
+4. **B3:** the meaning of R, once it is clear whether dynamics or stability need it.
 
 **Before the next version of the paper:** the replications, and A and B at least as recorded decisions. The paper
 states how things are. Negative and failed tests stay in the working documentation, with a pointer from the appendix,
