@@ -15,7 +15,7 @@ resolve windows of width c / alpha; a grid point exactly at a tie (p = 0: theta 
 full weight instead. This file locates the cut loci, computes alpha = |d(S_b - S_a)/dtheta| (envelope theorem:
 dS/dtheta = -eps int sin(p s + theta + psi) ds along a fixed-end stationary ray), A_a and A_b, and reports dA(q).
 
-Run: python diag/f68f_1b_cut.py   (output diag/out/f68f_1b_cut.txt)
+Run: python diag/f68f_1b_cut.py [eps p ...]   (output appended to diag/out/f68f_1b_cut.txt)
 """
 import math
 import os
@@ -116,10 +116,10 @@ def main():
     t0 = time.time()
     lines = ["F6.8f-dev step 1b: cut loci in theta (switch of the first-arrival ray) and their contribution to the "
              "theta-mean at finite q, dA = (A_a + A_b) c / (6 pi alpha), c = q^2/2; development, decides nothing", ""]
-    for p in B.P_GRID:
-        for eps in B.EPS_GRID:
-            if eps == 0.0:
-                continue
+    args = [float(a) for a in sys.argv[1:]]
+    pts = list(zip(args[1::2], args[0::2])) if args else [(p, e) for p in B.P_GRID for e in B.EPS_GRID if e > 0]
+    for (p, eps) in pts:
+        if True:
             f = cut_loci(eps, p)
             if not f:
                 continue
@@ -130,7 +130,7 @@ def main():
                 print(lines[-1], flush=True)
     lines.append(f"cost {time.time() - t0:.0f} s")
     txt = "\n".join(lines)
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_1b_cut.txt"), "w") as fh:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_1b_cut.txt"), "a") as fh:
         fh.write(txt + "\n")
     print(txt)
 
