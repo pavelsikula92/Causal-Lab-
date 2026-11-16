@@ -199,20 +199,14 @@ its pair_density), against its bulk term alone. k = 0.12; age slope −a₄ρ/k�
 - **The comparison at n = 24 is not like for like.** The F6.8c2 number is a secant: (K̂_bb(n = 16) − K̂_bb(n = 24))/(8 k²)
   = (0.741976 − 0.598664)/(8 · 0.0144) = 1.244, and it contains the explicit b-dependent cut. The values here are the
   derivative at n = 24 with the flat cut.
-- **The secant with the layer** (diag/out/f68f_layer_secant.txt, n = 16, 20, 24, 5 723 s; n = 24 reproduces the first
-  run to all digits):
-
-  | n | bulk | exact with layer | layer / bulk |
-  |---|---|---|---|
-  | 16 | 0.478427 | 0.649192 | +0.357 |
-  | 20 | 0.707967 | 0.983925 | +0.390 |
-  | 24 | 1.109022 | 1.489463 | +0.343 |
-
-  Simpson over n = 16 … 24 gives the secant 0.737 (bulk alone) and **1.012 with the layer**, against 1.244 from the
-  F6.8c2 full rows. The bulk and layer of the flat cut account for 81 % of it. The remaining 0.23 (19 %) is not
-  computed here. The candidate is the explicit b-dependence of the cut (the boundary term of F6.8c), but that is a
-  hypothesis. The instruments also differ (F6.8c2 is a different code with its own nodes). At n = 16–24 the
-  boundary would then not be small. The k = 0 null of F6.8c (≤ 2.4e-3, falling as T⁻⁴) does not bound it at k = 0.12.
+- **The secant with the layer, first version: wrong at n = 16 and 20.** I used the p panels of F6.8e3, [0, 24], for every
+  n. p = n cos(k, pair) runs only over [0, n], so for n = 16 and 20 the sum included directions with cos > 1 (kperp
+  clipped to 0). It gave 0.649 and 0.984 (bulk 0.478 and 0.708) and a Simpson secant of 1.012. These numbers are void;
+  n = 24, 96 and 384 are not affected. Rerun with panels ending at p = n (diag/f68f_layer.py, p_panels).
+- **The explicit boundary term is already on record and is small.** F6.8c2 stores it per row: bnd = −1.3706e-5
+  (n = 16) and −1.8363e-5 (n = 24) in J_bb. In the secant that is a₄ · 4.656e-6/(8 k⁴) = **0.0046** of the 1.244.
+  The interior of F6.8c2 (bulk and layer, flat cut) gives 1.2395. So the boundary does not carry a 19 % gap. The
+  comparison is between the interior of F6.8c2 and the bulk plus layer here, after the rerun.
 - **For F6.8e3 nothing changes:** the layer falls as 1/n² and the exponent is a large-n statement. **For the static
   limit it matters:** at finite age the layer and probably the boundary are not small, so a finite-age response needs
   the full cut, not the bulk.

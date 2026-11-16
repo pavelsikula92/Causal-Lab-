@@ -34,6 +34,15 @@ N_S = 16
 P_PANELS = [[0.0, 12.0, 10], [12.0, 24.0, 6]]
 
 
+def p_panels(n):
+    """p = n cos(k, pair) runs over [0, n]. F6.8e3 truncates at p = 24 (its tail item I4); for n < 24 the panels end
+    at p = n (cos <= 1). The first version used [0, 24] for every n, which for n = 16, 20 added directions with
+    cos > 1 (kperp clipped to 0): those rows were wrong."""
+    if n >= 24.0:
+        return P_PANELS
+    return [[0.0, n / 2.0, 10], [n / 2.0, n, 6]]
+
+
 def integrand(k, CO, r, s):
     """F(s, r) of F6.8e3.pair_density (the optical bb part), per s node, without the measure."""
     s = np.atleast_1d(np.asarray(s, float))
@@ -75,8 +84,8 @@ def main():
     k = 0.12
     ns = [float(x) for x in sys.argv[2].split(",")] if len(sys.argv) > 2 else [24.0, 96.0, 384.0]
     tag = sys.argv[3] if len(sys.argv) > 3 else ""
-    pn, wp = _p_nodes(P_PANELS)
-    jobs = [(k, n, float(pp)) for n in ns for pp in pn]
+    nodes = {n: _p_nodes(p_panels(n)) for n in ns}
+    jobs = [(k, n, float(pp)) for n in ns for pp in nodes[n][0]]
     t0 = time.time()
     cdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_layer_cache")
     os.makedirs(cdir, exist_ok=True)
@@ -97,6 +106,7 @@ def main():
              "(units of k^2 per unit n); development, decides nothing", "",
              "  n      bulk (r = T, F6.8e3)   exact with layer      layer / bulk      (layer/bulk) * n^2"]
     for n in ns:
+        wp = nodes[n][1]
         rb = np.array([x[3] for x in res if x[1] == n])
         rl = np.array([x[4] for x in res if x[1] == n])
         rho_b = 2.0 * math.pi / n * 2.0 * float((wp * rb).sum())
