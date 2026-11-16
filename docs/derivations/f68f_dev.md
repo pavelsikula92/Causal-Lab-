@@ -258,3 +258,43 @@ The difference falls by a factor 3–4 per level.
 **Instrument faults found and fixed in development:**
 - results were written only at the end, so a run cut off at the time limit lost everything; now a cache per job;
 - at b = 0.16 the first bracket dt/L lay below σ = 1 when T(x,y) < L; the bracket now starts above 1.
+
+## Step 1b: development protocol, fixed before the computation (the author, 16 Nov 17:11)
+
+A development protocol, not a verdict on a physical hypothesis.
+
+**Grid:**
+- ε = 0, 1, 2, 4, 8, 16, 40;
+- denser near the expected caustic: ε = 9, 9.5, 9.8, 9.87, 9.95, 10, 10.5, 12. This is denser sampling, not an
+  assumption that the caustic lies at π²: its position is determined by the computation;
+- for every point, L/σ = 4, 8, 16.
+
+**Normalisation:** A is the normalised volume, A(0, p) = 1; A_scale(p) = |A(0, p)|.
+
+**Criteria:**
+
+| Quantity | Working criterion |
+|---|---|
+| Change between L/σ = 8 and 16, away from caustics | δ_A = \|A₁₆ − A₈\| / max(\|A₁₆\|, \|A₈\|, 1) ≤ 1e-3 |
+| Numerical error of the Jacobi solution (carried into A, from independent changes of tolerance and step) | δ_J ≤ 1e-4 |
+| Agreement with brute force at moderate ε (only where the brute force reaches that accuracy; otherwise both uncertainties are reported and the check is not decisive) | \|A_PW − A_brute\| / max(\|A_PW\|, \|A_brute\|, 1) ≤ 1e-3 |
+| First conjugate point (from the Jacobi determinants, not from a drop of the volume) | \|ε_c⁽¹⁶⁾ − ε_c⁽⁸⁾\| ≤ 0.01 |
+
+**Near the caustic:**
+- no smooth relative convergence of A is required;
+- the position of the conjugate point and the causal structure are judged instead;
+- a change in the number of branches is recorded separately;
+- the volume is evaluated on both sides, without smoothing.
+
+**Exception:** only ε = 40. If δ_A ≤ 1e-3 is not met there, the result stays exploratory; it is kept, but not
+called an exact limit value.
+
+**Output per point:**
+- A for L/σ = 4, 8, 16;
+- δ_A (8 → 16) and δ_J;
+- the position of the conjugate point and a caustic flag.
+
+The error of the Penrose approximation and the numerical error of the Jacobi solution are reported separately.
+
+**The corrected secant** (step 0′) is judged on its own against the interior of F6.8c2, 1.2395. The record of the
+first run is not rewritten.
