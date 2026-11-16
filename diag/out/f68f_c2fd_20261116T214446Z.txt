@@ -1,0 +1,5 @@
+F6.8f-dev: F6.8c2 code (optical_row of F6.8c), k = 0.12, mult 1; development
+
+  T 50.00 (n 6.000): J_bb 7.063671968834e-03  bnd -5.674024e-06  interior 7.069345992952e-03  Kbb 0.801036668  n_ang 32 n_rs 192 n_te_max 21  212 s
+
+  cost 212 s

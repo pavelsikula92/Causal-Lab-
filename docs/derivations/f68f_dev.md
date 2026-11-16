@@ -580,7 +580,7 @@ diag/f68f_common.py:
 |---|---|---|
 | diag/f68f_dev.py | step 0, checks T1–T5 | output identical to diag/out/f68f_step0.txt |
 | diag/f68f_layer.py | step 0′: bulk and layer; options for the p and s quadrature checks (replace diag/f68f_pconv.py and diag/f68f_sconv.py) | one direction at n = 24 (bulk and layer) identical to the cached values of the run; end to end with `--p-list 0.5 --n-s 16 --bulk-only`: −6.0904258135e-06, equal to f68f_sconv.txt; the slope assembly of the full mode is the code of 16 Nov unchanged, not rerun end to end |
-| diag/f68f_c2fd.py | the F6.8c2 code as a derivative in the age; `--mult` | being checked against the F6.8c2 record at k = 0.12, T = 50 |
+| diag/f68f_c2fd.py | the F6.8c2 code as a derivative in the age; `--mult` | runs end to end (the same call of optical_row as before); at k = 0.12, T = 50 it gives K̂_bb 0.8010366682 against 0.8010372305 in the F6.8c2 record of 29 Oct (diag/out/f68f_c2fd_20261116T214446Z.txt) |
 | diag/f68f_1a.py | step 1a; `--levels` replaces diag/f68f_1a_levels.py | three volumes identical to the cached values (to 6e-17); the full run is being compared with f68f_1a.txt |
 | diag/f68f_1b.py | step 1b, plane wave | ε = 4, 12 at p = 2 and the onset at p = 1 identical to f68f_1b.txt |
 | diag/f68f_1b_q.py | step 1b at finite q, expansion (the failed exact check removed) | ε = 4, 12 at p = 2 identical to f68f_1b_q.txt |
@@ -593,3 +593,8 @@ diag/f68f_common.py:
 - diag/f68f_1b_kappa.py: an untested draft.
 
 The records made before the diag form keep their names and are cited above as they are.
+
+**A reproducibility note.** Today's F6.8c code on Linux (numpy 2.5.3) reproduces the F6.8c2 record of 29 Oct (Windows,
+numpy 2.2.6) at k = 0.12, T = 50 to 7e-7 relative in K̂_bb. The cause is not identified. Candidates are the numpy
+version or platform, or a change of the code between 29 Oct and 10 Nov, which the git history (from 10 Nov) does not
+cover. It is far below the 2.61 / 1.49 difference above and does not explain it.

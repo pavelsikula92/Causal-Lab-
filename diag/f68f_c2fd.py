@@ -1,49 +1,75 @@
 """
-F6.8f-dev step 0' (development, decides nothing): the age slope of the F6.8c2 code as a derivative, not a secant.
-optical_row of F6.8c (the code of F6.8c2, same quad and boundary nodes) at k = 0.12 and T = 197.5, 199.9 (the node
-counts of the angle and r panels are the same at both ages). Reports J_bb, the boundary part, the interior
-(J_bb - bnd) and the central-difference slope -(a4 / k^2) dJ/dn / k^2 at n = 23.844, to compare with the bulk + layer
-of diag/f68f_layer.py at the same n.
-Run: python diag/f68f_c2fd.py   (output diag/out/f68f_c2fd.txt)
+F6.8f-dev step 0' (development, decides nothing): the age slope of the F6.8c2 code as a derivative, not a secant
+================================================================================================================
+
+optical_row of F6.8c (the code of the F6.8c2 card: the same quad and boundary nodes) at k and the ages T given;
+J_bb, its boundary part, the interior (J_bb - bnd) and, for every two consecutive ages, the central-difference slope
+-(a4 / k^4) dJ/dn (units of k^2 per unit n) of the total, the interior and the boundary. To compare with the bulk +
+layer of diag.f68f_layer at the same n. Choose ages at which the node counts of the angle and r panels are equal
+(16 Nov: T = 197.5, 199.9 at k = 0.12, both 72 angles and 344 r nodes).
+
+Run from the repository root (one job = one age, cached in diag/out/f68f_c2fd_cache/):
+    python -m diag.f68f_c2fd --k 0.12 --T 197.5,199.9 --workers 2
+    python -m diag.f68f_c2fd --k 0.12 --T 197.5,199.9 --mult 2 --workers 2     the same at the double quadrature level
+Output diag/out/f68f_c2fd_<UTC time>.json and .txt. The run of 16 Nov before this form is diag/out/f68f_c2fd.txt.
 """
+from __future__ import annotations
+
+import argparse
 import os
-import sys
 import time
-from multiprocessing import Pool
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from phases.F6_order_dynamics.F6_08c_bd_action_optical import optical_row  # noqa: E402
-from phases.F6_order_dynamics.F6_08a_bd_action_conformal import _A4  # noqa: E402
+from core.stats.parallel import default_workers, parallel_map
+from diag import f68f_common as Cm
+from phases.F6_order_dynamics.F6_08a_bd_action_conformal import _A4
+from phases.F6_order_dynamics.F6_08c_bd_action_optical import optical_row
+import phases.F6_order_dynamics.F6_08c_bd_action_optical as F68c
 
-K = 0.12
-TS = [197.5, 199.9]
+NAME = "f68f_c2fd"
+CODE = Cm.code_md5([os.path.abspath(__file__), F68c.__file__])
 
 
-def row(T):
-    return optical_row(K, T, 1.0, (4, 16, 0.8, 8, 16), 32)
+def row(k, T, mult):
+    q = (4, 16, 0.8, 8, 16)
+    return optical_row(k, T, mult, q, int(32 * mult))
+
+
+def job(*args):
+    return Cm.cached(NAME, CODE, row, args)
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--k", type=float, default=0.12)
+    ap.add_argument("--T", type=str, default="197.5,199.9")
+    ap.add_argument("--mult", type=float, default=1.0)
+    ap.add_argument("--workers", type=int, default=0)
+    a = ap.parse_args()
     t0 = time.time()
-    with Pool(2) as pool:
-        r = pool.map(row, TS)
-    dn = (TS[1] - TS[0]) * K
-    lines = ["F6.8f-dev: F6.8c2 code (optical_row of F6.8c), k = 0.12, mult 1; development", ""]
+    k, Ts = a.k, Cm.floats(a.T)
+    jobs = [(k, T, a.mult) for T in Ts]
+    r = parallel_map(job, jobs, default_workers(a.workers), print,
+                     lambda i, x, d, n: f"[f68f_c2fd] {d}/{n}: T {jobs[i][1]:g} ({time.time() - t0:.0f}s)")
+    lines = [f"F6.8f-dev: F6.8c2 code (optical_row of F6.8c), k = {k:g}, mult {a.mult:g}; development", ""]
     for x in r:
-        lines.append(f"  T {x['T']:.2f} (n {x['T'] * K:.3f}): J_bb {x['J_bb']:.12e}  bnd {x['bnd']:+.6e}  interior "
+        lines.append(f"  T {x['T']:.2f} (n {x['T'] * k:.3f}): J_bb {x['J_bb']:.12e}  bnd {x['bnd']:+.6e}  interior "
                      f"{x['J_bb'] - x['bnd']:.12e}  Kbb {x['Kbb']:.9f}  n_ang {x['n_ang']} n_rs {x['n_rs']} "
                      f"n_te_max {x['n_te_max']}  {x['time']:.0f} s")
-    sl_tot = -_A4 * (r[1]['J_bb'] - r[0]['J_bb']) / dn / K ** 4
-    sl_int = -_A4 * ((r[1]['J_bb'] - r[1]['bnd']) - (r[0]['J_bb'] - r[0]['bnd'])) / dn / K ** 4
-    sl_bnd = -_A4 * (r[1]['bnd'] - r[0]['bnd']) / dn / K ** 4
     lines.append("")
-    lines.append(f"  central-difference slope at n = {0.5 * (TS[0] + TS[1]) * K:.3f}: total {sl_tot:.6f}, interior "
-                 f"{sl_int:.6f}, boundary {sl_bnd:+.6f} (units of k^2 per unit n)")
+    slopes = []
+    for x0, x1 in zip(r[:-1], r[1:]):
+        dn = (x1["T"] - x0["T"]) * k
+        tot = -_A4 * (x1["J_bb"] - x0["J_bb"]) / dn / k ** 4
+        inn = -_A4 * ((x1["J_bb"] - x1["bnd"]) - (x0["J_bb"] - x0["bnd"])) / dn / k ** 4
+        bnd = -_A4 * (x1["bnd"] - x0["bnd"]) / dn / k ** 4
+        nm = 0.5 * (x0["T"] + x1["T"]) * k
+        slopes.append({"n": nm, "total": tot, "interior": inn, "boundary": bnd})
+        lines.append(f"  central-difference slope at n = {nm:.3f}: total {tot:.6f}, interior {inn:.6f}, boundary "
+                     f"{bnd:+.6f} (units of k^2 per unit n)")
     lines.append(f"  cost {time.time() - t0:.0f} s")
-    txt = "\n".join(lines)
-    print(txt)
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_c2fd.txt"), "w") as fh:
-        fh.write(txt + "\n")
+    stem = Cm.save(NAME, vars(a), CODE, {"rows": r, "slopes": slopes}, lines, t0)
+    print("\n".join(lines))
+    print("saved", stem + ".json")
 
 
 if __name__ == "__main__":
