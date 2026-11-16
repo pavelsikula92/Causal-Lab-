@@ -276,3 +276,117 @@ age terms as a stated condition of validity? This fixes what "the asymptotic sta
   They are statements about the documents' own definitions, not about nature.
 - Literature statements (Bombelli–Henson–Sorkin, Rideout–Sorkin) are quoted as the axiom audit quotes them and have
   not been re-checked tonight.
+
+## 7. The author's working positions on A2 and B6, and what follows from them (16 Nov)
+
+**The author (16 Nov, 09:48), working positions, not frozen:**
+- **A2:** Π is a readout of the order, Π = 𝒫[H], not an independent state. A state variant would be accepted only if a
+  test showed that the same local order can carry different Π according to its own history.
+- **B6:** the full expected BD action is the basic object, and its local part is a controlled approximation. The full
+  action needs a precise definition of the static configuration, of the boundary of the past, and of how its age
+  changes under a transformation.
+- **C.1:** the response of the order, δH from S⁽²⁾_BD, turned into δΠ by 𝒫. It is not a propagator chosen for Π
+  first.
+- **Request:** write out the consequences of A2-B for the definition of the action, then of B6-full for its second
+  variation, and see whether the combination closes.
+
+This section does that. It decides nothing.
+
+### 7.1 What follows from A2-B (Π = 𝒫[H])
+
+1. **One kind of degree of freedom.** The action is varied over H (and over matter) only. Π is not varied. Ax. Local
+   response turns from "every event has a state Π_v" into "Π is read from the order near v". B.2 then holds in
+   picture P1: the order is laid out in the gravitational metric and the clocks are read from it.
+
+2. **Π is not a local readout, only a ratio of two clocks.**
+   - A region of uniform Π is flat spacetime in rescaled coordinates (in H1 both t and x are rescaled by constants). Its
+     order is a sprinkling of flat spacetime, identical in distribution to the order at Π = 1: no count inside the
+     region distinguishes Π = 0.9 from Π = 1.
+   - What the order fixes is the ratio Π(x₁)/Π(x₂) between two histories joined by signals, the redshift. Π itself is
+     fixed only with a normalisation (Π_∞ = 1 for a static field, ln_pi_potential §4.2).
+   - In a non-static field the lapse depends on the slicing, so a "Π at an event" needs a chosen family of observers.
+   - **Consequence for the proposed discriminating test.** "The same local order with different Π" holds trivially for
+     a uniform difference of Π, so that test would wrongly favour the state variant. The test has to be stated on
+     ratios between two places (or on the gradient of ln Π), where A2-B makes a definite claim.
+
+3. **Π has no field equation of its own.**
+   - In general relativity, for a static metric −N²dt² + h_ij dx^i dx^j the 00 equation is the Whittaker equation
+     D²N = 4πG N (ρ + Σp), with D² the Laplacian of h.
+   - The source ρ + Σp is the one of decision 24. The scalar law B_g ln Π = κ ρ_s (decision 1) becomes the weak-field
+     limit of this component, not an extra law.
+   - Π fixes only one component. The cones and γ come from the spatial equations. Under A2-B, C.1 must therefore give
+     both potentials (the lapse and the spatial part), and γ is their ratio. The readout 𝒫 of Π alone does not close
+     the response.
+
+4. **R.** In P1, R with I = 1 gives no Newtonian fall (B.2). R is the action of motion only if Z is constant along a
+   history (B.4). A2-B therefore points B3 towards options 2–4 (a resistance functional, the stiffness of the order, a
+   stability functional) or towards retiring R. This is a consequence, not a decision.
+
+5. **"Π → 0 in matter"** (book 19.1). With a GR-like response, the lapse inside a static star stays finite; it
+   vanishes only at a horizon. Under A2-B the ontology's statement has to become "smaller", or it applies only at a
+   horizon.
+
+### 7.2 What follows from B6-full for the second variation
+
+1. **S⁽²⁾ depends on the history of the source.** The expected action of a static field counts intervals reaching
+   back over the age T of the field, so the static quadratic form is K̂(k, T), not K̂(k). The sectors so far:
+   - conformal: linear in kT (c_T = 0.1035; the paper's window, Sec. "window");
+   - mixed: (kT)³ (development; F6.8d undecided, decision 33);
+   - optical: (kT)⁵ (F6.8e3 PASSED, c5 = 3.05e-7).
+
+2. **The window with the optical sector, if the second order is taken literally.**
+   - Relative size δ_opt = c5 (kℓ_k)² (kT)⁵. With k = 1/L it is of order one at L*_opt = (c5 ℓ_k² T⁵)^(1/7). The
+     conformal form L* = (c_T ℓ_k² T)^(1/3) is Eq. (Lstar) of the paper.
+   - **Derived here, arithmetic only.** The same four readings of T as the paper's table:
+
+     | reading of T | L* conformal, ℓ_P | L*_opt, ℓ_P | L* conformal, 10⁻¹⁹ m | L*_opt, 10⁻¹⁹ m |
+     |---|---|---|---|---|
+     | age of the universe | 1.5e-15 m | 6.0e7 m | 51 μm | 2.0e12 m |
+     | age of Earth's field | 1.1e-15 m | 2.7e7 m | 35 μm | 8.9e11 m |
+     | one year | 6.4e-19 m | 3.5 m | 21 nm | 1.1e5 m |
+     | one day | 8.9e-20 m | 5.1 cm | 3 nm | 1.7 km |
+
+   - The conformal columns reproduce the paper's table, which is a check of the arithmetic.
+   - Taken literally, the optical age term would change gravity at order one at lengths where gravity is measured and
+     agrees with general relativity: laboratory scales, satellites, the solar system. This holds for every reading of
+     T and for any ℓ_k ≥ ℓ_P.
+
+3. **But the second order does not apply there.**
+   - The expansion in the amplitude b of the field fails near b²(kT)⁴ ~ 1 (card F6.8e, Limits).
+   - At the L*_opt of the ℓ_P column above, with b of the order of Earth's surface potential (7e-10), b²(kT)⁴ is 3e40 to
+     1e55. The second order would need b < (L/T)², e.g. b < 4e-37 for a mode of Earth's field at 2.7e7 m. No real
+     static field meets this.
+   - So the T⁵ law of F6.8e3 holds in its computed range (young or extremely weak fields). It says nothing yet about the
+     response of a real, old static field, and neither the size nor the sign of that response is known.
+
+4. **What this means for the age.** The age that enters is the time over which the source has existed as a static
+   source: the proper time along its worldline since it formed. That singles out the rest frame of the source, so a
+   static field with an age is not a boost-invariant configuration. Whether the departure from B/8 = A/6 comes from
+   this (physics of a source with a beginning) or from the sharp cut is still open. Point 3 does not decide it.
+
+### 7.3 Does A2-B + B6-full close?
+
+- **A2-B on its own closes:** one kind of degree of freedom (H); Π read as a ratio of clocks; the Π equation is the
+  lapse component of the response; the source is the one of decision 24. Its open items are the ones the author named
+  (uniqueness and independence of 𝒫 from the instrument), together with point 7.1.2 (Π is defined only as a ratio, or
+  with a normalisation).
+- **B6-full does not close as "second variation → propagator" for physical fields.** S⁽²⁾ of the full expected action
+  is valid only for b²(kT)⁴ ≪ 1. Real static fields are outside this range by many orders of magnitude. There, the
+  literal second-order result would contradict measured gravity for every reading of T.
+- **B6-local with the age terms as a stated condition is not a way out either.** The condition is violated by the same
+  factors (δ_opt ≫ 1), so the local propagator would be used where the full action says it does not hold.
+
+**Ways forward found in the documents (options; none chosen):**
+1. **A finite-b computation of the optical sector:** the response resummed in b(kT)², for an old static field. This is
+   a new computation with the stable instrument of F6.8e, and the most direct one.
+2. **The reading of T.** If the relevant past of a dynamic order is not a sprinkling of the static metric back to a
+   sharp onset (the past is itself produced by the response, A), the long thin intervals that carry the (kT)⁵ growth
+   may not exist in the order. This needs the dynamics of A, which does not exist yet.
+3. **The expected S_BD is not the action of the order** for old fields, and another action has to be found. This would
+   reopen Part VI.
+4. **C.1 only for young fields** (kT small), declared as such. This is well-defined but does not give the far field of
+   a real body (F8.1, P1).
+
+**For C.1 now:** under A2-B + B6-full the static propagator of a real body is not available from the second variation.
+C.1 can be derived now only in form 4, or for the local part with the explicit statement that its condition fails for
+real fields. Option 1 is the computation that would tell whether the full action has a usable static limit at all.
