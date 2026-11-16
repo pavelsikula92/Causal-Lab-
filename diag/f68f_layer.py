@@ -13,21 +13,32 @@ instrument of F6.8e3 (same integrand F as its pair_density, same s nodes, same p
 
 Not included: the explicit b-dependence of the cut (the boundary term of F6.8c), as in F6.8e3.
 
-Run: python diag/f68f_layer.py [workers] [n list, e.g. 16,20,24] [output tag]   (output diag/out/f68f_layer<tag>.txt)
+Uses the 80-bit instrument of F6.8e3: refuses to run without an 80-bit long double (Linux or WSL).
+
+Run from the repository root (one job = one direction p at one n, cached in diag/out/f68f_layer_cache/):
+    python -m diag.f68f_layer --ns 24,96,384 --workers 8           bulk and exact-with-layer slopes (16 Nov run)
+    python -m diag.f68f_layer --ns 16,20,24 --workers 8            the secant over n = 16 ... 24 (Simpson)
+    python -m diag.f68f_layer --ns 24 --bulk-only --p-panels 4x12  direction quadrature check (48 nodes)
+    python -m diag.f68f_layer --ns 24 --bulk-only --p-list 0.5,3,10 --n-s 16,24,32,48   s quadrature check
+Output diag/out/f68f_layer_<UTC time>.json and .txt. The runs of 16 Nov before this form are
+diag/out/f68f_layer.txt, f68f_layer_secant.txt, f68f_pconv.txt and f68f_sconv.txt (the last two by the removed
+scripts diag/f68f_pconv.py and diag/f68f_sconv.py, whose checks are the last two commands above).
 """
+from __future__ import annotations
+
+import argparse
 import math
 import os
-import sys
 import time
-from multiprocessing import Pool
 
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from phases.F6_order_dynamics.F6_08e3_bd_action_optical_asymptotic_rev2 import (  # noqa: E402
+from core.stats.parallel import default_workers, parallel_map
+from diag import f68f_common as Cm
+from phases.F6_order_dynamics.F6_08e3_bd_action_optical_asymptotic_rev2 import (
     second_order_volume_stable, _Ef, _bend, _p_nodes)
-from phases.F6_order_dynamics.F6_08a_bd_action_conformal import _A4, _L2, kernel_derivs  # noqa: E402
-from phases.F6_order_dynamics.F6_08b2_bd_action_mixed_rev import _s_nodes  # noqa: E402
+from phases.F6_order_dynamics.F6_08a_bd_action_conformal import _A4, _L2, kernel_derivs
+from phases.F6_order_dynamics.F6_08b2_bd_action_mixed_rev import _s_nodes
 
 LEV = (24, 16, 16)          # n_sig, n_te, n_phi (lev1 of F6.8e3)
 N_S = 16
@@ -62,67 +73,95 @@ def integrand(k, CO, r, s):
             + 0.5 * np.abs(beta) ** 2 * g2)
 
 
-def task(args):
-    k, n, p = args
+def task(k, n, p, n_s, bulk_only):
+    """Bulk and layer densities of one direction p = n cos at n (ages T = n / k), with n_s s nodes per panel."""
     T = n / k
     CO = p / (k * T)
-    s, ws = _s_nodes(np.array([1e12]), N_S, True)
+    s, ws = _s_nodes(np.array([1e12]), n_s, True)
     s, ws = s[0], ws[0]
     keep = ws > 0
     s, ws = s[keep], ws[keep]
     Fb = integrand(k, CO, T, s)
     bulk = float((ws * T * T / (2.0 * _L2 * np.sqrt(T * T + s / _L2)) * Fb).sum())
+    if bulk_only:
+        return {"bulk": bulk, "layer": None, "n_nodes": int(s.size)}
     lay = 0.0
     for si, wi in zip(s, ws):
         R = math.sqrt(T * T - si / _L2)
         lay += wi * R / (2.0 * _L2) * float(integrand(k, CO, R, [si])[0])
-    return (k, n, p, bulk, lay)
+    return {"bulk": bulk, "layer": lay, "n_nodes": int(s.size)}
+
+
+NAME = "f68f_layer"
+CODE = Cm.code_md5([os.path.abspath(__file__)])
+
+
+def job(*args):
+    return Cm.cached(NAME, CODE, task, args)
+
+
+def directions(n, spec):
+    """p nodes and weights: 'auto' = the panels of F6.8e3 (ending at p = n for n < 24); 'MxN' = M equal panels of N
+    Gauss nodes over [0, min(n, 24)]."""
+    if spec == "auto":
+        return _p_nodes(p_panels(n))
+    m, q = (int(v) for v in spec.split("x"))
+    top = min(n, 24.0)
+    e = np.linspace(0.0, top, m + 1)
+    return _p_nodes([[e[i], e[i + 1], q] for i in range(m)])
 
 
 def main():
-    workers = int(sys.argv[1]) if len(sys.argv) > 1 else 2
-    k = 0.12
-    ns = [float(x) for x in sys.argv[2].split(",")] if len(sys.argv) > 2 else [24.0, 96.0, 384.0]
-    tag = sys.argv[3] if len(sys.argv) > 3 else ""
-    nodes = {n: _p_nodes(p_panels(n)) for n in ns}
-    jobs = [(k, n, float(pp)) for n in ns for pp in nodes[n][0]]
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--k", type=float, default=0.12)
+    ap.add_argument("--ns", type=str, default="24,96,384", help="ages n = kT")
+    ap.add_argument("--n-s", type=str, default="16", help="s nodes per panel (a list only with --p-list)")
+    ap.add_argument("--p-panels", type=str, default="auto")
+    ap.add_argument("--p-list", type=str, default="", help="single directions p, no direction integral")
+    ap.add_argument("--bulk-only", action="store_true")
+    ap.add_argument("--workers", type=int, default=0)
+    a = ap.parse_args()
+    Cm.ld_guard()
     t0 = time.time()
-    cdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_layer_cache")
-    os.makedirs(cdir, exist_ok=True)
-    done = {}
-    for fn in os.listdir(cdir):
-        with open(os.path.join(cdir, fn)) as fh:
-            kk, n_, p_, b_, l_ = fh.read().replace("np.float64(", "").replace(")", "").split()
-            done[(float(kk), float(n_), float(p_))] = (float(b_), float(l_))
-    todo = [a for a in jobs if a not in done]
-    print(f"jobs {len(jobs)}, cached {len(jobs) - len(todo)}", flush=True)
-    with Pool(workers) as pool:
-        for kk, n_, p_, b_, l_ in pool.imap_unordered(task, todo, chunksize=1):
-            with open(os.path.join(cdir, f"{n_:.0f}_{p_!r}.txt"), "w") as fh:
-                fh.write(f"{float(kk)!r} {float(n_)!r} {float(p_)!r} {float(b_)!r} {float(l_)!r}\n")
-            done[(kk, n_, p_)] = (b_, l_)
-    res = [a + done[a] for a in jobs]
-    lines = ["F6.8f-dev step 0': the layer of the age cut at second order (flat cut), k = 0.12; slope = -a4 rho / k^5 "
-             "(units of k^2 per unit n); development, decides nothing", "",
-             "  n      bulk (r = T, F6.8e3)   exact with layer      layer / bulk      (layer/bulk) * n^2"]
-    for n in ns:
-        wp = nodes[n][1]
-        rb = np.array([x[3] for x in res if x[1] == n])
-        rl = np.array([x[4] for x in res if x[1] == n])
-        rho_b = 2.0 * math.pi / n * 2.0 * float((wp * rb).sum())
-        rho_l = 2.0 * math.pi / n * 2.0 * float((wp * rl).sum())
-        sb, sl = -_A4 * rho_b / k ** 5, -_A4 * rho_l / k ** 5
-        d = (sl - sb) / sb
-        lines.append(f"  {n:5.0f}  {sb:+.6e}        {sl:+.6e}      {d:+.3e}       {d * n * n:+.3e}")
-    lines.append("")
-    lines.append("  F6.8c2 full rows (bulk + layer + explicit boundary), k = 0.12, n 16 -> 24: 1.244; F6.8e3 reported bulk "
-                 "at n = 24: 1.109")
-    lines.append(f"  cost {time.time() - t0:.0f} s, {workers} processes")
-    txt = "\n".join(lines)
-    print(txt)
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", f"f68f_layer{tag}.txt")
-    with open(out, "w") as fh:
-        fh.write(txt + "\n")
+    k, ns, nss = a.k, Cm.floats(a.ns), [int(v) for v in a.n_s.split(",")]
+    lines = ["F6.8f-dev step 0': the layer of the age cut at second order (flat cut); development, decides nothing", ""]
+    if a.p_list:
+        jobs = [(k, n, p, m, True) for n in ns for p in Cm.floats(a.p_list) for m in nss]
+        res = parallel_map(job, jobs, default_workers(a.workers), print,
+                           lambda i, r, d, nn: f"[f68f_layer] {d}/{nn} ({time.time() - t0:.0f}s)")
+        lines.append(f"bulk pair density at r = T, single directions, k = {k:g}")
+        for (kk, n, p, m, _), r in zip(jobs, res):
+            lines.append(f"  n {n:g}  p {p:5.1f}  N_S {m:3d} ({r['n_nodes']} nodes): {r['bulk']:+.10e}")
+        data = [{"n": j[1], "p": j[2], "n_s": j[3], **r} for j, r in zip(jobs, res)]
+    else:
+        if len(nss) != 1:
+            raise SystemExit("--n-s takes one value without --p-list")
+        nodes = {n: directions(n, a.p_panels) for n in ns}
+        jobs = [(k, n, float(p), nss[0], a.bulk_only) for n in ns for p in nodes[n][0]]
+        res = parallel_map(job, jobs, default_workers(a.workers), print,
+                           lambda i, r, d, nn: f"[f68f_layer] {d}/{nn} ({time.time() - t0:.0f}s)")
+        lines += [f"k = {k:g}; slope = -a4 rho / k^5 (units of k^2 per unit n); p panels {a.p_panels}, N_S {nss[0]}", "",
+                  "  n      bulk (r = T, F6.8e3)   exact with layer      layer / bulk      (layer/bulk) * n^2"]
+        data = []
+        for n in ns:
+            p, wp = nodes[n]
+            R = [r for j, r in zip(jobs, res) if j[1] == n]
+            rho_b = 2.0 * math.pi / n * 2.0 * float((wp * np.array([r["bulk"] for r in R])).sum())
+            sb = -_A4 * rho_b / k ** 5
+            if a.bulk_only:
+                lines.append(f"  {n:5g}  {sb:+.10e}")
+                data.append({"n": n, "p": p, "w": wp, "bulk": [r["bulk"] for r in R], "slope_bulk": sb})
+                continue
+            rho_l = 2.0 * math.pi / n * 2.0 * float((wp * np.array([r["layer"] for r in R])).sum())
+            sl = -_A4 * rho_l / k ** 5
+            d = (sl - sb) / sb
+            lines.append(f"  {n:5g}  {sb:+.6e}        {sl:+.6e}      {d:+.3e}       {d * n * n:+.3e}")
+            data.append({"n": n, "p": p, "w": wp, "bulk": [r["bulk"] for r in R], "layer": [r["layer"] for r in R],
+                         "slope_bulk": sb, "slope_layer": sl})
+    lines.append(f"cost {time.time() - t0:.0f} s")
+    stem = Cm.save(NAME, vars(a), CODE, data, lines, t0)
+    print("\n".join(lines))
+    print("saved", stem + ".json")
 
 
 if __name__ == "__main__":

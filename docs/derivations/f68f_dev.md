@@ -280,46 +280,6 @@ The difference falls by a factor 3–4 per level.
 - results were written only at the end, so a run cut off at the time limit lost everything; now a cache per job;
 - at b = 0.16 the first bracket dt/L lay below σ = 1 when T(x,y) < L; the bracket now starts above 1.
 
-## Step 1b: development protocol, fixed before the computation (the author, 16 Nov 17:11)
-
-A development protocol, not a verdict on a physical hypothesis.
-
-**Grid:**
-- ε = 0, 1, 2, 4, 8, 16, 40;
-- denser near the expected caustic: ε = 9, 9.5, 9.8, 9.87, 9.95, 10, 10.5, 12. This is denser sampling, not an
-  assumption that the caustic lies at π²: its position is determined by the computation;
-- for every point, L/σ = 4, 8, 16.
-
-**Normalisation:** A is the normalised volume, A(0, p) = 1; A_scale(p) = |A(0, p)|.
-
-**Criteria:**
-
-| Quantity | Working criterion |
-|---|---|
-| Change between L/σ = 8 and 16, away from caustics | δ_A = \|A₁₆ − A₈\| / max(\|A₁₆\|, \|A₈\|, 1) ≤ 1e-3 |
-| Numerical error of the Jacobi solution (carried into A, from independent changes of tolerance and step) | δ_J ≤ 1e-4 |
-| Agreement with brute force at moderate ε (only where the brute force reaches that accuracy; otherwise both uncertainties are reported and the check is not decisive) | \|A_PW − A_brute\| / max(\|A_PW\|, \|A_brute\|, 1) ≤ 1e-3 |
-| First conjugate point (from the Jacobi determinants, not from a drop of the volume) | \|ε_c⁽¹⁶⁾ − ε_c⁽⁸⁾\| ≤ 0.01 |
-
-**Near the caustic:**
-- no smooth relative convergence of A is required;
-- the position of the conjugate point and the causal structure are judged instead;
-- a change in the number of branches is recorded separately;
-- the volume is evaluated on both sides, without smoothing.
-
-**Exception:** only ε = 40. If δ_A ≤ 1e-3 is not met there, the result stays exploratory; it is kept, but not
-called an exact limit value.
-
-**Output per point:**
-- A for L/σ = 4, 8, 16;
-- δ_A (8 → 16) and δ_J;
-- the position of the conjugate point and a caustic flag.
-
-The error of the Penrose approximation and the numerical error of the Jacobi solution are reported separately.
-
-**The corrected secant** (step 0′) is judged on its own against the interior of F6.8c2, 1.2395. The record of the
-first run is not rewritten.
-
 ## Step 1b: working criteria (the author, 16 Nov 17:11–17:20; a development protocol, frozen before computing, not a verdict)
 
 **Grid:**
@@ -345,6 +305,9 @@ first run is not rewritten.
 
 **Output per point:** A, the convergence estimate, the error of the Penrose approximation and the numerical error of
 the Jacobi solution (reported separately), the position of the conjugate point and a caustic flag.
+
+The corrected secant (step 0′) is judged on its own against the interior of F6.8c2, 1.2395; the record of the
+first run is not rewritten.
 
 ### Step 1b: the plane-wave limit, derivation (16 Nov; diag/f68f_1b.py)
 
@@ -508,3 +471,125 @@ At p = 0 this is π² = 9.8696, an output of the computation. The caustic moves 
 
 **Not yet done:** the exact needle near caustics (adaptive window, all branches), the cut-locus contribution, finite b
 (κ = 10√ε, 20√ε), the brute force at ε = 2, 4.
+
+### Step 0′: the F6.8c2 code as a derivative; the integrands and the s quadrature (16 Nov, evening)
+
+The 18 % gap of the secant comparison (step 0′ above) was checked at one age instead of over n = 16 … 24:
+- **F6.8c2 code as a derivative** (optical_row of F6.8c, mult 1, the F6.8c2 nodes; T = 197.5 and 199.9 at k = 0.12,
+  equal node counts; diag/out/f68f_c2fd.txt). The central-difference age slope at n = 23.844 is 2.6219 total, 2.6134
+  interior and +0.0085 boundary (k² per unit n). The interior differs from the recorded F6.8c2 row at T = 200 by the
+  expected trend: K̂_bb 0.598992 at T = 199.9 against 0.598664 at T = 200.
+- **The bulk + layer of this log at n = 24 is 1.489**, about 0.57 of it. The same computation at n = 23.844 was lost in
+  a restart of the container.
+- **The integrands are identical.** F6.8c `_pair_terms` (bb) and the integrand of diag/f68f_layer.py (F6.8e3
+  instrument) agree to all printed digits at four (CO, r) × four s points. The values there are ±2e2 to ±4e2 and the
+  result is a small remainder after the cancellation of the BD moments.
+- **The quadratures of the F6.8e3 side are converged** at n = 24:
+  - in p: 48 nodes against 16 give 1.1090252 against 1.109022 (diag/out/f68f_pconv.txt);
+  - in s: N_S = 16, 24, 32, 48 agree to about 1e-5 relative at p = 0.5, 3, 10 (diag/out/f68f_sconv.txt).
+
+**Reading (development, not a verdict on F6.8c2, R132):**
+- The difference lies in the assembly or the quadrature of one of the two codes, not in the formulas.
+- The candidate is the quadrature of the F6.8c2 code at mult 1. Its only level check (mult 2) was at n = 8.
+- The decisive check is the same two ages at mult 2: python -m diag.f68f_c2fd --k 0.12 --T 197.5,199.9 --mult 2. It
+  runs in float64, also on Windows. Open.
+
+### Step 1b at finite q: the exact needle by lower envelopes, the caustic band (16 Nov, evening)
+
+**Method (diag/f68f_1b_exact.py).** A(q) as in the finite-q section, with Φ = G₁ + G₂ − S_min computed from the true
+first-arrival actions:
+- G₁ and G₂ are the lower envelopes over the whole family of rays from x and from y (3 001 slopes, RK4 2 000 steps,
+  quintic interpolation in s, cubic Hermite in ψ);
+- no ray is chosen in advance;
+- the ψ window is widened until Φ > q²/2 at both ends.
+
+**Checks:**
+- Against the expansion at ε = 4, p = 2, θ = 2: 1e-8 (q = 1/2) to 3e-7 (q = 1/8).
+- minΦ (must not be below −1e-9) is −4.7e-11 to −2.6e-10 everywhere except one point below.
+
+**Results** (Ā over 128 phases; δ_A = |Ā(1/8) − Ā(1/4)| / max(1, …)):
+
+| ε | p | Ā(1/2) | Ā(1/4) | Ā(1/8) | δ_A | largest pairwise difference |
+|---|---|---|---|---|---|---|
+| 9.5 | 0 | 0.944737 | 0.947005 | 0.948510 | 1.5e-3 | 0.23 |
+| 9.8 | 0 | 0.942161 | 0.950940 | 0.961661 | 1.1e-2 | 1.4 |
+| 9.87 | 0 | 0.941976 | 0.953870 | 0.972224 | 1.8e-2 | 2.4 |
+| 9.95 | 0 | 0.941720 | 0.956950 | 0.982186 | 2.5e-2 | 3.3 |
+| 10 | 0 | 0.941389 | 0.957849 | 0.982021 | 2.4e-2 | 3.1 |
+| 10.5 | 0 | 0.930312 | 0.927945 | 0.926008 | 1.9e-3 | 0.22 |
+| 9.5 | 1 | 0.947645 | 0.947658 | 0.947677 | 1.9e-5 | 3.6e-2 |
+| 9.8 | 1 | 0.942759 | 0.942771 | 0.942500 | 2.7e-4 | 1.4e-2 |
+| 9.87 | 1 | 0.941514 | 0.941363 | 0.940838 | 5.3e-4 | 2.8e-2 |
+| 9.95 | 1 | 0.940009 | 0.939486 | 0.938553 | 9.3e-4 | 8.1e-2 |
+| 10 | 1 | 0.939013 | 0.938123 | 0.936897 | 1.2e-3 | 0.12 |
+| 10.5 | 1 | 0.925201 | 0.917686 | 0.916659 | 1.0e-3 | 0.10 |
+| 12 | 1 | 0.873560 | 0.872949 | 0.872798 | 1.5e-4 | 4.7e-3 |
+| 10.5 | 2 | 0.944144 | 0.943353 | 0.943037 | 3.2e-4 | 1.2e-2 |
+| 12 | 2 | 0.901029 | 0.899174 | 0.898793 | 3.8e-4 | 1.9e-2 |
+| 16 | 4 | 0.934585 | 0.934257 | 0.934122 | 1.3e-4 | 2.9e-2 |
+
+**Records:**
+- p = 0: diag/out/f68f_1b_exact.txt and diag/out/f68f_1b_exact_e*_p0.npy, the version before the diag form.
+- p = 1, 2, 4: the author's run on his machine, diag/out/f68f_1b_exact_20261116T212730Z.json/.txt (8 processes,
+  1 354 s, Windows). The code md5 in the record equals the checked version of diag/f68f_1b_exact.py and diag/f68f_1b.py.
+
+**Readings (development):**
+- **p = 0 near the pitchfork (ε = 9.8–10):** no convergence in q. Ā grows as q falls, towards the divergence of the
+  phase θ = 0 at ε = π², but stays finite at every finite q. By the criteria for the caustic neighbourhood the smooth
+  criterion is not applied there.
+- **p = 1, 2, 4:** δ_A ≤ 1e-3 except p = 1 at ε = 10 (1.2e-3) and 10.5 (1.0e-3). Both lie below the onset of the
+  second ray at p = 1 (10.69), in its neighbourhood.
+- **The p = 0 means contain the grid artefact of the tie at θ = 0** (both needles counted at a grid point that is
+  exactly a tie). This is the same artefact as in the expansion. The sampled means at p = 0, ε ≥ 9.87 are therefore
+  not the θ-averages of the continuum; the cut-locus correction below is needed.
+- **ε = 16, p = 4: minΦ = −3.4e-7**, beyond the −1e-9 self-check: the envelope found an action 3.4e-7 below S_min.
+  Hypothesis, not checked: the different discretisation of the family (2 000 steps) and of S_min (4 000 steps) at
+  large ε. Until checked, that row is not used.
+
+### Step 1b: the cut loci in θ (16 Nov, evening; partial)
+
+At a cut locus θ_c the first arrival switches between rays a and b. At finite q both needles count while
+|S_b − S_a| < q²/2, which adds (A_a + A_b) c / (6πα) to the θ-mean, with c = q²/2 and α = |d(S_b − S_a)/dθ|
+(diag/f68f_1b_cut.py). For p = 0 (diag/out/f68f_1b_cut_partial.txt; the run was stopped by a restart of the
+container):
+
+| ε | θ_c | α | A_a = A_b | dA(1/2) | dA(1/4) | dA(1/8) |
+|---|---|---|---|---|---|---|
+| 9.95 | 0 | 3.203 | 6.0526 | 2.51e-2 | 6.27e-3 | 1.57e-3 |
+| 10 | 0 | 4.075 | 4.7790 | 1.56e-2 | 3.89e-3 | 9.72e-4 |
+| 10.5 | 0 | 8.880 | 2.2853 | 3.41e-3 | 8.53e-4 | 2.13e-4 |
+| 12 | 0 | 15.93 | 1.3952 | 1.16e-3 | 2.90e-4 | 7.26e-5 |
+| 16 | 0 | 25.68 | 0.9975 | 5.15e-4 | 1.29e-4 | 3.22e-5 |
+
+The only cut locus at p = 0 is the tie θ = 0 of the pitchfork. Its weight on the 128-phase grid (one phase counted
+twice, A_b/128) explains the 0.011 offset of the expansion table at ε = 12 (1.395/128 = 0.0109). The remaining
+points (ε = 9.87 and 40 at p = 0; p = 1, 2, 4) are being computed with the converted script.
+
+### Scripts and records: the diag form (16 Nov, evening)
+
+**The diag convention** (diag/b2_dev.py, diag/c0_minvar.py), now followed by every f68f script through
+diag/f68f_common.py:
+- run from the repository root as a module, `python -m diag.<name>`, with argparse options;
+- `--workers N` via core.stats.parallel.parallel_map (0 = CAUSALITY_WORKERS or all cores);
+- every job cached atomically in diag/out/<name>_cache/, with the md5 of the code in the key;
+- the output of a run is diag/out/<name>_<UTC time>.json and .txt, with the md5 of the code; nothing is overwritten;
+- scripts that use the 80-bit instrument of F6.8e3 refuse to run without an 80-bit long double, as F6.8e3 does. These
+  are f68f_layer and f68f_1a; they need Linux or WSL.
+
+| Script | Computes | Checked after the conversion against the record of 16 Nov |
+|---|---|---|
+| diag/f68f_dev.py | step 0, checks T1–T5 | output identical to diag/out/f68f_step0.txt |
+| diag/f68f_layer.py | step 0′: bulk and layer; options for the p and s quadrature checks (replace diag/f68f_pconv.py and diag/f68f_sconv.py) | one direction at n = 24 (bulk and layer) identical to the cached values of the run; end to end with `--p-list 0.5 --n-s 16 --bulk-only`: −6.0904258135e-06, equal to f68f_sconv.txt; the slope assembly of the full mode is the code of 16 Nov unchanged, not rerun end to end |
+| diag/f68f_c2fd.py | the F6.8c2 code as a derivative in the age; `--mult` | being checked against the F6.8c2 record at k = 0.12, T = 50 |
+| diag/f68f_1a.py | step 1a; `--levels` replaces diag/f68f_1a_levels.py | three volumes identical to the cached values (to 6e-17); the full run is being compared with f68f_1a.txt |
+| diag/f68f_1b.py | step 1b, plane wave | ε = 4, 12 at p = 2 and the onset at p = 1 identical to f68f_1b.txt |
+| diag/f68f_1b_q.py | step 1b at finite q, expansion (the failed exact check removed) | ε = 4, 12 at p = 2 identical to f68f_1b_q.txt |
+| diag/f68f_1b_exact.py | step 1b at finite q, exact envelopes | ε = 9.5, p = 0 on 4 phases identical to the per-phase record; ran on the author's machine (Windows, 8 processes) |
+| diag/f68f_1b_cut.py | cut loci | ε = 12, p = 0 being compared with f68f_1b_cut_partial.txt |
+
+**Removed:**
+- diag/f68f_pconv.py, diag/f68f_sconv.py: now options of f68f_layer;
+- diag/f68f_1a_levels.py: now `f68f_1a --levels`;
+- diag/f68f_1b_kappa.py: an untested draft.
+
+The records made before the diag form keep their names and are cited above as they are.

@@ -21,11 +21,16 @@ unfolding its phase gives the families (start up/down, end up/down, j half-perio
 Turning-point integrals use u = m - a cos(psi), which removes the square-root end singularities, and
 cos u - cos a = 2 sin(a cos^2(psi/2)) sin(a sin^2(psi/2)) (no cancellation).
 
-Run: python diag/f68f_dev.py   (checks T1-T5; output diag/out/f68f_step0.txt)
+Run from the repository root:
+    python -m diag.f68f_dev          checks T1-T5
+Output diag/out/f68f_dev_<UTC time>.json and .txt. The run of 16 Nov before this form is diag/out/f68f_step0.txt.
 """
+from __future__ import annotations
+
 import math
-import sys
 import os
+import time
+
 import numpy as np
 from scipy.integrate import quad
 from scipy.optimize import brentq
@@ -176,7 +181,6 @@ def first_arrival(z1, z2, X, b, k=1.0, th=0.0):
 # ----------------------------------------------------------------------------- checks
 
 def _f68c():
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
     from phases.F6_order_dynamics import F6_08c_bd_action_optical as c
     return c
 
@@ -252,6 +256,8 @@ def check_T5():
 
 
 def main():
+    from diag import f68f_common as Cm
+    t0 = time.time()
     lines = ["F6.8f-dev step 0: exact first arrival in n = exp(b cos(k z + th)) (development, decides nothing)", ""]
     lines.append("T1 b -> 0 (b = 1e-9, k = 0.8; first order ~1e-9): z1, z2, X, t, flat, |diff|")
     for r in check_T1():
@@ -272,11 +278,10 @@ def main():
     lines.append("T5 dt/db along the ray against a central difference: z1, z2, X, b, k, th, ray, difference, rel")
     for r in check_T5():
         lines.append("   %.1f %.1f %.1f %.1f %.1f %.1f  %+.10e  %+.10e  %.1e" % r)
-    txt = "\n".join(lines)
-    print(txt)
-    os.makedirs(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out"), exist_ok=True)
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_step0.txt"), "w") as fh:
-        fh.write(txt + "\n")
+    lines.append(f"cost {time.time() - t0:.0f} s")
+    stem = Cm.save("f68f_dev", {}, Cm.code_md5([os.path.abspath(__file__)]), {}, lines, t0)
+    print("\n".join(lines))
+    print("saved", stem + ".txt")
 
 
 if __name__ == "__main__":
