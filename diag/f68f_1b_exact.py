@@ -15,17 +15,25 @@ the curve v -> (psi(s; v), S(s; v)), with quintic Hermite interpolation in v (dS
 in advance: every ray, every fold and every cut locus is in the envelope. The psi integral is done on a fine grid
 over a window that is widened until Phi > q^2/2 at both ends.
 
-Run: python diag/f68f_1b_exact.py [eps p ...] [--workers N]   (output diag/out/f68f_1b_exact.txt)
+Run from the repository root (one job = one phase; jobs cached in diag/out/f68f_1b_exact_cache/, so an interrupted
+run resumes):
+    python -m diag.f68f_1b_exact --points 10:1,9.87:1,16:4 --workers 8
+    python -m diag.f68f_1b_exact --points 4:2 --n-theta 4
+Output diag/out/f68f_1b_exact_<UTC time>.json (per-phase A for every q) and .txt. The runs of 16 Nov before this form
+are diag/out/f68f_1b_exact.txt and diag/out/f68f_1b_exact_e*_p*.npy.
 """
+from __future__ import annotations
+
+import argparse
 import math
 import os
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import f68f_1b as B  # noqa: E402
+from core.stats.parallel import default_workers, parallel_map
+from diag import f68f_1b as B
+from diag import f68f_common as C
 
 QS = [0.5, 0.25, 0.125]
 N_RK = 2000
@@ -160,8 +168,9 @@ def phase_A(eps, p, th, Smin, psi_rays, qs=QS):
     return {q: 32 * math.sqrt(2) / (math.pi * q ** 4) * tot[q] for q in qs}, worst
 
 
-def _phase_job(args):
-    eps, p, th, roots = args
+def phase_value(eps, p, th):
+    """A(q) for every q of QS at one phase, and the smallest Phi found (must not be below -1e-9)."""
+    roots = B.branches(eps, p, np.array([th]), 1000)[0]
     vv = B.newton(roots, eps, p, np.full(roots.size, th), 4000)
     _, _, S = B.end_state(vv, eps, p, np.full(vv.size, th), 4000)
     Smin = float(S.min())
@@ -171,55 +180,51 @@ def _phase_job(args):
     sn = 0.5 * (xs + 1.0)
     sg = np.linspace(0, 1, N_RK + 1)
     psi_rays = [np.interp(sn, sg, paths[:, j]) for j in range(paths.shape[1])]
-    return phase_A(eps, p, th, Smin, psi_rays)
+    A, worst = phase_A(eps, p, th, Smin, psi_rays)
+    return {"A": [A[q] for q in QS], "minPhi": worst}
 
 
-def point(eps, p, n_th=B.N_TH, workers=1):
-    ths = 2 * math.pi * np.arange(n_th) / n_th
-    roots = B.branches(eps, p, ths, 1000)
-    jobs = [(eps, p, th, roots[i]) for i, th in enumerate(ths)]
-    if workers > 1:
-        from multiprocessing import Pool
-        with Pool(workers) as pool:
-            res = pool.map(_phase_job, jobs, chunksize=1)
-    else:
-        res = [_phase_job(j) for j in jobs]
-    out = {q: np.array([r[0][q] for r in res]) for q in QS}
-    worst = min(r[1] for r in res)
-    return out, worst
+NAME = "f68f_1b_exact"
+CODE = C.code_md5([os.path.abspath(__file__), B.__file__])
+
+
+def job(eps, p, th):
+    return C.cached(NAME, CODE, phase_value, (eps, p, th))
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--points", type=str, default="4:2", help="eps:p,eps:p,...")
+    ap.add_argument("--n-theta", type=int, default=B.N_TH)
+    ap.add_argument("--workers", type=int, default=0)
+    a = ap.parse_args()
     t0 = time.time()
-    argv = sys.argv[1:]
-    workers = 1
-    if "--workers" in argv:
-        i = argv.index("--workers")
-        workers = int(argv[i + 1])
-        argv = argv[:i] + argv[i + 2:]
-    args = [float(a) for a in argv]
-    pts = list(zip(args[0::2], args[1::2])) if args else [(4.0, 2.0)]
-    lines = ["F6.8f-dev step 1b at finite q, b -> 0: exact needle with all branches (lower envelopes), mean over 128 "
-             "phases; development, decides nothing", "",
+    pts = C.pairs(a.points)
+    ths = [2 * math.pi * j / a.n_theta for j in range(a.n_theta)]
+    jobs = [(e, p, th) for (e, p) in pts for th in ths]
+    res = parallel_map(job, jobs, default_workers(a.workers), print,
+                       lambda i, r, d, n: f"[f68f_1b_exact] {d}/{n}: eps {jobs[i][0]:g} p {jobs[i][1]:g} "
+                                          f"theta {jobs[i][2]:.4f} ({time.time() - t0:.0f}s)")
+    lines = [f"F6.8f-dev step 1b at finite q, b -> 0: exact needle with all branches (lower envelopes), mean over "
+             f"{a.n_theta} phases; development, decides nothing", "",
              "delta_A = |A(1/8) - A(1/4)| / max(1, ...); pair = largest |A_j(1/8) - A_j(1/4)|; minPhi = smallest Phi "
-             "found (must be >= -1e-9: the envelope is consistent with S_min)", ""]
-    lines.append("     eps    p     A(1/2)       A(1/4)       A(1/8)       delta_A    pair       minPhi     cost")
-    for (eps, p) in pts:
-        t1 = time.time()
-        r, worst = point(eps, p, workers=workers)
-        a = {q: float(r[q].mean()) for q in QS}
-        dA = abs(a[0.125] - a[0.25]) / max(1.0, abs(a[0.125]), abs(a[0.25]))
-        pair = float(np.max(np.abs(r[0.125] - r[0.25])))
-        lines.append(f"  {eps:6.2f}  {p:3.1f}  {a[0.5]:.8f}  {a[0.25]:.8f}  {a[0.125]:.8f}  {dA:.1e}    {pair:.1e}    "
-                     f"{worst:+.1e}   {time.time() - t1:.0f} s")
-        print(lines[-1], flush=True)
-        np.save(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out",
-                             f"f68f_1b_exact_e{eps:g}_p{p:g}.npy"), np.array([r[q] for q in QS]))
+             "found (must be >= -1e-9: the envelope is consistent with S_min)", "",
+             "     eps    p     A(1/2)       A(1/4)       A(1/8)       delta_A    pair       minPhi"]
+    data = []
+    for k, (e, p) in enumerate(pts):
+        R = res[k * a.n_theta:(k + 1) * a.n_theta]
+        Aq = np.array([r["A"] for r in R])            # (n_theta, 3)
+        m = Aq.mean(0)
+        dA = abs(m[2] - m[1]) / max(1.0, abs(m[2]), abs(m[1]))
+        pair = float(np.max(np.abs(Aq[:, 2] - Aq[:, 1])))
+        worst = min(r["minPhi"] for r in R)
+        lines.append(f"  {e:6.2f}  {p:3.1f}  {m[0]:.8f}  {m[1]:.8f}  {m[2]:.8f}  {dA:.1e}    {pair:.1e}    {worst:+.1e}")
+        data.append({"eps": e, "p": p, "q": QS, "theta": ths, "A": Aq, "mean": m, "delta_A": dA, "pair": pair,
+                     "minPhi": worst})
     lines.append(f"cost {time.time() - t0:.0f} s")
-    txt = "\n".join(lines)
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_1b_exact.txt"), "a") as fh:
-        fh.write(txt + "\n")
-    print(txt)
+    stem = C.save(NAME, vars(a), CODE, data, lines, t0)
+    print("\n".join(lines))
+    print("saved", stem + ".json")
 
 
 if __name__ == "__main__":

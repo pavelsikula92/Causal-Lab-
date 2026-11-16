@@ -1,0 +1,7 @@
+F6.8f-dev step 1b at finite q, b -> 0: exact needle with all branches (lower envelopes), mean over 4 phases; development, decides nothing
+
+delta_A = |A(1/8) - A(1/4)| / max(1, ...); pair = largest |A_j(1/8) - A_j(1/4)|; minPhi = smallest Phi found (must be >= -1e-9: the envelope is consistent with S_min)
+
+     eps    p     A(1/2)       A(1/4)       A(1/8)       delta_A    pair       minPhi
+    9.50  0.0  1.44145091  1.55108166  1.60831576  3.6e-02    2.3e-01    -3.8e-13
+cost 32 s
