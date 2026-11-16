@@ -298,3 +298,29 @@ The error of the Penrose approximation and the numerical error of the Jacobi sol
 
 **The corrected secant** (step 0′) is judged on its own against the interior of F6.8c2, 1.2395. The record of the
 first run is not rewritten.
+
+## Step 1b: working criteria (the author, 16 Nov 17:11–17:20; a development protocol, frozen before computing, not a verdict)
+
+**Grid:**
+- ε = 0, 1, 2, 4, 8, 16, 40;
+- denser ε = 9, 9.5, 9.8, 9.87, 9.95, 10, 10.5, 12. This samples the neighbourhood of the expected caustic; it does
+  not assume it is at π². Its position is computed;
+- for every point, L/σ = 4, 8, 16.
+
+**Normalisation:** A = V/V0, A(0, p) = 1, A_scale = max(|A_16|, |A_8|, 1).
+
+| Quantity | Working criterion |
+|---|---|
+| change of A between L/σ = 8 and 16, outside caustics | \|A₁₆ − A₈\| / max(\|A₁₆\|, \|A₈\|, 1) ≤ 1e-3 |
+| numerical error of the Jacobi solution, in A | ≤ 1e-4 (independent changes of tolerance and step) |
+| agreement with brute force at moderate ε | ≤ 1e-3 in the same normalisation, where the brute force itself reaches it; otherwise both uncertainties are given and the check is not decisive |
+| first conjugate point | \|ε_c(16) − ε_c(8)\| ≤ 0.01, from the Jacobi fields, not from a drop of the volume; the change of the number of branches recorded separately |
+
+**Caustic and exception rules:**
+- Near a caustic the relative criterion for A is not used; the position of the conjugate point and the causal
+  structure are.
+- The volume is evaluated on both sides without smoothing.
+- ε = 40 only: if the convergence criterion fails there, the result is exploratory, not a limit value.
+
+**Output per point:** A, the convergence estimate, the error of the Penrose approximation and the numerical error of
+the Jacobi solution (reported separately), the position of the conjugate point and a caustic flag.
