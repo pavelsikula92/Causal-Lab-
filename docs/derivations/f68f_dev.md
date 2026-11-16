@@ -207,6 +207,21 @@ its pair_density), against its bulk term alone. k = 0.12; age slope −a₄ρ/k�
   (n = 16) and −1.8363e-5 (n = 24) in J_bb. In the secant that is a₄ · 4.656e-6/(8 k⁴) = **0.0046** of the 1.244.
   The interior of F6.8c2 (bulk and layer, flat cut) gives 1.2395. So the boundary does not carry a 19 % gap. The
   comparison is between the interior of F6.8c2 and the bulk plus layer here, after the rerun.
+- **The rerun with p ≤ n** (diag/out/f68f_layer_secant.txt; n = 24 from the cache):
+
+  | n | bulk | exact with layer |
+  |---|---|---|
+  | 16 | 0.459039 | 0.664136 |
+  | 20 | 0.707912 | 0.985576 |
+  | 24 | 1.109022 | 1.489463 |
+
+  The Simpson secant is 0.733 (bulk) and **1.016 with the layer**, against 1.2395 for the interior of F6.8c2. The
+  wrong p range had barely mattered (1.012 → 1.016).
+- **A gap of 0.224 (18 %) remains between the two implementations.** It is not identified and is kept as such, not
+  given to the boundary. Next: nodes and quadrature of both, starting with the p (direction) quadrature of the
+  F6.8e3 instrument at n = 16 and 24. F6.8c2 has 36 Gauss nodes per half of cos ∈ [−1, 1] at n = 24; the F6.8e3
+  panels have 16. The F6.8e development row (1.19 at n = 24 against 1.109) already showed that the n = 24 value
+  depends on the quadrature.
 - **For F6.8e3 nothing changes:** the layer falls as 1/n² and the exponent is a large-n statement. **For the static
   limit it matters:** at finite age the layer and probably the boundary are not small, so a finite-age response needs
   the full cut, not the bulk.
