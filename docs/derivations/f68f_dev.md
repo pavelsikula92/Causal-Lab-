@@ -324,3 +324,54 @@ first run is not rewritten.
 
 **Output per point:** A, the convergence estimate, the error of the Penrose approximation and the numerical error of
 the Jacobi solution (reported separately), the position of the conjugate point and a caustic flag.
+
+### Step 1b: the plane-wave limit, derivation (16 Nov; diag/f68f_1b.py)
+
+**The scaling limit.**
+- κ = kL → ∞ at fixed ε = bκ² and p = k∥L (so cos(k, pair) = p/κ → 0 and k⊥ → k).
+- σ/L → 0 with kσ → 0: the needle of the interval is thin compared with 1/k. With s = l/L ∈ [0, 1] and ψ = kδ (the
+  transverse displacement of the ray along k⊥, in radians of phase), the optical length is
+  T = L + (L/κ²) S[ψ] + O(b²), with
+
+  S[ψ] = ∫₀¹ [ψ′²/2 + ε cos(ps + θ + ψ)] ds,   ψ(0) = ψ(1) = 0.
+
+- Stationary rays solve ψ″ = −ε sin(ps + θ + ψ) (a driven pendulum). The first arrival is the global minimum of S.
+  - The ray is not straight at finite ε: kδ = ψ is O(ε). So the profile of the plane wave is taken along the bent ray,
+    not along the chord.
+  - Every candidate for the minimum has |ψ′(0)| ≤ ε + 2√ε, since S[0] ≤ ε and S ≥ ½∫ψ′² − ε.
+
+**The plane wave.**
+- The spacetime is ultrastatic, so the null Jacobi equation is the Jacobi equation of the optical metric along the
+  ray.
+- In the limit it is J″ = −ε cos(ps + θ + ψ(s)) J in the plane of k, and J″ = 0 across it (the b² terms of the
+  conformal curvature vanish as b → 0).
+- In Brinkmann coordinates around the ray, x = 0 and y = (U, V, 0). A point w = (u, v, X) is:
+  - after x iff v ≥ ½ Xᵀ M₁(u) X;
+  - before y iff v ≤ V − ½ Xᵀ M₂(u) X.
+
+  Here M₁ = E₁′E₁⁻¹ with E₁(0) = 0, E₁′(0) = 1, and M₂ = −E₂′E₂⁻¹ with E₂(U) = 0, E₂′(U) = −1.
+- Since ∫ d²X [V − ½XᵀKX]₊ = πV²/√det K, the volume is V = πV² ∫ du (det(M₁ + M₂))^(−1/2).
+- In the plane of k, M₁ + M₂ = W/(E₁E₂), and the Wronskian W = E₁′E₂ − E₁E₂′ is constant and equals E₁(1). Across
+  the plane, 1/s + 1/(1 − s).
+- With σ² = 2UV and V0 = πσ⁴/24:
+
+  **A = V/V0 = 6 ∫₀¹ √( s(1 − s) E₁(s) E₂(s) / E₁(1) ) ds**   (flat: E₁ = s, E₂ = 1 − s, A = 1).
+
+**Checks and meaning.**
+- At p = 0, θ = 0 (straight ray, E₁ = sin(√ε s)/√ε) the RK value equals the quadrature of the closed form to 4e-15
+  (ε = 5: A = 1.28324).
+- **E₁(1) = ∂ψ(1)/∂ψ′(0)** is the slope of the shooting map. E₁(1) = 0 is a conjugate point of y, a fold of the family
+  of rays from x, where two rays are born or die.
+- **The branch count is computed independently of the Jacobi fields** (roots of the shooting map, with every fold
+  interval resolved). Positivity of E₁ on (0, 1] and E₂ on [0, 1) for the first-arrival ray is checked, not assumed:
+  a minimising ray has no interior conjugate point.
+- **A diverges only where the first-arrival ray itself has E₁(1) = 0.** Where the first arrival changes branch (the
+  cut locus), A jumps.
+
+**A point for the author: the convergence parameter of the Penrose limit is not L/σ alone.**
+- The corrections are in (kσ)² (transverse width against the wavelength) and in b = ε/κ² (the ray's own b² terms).
+- L/σ = κ/(kσ), so the plane-wave limit needs L/σ ≫ κ ≫ √ε. At ε = 40, κ ≥ 20 is needed (b ≤ 0.1), and then
+  L/σ = 4, 8, 16 means kσ = 5, 2.5, 1.25, far from the limit.
+- **Proposal** (to be decided before the finite-σ run): fix κ so that b ≤ 0.01 (κ = √(100ε), at least 10). Take
+  kσ = 1/2, 1/4, 1/8, i.e. δ = (kσ)² = 1/4, 1/16, 1/64. Apply the criteria of the author to kσ = 1/4 → 1/8 in place
+  of L/σ = 8 → 16, and report the b-dependence separately (two κ).
