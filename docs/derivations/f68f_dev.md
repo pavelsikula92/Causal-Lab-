@@ -199,3 +199,51 @@ its pair_density), against its bulk term alone. k = 0.12; age slope −a₄ρ/k�
 - **The comparison at n = 24 is not like for like.** The F6.8c2 number is a secant: (K̂_bb(n = 16) − K̂_bb(n = 24))/(8 k²)
   = (0.741976 − 0.598664)/(8 · 0.0144) = 1.244, and it contains the explicit b-dependent cut. The values here are the
   derivative at n = 24 with the flat cut. A check of the secant with the layer (n = 16, 20, 24, Simpson) is running.
+
+## Step 1a: the exact volume of short intervals at finite b (16 Nov; diag/f68f_1a.py, diag/out/f68f_1a.txt)
+
+**Instrument.** V(b, θ) = ∫ d³w n³ [dt − T(x,w) − T(w,y)]₊ with T the exact first arrival:
+- each segment is minimised by Fermat (chord deviation u(1−u) Σ c_j T_j(2u−1), 14 terms, Newton);
+- against the exact Snell first arrival of step 0 the agreement is 0 to 5e-16 (six random segments, b up to 0.16);
+- prolate coordinates around the chord, the root of the boundary on every ray (safeguarded secant on a bracket);
+- the θ average on 8 phases; flat V0 reproduced to 1e-15.
+
+Fixed σ (dt = √(T(x,y)² + τ²), as F6.8c/e3) and fixed τ (dt = √(L² + τ²)). R(b) = 2(⟨V⟩ − V0)/(b² V0) → γ; γ
+extrapolated from b = 0.01 and 0.02 (R = γ + c b²). Development, decides nothing.
+
+| Row (k, CO, L, τ) | γ fixed σ: exact / F6.8e3 | γ fixed τ: exact / second order with dt′ = dt″ = 0 |
+|---|---|---|
+| 0.7, 0.4, 2, 1.2 (the test diamond of F6.8c) | −0.0159487 / −0.0159484 | 19.26881 / 19.26882 |
+| 1, 0, 2, 1 | −0.089168 / −0.089202 | 48.98888 / 48.98885 |
+| 1, 1, 2, 1 | 0.1213981 / 0.1213981 | 28.85486 / 28.85487 |
+| 1, 0.7, 4, 1.5 | 0.19616 / 0.19600 | 74.22884 / 74.22868 |
+
+β (fixed σ and fixed τ) agrees to 6 digits in every row.
+
+**The two rows with a visible difference** (3e-5 and 1.6e-4 absolute, the same at fixed σ and fixed τ, so in the
+main part of V″, not in the parametrisation) are the quadrature of the exact volume:
+- the second-order instrument is constant to 9 digits between its levels (24,16,16), (32,24,24) and (48,32,32);
+- the exact volume moves towards it with its levels (fixed τ, diag/f68f_1a_levels.py):
+  - row 2: 48.988877 → 48.988855 → 48.988849, against 48.988846;
+  - row 4: 74.228837 → 74.228725 → 74.228698, against 74.228682.
+
+The difference falls by a factor 3–4 per level.
+
+**Readings:**
+- **The second-order instrument of F6.8e3 is confirmed** against a computation with no expansion in b and no closed
+  forms of the optics, on four short intervals including k ⊥ the pair, k ∥ the pair and kL = 4.
+- **Fixed σ is the right variable.** At fixed τ, γ is 100–1 200 times larger: the shift of the cone, which fixed σ
+  removes. |δ(τ²)|/τ² is already 5–10 % at b = 0.01.
+- **Finite amplitude in short intervals.** At fixed σ, R(b)/γ − 1 is:
+  - −0.2, −0.8 and −3.3 % at b = 0.04, 0.08 and 0.16 (row 1, ε = b(kL)² up to 0.31);
+  - +0.3, +0.9 and +3.3 % in row 4 (ε up to 2.56);
+  - below 3e-4 in row 3.
+
+  The departure grows like b², not like ε. ε reaches only 2.6 here, so this says nothing about old fields (ε ≫ 1).
+  That is 1b and 1d.
+- **At fixed τ and b = 0.16 some phases give no interval** (T(x,y) ≥ dt, the pair is not timelike): R_τ is
+  undefined there, outside |δ(τ²)/τ²| ≪ 1.
+
+**Instrument faults found and fixed in development:**
+- results were written only at the end, so a run cut off at the time limit lost everything; now a cache per job;
+- at b = 0.16 the first bracket dt/L lay below σ = 1 when T(x,y) < L; the bracket now starts above 1.
