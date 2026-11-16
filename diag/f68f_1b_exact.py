@@ -37,7 +37,7 @@ from diag import f68f_common as C
 
 QS = [0.5, 0.25, 0.125]
 N_RK = 2000
-N_V = 3001
+N_V = 4001
 N_S = 24
 N_PSI = 4001
 
@@ -76,13 +76,14 @@ def family(eps, p, th, vmax, sn, backward=False):
         out = out[::-1]
         out[:, 6] = -out[:, 6]
         out[:, 1] = -out[:, 1]        # momentum of G2: dG2/dpsi = -psi'
+        out[:, 3] = -out[:, 3]        # and its derivative in the slope
     sg = np.linspace(0, 1, N_RK + 1)
     # values at the nodes sn by local quintic interpolation in s would cost; use the RK grid nodes nearest and RK
     # sub-steps instead: integrate exactly to sn by choosing N_RK so that sn are grid points is not possible for
     # Gauss nodes; we interpolate with 7-point Lagrange in s (RK grid spacing 1e-3, error ~ h^7)
     res = {}
     idx = np.clip(np.searchsorted(sg, sn) - 3, 0, N_RK - 6)
-    for name, j in (("psi", 0), ("P", 1), ("E", 2), ("F", 4), ("S", 6)):
+    for name, j in (("psi", 0), ("P", 1), ("E", 2), ("dP", 3), ("F", 4), ("S", 6)):
         vals = np.empty((len(sn), N_V))
         for m, (s0, i0) in enumerate(zip(sn, idx)):
             xs = sg[i0:i0 + 7]
@@ -98,7 +99,7 @@ def family(eps, p, th, vmax, sn, backward=False):
     return res
 
 
-def envelope(psi, S, P, E, F, x):
+def envelope(psi, S, P, E, dP, x):
     """Lower envelope G(x) = min over the curve v -> (psi(v), S(v)) at the points x (1-d arrays over v)."""
     G = np.full(x.shape, np.inf)
     sgn = np.sign(E)
@@ -110,24 +111,28 @@ def envelope(psi, S, P, E, F, x):
         ps = psi[a:b]
         if ps[0] > ps[-1]:
             ps = ps[::-1]
-            Ss, Ps, Es, Fs = S[a:b][::-1], P[a:b][::-1], E[a:b][::-1], F[a:b][::-1]
+            Ss, Ps, Es, Ds = S[a:b][::-1], P[a:b][::-1], E[a:b][::-1], dP[a:b][::-1]
         else:
-            Ss, Ps, Es, Fs = S[a:b], P[a:b], E[a:b], F[a:b]
+            Ss, Ps, Es, Ds = S[a:b], P[a:b], E[a:b], dP[a:b]
+        Qs = Ds / Es                                  # d2S/dpsi2 = (dP/dv) / (dpsi/dv)
         m = (x >= ps[0]) & (x <= ps[-1])
         if not np.any(m):
             continue
         xm = x[m]
         j = np.clip(np.searchsorted(ps, xm) - 1, 0, len(ps) - 2)
-        # Hermite in psi: S as a function of psi on this piece has dS/dpsi = P and d2S/dpsi2 = dP/dpsi = (dP/dv)/E;
-        # dP/dv is not stored, so use cubic Hermite with (S, P) at both ends (error ~ dpsi^4 S'''')
+        # quintic Hermite in psi: S, dS/dpsi = P and d2S/dpsi2 at both ends of the interval (error ~ dpsi^6)
         x0, x1 = ps[j], ps[j + 1]
         hh = x1 - x0
         t = (xm - x0) / hh
-        h00 = 2 * t ** 3 - 3 * t ** 2 + 1
-        h10 = t ** 3 - 2 * t ** 2 + t
-        h01 = -2 * t ** 3 + 3 * t ** 2
-        h11 = t ** 3 - t ** 2
-        val = h00 * Ss[j] + h10 * hh * Ps[j] + h01 * Ss[j + 1] + h11 * hh * Ps[j + 1]
+        t2, t3, t4, t5 = t * t, t ** 3, t ** 4, t ** 5
+        h0 = 1 - 10 * t3 + 15 * t4 - 6 * t5
+        h1 = t - 6 * t3 + 8 * t4 - 3 * t5
+        h2 = 0.5 * t2 - 1.5 * t3 + 1.5 * t4 - 0.5 * t5
+        h3 = 10 * t3 - 15 * t4 + 6 * t5
+        h4 = -4 * t3 + 7 * t4 - 3 * t5
+        h5 = 0.5 * t3 - t4 + 0.5 * t5
+        val = (h0 * Ss[j] + h1 * hh * Ps[j] + h2 * hh * hh * Qs[j]
+               + h3 * Ss[j + 1] + h4 * hh * Ps[j + 1] + h5 * hh * hh * Qs[j + 1])
         G[m] = np.minimum(G[m], val)
     return G
 
@@ -137,27 +142,33 @@ def phase_A(eps, p, th, Smin, psi_rays, qs=QS):
     xs, wsg = np.polynomial.legendre.leggauss(N_S)
     sn = 0.5 * (xs + 1.0)
     ws = 0.5 * wsg
-    vmax = eps + 2.0 * math.sqrt(eps) + 4.0 + 2.0 / math.sqrt(sn.min())
+    cmax = max(qs) ** 2 / 2
+    # window half-width W(s) ~ the paraxial width (proportional to sqrt(s (1 - s))); the families must cover the window
+    # widened twice (2 W) at every node: from x the reach is ~ v s, from y ~ v (1 - s)
+    Wn = (3.0 * math.sqrt(2 * cmax) + 0.1) * np.sqrt(sn * (1 - sn))
+    vmax = eps + 2.0 * math.sqrt(eps) + 2.0 + max((max(abs(r[m]) for r in psi_rays) + 4.0 * Wn[m])
+                                                   / min(sn[m], 1 - sn[m]) for m in range(N_S))
     fx = family(eps, p, th, vmax, sn)
     fy = family(eps, p, th, vmax, sn, backward=True)
-    cmax = max(qs) ** 2 / 2
     tot = {q: 0.0 for q in qs}
     worst = 0.0
     for m in range(N_S):
         s = sn[m]
         lo = min(r[m] for r in psi_rays)
         hi = max(r[m] for r in psi_rays)
-        W = 3.0 * math.sqrt(2 * cmax * s * (1 - s)) + 0.05
-        for _ in range(8):
+        W = Wn[m]
+        for _ in range(3):
             x = np.linspace(lo - W, hi + W, N_PSI)
-            G1 = envelope(fx["psi"][m], fx["S"][m], fx["P"][m], fx["E"][m], fx["F"][m], x)
-            G2 = envelope(fy["psi"][m], fy["S"][m], fy["P"][m], fy["E"][m], fy["F"][m], x)
+            G1 = envelope(fx["psi"][m], fx["S"][m], fx["P"][m], fx["E"][m], fx["dP"][m], x)
+            G2 = envelope(fy["psi"][m], fy["S"][m], fy["P"][m], fy["E"][m], fy["dP"][m], x)
             Phi = G1 + G2 - Smin
-            if np.isfinite(Phi[0]) and np.isfinite(Phi[-1]) and Phi[0] > cmax and Phi[-1] > cmax:
+            if not (np.isfinite(Phi[0]) and np.isfinite(Phi[-1])):
+                raise RuntimeError("window outside the families (coverage)")
+            if Phi[0] > cmax and Phi[-1] > cmax:
                 break
             W *= 2.0
         else:
-            raise RuntimeError("window")
+            raise RuntimeError("window: Phi <= q^2/2 at the edge after widening twice")
         worst = min(worst, float(np.nanmin(Phi)))
         dx = x[1] - x[0]
         for q in qs:

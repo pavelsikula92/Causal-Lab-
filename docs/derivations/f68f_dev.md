@@ -598,3 +598,108 @@ The records made before the diag form keep their names and are cited above as th
 numpy 2.2.6) at k = 0.12, T = 50 to 7e-7 relative in K̂_bb. The cause is not identified. Candidates are the numpy
 version or platform, or a change of the code between 29 Oct and 10 Nov, which the git history (from 10 Nov) does not
 cover. It is far below the 2.61 / 1.49 difference above and does not explain it.
+
+## Step 1c: the age term of the expected BD action at finite ε (16 Nov, night; diag/f68f_1c.py)
+
+The author's goal of 09:59 is E_opt(k,T,b) = ∂E[S_BD]/∂b and K_eff = (E_opt(b) − E_opt(0))/b at finite ε = b(kT)², and
+whether the static response converges with T. Steps 0–1b produced the parts; this step assembles them.
+
+### The age derivative at finite b, exactly
+With the age cut at coordinate time T, dE[S]/dT is the integral over the events y of the past of x that lie at time
+distance exactly T. Those are the y with first arrival T_opt(x, y) ≤ T. With weight √−g(y) = n(y)³ and the kernel of
+the interval volume V(x, y):
+
+  dE/dT ∝ P_x ∫_{T_opt ≤ T} d³y n(y)³ g(V(x, y)),   at Δt = T.
+
+This holds at any b (no expansion). In flat space it is the layer formula of step 0′.
+
+### The scaling limit (κ = kT → ∞, b → 0 at fixed ε and p)
+- **Only needles count.** The kernel decays with V, so only pairs near the cone contribute: σ² = T² − T_opt² ≪ T²,
+  r ≈ T.
+- **Constant factors drop out.** n³, P_x and the measure tend to constants, which the moment μ₀ = 0 removes. Their
+  cross terms with the volume are O(b) = O(ε/κ²).
+- **Per direction p,** with s = l₂σ² (the variable of F6.8c) and q² = (kσ)² = k²s/l₂:
+
+  ρ(p) = (T/(2l₂)) ∫₀^∞ ds ⟨g₀(s² A(ε, p, θ; q))⟩_θ,
+
+  with A the needle volume of step 1b (relative to flat at the same σ). For ε < π² there is one ray at every phase,
+  and A is analytic in q²: A = A₀ + A₁q² + A₂q⁴ + A₃q⁶ + …, A₀ = A_PW.
+
+### The BD moments select the q⁶ order
+With u = s (A(s)/A₀)^{1/2}, ∫ds g₀(s²A) = Σ_m d_m A₀^{−(m+1)/2} μ_m, where d_m are the coefficients of ds/du. The
+moments of g₀ are (computed):
+- μ₀ = μ₁ = μ₂ = 0;
+- μ₃ = 1/2, μ₄ = 2.6587, μ₅ = 10.
+
+So every term below s³ vanishes, and the first survivor is
+
+  ρ(p) − ρ_flat(p) = (T/(2l₂)) 4 μ₃ (k²/l₂)³ ⟨ŝ₄ A₀^{−2}⟩_θ + O(k⁸),
+  ŝ₄ = −e₄ + 5e₂e₃ − 5e₂³,   e₂ = a₁/2, e₃ = a₂/2 − a₁²/8, e₄ = a₃/2 − a₁a₂/4 + a₁³/16,   a_j = A_j/A₀.
+
+This is the "D survivor" of step 0′ (the τ⁶ part), now at finite ε.
+
+### What it means for the age of the field
+- With dΩ = 2π dp/κ and T = κ/k, the age density is dE/dn ∝ k⁵ Φ(ε), with ε = b n², and
+
+  Φ(ε) = ∫ dp ⟨ŝ₄ A₀^{−2}⟩_θ.
+
+- At small ε, Φ = C₂ε², which gives E ∝ b² n⁵. This is the (kT)⁵ law of F6.8e3, and the check below compares it with
+  F6.8e3 directly.
+- At finite b:
+
+  E(n) ∝ ∫ dn Φ(b n²) = (1/(2√b)) ∫₀^{bn²} ε^{−1/2} Φ(ε) dε.
+
+- **The static limit of an old field exists if and only if ∫^∞ ε^{−1/2} Φ(ε) dε converges,** that is, if Φ decays
+  faster than ε^{−1/2}. The author's readings A, B and C become statements about the large-ε behaviour of one function
+  of one variable.
+
+### The check against F6.8e3 (the author's check 1, b → 0)
+At large n, the F6.8e3 bulk density per direction must be
+
+  bulk(p) = 2 μ₃ k⁵ n⁵ C₂(p) / l₂⁴,   C₂(p) = lim ⟨ŝ₄A₀^{−2}⟩_θ / ε²,
+
+with no free constant; corrections are O(1/n²) and O(k²). This compares two independent codes in their common range:
+- the F6.8e3 second-order instrument (80-bit, finite n);
+- the series of this step (scaling limit, all orders in ε).
+
+### Range of this step, and what it cannot decide
+- The q² series needs one ray per phase, so it holds for ε < π² (at p = 0; up to 18.7 at p = 4).
+- The author's grid (ε ≤ 4) measures the departure from the second order, N(ε) = Φ/(C₂ε²).
+- The asymptotic question (Φ at ε → ∞) needs the multi-ray range. There the cut loci enter (step 1b), each adding
+  terms polynomial in c = q²/2 per window, so the same moment selection applies. An extension of the instrument is
+  needed and is not done here.
+
+### The other checks of 09:59
+- **Check 2, zero age.** At n → 0, ε → 0 and Φ → 0.
+- **Check 3, k = 0.** A = 1 at every q, so Φ = 0 identically.
+- **Check 4, both signs of b.** A(−ε, θ) = A(ε, θ + π), so the θ-mean and Φ are even in ε. This is exact, not a
+  computation.
+- **Check 5, conformal and mixed sectors.** They are not touched: only the optical sector is computed.
+- **Check 6, stable instrument.** The series is checked against the exact needle (envelopes) and against the O(q²)
+  expansion. The linear term of Φ, which must vanish, is reported.
+
+### Step 1c: the series instrument, first checks (diag/out/f68f_1c_check_20261116T220043Z.txt)
+- **A₀ equals the plane-wave A of step 1b to 1e-12.**
+- **A₁ equals the O(q²) coefficient of diag/f68f_1b_q to ~3e-8 relative.** The two codes use different RK steps.
+- **The linear term of Φ, which must vanish, is ≤ 3e-10.**
+- **Against the exact needle at ε = 4, p = 2, θ = 2:** −1.6e-8, −6.0e-8 and −3.2e-7 at q = 1/2, 1/4, 1/8 with the
+  exact needle as it was. The growth towards small q is the exact needle's own error (below).
+- **At the other three check phases the exact needle failed** ("window": the ray families did not cover the window
+  after it was widened).
+
+### The exact needle: two faults found by the series, and fixed (diag/f68f_1b_exact.py, 16 Nov, night)
+1. **Coverage.** The ψ window had a constant pad (0.05). Near s = 0 and 1 this pad exceeded the reach of the ray
+   families, and the window search failed. Now the window is ∝ √(s(1 − s)) (the paraxial shape). The slope range of
+   the families is chosen so that they cover the window widened twice at every node. A window outside the families is
+   now an explicit error ("coverage"), not a silent widening.
+2. **Interpolation.** S(ψ) along a family was interpolated by cubic Hermite (S and dS/dψ), with errors ~dψ⁴. With
+   d²S/dψ² = (dP/dv)/(dψ/dv) the interpolation is now quintic Hermite (error ~dψ⁶). Against the series at three
+   phases (ε = 4 and 2):
+   - |exact − series| ≤ 5e-9 (q = 1/2), ≤ 2e-8 (q = 1/4), ≤ 1.2e-7 (q = 1/8);
+   - before the fix: up to 3e-7 at q = 1/8, or the window failure.
+- **Consequence for the records made with the old version.** These are the p = 0 band in
+  diag/out/f68f_1b_exact.txt/.npy and the author's run diag/out/f68f_1b_exact_20261116T212730Z.*. Against the fixed
+  version at ε = 9.5, p = 0 (two phases) they differ by 1e-7 to 4e-7 (q = 1/2) and 2e-6 to 4e-6 (q = 1/8). This is far
+  below δ_A (1e-3), so the readings of those tables stand. The minΦ = −3.4e-7 at ε = 16, p = 4 is of the same origin
+  (the cubic interpolation) and is not repeated with the fixed version at the phases checked. That row is still not
+  used until rerun.
