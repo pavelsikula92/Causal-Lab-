@@ -89,8 +89,9 @@ def optical_length(zA, zB, d, b, k, th, iters=30):
         A = _W * fzz * P * P
         Bm = _W * fzv * P
         Cc = _W * fvv
-        H = (np.einsum("nq,qj,ql->njl", A, _PHI, _PHI) + np.einsum("nq,qj,ql->njl", Bm, _PHI, _DPHI)
-             + np.einsum("nq,qj,ql->njl", Bm, _DPHI, _PHI) + np.einsum("nq,qj,ql->njl", Cc, _DPHI, _DPHI))
+        Y = A[:, :, None] * _PHI[None] + Bm[:, :, None] * _DPHI[None]        # n x q x j
+        Z = Bm[:, :, None] * _PHI[None] + Cc[:, :, None] * _DPHI[None]
+        H = np.matmul(Y.transpose(0, 2, 1), _PHI) + np.matmul(Z.transpose(0, 2, 1), _DPHI)
         step = np.linalg.solve(H, g[:, :, None])[:, :, 0]
         c = c - step
         if np.max(np.abs(step)) < 1e-15 * max(1.0, float(np.max(d))):
@@ -207,7 +208,7 @@ ROWS = [  # k, CO, L, tau
     (1.0, 1.0, 2.0, 1.0),
     (1.0, 0.7, 4.0, 1.5),
 ]
-BS = [0.005, 0.01, 0.02, 0.04, 0.08, 0.16]
+BS = [0.01, 0.02, 0.04, 0.08, 0.16]
 N_TH = 8
 
 
@@ -234,8 +235,26 @@ def main():
     for b in (0.01, 0.04):
         for th in ths:
             jobs.append((k0, CO0, L0, tau0, b, th, "sigma", lev2))
+    cdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "f68f_1a_cache")
+    os.makedirs(cdir, exist_ok=True)
+
+    def key(a):
+        return "_".join(repr(x) for x in a[:7]) + "_" + "-".join(repr(x) for x in a[7][:3])
+
+    done = {}
+    for fn in os.listdir(cdir):
+        with open(os.path.join(cdir, fn)) as fh:
+            kk, V, T = fh.read().split()
+            done[kk] = (float(V), float(T))
+    todo = [a for a in jobs if key(a) not in done]
+    print(f"jobs {len(jobs)}, cached {len(jobs) - len(todo)}, to compute {len(todo)}", flush=True)
     with Pool(workers) as pool:
-        res_all = pool.map(task, jobs, chunksize=1)
+        for a, V, T in pool.imap_unordered(task, todo, chunksize=1):
+            kk = key(a)
+            with open(os.path.join(cdir, f"{abs(hash(kk)) % 10 ** 12:012d}_{len(done)}.txt"), "w") as fh:
+                fh.write(f"{kk} {V!r} {T!r}\n")
+            done[kk] = (V, T)
+    res_all = [(a,) + done[key(a)] for a in jobs]
     res = [x for x in res_all if x[0][7] == lev]
     res2 = [x for x in res_all if x[0][7] == lev2]
     fixed_tau = _fixed_tau_instrument()
