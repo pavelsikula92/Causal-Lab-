@@ -198,7 +198,24 @@ its pair_density), against its bulk term alone. k = 0.12; age slope −a₄ρ/k�
   It moves the value from 1.109 to 1.489, past 1.244, so the layer alone does not explain the gap.
 - **The comparison at n = 24 is not like for like.** The F6.8c2 number is a secant: (K̂_bb(n = 16) − K̂_bb(n = 24))/(8 k²)
   = (0.741976 − 0.598664)/(8 · 0.0144) = 1.244, and it contains the explicit b-dependent cut. The values here are the
-  derivative at n = 24 with the flat cut. A check of the secant with the layer (n = 16, 20, 24, Simpson) is running.
+  derivative at n = 24 with the flat cut.
+- **The secant with the layer** (diag/out/f68f_layer_secant.txt, n = 16, 20, 24, 5 723 s; n = 24 reproduces the first
+  run to all digits):
+
+  | n | bulk | exact with layer | layer / bulk |
+  |---|---|---|---|
+  | 16 | 0.478427 | 0.649192 | +0.357 |
+  | 20 | 0.707967 | 0.983925 | +0.390 |
+  | 24 | 1.109022 | 1.489463 | +0.343 |
+
+  Simpson over n = 16 … 24 gives the secant 0.737 (bulk alone) and **1.012 with the layer**, against 1.244 from the
+  F6.8c2 full rows. The bulk and layer of the flat cut account for 81 % of it. The remaining 0.23 (19 %) is not
+  computed here. The candidate is the explicit b-dependence of the cut (the boundary term of F6.8c), but that is a
+  hypothesis. The instruments also differ (F6.8c2 is a different code with its own nodes). At n = 16–24 the
+  boundary would then not be small. The k = 0 null of F6.8c (≤ 2.4e-3, falling as T⁻⁴) does not bound it at k = 0.12.
+- **For F6.8e3 nothing changes:** the layer falls as 1/n² and the exponent is a large-n statement. **For the static
+  limit it matters:** at finite age the layer and probably the boundary are not small, so a finite-age response needs
+  the full cut, not the bulk.
 
 ## Step 1a: the exact volume of short intervals at finite b (16 Nov; diag/f68f_1a.py, diag/out/f68f_1a.txt)
 
