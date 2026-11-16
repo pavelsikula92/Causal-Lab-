@@ -129,13 +129,30 @@ def volume(k, CO, L, dt, b, th, n_sig=16, n_te=12, n_phi=16, npan=None):
         zw, d1, d2 = geom(sig)
         return dt - optical_length(np.zeros_like(zw), zw, d2, b, k, th) - optical_length(zw, np.full_like(zw, zy), d1, b, k, th)
 
-    s0 = np.full(TE.shape, dt / L)
-    s1 = s0 + 0.01 * (s0 - 1.0)
-    f0, f1 = ell(s0), ell(s1)
-    for it in range(40):
+    # safeguarded secant on a bracket [lo, hi]: l(1) > 0 on the chord, l(hi) < 0 (hi expanded from the flat root)
+    lo = np.ones(TE.shape)
+    flo = ell(lo + 1e-12)
+    if np.any(flo <= 0):
+        return float("nan")                      # the chord leaves the diamond: prolate coordinates do not apply
+    hi = np.full(TE.shape, dt / L)
+    fhi = ell(hi)
+    for _ in range(60):
+        bad = fhi >= 0
+        if not np.any(bad):
+            break
+        hi = np.where(bad, 1.0 + 2.0 * (hi - 1.0), hi)
+        fhi = np.where(bad, ell(hi), fhi)
+    s0, f0 = hi, fhi
+    s1 = hi - 0.01 * (hi - 1.0)
+    f1 = ell(s1)
+    for it in range(80):
+        lo = np.where(f1 > 0, np.maximum(lo, s1), lo)
+        hi = np.where(f1 <= 0, np.minimum(hi, s1), hi)
         den = f1 - f0
         ok = den != 0
         s2 = np.where(ok, s1 - f1 * (s1 - s0) / np.where(ok, den, 1.0), s1)
+        out = ~((s2 > lo) & (s2 < hi)) & ok
+        s2 = np.where(out, 0.5 * (lo + hi), s2)
         s0, f0 = s1, f1
         s1 = s2
         f1 = ell(s1)
@@ -180,6 +197,8 @@ def task(args):
     else:
         dt = math.sqrt(L * L + tau * tau)
         T = pair_T(k, CO, L, b, th) if b != 0 else L
+        if T >= dt:
+            return args, float("nan"), T          # the pair is not timelike at fixed tau: no interval
     V = volume(k, CO, L, dt, b, th, *lev)
     return args, V, T
 
