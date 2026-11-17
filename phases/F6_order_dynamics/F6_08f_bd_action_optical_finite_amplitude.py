@@ -1,6 +1,7 @@
 """
-F6.8f -- The static response K_eff of the optical sector at finite amplitude (DRAFT, NOT FROZEN)
-===============================================================================================
+F6.8f -- The static response K_eff of the optical sector at finite amplitude
+=============================================================================
+Frozen 17 Nov 2026 by the author's decision of 08:22 (docs/author_decisions.md, decision 34).
 
 Why this test exists (the author's direction of 16 Nov 2026, 09:59, and the order of 22:49, point 3)
 ---------------------------------------------------------------------------------------------------
@@ -30,8 +31,8 @@ changes sign. Whether an old field (eps -> infinity) has a finite static respons
 eps; it needs the multi-ray range (an extension of K.18 with the cut loci, and a card F6.8g). Reading A of this card
 is therefore an indication on eps <= 4, not a proof of the static limit.
 
-Question, quantities, criteria (PROPOSALS for the author's decision; written 16 Nov 23:40 UTC, before any K_eff row of
-the development was seen; nothing is frozen)
+Question, quantities, criteria (proposed 16 Nov 23:40 UTC, before any K_eff row of the development was seen; decided
+and frozen by the author on 17 Nov 08:22)
 -------------------------------------------------------------------------------------------------------------------
   Judged eps = 0.25, 1, 2, 4 (the ends of the t panels [0, 1/2], [1/2, 1], [1, sqrt 2], [sqrt 2, 2], G = 4 Gauss
   nodes each); C2 from eps = 0.1, 0.2 by Richardson. Development used eps 0.1, 0.2, 0.5, 3 and the nodes of panels
@@ -40,14 +41,18 @@ the development was seen; nothing is frozen)
   INSTRUMENT_FAILED: K.18 not PASSED (separate record); more than one ray at some phase; stationarity of the ray
     above 1e-8; |R(G) - R(G - 1)| above 1e-3 at a judged eps; Phi with 128 against 64 phases above 1e-3 (relative)
     at a judged eps.
-  Reading A (the K_eff curve bends towards saturation on eps <= 4): M keeps the sign of C2 at every judged eps, and
-    gamma_T(2 -> 4) <= 2.5 (at most half the second-order exponent), and gamma_T decreases over the three intervals.
-  Reading B (K_eff grows or changes sign): M changes sign at a judged eps (K_eff changes sign), or
-    gamma_T(2 -> 4) >= 5 (no slowdown against the second order).
-  Reading C (only young fields: the curve departs from the second order without a bend that reaches A): otherwise.
-  Status: PASSED = reading A, FAILED = reading B, UNDECIDED = reading C.
+  Reading B (K_eff grows or changes sign): gamma_T(2 -> 4) >= 5 (no slowdown against the second order), or a
+    confirmed sign change of M: at some judged eps both R(G) and R(G - 1) are below -1e-3 (K_eff opposite to the
+    second order beyond the quadrature tolerance).
+  Reading A (the K_eff curve bends towards saturation on eps <= 4): not B; M keeps the sign of C2 at every judged eps;
+    gamma_T(2 -> 4) <= 2.5 (at most half the second-order exponent); the exponent is nonnegative and decreases over
+    the three intervals (gamma_T(0.25 -> 1) > gamma_T(1 -> 2) > gamma_T(2 -> 4) >= 0).
+  Reading C: otherwise. Meaning (the author's wording): a result for young / weak fields, without a decision on the
+    static limit of an old field.
+  Status: FAILED = reading B, PASSED = reading A, UNDECIDED = reading C (checked in this order).
   Recorded with every status: R(eps) and N(eps) = Phi / (C2 eps^2) at the judged eps (the null model R = N = 1), and
-  |R - 1| against 0.05 (whether the second order still holds at eps = 4).
+  the separate null test |R(4) - 1| <= 0.05 (whether the second order still holds at eps = 4), reported as its own
+  PASSED / FAILED next to the reading; it does not enter the status.
   Checks of the author's list (09:59): 1 b -> 0 (R, N -> 1 as eps -> 0; F6.8e3 in K.18 part e3); 2 zero age
   (M ~ eps^{5/2} -> 0); 3 k = 0 (Phi = 0, computed at eps = 0); 4 both signs of b (exact: n(-b, theta) =
   n(b, theta + pi), an even number of phases maps the grid onto itself, so K_eff(-b) = K_eff(b)); 5 conformal and
@@ -68,8 +73,7 @@ from core.testing import Result
 TEST = {
     "id": "F6.8f",
     "phase": "F6",
-    "title": "Static response K_eff of the optical sector of the expected BD action at finite amplitude eps = b (kT)^2 "
-             "(draft, not frozen)",
+    "title": "Static response K_eff of the optical sector of the expected BD action at finite amplitude eps = b (kT)^2",
     "theory_part": "the static response of the order for old fields (B6-full); input of the static limit and of C.1",
     "question": "Does K_eff = (dE[S_BD]/db (b) - dE[S_BD]/db (0)) / b of the optical sector keep the second-order growth "
                 "(kT)^5, bend towards saturation, or change sign on eps = b (kT)^2 <= 4?",
@@ -79,8 +83,10 @@ TEST = {
     "prediction": "none fixed (development saw eps 0.1, 0.2, 0.5, 3 and reduced-resolution nodes up to 3); the null model "
                   "is R = 1",
     "criterion": "INSTRUMENT: K.18 PASSED; one ray per phase; stationarity <= 1e-8; |R(G) - R(G-1)| <= 1e-3; phases "
-                 "64 vs 128 <= 1e-3. PASSED (reading A): sign kept, gamma_T(2->4) <= 2.5 and decreasing; FAILED "
-                 "(reading B): sign change or gamma_T(2->4) >= 5; UNDECIDED (reading C) otherwise (proposal, not frozen)",
+                 "64 vs 128 <= 1e-3. FAILED (reading B): gamma_T(2->4) >= 5 or a confirmed sign change of M (R(G), R(G-1) < "
+                 "-1e-3); PASSED (reading A): sign kept, gamma_T(2->4) <= 2.5, gamma_T nonnegative and decreasing over "
+                 "the three intervals; UNDECIDED (reading C: young / weak fields, no decision on the static limit) "
+                 "otherwise. Separate null test |R(4) - 1| <= 0.05, reported, not in the status",
     "null_model": "the second-order extrapolation from F6.8e3: R(eps) = 1, gamma_T = 5",
     "level": "mechanism",
     "meters": ["K.18"],
@@ -127,11 +133,13 @@ def run(p, ctx):
     R = [m / (0.8 * C2 * e ** 2.5) for m, e in zip(M, ends)]
     Rc = [m / (0.8 * C2 * e ** 2.5) for m, e in zip(Mc, ends)]
     N = [Phi(e) / (C2 * e * e) for e in ends]
-    dth = [abs(Phi(e, nt // 2) / Phi(e) - 1) for e in ends]
+    def rel(x, y):                     # relative difference, safe when Phi(eps) = 0
+        return abs(x - y) / abs(y) if y != 0 else (0.0 if x == y else float("inf"))
+    dth = [rel(Phi(e, nt // 2), Phi(e)) for e in ends]
     nray = max(r["nray"] for r in res)
     lin = max(r["lin"] for r in res)
     k0 = max(abs(tab[(0.0, float(x), nt)]["phi"]) for x in pn)
-    lines = [f"F6.8f (draft): K_eff / K_2 = R(eps); C2 = {C2:+.10e} (from eps {e1:g}, {e2:g}); {len(pn)} directions, "
+    lines = [f"F6.8f: K_eff / K_2 = R(eps); C2 = {C2:+.10e} (from eps {e1:g}, {e2:g}); {len(pn)} directions, "
              f"{nt} phases, G = {g}",
              "     eps      Phi(eps)          N(eps)      R(eps) = K_eff/K_2   R with G-1"]
     for e, n_, r, rc in zip(ends, N, R, Rc):
@@ -141,26 +149,33 @@ def run(p, ctx):
         gam.append(2 * math.log(mb / ma) / math.log(eb / ea) if ma * mb > 0 else float("nan"))
         lines.append(f"  gamma_T {ea:g} -> {eb:g}: {gam[-1]:+.4f}  (second order 5)")
     sign_kept = all(m * C2 > 0 for m in M)
+    sign_flip = any(r < -p["tol_g"] and rc < -p["tol_g"] for r, rc in zip(R, Rc))
     g_last = gam[-1]
-    decreasing = all(b_ < a_ for a_, b_ in zip(gam[:-1], gam[1:]))
+    decreasing = all(math.isfinite(a_) and math.isfinite(b_) and b_ < a_ for a_, b_ in zip(gam[:-1], gam[1:]))
+    nonneg = all(math.isfinite(x) and x >= 0 for x in gam)
+    null_dev = abs(R[-1] - 1)
+    null_status = "PASSED" if null_dev <= p["tol_null"] else "FAILED"
     dg = max(abs(a_ - b_) for a_, b_ in zip(R, Rc))
     inst_ok = nray == 1 and lin <= p["tol_lin"] and dg <= p["tol_g"] and max(dth) <= p["tol_theta"]
     lines += [f"  instrument: rays per phase {nray}; stationarity {lin:.1e}; |R(G) - R(G-1)| {dg:.1e} "
               f"(<= {p['tol_g']:g}); phases {nt // 2} vs {nt}: {max(dth):.1e} (<= {p['tol_theta']:g}); "
               "K.18 and the F6.8e3 check are separate records",
               f"  checks: k = 0 (eps = 0) largest |Phi| {k0:.1e}; both signs of b exact; zero age M ~ eps^5/2; "
-              f"null model: largest |R - 1| {max(abs(r - 1) for r in R):.4f} (second order holds within "
-              f"{p['tol_null']:g}: {max(abs(r - 1) for r in R) <= p['tol_null']})"]
+              f"largest |R - 1| over the judged eps {max(abs(r - 1) for r in R):.4f}",
+              f"  separate null test |R({ends[-1]:g}) - 1| = {null_dev:.4f} (<= {p['tol_null']:g}): {null_status} "
+              "(not in the status)"]
     if not inst_ok:
         status, reading = "INSTRUMENT_FAILED", "-"
-    elif not sign_kept or (math.isfinite(g_last) and g_last >= p["gamma_B"]):
+    elif sign_flip or (math.isfinite(g_last) and g_last >= p["gamma_B"]):
         status, reading = "FAILED", "B"
-    elif sign_kept and g_last <= p["gamma_A"] and decreasing:
+    elif sign_kept and math.isfinite(g_last) and g_last <= p["gamma_A"] and nonneg and decreasing:
         status, reading = "PASSED", "A"
     else:
         status, reading = "UNDECIDED", "C"
-    lines.append(f"  reading {reading}")
+    lines.append(f"  reading {reading}" + ("  (young / weak fields; no decision on the static limit of an old field)"
+                                          if reading == "C" else ""))
     lines.append(f"  cost {time.time() - t0:.0f} s")
     return Result(status, lines, {"ends": ends, "Phi": [Phi(e) for e in ends], "C2": C2, "N": N, "M": M, "R": R,
                                   "R_g_minus_1": Rc, "gamma_T": gam, "reading": reading, "nray": nray, "lin": lin,
-                                  "dphi_theta": dth, "k0": k0})
+                                  "dphi_theta": dth, "k0": k0, "null_test": null_status,
+                                  "null_dev": null_dev})

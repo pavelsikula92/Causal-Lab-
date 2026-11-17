@@ -277,6 +277,17 @@ def job(eps, p, th, kap, q):
     return C.cached(NAME, CODE, volume, (eps, p, th, kap, q))
 
 
+def extrapolate(levs, A):
+    """Richardson in 1/kappa^2 for levels doubling in kappa: two levels (4 A2 - A1) / 3; three levels
+    (16 R2 - R1) / 15 with R_i the two-level values (removes the O(1/kappa^2) and O(1/kappa^4) terms)."""
+    if len(levs) == 2 and abs(levs[1] - 2 * levs[0]) < 1e-12:
+        return (4 * A[1] - A[0]) / 3
+    if len(levs) == 3 and abs(levs[1] - 2 * levs[0]) < 1e-12 and abs(levs[2] - 2 * levs[1]) < 1e-12:
+        r1, r2 = (4 * A[1] - A[0]) / 3, (4 * A[2] - A[1]) / 3
+        return (16 * r2 - r1) / 15
+    return float("nan")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--points", type=str, default="2:1:1.0", help="eps:p:theta,...")
@@ -302,7 +313,7 @@ def main():
         row = f"  eps {e:g} p {p:g} theta {th:g}: " + "  ".join(
             f"kappa {L * math.sqrt(e):.2f} (b {e / (L * math.sqrt(e)) ** 2:.4f}): {A:.10f}" for L, A in zip(levs, Ak))
         lines.append(row)
-        ext = (4 * Ak[-1] - Ak[-2]) / 3 if len(levs) >= 2 and abs(levs[-1] - 2 * levs[-2]) < 1e-12 else float("nan")
+        ext = extrapolate(levs, Ak)
         lines.append(f"      series (scaling limit) {ser:.10f};  finite kappa - series: "
                      + "  ".join(f"{A - ser:+.3e}" for A in Ak)
                      + f";  extrapolated (b -> 0) - series: {ext - ser:+.3e}")

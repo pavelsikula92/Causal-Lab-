@@ -1,7 +1,8 @@
-# Card K.18 (draft, not frozen): the needle volume of the optical sector at finite amplitude
+# Card K.18: the needle volume of the optical sector at finite amplitude
 
-**16 Nov 2026, night.** Prepared on the author's order of 22:49 (point 1). Not frozen: freezing is the author's
-decision, with the md5 of the test file and of the helper files.
+**Frozen 17 Nov 2026 by the author's decision of 08:22** (docs/author_decisions.md, decision 34), with the md5 of the
+test file and of the helpers listed there. Prepared on the author's order of 16 Nov 22:49 (point 1). The file keeps its
+draft name.
 
 **Test:** phases/K_instruments/K_18_needle_volume.py.
 **Helpers (frozen with the card by md5):** diag/f68f_1b.py, diag/f68f_1c.py, diag/f68f_1b_exact.py, diag/f68f_1d.py,
@@ -36,18 +37,18 @@ Four ways of computing it:
 | Part | Criterion | Source | Failing gives |
 |---|---|---|---|
 | single | one ray at every phase of the range | needed by the series; the author's Δε_c ≤ 0.01 has no object below the first caustic | INSTRUMENT_FAILED |
-| jacobi | δ_J = max \|A₀(N) − A₀(2N)\| ≤ 1e-4; series A₀ against plane-wave A₀ ≤ 1e-9 | author (δ_J); proposal (A₀) | INSTRUMENT_FAILED |
-| series | \|A_exact − A_series\| ≤ 1e-6 at q = 1/2, 1/4 on 12 phases; at most 2 window failures of the exact needle | proposal | INSTRUMENT_FAILED |
+| jacobi | δ_J = max \|A₀(N) − A₀(2N)\| ≤ 1e-4; series A₀ against plane-wave A₀ ≤ 1e-9 | author (δ_J); proposal frozen with the card (A₀) | INSTRUMENT_FAILED |
+| series | \|A_exact − A_series\| ≤ 1e-6 at q = 1/2, 1/4 on 12 phases; at most 2 window failures of the exact needle | proposal frozen with the card | INSTRUMENT_FAILED |
 | qconv | δ_A(1/4 → 1/8) ≤ 1e-3 at every (ε, p) of the range | author | FAILED |
-| e3 | b → 0 against the F6.8e3 instrument (an independent code): p-integrated bulk density at k = 0.12, n = 1536 against 4μ₃k⁵n⁵C₂(p)/l₂⁴, within 5e-3 | proposal | FAILED |
-| brute | finite κ = 10√ε and 20√ε (b = 0.01, 0.0025) at the 8 series points with ε = 2, 4, q = 1/4, 1/8: the 1/κ² extrapolation A_ext = (4A₂₀ − A₁₀)/3 within 1e-3 of the series; the ratio of the level differences (A₁₀ − A_s)/(A₂₀ − A_s) in [3.5, 4.5] where \|A₁₀ − A_s\| > 1e-4 (below that the instrument's ~1e-6 error moves the ratio: 5.01 at a difference of 1.5e-5 in development) | author (1e-3, levels); proposal (extrapolation, ratio) | FAILED |
+| e3 | b → 0 against the F6.8e3 instrument (an independent code): p-integrated bulk density at k = 0.12, n = 1536 against 4μ₃k⁵n⁵C₂(p)/l₂⁴, within 5e-3 | proposal frozen with the card | FAILED |
+| brute | finite κ = 10√ε, 20√ε, 40√ε (b = 0.01, 0.0025, 0.000625) at the 8 series points with ε = 2, 4, q = 1/4, 1/8: the 1/κ² extrapolation A_ext = (16R₂ − R₁)/15, R₁ = (4A₂₀ − A₁₀)/3, R₂ = (4A₄₀ − A₂₀)/3, within 1e-3 of the series; each ratio of consecutive level differences (A₁₀ − A_s)/(A₂₀ − A_s), (A₂₀ − A_s)/(A₄₀ − A_s) in [3.5, 4.5] where the numerator exceeds 1e-4 (below that the instrument's ~1e-6 error moves the ratio: 5.01 at a difference of 1.5e-5 in development) | author (1e-3 on the extrapolated limit, three levels: decision of 17 Nov 08:22); ratio check: proposal frozen with the card | FAILED |
 
 **Verdict:** INSTRUMENT_FAILED if single, jacobi or series fails; PASSED if qconv, e3 and brute pass; FAILED otherwise.
 
-**Why brute compares the extrapolation.** The finite-κ volume differs from the scaling limit by a physical O(b) =
-O(1/κ²) correction, not by an instrument error. The raw differences in development reach 3.7e-3 at κ = 10√ε (ε = 4,
-p = 4) and 9.4e-4 at 20√ε. The configuration comparable with the series is κ → ∞. The author decides whether his 1e-3
-applies to the extrapolation (as proposed) or to the raw level 20√ε.
+**Why brute compares the extrapolation (the author's decision).** The finite-κ volume differs from the scaling limit by
+a physical O(b) = O(1/κ²) correction, not by an instrument error. The raw differences in development reach 3.7e-3 at
+κ = 10√ε (ε = 4, p = 4), 9.4e-4 at 20√ε and 2.4e-4 at 40√ε. The tolerance 1e-3 applies to the limit κ → ∞, not to the
+raw finite b.
 
 ## 4. The brute force (formerly missing; built 16–17 Nov night, diag/f68f_1d.py)
 
@@ -63,10 +64,10 @@ applies to the extrapolation (as proposed) or to the raw level 20√ε.
 - **The development rows (step 1d)** are 10 points at ε = 2 and 4, p 0–4, q = 1/8, 1/4, 1/2:
   - |A_ext − A_series| ≤ 3.7e-6;
   - the ratio of the level differences is 3.97–4.07 where the difference is above 1e-4 (the 1/κ² form), and 5.01, 3.75 at differences of 1.5e-5, 3e-5 (instrument noise ~1e-6);
-  - cost 16–40 s per volume.
+  - two points with all three levels (ε = 4, p = 2 and 4, q = 1/8): ratios 3.99–4.00, three-level extrapolation
+    minus series −1.5e-7 and −4.0e-7 (diag/out/f68f_1d_20261117T072431Z.txt);
+  - cost 16–40 s per volume (about 35 s at 40√ε).
   - The card's 8 points (other phases) were not computed.
-
-**Still for the author:** the freeze itself (the md5 of the test file and the six helpers).
 
 ## 5. Development rows already seen (decide nothing)
 

@@ -1,11 +1,15 @@
-# Card F6.8f (draft, not frozen): the static response K_eff of the optical sector at finite amplitude
+# Card F6.8f: the static response K_eff of the optical sector at finite amplitude
 
-**16 Nov 2026, night.** Prepared on the author's order of 22:49 (point 3), for the goal of 09:59. Not frozen: the
-criteria below are proposals for the author's decision. **They were written at 23:40 UTC, before any K_eff row of the
-development was seen** (the development run of step 2 had finished 4 of 84 jobs and printed no values).
+**Frozen 17 Nov 2026 by the author's decision of 08:22** (docs/author_decisions.md, decision 34), with the md5 of the
+test file and of the helpers listed there. The file keeps its draft name.
+
+Prepared on the author's order of 16 Nov 22:49 (point 3), for the goal of 09:59. The criteria were proposed at
+23:40 UTC on 16 Nov, **before any K_eff row of the development was seen** (the development run of step 2 had finished 4
+of 84 jobs and printed no values). The author decided them on 17 Nov at 08:22, after the development rows of step 2
+(R(0.5) = 1.014, R(3) = 1.69 at reduced resolution) had been reported to him.
 
 **Test:** phases/F6_order_dynamics/F6_08f_bd_action_optical_finite_amplitude.py.
-**Instrument:** K.18 (draft). **Assembly:** diag/f68f_keff.py (step 2 of docs/derivations/f68f_dev.md).
+**Instrument:** K.18 (frozen together with this card). **Assembly:** diag/f68f_keff.py (step 2 of docs/derivations/f68f_dev.md).
 
 ## 1. Question
 
@@ -37,7 +41,7 @@ Does K_eff = (E_opt(b) − E_opt(0))/b, with E_opt = ∂E[S_BD]/∂b of the opti
   It needs the multi-ray range: K.18 extended with the cut loci, and a card F6.8g. **Reading A here is an indication
   on ε ≤ 4, not a proof of the static limit.**
 
-## 4. Quantities and proposed criteria
+## 4. Quantities and criteria (frozen)
 
 **Grid.**
 - Judged ε = 0.25, 1, 2, 4: the ends of the t panels [0, ½], [½, 1], [1, √2], [√2, 2], with G = 4 Gauss nodes each.
@@ -55,22 +59,24 @@ Does K_eff = (E_opt(b) − E_opt(0))/b, with E_opt = ∂E[S_BD]/∂b of the opti
 - |R(G) − R(G−1)| above 1e-3 at a judged ε;
 - Φ with 128 against 64 phases above 1e-3 (relative) at a judged ε.
 
-**Readings (the author's A, B, C of 09:59, made operational on ε ≤ 4):**
+**Readings (the author's A, B, C of 09:59; thresholds by his decision of 17 Nov 08:22), checked in this order:**
 
-| Reading | Status | Condition (proposal) |
+| Reading | Status | Condition |
 |---|---|---|
-| A: the K_eff curve bends towards saturation | PASSED | M keeps the sign of C₂ at every judged ε, γ_T(2 → 4) ≤ 2.5 (at most half the second-order exponent), and γ_T decreases over the three intervals |
-| B: K_eff grows or changes sign | FAILED | M changes sign at a judged ε, or γ_T(2 → 4) ≥ 5 (no slowdown against the second order) |
-| C: only young fields | UNDECIDED | otherwise: the curve departs from the second order without a bend that reaches A |
+| B: K_eff grows or changes sign | FAILED | γ_T(2 → 4) ≥ 5 (no slowdown against the second order), or a confirmed sign change of M: at some judged ε both R(G) and R(G−1) are below −1e-3 (K_eff opposite to the second order beyond the quadrature tolerance) |
+| A: the K_eff curve bends towards saturation | PASSED | not B; M keeps the sign of C₂ at every judged ε; γ_T(2 → 4) ≤ 2.5; the exponent is nonnegative and decreases over the three intervals: γ_T(0.25 → 1) > γ_T(1 → 2) > γ_T(2 → 4) ≥ 0 |
+| C: young / weak fields | UNDECIDED | otherwise: a result for young / weak fields, without a decision on the static limit of an old field (the author's wording) |
 
-**For the author to decide:**
-- The thresholds 2.5 and 5. A stricter A would be γ_T(2 → 4) ≤ 1.
-- My reading of C ("only young fields": the computation describes young fields, with no statement about the static
-  limit). Correct it if C meant something else.
+- **"Confirmed" sign change** is Claude's operational form of the author's word: the sign of R must hold with both
+  t quadratures (G and G − 1) and exceed their tolerance 1e-3.
+- **A consequence of the nonnegative exponent.** A K_eff that peaks inside ε ≤ 4 and then falls (γ_T(2 → 4) < 0) reads
+  C, not A. Checked on analytic Φ before the freeze: Φ = −ε²/(1+ε²)^{1.2} gives γ_T = 3.76, 1.23, −0.56 and reading C;
+  Φ = −ε²/(1+ε²)^{0.8} gives 4.18, 2.62, 1.82 and reading A; Φ = −ε² gives 5, 5, 5 and reading B; a sign change gives B.
 
 **Recorded with every status:**
-- R(ε) and N(ε) = Φ/(C₂ε²) at the judged ε (null model R = N = 1);
-- |R − 1| against 0.05 (whether the second order still holds at ε = 4).
+- R(ε) and N(ε) = Φ/(C₂ε²) at the judged ε (null model R = N = 1).
+- **The separate null test |R(4) − 1| ≤ 0.05** (whether the second order still holds at ε = 4). It is reported as its
+  own PASSED / FAILED next to the reading and does not enter the status.
 
 **Level:** mechanism.
 

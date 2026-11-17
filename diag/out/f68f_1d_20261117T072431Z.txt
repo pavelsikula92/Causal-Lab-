@@ -1,0 +1,7 @@
+F6.8f-dev step 1d: needle volume at finite kappa and b (real medium) against the scaling-limit series, q = 0.125; development, decides nothing
+
+  eps 4 p 4 theta 1: kappa 20.00 (b 0.0100): 0.9131958678  kappa 40.00 (b 0.0025): 0.9160011367  kappa 80.00 (b 0.0006): 0.9167042904
+      series (scaling limit) 0.9169392429;  finite kappa - series: -3.743e-03  -9.381e-04  -2.350e-04;  extrapolated (b -> 0) - series: -4.046e-07
+  eps 4 p 2 theta 2: kappa 20.00 (b 0.0100): 0.9013894886  kappa 40.00 (b 0.0025): 0.9022861220  kappa 80.00 (b 0.0006): 0.9025103164
+      series (scaling limit) 0.9025852043;  finite kappa - series: -1.196e-03  -2.991e-04  -7.489e-05;  extrapolated (b -> 0) - series: -1.533e-07
+cost 46 s

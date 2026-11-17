@@ -832,3 +832,32 @@ Resolution reduced against the card: 4 directions (p panels 0:12:3, 12:24:1), 16
 - **What it suggests for the physics question, as an indication only.** Up to ε ≈ 3 the finite-amplitude optical age
   term strengthens the second-order growth instead of saturating it. Whether Φ turns over beyond the first caustic
   (ε > π²) is outside this instrument (F6.8g).
+
+## The freeze of K.18 and F6.8f (17 Nov, morning; the author's decision of 08:22)
+
+The author's decisions:
+1. The brute-force tolerance 1e-3 applies to the extrapolated limit κ → ∞, not to the raw finite b.
+2. Levels κ = 10, 20, 40√ε (b = 0.01, 0.0025, 0.000625).
+3. F6.8f: A at γ_T(2 → 4) ≤ 2.5, B at γ_T(2 → 4) ≥ 5 or a confirmed sign change of M. A also requires a nonnegative
+   exponent that decreases over the three intervals.
+4. C: a result for young / weak fields, without a decision on the static limit of an old field.
+5. R and N are recorded, with the separate test |R(4) − 1| ≤ 0.05.
+
+What changed before the freeze, and how it was checked:
+- **diag/f68f_1d.py:** `extrapolate` does the three-level Richardson (16R₂ − R₁)/15.
+  - Level 40√ε run for the first time at ε = 4, p = 2 and 4, q = 1/8 (diag/out/f68f_1d_20261117T072431Z.txt):
+    differences −3.74e-3, −9.38e-4, −2.35e-4 (p = 4) and −1.20e-3, −2.99e-4, −7.49e-5 (p = 2);
+  - ratios 3.99–4.00; extrapolated − series −4.0e-7 and −1.5e-7; about 35 s per volume.
+- **K.18:** brute part on three levels; both consecutive ratios checked. Quick run PASSED (ratios 3.997, 3.994,
+  extrapolated − series −1.5e-7).
+- **F6.8f:** readings in the order B, A, C, with the author's conditions.
+  - "Confirmed" sign change = R < −1e-3 with both t quadratures (G and G − 1).
+  - Separate null test reported, not in the status.
+  - Phase check made safe for Φ = 0 (found by the logic check below).
+  - Logic checked on analytic Φ (series replaced by a formula):
+    - −ε² → B (γ 5, 5, 5);
+    - −ε²/(1+ε²)^{0.8} → A (4.18, 2.62, 1.82);
+    - −ε²/(1+ε²)^{1.2} → C (3.76, 1.23, −0.56: a peak inside ε ≤ 4 reads C under the nonnegative exponent);
+    - −ε²/(1 + 0.3ε) → C;
+    - −ε² + 0.5ε³ and −ε² + 0.27ε³ → B (sign change).
+  - Quick run mechanically fine (INSTRUMENT_FAILED at quick resolution, as the checks should give).

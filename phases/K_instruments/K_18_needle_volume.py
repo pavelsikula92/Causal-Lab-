@@ -1,6 +1,7 @@
 """
-K.18 -- The needle volume of the optical sector at finite amplitude (scaling limit): calibration (DRAFT, NOT FROZEN)
-====================================================================================================================
+K.18 -- The needle volume of the optical sector at finite amplitude (scaling limit): calibration
+===============================================================================================
+Frozen 17 Nov 2026 by the author's decision of 08:22 (docs/author_decisions.md, decision 34).
 
 Why this test exists (16 Nov 2026; the author's order of 22:49, point 1)
 -----------------------------------------------------------------------
@@ -24,33 +25,34 @@ diag/f68f_1d.py, diag/f68f_layer.py, diag/f68f_common.py; derivations in docs/de
 Range: eps = 0.1, 0.25, 0.5, 1, 2, 4 (the author's grid; below the first caustic, one ray at every phase), p on the
 panels of F6.8e3 ([0, 24]), 128 phases theta_j = 2 pi j / 128, q = 1/2, 1/4, 1/8.
 
-Parts and criteria (the author's working criteria of 16 Nov 17:42 where given; [proposal] where added)
+Parts and criteria (the author's working criteria of 16 Nov 17:42 where given; [proposal, frozen 17 Nov] where added)
 --------------------------------------------------------------------------------------------------
   single   one ray x -> y at every phase of the range (the series needs it; the conjugate-point criterion
            |Delta eps_c| <= 0.01 of the author has no object below the first caustic): INSTRUMENT_FAILED otherwise.
   jacobi   delta_J = max over the range |A_0(N) - A_0(2N)| (N = 4000 RK steps) <= 1e-4, and the series A_0 against the
-           plane-wave A_0 of step 1b <= 1e-9 [proposal]: INSTRUMENT_FAILED otherwise.
+           plane-wave A_0 of step 1b <= 1e-9 [proposal, frozen 17 Nov]: INSTRUMENT_FAILED otherwise.
   series   the series against the exact needle at q = 1/2 and 1/4 on 12 phases (eps 1, 2, 4; p 0, 2, 4, 8; theta 0.7,
-           2.0, 4.0 cycling): |A_exact - A_series| <= 1e-6 [proposal; the exact needle is accurate to ~3e-7]; a phase
+           2.0, 4.0 cycling): |A_exact - A_series| <= 1e-6 [proposal, frozen 17 Nov; the exact needle is accurate to ~3e-7]; a phase
            where the exact needle's window search fails is reported and not counted: INSTRUMENT_FAILED if more than
            2 of 12 fail or the tolerance is exceeded.
   qconv    delta_A = |mean A(1/8) - mean A(1/4)| / max(1, ...) <= 1e-3 at every (eps, p) of the range (series; the
            pairwise distribution over the phases is reported): FAILED otherwise.
   e3       b -> 0 against the F6.8e3 instrument (an independent code): the F6.8e3 bulk density per direction at
            k = 0.12, n = 1536 against 4 mu_3 k^5 n^5 C2(p) / l2^4 from the series (C2 from eps 0.1, 0.2 by
-           Richardson): relative difference of the p-integrated density <= 5e-3 [proposal]: FAILED otherwise. Needs an
+           Richardson): relative difference of the p-integrated density <= 5e-3 [proposal, frozen 17 Nov]: FAILED otherwise. Needs an
            80-bit long double (Linux / WSL). Development (docs/derivations/f68f_dev.md, step 1c): +2.9e-3 at n = 384,
            -5.5e-4 at n = 1536; a part c / n^2 (+3.7e-3 at n = 384) and a remainder of about -8e-4 that does not
            vanish with n (k^2 or quadrature, not separated). n = 1536 keeps the 1/n^2 part at 2e-4.
-  brute    the author's criterion "agreement with brute force at moderate eps (2, 4) <= 1e-3" with the levels
-           kappa = 10 sqrt(eps), 20 sqrt(eps) (b = 0.01, 0.0025): the finite-kappa volume A_kappa (diag/f68f_1d.py) at
-           the 8 points of series_points with eps 2 and 4, q = 1/4, 1/8. The finite-kappa corrections are physical,
-           O(b) = O(1 / kappa^2), so the comparable configuration is the extrapolation A_ext = (4 A_20 - A_10) / 3:
-           |A_ext - A_series| <= 1e-3 [the author's number; the extrapolation is a proposal], and the O(1 / kappa^2)
-           form is checked: (A_10 - A_series) / (A_20 - A_series) in [3.5, 4.5] where |A_10 - A_series| > 1e-4
-           [proposal]: FAILED otherwise. The raw differences at both levels are reported. Development (step 1d): 10
-           points at eps 2, 4, q 1/8 - 1/2: |A_ext - A_series| <= 3.7e-6, ratios 3.97-4.07 above 1e-4, raw differences up to
-           3.7e-3 (kappa = 20, eps 4, p 4) and 9.4e-4 (kappa = 40).
+  brute    the author's criterion "agreement with brute force at moderate eps (2, 4) <= 1e-3", applied (author's
+           decision 17 Nov, 08:22) to the extrapolated limit kappa -> infinity, not to the raw finite b. Levels
+           kappa = 10, 20, 40 sqrt(eps) (b = 0.01, 0.0025, 0.000625): the finite-kappa volume A_kappa (diag/f68f_1d.py)
+           at the 8 points of series_points with eps 2 and 4, q = 1/4, 1/8. Extrapolation by Richardson in 1/kappa^2
+           over the three levels, A_ext = (16 R_2 - R_1) / 15 with R_1 = (4 A_20 - A_10) / 3, R_2 = (4 A_40 - A_20) / 3:
+           |A_ext - A_series| <= 1e-3; and the O(1 / kappa^2) form: each ratio of consecutive level differences
+           (A_10 - A_s) / (A_20 - A_s), (A_20 - A_s) / (A_40 - A_s) in [3.5, 4.5] where the numerator exceeds 1e-4:
+           FAILED otherwise. The raw differences at all levels are reported. Development (step 1d): 10 points at
+           eps 2, 4, q 1/8 - 1/2 with two levels: |A_ext - A_series| <= 3.7e-6, ratios 3.97-4.07 above 1e-4; two
+           points with three levels (eps 4, p 2 and 4, q 1/8): ratios 3.99-4.00, extrapolated - series 4.0e-7, 1.5e-7.
 
 Verdict: INSTRUMENT_FAILED if single, jacobi or series fails; PASSED if qconv, e3 and brute pass; FAILED otherwise.
 """
@@ -68,19 +70,20 @@ from core.testing import Result
 TEST = {
     "id": "K.18",
     "phase": "K",
-    "title": "Needle volume of the optical sector at finite amplitude (scaling limit): calibration (draft, not frozen)",
+    "title": "Needle volume of the optical sector at finite amplitude (scaling limit): calibration",
     "theory_part": "instrument of F6.8f: the interval volume of near-cone pairs at finite eps = b (kT)^2",
     "question": "Does the needle-volume instrument (plane wave, q^2 series to q^6, exact needle) give the interval volume "
                 "of the optical sector to the working accuracy in the range eps <= 4 that F6.8f uses?",
     "method": "first-arrival rays of the scaling limit (all rays, folds resolved); plane-wave volume from Jacobi fields; "
               "q^2 series from Taylor series of the first-arrival actions (order 8); exact needle by lower envelopes; "
               "eps 0.1-4, p on the F6.8e3 panels, 128 phases, q = 1/2, 1/4, 1/8; b -> 0 against F6.8e3 at n = 1536; "
-              "brute force at finite kappa = 10, 20 sqrt(eps) in the real medium at eps 2, 4",
+              "brute force at finite kappa = 10, 20, 40 sqrt(eps) in the real medium at eps 2, 4",
     "prediction": "the instrument returns the volume to the stated accuracy (calibration)",
     "criterion": "INSTRUMENT: one ray per phase; delta_J <= 1e-4 and series A_0 vs plane wave <= 1e-9; series vs exact "
                  "needle <= 1e-6 (at most 2 of 12 window failures). PASSED: delta_A(1/4 -> 1/8) <= 1e-3 at every point "
-                 "the b -> 0 density against F6.8e3 within 5e-3, and the finite-kappa brute force extrapolated in 1/kappa^2 "
-                 "within 1e-3 of the series (ratio of the level differences 3.5-4.5); FAILED otherwise.",
+                 "the b -> 0 density against F6.8e3 within 5e-3, and the finite-kappa brute force (kappa = 10, 20, 40 "
+                 "sqrt(eps)) extrapolated in 1/kappa^2 within 1e-3 of the series (ratios of the level differences "
+                 "3.5-4.5); FAILED otherwise.",
     "null_model": "none (calibration)",
     "level": "calibration",
     "meters": [],
@@ -91,13 +94,13 @@ TEST = {
                "series_points": [[1.0, 0.0, 0.7], [1.0, 2.0, 2.0], [1.0, 4.0, 4.0], [1.0, 8.0, 0.7], [2.0, 0.0, 2.0],
                                  [2.0, 2.0, 4.0], [2.0, 4.0, 0.7], [2.0, 8.0, 2.0], [4.0, 0.0, 4.0], [4.0, 2.0, 0.7],
                                  [4.0, 4.0, 2.0], [4.0, 8.0, 4.0]],
-               "brute_levels": [10.0, 20.0], "brute_qs": [0.25, 0.125], "tol_brute": 1e-3, "brute_ratio": [3.5, 4.5],
+               "brute_levels": [10.0, 20.0, 40.0], "brute_qs": [0.25, 0.125], "tol_brute": 1e-3, "brute_ratio": [3.5, 4.5],
                "brute_min_diff": 1e-4},
     "parts": {"main": {}},
     "quick": {"eps": [1.0, 4.0], "p_panels": [[0.0, 12.0, 2], [12.0, 24.0, 1]], "n_theta": 8,
               "series_points": [[4.0, 2.0, 2.0]], "e3_eps": [0.1, 0.2], "e3_n": 384.0, "brute_qs": [0.25]},
     "estimate": "~5-7 h with 2 processes (the series at 96 points of 128 phases, the plane-wave check, F6.8e3 at 16 "
-                "directions in 80-bit at n = 1536 ~1 h, the brute force 32 volumes ~15 min); needs an 80-bit long double "
+                "directions in 80-bit at n = 1536 ~1 h, the brute force 48 volumes ~25 min); needs an 80-bit long double "
                 "for part e3 (Linux / WSL)",
 }
 
@@ -144,7 +147,7 @@ def run(p, ctx):
     pn, wp = _p_nodes(p["p_panels"])
     pts = [(float(e), float(x)) for e in p["eps"] for x in pn]
     nt = int(p["n_theta"])
-    lines = [f"K.18 (draft): needle volume; eps {p['eps']}, {len(pn)} directions, {nt} phases"]
+    lines = [f"K.18: needle volume; eps {p['eps']}, {len(pn)} directions, {nt} phases"]
     ser = parallel_map(_series, [(e, x, nt) for e, x in pts], ctx.workers, ctx.progress,
                        lambda i, r, d, n: f"[K.18] series {d}/{n}")
     jac = parallel_map(_jacobi, [(e, x, nt) for e, x in pts], ctx.workers, ctx.progress,
@@ -215,27 +218,31 @@ def run(p, ctx):
         lines.append(f"  e3: p-integrated F6.8e3 bulk / series prediction - 1 = {rel:+.2e} (<= {p['tol_e3']:g})")
         for x, a, b in zip(pn, meas, pred):
             lines.append(f"     p {x:6.3f}: F6.8e3 {a:+.6e}  series {b:+.6e}  ratio {a / b:.6f}")
-    # brute force at finite kappa (the series points with eps 2 and 4)
+    # brute force at finite kappa (the series points with eps 2 and 4), levels kappa = 10, 20, 40 sqrt(eps)
+    from diag import f68f_1d as D
     bp = [(e, x, th) for (e, x, th) in sp if e in (2.0, 4.0)]
     levs = [float(v) for v in p["brute_levels"]]
+    nl = len(levs)
     bjobs = [(e, x, th, L * math.sqrt(e), float(q)) for (e, x, th) in bp for q in p["brute_qs"] for L in levs]
     bres = parallel_map(_brute, bjobs, ctx.workers, ctx.progress, lambda i, r, d, nn: f"[K.18] brute force {d}/{nn}")
-    ok_b, worst_b, rat_bad = True, 0.0, []
+    worst_b, rat_bad = 0.0, []
     brute_rows = []
-    for i in range(0, len(bjobs), 2):
+    for i in range(0, len(bjobs), nl):
         e, x, th, _, q = bjobs[i]
-        A10, A20 = bres[i], bres[i + 1]
+        Ak = list(bres[i:i + nl])
         s_ = S.series_coefficients(e, x, [th])["A"][0]
         ser_v = s_[0] + s_[1] * q ** 2 + s_[2] * q ** 4 + s_[3] * q ** 6
-        ext = (4 * A20 - A10) / 3
-        d10, d20 = A10 - ser_v, A20 - ser_v
-        ratio = d10 / d20 if d20 != 0 else float("inf")
-        worst_b = max(worst_b, abs(ext - ser_v))
-        if abs(d10) > p["brute_min_diff"] and not (p["brute_ratio"][0] <= ratio <= p["brute_ratio"][1]):
-            rat_bad.append((e, x, th, q, ratio))
-        brute_rows.append({"eps": e, "p": x, "theta": th, "q": q, "A10": A10, "A20": A20, "series": ser_v, "ext": ext})
-        lines.append(f"     brute eps {e:g} p {x:g} theta {th:g} q {q:g}: kappa-levels - series {d10:+.2e} {d20:+.2e} "
-                     f"(ratio {ratio:.3f}); extrapolated - series {ext - ser_v:+.2e}")
+        ext = D.extrapolate(levs, Ak)
+        d = [A - ser_v for A in Ak]
+        ratios = [d[j] / d[j + 1] if d[j + 1] != 0 else float("inf") for j in range(nl - 1)]
+        worst_b = max(worst_b, abs(ext - ser_v)) if math.isfinite(ext) else float("inf")
+        for j, r_ in enumerate(ratios):
+            if abs(d[j]) > p["brute_min_diff"] and not (p["brute_ratio"][0] <= r_ <= p["brute_ratio"][1]):
+                rat_bad.append((e, x, th, q, j, r_))
+        brute_rows.append({"eps": e, "p": x, "theta": th, "q": q, "levels": levs, "A": Ak, "series": ser_v, "ext": ext})
+        lines.append(f"     brute eps {e:g} p {x:g} theta {th:g} q {q:g}: kappa-levels - series "
+                     + " ".join(f"{v:+.2e}" for v in d) + " (ratios " + " ".join(f"{r_:.3f}" for r_ in ratios)
+                     + f"); extrapolated - series {ext - ser_v:+.2e}")
     ok_b = worst_b <= p["tol_brute"] and not rat_bad
     lines.append(f"  brute: largest |A_ext - A_series| {worst_b:.2e} (<= {p['tol_brute']:g}); ratios outside "
                  f"{p['brute_ratio']}: {len(rat_bad)}")
