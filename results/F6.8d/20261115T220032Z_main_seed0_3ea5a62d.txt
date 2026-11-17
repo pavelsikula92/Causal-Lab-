@@ -1,0 +1,18 @@
+3+1, eps rho = 1 (l_k = 1); mixed (omega x nu) bulk pair density of F6.8b2 with long-double first-order pieces; p = k r cos(n, k)
+  I0 long double eps 1.08e-19 (need <= 1e-18)
+  I1 long-double pieces vs F6.8b2: L 2 CO 0.4: rel 7.2e-16; L 20 CO 0: rel 9.3e-14; L 20 CO 0.3: rel 2.8e-14 (tol 1e-09)
+  I2 k 0.15 n 96: I_ab(r, 0) level 1 -5.690162e-04, level 2 -5.690178e-04 (rel 2.9e-06, tol 0.001)
+  I2 k 0.15 n 3072: I_ab(r, 0) level 1 -1.848352e+01, level 2 -1.845166e+01 (rel 1.7e-03, tol 0.001)
+  I3 conformal c_T at k 0.15, n 3072: 0.1022 (F6.8a 0.1035; rel 1.3e-02, tol 0.03)
+  I4 tail k 0.15 n 3072: |I(24)| / |I(0)| = 1.1e-04 (tol 0.001)
+  I5 n 192: R = I_ab(k 0.15) / I_ab(k 0.25) = 7.804191e-02; reported: (k ratio)^5 7.776000e-02 (rel 3.6e-03)
+  I5 n 1536: R = I_ab(k 0.15) / I_ab(k 0.25) = 7.811742e-02; reported: (k ratio)^5 7.776000e-02 (rel 4.6e-03)
+  I5 the kT-shape independent of k: |R(n_a) / R(n_b) - 1| = 9.7e-04 (tol 0.001)
+  k      n      r          rho_ab          F'_ab(n) = -a4 rho_ab / (2 k^5)   slope ratio mixed/conf   alpha_ab
+  0.15   96     640        -3.776691e-04   +4.060781e+00                      +39.7855                   
+  0.15   192    1280       -1.485897e-03   +1.597669e+01                      +157.1964                   2.9761 (conformal 0.9939, difference 1.9823)
+  0.15   384    2560       -5.920659e-03   +6.366022e+01                      +626.9159                   2.9944 (conformal 0.9987, difference 1.9957)
+  0.15   768    5120       -2.365836e-02   +2.543799e+02                      +2505.7478                   2.9985 (conformal 0.9996, difference 1.9989)
+  0.15   1536   10240      -9.463338e-02   +1.017519e+03                      +10022.1862                   3.0000 (conformal 1.0001, difference 1.9999)
+  0.15   3072   20480      -3.824687e-01   +4.112387e+03                      +40248.9951                   3.0149 (conformal 1.0092, difference 2.0058)
+  reported k 0.15: c3 = F'_ab(n) / (3 n^2) at n 3072 = 1.4525e-04

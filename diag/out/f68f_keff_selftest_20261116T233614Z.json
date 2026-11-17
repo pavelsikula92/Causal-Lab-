@@ -1,0 +1,21 @@
+{
+ "script": "f68f_keff_selftest",
+ "time_utc": "20261116T233614Z",
+ "duration_s": 0.0,
+ "args": {
+  "ends": "0.5,3",
+  "g": 4,
+  "n_theta": 16,
+  "p_panels": "0:12:3,12:24:1",
+  "c2": "0.1,0.2",
+  "no_checks": false,
+  "selftest": true,
+  "workers": 0
+ },
+ "code_md5": {
+  "diag/f68f_keff.py": "17b8452e729f431ff2c6973976b9ec98",
+  "diag/f68f_1c.py": "a13c26cc6c497bc33eea6fae903eae1c",
+  "diag/f68f_1b.py": "516c661d1ec0d67093fbca16b9b9d8d7"
+ },
+ "data": {}
+}

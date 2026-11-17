@@ -1,0 +1,10 @@
+F6.8f-dev step 1b at finite q = k sigma, b -> 0: mean over the phases of A(q) (expansion to O(q^2) per needle, every ray within q^2/2 of the minimum action included); development, decides nothing
+
+delta_A = |A(1/8) - A(1/4)| / max(1, |A(1/8)|, |A(1/4)|) (criterion 1e-3); pair = largest |A_j(1/8) - A_j(1/4)| over phases; extra = needles of other rays included at q = 1/2, 1/4, 1/8; saddle = rays within q^2/2 with K <= 0 somewhere (not integrated); corr = largest relative q^2 correction at q = 1/4 (the expansion is not valid where it exceeds ~0.1)
+
+p = 2
+     eps     A_PW        A(1/2)      A(1/4)      A(1/8)      delta_A    pair       extra     saddle  corr
+    4.00  0.9932385  0.9932463  0.9932405  0.9932390  1.5e-06    9.9e-05    0/0/0       0     1.7e-04
+   12.00  0.8986781  0.9005926  0.8991567  0.8987977  3.6e-04    1.8e-02    0/0/0       0     1.5e-02
+
+cost 27 s

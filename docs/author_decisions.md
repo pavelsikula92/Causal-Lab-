@@ -697,3 +697,105 @@ as a property of the substrate with a card (option 1 of 18:3x).
 - **Criteria**: the form of decision 28 (significance tests against predictions computed by frozen code; one sign
   criterion).
 - **Run**: ρ 30 and 60, 8 pairs each, base seed 0 decides.
+
+## 30. Card F6.8e is frozen; the run is made by Claude in its own workspace (15 Nov, 10:23)
+
+**The author's instruction (15 Nov, 10:23):** "WSL neznám, spusť ho u sebe." ("I don't know WSL, run it on your side.")
+Given after the card draft and the test were delivered (10:2x) with the note that the test needs an 80-bit long double,
+which numpy on Windows does not have.
+
+**What led here.** The author's order of work (08:30): B (F6.8e, F6.8d), then C, then A, then D. docs/findings.md, "F6.8e
+development": the optical sector of F6.8c is not stable beyond r ~ 100 for a known reason; a stable instrument shows the
+bulk density growing as r⁵, i.e. an optical age term ∝ (kT)⁵.
+
+**Frozen.** Card docs/F6_8e_card_draft.md.
+- **Test F6.8e**: phases/F6_order_dynamics/F6_08e_bd_action_optical_asymptotic.py, md5 4314e2193b0eb0f8fabb989c19529f82
+  (LF), with the frozen helpers of F6.8a, F6.8b2 and F6.8c that it imports.
+- **Criteria**: as in the card, section 5; the judged pair n 1 536 → 3 072 was not computed in the development.
+- **Run**: full run, deterministic (no seed), in Claude's Linux workspace (Python 3.13, numpy 2.5.3, long double eps
+  1.1e-19); the output is copied into results/F6.8e unchanged.
+
+- **Revision 1 (15 Nov, 13:2x), the author's choice "Revize před během":** the first full run in Claude's workspace was
+  stopped at 175 of 277 tasks by the workspace's two-hour limit per process; nothing of it was printed or saved. Before
+  any result, the profile is computed at one wavenumber (k = 0.15; k = 0.25 only in the scaling check I5) with 10 + 6
+  nodes in p. Status on α (n 1 536 → 3 072) at k = 0.15. Test md5 9178baf0348e46dd8b74fe758cc9edde (LF); card section 7.
+
+## 31. F6.8e2 and F6.8d are frozen; both run by Claude in its workspace (15 Nov, 21:2x)
+
+**The author's choice (15 Nov, 21:2x):** "Zmrazit a pustit obě" ("freeze and run both"), after the instruction of 21:14
+("ano") to prepare the revision of F6.8e and to fix I5 in F6.8d.
+
+**What led here.** F6.8e ended INSTRUMENT_FAILED on I5 (the k⁵ normalisation; docs/findings.md). F6.8d was
+reformulated by the author's choice of 13:0x and his remarks of 14:19 (an action density, not a pair count; the
+conformal-difference control; Δ diagnostic only; separation of the data).
+
+**Frozen.**
+- **F6.8e2**: card docs/F6_8e2_card_draft.md; test phases/F6_order_dynamics/F6_08e2_bd_action_optical_asymptotic_rev.py,
+  md5 507378756bb4692d5270b2a10ef08b79 (LF). Judged: α at k = 0.1, n 3 072 → 6 144. The F6.8e record of α (seen) is
+  not a confirmation.
+- **F6.8d**: card docs/F6_8d_card_draft.md; test phases/F6_order_dynamics/F6_08d_bd_action_mixed_age.py, md5
+  9442f6b3b1482afd9422a93f1e1efe13 (LF). Judged: α_ab and α_ab − α_c at k = 0.15, n 1 536 → 3 072. Its form of I5 was
+  taken over from F6.8e2 after the F6.8e result was known; no number of F6.8d changed because of the F6.8e exponent.
+- **Run**: deterministic, in Claude's Linux workspace (long double), F6.8e2 first; outputs copied into results unchanged.
+
+## 32. F6.8e3, the second revision of F6.8e, is frozen and run by Claude (15 Nov, 22:4x)
+
+**The author's instruction (15 Nov, 22:38):** "dobrá ale test by se měl opravit a spustit poté znovu" ("fine, but the
+test should be fixed and then run again"), after F6.8e2 ended INSTRUMENT_FAILED on I3, I5 and I2.
+
+**Frozen.** Card docs/F6_8e3_card_draft.md; test phases/F6_order_dynamics/F6_08e3_bd_action_optical_asymptotic_rev2.py,
+md5 b25a87203b72285904e2fe8f25424965 (LF). The instrument checks are stated
+in the exponent (levels and the two wavenumbers within 0.01 at the judged pair); the conformal control at n = 384;
+k = 0.13 and 0.21; judged α at k = 0.13, n 3 072 → 6 144. The exponent is not blind (F6.8e, F6.8e2 recorded 5.000).
+
+**Run**: deterministic, in Claude's Linux workspace, after F6.8d; output copied into results unchanged.
+
+
+## 33. F6.8d is not closed as a physical failure (15 Nov, 23:03)
+
+**The author's decision:** F6.8d is not closed as a physical failure. The verdict INSTRUMENT_FAILED stays unchanged.
+I2 failed on numerical precision at the largest age (two quadrature levels 1.7e-3 against 1e-3 at n = 3 072), not on
+the physical hypothesis. The exponents stay undecided. The values up to n = 1 536 (α_ab 3.0000, α_ab − α_c 1.9999) are
+supporting development data, not a substitute for the deciding check.
+
+## 34. K.18 and F6.8f are frozen (17 Nov, 08:22)
+
+**The author's decision (17 Nov, 08:22):**
+1. Brute force: the tolerance 1e-3 applies to the extrapolated limit kappa -> infinity, not to the raw finite b.
+2. The extrapolation uses kappa = 10, 20, 40 sqrt(eps), i.e. b = 0.01, 0.0025, 0.000625.
+3. F6.8f: A at gamma_T(2 -> 4) <= 2.5, B at gamma_T(2 -> 4) >= 5 or a confirmed sign change of M. A also requires a
+   nonnegative exponent that decreases over the three intervals.
+4. C: a result for young / weak fields, without a decision on the static limit of an old field.
+5. R and N are recorded, with the separate test |R(4) - 1| <= 0.05.
+Then: "Poté zmraž karty" ("then freeze the cards").
+
+**What led here.** The order of 16 Nov 22:49 (K calibration, K_eff assembly, card F6.8f); docs/derivations/f68f_dev.md,
+steps 1b-2. The F6.8f criteria were proposed on 16 Nov 23:40 UTC, before any K_eff development row was seen. The
+author decided them after the development rows (R(0.5) = 1.014, R(3) = 1.69 at reduced resolution) had been reported.
+
+**Operational forms written by Claude.** "Confirmed sign change": R < -1e-3 with both t quadratures (G and G - 1). The
+separate null test is reported next to the reading and does not enter the status. Under the nonnegative exponent a
+K_eff that peaks inside eps <= 4 and then falls reads C.
+
+**Frozen.** md5 with LF line endings.
+- **Card K.18:** docs/K18_card_draft.md 60a3fd338f9424171fc0920fbf54b7ab.
+- **Test K.18:** phases/K_instruments/K_18_needle_volume.py cb76f2c286753db1934bbfd6ef1ad10d.
+- **Card F6.8f:** docs/F6_8f_card_draft.md 3ca658995cd056ca1e0320d8318f2e8d.
+- **Test F6.8f:** phases/F6_order_dynamics/F6_08f_bd_action_optical_finite_amplitude.py
+  60a229d79b94882a185efa1dde22bb75.
+- **Helpers:**
+  - diag/f68f_1b.py 516c661d1ec0d67093fbca16b9b9d8d7
+  - diag/f68f_1c.py a13c26cc6c497bc33eea6fae903eae1c
+  - diag/f68f_1b_exact.py 691e97f189ca2c44b4172962c502b700
+  - diag/f68f_1d.py 8d23537b1010d0e32b14dc4444e551a8
+  - diag/f68f_layer.py 13611e43d9d51bd98c3ea50817d3e82b
+  - diag/f68f_keff.py 17b8452e729f431ff2c6973976b9ec98
+  - diag/f68f_common.py ed25abf95e9a56ac197ca3c6c9c3417a
+  - and the frozen tests F6.8e3, F6.8a, F6.8b2 they import.
+- **Quick runs (mechanics only):** K.18 PASSED; F6.8f INSTRUMENT_FAILED at quick resolution (8 phases), as its
+  checks should give.
+
+**Run:**
+- K.18 first. Part e3 needs an 80-bit long double, so it runs under WSL.
+- F6.8f after K.18 has PASSED.
+- Full runs decide; base seed 0 (deterministic).

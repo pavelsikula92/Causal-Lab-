@@ -1,0 +1,27 @@
+{
+ "script": "f68f_layer",
+ "time_utc": "20261116T214436Z",
+ "duration_s": 49.7,
+ "args": {
+  "k": 0.12,
+  "ns": "24",
+  "n_s": "16",
+  "p_panels": "auto",
+  "p_list": "0.5",
+  "bulk_only": true,
+  "workers": 1
+ },
+ "code_md5": {
+  "diag/f68f_layer.py": "13611e43d9d51bd98c3ea50817d3e82b"
+ },
+ "data": [
+  {
+   "n": 24.0,
+   "p": 0.5,
+   "n_s": 16,
+   "bulk": -6.090425813454203e-06,
+   "layer": null,
+   "n_nodes": 160
+  }
+ ]
+}

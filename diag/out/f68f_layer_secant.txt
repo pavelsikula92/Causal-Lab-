@@ -1,0 +1,9 @@
+F6.8f-dev step 0': the layer of the age cut at second order (flat cut), k = 0.12; slope = -a4 rho / k^5 (units of k^2 per unit n); development, decides nothing
+
+  n      bulk (r = T, F6.8e3)   exact with layer      layer / bulk      (layer/bulk) * n^2
+     16  +4.590385e-01        +6.641363e-01      +4.468e-01       +1.144e+02
+     20  +7.079119e-01        +9.855756e-01      +3.922e-01       +1.569e+02
+     24  +1.109022e+00        +1.489463e+00      +3.430e-01       +1.976e+02
+
+  F6.8c2 full rows (bulk + layer + explicit boundary), k = 0.12, n 16 -> 24: 1.244; F6.8e3 reported bulk at n = 24: 1.109
+  cost 3191 s, 2 processes

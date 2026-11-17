@@ -1,0 +1,22 @@
+check of the q^2 series against the exact needle and the O(q^2) expansion (single phases)
+
+eps 4.0 p 2.0 theta 2.0: A0 0.902580215023 (step 1b 0.902580215023); A1 +3.1931532305e-04 (O(q^2) expansion +3.1931531239e-04); A2 -4.212787e-08; A3 -1.347940e-09; max linear term 2.7e-10
+    q 0.500: exact 0.9026600251  series 0.9026600412  difference -1.61e-08  (q^8 = 3.9e-03)
+    q 0.250: exact 0.9026001118  series 0.9026001721  difference -6.03e-08  (q^8 = 1.5e-05)
+    q 0.125: exact 0.9025848894  series 0.9025852043  difference -3.15e-07  (q^8 = 6.0e-08)
+  exact needle failed at eps 4.0 p 0.0 theta 0.7: window
+eps 4.0 p 0.0 theta 0.7: A0 1.074928393563 (step 1b 1.074928393562); A1 +2.1637383898e-04 (O(q^2) expansion +2.1637389486e-04); A2 -1.267673e-05; A3 +8.649796e-08; max linear term 2.0e-11
+    q 0.500: exact nan  series 1.0749816961  difference +nan  (q^8 = 3.9e-03)
+    q 0.250: exact nan  series 1.0749418674  difference +nan  (q^8 = 1.5e-05)
+    q 0.125: exact nan  series 1.0749317713  difference +nan  (q^8 = 6.0e-08)
+  exact needle failed at eps 2.0 p 1.0 theta 4.0: window
+eps 2.0 p 1.0 theta 4.0: A0 0.975684711051 (step 1b 0.975684711052); A1 +1.8838017501e-04 (O(q^2) expansion +1.8838013293e-04); A2 -8.359745e-07; A3 +1.816930e-10; max linear term 1.7e-11
+    q 0.500: exact nan  series 0.9757317538  difference +nan  (q^8 = 3.9e-03)
+    q 0.250: exact nan  series 0.9756964815  difference +nan  (q^8 = 1.5e-05)
+    q 0.125: exact nan  series 0.9756876543  difference +nan  (q^8 = 6.0e-08)
+  exact needle failed at eps 1.0 p 4.0 theta 1.0: window
+eps 1.0 p 4.0 theta 1.0: A0 0.976515041352 (step 1b 0.976515041352); A1 +1.2324726106e-04 (O(q^2) expansion +1.2324726325e-04); A2 -3.009585e-07; A3 +2.765808e-11; max linear term 1.1e-11
+    q 0.500: exact nan  series 0.9765458344  difference +nan  (q^8 = 3.9e-03)
+    q 0.250: exact nan  series 0.9765227431  difference +nan  (q^8 = 1.5e-05)
+    q 0.125: exact nan  series 0.9765169670  difference +nan  (q^8 = 6.0e-08)
+cost 63 s

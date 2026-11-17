@@ -47,7 +47,8 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 - **F5.2c (B2, 2+1, a prescribed curved order of the theory, intrinsic instrument): the order moves walls of a field as
   the continuum metric does: the kink stays (its tension cancels its weight; D_K -0.040 +- 0.022 against -0.44 for a
   test particle), the breather wall falls as the continuum (r_B 1.035 +- 0.041) and a launched kink follows the curved
-  cones (slope - 0.3 = +0.0091 +- 0.0030, continuum +0.013) (seed 0 PASSED; replication pending)** (mechanism, 2+1,
+  cones (slope - 0.3 = +0.0091 +- 0.0030, continuum +0.013) (seed 0 PASSED; replication seed 1 INSTRUMENT_FAILED on
+  the flat control)** (mechanism, 2+1,
   exact sprinkling of -Pi^2 dt^2 + Pi^-2 (dx^2 + dy^2), Pi^2 = (x + 24)/24, rho 30, T 8, 32 sprinklings x 3 arms, the
   flat control on 8; card docs/B2_card_draft.md rev. 2, decision 22; run by the author 12-13 Nov unchanged, 13818 s;
   results/F5.2c/20261112T233449Z_all_seed0_817e17b7.json).
@@ -67,11 +68,24 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   along the narrower and wider cones. Open, not resolved: D_K -0.040 is 1.8 SE from 0 (9 % of a test particle's fall);
   the cones effect is measured at 0.009 against 0.013 (dv_L -0.004, 1.3 SE). Limits: one profile and one density; an
   exact sprinkling of a chosen metric, not an order produced by matter (B3); walls only (B4); seed 0 only.
+  - **Replication, seed 1 (16 Nov, by the author, unchanged test (hash 817e17b7), 16 164 s;
+    results/F5.2c/20261116T011234Z_all_seed1_817e17b7.json): INSTRUMENT_FAILED** on the flat control: the breather on
+    the flat order D_0 -0.152 +- 0.091 (in units of the curved fall), |D_0| + 2 SE 0.335 against 0.25 (seed 0:
+    +0.075 +- 0.059, 0.19). The other instrument items OK: links identical to the brute-force reduction (curved 1 143 /
+    11 190, flat 992 / 9 035); I4 5.4e-16 / 0; density -0.0002 +- 0.0006; kink at rest Q - Q_ex -0.0001 +- 0.0001,
+    w/w_ex - 1 +0.0125 +- 0.0012.
+  - **Recorded, not a verdict (R132):** D_K -0.007 +- 0.021 (|x| + 2 SE 0.050 / 0.10); dv_L +0.0038 +- 0.0035
+    (0.011 / 0.02); slope - 0.3 = +0.0169 +- 0.0035 (continuum +0.013); r_B 0.943 +- 0.039 (|r_B - 1| + 2 SE 0.135 /
+    0.15); the energy centroid r 1.010 +- 0.081. The script lists all physics conditions as met.
+  - The control that failed runs on 8 sprinklings (the curved arms on 32); its SE is 0.091 against 0.059 at seed 0, and
+    D_0 is 1.7 SE from 0. The seed-0 verdict PASSED stands (R132); the replication does not confirm it, because its
+    instrument did not hold. How to close it (for example a revision of the flat control with more sprinklings, under a
+    new ID) is the author's decision.
 
 - **F3.15 (B1, 2+1, intrinsic instrument, variant B): a domain wall of a field on all events of a 2+1 causal order,
   evolved by the Green weight read from the order alone (the longest chain), keeps its identity at rest, keeps its
   velocity and Lorentz contraction when launched, and its inertial mass from a kick equals its rest energy per unit
-  length: r_M = 0.9779 +- 0.0117 (seed 0 PASSED; replication pending)** (mechanism, 2+1, rho 30, T 8, 32 sprinklings
+  length: r_M = 0.9779 +- 0.0117 (seed 0 PASSED; replication seed 1 PASSED, r_M 0.9523 +- 0.0105)** (mechanism, 2+1, rho 30, T 8, 32 sprinklings
   x 4 arms, controls on 8, I3 at rho 60 with 8; card docs/B1_card_draft.md rev. 2, decision 21; run by the author
   12 Nov unchanged, 6 workers, 14930 s; results/F3.15/20261112T155654Z_all_seed0_47794a19.json).
   - **Instrument (all OK):**
@@ -92,6 +106,22 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     - kick: Delta(gamma v) 0.0786 +- 0.0010 against the continuum 0.0785; **r_M 0.9779 +- 0.0117 (0.046 / 0.10)**;
     - blind control separated: L 0.569 against 1.013, D_L +0.444 +- 0.034 (D_L - 2 SE 0.375 > 0.2).
   - **Reported:** plain E/8 - 1 +0.079 (the noise-debiased readout removes it); gamma v after the kick 0.074 +- 0.007.
+  - **Replication, seed 1 (15 Nov, by the author, unchanged test, 6 workers, 29 738 s;
+    results/F3.15/20261115T163024Z_all_seed1_47794a19.json): PASSED.**
+    - Instrument all OK: I4 1.6e-15 / 4.9e-16 / 0; I1 lambda_eff +0.0092 +- 0.0024; I2 +0.0056, +0.0066, +0.0035,
+      +0.0021; I3 at rho 60 w/w_ex - 1 +0.0105 +- 0.0023, eps 0.0218 (rho 30) -> 0.0150 (rho 60); rest Q -0.0002,
+      drift -0.041 +- 0.018, w/w_ex - 1 +0.0144 +- 0.0010, (E - E_ex)/8 +0.0141 +- 0.0022 (M_rest 8.124); telegraph
+      p_Gamma 0.007 / 0.022 against p_cons 0.315 (v 0.3), 0.010 / 0.023 against 0.081 (kick); V = 0: L 0.039 against
+      1.005.
+    - v 0.3: velocity -0.0000 +- 0.0032, C - 1 +0.0009 +- 0.0020, w/w_ex - 1 +0.0153 +- 0.0019, e_B +0.0124 +- 0.0022;
+      v 0.6: velocity +0.0007 +- 0.0020, C - 1 -0.0043 +- 0.0026, w/w_ex - 1 +0.0100 +- 0.0026, e_B +0.0030 +- 0.0035;
+      Q within 2e-4.
+    - Kick: Delta(gamma v) 0.0809 +- 0.0009 against the continuum 0.0785; **r_M 0.9523 +- 0.0105**; blind control
+      separated (L 0.555, D_L +0.450 +- 0.017).
+    - Reported: plain E/8 - 1 +0.077; gamma v after the kick 0.075 +- 0.005.
+    - Note: r_M is lower than seed 0 (0.9779 +- 0.0117; difference -0.026 +- 0.016, 1.6 SE) and 4.5 SE below 1; both runs
+      are inside the tolerance (|r_M - 1| + 2 SE = 0.069 against 0.10). The kick of seed 1 is 3 % above the continuum
+      (seed 0: 0.1 %).
 
   Reading (declared in the card). In 2+1, with the retarded weight taken from the order alone (no coordinates, no
   continuum Green function), a field wall behaves as an inertial body: it keeps its velocity, contracts by gamma, carries
@@ -530,6 +560,29 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   of GR put in. The prediction of the age term (the far-field law, the window of ℓ_k) now depends on the asymptotics of
   the optical sector for kT → ∞ (F6.8e, analytically like c_T).
 
+
+- **F6.8e3: the age term of the optical (ν²) sector of the expected BD action grows as (kT)⁵, not linearly: α = 4.9999
+  between n = kT = 3 072 and 6 144** (chain, 3+1, PASSED 15 Nov; second revision of F6.8e, card
+  docs/F6_8e3_card_draft.md, decision 32; run by Claude in its Linux workspace, 4 452 s;
+  results/F6.8e3/20261115T231453Z_main_seed0_6a4f9826.json).
+  - **Instruments OK:** I0 long double (eps 1.08e-19); I1 stable V''/V0 against F6.8c ≤ 1.7e-12; I2 α₀ at two
+    quadrature levels at the judged pair 4.99994 / 5.00015 (2.1e-4, tol 0.01); I3 conformal c_T = 0.1016 at n = 384
+    (1.9 % from 0.1035); I4 tail 7.8e-6; I5 α₀ at k = 0.13 and 0.21 equal to 7.4e-6.
+  - **The exponent** at k = 0.13 (bulk density ρ_bb, full p-profile): α = 4.9841, 4.9960, 4.9990, 4.9997, 4.9999 for
+    n = 192 → 384 → … → 6 144 (predicted 5).
+  - **Reported:** c5 = 3.05e-7 (F6.8e 3.05e-7, F6.8e2 3.06e-7); the optical stiffness K̂_bb changes sign near n* ≈ 45
+    (T ≈ 350 ℓ_k at k = 0.13, the local part neglected); the ratio I(0.13)/I(0.21) differs from (k₁/k₂)⁵ by 0.05 %;
+    at the development wavenumber k = 0.12, n = 24 the age slope is 1.109 k² per unit n (F6.8c2 full rows 1.244; the
+    development of F6.8e gave 1.19). The conformal density on the same nodes is constant to n = 768 and drifts by ≤ 4 %
+    beyond (double-precision path, as in F6.8e2); it enters no criterion at those n.
+  - **Not blind:** F6.8e and F6.8e2 had recorded α = 5.000 before this card was frozen (decision 32).
+
+  Reading (declared in the card of F6.8e, section 6): the b² coefficient of the expected BD action in the optical
+  sector grows with the age of a static field as T⁵. The static quadratic form of the order has no limit for old fields
+  in this sector; the age term of P2 in its conformal form does not describe it, and γ(k, T) and Φ(k, T) of the
+  propagator are dominated by it beyond n*. Limits: second order in b only (the expansion fails near b²(kT)⁴ ~ 1);
+  the bulk of the past only (the layer and boundary terms of the age cut are not computed at large n); one field shape
+  (a phase-averaged plane wave), static.
 - **F6.8b2: the mixed coefficient also arises by itself: c_mix = 7.983 (EH 8); in the local part the mixed sector
   stands in the covariant ratio to the conformal one, beyond the leading order the sectors differ** (chain, 3+1,
   deterministic expectation value, PASSED 28–29 Oct; ερ = 1, ℓ_k = 1; revision of F6.8b, whose instruments failed).
@@ -945,8 +998,9 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   28).** Seed 0 (by the author): UNDECIDED. Instrument: all 110 items within t_crit (largest z 3.03 of 5.29). Not
   passed: the residual against B at A 1, ρ 30 (M 0.0433 against 0.04; the last slab t 5.25, d −0.028 ± 0.008).
   Passed: the other 18 tolerance criteria and all 14 sign criteria. No FAILED condition.
-  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs: the original entry was
-  overwritten by mistake when the container copy of this file was written into the author's folder.)
+  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs. Claude overwrote the
+  author's uncommitted findings.md on 14 Nov about 22:04 with its own older copy; the original wording of this entry
+  is lost, the numbers and the verdict are taken from the sources named.)
 
   **Replication, seed 1 (14 Nov 22:28, by the author; new sprinklings, the same criteria): PASSED.** Instrument: all 110
   items within t_crit (largest z 2.60, lin2 t 5.25 ρ 30, of 5.29). All 19 tolerance criteria passed, B_1_30 now
@@ -962,12 +1016,20 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   docs/C1_card.md, decision 29): PASSED.** P1: every bin within t_crit of the exact mean (largest z 4.78 of 8.70;
   χ²/bin 1.10 / 0.55; the local conformally coupled model 38.2 / 33.9). P2: D − local +0.151 ± 0.010 at ρ 30
   (predicted +0.141) and +0.159 ± 0.012 at ρ 60 (+0.148). Instrument (flat parents): largest z 2.70 of 6.18.
-  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs: the original entry was
-  overwritten by mistake when the container copy of this file was written into the author's folder.)
+  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs. Claude overwrote the
+  author's uncommitted findings.md on 14 Nov about 22:04 with its own older copy; the original wording of this entry
+  is lost, the numbers and the verdict are taken from the sources named.)
 
   Reading: on a curved order the order-only field follows its exact mean, a Green function weighted by the curved
   volume along each near-null pair, and departs as predicted from the local conformally coupled field with the same
   smearing.
+
+  **Replication, seed 1 (15 Nov, by the author, unchanged test; results/F5.3/20261115T204145Z_all_seed1_20971f3c.json,
+  1 129 s): PASSED.** Instrument (flat parents): largest z 2.22 of 6.18. P1: every bin within t_crit of the exact mean
+  (largest z 2.18 of 8.70; χ²/bin 0.59 / 0.39 at ρ 30 / 60; the local model 33.5 / 36.3). P2: D − local +0.148 ± 0.011
+  at ρ 30 (predicted +0.141) and +0.165 ± 0.012 at ρ 60 (+0.148); D − exact +0.006 ± 0.011 and +0.017 ± 0.012. The test
+  hash of this run (20971f3c) differs from seed 0 (d80b9514) only by the CRLF line endings of the Windows checkout; the
+  LF-normalised file is the frozen one.
 
 ## Does not hold
 
@@ -1727,8 +1789,77 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   renormalisation falls at A 1 (+0.019 ± 0.012, the declared risk). Passed: linear and nonlinear against the continuum
   at ρ 60, convergence k 0–3, noise falls in every mode (8–17 %), p ≤ 1.15, the conditions of B (direct ≤ 0.012).
   Design errors of the card; the revision is F3.16b (statistical criteria, decision 28).
-  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs: the original entry was
-  overwritten by mistake when the container copy of this file was written into the author's folder.)
+  (Reconstructed on 14 Nov 22:40 from docs/planned_tests.csv, the cards and the run outputs. Claude overwrote the
+  author's uncommitted findings.md on 14 Nov about 22:04 with its own older copy; the original wording of this entry
+  is lost, the numbers and the verdict are taken from the sources named.)
+
+- **F6.8e, the asymptotic age term of the optical sector (15 Nov; card docs/F6_8e_card_draft.md, decision 30 and its
+  revision 1; run by Claude in its Linux workspace, results/F6.8e/20261115T134513Z): INSTRUMENT_FAILED** on I5, the
+  k⁵ scaling between k = 0.15 and 0.25: the ratio of the densities is 7.793e-2 against (0.15/0.25)⁵ = 7.776e-2, a
+  relative difference of 2.2e-3 and 2.3e-3 at n = 192 and 1 536 against the tolerance 1e-3. The tolerance was set from
+  the development pair k = 0.12 / 0.2 (8e-4); the difference is a small correction to the form k² F(kT) that grows with
+  k, not noise (stable between n and between levels). All other instrument items passed: I1 the stable V'' against
+  F6.8c 2e-12; I2 levels 1.2e-5 and 2.2e-5; I3 conformal c_T 0.1022 (0.1035); I4 tail 7.8e-6.
+
+  Recorded, not a verdict (R132): α = 4.937, 4.984, 4.996, 4.999, 5.000 between n = 96 … 3 072 (k = 0.15), predicted
+  5; c5 = 3.05e-7; the optical stiffness changes sign near n* ≈ 43. The conformal density on the same rows is constant
+  (the linear age term). The development row k = 0.12, n = 24 gives an age slope of 1.109 k² per unit n against 1.244
+  from the full rows of F6.8c2.
+
+  Reading: the instrument item that failed checks the form k² F(kT), not the exponent; the design fault is the
+  tolerance of I5. The exponent of the bulk optical age term is not decided by this run. A revision (another I5 form
+  or tolerance, judged on rows not computed here) is the author's decision.
+
+- **F6.8e2, revision of F6.8e (15 Nov; card docs/F6_8e2_card_draft.md, decision 31; run by Claude in its Linux
+  workspace, results/F6.8e2/20261115T213651Z): INSTRUMENT_FAILED** on three items, all design faults of the card:
+  - I3, the conformal control at the largest age (k = 0.1, n = 6 144, r = 61 440): c_T = 0.0611 against 0.1035. The
+    conformal density on the same rows is constant to n = 1 536 (−1.169e-7, −1.168e-7, −1.170e-7, −1.156e-7) and then
+    departs (−1.255e-7 at n = 3 072, −7.01e-8 at n = 6 144). The conformal path is computed in double precision and
+    loses its digits at r ≳ 3e4; the check was placed where its own instrument does not reach.
+  - I5, the k1/k2 ratio at two ages: 1.7e-3 against 1e-3. The ratio R = I(0.1)/I(0.18) is 5.2349e-2 at n = 384 and
+    5.2260e-2 at n = 3 072; its deviation from (k1/k2)^5 is 1.1-1.3 % (at k 0.15 / 0.25 in F6.8e: 0.2 %).
+  - I2, levels at the smallest age (n = 192): 1.2e-3 against 1e-3 (6.3e-4 at n = 6 144).
+  Passed: I1 against F6.8c 2e-12; I4 tail 8.5e-6.
+
+  Recorded, not a verdict (R132): the optical density at k = 0.1 gives α = 4.984, 4.996, 4.999, 5.000, 5.000 between
+  n = 192 ... 6 144 (predicted 5); c5 = 3.06e-7 (F6.8e: 3.05e-7); the optical stiffness changes sign near n* ≈ 50.
+
+  Reading: two runs (F6.8e, F6.8e2) at three wavenumbers give the same exponent 5.000 of the optical bulk age term, but
+  neither is a verdict: both failed on instrument checks whose tolerances or ranges the card set wrongly. The exponent
+  itself was never the failing item. How to close F6.8e (a third revision, or a decision of the author on what the
+  record shows) is the author's decision.
+  Closed by the third revision F6.8e3 (decision 32): PASSED 15 Nov, α = 4.9999 at n 3 072 → 6 144 (Holds).
+
+- **F6.8d, the age term of the mixed sector (15 Nov; card docs/F6_8d_card_draft.md, decision 31; run by Claude in its
+  Linux workspace, results/F6.8d/20261115T220032Z): INSTRUMENT_FAILED** on I2:
+  - I2, two quadrature levels at p = 0: 2.9e-6 at the smallest age (k = 0.15, n = 96) but 1.7e-3 against 1e-3 at the
+    largest (n = 3 072, r = 20 480; −1.848352e+01 against −1.845166e+01). The check sits at the judged age, where the
+    instrument no longer holds three digits.
+  - Passed: I0 (long double, eps 1.08e-19); I1 against F6.8b2 ≤ 9.3e-14; I3 conformal c_T = 0.1022 at n = 3 072
+    (1.3 % from 0.1035); I4 tail 1.1e-4; I5 the kT-shape independent of k, 9.7e-4 against 1e-3 (the deviation of the
+    ratio from (k1/k2)^5 is 0.36 % at n = 192 and 0.46 % at n = 1 536, reported).
+
+  Recorded, not a verdict (R132), k = 0.15:
+
+  | n pair | 96→192 | 192→384 | 384→768 | 768→1 536 | 1 536→3 072 (judged) |
+  |---|---|---|---|---|---|
+  | α_ab (mixed) | 2.9761 | 2.9944 | 2.9985 | 3.0000 | 3.0149 |
+  | α_c (conformal, same nodes) | 0.9939 | 0.9987 | 0.9996 | 1.0001 | 1.0092 |
+  | α_ab − α_c | 1.9823 | 1.9957 | 1.9989 | 1.9999 | 2.0058 |
+
+  - c3 = F'_ab/(3n²) = 1.45e-4 at n = 3 072; the ratio of the mixed to the conformal age slope grows as n² (39.8 at
+    n = 96, 4.0e4 at n = 3 072).
+  - At the judged pair both exponents rise by 0.01-0.015 together, where the level check failed; at the pair before it
+    they are 3.0000 and 1.0001.
+
+  Reading: the item that failed is again a check placed at the largest age, where the instrument loses digits (as I3 of
+  F6.8e2). The exponent of the bulk mixed age term is not decided by this run. The record shows α_ab → 3 and
+  α_ab − α_c → 2 up to n = 1 536, in agreement with the prediction of the card, but the pair on which the card judged is
+  the one the instrument did not hold.
+
+  The author (decision 33, 23:03): not closed as a physical failure; the verdict stays; I2 failed on numerical
+  precision, not on the hypothesis; the exponents stay undecided, and the values up to n = 1 536 are supporting
+  development data, not a substitute for the deciding check.
 
 ## Discoveries
 
@@ -2196,9 +2327,13 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   outside), relation by the straight-ray delay. The exact mean holds for any relation that respects t; the volume of
   an interval is an exact 3D integral. ε = V/((π/24)τ_g⁴) − 1 per unit a: 0.00000 for every pair whose diamond lies
   in vacuum (tangential, radial, oblique, grazing; l 3–6, τ 0.15–1.5) and for the flat controls; +2.6 through the
-  centre of the ball (l 6), +2.3 at impact 0.75, +0.1 for a short pair inside. Consequence: to first order the
-  nonlocal weight of the instrument is tied to the Ricci curvature along the pair; Weyl curvature does not enter
-  (symmetry argument in the derivation). Not covered: second order, the bending of rays, the finite-ρ mean.
+  centre of the ball (l 6), +2.3 at impact 0.75, +0.1 for a short pair inside. For this source, to first order, the
+  departure of the weights from the proper-time kernel comes only from pairs whose diamond crosses the ball.
+  Correction 15 Nov: the symmetry argument first written here ("Weyl curvature does not enter") is wrong, a scalar
+  such as ∫ f E_ij x^i x^j over the diamond (E the electric part of the Weyl tensor) is not excluded. The zeros are a
+  numerical result for the pairs tested; why they vanish (possibly the harmonic g outside the ball) is not shown, and
+  that the nonlocality is tied to the Ricci curvature in general is not shown. Not covered: second order, the bending
+  of rays, the finite-ρ mean.
 
 ## Undecided (descriptive)
 
@@ -2840,6 +2975,11 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   that a discrete order built according to the principle (density = 1/c) has a geometry with γ = 1. Why the substrate
   conserves throughput it does not derive.
 
+- **C1 development, a plateau with walls: where the nonlocality lives (14 Nov; diag/c1_shape.py; decides nothing).**
+  The entry written on 14 Nov was lost when Claude overwrote the author's uncommitted findings.md (about 22:04). It is
+  not reconstructed: its wording and the numbers it cited are not available. The predictions can be regenerated with
+  python -m diag.c1_shape --predict (σ quadrature ns 30; ns 10 gave a false early onset).
+
 - **C1 development rows, the spherical well (14 Nov; diag/c1_sphere.py; decides nothing).** g = Ω(r)²η in 3D,
   Ω = 1 − 0.15 e^(−r²/(2·1.5²)), flat cones, 8 flat / curved pairs at ρ 60 (X 7, T 6, cut λ 100), the C0 rule
   unchanged. Predictions written before the run (diag/out/c1_sphere_pred_rho60.txt; the solver's flat case equals the
@@ -2854,23 +2994,91 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   is larger (up to 0.3–0.4 in the centre). Development only: one density, one shape, the criteria were not frozen.
   Predictions for ρ 30 are written (diag/out/c1_sphere_pred_rho30.txt), not yet run.
 
+- **C1b development rows, the theory metric with tilted cones (15 Nov; diag/c1b_tilt.py; decides nothing).**
+  g = −Π²dt² + Π⁻²dx², Π⁻² = 1 + 2a g, a uniform ball R 1.5 (first-order vacuum outside), a 0.05. The relation is the
+  travel time of the true (bent) ray: the straight-ray relation is not transitive at the scale of the intervals the
+  rule uses (violations up to 0.04), the bent-ray table keeps them below 6e-6. Density ρΠ⁻² by thinning; the C0 rule
+  unchanged; 8 flat / curved pairs at ρ 60 (X 7, T 6), seeds 81000+ / 91000+. Predictions written before the run
+  (diag/out/c1b_tilt_pred_rho60_a0.05.txt): D in the centre +0.13 (t 2) to −0.20 (t 5), present in the vacuum and
+  falling like the potential; exact − proper-time kernel at most 0.014 inside the ball and 0.002 in the vacuum. The
+  convergence check of the solver in finer quadratures did not finish (the container restarted); not repeated.
+
+  Raw: inside the ball (r < 1.5), 30 bins with t ≥ 1: against the exact mean χ²/bin 0.93 (max z 1.87); against the
+  proper-time kernel 1.19 (max z 2.61). Vacuum (r > 1.5), 51 bins: 0.35 (max z 1.71) and 0.41 (max z 1.71). Floor
+  0.005. The low vacuum value is the floor, not a conservative noise estimate: the vacuum bins have SE ≈ 0.003 (median),
+  below the floor; without the floor (from the printed table, 3 decimals, 48 bins with SE > 0) the vacuum gives
+  χ²/bin 1.24, inside 1.13. The two χ² are computed on the same data and are correlated; their difference is not a
+  test of which model holds.
+
+  Reading: on the order of the theory metric, with tilted cones, the field of the C0 rule follows its exact mean
+  inside the source and in the vacuum. As predicted the exact mean is close to the local kernel in the geodesic proper
+  time here (predicted difference ≤ 0.014 inside, ≤ 0.002 in the vacuum), so these rows do not separate the two.
+  Development only: one density, one source, criteria not frozen. The rows say nothing about Ricci against Weyl.
+
+- **F6.8e development: the optical age term at large ages (15 Nov; diag/f68e_dev.py, card docs/F6_8e_card_draft.md;
+  decides nothing).** The s-integrated bulk pair density of the optical sector (the integrand of F6.8c) is not stable in
+  F6.8c's formulation beyond r ~ 100: for a long interval V''/V0 has a τ-independent part growing as (kL)⁴ (−25.4,
+  −348, −5 343 at L = 100, 200, 400, k = 0.12), which the BD moments remove; the surviving part is ~1e-9 of it, the
+  size of the per-pair quadrature error of F6.8c (bulk and surface integrals that cancel to O(L⁴/τ²)). The density at
+  r = 200 and 400 changed by factors 2–4 between quadrature levels. A stable instrument (coordinates following the bent
+  ray, unit Jacobian; 80-bit long double; tip-clustered nodes) agrees with F6.8c where F6.8c is converged to 1e-12 and
+  is stable between levels to 1e-11 (r = 100) and 5e-4 (r = 400).
+
+  Raw (k = 0.12, phase advance p = 0): I(r) = −7.40e-7, −9.06e-7, −6.17e-6, −1.10e-4, −2.95e-3, −9.01e-2, −2.85, −90.9
+  at r = 50 ... 6 400 (doubling): local exponent 0.29, 2.77, 4.16, 4.74, 4.93, 4.98, 4.995. Conformal density on the
+  same nodes: exponent → 1 (profile integration gives c_T = 0.105, F6.8a 0.1035). The p-profile has a fixed shape
+  (width ~10); I(k, r) = k⁵Ψ(kr) to 1e-3 (k 0.12 against 0.2). At n = kT = 24 (k = 0.12) the bulk density gives an age
+  slope of 1.19 k² per unit n against 1.24 from the full rows of F6.8c2 (n 16 → 24).
+
+  Reading (development): the optical age term grows as (kT)⁵ (bulk density ∝ r⁴), not linearly. The verdicts of F6.8c
+  and F6.8c2 are not affected (R132; F6.8c2 rows had T ≤ 167). The layer and boundary terms of the age cut at large
+  ages are not computed. To be decided by F6.8e (card draft, judged range n 1 536 → 3 072 not computed in the
+  development).
+
 ## Open questions
 
-- Will the author explicitly adopt the Lorentz-invariant substrate to which the tests lead (F0.3, F1.8, F6.1, F6.2),
-  and rewrite the axioms accordingly (locality, dimension, time, derivation of the Lorentz factor)? (axiom audit,
-  section 0)
+Updated 15 Nov 2026 (the author's agreement, 21:40). Closed questions are kept below with the result that closed them.
 
-- Does one order in 3+1 distinguish the field from the null model at a higher N (larger L/ℓ)?
+**Open, in the author's order of work (15 Nov, 14:24)**
+- What is the asymptotic static propagator of the action of the order, and from it the far field of a point source
+  (F8.1, P1)? The age terms of the sectors differ (conformal linear in T; development: mixed ∝ (kT)³, optical ∝ (kT)⁵;
+  F6.8d and F6.8e2 decide).
+- Are the different age terms of the sectors physics (the history of a static field in its rest frame) or a product
+  of the age cut? A covariant quadratic action gives B/8 = A/6 for any age dependence, so an independent test must tell
+  (docs/derivations/f68d_sectors_beyond_leading_order.md).
+- Dynamic and nonlinear gravity: the thermodynamic completion (decisions 9 and 13) is a programme, not yet a derivation.
+- Does a test body fall in 3+1? The longest chains do not (F5.1e); the field of the order in 3+1 is now available (C0,
+  F3.16b) and a fall of a field structure on a curved order is not yet tested (direction C).
+- The matter sector: how is the stability of a topological defect linked to its energy, momentum and inertia (in 2+1
+  the wall's inertial mass equals its rest energy, F3.15, replicated)?
+
+**Open, earlier**
+- Is non-locality a property of nature or of the instrument (F0.4)? New evidence: on a curved 3+1 order the order-only
+  field follows its exact mean, a Green function weighted by the curved volume along each near-null pair, and not the
+  local conformally coupled field (F5.3, C1; replicated); the age terms of the action are accumulated by long
+  near-null pairs (F6.8a, F6.8e). Whether the non-locality survives the limit of vanishing pair length is open.
+- What is the dynamics of the order: a local rule, or a weighted sum over orders (F6)?
+- Does one order in 3+1 distinguish the throughput field (A5′) from the null model at a higher N (larger L/ℓ)?
 - Is the positive bias of A5′ at large scales (in both dimensions, not significant) chance or a systematic effect?
-- Does a persistent localised structure arise with feedback without tuning (F3.3)?
-- Does such a structure have inertia and a gravitational field (F4, F5)?
 - Why do maximal chains of Σ Π lie about 10 % above the geodesic of Π²η, while Σ Π² lies exactly on the geodesic of
   Π⁴η, and why does this not change with N (F2.5 d3)? Is the continuum limit of the action W = Σ Π really the geodesic
   of Π²η?
 - Why does the self-consistent field (a) on the causal set in 2+1 not have a constant flux r·dΠ/dr outside the source
   and flatten towards the wall R, while near the source it is steeper (F2.7)? Is it an edge effect of the instrument (it
   moves with the wall at a larger R), or non-local screening (it stays at the same r)?
-- Is non-locality a property of nature or of the instrument (F0.4)?
+
+**Deferred to the quantum part (decision 18)**
 - Will the narrowing of the future cones at the place of slow clocks (c_eff = cΠ² from F7) hold the saturated region
   together, when uniform splitting of the flow into the whole cone dissolves it at the speed of light (F3.3g A)?
-- What is the dynamics of the order: a local rule, or a weighted sum over orders (F6)?
+
+**Closed**
+- *Will the author adopt the Lorentz-invariant substrate to which the tests lead (F0.3, F1.8, F6.1, F6.2), and rewrite
+  the axioms accordingly?* Adopted: the paper of November 2026 (*Physics of Causality*, Part II "Causal Physics on a
+  Lorentz-Invariant Substrate", axioms in Part IV) is built on it.
+- *Does a persistent localised structure arise with feedback without tuning (F3.3)?* No (F3.2, F3.3, F3.13d). By
+  decision 18 this is not a gap of the classical programme: a defect is a test body, what a particle is belongs to the
+  quantum part.
+- *Does such a structure have inertia and a gravitational field (F4, F5)?* For test bodies in 2+1, yes: a field wall
+  keeps velocity and contraction and has an inertial mass equal to its rest energy (F3.15, replicated); walls respond to
+  a prescribed curved order of the theory (F5.2c) and the growth of the order has an active side (F5.2d, scalar branch).
+  The 3+1 version is the open question "Does a test body fall in 3+1?" above.

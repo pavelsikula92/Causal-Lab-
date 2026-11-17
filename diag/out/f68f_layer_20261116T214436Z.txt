@@ -1,0 +1,5 @@
+F6.8f-dev step 0': the layer of the age cut at second order (flat cut); development, decides nothing
+
+bulk pair density at r = T, single directions, k = 0.12
+  n 24  p   0.5  N_S  16 (160 nodes): -6.0904258135e-06
+cost 50 s

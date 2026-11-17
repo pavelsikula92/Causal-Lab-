@@ -1,0 +1,24 @@
+F6.8f-dev step 0: exact first arrival in n = exp(b cos(k z + th)) (development, decides nothing)
+
+T1 b -> 0 (b = 1e-9, k = 0.8; first order ~1e-9): z1, z2, X, t, flat, |diff|
+     0.30   2.10   1.70  2.475883681928414  2.475883680627990  1.3e-09
+     0.00   0.00   4.00  4.000000004000000  4.000000000000000  4.0e-09
+    -1.00   3.00   0.00  4.000000001741024  4.000000000000000  1.7e-09
+T2 phase-averaged second-order coefficient (16 phases, b = +-1e-4) against t2_mean of F6.8c: d, angle, num, closed form, rel
+      3.0  0.40  +6.936798747e-01  +6.936798741e-01  7.5e-10
+      5.0  1.10  -2.092296836e-01  -2.092297221e-01  1.8e-07
+      2.0  1.50  +3.657480846e-01  +3.657480751e-01  2.6e-08
+     40.0  1.20  -5.607229858e+01  -5.607230437e+01  1.0e-07
+T3 finite b against the polyline minimisation of F6.8c (n 200, 400, Richardson): b, k, d, angle, th, exact, poly400, Richardson, rel
+   0.3 1.0 5.0 1.0 0.4  4.712437536630  4.712438212343  4.712437536597  6.8e-12
+   0.6 0.7 6.0 0.6 2.0  4.662402031547  4.662414514872  4.662402031398  3.2e-11
+T4 first caustic from the layer of largest index, b = 1e-2, k = 1: pi/sqrt(b) = 31.415927; X/Xc, number of arrivals, axis time, earliest other, other - axis
+   0.90  1  28.558495662019  nan  +nan
+   0.99  1  31.414345228221  nan  +nan
+   1.01  3  32.048978465155  32.048850968950  -1.275e-04
+   1.10  3  34.904828031356  34.893671715751  -1.116e-02
+   1.50  3  47.597492770031  47.422525388475  -1.750e-01
+T5 dt/db along the ray against a central difference: z1, z2, X, b, k, th, ray, difference, rel
+   0.0 3.0 2.0 0.5 1.0 0.3  -1.6071180658e-02  -1.6071180653e-02  3.1e-10
+   0.2 0.9 12.0 0.2 0.8 1.0  -6.9463573857e+00  -6.9463573836e+00  3.0e-10
+cost 14 s

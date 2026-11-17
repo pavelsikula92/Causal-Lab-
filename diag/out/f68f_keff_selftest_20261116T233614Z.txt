@@ -1,0 +1,3 @@
+selftest of the assembly (G = 4 nodes per t panel)
+  Phi = u^2: largest relative error of M 2.2e-16
+  Phi = u^3: largest relative error of M 2.2e-16

@@ -1,0 +1,34 @@
+{
+ "script": "f68f_c2fd",
+ "time_utc": "20261116T214446Z",
+ "duration_s": 212.5,
+ "args": {
+  "k": 0.12,
+  "T": "50",
+  "mult": 1.0,
+  "workers": 1
+ },
+ "code_md5": {
+  "diag/f68f_c2fd.py": "136986ae1e922e4ba2c0d41ef6b27cba",
+  "phases/F6_order_dynamics/F6_08c_bd_action_optical.py": "fd7eedfe09de4938e8937f21eb00dd42"
+ },
+ "data": {
+  "rows": [
+   {
+    "k": 0.12,
+    "T": 50.0,
+    "mult": 1.0,
+    "J_bb": 0.007063671968833562,
+    "J_c": 0.0014140180952213546,
+    "bnd": -5.674024118802487e-06,
+    "n_ang": 32,
+    "n_rs": 192,
+    "n_te_max": 21,
+    "time": 212.453959941864,
+    "Kbb": 0.8010366682427253,
+    "Kc": 0.855215511198646
+   }
+  ],
+  "slopes": []
+ }
+}

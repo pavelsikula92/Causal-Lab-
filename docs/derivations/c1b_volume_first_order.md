@@ -36,10 +36,11 @@ A local field theory weighs a near-null pair by the geodesic proper time τ_g (t
 τ_g² = Δt² − l² − 2a(Δt² + l²)⟨g⟩ along the segment). The causal set weighs it by V. They agree where
 V = (π/24) τ_g⁴. Define ε = V / ((π/24) τ_g⁴) − 1, to first order in a.
 
-**Argument.** To first order ε is a covariant linear functional of the Riemann tensor over the diamond. The diamond
-has one vector (the pair direction T) and is rotationally symmetric about it in its rest frame, so the only
-scalars available are contractions of Riemann with T and the metric: Ricci(T, T) and R. The Weyl tensor contracts
-to zero. So ε vanishes for any diamond that lies in vacuum, of any length.
+**Argument (withdrawn 15 Nov).** The first version argued that a linear scalar of the Riemann tensor over the diamond
+can only contain Ricci(T, T) and R, so that the Weyl tensor drops out. That is wrong: the diamond is not a point, and a
+scalar such as ∫ f(t, |x|) E_ij x^i x^j over it (E the electric part of the Weyl tensor in the rest frame) is not
+excluded. No general argument is given here. The zeros below are a numerical result for the pairs tested; a possible
+reason, not shown, is that g is harmonic outside the ball (mean-value property).
 
 **Numerical check** (per unit a; the two terms cancel from several hundred):
 
@@ -58,13 +59,13 @@ to zero. So ε vanishes for any diamond that lies in vacuum, of any length.
 
 ## 4. Reading
 
-- **Vacuum**: to first order the interval volume is the flat formula in the geodesic proper time. Tidal (Weyl)
-  curvature does not change it, however long the pair. The order-only field there has the local weights.
+- **Vacuum**: for the pairs tested, to first order, the interval volume is the flat formula in the geodesic proper
+  time, also for long pairs. Whether this holds for every vacuum diamond is not shown.
 - **Matter**: a pair whose diamond crosses the ball has ε of order 2.5 a, independent of τ: a finite, nonlocal
   weight, as in the conformally flat wells (F5.3, the plateau, the spherical well).
-- So to first order the nonlocality of the instrument is tied to the Ricci curvature (matter) along the pair, and
-  not to the vacuum geometry. A field point in vacuum still departs from the local theory through the pairs that
-  cross the ball.
+- For this source, to first order, the departure from the proper-time kernel comes from pairs whose diamond crosses
+  the ball. That the nonlocality is tied to the Ricci curvature in general, and not to the Weyl curvature, is not
+  shown. A field point in vacuum still departs from the local theory through the pairs that cross the ball.
 
 **Limits**: first order in a; the straight-ray relation; the high-density reading of the weights (the finite-ρ mean
 needs the solver); one source shape. Second order (Weyl², the bending) is not covered.
