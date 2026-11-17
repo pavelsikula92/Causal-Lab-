@@ -1,0 +1,9 @@
+(2.0, 4.0, 0.7, 10, 0.25) ERR X window outside the tables None 20.415081024169922
+(2.0, 4.0, 0.7, 10, 0.125) ERR X window outside the tables None 20.924147367477417
+(2.0, 8.0, 2.0, 10, 0.25) ERR X window outside the tables None 21.928008317947388
+(2.0, 8.0, 2.0, 20, 0.25) ERR X window outside the tables None 22.01999545097351
+(2.0, 8.0, 2.0, 10, 0.125) ERR X window outside the tables None 21.55272626876831
+(2.0, 8.0, 2.0, 20, 0.125) ERR X window outside the tables None 21.52991771697998
+(4.0, 8.0, 4.0, 10, 0.25) ERR X window outside the tables None 20.35796546936035
+(4.0, 8.0, 4.0, 10, 0.125) ERR X window outside the tables None 20.781020164489746
+(4.0, 8.0, 4.0, 20, 0.125) ERR X window outside the tables None 11.398221254348755
