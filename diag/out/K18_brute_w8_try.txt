@@ -1,3 +1,8 @@
+f68f_1d with the window half-width 6 sigma -> 8 sigma (scratch copy; trial, not adopted). Jobs (eps, p, theta, level, q)
+with kappa = level sqrt(eps); then status, A, difference against the frozen value, seconds. The reference of the row
+(4.0, 8.0, 4.0, 40, 0.25) was taken from level 20 by mistake: against the frozen level-40 value 0.9951047001620539
+the difference is -1.8e-9.
+
 (2.0, 4.0, 0.7, 20, 0.25) ok 0.9569581972355343 diff vs frozen -7.43e-09 25
 (4.0, 8.0, 4.0, 20, 0.25) ok 0.9950479611104734  25
 (4.0, 4.0, 2.0, 10, 0.125) ok 0.9307077415311901 diff vs frozen -2.96e-09 24

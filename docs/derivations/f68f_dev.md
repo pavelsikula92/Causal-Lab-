@@ -434,6 +434,23 @@ levels):
   corrections. K.18 applies the 1e-3 of the protocol to the extrapolated limit (decision 34).
 - Cost 16–40 s per volume (about 35 s at 40√ε).
 
+### Window coverage at large p/κ
+- **The defect.** The Δz window of the tables was a band around the ray built on l = ρ:
+  centre CO·ρ + sa·X_c(ρ), half-width sa(6σ√(ρ(1 − ρ)) + σρ/2). A query point (l, X, Y) has
+  ρ_x² = (sa·l − CO·X)² + Y² and ρ_y² = (sa(1 − l) + CO·X)² + Y². So a node ρ is reached from l = ρ/sa (offset
+  CO·ρ(1/sa − 1) at the far end), and near the ends from the X span itself (ρ ≈ CO|X| for l ≪ |X|). For p = 8 at
+  κ = 10√ε, 20√ε the queries overshot the band by 1–8 % of its half-width at ρ → 0 and ρ → 1.
+  - 9 of the 48 brute-force jobs of K.18 stopped with "X window outside the tables" (diag/out/K18_brute_missing.txt).
+  - A uniformly wider band (8σ instead of 6σ) fixed 4 of them (diag/out/K18_brute_w8_try.txt).
+- **The correction.** At every ρ node the window is the union of the nominal band and the exact Δz range of the queries
+  whose 7-point stencil uses the node: the X grids of the l nodes, Y² ≤ 8σ²l(1 − l) (the Y root bracket starts at
+  σ²l(1 − l) and doubles), and T_xy. The range is widened by 5 %; the family slopes cover the new windows.
+- **Verification** (diag/out/f68f_1d_cover_validation.txt):
+  - all 48 jobs run;
+  - the 39 jobs the previous version computed change by ≤ 2.5e-9;
+  - flat space (ε = 1e-9, κ = 20, q = 1/4): A − 1 = 3.1710e-6 (p 0), 3.1715e-6 (p 2), 3.1761e-6 (p 8), against
+    3.1764e-6 with exact distances (p 0); the previous version gives 3.1720e-6, 3.1724e-6 and fails at p 8.
+
 ## 9. K_eff (diag/f68f_keff.py)
 
 ### From Φ to K_eff
@@ -477,12 +494,12 @@ Hence
   with no bend towards saturation at this resolution. Whether Φ turns over beyond the first caustic is outside this
   instrument.
 
-## 10. The cards (docs/author_decisions.md, decision 34)
+## 10. The cards (docs/author_decisions.md, decisions 34 and 35)
 
 - **K.18** (docs/K18_card_draft.md; phases/K_instruments/K_18_needle_volume.py): the needle-volume instrument on
   ε = 0.1–4, p on the F6.8e3 panels, 128 phases, q = 1/2, 1/4, 1/8. Parts: single ray, Jacobi and A₀, series against
   the exact needle, q-convergence, b → 0 against F6.8e3 at n = 1 536, brute force at κ = 10, 20, 40√ε extrapolated in
-  1/κ² (1e-3 on the limit).
+  1/κ² (1e-3 on the limit). Re-frozen with the window correction of section 8 (decision 35); criteria unchanged.
 - **F6.8f** (docs/F6_8f_card_draft.md; phases/F6_order_dynamics/F6_08f_bd_action_optical_finite_amplitude.py): R(ε)
   at the judged ε = 0.25, 1, 2, 4. Readings in the order B (FAILED: γ_T(2 → 4) ≥ 5, or a confirmed sign change of M,
   R < −1e-3 with both t quadratures), A (PASSED: sign kept, γ_T(2 → 4) ≤ 2.5, nonnegative and decreasing over the
@@ -528,7 +545,7 @@ f68f_c2fd runs in float64.
 | diag/f68f_1b_cut.py | section 6, cut loci | ε = 12, p = 0 identical to f68f_1b_cut_partial.txt |
 | diag/f68f_1c.py | section 7, the q² series and Φ | plane wave (1e-12), O(q²) expansion (3e-8), exact needle |
 | diag/f68f_1c_e3.py | section 7, b → 0 against F6.8e3 | records at n = 384 and 1 536 |
-| diag/f68f_1d.py | section 8, brute force at finite κ | exact distances (4e-9 flat), the q² series |
+| diag/f68f_1d.py | section 8, brute force at finite κ | exact distances (4e-9 flat), the q² series; window correction: all 48 K.18 jobs, ≤ 2.5e-9 at the jobs the previous version computed (diag/out/f68f_1d_cover_validation.txt) |
 | diag/f68f_keff.py | section 9, R(ε) | selftest exact |
 | diag/run_resumable.py | a resumable start of a frozen test (disk cache of the pure worker functions; the frozen code unchanged) | two K.18 quick passes, data identical to the run without it |
 

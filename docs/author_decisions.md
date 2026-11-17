@@ -757,3 +757,78 @@ k = 0.13 and 0.21; judged α at k = 0.13, n 3 072 → 6 144. The exponent is not
 I2 failed on numerical precision at the largest age (two quadrature levels 1.7e-3 against 1e-3 at n = 3 072), not on
 the physical hypothesis. The exponents stay undecided. The values up to n = 1 536 (α_ab 3.0000, α_ab − α_c 1.9999) are
 supporting development data, not a substitute for the deciding check.
+
+## 34. K.18 and F6.8f are frozen (17 Nov, 08:22)
+
+**The author's decision (17 Nov, 08:22):**
+1. Brute force: the tolerance 1e-3 applies to the extrapolated limit kappa -> infinity, not to the raw finite b.
+2. The extrapolation uses kappa = 10, 20, 40 sqrt(eps), i.e. b = 0.01, 0.0025, 0.000625.
+3. F6.8f: A at gamma_T(2 -> 4) <= 2.5, B at gamma_T(2 -> 4) >= 5 or a confirmed sign change of M. A also requires a
+   nonnegative exponent that decreases over the three intervals.
+4. C: a result for young / weak fields, without a decision on the static limit of an old field.
+5. R and N are recorded, with the separate test |R(4) - 1| <= 0.05.
+Then: "Poté zmraž karty" ("then freeze the cards").
+
+**What led here.** The order of 16 Nov 22:49 (K calibration, K_eff assembly, card F6.8f); docs/derivations/f68f_dev.md,
+steps 1b-2. The F6.8f criteria were proposed on 16 Nov 23:40 UTC, before any K_eff development row was seen. The
+author decided them after the development rows (R(0.5) = 1.014, R(3) = 1.69 at reduced resolution) had been reported.
+
+**Operational forms written by Claude.** "Confirmed sign change": R < -1e-3 with both t quadratures (G and G - 1). The
+separate null test is reported next to the reading and does not enter the status. Under the nonnegative exponent a
+K_eff that peaks inside eps <= 4 and then falls reads C.
+
+**Frozen.** md5 with LF line endings.
+- **Card K.18:** docs/K18_card_draft.md 60a3fd338f9424171fc0920fbf54b7ab.
+- **Test K.18:** phases/K_instruments/K_18_needle_volume.py cb76f2c286753db1934bbfd6ef1ad10d.
+- **Card F6.8f:** docs/F6_8f_card_draft.md 3ca658995cd056ca1e0320d8318f2e8d.
+- **Test F6.8f:** phases/F6_order_dynamics/F6_08f_bd_action_optical_finite_amplitude.py
+  60a229d79b94882a185efa1dde22bb75.
+- **Helpers:**
+  - diag/f68f_1b.py 516c661d1ec0d67093fbca16b9b9d8d7
+  - diag/f68f_1c.py a13c26cc6c497bc33eea6fae903eae1c
+  - diag/f68f_1b_exact.py 691e97f189ca2c44b4172962c502b700
+  - diag/f68f_1d.py 8d23537b1010d0e32b14dc4444e551a8
+  - diag/f68f_layer.py 13611e43d9d51bd98c3ea50817d3e82b
+  - diag/f68f_keff.py 17b8452e729f431ff2c6973976b9ec98
+  - diag/f68f_common.py ed25abf95e9a56ac197ca3c6c9c3417a
+  - and the frozen tests F6.8e3, F6.8a, F6.8b2 they import.
+- **Quick runs (mechanics only):** K.18 PASSED; F6.8f INSTRUMENT_FAILED at quick resolution (8 phases), as its
+  checks should give.
+
+**Run:**
+- K.18 first. Part e3 needs an 80-bit long double, so it runs under WSL.
+- F6.8f after K.18 has PASSED.
+- Full runs decide; base seed 0 (deterministic).
+
+## 35. K.18: the brute-force window of diag/f68f_1d.py corrected, K.18 re-frozen and run again (17 Nov)
+
+**The author's decision (17 Nov):** correct the instrument and repeat the test.
+
+**What led here.** The full K.18 run (Claude's workspace, diag/run_resumable.py, code as frozen in decision 34) stopped
+in part brute without a record: 9 of the 48 brute-force jobs raised "X window outside the tables" (p = 4, 8 at
+kappa = 10, 20 sqrt(eps); diag/out/K18_brute_missing.txt). The quick run has only the point eps 4, p 2 and did not
+reach them. The Delta z windows of the tables were built on l = rho, while a query point has
+rho_x^2 = (sa l - CO X)^2 + Y^2; at large CO = p / kappa the queries overshoot the window by 1-8 % at rho -> 0 and
+rho -> 1 (docs/derivations/f68f_dev.md, section 8, "Window coverage at large p/kappa").
+
+**The correction (Claude).** At every rho node the window is the union of the previous band and the exact Delta z range
+of the queries that use the node (X grids of the l nodes, Y^2 <= 8 sigma^2 l (1 - l), T_xy), widened by 5 %.
+Criteria, parameters, levels and points of K.18 are unchanged; the test file and the card are unchanged.
+
+**Verification** (diag/out/f68f_1d_cover_validation.txt):
+- all 48 brute-force jobs run;
+- the 39 jobs the previous version computed change by <= 2.5e-9;
+- flat space (eps 1e-9, kappa 20, q 1/4): A - 1 = 3.1710e-6, 3.1715e-6, 3.1761e-6 at p = 0, 2, 8 against 3.1764e-6
+  with exact distances; the previous version fails at p = 8;
+- K.18 quick run PASSED (results/K.18/quick/20261117T141241Z_main_seed0_f7513da2.json, gitignored).
+
+**Seen before the correction.** The raw volumes A of the brute-force jobs the previous version computed, and of the 9
+jobs with the corrected windows. Their comparison with the q^2 series and the extrapolation were not computed (part
+brute assembles them only at the end of the run).
+
+**Frozen.** md5 with LF line endings. Everything as in decision 34 except
+- diag/f68f_1d.py 037bcf568241655c4bf2370fdfc9a56e (was 8d23537b1010d0e32b14dc4444e551a8).
+
+**Run:** the full K.18 run is repeated with the corrected instrument; the cache of diag/run_resumable.py is keyed by the
+md5 of the code, so nothing from the stopped run is reused. F6.8f after K.18 has PASSED (F6.8f does not import
+diag/f68f_1d.py).
