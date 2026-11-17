@@ -1,7 +1,7 @@
 # F6.8f-dev: the optical response at finite amplitude (development log)
 
 Opened 16 Nov 2026 on the author's plan (docs/derivations/substrate_and_action_audit.md, section 8; roadmap, working
-order 1; "Ano prosím", 10:22, for step 0). **Development: it decides nothing, it is not a test and it has no card.**
+order 1; "Ano prosím" ("yes, please"), 10:22, for step 0). **Development: it decides nothing, it is not a test and it has no card.**
 None of it changes F6.8e3 or F6.8d.
 
 **Question of the branch.** Does the expected BD action give a usable static response at finite amplitude b and large
