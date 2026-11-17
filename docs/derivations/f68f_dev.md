@@ -1,7 +1,7 @@
 # F6.8f-dev: the optical response at finite amplitude (development log)
 
 Opened 16 Nov 2026 on the author's plan (docs/derivations/substrate_and_action_audit.md, section 8; roadmap, working
-order 1; "Ano prosím" ("yes, please"), 10:22, for step 0). **Development: it decides nothing, it is not a test and it has no card.**
+order 1). **Development: it decides nothing, it is not a test and it has no card.**
 None of it changes F6.8e3 or F6.8d.
 
 **Question of the branch.** Does the expected BD action give a usable static response at finite amplitude b and large
@@ -54,7 +54,7 @@ F6.8e3. The second variation holds only for ε² = b²(kT)⁴ ≪ 1.
   precision that survives the BD moments (~10⁻¹³ relative at second order). Whether that needs long double, and how the
   thin-diamond geometry is best sampled at ε ≳ 1, is the work of step 1.
 
-## Step 1: design note before computing (16 Nov, for the author)
+## Step 1: design note before computing (16 Nov)
 
 Three points came up while setting up step 1. They change how the step should be done, so they are written down
 before any number.
@@ -95,9 +95,9 @@ before any number.
   where the nonlinearity starts and what the caustic at π² does to the volume.
 - **1c:** D at finite ε, by the (kσ)² expansion, checked against F6.8e3 at small ε.
 
-## Step 0′: σ, the Jacobian and the BD moments with the age cut (16 Nov, the author's order of 10:34)
+## Step 0′: σ, the Jacobian and the BD moments with the age cut (16 Nov)
 
-The author asked for two things before 1b: whether σ is invariant, and an analytic check of what the BD moments remove
+Two questions before 1b: whether σ is invariant, and an analytic check of what the BD moments remove
 when the age cut is finite.
 
 ### σ and the change of variable
@@ -149,7 +149,7 @@ with F = Σ g_i(s²) P_i(s, r) the second-order integrand. This is exact.
 - **The layer term of order n** carries (R − T)ⁿ ∂ⁿ_r [r m F]. It adds n powers of s, with a factor T⁻ⁿ from (R − T)ⁿ
   and about T⁻ⁿ from ∂ⁿ_r (the coefficients are powers of r).
 
-**Answers to the author's four questions:**
+**Answers to the four questions of step 0′:**
 
 | Question | Answer |
 |---|---|
@@ -174,7 +174,7 @@ with F = Σ g_i(s²) P_i(s, r) the second-order integrand. This is exact.
 - 1b is still useful, as the map of where the nonlinearity and the caustics start in the cross-section, and as the
   zeroth order of 1c. But the response is in D (and higher).
 - **1c and 1d carry the result.** The quantity to compare with F6.8e3 is the full s-integrated bulk density (all g_i
-  with their moments) at small ε, as the author asked: not D or A alone.
+  with their moments) at small ε: not D or A alone.
 
 ### Step 0′, numerical: the layer of the flat age cut (16 Nov; diag/f68f_layer.py, diag/out/f68f_layer.txt)
 
@@ -352,7 +352,7 @@ first run is not rewritten.
 - **A diverges only where the first-arrival ray itself has E₁(1) = 0.** Where the first arrival changes branch (the
   cut locus), A jumps.
 
-**A point for the author: the convergence parameter of the Penrose limit is not L/σ alone.**
+**Note: the convergence parameter of the Penrose limit is not L/σ alone.**
 - The corrections are in (kσ)² (transverse width against the wavelength) and in b = ε/κ² (the ray's own b² terms).
 - L/σ = κ/(kσ), so the plane-wave limit needs L/σ ≫ κ ≫ √ε. At ε = 40, κ ≥ 20 is needed (b ≤ 0.1), and then
   L/σ = 4, 8, 16 means kσ = 5, 2.5, 1.25, far from the limit.
@@ -605,7 +605,7 @@ cover. It is far below the 2.61 / 1.49 difference above and does not explain it.
 
 ## Step 1c: the age term of the expected BD action at finite ε (16 Nov, night; diag/f68f_1c.py)
 
-The author's goal of 09:59 is E_opt(k,T,b) = ∂E[S_BD]/∂b and K_eff = (E_opt(b) − E_opt(0))/b at finite ε = b(kT)², and
+The goal of the branch is E_opt(k,T,b) = ∂E[S_BD]/∂b and K_eff = (E_opt(b) − E_opt(0))/b at finite ε = b(kT)², and
 whether the static response converges with T. Steps 0–1b produced the parts; this step assembles them.
 
 ### The age derivative at finite b, exactly
@@ -654,10 +654,10 @@ This is the "D survivor" of step 0′ (the τ⁶ part), now at finite ε.
   E(n) ∝ ∫ dn Φ(b n²) = (1/(2√b)) ∫₀^{bn²} ε^{−1/2} Φ(ε) dε.
 
 - **The static limit of an old field exists if and only if ∫^∞ ε^{−1/2} Φ(ε) dε converges,** that is, if Φ decays
-  faster than ε^{−1/2}. The author's readings A, B and C become statements about the large-ε behaviour of one function
+  faster than ε^{−1/2}. The readings A, B and C become statements about the large-ε behaviour of one function
   of one variable.
 
-### The check against F6.8e3 (the author's check 1, b → 0)
+### The check against F6.8e3 (check 1, b → 0)
 At large n, the F6.8e3 bulk density per direction must be
 
   bulk(p) = 4 μ₃ k⁵ n⁵ C₂(p) / l₂⁴,   C₂(p) = lim ⟨ŝ₄A₀^{−2}⟩_θ / ε²   (corrected; see below: first written with 2),
@@ -668,12 +668,12 @@ with no free constant; corrections are O(1/n²) and O(k²). This compares two in
 
 ### Range of this step, and what it cannot decide
 - The q² series needs one ray per phase, so it holds for ε < π² (at p = 0; up to 18.7 at p = 4).
-- The author's grid (ε ≤ 4) measures the departure from the second order, N(ε) = Φ/(C₂ε²).
+- The grid (ε ≤ 4) measures the departure from the second order, N(ε) = Φ/(C₂ε²).
 - The asymptotic question (Φ at ε → ∞) needs the multi-ray range. There the cut loci enter (step 1b), each adding
   terms polynomial in c = q²/2 per window, so the same moment selection applies. An extension of the instrument is
   needed and is not done here.
 
-### The other checks of 09:59
+### The other checks of the branch
 - **Check 2, zero age.** At n → 0, ε → 0 and Φ → 0.
 - **Check 3, k = 0.** A = 1 at every q, so Φ = 0 identically.
 - **Check 4, both signs of b.** A(−ε, θ) = A(ε, θ + π), so the θ-mean and Φ are even in ε. This is exact, not a
@@ -723,7 +723,7 @@ The question left open at n = 384 (ratio 1.0029): is the residual c/n² or O(k²
 
 ## Step 1d: the needle volume at finite κ and b in the real medium (17 Nov, night; diag/f68f_1d.py)
 
-The author's 1b protocol asks for agreement with brute force at moderate ε (2, 4), at the levels κ = 10√ε and 20√ε.
+The 1b protocol asks for agreement with brute force at moderate ε (2, 4), at the levels κ = 10√ε and 20√ε.
 The chord-centred brute force of step 1a cannot do it: the ray bends by ~ε/κ, far beyond the needle width q/(2κ).
 
 ### The instrument
@@ -767,15 +767,15 @@ The chord-centred brute force of step 1a cannot do it: the ray bends by ~ε/κ, 
   ~1e-5 the instrument's own ~1e-6 error shows in the ratio (5.01, 3.75).
 - **After the 1/κ² extrapolation, the brute force agrees with the series to ≤ 3.7e-6** at all ten points. This checks
   the whole chain: rays, Jacobi fields, q² series and the scaling limit, against the real 3+1 medium.
-- **For the author's 1e-3.** The raw difference at κ = 10√ε exceeds it at ε = 4, p = 4 (3.7e-3); at 20√ε it is
-  9.4e-4. These are physical O(b) corrections, not instrument errors. The K.18 draft compares the extrapolation; the
-  author decides.
+- **The 1e-3 of the protocol.** The raw difference at κ = 10√ε exceeds it at ε = 4, p = 4 (3.7e-3); at 20√ε it is
+  9.4e-4. These are physical O(b) corrections, not instrument errors. K.18 applies the 1e-3 to the extrapolated limit
+  κ → ∞ (docs/author_decisions.md, decision 34).
 - **Cost:** 16–40 s per volume.
 
-## Step 2: the assembly of K_eff (17 Nov, night; the author's order of 22:49, point 2; diag/f68f_keff.py)
+## Step 2: the assembly of K_eff (17 Nov, night; diag/f68f_keff.py)
 
 ### From Φ to K_eff
-The goal of 09:59: E_opt(k, T, b) = ∂E[S_BD]/∂b and K_eff = (E_opt(b) − E_opt(0))/b. In the scaling limit the age
+The goal of the branch: E_opt(k, T, b) = ∂E[S_BD]/∂b and K_eff = (E_opt(b) − E_opt(0))/b. In the scaling limit the age
 density per unit age n = kT is dE/dn = c Φ(bn²) (step 1c); c C₂ is the b² coefficient of F6.8e3. At fixed k and n:
 - E(b, n) = c ∫₀ⁿ Φ(bm²) dm;
 - E_opt = c ∫₀ⁿ m² Φ′(bm²) dm = (c/2b^{3/2}) M(ε), with M(ε) = ∫₀^ε √u Φ′(u) du;
@@ -784,7 +784,7 @@ density per unit age n = kT is dE/dn = c Φ(bn²) (step 1c); c C₂ is the b² c
 - K₂ = lim_{b→0} K_eff = (2/5) c C₂ n⁵: the (kT)⁵ law of F6.8e3.
 
 So **R(ε) = K_eff/K₂ = M(ε)/((4/5)C₂ε^{5/2})**:
-- All K_eff curves of (b, k, T) collapse onto R. "Several (b, k, T) per ε" of 09:59 is automatic in the scaling limit;
+- All K_eff curves of (b, k, T) collapse onto R. Several (b, k, T) per ε are automatic in the scaling limit;
   the departures from it are the O(b) corrections of step 1d.
 - R = 1 is the null model (the second-order extrapolation from F6.8e3).
 - At fixed b: K_eff(T) = K₂(T) R(bk²T²).
@@ -833,9 +833,9 @@ Resolution reduced against the card: 4 directions (p panels 0:12:3, 12:24:1), 16
   term strengthens the second-order growth instead of saturating it. Whether Φ turns over beyond the first caustic
   (ε > π²) is outside this instrument (F6.8g).
 
-## The freeze of K.18 and F6.8f (17 Nov, morning; the author's decision of 08:22)
+## The freeze of K.18 and F6.8f (17 Nov; docs/author_decisions.md, decision 34)
 
-The author's decisions:
+The decisions (decision 34):
 1. The brute-force tolerance 1e-3 applies to the extrapolated limit κ → ∞, not to the raw finite b.
 2. Levels κ = 10, 20, 40√ε (b = 0.01, 0.0025, 0.000625).
 3. F6.8f: A at γ_T(2 → 4) ≤ 2.5, B at γ_T(2 → 4) ≥ 5 or a confirmed sign change of M. A also requires a nonnegative
