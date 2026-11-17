@@ -800,3 +800,31 @@ The F6.8f card draft (docs/F6_8f_card_draft.md) was rewritten around K_eff at 23
 below had printed no values:
 - judged ε = 0.25, 1, 2, 4 (panel ends);
 - readings A / B / C as PASSED / FAILED / UNDECIDED, by the sign of M and γ_T(2 → 4) against 2.5 and 5.
+
+### Step 2: development rows (diag/out/f68f_keff_20261117T001242Z.txt; decides nothing)
+Resolution reduced against the card: 4 directions (p panels 0:12:3, 12:24:1), 16 phases. Panels end at ε = 0.5 and 3
+(not judged); G = 4.
+
+| ε | Φ(ε) | N = Φ/(C₂ε²) | R = K_eff/K₂ |
+|---|---|---|---|
+| 0.5 | −1.610e-10 | 1.0125 | 1.0139 |
+| 3 | −9.231e-9 | 1.6126 | 1.6888 |
+
+- **γ_T(0.5 → 3) = 5.57.** The second order gives 5. On this range K_eff grows faster than the second-order
+  extrapolation and keeps the sign of C₂. There is no bend towards saturation up to ε = 3 at this resolution.
+- **Checks.**
+  - 1 (b → 0): N(0.2) = 1.0020; R(0.5) = 1.014.
+  - 2 (zero age): N at ε = 2.4e-3 is 1.000001.
+  - 3 (k = 0): Φ = 0 exactly.
+  - 4: exact.
+  - 5: no code path.
+  - 6 (stable instrument):
+    - one ray per phase, stationarity 2.7e-10;
+    - R with G = 3: differences 4.2e-5 (ε 0.5), 4.5e-4 (ε 3), below the proposed 1e-3;
+    - Φ with 32 against 16 phases: 3e-12 (ε 0.5) and 2.3e-3 (ε 3). 16 phases are not enough at ε = 3. The card uses
+      128 against 64.
+- **This decides nothing.** The criteria of the card (written before these rows) are not changed by them. The judged
+  ε (0.25, 1, 2, 4 at 16 directions, 128 phases) are not computed.
+- **What it suggests for the physics question, as an indication only.** Up to ε ≈ 3 the finite-amplitude optical age
+  term strengthens the second-order growth instead of saturating it. Whether Φ turns over beyond the first caustic
+  (ε > π²) is outside this instrument (F6.8g).
