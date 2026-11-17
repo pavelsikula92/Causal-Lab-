@@ -799,3 +799,36 @@ K_eff that peaks inside eps <= 4 and then falls reads C.
 - K.18 first. Part e3 needs an 80-bit long double, so it runs under WSL.
 - F6.8f after K.18 has PASSED.
 - Full runs decide; base seed 0 (deterministic).
+
+## 35. K.18: the brute-force window of diag/f68f_1d.py corrected, K.18 re-frozen and run again (17 Nov)
+
+**The author's decision (17 Nov):** correct the instrument and repeat the test.
+
+**What led here.** The full K.18 run (Claude's workspace, diag/run_resumable.py, code as frozen in decision 34) stopped
+in part brute without a record: 9 of the 48 brute-force jobs raised "X window outside the tables" (p = 4, 8 at
+kappa = 10, 20 sqrt(eps); diag/out/K18_brute_missing.txt). The quick run has only the point eps 4, p 2 and did not
+reach them. The Delta z windows of the tables were built on l = rho, while a query point has
+rho_x^2 = (sa l - CO X)^2 + Y^2; at large CO = p / kappa the queries overshoot the window by 1-8 % at rho -> 0 and
+rho -> 1 (docs/derivations/f68f_dev.md, section 8, "Window coverage at large p/kappa").
+
+**The correction (Claude).** At every rho node the window is the union of the previous band and the exact Delta z range
+of the queries that use the node (X grids of the l nodes, Y^2 <= 8 sigma^2 l (1 - l), T_xy), widened by 5 %.
+Criteria, parameters, levels and points of K.18 are unchanged; the test file and the card are unchanged.
+
+**Verification** (diag/out/f68f_1d_cover_validation.txt):
+- all 48 brute-force jobs run;
+- the 39 jobs the previous version computed change by <= 2.5e-9;
+- flat space (eps 1e-9, kappa 20, q 1/4): A - 1 = 3.1710e-6, 3.1715e-6, 3.1761e-6 at p = 0, 2, 8 against 3.1764e-6
+  with exact distances; the previous version fails at p = 8;
+- K.18 quick run PASSED (results/K.18/quick/20261117T141241Z_main_seed0_f7513da2.json, gitignored).
+
+**Seen before the correction.** The raw volumes A of the brute-force jobs the previous version computed, and of the 9
+jobs with the corrected windows. Their comparison with the q^2 series and the extrapolation were not computed (part
+brute assembles them only at the end of the run).
+
+**Frozen.** md5 with LF line endings. Everything as in decision 34 except
+- diag/f68f_1d.py 037bcf568241655c4bf2370fdfc9a56e (was 8d23537b1010d0e32b14dc4444e551a8).
+
+**Run:** the full K.18 run is repeated with the corrected instrument; the cache of diag/run_resumable.py is keyed by the
+md5 of the code, so nothing from the stopped run is reused. F6.8f after K.18 has PASSED (F6.8f does not import
+diag/f68f_1d.py).

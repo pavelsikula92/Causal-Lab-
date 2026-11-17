@@ -12,7 +12,10 @@ The medium is stratified along k, so the optical distance between two points dep
 the excess tau = T - rho carried separately), for a dense set of initial slopes, with the slope derivatives; at every
 rho node the first arrival tau(dz) is the lower envelope over the family (quintic Hermite in z: tau, dtau/dz = P,
 d2tau/dz2 = (dP/du) / (dz/du)), tabulated on a window around the ray and interpolated (7-point Lagrange in rho, cubic
-Hermite in dz on a fine table).
+Hermite in dz on a fine table). The window at every rho node is the union of a nominal band around the ray and the
+exact dz range of the points queried there (the X grids of the l nodes with Y^2 <= 8 sigma^2 l (1 - l), and T_xy):
+with rho_x = |sa l - CO X| at Y = 0, a node rho is reached from l = rho / sa, and near the ends from the X span itself,
+so a band built on l = rho does not cover large CO = p / kappa.
 
 For w = (l, X, Y) (along the pair, in the plane of k, out of it):
     from x: dz = CO l + sa X,        rho^2 = l^2 + X^2 + Y^2 - dz^2,
@@ -170,6 +173,42 @@ class Table:
         return out
 
 
+Y2_FAC = 8.0          # Y^2 range of the windows in units of sigma^2 l (1 - l) (the root bracket doubles from 1)
+COVER_MARGIN = 0.05   # relative margin of the query-based windows
+
+
+def _queries(ls, path, lg, sig, CO, sa, from_y):
+    """(dz array, rho_lo array, rho_hi array) per l node: the X grid of volume() at Y = 0 and the Y range."""
+    out = []
+    for l in ls:
+        Xc = float(np.interp(l, lg, path))
+        span = 3.0 * sig * math.sqrt(l * (1 - l))
+        X = np.linspace(Xc - span, Xc + span, N_X)
+        if from_y:
+            dz, r0 = CO * (l - 1.0) + sa * X, np.abs(sa * (1.0 - l) + CO * X)
+        else:
+            dz, r0 = CO * l + sa * X, np.abs(sa * l - CO * X)
+        out.append((dz, r0, np.sqrt(r0 * r0 + Y2_FAC * sig * sig * l * (1 - l))))
+    return out
+
+
+def _cover(c0, w0, nodes, rho_max, queries):
+    """Union of the window [c0 - w0, c0 + w0] with the dz range of the queries at every node of their 7-point
+    Lagrange stencils in rho (Table.__call__), widened by COVER_MARGIN."""
+    n = len(nodes)
+    h = rho_max / (n - 1)
+    lo, hi = c0 - w0, c0 + w0
+    for dz, r0, r1 in queries:
+        dz, r0, r1 = np.atleast_1d(dz), np.atleast_1d(r0), np.atleast_1d(r1)
+        i_a = np.clip(np.floor(r0 / h).astype(int) - 3, 1, n - 7)
+        i_b = np.clip(np.floor(r1 / h).astype(int) - 3, 1, n - 7) + 6
+        for a, b, z in zip(i_a, i_b, dz):
+            lo[a:b + 1] = np.minimum(lo[a:b + 1], z)
+            hi[a:b + 1] = np.maximum(hi[a:b + 1], z)
+    c, w = 0.5 * (lo + hi), 0.5 * (hi - lo)
+    return c, w * (1.0 + COVER_MARGIN) + 1e-14
+
+
 def volume(eps, p, th, kap, q, slices=False):
     """A = V / V0 of the needle at finite kappa (fixed sigma), and diagnostics."""
     bb = eps / kap ** 2
@@ -189,16 +228,24 @@ def volume(eps, p, th, kap, q, slices=False):
     Wrho = 6.0 * sig * np.sqrt(np.clip(nodes * (1 - nodes), 1e-6, None)) + 0.5 * sig * np.clip(nodes, 0, 1)
     Xc_x = np.interp(np.clip(nodes, 0, 1), lg, path)
     Xc_y = np.interp(np.clip(1 - nodes, 0, 1), lg, path)
-    reach = np.max((np.abs(Xc_x[1:]) + 2 * Wrho[1:]) / np.clip(nodes[1:], 1e-3, None))
+    xl, wl = np.polynomial.legendre.leggauss(N_L)
+    ls, wl = 0.5 * (xl + 1.0), 0.5 * wl
+    # the windows must contain every (dz, rho) that is queried. A query point w = (l, X, Y) has
+    # rho_x^2 = (sa l - CO X)^2 + Y^2 and rho_y^2 = (sa (1 - l) + CO X)^2 + Y^2, so a table node rho is reached from
+    # l = rho / sa and, near the ends, from the X span itself; the windows are widened to the union of the nominal
+    # window above and the exact query range (X grids of the l nodes, Y^2 <= Y2_FAC sigma^2 l (1 - l), T_xy)
+    cx, wx = _cover(CO * nodes + sa * Xc_x, sa * Wrho + 1e-14, nodes, rho_max,
+                    _queries(ls, path, lg, sig, CO, sa, False) + [(CO, sa, sa)])
+    cy, wy = _cover(-CO * nodes + sa * Xc_y, sa * Wrho + 1e-14, nodes, rho_max,
+                    _queries(ls, path, lg, sig, CO, sa, True))
+    reach = max(np.max((np.abs(cx[1:]) + wx[1:]) / nodes[1:]), np.max((np.abs(cy[1:]) + wy[1:]) / nodes[1:]))
     umax = reach + 2.0 * math.sqrt(eps) / kap + 4.0 / kap
     fx = family(bb, kap, th, umax, rho_max)
     fy = family(bb, kap, kap * CO + th, umax, rho_max)
-    Tx = Table(fx, CO * nodes + sa * Xc_x, sa * Wrho + 1e-14)
-    Ty = Table(fy, -CO * nodes + sa * Xc_y, sa * Wrho + 1e-14)
+    Tx = Table(fx, cx, wx)
+    Ty = Table(fy, cy, wy)
     Txy = sa + float(Tx(np.array([CO]), np.array([sa]))[0])
     dt = math.sqrt(Txy * Txy + sig * sig)
-    xl, wl = np.polynomial.legendre.leggauss(N_L)
-    ls, wl = 0.5 * (xl + 1.0), 0.5 * wl
     yg, wyg = np.polynomial.legendre.leggauss(N_Y)
     yg, wyg = 0.5 * (yg + 1.0), 0.5 * wyg
     V = 0.0
