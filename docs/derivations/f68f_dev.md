@@ -581,11 +581,15 @@ diag/f68f_common.py:
 | diag/f68f_dev.py | step 0, checks T1–T5 | output identical to diag/out/f68f_step0.txt |
 | diag/f68f_layer.py | step 0′: bulk and layer; options for the p and s quadrature checks (replace diag/f68f_pconv.py and diag/f68f_sconv.py) | one direction at n = 24 (bulk and layer) identical to the cached values of the run; end to end with `--p-list 0.5 --n-s 16 --bulk-only`: −6.0904258135e-06, equal to f68f_sconv.txt; the slope assembly of the full mode is the code of 16 Nov unchanged, not rerun end to end |
 | diag/f68f_c2fd.py | the F6.8c2 code as a derivative in the age; `--mult` | runs end to end (the same call of optical_row as before); at k = 0.12, T = 50 it gives K̂_bb 0.8010366682 against 0.8010372305 in the F6.8c2 record of 29 Oct (diag/out/f68f_c2fd_20261116T214446Z.txt) |
-| diag/f68f_1a.py | step 1a; `--levels` replaces diag/f68f_1a_levels.py | three volumes identical to the cached values (to 6e-17); the full run is being compared with f68f_1a.txt |
+| diag/f68f_1a.py | step 1a; `--levels` replaces diag/f68f_1a_levels.py | three volumes identical to the cached values (to 6e-17); the main assembly reproduces f68f_1a.txt from the recorded per-job values; `--levels` end to end: all four rows identical to f68f_1a_levels.txt to the last printed digit (diag/out/f68f_1a_levels_20261117T004948Z.txt) |
 | diag/f68f_1b.py | step 1b, plane wave | ε = 4, 12 at p = 2 and the onset at p = 1 identical to f68f_1b.txt |
 | diag/f68f_1b_q.py | step 1b at finite q, expansion (the failed exact check removed) | ε = 4, 12 at p = 2 identical to f68f_1b_q.txt |
 | diag/f68f_1b_exact.py | step 1b at finite q, exact envelopes | ε = 9.5, p = 0 on 4 phases identical to the per-phase record; ran on the author's machine (Windows, 8 processes) |
-| diag/f68f_1b_cut.py | cut loci | ε = 12, p = 0 being compared with f68f_1b_cut_partial.txt |
+| diag/f68f_1b_cut.py | cut loci | ε = 12, p = 0: θ_c = 0, α 1.5927e+01, A 1.39517, identical to f68f_1b_cut_partial.txt; also computed (per-job cache only, no record): ε 9.87 p 0 (no cut locus), ε 12 p 1 and 16 p 1 (one each, θ_c 5.783185). The exploratory points ε 16 p 2 and ε 40 were stopped for time and not run |
+| diag/f68f_1c.py | step 1c, the q² series | new; checks in step 1c |
+| diag/f68f_1c_e3.py | step 1c, the b → 0 comparison with F6.8e3 | new; records at n = 384 and 1536 |
+| diag/f68f_1d.py | step 1d, brute force at finite κ | new; flat test 4e-9 against exact distances after the Y-root fix; ten points against the series |
+| diag/f68f_keff.py | step 2, the K_eff assembly | new; selftest exact; development rows at ε 0.5, 3 |
 
 **Removed:**
 - diag/f68f_pconv.py, diag/f68f_sconv.py: now options of f68f_layer;
