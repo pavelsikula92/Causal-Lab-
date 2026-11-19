@@ -319,6 +319,27 @@ N = 50, 100, 200, 400, ε = 0.12, run by diag/ov1_2d_mcmc2.py.
     diagnostics classify the departure.
 - **Reported per chain:** the means, var(S), the acceptance, τ_int of S and of χ, and the fraction of samples outside
   each band.
+- **Results at N = 50 and 100** (Claude's container, 19 Nov; diag/out/ov1_2d_mcmc2/report_50_100.txt). "Out h" is
+  the fraction of samples outside the flat h band; χ and d_MM leave their bands only at N = 100.
+
+  | N | β | S | χ | h | out h |
+  |---|---|---|---|---|---|
+  | 50 | 2.2 | −2.4 | 0.493 | 8.3 | 0.05 |
+  | 50 | 2.4 | −14.6 | 0.525 | 6.9 | 0.42 |
+  | 50 | 2.6 | −29.4 | 0.555 | 5.4 | 0.89 |
+  | 100 | 1.0 | −3.4 | 0.478 | 13.9 | 0.03 |
+  | 100 | 1.4 | −181.7 | 0.579 | 5.9 | 1.00 |
+
+  - **N = 50.** The manifold-like phase holds up to β ≈ 2.2; the escape (out h crossing 0.5) lies between β 2.4 and
+    2.6; var(S) peaks at 2.4 (104).
+  - **N = 100.** The escape lies between stage-A points 1.0 and 1.4: S jumps from −3.4 to −182, h from 13.9 to 5.9.
+  - **In the crystalline phase** at N = 100 the chains do not equilibrate: τ_int of S is up to 150, the acceptance
+    0.1–0.2, and the chains differ, so the phase-II values there are not reliable. The manifold side and the location
+    of the escape are (τ_int ≤ 3 for β ≤ 1).
+  - **The stage-B rule failed at N = 100.** The stage-A maximum of var(S) fell at β = 4.0 (163, a metastable
+    crystalline chain), not at the transition, so stage B was run on [2.8, 4.0] instead of [1.0, 1.4]. The rule as
+    fixed is kept on record; a replacement rule is the author's decision (proposed: stage B between the stage-A
+    neighbours where out h crosses 0.5, the quantity of the escape itself).
 - **Who runs what.** N = 50 and 100 run in Claude's container. N = 200 and 400 run on the author's machine:
   stage A plus B at N = 400 is about 6 h on 8 workers, at N = 200 under 1 h.
 
