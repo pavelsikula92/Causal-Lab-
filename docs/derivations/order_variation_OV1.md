@@ -562,6 +562,40 @@ machine; mean ± SE, with the sd per sprinkling).
 - ⟨D² S⟩ (reported) is −0.0009 ± 0.0005 / −0.0005 ± 0.0005 (U / V) at 8 and −0.00043 ± 0.00023 / −0.00011 ± 0.00022
   at 16, against an sd of 0.38. The values are slightly negative, below 2σ each.
 
+**Validation rows on the author's machine, ε = 0.06** (256 sprinklings, 19 Nov, finished 23:1x; 164 s each).
+
+*Vacuum.*
+
+| T/w | N | ⟨S⟩ | sd |
+|---|---|---|---|
+| 8 | 8 642 | +2.8 ± 1.0 | 16 |
+| 16 | 34 551 | +0.4 ± 2.3 | 37 |
+| 32 | 138 228 | +4.5 ± 5.2 | 84 |
+
+- The paired differences are S(16) − S(8) = −2.4 ± 2.1 and S(32) − S(16) = +4.1 ± 4.9.
+- The slope is c = (+2.1 ± 4.1)·10⁻⁵, that is c N_max = +2.9 ± 5.7 and c/(4ε) = (+0.9 ± 1.7)·10⁻⁴.
+
+*Balance.*
+- ⟨D S⟩ = +0.00001 ± 0.00001 at T/w 8 and 0.00000 ± 0.00000 at 16, in both orders, against a per-element sd of 0.045;
+  the profiles are flat.
+- ⟨D² S⟩ = +0.00012 ± 0.00012 / +0.00011 ± 0.00012 at 8 and +0.00006 ± 0.00005 / +0.00002 ± 0.00005 at 16, now
+  slightly positive. The small negative values at ε 0.12 are therefore not a systematic sign.
+
+**The three ε together (vacuum, validation seeds).**
+
+| ε | c/(4ε) | ⟨S⟩ at T/w = 8 | sd of S at T/w = 8 |
+|---|---|---|---|
+| 0.24 | (+2.2 ± 5.4)·10⁻⁴ | +3.1 ± 3.1 | 70 |
+| 0.12 | (−1.7 ± 2.5)·10⁻⁴ | +6.0 ± 1.5 | 34 |
+| 0.06 | (+0.9 ± 1.7)·10⁻⁴ | +2.8 ± 1.0 | 16 |
+
+- **No volume term at any ε.** The per-element cancellation is a few 10⁻⁴, and the slopes are consistent with zero
+  within 1σ.
+- **The constant does not scale as 1/ε.** At ε 0.06, 1/ε scaling would predict ≈ 12, and 2.8 ± 1.0 is measured. The
+  three values agree at 1.8σ (ε 0.12 against 0.06); their weighted mean is 3.7 ± 0.8.
+- **The sd of S scales as ε√N.** It halves with ε at fixed T/w and grows ×2 per level. The constant is resolved best
+  at small ε.
+
 **Reading (development, decides nothing).**
 - A zero mean of D S over a time-symmetric interior is guaranteed by the time reversal of the flat diamond, so in flat
   space it checks the implementation, not physics. The content of L2 lies in the profile near the tips, and later in
