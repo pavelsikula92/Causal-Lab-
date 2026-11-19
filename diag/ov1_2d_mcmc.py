@@ -33,85 +33,13 @@ import math
 import os
 import time
 
-import numba as nb
 import numpy as np
 
-from diag.ov1_2d import (_dF, _past_lists, abundances, fker, n_cut_of, rel_count_height, reversed_order,
-                         small_future)
+from diag.ov1_2d import fker, n_cut_of, reversed_order
+from diag.ov1_kernels import _seed, abundances, rel_count_height, run_sweeps
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "ov1_2d_mcmc")
 BETAS_F64A = [0.0, 0.1, 0.5, 1.0, 1.5] + [round(1.8 + 0.1 * k, 1) for k in range(11)] + [3.0, 3.5, 4.0, 4.5]
-
-
-@nb.njit(cache=True)
-def _apply_U(vr, iv, vrR, ivR, p):
-    N = vr.size
-    a, b = vr[p], vr[p + 1]
-    vr[p], vr[p + 1] = b, a
-    iv[b], iv[a] = p, p + 1
-    for k in (N - 1 - p, N - 2 - p):
-        vrR[k] = N - 1 - vr[N - 1 - k]
-        ivR[vrR[k]] = k
-
-
-@nb.njit(cache=True)
-def _apply_V(vr, iv, vrR, ivR, r):
-    N = vr.size
-    i, j = iv[r], iv[r + 1]
-    vr[i], vr[j] = r + 1, r
-    iv[r], iv[r + 1] = j, i
-    for e in (i, j):
-        k = N - 1 - e
-        vrR[k] = N - 1 - vr[e]
-        ivR[vrR[k]] = k
-
-
-@nb.njit(cache=True)
-def _dS_U(p, vr, iv, vrR, ivR, f, ncut, eps, tree, undo, L):
-    q = p + 1
-    mf = small_future(p, vr, iv, ncut, tree, undo, L[0], L[1])
-    mp = _past_lists(p, vrR, ivR, ncut, tree, undo, L[2], L[3])
-    mg = small_future(q, vr, iv, ncut, tree, undo, L[4], L[5])
-    mq = _past_lists(q, vrR, ivR, ncut, tree, undo, L[6], L[7])
-    return -8.0 * eps * eps * _dF(p, q, vr, f, L[0], L[1], mf, L[2], L[3], mp, L[4], L[5], mg, L[6], L[7], mq)
-
-
-@nb.njit(cache=True)
-def _seed(s):
-    np.random.seed(s)
-
-
-@nb.njit(cache=True)
-def run_sweeps(A, B, S, R, beta, f, ncut, eps, n_prop):
-    """n_prop proposals; A = (vr, iv, vrR, ivR) natural, B = the transposed representation (iv, vr, ...).
-    Returns S, R (relations), accepted."""
-    vr, iv, vrR, ivR = A
-    tv, tiv, tvR, tivR = B
-    N = vr.size
-    tree = np.zeros(N + 1, np.int64)
-    undo = np.empty(N, np.int64)
-    L = [np.empty(N, np.int64) for _ in range(8)]
-    acc = 0
-    for _ in range(n_prop):
-        useU = np.random.random() < 0.5
-        p = np.random.randint(0, N - 1)
-        if useU:
-            dS = _dS_U(p, vr, iv, vrR, ivR, f, ncut, eps, tree, undo, L)
-            rel = vr[p] < vr[p + 1]
-        else:
-            dS = _dS_U(p, tv, tiv, tvR, tivR, f, ncut, eps, tree, undo, L)
-            rel = tv[p] < tv[p + 1]
-        if dS <= 0.0 or np.random.random() < math.exp(-beta * dS):
-            if useU:
-                _apply_U(vr, iv, vrR, ivR, p)
-                _apply_V(tv, tiv, tvR, tivR, p)
-            else:
-                _apply_U(tv, tiv, tvR, tivR, p)
-                _apply_V(vr, iv, vrR, ivR, p)
-            S += dS
-            R += -1 if rel else 1
-            acc += 1
-    return S, R, acc
 
 
 def _reps(vr):
