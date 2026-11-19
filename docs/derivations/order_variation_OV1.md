@@ -275,7 +275,21 @@ F6.4a β grid?
   - the exact Boltzmann distribution at N = 4 (TV 0.0079 ≤ 0.01);
   - β = 0 against 20 000 directly sampled orders (|ΔS| 0.016, |Δχ| 0.0019, |Δh| 0.000);
   - the local ΔS accumulated over 10 000 proposals against a full recomputation (4e−13).
-- Results: [to be filled].
+- **Results** (N = 50, ε = 0.12, 4 chains × (500 + 3000) sweeps; diag/out/ov1_2d_mcmc):
+  - **Phase I, β = 0.1.** S 3.828 ± 0.011, χ 0.4980, h 10.230. The laboratory's F6.4a measured 3.835, 0.4981 and
+    10.237; Surya published 3.846, 0.499 and 10.232.
+  - **Transition.** The maximum of var(S) is at β = 2.4 (var 103), as in F6.4a (2.4); the published range is 2.2–2.5.
+  - **Phase II, β = 3.5.** S −41.27 ± 0.07, χ 0.566, h 3.94. F6.4a measured −41.07, 0.593 and 3.70; F6.4c's
+    preparations gave h 3.71–3.89; Surya published −41.37, 0.579 and 4.18.
+    - The four chains differ: h 3.73–4.05 and χ 0.546–0.591. At β = 4.0 and 4.5 χ moves non-monotonically
+      (0.603, 0.598).
+    - The crystalline phase has metastable structures that neither sampler equilibrates within a chain, so the two
+      samplers need not agree on h and χ there. This matches the bimodality found in F6.4c.
+  - **Reading (decides nothing).**
+    - The local sampler reproduces the manifold-like phase and the location of the transition of F6.4a to within
+      their errors.
+    - In phase II it lands within the spread of the known metastable states, not on one value.
+    - The local moves are adequate for the escape at N = 50.
 
 **P1, the escape at OV1 sizes.** With the F6.4a sweep, one sweep at N = 200 takes 0.47 s on one core; N(N − 1)/2
 proposals per sweep grow as N². At the OV1 sizes (N ≥ 1 920 at ε = 0.24) a sweep would take minutes and a chain of
