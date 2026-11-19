@@ -161,17 +161,26 @@ the intersection of two total orders U and V on the N elements, a sprinkling of 
 
 ## 6. ε
 
-- **Reference values.** ε₀ is the reference value, with the comparison values ε₀/2 and 2ε₀, all inside the admissible
-  interval 0 < ε < 1 of the smeared kernel. If one fell outside it, both factors would shrink equally on a log scale.
-  ε is not chosen per dimension.
-- **Open point for the author: what is ε_F6.8?**
-  - F6.8 works in the units ερ = 1 (ℓ_k = 1), and its expectation depends on ε and ρ only through ερ. F6.8 therefore
-    has no per-element ε: it fixes the unit of length, not a dimensionless number.
-  - A discrete realisation (family I, L2) needs a per-element ε, the ratio of discreteness to nonlocality.
-  - **Provisional value for 2D:** ε₀ = 0.12, the value of F6.4a/c (Surya 2012), with 0.06 and 0.24 for comparison.
-    This is the existing calibrated construction in 2D.
-  - In 3+1, ε₀ must be chosen before the first 3+1 run. Only ℓ_k = 1 carries over from F6.8.
-  - **To be confirmed** before the 2D card is frozen.
+**Decision (the author, 19 Nov, 11:30).** For the initial 2D OV1: ε₀ = 0.12, ε₋ = 0.06, ε₊ = 0.24.
+- 0.12 is the 2D reference value of F6.4a/c (Surya 2012). It is not a derived constant of the theory.
+- The factor two on each side tests whether stationarity and the phase behaviour depend on the coefficient.
+- The earlier "ε from F6.8" is withdrawn. F6.8 works in the units ερ = 1 (ℓ_k = 1), not with a dimensionless
+  per-element coefficient, and the two are not interchangeable.
+
+**The role of ε, defined (the author's condition).** ε is the dimensionless smearing coefficient of the kernel of the
+action, per element.
+- **Where it enters.** It enters the functional only:
+  - in S = 4ε (N − 2ε Σ_n N_n f(n, ε)) in 2D, through the prefactor and the weights f(n, ε) of the interval
+    abundances;
+  - in the definitions derived from that kernel: n_loc(ε) and w_∂(ε) (section 4), hence the sizes N_exp = (T/w)²
+    n_loc and the collar.
+- **The local move does not depend on ε.** An adjacent transposition is defined by the order alone; ε enters only
+  ΔS of the move and, in the phase sampler, the acceptance through S.
+- **ε is not a density, a length or a sampling parameter.** The density sets the units: N_exp is the expected number
+  of elements. The length ℓ_k = (ερ)^(−1/d) is derived from ε and ρ and is not an independent input. The sampling
+  parameters (seeds, sweeps, β) are separate.
+- **No automatic transfer.** The value is not carried over to 2+1 or 3+1 until the same normalisation is verified
+  there.
 
 ## 7. Stationarity (S-b) and the second variation
 
@@ -233,19 +242,48 @@ of the longest chain) and the interval abundances N_n.
 - unstable, or an escape from it;
 - undecidable by the instrument.
 
-**Open point for the author: the size.** The decided sizes (T/w = 8, 16, 32 with w from 99 % of the kernel) give
-N = 4 160 – 66 560 at ε = 0.12. F6.4a/c calibrated its phases at N = 50 only, so:
-- the F6.4 diagnostics are defined at every N, but the crystalline reference values (χ 0.579, h 4.18) exist at N = 50
-  only;
-- the manifold-like band at each N is set from flat sprinklings at that N (development, section 13), before any card;
-- a crystalline reference at large N would need new MCMC runs, which are not made here.
+**Bands at the actual N (the author, 19 Nov, 11:30).**
+- The reference band of the manifold-like phase is set from flat sprinklings at the same N, the same geometry of the
+  region and the same boundary conditions as the later test. It is never extrapolated from the crystalline reference
+  at N = 50.
+- For each N there is a separate calibration set of flat sprinklings, with seeds disjoint from the validation seeds
+  of OV1:
+  - calibration: seeds ≥ 100 000;
+  - validation: seeds < 100 000.
 
-**What OV1 can and cannot test.** In OV1 no procedure moves an order further than one rewrite from a flat sprinkling.
-- In OV1 output B is therefore a calibration of the classifier: the bands at each N, and the check that H₊ and H₋ stay
-  inside them.
-- The escape proper needs a procedure that moves through configuration space: a dynamics (OV3), or an ensemble
-  weighted by the action with the local rewrite set of section 3.2 (an F6.4-type run with local moves).
-- Which of the two is used is the author's choice.
+  diag/ov1_2d_summ.py takes the bands from the calibration seeds and reports the fraction of validation sprinklings
+  outside them.
+- **Limit of the reading.** The flat band fixes only the manifold-like reference. A departure from it does not by
+  itself say whether the structure is crystalline or another non-manifold structure. That classification stays with
+  the F6.4 diagnostics, which are reported separately: χ, d_MM, h, N₀ and the layered profile.
+
+**The escape: an F6.4-type sampler with local moves (the author, 19 Nov, 11:30), not OV3.** OV3 is not yet defined,
+and using it here would make an unfinished theory its own control instrument. The sampler (diag/ov1_2d_mcmc.py):
+- proposals: the adjacent transpositions of family I (U or V with probability 1/2, a position uniformly);
+- acceptance and sampling: those of F6.4a, unchanged:
+  - Metropolis with exp(−βS);
+  - one sweep = N(N − 1)/2 proposals;
+  - one sample per sweep after the thermalisation;
+  - per chain: S, var S, χ, d_MM, h, N₀, the acceptance and τ_int;
+- the proposal is symmetric and the moves connect all 2D orders, so the stationary distribution is the Boltzmann
+  distribution of F6.4a. Only the mixing differs;
+- the result is labelled an exploration of the configuration space, not a physical time evolution.
+
+**P0, the instrument.** Does the local sampler reproduce the laboratory's F6.4a measurement at N = 50, ε = 0.12 on the
+F6.4a β grid?
+- Checks:
+  - the exact Boltzmann distribution at N = 4 (TV 0.0079 ≤ 0.01);
+  - β = 0 against 20 000 directly sampled orders (|ΔS| 0.016, |Δχ| 0.0019, |Δh| 0.000);
+  - the local ΔS accumulated over 10 000 proposals against a full recomputation (4e−13).
+- Results: [to be filled].
+
+**P1, the escape at OV1 sizes.** With the F6.4a sweep, one sweep at N = 200 takes 0.47 s on one core; N(N − 1)/2
+proposals per sweep grow as N². At the OV1 sizes (N ≥ 1 920 at ε = 0.24) a sweep would take minutes and a chain of
+3 500 sweeps days. The author has to choose between:
+1. a size scan within reach (for example N = 50, 100, 200, 400 at ε = 0.12, each with its own calibration set), which
+   gives the trend of the transition with N;
+2. fewer sweeps at OV1 sizes, judged by τ_int, with a stated risk that "no escape" means "not mixed";
+3. a faster implementation first.
 
 ## 11. Verdict rules
 
@@ -351,8 +389,20 @@ python -m diag.ov1_2d --check
 python -m diag.ov1_2d --eps 0.24 --seeds 0-511 --levels 8,16,32 --drift 8,16 --workers 8
 python -m diag.ov1_2d --eps 0.12 --seeds 0-511 --levels 8,16,32 --drift 8,16 --workers 8
 python -m diag.ov1_2d --eps 0.06 --seeds 0-255 --levels 8,16,32 --drift 8,16 --workers 8
+python -m diag.ov1_2d --eps 0.24 --seeds 100000-100511 --levels 8,16,32 --drift "" --workers 8
+python -m diag.ov1_2d --eps 0.12 --seeds 100000-100511 --levels 8,16,32 --drift "" --workers 8
+python -m diag.ov1_2d --eps 0.06 --seeds 100000-100255 --levels 8,16,32 --drift "" --workers 8
 python -m diag.ov1_2d_summ > diag/out/ov1_2d/summary.txt
 ```
+
+- **Calibration of the phase bands (section 10):** seeds ≥ 100 000, without the balance part (--drift ""), so they are
+  cheaper.
+- **Phase sampler P0** (section 10):
+  ```
+  python -m diag.ov1_2d_mcmc --check
+  python -m diag.ov1_2d_mcmc --scan --N 50 --eps 0.12 --chains 4 --therm 500 --meas 3000 --workers 8
+  ```
+  This takes about 0.01 s per sweep and chain, about 6 min on 8 workers.
 
 - **Estimated time on 8 workers**, scaled from one core of the container: about 10 min, 45 min and 1.5–2 h.
 - **Resumable:** an existing JSON is skipped.

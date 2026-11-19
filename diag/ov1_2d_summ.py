@@ -1,4 +1,6 @@
-"""OV1 2D development summary (decides nothing): python -m diag.ov1_2d_summ [eps ...]. Mean +- SE over sprinklings."""
+"""OV1 2D development summary (decides nothing): python -m diag.ov1_2d_summ [eps ...]. Mean +- SE over sprinklings.
+Seeds >= CAL (100000) are the calibration set of the phase bands (the author, 19 Nov: calibration seeds separate from
+the validation seeds); everything else is read from the validation seeds (< CAL)."""
 import glob
 import json
 import os
@@ -7,6 +9,7 @@ import sys
 import numpy as np
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "ov1_2d")
+CAL = 100000
 
 
 def ms(x):
@@ -17,7 +20,9 @@ def ms(x):
 def main():
     eps_list = [float(e) for e in sys.argv[1:]] or sorted({json.load(open(f))["eps"] for f in glob.glob(f"{OUT}/ov1_*.json")})
     for eps in eps_list:
-        R = [json.load(open(f)) for f in sorted(glob.glob(f"{OUT}/ov1_{eps:g}_*.json"))]
+        ALL = [json.load(open(f)) for f in sorted(glob.glob(f"{OUT}/ov1_{eps:g}_*.json"))]
+        R = [r for r in ALL if r["seed"] < CAL]
+        RC = [r for r in ALL if r["seed"] >= CAL]
         if not R:
             continue
         levs = sorted(R[0]["levels"], key=int)
@@ -41,12 +46,17 @@ def main():
         m, se, sd = ms(c)
         Nmax = np.mean([r["levels"][levs[-1]]["N"] for r in R])
         print(f"    slope c = dS/dN: {m:+.3e} +- {se:.3e}   (c N_max {m * Nmax:+.3f} +- {se * Nmax:.3f})")
-        print("  phase nulls (flat): chi, d_MM, h; mean, sd, [0.5 %, 99.5 %] of the sprinklings")
+        src = RC if len(RC) >= 20 else R
+        print(f"  phase bands (flat) from the {'calibration' if src is RC else 'VALIDATION (no calibration set yet)'} "
+              f"seeds (n {len(src)}): mean, sd, [0.5 %, 99.5 %]; validation outside the band")
         for L in levs:
             for q in ("chi", "d_mm", "h"):
-                x = np.array([r["levels"][L][q] for r in R], float)
+                x = np.array([r["levels"][L][q] for r in src], float)
                 lo, hi = np.percentile(x, [0.5, 99.5])
-                print(f"    T/w {L:>2} {q:4}: {x.mean():.5f} sd {x.std(ddof=1):.5f} [{lo:.5f}, {hi:.5f}]")
+                y = np.array([r["levels"][L][q] for r in R], float)
+                out = np.mean((y < lo) | (y > hi)) if src is RC else float("nan")
+                print(f"    T/w {L:>2} {q:4}: {x.mean():.5f} sd {x.std(ddof=1):.5f} [{lo:.5f}, {hi:.5f}]  "
+                      f"validation outside {out:.3f}")
         print("  balance (L2): interior elements; per-sprinkling means, then mean +- SE over sprinklings")
         for L in levs:
             RB = [r for r in R if "balance" in r["levels"][L]]
