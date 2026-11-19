@@ -291,13 +291,36 @@ F6.4a β grid?
     - In phase II it lands within the spread of the known metastable states, not on one value.
     - The local moves are adequate for the escape at N = 50.
 
-**P1, the escape at OV1 sizes.** With the F6.4a sweep, one sweep at N = 200 takes 0.47 s on one core; N(N − 1)/2
-proposals per sweep grow as N². At the OV1 sizes (N ≥ 1 920 at ε = 0.24) a sweep would take minutes and a chain of
-3 500 sweeps days. The author has to choose between:
-1. a size scan within reach (for example N = 50, 100, 200, 400 at ε = 0.12, each with its own calibration set), which
-   gives the trend of the transition with N;
-2. fewer sweeps at OV1 sizes, judged by τ_int, with a stated risk that "no escape" means "not mixed";
-3. a faster implementation first.
+**P1, the escape: a size scan (the author, 19 Nov, 12:34: option 1, the more reliable one).** Local sampler at
+N = 50, 100, 200, 400, ε = 0.12, run by diag/ov1_2d_mcmc2.py.
+- **Engine.** Dense: the matrix C of the interval counts, so ΔS costs O(N).
+  - It agrees with brute force to 3e−13 over 6 000 proposals at N = 12, 40 and 90.
+  - It is statistically consistent with the sparse engine of P0 at N = 50 (β 0.1, 2.0).
+  - Cost per sweep on one core: 0.02 s at N = 100, 0.07 s at 200 and 0.6 s at 400.
+- **Sampling.** That of F6.4a: 4 chains per β, 500 + 3 000 sweeps, one sweep = N(N − 1)/2 proposals.
+- **β grid, fixed before the run.** The transition moves with N (at N = 200 the chain is crystalline already at
+  β = 1), so the F6.4a grid is not reused.
+  - **Stage A**, the same for every N: 0, 0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0, 1.4, 2.0, 2.8, 4.0.
+  - **Stage B:** 9 equally spaced interior points between the stage-A neighbours of the stage-A maximum of var(S).
+    This rule is fixed now and not chosen afterwards.
+- **Calibration at each N.** 20 000 uniform 2D orders of the same N, drawn directly, seed 100 000 + N, disjoint from
+  the chain seeds; the bands are [0.5 %, 99.5 %].
+
+  | N | χ | d_MM | h |
+  |---|---|---|---|
+  | 50 | [0.376, 0.625] | [1.70, 2.37] | [7, 14] |
+  | 100 | [0.414, 0.587] | [1.78, 2.25] | [12, 20] |
+  | 200 | [0.440, 0.561] | [1.85, 2.17] | [19, 29] |
+  | 400 | [0.457, 0.545] | [1.89, 2.12] | [30, 41] |
+
+  - At N = 50 the crystalline χ (0.55–0.60) lies inside the flat χ band. There χ alone does not classify; h does
+    (crystalline 3.7–4.2 against the band [7, 14]).
+  - This is the author's point: the flat band fixes the manifold-like reference only, and the separate F6.4
+    diagnostics classify the departure.
+- **Reported per chain:** the means, var(S), the acceptance, τ_int of S and of χ, and the fraction of samples outside
+  each band.
+- **Who runs what.** N = 50 and 100 run in Claude's container. N = 200 and 400 run on the author's machine:
+  stage A plus B at N = 400 is about 6 h on 8 workers, at N = 200 under 1 h.
 
 ## 11. Verdict rules
 
@@ -386,6 +409,33 @@ sd of d_MM is 0.015 / 0.0065 / 0.0032, falling as N^(−1/2). h = 121 / 248 / 50
 - The profile from the past to the future tip is flat within the errors; the end bins are at most 1.4σ.
 - ⟨D² S⟩ (reported) is +0.0012 ± 0.0030 / −0.0057 ± 0.0027 (U / V) at 8 and −0.0017 ± 0.0009 / −0.0004 ± 0.0012
   at 16, against an sd of 0.38.
+
+**Validation rows on the author's machine, ε = 0.24** (512 sprinklings, 19 Nov; diag/out/ov1_2d on the author's
+machine; mean ± SE, with the sd per sprinkling).
+
+*Vacuum.*
+
+| T/w | N | ⟨S⟩ | sd |
+|---|---|---|---|
+| 8 | 1 921 | +3.1 ± 3.1 | 70 |
+| 16 | 7 678 | +2.8 ± 6.9 | 155 |
+| 32 | 30 722 | +8.7 ± 14.9 | 337 |
+
+- The paired differences are S(16) − S(8) = −0.3 ± 6.1 and S(32) − S(16) = +5.9 ± 13.1.
+- The slope is c = (+2.1 ± 5.1)·10⁻⁴, that is c N_max = +6.5 ± 15.8 and c/(4ε) = (+2.2 ± 5.4)·10⁻⁴.
+- ⟨S⟩ is flat at about 3 over a 16-fold volume, consistent with a constant (joint) term and no volume term.
+
+*Balance, interior elements.*
+
+| T/w | ⟨D S⟩, U | ⟨D S⟩, V | sd per element |
+|---|---|---|---|
+| 8 | −0.00043 ± 0.00022 | +0.00014 ± 0.00025 | 0.77 |
+| 16 | −0.00007 ± 0.00007 | +0.00001 ± 0.00007 | 0.76 |
+
+- The time slopes are zero within 3e−3.
+- ⟨D² S⟩ is within 1.2σ of 0, against an sd of 1.7.
+
+*Phase.* d_MM = 2.000 at every level (sd 0.020 / 0.010 / 0.005). The calibration seeds (≥ 100 000) are not run yet.
 
 **Reading (development, decides nothing).**
 - A zero mean of D S over a time-symmetric interior is guaranteed by the time reversal of the flat diamond, so in flat
