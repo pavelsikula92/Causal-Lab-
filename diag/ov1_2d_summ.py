@@ -49,10 +49,11 @@ def main():
                 print(f"    T/w {L:>2} {q:4}: {x.mean():.5f} sd {x.std(ddof=1):.5f} [{lo:.5f}, {hi:.5f}]")
         print("  balance (L2): interior elements; per-sprinkling means, then mean +- SE over sprinklings")
         for L in levs:
-            if "balance" not in R[0]["levels"][L]:
+            RB = [r for r in R if "balance" in r["levels"][L]]
+            if len(RB) < 2:
                 continue
             for k in ("U", "V"):
-                B = [r["levels"][L]["balance"][k] for r in R]
+                B = [r["levels"][L]["balance"][k] for r in RB]
                 Dm = ms([b["D_mean"] for b in B])
                 Dt = ms([b["D_tslope"] for b in B])
                 D2 = ms([b["D2_mean"] for b in B])

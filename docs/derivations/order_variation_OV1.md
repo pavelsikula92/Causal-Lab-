@@ -301,9 +301,63 @@ product:
 
 The largest difference was 1e−10 for S and 5.5e−13 for ΔS.
 
-**Cost.** At ε = 0.12, one sprinkling with all three levels and the balance on T/w = 8 takes about 30 s on one core.
+**Cost.** On one core of the container, one sprinkling with all three levels and the balance on T/w = 8 and 16 takes
+about 9 s at ε = 0.24, 40 s at 0.12 and 180 s at 0.06.
 
-**Results.** [to be filled from the development runs]
+**Development rows** (ε = 0.12, 16 sprinklings; diag/out/ov1_2d; mean ± SE, with the sd per sprinkling).
+
+*Vacuum.*
+
+| T/w | N | ⟨S⟩ | sd |
+|---|---|---|---|
+| 8 | 4 167 | +4.3 ± 8.5 | 34 |
+| 16 | 16 650 | −18.2 ± 17.1 | 69 |
+| 32 | 66 606 | −17.4 ± 29.8 | 119 |
+
+- The sd of S grows as √N (×2 per level).
+- The paired differences are S(16) − S(8) = −22.5 ± 15.5 and S(32) − S(16) = +0.8 ± 25.8.
+- The slope is c = dS/dN = (−2.5 ± 4.8)·10⁻⁴, that is c N_max = −16 ± 32. Relative to the bare volume term 4ε per
+  element this is c/(4ε) = (−5 ± 10)·10⁻⁴: the N term cancels to 10⁻³, consistent with c = 0.
+- With 16 sprinklings the constant ⟨S⟩ (the joint term, section 4.4) is not resolved.
+
+*Phase nulls (flat).* χ = 0.5001 / 0.5004 / 0.4999 and d_MM = 1.9997 / 1.9989 / 2.0003 at T/w = 8 / 16 / 32. The
+sd of d_MM is 0.015 / 0.0065 / 0.0032, falling as N^(−1/2). h = 121 / 248 / 503.
+
+*Balance, interior elements.*
+
+| T/w | ⟨D S⟩, U | ⟨D S⟩, V | sd per element |
+|---|---|---|---|
+| 8 | +0.0002 ± 0.0003 | −0.0000 ± 0.0002 | 0.18 |
+| 16 | +0.00013 ± 0.00008 | +0.00000 ± 0.00007 | 0.18 |
+
+- The slope of ⟨D S⟩ in time is zero within ≤ 2e−3.
+- The profile from the past to the future tip is flat within the errors; the end bins are at most 1.4σ.
+- ⟨D² S⟩ (reported) is +0.0012 ± 0.0030 / −0.0057 ± 0.0027 (U / V) at 8 and −0.0017 ± 0.0009 / −0.0004 ± 0.0012
+  at 16, against an sd of 0.38.
+
+**Reading (development, decides nothing).**
+- A zero mean of D S over a time-symmetric interior is guaranteed by the time reversal of the flat diamond, so in flat
+  space it checks the implementation, not physics. The content of L2 lies in the profile near the tips, and later in
+  curved or sourced orders.
+- The content of the vacuum control is c(T). The fluctuation of S grows as √N, so a tolerance on c N_max of the order
+  of the joint term needs thousands of sprinklings. A tolerance on c/(4ε), the cancellation of the volume term per
+  element, needs hundreds.
+- Which scale the card uses is the author's decision, to be taken after the run of section 14.
+
+## 14. Development run on the author's machine (decides nothing)
+
+```
+python -m diag.ov1_2d --check
+python -m diag.ov1_2d --eps 0.24 --seeds 0-511 --levels 8,16,32 --drift 8,16 --workers 8
+python -m diag.ov1_2d --eps 0.12 --seeds 0-511 --levels 8,16,32 --drift 8,16 --workers 8
+python -m diag.ov1_2d --eps 0.06 --seeds 0-255 --levels 8,16,32 --drift 8,16 --workers 8
+python -m diag.ov1_2d_summ > diag/out/ov1_2d/summary.txt
+```
+
+- **Estimated time on 8 workers**, scaled from one core of the container: about 10 min, 45 min and 1.5–2 h.
+- **Resumable:** an existing JSON is skipped.
+- **Expected precision at 512 sprinklings (ε = 0.12):** c N_max ± 6 and c/(4ε) ± 2·10⁻⁴; ⟨D S⟩ at T/w = 16 to about
+  ±2·10⁻⁵.
 
 ## References
 
