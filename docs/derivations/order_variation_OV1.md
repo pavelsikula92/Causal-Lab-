@@ -379,7 +379,42 @@ N = 50, 100, 200, 400, ε = 0.12, run by diag/ov1_2d_mcmc2.py.
     - **N = 100: abrupt.** Up to β = 1.20 everything is inside the bands (out h ≤ 0.06, τ_int ≤ 2.3). Between 1.24 and
       1.32 the chains split, with τ_int of S 160–320, var(S) up to 3 600 and ⟨S⟩ jumping from −6 to −139. That is
       coexistence, or metastability between the two phases.
-    - N = 50 lies at about twice β_e of N = 100. N = 200 and 400 (stage A: both 0.7–1.0) follow on the author's machine.
+    - N = 50 lies at about twice β_e of N = 100.
+  - **Stage B (`outh`) at N = 200 and 400** (the author's machine, 19 Nov, finished 21:2x;
+    diag/out/ov1_2d_mcmc2/report_200_400.txt, md5 69d4e231). β_e is the out-h crossing; "escaped" counts the chains
+    with out h ≥ 0.8, out of 4.
+
+    | N | β | out h | escaped | β | out h | escaped | β_e |
+    |---|---|---|---|---|---|---|---|
+    | 200 | 0.94 | 0.12 | 0/4 | 0.97 | 0.56 | 2/4 | 0.97 |
+    | 400 | 0.82 | 0.47 | 1/4 | 0.85 | 0.57 | 2/4 | 0.83 |
+
+    - **Escape per chain.** At both sizes the escape happens chain by chain, not as a gradual shift: a chain is either
+      still manifold-like or has jumped, to S ≈ −900 at N = 200 and −2 100 to −3 400 at N = 400. At N = 400 all four
+      chains have escaped at β = 0.88. This is first-order-like metastability under local moves.
+    - **Before the escape at N = 400** h is already depressed: 31.0 against the flat 34.7 at β = 0.79, with 20–25 % of
+      the samples below the band, while χ and d_MM stay at the flat values.
+
+  **Escape point over the sizes** (local moves, ε = 0.12, 3 500 sweeps):
+
+  | N | 50 | 100 | 200 | 400 |
+  |---|---|---|---|---|
+  | β_e | 2.42 | 1.26 | 0.97 | 0.83 |
+
+  - β_e falls more slowly than 1/N. The local exponents of β_e ∝ N^(−a) are 0.94, 0.38 and 0.22 for the three
+    doublings.
+  - **The form β_e = β_∞ + A/N** fitted to N = 100 and 200 gives β_∞ = 0.68, A = 58, and predicts 0.83 at N = 400, as
+    measured. N = 50 does not follow it (predicted 1.84, measured 2.42).
+    - This is one degree of freedom, so it is consistent with a finite limit near 0.7 but does not establish one.
+    - A further size (N = 800) would test it: predicted β_e ≈ 0.75, at about 8× the cost of N = 400 per sweep.
+  - **Reading (development, decides nothing).**
+    - Within the measured range the BD action at ε = 0.12, used as a weight exp(−βS), keeps the flat order in the
+      manifold-like phase only for β < β_e(N). Above it, local moves reach crystalline orders with a much lower
+      action (ΔS of order −10³ at N = 400).
+    - The flat order is therefore not a minimum of S_BD under family I, which is why S-a is rejected (section 7), and
+      it is stationary only in the sense of S-b.
+    - **For OV3:** any dynamics driven down S_BD must be shown not to run into these orders. The escape point is a
+      stability limit under local moves within the sweeps used, an upper bound for an equilibrium transition.
   - Before the decision: Under the proposed rule both brackets are
     [0.7, 1.0]; under the old rule N = 200 would get [2.8, 4.0] (maximum of var(S) at 4.0), a second failure.
 - **Who runs what.** N = 50 and 100 run in Claude's container. N = 200 and 400 run on the author's machine:
