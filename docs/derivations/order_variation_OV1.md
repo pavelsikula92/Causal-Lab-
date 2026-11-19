@@ -339,7 +339,32 @@ N = 50, 100, 200, 400, ε = 0.12, run by diag/ov1_2d_mcmc2.py.
   - **The stage-B rule failed at N = 100.** The stage-A maximum of var(S) fell at β = 4.0 (163, a metastable
     crystalline chain), not at the transition, so stage B was run on [2.8, 4.0] instead of [1.0, 1.4]. The rule as
     fixed is kept on record; a replacement rule is the author's decision (proposed: stage B between the stage-A
-    neighbours where out h crosses 0.5, the quantity of the escape itself).
+    neighbours where out h crosses 0.5, the quantity of the escape itself). At N = 50 the old rule gave [2.0, 4.0]
+    (maximum of var(S) at 2.8), which happened to contain the escape; the proposed rule gives [2.0, 2.8].
+- **Stage A at N = 200 and 400** (the author's machine, 19 Nov, 4 chains × (500 + 3 000) sweeps, about 1 590 s per
+  chain at N = 400):
+
+  | N | β | S | χ | h | out h | τ_int(S) |
+  |---|---|---|---|---|---|---|
+  | 200 | 0.7 | −11.5 | 0.486 | 21.5 | 0.03 | 0.9 |
+  | 200 | 1.0 | −911 | 0.638 | 6.6 | 1.00 | 255 |
+  | 400 | 0.5 | −24.9 | 0.491 | 32.3 | 0.08 | 0.7 |
+  | 400 | 0.7 | −41.2 | 0.489 | 31.4 | 0.18 | 0.8 |
+  | 400 | 1.0 | −3 005 | 0.643 | 6.9 | 1.00 | 548 |
+
+  - **Escape interval.** At both sizes the escape lies between β 0.7 and 1.0. The sequence of escape intervals is
+    2.4–2.6 (N = 50), 1.0–1.4 (100), 0.7–1.0 (200) and 0.7–1.0 (400). It is not 1/N: between 200 and 400 it does not
+    move at the resolution of stage A.
+  - **Below the escape** the chains mix well (τ_int ≤ 1.4) and all three diagnostics lie inside their flat bands. At
+    N = 400, β = 0.7, h has started to fall (31.4 against the flat 34.7; 18 % of the samples are outside the band).
+  - **Above it** the chains do not equilibrate: τ_int of S is 200–550, the acceptance 0.08–0.3, and ⟨S⟩ is not
+    monotonic in β (at N = 400, −3 005 at β 1.0 against −1 459 at 4.0). The crystalline values are not reliable.
+  - **What the escape measures.** The chains start from flat orders and move by local moves. The observed escape is
+    therefore where the manifold-like phase stops being stable under local moves within 3 500 sweeps. It is an upper
+    bound for an equilibrium transition, not the transition itself; hysteresis from the crystalline side is not
+    measured.
+  - Stage B at N = 200 and 400 waits for the decision on the rule. Under the proposed rule both brackets are
+    [0.7, 1.0]; under the old rule N = 200 would get [2.8, 4.0] (maximum of var(S) at 4.0), a second failure.
 - **Who runs what.** N = 50 and 100 run in Claude's container. N = 200 and 400 run on the author's machine:
   stage A plus B at N = 400 is about 6 h on 8 workers, at N = 200 under 1 h.
 

@@ -21,7 +21,7 @@ Chains: 4 per beta; sweeps 500 + 3000 (as F6.4a).
     python -m diag.ov1_2d_mcmc2 --check
     python -m diag.ov1_2d_mcmc2 --calib --N 50,100,200,400
     python -m diag.ov1_2d_mcmc2 --stage A --N 50,100,200,400 --workers 8
-    python -m diag.ov1_2d_mcmc2 --stage B --N 50,100,200,400 --workers 8
+    python -m diag.ov1_2d_mcmc2 --stage B --rule outh --N 50,100,200,400 --workers 8   (rule: the author's decision)
     python -m diag.ov1_2d_mcmc2 --report --N 50,100,200,400
 """
 from __future__ import annotations
@@ -165,21 +165,36 @@ def _load(N):
     return [json.load(open(f)) for f in glob.glob(os.path.join(OUT, f"p1_{N}_*.json"))]
 
 
-def _grid_B(N):
+def _grid_B(N, rule):
+    """Stage-B grid: 9 interior points between two neighbouring stage-A points.
+    rule 'varS' (fixed before the run): the neighbours of the stage-A maximum of var(S). It failed at N = 100
+      (19 Nov: the maximum fell on a metastable crystalline chain at beta 4.0) and is kept on record.
+    rule 'outh' (proposed 19 Nov after that failure; the author's decision): the first pair of stage-A points between
+      which the fraction of samples outside the flat h band crosses 0.5."""
     R = [r for r in _load(N) if any(abs(r["beta"] - b) < 1e-9 for b in STAGE_A)]
-    v = {b: np.mean([r["varS"] for r in R if abs(r["beta"] - b) < 1e-9]) for b in STAGE_A}
-    assert all(not math.isnan(x) for x in v.values()), "stage A incomplete"
-    k = int(np.argmax([v[b] for b in STAGE_A]))
-    lo, hi = STAGE_A[max(k - 1, 0)], STAGE_A[min(k + 1, len(STAGE_A) - 1)]
+    key = {"varS": "varS", "outh": "out_h"}[rule]
+    v = [np.mean([r[key] for r in R if abs(r["beta"] - b) < 1e-9]) for b in STAGE_A]
+    assert all(not math.isnan(x) for x in v), "stage A incomplete"
+    if rule == "varS":
+        k = int(np.argmax(v))
+        lo, hi = STAGE_A[max(k - 1, 0)], STAGE_A[min(k + 1, len(STAGE_A) - 1)]
+    else:
+        k = next((i for i, x in enumerate(v) if x >= 0.5), None)
+        assert k is not None and k > 0, f"N {N}: out_h does not cross 0.5 inside the stage-A grid"
+        lo, hi = STAGE_A[k - 1], STAGE_A[k]
     return [round(x, 4) for x in np.linspace(lo, hi, 11)[1:-1] if not any(abs(x - b) < 1e-9 for b in STAGE_A)]
 
 
-def run_stage(stage, Ns, chains, therm, meas, workers):
+def run_stage(stage, Ns, chains, therm, meas, workers, rule=None, dry=False):
     os.makedirs(OUT, exist_ok=True)
     jobs = []
     for N in Ns:
         assert bands(N), f"calibrate N {N} first (--calib)"
-        betas = STAGE_A if stage == "A" else _grid_B(N)
+        betas = STAGE_A if stage == "A" else _grid_B(N, rule)
+        print(f"N {N} stage {stage}{'' if stage == 'A' else ' (rule ' + rule + ')'}: beta " + ", ".join(f"{b:g}" for b in betas),
+              flush=True)
+        if dry:
+            continue
         for b in betas:
             for c in range(chains):
                 jobs.append((N, b, therm, meas, 7919 * c + 104729 * int(round(1000 * b)) + 31 * N))
@@ -214,6 +229,8 @@ def main():
     ap.add_argument("--calib", action="store_true")
     ap.add_argument("--stage", choices=["A", "B"])
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--rule", choices=["varS", "outh"], help="stage-B rule (required for --stage B)")
+    ap.add_argument("--dry", action="store_true", help="print the grid only")
     ap.add_argument("--N", default="50,100,200,400")
     ap.add_argument("--chains", type=int, default=4)
     ap.add_argument("--therm", type=int, default=500)
@@ -229,7 +246,8 @@ def main():
             print(f"N {N}: chi {B['chi_mean']:.4f} [{B['chi'][0]:.4f}, {B['chi'][1]:.4f}]  d_MM [{B['d_mm'][0]:.4f}, "
                   f"{B['d_mm'][1]:.4f}]  h {B['h_mean']:.2f} [{B['h'][0]:.0f}, {B['h'][1]:.0f}]")
     if a.stage:
-        run_stage(a.stage, Ns, a.chains, a.therm, a.meas, a.workers)
+        assert a.stage == "A" or a.rule, "--stage B needs --rule varS or --rule outh"
+        run_stage(a.stage, Ns, a.chains, a.therm, a.meas, a.workers, a.rule, a.dry)
     if a.report:
         report(Ns)
 
