@@ -366,6 +366,20 @@ N = 50, 100, 200, 400, ε = 0.12, run by diag/ov1_2d_mcmc2.py.
   - **Decision (the author, 19 Nov, 17:24).** Stage B uses the rule `outh`: 9 interior points between the stage-A
     neighbours where the fraction of samples outside the flat h band crosses 0.5. The failed rule `varS` stays on
     record and its stage-B chains at N = 50 and 100 are reported, not used.
+  - **Stage B (`outh`) at N = 50 and 100** (Claude's container; diag/out/ov1_2d_mcmc2/report_50_100_outh.txt). β_e is
+    the point where out h crosses 0.5, by linear interpolation between neighbouring β.
+
+    | N | β | out h | | β | out h | β_e |
+    |---|---|---|---|---|---|---|
+    | 50 | 2.40 | 0.42 | | 2.48 | 0.71 | 2.42 |
+    | 100 | 1.24 | 0.27 | | 1.28 | 0.78 | 1.26 |
+
+    - **N = 50: a smooth crossover.** S, χ and h change continuously over β 2.2–2.6, var(S) peaks at 2.40 (104), and
+      τ_int is at most 34.
+    - **N = 100: abrupt.** Up to β = 1.20 everything is inside the bands (out h ≤ 0.06, τ_int ≤ 2.3). Between 1.24 and
+      1.32 the chains split, with τ_int of S 160–320, var(S) up to 3 600 and ⟨S⟩ jumping from −6 to −139. That is
+      coexistence, or metastability between the two phases.
+    - N = 50 lies at about twice β_e of N = 100. N = 200 and 400 (stage A: both 0.7–1.0) follow on the author's machine.
   - Before the decision: Under the proposed rule both brackets are
     [0.7, 1.0]; under the old rule N = 200 would get [2.8, 4.0] (maximum of var(S) at 4.0), a second failure.
 - **Who runs what.** N = 50 and 100 run in Claude's container. N = 200 and 400 run on the author's machine:
