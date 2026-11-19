@@ -363,7 +363,10 @@ N = 50, 100, 200, 400, ε = 0.12, run by diag/ov1_2d_mcmc2.py.
     therefore where the manifold-like phase stops being stable under local moves within 3 500 sweeps. It is an upper
     bound for an equilibrium transition, not the transition itself; hysteresis from the crystalline side is not
     measured.
-  - Stage B at N = 200 and 400 waits for the decision on the rule. Under the proposed rule both brackets are
+  - **Decision (the author, 19 Nov, 17:24).** Stage B uses the rule `outh`: 9 interior points between the stage-A
+    neighbours where the fraction of samples outside the flat h band crosses 0.5. The failed rule `varS` stays on
+    record and its stage-B chains at N = 50 and 100 are reported, not used.
+  - Before the decision: Under the proposed rule both brackets are
     [0.7, 1.0]; under the old rule N = 200 would get [2.8, 4.0] (maximum of var(S) at 4.0), a second failure.
 - **Who runs what.** N = 50 and 100 run in Claude's container. N = 200 and 400 run on the author's machine:
   stage A plus B at N = 400 is about 6 h on 8 workers, at N = 200 under 1 h.
