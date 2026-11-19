@@ -535,6 +535,33 @@ machine; mean ± SE, with the sd per sprinkling).
 
 *Phase.* d_MM = 2.000 at every level (sd 0.020 / 0.010 / 0.005). The calibration seeds (≥ 100 000) are not run yet.
 
+**Validation rows on the author's machine, ε = 0.12** (512 sprinklings, 19 Nov, finished 21:5x).
+
+*Vacuum.*
+
+| T/w | N | ⟨S⟩ | sd |
+|---|---|---|---|
+| 8 | 4 164 | +6.0 ± 1.5 | 34 |
+| 16 | 16 639 | +6.2 ± 3.2 | 73 |
+| 32 | 66 572 | +1.4 ± 7.5 | 169 |
+
+- The paired differences are S(16) − S(8) = +0.2 ± 2.9 and S(32) − S(16) = −4.8 ± 6.6.
+- The slope is c = (−0.8 ± 1.2)·10⁻⁴, that is c N_max = −5.3 ± 7.9 and c/(4ε) = (−1.7 ± 2.5)·10⁻⁴.
+- There is no volume term: the volume cancels per element to a few 10⁻⁴.
+- The constant is resolved at T/w = 8: ⟨S⟩ = 6.0 ± 1.5 at ε 0.12, against 3.1 ± 3.1 at ε 0.24. Whether it scales as
+  1/ε waits for ε 0.06.
+
+*Balance, interior elements.*
+
+| T/w | ⟨D S⟩, U | ⟨D S⟩, V | sd per element |
+|---|---|---|---|
+| 8 | −0.00004 ± 0.00003 | +0.00002 ± 0.00003 | 0.18 |
+| 16 | −0.00001 ± 0.00001 | +0.00001 ± 0.00001 | 0.18 |
+
+- The time slopes are zero within 3e−4, and the profiles from the past to the future tip are flat within 1e−4.
+- ⟨D² S⟩ (reported) is −0.0009 ± 0.0005 / −0.0005 ± 0.0005 (U / V) at 8 and −0.00043 ± 0.00023 / −0.00011 ± 0.00022
+  at 16, against an sd of 0.38. The values are slightly negative, below 2σ each.
+
 **Reading (development, decides nothing).**
 - A zero mean of D S over a time-symmetric interior is guaranteed by the time reversal of the flat diamond, so in flat
   space it checks the implementation, not physics. The content of L2 lies in the profile near the tips, and later in
