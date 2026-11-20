@@ -104,3 +104,111 @@ def wall_kin(m, T, zs, wz, rs, wr, sedges, kb, g8x, g8w, mode):
             acc += wr[ir] * r * r * 2.0 * math.pi * A * _H(z, r, m, kb, g8x, g8w)
         tot += wz[iz] * acc
     return tot
+
+
+# ------------------------------------------------------------------------------------- stage 2: plane-wave conformal
+@nb.njit(cache=True, inline="always")
+def _sinc(x):
+    if abs(x) < 1e-4:
+        return 1.0 - x * x / 6.0
+    return math.sin(x) / x
+
+
+@nb.njit(cache=True, inline="always")
+def _dsinc(x):
+    if abs(x) < 1e-3:
+        return -x / 3.0 + x * x * x / 30.0
+    return (x * math.cos(x) - math.sin(x)) / (x * x)
+
+
+@nb.njit(cache=True)
+def dft4(om, q, h, g16x, g16w):
+    """<cos(om t + q.x)> over the 3+1 causal diamond |x| <= h - |t| in its rest frame (port of diamond_ft4 of
+    phases/F6_order_dynamics/F6_08a_bd_action_conformal.py, checked there)."""
+    V = 2.0 * math.pi * h ** 4 / 3.0
+    if q * h < 0.05:
+        tot = 0.0
+        for i in range(g16x.size):
+            u = 0.5 * h * (g16x[i] + 1.0)
+            qu = q * u
+            B = (4.0 * math.pi / 3.0) * u ** 3 * (1.0 - qu * qu / 10.0 + qu ** 4 / 280.0)
+            tot += 0.5 * h * g16w[i] * math.cos(om * (h - u)) * B
+        return 2.0 / V * tot
+    tot = 0.0
+    for sgn in (-1.0, 1.0):
+        alpha = q + sgn * om
+        ph = -sgn * om * h
+        x = 0.5 * alpha * h
+        A = h * math.sin(ph + x) * _sinc(x)
+        dA = h * (0.5 * h) * (math.cos(ph + x) * _sinc(x) + math.sin(ph + x) * _dsinc(x))
+        tot += 0.5 * (A - q * dA)
+    return (2.0 / V) * 4.0 * math.pi * tot / (q * q * q)
+
+
+@nb.njit(cache=True)
+def wall_kin_k(m, kw, T, zs, wz, rs, wr, sedges, kb, g8x, g8w, g16x, g16w):
+    """d/db at b = 0 of the kinetic sum for Omega = e^{b cos(kw z)}: int dV [4 (c_x + c_y) g(w)
+    + 4 w g'(w) <cos(kw z)>_I / 1] (dphi)^2, with <cos>_I = cos(kw z_c) F the diamond average (boosted to the frame of
+    the interval: om' = kw dz / tau, q' = kw sqrt(1 + (dz / tau)^2), h = tau / 2)."""
+    tot = 0.0
+    for iz in range(zs.size):
+        z = zs[iz]
+        pz = phi_w(z, m)
+        cx = math.cos(kw * z)
+        acc = 0.0
+        for ir in range(rs.size):
+            r = rs[ir]
+            smax = SQK * (T * T - r * r)
+            if smax <= 0.0:
+                continue
+            lo = z - r
+            hi = z + r
+            pts = np.empty(kb.size + 2)
+            n = 0
+            pts[n] = lo
+            n += 1
+            for i in range(kb.size):
+                if lo < kb[i] < hi:
+                    pts[n] = kb[i]
+                    n += 1
+            pts[n] = hi
+            n += 1
+            inner = 0.0
+            for ip in range(n - 1):
+                a_ = pts[ip]
+                b_ = pts[ip + 1]
+                hh = 0.5 * (b_ - a_)
+                cc = 0.5 * (a_ + b_)
+                for qz in range(8):
+                    zy = cc + hh * g8x[qz]
+                    wq = hh * g8w[qz] / r                 # d mu = d z_y / r
+                    d = phi_w(zy, m) - pz
+                    if d == 0.0:
+                        continue
+                    dz = zy - z
+                    cy = math.cos(kw * zy)
+                    czc = math.cos(kw * 0.5 * (z + zy))
+                    sacc = 0.0
+                    for k in range(sedges.size - 1):
+                        sa = sedges[k]
+                        if sa >= smax:
+                            break
+                        sb = min(sedges[k + 1], smax)
+                        sh = 0.5 * (sb - sa)
+                        sc = 0.5 * (sb + sa)
+                        for qs in range(8):
+                            s = sc + sh * g8x[qs]
+                            w = s * s
+                            tau2 = s / SQK
+                            tau = math.sqrt(tau2)
+                            dt = math.sqrt(r * r + tau2)
+                            U = dz / tau
+                            F = dft4(kw * U, kw * math.sqrt(1.0 + U * U), 0.5 * tau, g16x, g16w)
+                            K = 4.0 * (cx + cy) * gk(w) + 4.0 * w * gkp(w) * czc * F
+                            sacc += sh * g8w[qs] * K / (2.0 * SQK * dt)
+                        if sedges[k + 1] >= smax:
+                            break
+                    inner += wq * d * d * sacc
+            acc += wr[ir] * r * r * 2.0 * math.pi * inner
+        tot += wz[iz] * acc
+    return tot
