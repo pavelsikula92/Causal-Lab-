@@ -596,6 +596,16 @@ machine; mean ± SE, with the sd per sprinkling).
 - **The sd of S scales as ε√N.** It halves with ε at fixed T/w and grows ×2 per level. The constant is resolved best
   at small ε.
 
+**Calibration of the phase bands** (seeds ≥ 100 000: 512 / 512 / 256 at ε 0.24 / 0.12 / 0.06; diag/out/ov1_2d/
+summary.txt on the author's machine, md5 91afb053).
+- Bands [0.5 %, 99.5 %] of χ, d_MM and h per ε and level. At T/w = 32 and ε 0.12, for example: χ [0.4967, 0.5031],
+  d_MM [1.9917, 2.0088], h [491, 519].
+- The validation sprinklings outside the bands: 0.4–2.0 % per diagnostic, level and ε, against a nominal 1 %. The
+  bands carry over from the calibration seeds to independent seeds as expected.
+
+**Next:** the card of the vacuum control, docs/OV1_vacuum_2d_card_draft.md (revision 1, a draft for the author's
+decision).
+
 **Reading (development, decides nothing).**
 - A zero mean of D S over a time-symmetric interior is guaranteed by the time reversal of the flat diamond, so in flat
   space it checks the implementation, not physics. The content of L2 lies in the profile near the tips, and later in
