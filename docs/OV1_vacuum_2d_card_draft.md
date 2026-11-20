@@ -1,6 +1,7 @@
 # Card OV1-V (2D): no volume term in the smeared BD action of flat causal diamonds (the vacuum control of OV1)
 
-**Revision 2, 20 Nov 2026, for freezing.** ID F6.9a (the author, 20 Nov 10:10). Test:
+**Revision 2, FROZEN 20 Nov 2026 (decision 38).** ID F6.9a (the author, 20 Nov 10:10). Frozen md5 (LF) of the test:
+9a1da81c85b9a6dcbaf6e6dad131e8fd. Test:
 phases/F6_order_dynamics/F6_09a_bd_vacuum_2d_diamonds.py (self-contained; kernels copied from diag/ov1_kernels.py).
 Revision 2 differs from revision 1 only in the instrument items I3 and I4 and the seeds (section 8). Specification:
 docs/derivations/order_variation_OV1.md, sections 4, 5, 6, 8 and 13. Development: diag/ov1_2d.py, diag/ov1_2d_summ.py.
