@@ -341,8 +341,32 @@ The candidate flow is F_{u→v} = K(u, v) J(u).
 does. This includes the kinetic part, which in 4D is not conformally invariant: −∫ φ′² against −8m, to 0.2 % at a
 width of 10 ℓ_k. The age of the order gives no growing term for the wall.
 
+**Stage 2, plane-wave ω = b cos kz** (21 Nov; wall width 1/m = 10 ℓ_k).
+- **Method.** The diamond average of cos kz is boosted into the rest frame of each interval: ω′ = kΔz/τ,
+  q′ = k√(1 + Δz²/τ²), h = τ/2 (port of diamond_ft4 of F6.8a). At k = 0 the kernel reproduces stage 1 exactly
+  (−0.79864).
+- **Results** for the kinetic part, against the continuum −∫ cos(kz) φ′² dz = −4πk/sinh(πk/2m). Converged in the
+  radial grid (40 → 60: identical); in T within 1 % (T 40 / 80 / 160: 0.881 / 0.890 / 0.889), with no growth with
+  age.
+
+  | k ℓ_k | d s_kin/db | continuum | ratio | F6.8a K_loc(k) |
+  |---|---|---|---|---|
+  | 0.02 | −0.7808 | −0.7870 | 0.992 | 0.990 (k = 0.025) |
+  | 0.05 | −0.6981 | −0.7233 | 0.965 | 0.968 |
+  | 0.1 | −0.4862 | −0.5461 | 0.890 | 0.899 |
+  | 0.2 | −0.1457 | −0.2176 | 0.670 | 0.703 |
+
+- **Reading (development).**
+  - The response of the matter's kinetic part to a conformal mode of wavenumber k is the continuum one times a
+    nonlocal form factor that tends to 1 as kℓ_k → 0.
+  - The form factor is close to the conformal stiffness K_loc(k) of the BD action itself (F6.8a): within 0.3–3 % for
+    kℓ_k ≤ 0.1, and 5 % at 0.2.
+  - If the source and the stiffness carried the same form factor, it would cancel in the linear response of OV3.
+    This is an observation to test, not a result.
+  - The potential part (the measure) is local and carries no form factor.
+
 **Next stages:**
-- **Stage 2:** plane-wave ω = b cos kz, using the diamond transform of F6.8a (diamond_ft4, boosted to the frame of each
+- **Stage 2 (done above):** plane-wave ω = b cos kz, using the diamond transform of F6.8a (diamond_ft4, boosted to the frame of each
   interval). It must give −∫ cos(kz)(φ′² + 4V) dz = −12πk / sinh(πk/2m).
 - **Stage 3:** the cone sector ν with the first-order cones of F6.8b2. Expected: −∫ ν(½φ′² + 3V) dz for the static
   wall.
