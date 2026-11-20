@@ -1,0 +1,14 @@
+F6.8f: K_eff / K_2 = R(eps); C2 = -6.3793101772e-10 (from eps 0.1, 0.2); 16 directions, 128 phases, G = 4
+     eps      Phi(eps)          N(eps)      R(eps) = K_eff/K_2   R with G-1
+   0.250  -3.9993697845e-11  +1.003085   +1.003428            +1.003438
+   1.000  -6.7030168201e-10  +1.050743   +1.056445            +1.056449
+   2.000  -3.1192107414e-09  +1.222393   +1.248239            +1.248241
+   4.000  -2.3886893387e-08  +2.340270   +2.517773            +2.517833
+  gamma_T 0.25 -> 1: +5.0743  (second order 5)
+  gamma_T 1 -> 2: +5.4814  (second order 5)
+  gamma_T 2 -> 4: +7.0245  (second order 5)
+  instrument: rays per phase 1; stationarity 6.0e-10; |R(G) - R(G-1)| 6.0e-05 (<= 0.001); phases 64 vs 128: 5.6e-12 (<= 0.001); K.18 and the F6.8e3 check are separate records
+  checks: k = 0 (eps = 0) largest |Phi| 0.0e+00; both signs of b exact; zero age M ~ eps^5/2; largest |R - 1| over the judged eps 1.5178
+  separate null test |R(4) - 1| = 1.5178 (<= 0.05): FAILED (not in the status)
+  reading B
+  cost 22794 s

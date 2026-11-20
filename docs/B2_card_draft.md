@@ -118,3 +118,16 @@ Cost: ~900 s per curved arm and ~1150 s per flat arm on one core of the containe
 The first development round read the breather by the energy centroid of B1 (|x| < 7); its per-sprinkling sd 0.40 would
 need ~200 sprinklings for a tolerance of 0.15, so the readout was replaced by the profile fit before the card was
 frozen (development decides nothing; the energy centroid stays as a reported line).
+
+## 8. Revision 3 (18 Nov 2026, decision 37): F5.2c2
+
+F5.2c seed 1 was INSTRUMENT_FAILED on the flat control alone (D_0 -0.152 +- 0.091, |D_0| + 2 SE 0.335 against 0.25),
+with every physics condition met. The control on 8 sprinklings had too little power (2 SE alone 0.12-0.18 of 0.25).
+Revision 3 runs the flat control on **32 sprinklings**, as many as the curved arms; nothing else changes (sections 1-6).
+Test phases/F5_gravity/F5_02c2_walls_curved_2p1_rev.py, new sprinklings (seed label F5.2c2). The verdicts of F5.2c stay.
+
+**Result (19 Nov, the author's machine, test sha256 d651784d, 29 361 s; results/F5.2c2/20261118T234947Z_all_seed0_d651784d.json): PASSED.**
+Instrument all OK; the flat control D_0 -0.026 +- 0.035 (|D_0| + 2 SE 0.097 / 0.25). Kink at rest D_K +0.020 +- 0.019
+(0.058 / 0.10); launched kink dv_L +0.0043 +- 0.0035 (0.011 / 0.02), slope - 0.3 +0.0174 +- 0.0035 (continuum +0.0131);
+breather r_B 0.952 +- 0.041 (0.129 / 0.15); reported: the energy centroid r 1.017 +- 0.085. With the control on 32
+sprinklings the instrument holds and the seed-0 result of F5.2c is replicated (findings, F5.2c).

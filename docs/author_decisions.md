@@ -832,3 +832,142 @@ brute assembles them only at the end of the run).
 **Run:** the full K.18 run is repeated with the corrected instrument; the cache of diag/run_resumable.py is keyed by the
 md5 of the code, so nothing from the stopped run is reused. F6.8f after K.18 has PASSED (F6.8f does not import
 diag/f68f_1d.py).
+
+**Result (17 Nov).** results/K.18/20261117T182826Z_main_seed0_f7513da2.json (code md5 as frozen above; Claude's
+workspace, diag/run_resumable.py in three passes, the workspace stops a process after 2 h): **FAILED**.
+- Instrument parts pass: single (one ray per phase); jacobi delta_J 7.2e-14, series A_0 vs plane wave 3.8e-12; series vs
+  exact needle 3.4e-8, window failures 0.
+- qconv 1.8e-6 (<= 1e-3) and e3 +5.5e-4 (<= 5e-3) pass. brute: largest |A_ext - A_series| 8.9e-7 (<= 1e-3).
+- The O(1 / kappa^2) form fails at 2 counted ratios, both at eps 4, p 8, theta 4, first ratio (kappa 10 -> 20):
+  3.133 (q 1/4) and 3.103 (q 1/8); level differences -2.43e-4, -7.8e-5, -2.1e-5. The second ratios (3.725, 3.857) have
+  numerators below 1e-4 and are not counted. All other counted ratios lie in 3.958-4.054. At eps 2, p 2, theta 4 the
+  ratios are 4.86-5.50 with numerators below 1e-4 (not counted).
+- The point eps 4, p 8 was not run with three levels in development (step 1d: eps 4 at p 2 and 4).
+- By this decision F6.8f counts only after K.18 has PASSED; with this record the condition is not met.
+
+## 36. K.18b: K.18 revised with four brute-force levels; the F6.8f data usable for development (17 Nov)
+
+**The author's decision (17 Nov):**
+- The F6.8f run already started (author's machine) runs to the end. Its data may be used for further research as
+  development (decides nothing). Its record is not counted while no calibration of its instrument has PASSED
+  (decisions 34, 35).
+- K.18 is revised as K.18b with the criterion proposed by Claude, frozen before the result of F6.8f is known. If K.18b
+  PASSES, the F6.8f record counts; F6.8f does not import diag/f68f_1d.py, the only code of the failed part.
+
+**What led here.** K.18 FAILED only in the form check of part brute (decision 35, Result). A fit of the three level
+differences to a/kappa^2 + c/kappa^4 + e/kappa^6 (kappa = kT, b = eps/kappa^2): |c| ~ 1e-5 to 2e-4 at every point,
+while a varies by two orders and changes sign in (p, theta); at eps 4, p 8, theta 4, a = -3.4e-4 and c/a = -0.39
+(q 1/4), -0.16 (q 1/8). The O(b^2) term is not negligible at kappa = 10 sqrt(eps) where the O(b) coefficient is small;
+the absolute cut 1e-4 of the ratio check did not account for it. The three-level extrapolation removes both terms.
+
+**K.18b** (phases/K_instruments/K_18b_needle_volume_four_levels.py). Only part brute differs from K.18:
+- levels kappa = 10, 20, 40, 80 sqrt(eps) at the same 8 points and q = 1/4, 1/8;
+- |A_ext(20, 40, 80) - A_series| <= 1e-3 (the author's criterion) and |A_ext(20, 40, 80) - A_ext(10, 20, 40)| <= 1e-5
+  [proposal; the O(b^3) remainder e/64 of the coarser extrapolation is <= 9e-7 at every K.18 point];
+- the ratio check of K.18 is removed; level differences and ratios are reported, not judged.
+All other parts, parameters, points and the verdict logic are as in K.18.
+
+**Seen before freezing.** The K.18 record and the fit above; the value of one fourth-level job (eps 2, p 0, theta 2,
+q 1/4; cost 10 s); all 16 fourth-level jobs run to completion (no window or coverage error), values not read; quick run
+PASSED mechanically (results/K.18b/quick/20261117T185257Z_main_seed0_0a03f218.json, point eps 4, p 2, theta 2, not a
+judged point).
+
+**Frozen.** md5 with LF line endings: phases/K_instruments/K_18b_needle_volume_four_levels.py
+159785ec55f67294515405332325ce21; the diag files and F6.8e3 rev2 as in decision 35.
+
+**Run:** Claude's workspace (diag/run_resumable.py; part e3 needs an 80-bit long double).
+
+**Result (18 Nov).** K.18b full run PASSED: results/K.18b/20261117T230319Z_main_seed0_0a03f218.{json,txt} (test file md5
+159785ec55f67294515405332325ce21, LF; 1671 s in the final pass, resumed from the cache over four passes after two
+workspace restarts). Parts: single 1 ray per phase; jacobi 7.24e-14; series A0 vs plane wave 3.77e-12; series vs exact
+needle 3.36e-8, 0 window failures; qconv 1.80e-6; e3 +5.51e-4; brute |A_ext(20, 40, 80) - A_series| <= 1.07e-6 (<= 1e-3),
+|A_ext(20, 40, 80) - A_ext(10, 20, 40)| <= 1.44e-6 (<= 1e-5). At eps 4, p 8, theta 4 the level ratios are 3.13, 3.73, 3.61
+(q 1/4) and 3.10, 3.86, 3.52 (q 1/8), reported, not judged.
+
+With K.18b PASSED, the F6.8f record counts (this decision): results/F6.8f/20261117T205949Z_main_seed0_c3454e9d.{json,txt},
+FAILED, reading B: R(eps) = 1.0034, 1.0564, 1.2482, 2.5178 at eps = 0.25, 1, 2, 4; gamma_T = 5.07, 5.48, 7.02 (>= 5);
+separate null test |R(4) - 1| = 1.518 FAILED (not in the status); instrument checks within tolerance.
+
+## 37. F5.2c2: F5.2c revised with the flat control on 32 sprinklings; replications of F5.2c and F5.2d (18 Nov)
+
+**The author's decision (18 Nov):**
+- F5.2c is revised as F5.2c2 with one change, the flat control on n_ctrl = 32 sprinklings instead of 8, and the author
+  runs it after F5.1e seed 1 (seed 0 decides, seed 1 replicates).
+- F5.2d is replicated unchanged with seed 1 (test sha256 decef7cc).
+- Order of the work on gravity in 3+1 (direction C): passive fall of walls of the C0 field (C2), then the active side
+  (a 3+1 analogue of F5.2d), then two bodies (a 3+1 analogue of F5.2b). Calibration of the dynamics of the order
+  (F6.4a FAILED, F6.4c UNDECIDED) separately.
+
+**What led here.** F5.2c seed 1 (16 Nov) was INSTRUMENT_FAILED on the flat control alone: D_0 = -0.152 +- 0.091,
+|D_0| + 2 SE = 0.335 against 0.25, 1.7 SE from zero; all physics conditions were met (D_K -0.007 +- 0.021, dv_L
++0.0038 +- 0.0035, r_B 0.943 +- 0.039). The control ran on 8 sprinklings, the curved arms on 32. With a per-sprinkling
+sd of D_0 of about 0.17-0.26 (seeds 0 and 1), 2 SE at n = 8 is 0.12-0.18 of the tolerance 0.25: an instrument with no
+drift fails the check in roughly one run of four or five. A design error of the card (too little power in the
+control), not a property of the instrument. At n = 32, 2 SE is about 0.08.
+
+**F5.2c2** (phases/F5_gravity/F5_02c2_walls_curved_2p1_rev.py): differs from F5.2c only in n_ctrl 32, the id, the
+seed labels "F5.2c2" (new sprinklings; no data of F5.2c reused) and the cache folder. Model, arms, readouts, tolerances
+and verdict logic unchanged. Quick run (rho 12, 2 + 1 sprinklings) ran mechanically in Claude's workspace (decides
+nothing). The verdicts of F5.2c stay: seed 0 PASSED, seed 1 INSTRUMENT_FAILED (R132).
+
+**Frozen.** md5 with LF line endings: phases/F5_gravity/F5_02c2_walls_curved_2p1_rev.py
+82aa4955fccc6c1ce43721361a8357bf. Run: python run.py F5.2c2 --workers 8 (author's machine; ~32 core-hours).
+
+**Result (18 Nov).** F5.2d seed 1 (unchanged, decef7cc): PASSED, r_L 0.965 +- 0.006 (load 16) and 0.946 +- 0.013
+(load 8), u +0.020 +- 0.008; the deficit of the potential in the last slab is replicated (findings, F5.2d).
+F5.2c2 (19 Nov; author's machine, test sha256 d651784d, frozen md5 82aa4955 unchanged, 29 361 s; results/F5.2c2/20261118T234947Z_all_seed0_d651784d.json): **PASSED**.
+Instrument OK, flat control D_0 -0.026 +- 0.035 (|D_0| + 2 SE 0.097 / 0.25); D_K +0.020 +- 0.019, dv_L +0.0043 +- 0.0035,
+slope - 0.3 +0.0174 +- 0.0035, r_B 0.952 +- 0.041 (findings, F5.2c). The seed-0 result of F5.2c is replicated.
+
+## 38. OV1 (variations of the order) and F6.9a, the vacuum control in 2D (19-20 Nov)
+
+**The author's decisions (19 Nov):**
+- Route A of the roadmap: the question is the rule by which matter selects the admissible, stable order (M -> H_M ->
+  Pi_M = P[H_M]), not a field equation for Pi. Steps OV1 (admissible variations of H and the variational rule of
+  S_BD, no matter), OV2 (the flow F_v, then S_m[H, F]), OV3 (finite-amplitude dynamics with a source). The names
+  OV1-OV3 replace A1-A3 of the first draft; the open decisions A1, A2 of variational_audit.md and A2-B are unrelated.
+- OV1 (docs/derivations/order_variation_OV1.md): level L3 (the individual action and the ensemble mean, separate
+  verdicts); stationarity S-b (centred and second differences; S-a rejected, S-c a secondary diagnostic); eps_0 = 0.12
+  with 0.06 and 0.24 in 2D (the F6.4a/c value; not transferred to other dimensions; F6.8 has only eps rho = 1);
+  nested Alexandrov diamonds with a common future tip, T/w = 8, 16, 32; w and n_loc from 99 % of the absolute kernel
+  weight; family I = all reversible local rewrites keeping the partial order (in 2D: adjacent transpositions of 2D
+  orders); family M = the frozen basis of F6.8 (3+1); dimensions 2D -> 2+1 -> 3+1; the flat-vacuum control c(T) = 0
+  is blocking.
+- Phase: bands from flat sprinklings at the actual N, calibration seeds (>= 100000) disjoint from validation seeds;
+  the escape is probed by an F6.4-type sampler with the local moves of family I, labelled an exploration of the
+  configuration space (not OV3); size scan N = 50, 100, 200, 400 at eps 0.12; stage-B rule: the stage-A neighbours
+  where the fraction outside the flat h band crosses 0.5 (the rule "maximum of var(S)" failed at N = 100 and stays on
+  record).
+
+**Development (decides nothing; OV1 sec. 10, 13).** Validation on the author's machine, c/(4 eps) per element:
+(+2.2 +- 5.4)e-4, (-1.7 +- 2.5)e-4, (+0.9 +- 1.7)e-4 at eps 0.24 / 0.12 / 0.06 (512 / 512 / 256 sprinklings); the
+constant <S> at T/w = 8 is 3.1 +- 3.1, 6.0 +- 1.5, 2.8 +- 1.0; balance <D S> zero; the calibration bands carry over
+(0.4-2.0 % of validation sprinklings outside, nominal 1 %). Escape point of the manifold-like phase under local moves
+(eps 0.12, 3500 sweeps): beta_e = 2.42, 1.26, 0.97, 0.83 at N = 50, 100, 200, 400; the escape is chain by chain
+(first-order-like metastability); the crystalline side is not equilibrated.
+
+**F6.9a (20 Nov).** ID F6.9a; tolerance and numbers of sprinklings as proposed; the constant term is reported, not
+judged. Card docs/OV1_vacuum_2d_card_draft.md, revision 2 (I3 at most 5 % outside the bands, I4 on all sprinklings,
+seeds by derive_seed). Criterion per eps: PASSED if |c/(4 eps)| + 2 SE <= 1e-3, FAILED if |c/(4 eps)| - 2 SE > 1e-3,
+else UNDECIDED; 5400 / 1200 / 280 sprinklings at eps 0.24 / 0.12 / 0.06. Quick run (Claude's container) mechanical
+OK, I1 to 1.1e-10.
+
+**Frozen.** md5 with LF line endings: phases/F6_order_dynamics/F6_09a_bd_vacuum_2d_diamonds.py
+9a1da81c85b9a6dcbaf6e6dad131e8fd. Run: python run.py F6.9a --workers 8 (author's machine, started 20 Nov ~10:20;
+6885 tasks, ~40 core-hours).
+
+**Result (20 Nov).** F6.9a seed 0 (author's machine, test sha256 7929a6b8, frozen md5 9a1da81c unchanged, 7855 s;
+results/F6.9a/20261120T113217Z_main_seed0_7929a6b8.json): **PASSED**. c/(4 eps) = (+0.5 +- 1.7)e-4, (-0.7 +- 1.6)e-4, (+0.6 +- 1.5)e-4 at eps
+0.24 / 0.12 / 0.06 (|x| + 2 SE <= 4.0e-4 against 1e-3); instrument I1-I4 OK (findings, F6.9a).
+
+## 39. OV2: the choices of the draft specification (20 Nov)
+
+The author's decisions on docs/derivations/order_variation_OV2.md, section 8:
+1. Both candidates of the matter action: S_m^phi (the action of the field C0 on the order) and S_m^tau (the proper
+   time of a flow counted by the order), with a comparison.
+2. The kinetic operator in difference form (minimal coupling; the plain form couples R phi^2 and breaks the 2 pi
+   periodicity), checked by T0.
+3. S_m as the coupling functional at fixed phi (T_ab is defined off shell); the conservation under the retarded C0
+   dynamics is the separate test T3.
+4. Order of the tests: T0 -> T1 -> F1/F2 in 2D, then T2 and T3 in 3+1.
+5. Branch F (the flow F_v) is pursued in that order, after T1.

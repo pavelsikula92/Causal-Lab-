@@ -1,0 +1,28 @@
+2D causal diamonds, nested T/w = [8, 16, 32] (common future tip); S = 4 eps (N - 2 eps sum N_n f); per sprinkling c = slope of S against N; c/(4 eps) per element; mean +- SE over sprinklings
+  I1 brute force: eps 0.06 N 247 (n_cut 627) S 0.0e+00 Delta S 1.3e-14; eps 0.12 N 153 (n_cut 304) S 2.7e-14 Delta S 2.6e-14; eps 0.24 N 218 (n_cut 142) S 0.0e+00 Delta S 3.9e-14; eps 0.5 N 2523 (n_cut 57) S 1.1e-10 Delta S 1.2e-12; eps 0.24 N 1823 (n_cut 142) S 2.8e-11 Delta S 4.9e-13 -> max 1.1e-10 (OK)
+  eps 0.24 (n_loc 30, 5400 sprinklings): c/(4 eps) = +5.299e-05 +- 1.709e-04; |x| + 2 SE = 3.95e-04 against 0.001 -> PASSED
+    T/w  8: N    1921.6 (expected    1920.0; I2 OK)  <S>   +2.708 +- 0.909  outside bands chi/dMM/h 0.005/0.005/0.012 (I3 OK)
+    T/w 16: N    7682.8 (expected    7680.0; I2 OK)  <S>   +1.882 +- 2.096  outside bands chi/dMM/h 0.013/0.013/0.006 (I3 OK)
+    T/w 32: N   30724.6 (expected   30720.0; I2 OK)  <S>   +3.792 +- 4.748  outside bands chi/dMM/h 0.021/0.021/0.010 (I3 OK)
+    S(16) - S(8) = -0.826 +- 1.863
+    S(32) - S(16) = +1.910 +- 4.173
+    I4 T/w 8 U (5400 sprinklings): <D S> +2.03e-05 +- 7.03e-05 (OK); reported <D2 S> -1.88e-03
+    I4 T/w 8 V (5400 sprinklings): <D S> -7.11e-05 +- 7.04e-05 (OK); reported <D2 S> +2.00e-03
+  eps 0.12 (n_loc 65, 1200 sprinklings): c/(4 eps) = -7.469e-05 +- 1.633e-04; |x| + 2 SE = 4.01e-04 against 0.001 -> PASSED
+    T/w  8: N    4162.7 (expected    4160.0; I2 OK)  <S>   +3.018 +- 0.944  outside bands chi/dMM/h 0.013/0.013/0.013 (I3 OK)
+    T/w 16: N   16645.6 (expected   16640.0; I2 OK)  <S>   +3.706 +- 2.229  outside bands chi/dMM/h 0.015/0.015/0.008 (I3 OK)
+    T/w 32: N   66573.4 (expected   66560.0; I2 OK)  <S>   +1.151 +- 4.910  outside bands chi/dMM/h 0.016/0.016/0.013 (I3 OK)
+    S(16) - S(8) = +0.688 +- 1.982
+    S(32) - S(16) = -2.555 +- 4.271
+    I4 T/w 8 U (1200 sprinklings): <D S> -1.46e-05 +- 2.14e-05 (OK); reported <D2 S> -3.80e-04
+    I4 T/w 8 V (1200 sprinklings): <D S> -4.44e-05 +- 2.19e-05 (OK); reported <D2 S> +4.58e-04
+  eps 0.06 (n_loc 135, 280 sprinklings): c/(4 eps) = +5.570e-05 +- 1.482e-04; |x| + 2 SE = 3.52e-04 against 0.001 -> PASSED
+    T/w  8: N    8640.0 (expected    8640.0; I2 OK)  <S>   +4.359 +- 0.960  outside bands chi/dMM/h 0.011/0.011/0.021 (I3 OK)
+    T/w 16: N   34555.2 (expected   34560.0; I2 OK)  <S>   +7.181 +- 2.264  outside bands chi/dMM/h 0.021/0.021/0.007 (I3 OK)
+    T/w 32: N  138236.0 (expected  138240.0; I2 OK)  <S>   +6.922 +- 4.602  outside bands chi/dMM/h 0.018/0.018/0.011 (I3 OK)
+    S(16) - S(8) = +2.821 +- 2.032
+    S(32) - S(16) = -0.258 +- 4.137
+    I4 T/w 8 U (280 sprinklings): <D S> -6.18e-06 +- 7.39e-06 (OK); reported <D2 S> +7.53e-05
+    I4 T/w 8 V (280 sprinklings): <D S> -3.98e-06 +- 7.74e-06 (OK); reported <D2 S> +8.89e-05
+  instrument: I1 OK; I2 OK; I3 OK; I4 OK
+cost: 7855 s

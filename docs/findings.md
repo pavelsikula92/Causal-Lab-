@@ -10,11 +10,31 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Holds
 
+- **F6.9a (OV1, 2D, the vacuum control): the smeared BD action of flat causal diamonds has no volume term: c/(4 eps)
+  = (+0.5 +- 1.7)e-4, (-0.7 +- 1.6)e-4, (+0.6 +- 1.5)e-4 per element at eps = 0.24, 0.12, 0.06 (seed 0 PASSED)**
+  (mechanism, 2D, Poisson sprinklings of nested causal diamonds with a common future tip, T/w = 8, 16, 32 (volumes
+  1 : 4 : 16), 5400 / 1200 / 280 sprinklings; S = 4 eps (N - 2 eps sum N_n f), exact interval abundances; card
+  docs/OV1_vacuum_2d_card_draft.md rev. 2, decision 38; run by the author 20 Nov, test sha256 7929a6b8, 7855 s;
+  results/F6.9a/20261120T113217Z_main_seed0_7929a6b8.json).
+  - **Instrument (all OK):** I1 S and Delta S against brute force to 1.1e-10 (also N = 2523 and 1823 with n_cut < N);
+    I2 mean N per level within 3 SE of the Poisson mean; I3 0.5-2.1 % of the sprinklings outside the calibrated phase
+    bands (limit 5 %, nominal 1 %); I4 time-reversal null <D S> within 1e-4 of 0 in both orders.
+  - **Criterion:** |c/(4 eps)| + 2 SE = 3.95e-4 / 4.01e-4 / 3.52e-4 against 1e-3.
+  - **Reported:** <S> per level is flat over the 16-fold volume: 2.7 / 1.9 / 3.8 (eps 0.24), 3.0 / 3.7 / 1.2 (0.12),
+    4.4 / 7.2 / 6.9 (0.06), SE 0.9-4.9; the constant at T/w = 8 is 2.7-4.4 (the continuum joint term of a flat
+    interval; its value in the F6.4a normalisation is not derived, not judged). <D2 S> within 2e-3 of 0, no sign.
+
+  Reading (declared in the card). The blocking vacuum control of OV1 (docs/derivations/order_variation_OV1.md, sec. 8)
+  holds in 2D: the flat order is stationary in the ensemble sense (c(T) = 0) at the three eps, with no age term from
+  the past boundary at first order. Limits: 2D only (where the bulk EH action is topological); it says nothing about
+  the stability of the flat order against changes of the order (the phase sampler of OV1: not stable above
+  beta_e(N) under local moves) nor about 2+1 or 3+1; seed 0 only.
+
 - **F5.2d (B3a, 2+1, the active side of the growth): an order that grows with its density and its cones set by the
   potential that a static wall produces from its realised past through the order's own Green weight carries the
   potential, the slowed clocks and the narrowed cones of the continuum, in proportion to the wall's load: r_L 0.953 +-
   0.005 (load 16) and 0.923 +- 0.013 (load 8), u +0.030 +- 0.009, clocks near/far 0.893 against 0.879 (seed 0 PASSED;
-  replication pending)** (mechanism, 2+1, rho 30, kappa 0.01, T 9, 32 sprinklings x 2 sources x (kappa, 0); card
+  seed 1 PASSED 18 Nov)** (mechanism, 2+1, rho 30, kappa 0.01, T 9, 32 sprinklings x 2 sources x (kappa, 0); card
   docs/B3_card_draft.md rev. 2, decision 23; B3a and the active side chosen by the author 13 Nov; run by the author
   13 Nov unchanged, 8865 s; results/F5.2d/20261113T100111Z_all_seed0_decef7cc.json).
   - **Instrument (all OK):** A0 exact on 2 sprinklings; no overflow (lowest L -0.352); density - 1 -0.0003 +- 0.0006 and
@@ -26,6 +46,13 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   - **Reported:** r_L per slab 0.991 / 0.993 / 0.931 (load 16) and 0.944 / 0.965 / 0.905 (load 8); L at x = 0 in the last
     slab -0.211 against -0.221 and -0.086 against -0.096; kink drift +0.030 +- 0.020 (kappa 0: +0.025 +- 0.021); the
     kink at load 16 is 24 % narrower than the continuum in the last slab (it breathes after the switch-on).
+  - **Replication 18 Nov (seed 1, test sha256 decef7cc unchanged, 4685 s; results/F5.2d/20261118T153933Z_all_seed1_decef7cc.json): PASSED.**
+    Instrument all OK (A0 exact, no overflow, lowest L -0.354; density - 1 +0.0004 +- 0.0007 and +0.0005 +- 0.0006;
+    cones 0.7699 +- 0.0030 against 0.7619 and 0.9161 +- 0.0033 against 0.9092). r_L 0.965 +- 0.006 (load 16; |r_L - 1|
+    + 2 SE 0.047 / 0.06) and 0.946 +- 0.013 (load 8), u +0.020 +- 0.008, clocks near/far 0.883 against 0.878 (ratio - 1
+    +0.006 +- 0.008) and 0.961 against 0.955. Per slab 1.004 / 1.007 / 0.942 (load 16) and 0.994 / 0.999 / 0.920
+    (load 8): the deficit of the last slab is there again; L at x = 0 in the last slab -0.215 against -0.222 and
+    -0.088 against -0.096. Kink drift -0.005 +- 0.017 (kappa 0: -0.015 +- 0.016); kink at load 16 again 24 % narrower.
 
   Reading (declared in the card). A causal growth rule that reads only the realised past (counts, chains, independent
   marks) and lets the density and the cones follow the potential that matter produces through the order's own Green
@@ -36,7 +63,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   2 % (the order's clocks slowed 1.6 % less, consistent with a shallower potential). The binding condition passed with a
   margin of 0.003. Candidates: the calibration of the chain weight in a deepening order, the binned midpoint of the
   cones, the dynamics of the kink after the switch-on (its width). Limits: the cones are cut in coordinates in the rest
-  frame of the static source (B3a; B3b open); one geometry, one kappa, one density; seed 0 only.
+  frame of the static source (B3a; B3b open); one geometry, one kappa, one density; seeds 0 and 1.
   - **Diagnosed the same day (decides nothing; Undecided, "B3 diagnostics"):** the deficit comes from the binned
     midpoint potential of the B3a cones (finer bins give +9 %), not from the weight (0.999 with a weak field) nor from
     the dynamics of the source.
@@ -48,7 +75,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   the continuum metric does: the kink stays (its tension cancels its weight; D_K -0.040 +- 0.022 against -0.44 for a
   test particle), the breather wall falls as the continuum (r_B 1.035 +- 0.041) and a launched kink follows the curved
   cones (slope - 0.3 = +0.0091 +- 0.0030, continuum +0.013) (seed 0 PASSED; replication seed 1 INSTRUMENT_FAILED on
-  the flat control)** (mechanism, 2+1,
+  the flat control; the revision F5.2c2 with the flat control on 32 sprinklings PASSED)** (mechanism, 2+1,
   exact sprinkling of -Pi^2 dt^2 + Pi^-2 (dx^2 + dy^2), Pi^2 = (x + 24)/24, rho 30, T 8, 32 sprinklings x 3 arms, the
   flat control on 8; card docs/B2_card_draft.md rev. 2, decision 22; run by the author 12-13 Nov unchanged, 13818 s;
   results/F5.2c/20261112T233449Z_all_seed0_817e17b7.json).
@@ -81,6 +108,18 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     D_0 is 1.7 SE from 0. The seed-0 verdict PASSED stands (R132); the replication does not confirm it, because its
     instrument did not hold. How to close it (for example a revision of the flat control with more sprinklings, under a
     new ID) is the author's decision.
+  - **Revision F5.2c2 (decision 37: the flat control on 32 sprinklings, new sprinklings, nothing else changed; run by the
+    author 18-19 Nov, test sha256 d651784d, 29 361 s; results/F5.2c2/20261118T234947Z_all_seed0_d651784d.json): PASSED.**
+    - Instrument (all OK): links identical to the brute-force reduction (curved 1 069 / 10 848, flat 1 081 / 9 619);
+      I4 5.5e-16 / 0; density N/(rho V_proper) - 1 +0.0001 +- 0.0005; kink at rest Q - Q_ex +0.0000 +- 0.0001,
+      w/w_ex - 1 +0.0131 +- 0.0017; the breather on the flat order D_0 -0.026 +- 0.035 (|D_0| + 2 SE 0.097 / 0.25).
+    - Passed conditions: kink stays D_K +0.020 +- 0.019 (|D_K| + 2 SE 0.058 / 0.10); launched kink against the
+      continuum dv_L +0.0043 +- 0.0035 (0.011 / 0.02); faster than flat cones: slope - 0.3 = +0.0174 +- 0.0035
+      (continuum +0.0131; - 2 SE = +0.010 > 0); breather r_B 0.952 +- 0.041 (|r_B - 1| + 2 SE 0.129 / 0.15).
+    - Reported: the energy centroid of the breather r 1.017 +- 0.085.
+    - With 32 control sprinklings the control holds (2 SE 0.071). The three runs agree within their errors: D_K -0.040,
+      -0.007, +0.020; dv_L -0.0040, +0.0038, +0.0043; r_B 1.035, 0.943, 0.952. The seed-0 result of F5.2c is
+      replicated with a working instrument. Limits unchanged (one profile and density, a prescribed metric, walls, 2+1).
 
 - **F3.15 (B1, 2+1, intrinsic instrument, variant B): a domain wall of a field on all events of a 2+1 causal order,
   evolved by the Green weight read from the order alone (the longest chain), keeps its identity at rest, keeps its
@@ -1130,7 +1169,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 - **F5.1e: in 3+1 the same history from the apex does not fall: it takes an inward velocity at the apex and then keeps
   it, without acceleration; the longest chains between fixed events read the geometry well** (mechanism, 3+1, order of
   F7.1c σ0 = 0.3, w = 4, box t [0, 24], |x| ≤ 8, 16 + 16 sprinklings of ~105 000 events, 60 chains, rule of F5.1c/F5.1d
-  m = H = 8, FAILED 30 Oct).
+  m = H = 8, FAILED 30 Oct; replicated 18 Nov with seed 1, FAILED).
   - **Instruments OK:** flat R = +0.139 ± 0.138, longest chains R_max = −0.011 ± 0.071; loaded longest chains read the
     geometry, R_max = 0.850 ± 0.058 (better than in 2+1).
   - **Loaded order:** R = a / a_pred = **−0.134 ± 0.121** (R + 2 SE = 0.11 < 1/2: does not fall), a_pred = −0.02187
@@ -1149,6 +1188,13 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     rescaled one would be a new hypothesis with its own criteria (R132). F5.1d stays PASSED for 2+1.
   - **Diagnosis 7 Nov (decides nothing):** the tie-breaker hypothesis above does not hold; see "Fall diagnostic"
     under Undecided (descriptive).
+  - **Replication 18 Nov (seed 1, frozen file sha256 230b54df, 16 + 16 new sprinklings, 12 784 s): FAILED.**
+    results/F5.1e/20261118T145433Z_main_seed1_230b54df.{json,txt}. Instruments OK: flat R = −0.023 ± 0.168, flat
+    R_max = +0.174 ± 0.103, loaded R_max = 0.795 ± 0.081. Loaded R = **−0.127 ± 0.127** (does not fall), a_pred = −0.02183,
+    r_apex = 4.24, 60 of 60 chains to the end. Displacement from the apex, τ = 0, 1, …, 12: 0.00 −0.06 −0.12 −0.18 −0.26
+    −0.34 −0.38 −0.43 −0.48 −0.53 −0.57 −0.61 −0.65. Descriptively: the same pattern as seed 0, an inward velocity
+    from the apex (v0 = −0.071 ± 0.021 after +0.091 in the rising half, a jump of −0.16; flat +0.089 → +0.005) that
+    slows slightly, without acceleration. Both seeds: R = −0.134 ± 0.121 and −0.127 ± 0.127.
 
 - **F5.1c: a flow that continues its history as the longest chain moves inwards in an order curved by matter, but does
   not fall with the Newtonian acceleration** (mechanism, 2+1, order of F7.1b σ0 = 0.45, 32 + 32 sprinklings of
@@ -3034,6 +3080,21 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   and F6.8c2 are not affected (R132; F6.8c2 rows had T ≤ 167). The layer and boundary terms of the age cut at large
   ages are not computed. To be decided by F6.8e (card draft, judged range n 1 536 → 3 072 not computed in the
   development).
+
+- **F5.1e with m = H = 20 (1 Nov 2026, seed 0; not the frozen parameters; decides nothing).**
+  results/F5.1e/20261101T115906Z_main_seed0_e61d89c9.{json,txt}: the F5.1e test file with memory and horizon of the
+  longest-chain rule set to 20 instead of the frozen 8 (test sha256 e61d89c9; frozen 230b54df), same order (F7.1c,
+  ~105 000 events), launch ring and fit.
+  - Loaded: R = +0.360 ± 0.100 (status UNDECIDED); v0 +0.111 ± 0.011; displacement from the apex +0.00 … +0.72; R / R_max = +0.42.
+  - Flat: R = −0.108 ± 0.150; v0 −0.010 ± 0.017. Instrument checks OK; R_max = +0.850 ± 0.058 as in the frozen run.
+  - Frozen run for comparison (30 Oct, m = H = 8): loaded R = −0.134 ± 0.121, v0 −0.102 ± 0.021; displacement +0.00 … −1.01.
+
+  Reading: with the longer memory the fitted acceleration has the sign of the prediction at 0.36 of its size (3.6
+  standard errors from zero; UNDECIDED by the criterion), and the velocity at the apex changes sign against m = H = 8.
+  The result depends on the memory of the rule; m = H = 20 is a hypothesis for a new revision, not a verdict. The
+  verdict F5.1e FAILED (30 Oct, frozen m = H = 8) stands (R132). The test file was restored to the frozen version
+  (sha256 230b54df) on 18 Nov; the frozen replication with seed 1 (18 Nov) FAILED again, R = −0.127 ± 0.127, with
+  v0 = −0.071 ± 0.021 of the same sign as seed 0 (see F5.1e under Failed). The run at m = H = 20 has one seed.
 
 ## Open questions
 

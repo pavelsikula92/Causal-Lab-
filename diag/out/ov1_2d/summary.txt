@@ -1,0 +1,81 @@
+eps 0.06: n_loc 135, n_cut 627, 256 sprinklings, 164 s each
+  vacuum (L1): <S> per level, sd per sprinkling
+    T/w  8: N     8642  <S>    +2.751 +-   0.985  (sd  15.759)
+    T/w 16: N    34551  <S>    +0.362 +-   2.315  (sd  37.047)
+    T/w 32: N   138228  <S>    +4.496 +-   5.245  (sd  83.916)
+    S(16) - S(8):    -2.389 +-   2.084  (sd  33.351)
+    S(32) - S(16):    +4.133 +-   4.854  (sd  77.660)
+    slope c = dS/dN: +2.088e-05 +- 4.146e-05   (c N_max +2.886 +- 5.731)
+  phase bands (flat) from the calibration seeds (n 256): mean, sd, [0.5 %, 99.5 %]; validation outside the band
+    T/w  8 chi : 0.49998 sd 0.00385 [0.49100, 0.50931]  validation outside 0.004
+    T/w  8 d_mm: 2.00009 sd 0.01027 [1.97536, 2.02419]  validation outside 0.004
+    T/w  8 h   : 177.58203 sd 4.31426 [167.55000, 188.00000]  validation outside 0.004
+    T/w 16 chi : 0.50008 sd 0.00177 [0.49614, 0.50479]  validation outside 0.012
+    T/w 16 d_mm: 1.99978 sd 0.00473 [1.98729, 2.01032]  validation outside 0.012
+    T/w 16 h   : 361.69922 sd 5.45061 [348.00000, 375.00000]  validation outside 0.008
+    T/w 32 chi : 0.49990 sd 0.00095 [0.49769, 0.50207]  validation outside 0.008
+    T/w 32 d_mm: 2.00028 sd 0.00253 [1.99449, 2.00617]  validation outside 0.008
+    T/w 32 h   : 730.94922 sd 6.81588 [715.27500, 749.62500]  validation outside 0.016
+  balance (L2): interior elements; per-sprinkling means, then mean +- SE over sprinklings
+    T/w  8 U: n_inner 4858  <D S> +0.00001 +- 0.00001 (per-element sd 0.0451)  d<D S>/dt +0.00003 +- 0.00007   <D2 S> +0.00012 +- 0.00012 (sd 0.0928)
+      profile of <D S> in time from the past tip (8 bins, all elements): -0.0001(0.0001) +0.0000(0.0000) +0.0000(0.0000) +0.0000(0.0000) -0.0000(0.0000) +0.0000(0.0000) -0.0000(0.0000) -0.0000(0.0001)
+    T/w  8 V: n_inner 4858  <D S> +0.00001 +- 0.00001 (per-element sd 0.0452)  d<D S>/dt -0.00003 +- 0.00007   <D2 S> +0.00011 +- 0.00012 (sd 0.0930)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0000(0.0001) +0.0000(0.0000) -0.0000(0.0000) +0.0000(0.0000) -0.0000(0.0000) -0.0000(0.0000) +0.0001(0.0000) -0.0000(0.0001)
+    T/w 16 U: n_inner 26449  <D S> -0.00000 +- 0.00000 (per-element sd 0.0442)  d<D S>/dt +0.00002 +- 0.00002   <D2 S> +0.00006 +- 0.00005 (sd 0.0909)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0000(0.0000) -0.0000(0.0000) +0.0000(0.0000) -0.0000(0.0000) -0.0000(0.0000) +0.0000(0.0000) -0.0000(0.0000) -0.0000(0.0000)
+    T/w 16 V: n_inner 26449  <D S> -0.00000 +- 0.00000 (per-element sd 0.0443)  d<D S>/dt -0.00000 +- 0.00002   <D2 S> +0.00002 +- 0.00005 (sd 0.0910)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0000(0.0000) +0.0000(0.0000) -0.0000(0.0000) -0.0000(0.0000) +0.0000(0.0000) +0.0000(0.0000) -0.0000(0.0000) +0.0000(0.0000)
+eps 0.12: n_loc 65, n_cut 304, 512 sprinklings, 30 s each
+  vacuum (L1): <S> per level, sd per sprinkling
+    T/w  8: N     4164  <S>    +5.966 +-   1.485  (sd  33.591)
+    T/w 16: N    16639  <S>    +6.197 +-   3.235  (sd  73.205)
+    T/w 32: N    66572  <S>    +1.386 +-   7.453  (sd 168.638)
+    S(16) - S(8):    +0.231 +-   2.888  (sd  65.357)
+    S(32) - S(16):    -4.812 +-   6.641  (sd 150.260)
+    slope c = dS/dN: -8.008e-05 +- 1.193e-04   (c N_max -5.331 +- 7.941)
+  phase bands (flat) from the calibration seeds (n 512): mean, sd, [0.5 %, 99.5 %]; validation outside the band
+    T/w  8 chi : 0.50013 sd 0.00517 [0.48655, 0.51190]  validation outside 0.014
+    T/w  8 d_mm: 1.99971 sd 0.01379 [1.96859, 2.03630]  validation outside 0.014
+    T/w  8 h   : 121.35156 sd 3.66309 [113.00000, 130.00000]  validation outside 0.020
+    T/w 16 chi : 0.49992 sd 0.00254 [0.49380, 0.50630]  validation outside 0.014
+    T/w 16 d_mm: 2.00023 sd 0.00677 [1.98328, 2.01662]  validation outside 0.014
+    T/w 16 h   : 248.38672 sd 4.82359 [238.55500, 263.00000]  validation outside 0.006
+    T/w 32 chi : 0.49993 sd 0.00131 [0.49671, 0.50312]  validation outside 0.010
+    T/w 32 d_mm: 2.00019 sd 0.00348 [1.99170, 2.00880]  validation outside 0.010
+    T/w 32 h   : 504.04688 sd 5.87323 [490.55500, 519.00000]  validation outside 0.018
+  balance (L2): interior elements; per-sprinkling means, then mean +- SE over sprinklings
+    T/w  8 U: n_inner 2343  <D S> -0.00004 +- 0.00003 (per-element sd 0.1842)  d<D S>/dt -0.00034 +- 0.00031   <D2 S> -0.00091 +- 0.00050 (sd 0.3883)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0000(0.0002) +0.0001(0.0002) -0.0001(0.0001) +0.0001(0.0001) -0.0002(0.0001) +0.0000(0.0001) +0.0002(0.0001) -0.0001(0.0003)
+    T/w  8 V: n_inner 2343  <D S> +0.00002 +- 0.00003 (per-element sd 0.1842)  d<D S>/dt +0.00020 +- 0.00033   <D2 S> -0.00046 +- 0.00051 (sd 0.3888)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0000(0.0003) -0.0002(0.0002) +0.0002(0.0001) +0.0000(0.0001) -0.0001(0.0001) -0.0000(0.0001) +0.0000(0.0001) +0.0002(0.0003)
+    T/w 16 U: n_inner 12740  <D S> -0.00001 +- 0.00001 (per-element sd 0.1807)  d<D S>/dt -0.00015 +- 0.00009   <D2 S> -0.00043 +- 0.00023 (sd 0.3810)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0001(0.0001) +0.0000(0.0001) +0.0000(0.0001) -0.0000(0.0001) -0.0000(0.0001) -0.0000(0.0001) -0.0001(0.0001) +0.0002(0.0001)
+    T/w 16 V: n_inner 12740  <D S> +0.00001 +- 0.00001 (per-element sd 0.1808)  d<D S>/dt -0.00003 +- 0.00009   <D2 S> -0.00011 +- 0.00022 (sd 0.3812)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0002(0.0001) -0.0000(0.0001) +0.0001(0.0001) -0.0000(0.0001) +0.0000(0.0001) -0.0000(0.0001) -0.0001(0.0001) -0.0001(0.0001)
+eps 0.24: n_loc 30, n_cut 142, 512 sprinklings, 8 s each
+  vacuum (L1): <S> per level, sd per sprinkling
+    T/w  8: N     1921  <S>    +3.090 +-   3.104  (sd  70.244)
+    T/w 16: N     7678  <S>    +2.791 +-   6.870  (sd 155.452)
+    T/w 32: N    30722  <S>    +8.651 +-  14.880  (sd 336.706)
+    S(16) - S(8):    -0.299 +-   6.096  (sd 137.947)
+    S(32) - S(16):    +5.859 +-  13.134  (sd 297.194)
+    slope c = dS/dN: +2.124e-04 +- 5.141e-04   (c N_max +6.526 +- 15.795)
+  phase bands (flat) from the calibration seeds (n 512): mean, sd, [0.5 %, 99.5 %]; validation outside the band
+    T/w  8 chi : 0.50028 sd 0.00782 [0.47908, 0.52087]  validation outside 0.004
+    T/w  8 d_mm: 1.99940 sd 0.02087 [1.94531, 2.05681]  validation outside 0.004
+    T/w  8 h   : 80.99414 sd 3.19337 [74.00000, 89.89000]  validation outside 0.014
+    T/w 16 chi : 0.49968 sd 0.00384 [0.48990, 0.50902]  validation outside 0.020
+    T/w 16 d_mm: 2.00089 sd 0.01025 [1.97613, 2.02716]  validation outside 0.020
+    T/w 16 h   : 166.96289 sd 4.07280 [158.00000, 180.00000]  validation outside 0.008
+    T/w 32 chi : 0.50017 sd 0.00189 [0.49567, 0.50468]  validation outside 0.018
+    T/w 32 d_mm: 1.99955 sd 0.00503 [1.98756, 2.01160]  validation outside 0.018
+    T/w 32 h   : 340.29688 sd 4.99449 [328.55500, 354.44500]  validation outside 0.014
+  balance (L2): interior elements; per-sprinkling means, then mean +- SE over sprinklings
+    T/w  8 U: n_inner 1082  <D S> -0.00043 +- 0.00022 (per-element sd 0.7724)  d<D S>/dt +0.00192 +- 0.00213   <D2 S> -0.00059 +- 0.00329 (sd 1.7067)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0001(0.0018) -0.0012(0.0011) +0.0022(0.0009) -0.0012(0.0007) -0.0003(0.0007) +0.0005(0.0009) -0.0002(0.0010) +0.0016(0.0017)
+    T/w  8 V: n_inner 1082  <D S> +0.00014 +- 0.00025 (per-element sd 0.7739)  d<D S>/dt +0.00260 +- 0.00221   <D2 S> +0.00395 +- 0.00335 (sd 1.7115)
+      profile of <D S> in time from the past tip (8 bins, all elements): -0.0012(0.0019) -0.0007(0.0011) -0.0004(0.0009) +0.0008(0.0007) +0.0002(0.0007) -0.0008(0.0009) +0.0013(0.0011) -0.0013(0.0020)
+    T/w 16 U: n_inner 5877  <D S> -0.00007 +- 0.00007 (per-element sd 0.7594)  d<D S>/dt -0.00052 +- 0.00065   <D2 S> +0.00125 +- 0.00146 (sd 1.6800)
+      profile of <D S> in time from the past tip (8 bins, all elements): +0.0003(0.0009) -0.0001(0.0005) +0.0002(0.0004) +0.0001(0.0004) +0.0002(0.0003) -0.0004(0.0004) +0.0001(0.0005) -0.0012(0.0009)
+    T/w 16 V: n_inner 5877  <D S> +0.00001 +- 0.00007 (per-element sd 0.7597)  d<D S>/dt -0.00025 +- 0.00064   <D2 S> +0.00027 +- 0.00139 (sd 1.6813)
+      profile of <D S> in time from the past tip (8 bins, all elements): -0.0009(0.0009) +0.0005(0.0006) +0.0001(0.0004) +0.0005(0.0003) -0.0010(0.0003) +0.0005(0.0004) +0.0002(0.0005) -0.0002(0.0009)

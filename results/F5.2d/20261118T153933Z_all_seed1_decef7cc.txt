@@ -1,0 +1,18 @@
+F5.2d (B3a, 2+1 growth: density Pi^-1, cones Pi^2 at the midpoint, potential by the chain weight); rho 30, kappa 0.01, T 9, 32 sprinklings x (mu 1, 0.25) x (kappa, 0); base seed 1; mean +- SE over sprinklings
+  A0: k 0: realisation same True, max |dphi| 0.0e+00, max |dL| 0.0e+00 (late candidates changed 8760); k 1: realisation same True, max |dphi| 0.0e+00, max |dL| 0.0e+00 (late candidates changed 8719)
+  overflow (L < Lmin -0.7): 0; lowest L -0.354
+  source mu 1 (load 16): r_L +0.9654 +- 0.0061 (per slab +1.0038 +- 0.0131, +1.0074 +- 0.0091, +0.9422 +- 0.0047); density - 1 +0.0004 +- 0.0007
+     clocks near/far +0.8831 +- 0.0066 against the continuum 0.8776 (ratio - 1 +0.0063 +- 0.0075); cones +0.7699 +- 0.0030 against 0.7619 (ratio - 1 +0.0105 +- 0.0040)
+     L by x in the last read slab, order: -0.004 -0.009 -0.028 -0.061 -0.110 -0.173 -0.215 -0.172 -0.108 -0.060 -0.027 -0.009 -0.004
+                               continuum: -0.002 -0.006 -0.025 -0.064 -0.119 -0.185 -0.222 -0.184 -0.120 -0.064 -0.025 -0.006 -0.002
+     reported: kink drift -0.0051 +- 0.0168 (kappa 0: -0.0153 +- 0.0160); width w/w_ex - 1 in the last slab -0.2437 +- 0.0075
+  source mu 0.25 (load 8): r_L +0.9456 +- 0.0126 (per slab +0.9942 +- 0.0272, +0.9993 +- 0.0191, +0.9197 +- 0.0104); density - 1 +0.0005 +- 0.0006
+     clocks near/far +0.9605 +- 0.0070 against the continuum 0.9546 (ratio - 1 +0.0062 +- 0.0073); cones +0.9161 +- 0.0033 against 0.9092 (ratio - 1 +0.0077 +- 0.0036)
+     L by x in the last read slab, order: -0.007 -0.013 -0.024 -0.042 -0.062 -0.080 -0.088 -0.080 -0.062 -0.041 -0.025 -0.013 -0.007
+                               continuum: -0.006 -0.012 -0.025 -0.044 -0.067 -0.088 -0.096 -0.088 -0.067 -0.044 -0.025 -0.012 -0.006
+     reported: kink drift -0.0064 +- 0.0095 (kappa 0: -0.0132 +- 0.0067); width w/w_ex - 1 in the last slab +0.0071 +- 0.0039
+  active mass: u = r_L(mu 1) - r_L(mu 0.25) +0.0198 +- 0.0083
+instrument: A0 earlier events unchanged: OK; no overflow: OK; density mu 1: OK; cones mu 1: OK; density mu 0.25: OK; cones mu 0.25: OK
+passed conditions: potential r_L mu 1: yes; clocks mu 1: yes; clocks slowed mu 1: yes; potential r_L mu 0.25: yes; clocks mu 0.25: yes; clocks slowed mu 0.25: yes; active mass: u: yes
+failed conditions: potential r_L mu 1: no; clocks mu 1: no; potential r_L mu 0.25: no; clocks mu 0.25: no; active mass: u: no
+cost: 205 s per growth (4685s)

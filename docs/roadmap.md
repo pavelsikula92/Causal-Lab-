@@ -45,7 +45,7 @@ prediction only when nothing was calibrated on the test data.
 | F3 Structure | axiom 4 | structure in a range fixed in advance; I, Π, ω measured independently | matter does not self-bind (F3.2, F3.3, F3.13d); the defect is a test body (decision 18); wall inertia F3.15 (replicated) |
 | F4 Inertia | m = ω | every target with its own definition, tolerance and null model | through F3.15 (2+1) |
 | F5 Gravity and equivalence | the central claim | a closed chain on synthetic data; an inserted structure = a conditional result | 2+1: F5.2b–d; 3+1 on a prescribed order: F5.3 (C1); pending F5.4 |
-| F6 Dynamics of the order | axiom 7 | its own gate; a failure does not invalidate F1–F5 on a fixed order; success in 2D is not a proof in 3+1 | the action of the order F6.8 (EH stiffness F6.8a/b2/c2; age terms F6.8e2, F6.8d running) |
+| F6 Dynamics of the order | axiom 7 | its own gate; a failure does not invalidate F1–F5 on a fixed order; success in 2D is not a proof in 3+1 | the action of the order F6.8 (EH stiffness F6.8a/b2/c2; optical age term (kT)⁵ F6.8e3; mixed age term F6.8d undecided, decision 33; finite amplitude F6.8f with K.18) |
 | F7 Light and waves | γ, H1, H2 | hypotheses until derived and verified | F7.4a (tensor coupling); F7.1c undecided |
 | F8 Confrontation with data | P1, P2, the solar system | derived, calibrated and predicted kept apart | F8.1 waits for the static propagator |
 
@@ -55,7 +55,7 @@ prediction only when nothing was calibrated on the test data.
 | --- | --- | --- | --- |
 | B0 | 2+1 | calibration of the Green weight of the longest chain | the intrinsic instrument (variant B, decision 20) |
 | B1 | 2+1 | F3.15 | inertia of a wall: velocity, contraction, r_M = rest energy |
-| B2 | 2+1 | F5.2c | walls in a prescribed curved order of the theory |
+| B2 | 2+1 | F5.2c → F5.2c2 | walls in a prescribed curved order of the theory |
 | B3a | 2+1 | F5.2d | the active side of the growth (scalar branch) |
 | B4 | 2+1 | draft (docs/B4_program_draft.md) | a localised source and the 1/r law |
 | C0 | 3+1 | F3.16 → F3.16b | the Green function of the order (MV8 + counterterm) |
@@ -171,7 +171,8 @@ measurement and criteria frozen in advance (R132 stays a fixed procedural rule):
   instrument or the chosen kernel.
 
 **State (16 Nov):** F6.8e3 PASSED (optical age term ∝ (kT)⁵ at second order); F6.8d INSTRUMENT_FAILED, exponents
-undecided (decision 33); the replication of F5.2c INSTRUMENT_FAILED on the flat control (seed 0 PASSED stands).
+undecided (decision 33); the replication of F5.2c INSTRUMENT_FAILED on the flat control (seed 0 PASSED stands); its revision F5.2c2
+(the flat control on 32 sprinklings, decision 37) PASSED on 19 Nov and replicates the seed-0 result of F5.2c.
 
 **Working order (the author, 16 Nov 09:59; working positions, not frozen; docs/derivations/substrate_and_action_audit.md
 §7–8):**

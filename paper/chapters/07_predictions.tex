@@ -87,7 +87,8 @@ If $T$ is cosmological, short-range tests of gravity probe $\ell_k$ at the level
 theory says where the deviation sits: at $L_*$, which for $\ell_k=10^{-19}$\,m lies at tens of micrometres,
 the range of current torsion balances. If $T$ is the age of a laboratory source, the age term is out of reach.
 What $T$ is (Sec.~\ref{sec:discreteness-predictions}, P2) therefore decides whether the theory is testable
-at short distances now (Fig.~\ref{fig:window}). \stat{derived; conditional on the reading of $T$}
+at short distances now (Fig.~\ref{fig:window}). \stat{derived from the conformal term; conditional on the reading
+of $T$ and on the optical term of old fields (caveat (i))}
 
 \begin{figure}[t]
   \centering
@@ -100,8 +101,12 @@ term of the conformal sector, $c_T=0.1035$ (caveat (i)).}\label{fig:window}
 \end{figure}
 
 \paragraph{Caveats.} (i) The estimate uses the linear age term of the conformal sector. The optical sector
-weakens faster than linearly within the computed range ($kT\le24$, Sec.~\ref{sec:optical}); if this persists
-as $kT\to\infty$, the breakdown moves to larger scales and the bounds become stronger. The asymptotic form decides the far-field law. (ii) In the mixed sector the age term is $1.78$ times stronger than in the
+grows as $(kT)^5$ at second order (F6.8e3) and faster still at finite amplitude up to $\varepsilon=b\,(kT)^2=4$
+(F6.8f); at $\varepsilon=\pi^2$, an age $T\simeq\pi/(k\sqrt b)$, the second-order form ends
+(Sec.~\ref{sec:optical}). For a laboratory source ($b\sim10^{-25}$ at $L=52\,\mu$m) this age is of order a
+light-second, for the Earth's field about thirty light-minutes; every reading of $T$ in the table lies far beyond
+it. The bounds therefore rest on the conformal term alone; the optical term of old fields, which decides the
+far-field law, is open. (ii) In the mixed sector the age term is $1.78$ times stronger than in the
 conformal one (Sec.~\ref{sec:mixed}); a covariant action cannot do this, and the difference may come from
 the age cut rather than from the action. (iii) At $L_*$ the expansion in the age term breaks down, and what
 happens there (Sec.~\ref{sec:discreteness-predictions}, P3) is open. The numbers above are orders of
@@ -124,9 +129,10 @@ quadratic form of the action of the order (Sec.~\ref{sec:mixed}), without assumi
   $K_{\rm loc}=1-(k\ell_k)^2[4.0\ln(1/k\ell_k)+0.9]+\dots$ for $k\ell_k\le0.1$ and the values of
   Sec.~\ref{sec:bdaction} beyond; the mixed coefficient $\cB=8\hat K_{ab}(k,T)$, equal to $8\hat K$ at leading
   order and larger by $\simeq8\times0.46\,(k\ell_k)^2$ beyond it (Sec.~\ref{sec:mixed}); the optical coefficient
-  $\cC=2\hat K_{bb}(k,T)$, with $\cC(k\to0)=2.002$ and an age dependence that grows faster than linearly in the
-  computed range (Sec.~\ref{sec:optical}).
-\item \emph{To compute:} the asymptotic form of the optical age term, $kT\to\infty$.
+  $\cC=2\hat K_{bb}(k,T)$, with $\cC(k\to0)=2.002$ and an age term that grows as $(kT)^5$ at second order
+  (F6.8e3) and faster at finite amplitude up to $\varepsilon=4$ (F6.8f; Sec.~\ref{sec:optical}).
+\item \emph{To compute:} the optical age term of old fields, $\varepsilon=b\,(kT)^2\gg\pi^2$, where the second
+  order no longer holds.
 \item \emph{Prediction:} the potential $\Phi(r)$ and $\gamma(r)$ of a point mass as functions of
   $r/\ell_k$, by Fourier inversion. The shape is fixed; only $\ell_k$ is free.
 \item \emph{Test:} laboratory searches for deviations from the inverse-square law at sub-millimetre
@@ -147,12 +153,14 @@ amount
 \begin{itemize}
 \item \emph{Status:} derived analytically and confirmed by the full computation to $2\%$, in the static
   conformal sector (F6.8a). In the mixed sector it is $1.78$ times larger, $c_{T,ab}\simeq0.195$
-  (F6.8b2): the age term does not enter the sectors in covariant proportion. In the optical sector it grows
-  faster than linearly within the computed range, $kT\le24$ (F6.8c2), with a form the data do not fix; it
-  therefore shifts $\gamma$ as well as the strength of the field. Its form as $kT\to\infty$ is open.
+  (F6.8b2): the age term does not enter the sectors in covariant proportion. In the optical sector it grows as
+  $(kT)^5$ at second order (F6.8e3) and faster still at finite amplitude up to $\varepsilon=b\,(kT)^2=4$ (F6.8f);
+  it therefore shifts $\gamma$ as well as the strength of the field. At $\varepsilon=\pi^2$ the second-order form
+  ends (first conjugate points), and every long-lived field lies beyond; the age term of old fields is open.
 \item \emph{Open:} what $T$ is physically (age of the field, of the source, or the cosmological past),
   and the form of the term in the full static propagator.
-\item \emph{Consequence:} requiring a relative deviation below $\delta$ at scale $L$ gives
+\item \emph{Consequence} (conformal term only; the optical term of old fields is open, caveat (i) of
+  Sec.~\ref{sec:window}): requiring a relative deviation below $\delta$ at scale $L$ gives
   \begin{equation}
     \ell_k\lesssim\sqrt{10\,\delta\,L^3/T},
   \end{equation}
@@ -160,8 +168,8 @@ amount
   shortest tested distance, $52\,\mu$m, the bound ranges from $10^{-20}$\,m (cosmological $T$) to
   $2\times10^{-14}$\,m ($T$ of one day); Sec.~\ref{sec:window}.
 \item \emph{Caveat:} the age term enters the conformal and mixed sectors in a non-covariant proportion; it may
-  come from the way the past is cut at age $T$ rather than from the action. A test of this is planned
-  (F6.8d).
+  come from the way the past is cut at age $T$ rather than from the action. The test of this (F6.8d) failed
+  an instrument check at its largest age and is to be repeated.
 \item \emph{Test:} comparison of the strength of gravity of fields of different ages at the same scale,
   e.g.\ freshly assembled laboratory masses against the field of the Earth.
 \end{itemize}
@@ -226,9 +234,11 @@ holds:
 \toprule
 test & question & needs\\
 \midrule
-F6.8e & the asymptotic age term of the optical sector, $kT\to\infty$ (analytic, as for $c_T$) & F6.8c2\\
-F6.8d & the differences between the sectors beyond leading order: from the age cut or from the action? & F6.8b2\\
-F8.1 & $\Phi(r)$, $\gamma(r)$ of a point mass in units of $\ell_k$; comparison with short-range data & F6.8e\\
+F6.8g & the optical age term of old fields, $\varepsilon=b\,(kT)^2\gg\pi^2$: intervals with several rays; does
+  an old field have a finite static response? & F6.8f, K.18b\\
+F6.8d & the differences between the sectors beyond leading order: from the age cut or from the action? (run
+  15 Nov: instrument failed; to be repeated) & F6.8b2\\
+F8.1 & $\Phi(r)$, $\gamma(r)$ of a point mass in units of $\ell_k$; comparison with short-range data & F6.8g\\
 F8.8 & the physical meaning of the age $T$; fields of different ages & theory of $T$\\
 F6.9 & the age term in the full static propagator & F6.8c\\
 \bottomrule

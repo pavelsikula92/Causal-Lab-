@@ -1,0 +1,40 @@
+K.18: needle volume; eps [0.1, 0.25, 0.5, 1.0, 2.0, 4.0], 16 directions, 128 phases
+  single: largest number of rays 1 (ok)
+  jacobi: delta_J 7.24e-14 (<= 0.0001); series A0 vs plane wave 3.77e-12 (<= 1e-09)
+  series vs exact needle: largest difference 3.36e-08 (<= 1e-06), window failures 0 (<= 2)
+  qconv: largest delta_A 1.80e-06 (<= 0.001); largest pairwise 1.23e-04
+  e3: p-integrated F6.8e3 bulk / series prediction - 1 = +5.51e-04 (<= 0.005)
+     p  0.157: F6.8e3 -2.916896e+03  series -2.914237e+03  ratio 1.000913
+     p  0.810: F6.8e3 -2.868598e+03  series -2.869145e+03  ratio 0.999809
+     p  1.924: F6.8e3 -2.658654e+03  series -2.660351e+03  ratio 0.999362
+     p  3.400: F6.8e3 -2.182121e+03  series -2.183631e+03  ratio 0.999308
+     p  5.107: F6.8e3 -1.499600e+03  series -1.500753e+03  ratio 0.999232
+     p  6.893: F6.8e3 -8.386719e+02  series -8.394317e+02  ratio 0.999095
+     p  8.600: F6.8e3 -3.871897e+02  series -3.876203e+02  ratio 0.998889
+     p 10.076: F6.8e3 -1.580798e+02  series -1.583102e+02  ratio 0.998545
+     p 11.190: F6.8e3 -6.551892e+01  series -6.564835e+01  ratio 0.998028
+     p 11.843: F6.8e3 -3.443701e+01  series -3.452376e+01  ratio 0.997487
+     p 12.405: F6.8e3 -1.755066e+01  series -1.760860e+01  ratio 0.996710
+     p 14.033: F6.8e3 +4.716797e-01  series +4.590409e-01  ratio 1.027533
+     p 16.568: F6.8e3 -7.464905e-01  series -7.452465e-01  ratio 1.001669
+     p 19.432: F6.8e3 -7.368469e-01  series -7.376980e-01  ratio 0.998846
+     p 21.967: F6.8e3 +1.530457e-02  series +1.516551e-02  ratio 1.009169
+     p 23.595: F6.8e3 +3.530121e-02  series +3.497891e-02  ratio 1.009214
+     brute eps 2 p 0 theta 2 q 0.25: kappa-levels - series -5.04e-04 -1.26e-04 -3.15e-05 (ratios 3.995 4.012); extrapolated - series +1.48e-07
+     brute eps 2 p 0 theta 2 q 0.125: kappa-levels - series -5.10e-04 -1.28e-04 -3.18e-05 (ratios 3.998 4.011); extrapolated - series +1.27e-07
+     brute eps 2 p 2 theta 4 q 0.25: kappa-levels - series +5.45e-05 +1.06e-05 +1.94e-06 (ratios 5.118 5.496); extrapolated - series -7.66e-07
+     brute eps 2 p 2 theta 4 q 0.125: kappa-levels - series +5.60e-05 +1.15e-05 +2.09e-06 (ratios 4.864 5.498); extrapolated - series -8.94e-07
+     brute eps 2 p 4 theta 0.7 q 0.25: kappa-levels - series -3.48e-03 -8.73e-04 -2.18e-04 (ratios 3.982 3.997); extrapolated - series +9.68e-08
+     brute eps 2 p 4 theta 0.7 q 0.125: kappa-levels - series -3.48e-03 -8.74e-04 -2.19e-04 (ratios 3.983 3.996); extrapolated - series -4.88e-09
+     brute eps 2 p 8 theta 2 q 0.25: kappa-levels - series +5.69e-03 +1.40e-03 +3.49e-04 (ratios 4.054 4.020); extrapolated - series -8.21e-07
+     brute eps 2 p 8 theta 2 q 0.125: kappa-levels - series +5.69e-03 +1.40e-03 +3.49e-04 (ratios 4.052 4.019); extrapolated - series -7.40e-07
+     brute eps 4 p 0 theta 4 q 0.25: kappa-levels - series -5.63e-04 -1.39e-04 -3.41e-05 (ratios 4.049 4.079); extrapolated - series +8.04e-07
+     brute eps 4 p 0 theta 4 q 0.125: kappa-levels - series -5.70e-04 -1.41e-04 -3.45e-05 (ratios 4.050 4.084); extrapolated - series +8.68e-07
+     brute eps 4 p 2 theta 0.7 q 0.25: kappa-levels - series -9.43e-04 -2.38e-04 -5.94e-05 (ratios 3.960 4.005); extrapolated - series +3.24e-07
+     brute eps 4 p 2 theta 0.7 q 0.125: kappa-levels - series -9.48e-04 -2.39e-04 -5.97e-05 (ratios 3.963 4.006); extrapolated - series +3.32e-07
+     brute eps 4 p 4 theta 2 q 0.25: kappa-levels - series -2.48e-03 -6.26e-04 -1.57e-04 (ratios 3.958 3.978); extrapolated - series -6.33e-07
+     brute eps 4 p 4 theta 2 q 0.125: kappa-levels - series -2.48e-03 -6.27e-04 -1.57e-04 (ratios 3.959 3.984); extrapolated - series -3.50e-07
+     brute eps 4 p 8 theta 4 q 0.25: kappa-levels - series -2.43e-04 -7.76e-05 -2.08e-05 (ratios 3.133 3.725); extrapolated - series -5.39e-07
+     brute eps 4 p 8 theta 4 q 0.125: kappa-levels - series -2.43e-04 -7.83e-05 -2.03e-05 (ratios 3.103 3.857); extrapolated - series +5.29e-07
+  brute: largest |A_ext - A_series| 8.94e-07 (<= 0.001); ratios outside [3.5, 4.5]: 2
+  cost 921 s

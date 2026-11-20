@@ -1,6 +1,7 @@
 # Physical tests of Causal Physics
 
-Written on 9 Nov 2026 at the author's request. The laboratory tests mechanisms in simulated orders (M7 levels
+Written on 9 Nov 2026 at the author's request; the status of P2–P3, the equivalence principle, the swerves and the
+priorities updated on 17 Nov 2026. The laboratory tests mechanisms in simulated orders (M7 levels
 *calibration*, *mechanism*, *chain*); this file lists only what nature itself can decide: measurements in real
 experiments and observations. Source: Parts VII and VIII of the paper (`06_astrophysics.tex`, `07_predictions.tex`).
 The experimental references are given by group and year from general knowledge; **check each one before it is cited
@@ -19,7 +20,7 @@ above ℓ_k would falsify it.
 |---|---|---|---|---|
 | γ = 1 (light deflection, Shapiro delay) | throughput principle, tensor coupling, action of the order | Cassini radio link (2003); VLBI; Gaia astrometry | γ − 1 ≈ (2 ± 2)·10⁻⁵ (Cassini) | derived; F7.1c raw 1.000 ± 0.045 |
 | β = 1 (perihelion advance) | general-relativistic completion | planetary ephemerides, MESSENGER, BepiColombo | ~10⁻⁵ | follows from the completion (input) |
-| equivalence principle (universality of free fall) | motion along longest histories; planned derivation from one mechanism (F5.1i) | MICROSCOPE (2022), torsion balances, lunar laser ranging | η ~ 10⁻¹⁵ | derived in principle; fall in 3+1 open (F5.1e proxy, F5.1g running) |
+| equivalence principle (universality of free fall) | motion along longest histories; planned derivation from one mechanism (F5.1i) | MICROSCOPE (2022), torsion balances, lunar laser ranging | η ~ 10⁻¹⁵ | derived in principle; 1+1: field defects of mass 4, 8, 16 fall alike within ~1.5 % (F5.2a3, replicated), and their inertial mass equals the rest energy in 1+1 and 2+1 (F3.14b, F3.15, replicated); the fall of a test body in 3+1 is open (F5.1e failed, its rule a proxy; F5.1g failed) |
 | frame dragging | response in the rest frame of each flow | Gravity Probe B (2011), LAGEOS / LARES | ~19 % (GP-B), a few % (LARES) | local tilt of cones derived and tested (F7.4a); rotating source not computed |
 | gravitational waves: speed, two polarisations | tensor field, completion | GW170817 with its gamma-ray counterpart; LIGO / Virgo / KAGRA polarisation tests | speed equal to c to ~10⁻¹⁵ | adopted; not computed in the order |
 | quadrupole radiation | completion | binary pulsars (Hulse–Taylor; the double pulsar, 2021) | GR to ~10⁻⁴ (double pulsar) | adopted; a scalar formulation is already excluded (1/6 of the GR value) |
@@ -43,11 +44,20 @@ Every prediction has a fixed **shape** and one free **scale**, the non-locality 
 - **What decides it:** the physical meaning of T (age of the field, of the source, or the cosmological past; test
   F8.8, a question of the theory). If T is the age of a laboratory source (hours to years), δ is far below any
   measurement (e.g. ~10⁻¹⁴ at 52 µm for T of one hour and ℓ_k = 10⁻¹⁹ m).
+- **Status (17 Nov): not a prediction at present.** The numbers above use the linear age term of the conformal
+  sector. The optical sector grows as (kT)⁵ at second order in the amplitude b (F6.8e3, PASSED). Taken literally,
+  that term would change gravity at order one at laboratory and solar-system scales for every reading of T; but the
+  second order holds only for b²(kT)⁴ ≪ 1, and real static fields exceed this by factors of 10⁴⁰–10⁵⁵
+  (docs/derivations/substrate_and_action_audit.md, sections 7.2–7.3). Whether an old static field has a finite
+  static response at all is open: F6.8f reads the response at finite amplitude on ε = b(kT)² ≤ 4 (instrument K.18),
+  and the static limit itself needs the multi-ray range beyond the first caustic.
 - **A possible discriminating experiment (idea, not designed):** if T is the age of the field configuration, a
   rotating attractor renews its field every period; the measured strength at a fixed distance would then depend on the
   rotation rate. Only meaningful if the reading of T makes the effect large enough.
-- **Open before it can be a prediction:** the asymptotic optical age term (F6.8e), the covariance of the sectors
-  (F6.8d), the full static propagator (F6.9), the meaning of T (F8.8).
+- **Open before it can be a prediction:** the static response of an old field at finite amplitude (F6.8f with K.18,
+  then the multi-ray range); the age term of the mixed sector (F6.8d: INSTRUMENT_FAILED, exponent undecided,
+  decision 33); the full static propagator (C.1, F6.9); the meaning of T (F8.8). The asymptotic optical age term at
+  second order is decided: (kT)⁵ (F6.8e3).
 
 ### P1 — the static field of a point mass near ℓ_k
 
@@ -57,7 +67,8 @@ Every prediction has a fixed **shape** and one free **scale**, the non-locality 
 
 ### P3 — the static pole of the spin-0 channel
 
-- At L* (with the age term). For cosmological T and ℓ_k = 10⁻¹⁹ m it lies at ~50 µm, the same window as P2. Whether it
+- At L* (with the age term). For cosmological T and ℓ_k = 10⁻¹⁹ m it lies at ~50 µm, the same window as P2 (with the
+  conformal age term; the status of P2 applies). Whether it
   is a standing wave, an instability or the limit of the expansion is open; if it is physical, it is a sharp feature
   at a definite distance, which torsion balances could see.
 
@@ -76,7 +87,7 @@ Every prediction has a fixed **shape** and one free **scale**, the non-locality 
 | exact Lorentz invariance of the substrate | arrival times of photons of different energies from gamma-ray bursts (Fermi GRB 090510, 2009); cosmic-ray and neutrino tests | no violation; linear energy dependence excluded beyond the Planck energy | any detected violation |
 | no blurring of distant point sources | sharp images of distant quasars and gamma-ray bursts (constraints on "spacetime foam") | sharp images observed | blurring attributable to discreteness |
 | horizon entropy ∝ proper area | Hawking's area theorem tested with GW150914 ringdown (2021); entropy itself not directly measurable | area increase confirmed | — (a consistency of the counting, K.14) |
-| slow diffusion in momentum ("swerves", Dowker–Henson–Sorkin 2004) | cosmic rays, neutrinos, the CMB (bounds exist for causal set swerves) | not computed for flows that carry their four-velocity | a predicted rate excluded by data, once computed |
+| slow diffusion in momentum ("swerves", Dowker–Henson–Sorkin 2004) | cosmic rays, neutrinos, the CMB (bounds exist for causal set swerves) | derived and tested for a bound field defect in 1+1: D_p = (1/2ρ) ∫ V′(φ)² φ_x² dx, no free constant (F3.14c, seed 0 PASSED); not computed for flows that carry their four-velocity, nor in 3+1 | a predicted rate excluded by data, once computed |
 
 ## 4. Future physical tests (when the theory gives them)
 
@@ -94,6 +105,7 @@ Every prediction has a fixed **shape** and one free **scale**, the non-locality 
 
 1. **The meaning of T (F8.8).** It decides whether the theory makes a prediction at the frontier of current
    short-range experiments (~50 µm) or none there. The most valuable single question for physical testability.
-2. **F6.8e, F6.8d, F6.9, F8.1:** turn P2/P1 into a number that an experimental group can compare with its data.
+2. **The static response of an old field (F6.8f, then the multi-ray range), then the static propagator (C.1) and
+   F8.1:** turn P2/P1 into a number that an experimental group can compare with its data.
 3. **Keep consistency honest:** every adopted piece (the completion, β, radiation) stays marked as adopted until it
    is derived; a consistency result is never presented as a prediction.
