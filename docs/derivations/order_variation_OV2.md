@@ -126,11 +126,51 @@ phase. The alternatives are:
 
 S_m enters each of them in the same way, so OV2 does not depend on the choice. OV3 does.
 
-## 8. Open decisions (the author's)
+## 8. Decisions (the author, 20 Nov; decision 39)
 
-1. The candidates: S_m^φ (section 3.1), S_m^τ (3.2), or both with a comparison.
-2. The difference form of the kinetic operator (proposed) and its check by T0.
-3. The reading of the retarded/symmetric issue: S_m as the coupling functional at fixed φ (proposed), with T3 as a
-   separate test.
-4. The order of the tests: T0 → T1 → F1/F2 in 2D (cheap, reuses OV1), then T2 and T3 in 3+1.
-5. Whether branch F is pursued now or after T1 (its outcome does not block T0–T2).
+1. Both candidates, S_m^φ and S_m^τ, with a comparison.
+2. The kinetic operator in difference form, checked by T0.
+3. S_m is the coupling functional at fixed φ; T3 is a separate test.
+4. Order: T0 → T1 → F1/F2 in 2D, then T2 and T3 in 3+1.
+5. Branch F is pursued in that order, after T1.
+
+**Refinement found in the implementation (for the author to confirm).** "Difference form" has two realisations:
+- the row form K = B − diag(B1);
+- the pairwise (Dirichlet) form S_kin = −ε² Σ_pairs f(n) (φ_x − φ_y)².
+
+Their quadratic forms differ by ε² Σ_v φ_v² (F_future(v) − F_past(v)), a time-asymmetric diagonal that does not
+vanish near the past and future boundaries. Only the pairwise form is exactly invariant under φ → φ + 2πk; T0 confirms
+it.
+
+## 9. Development in 2D (diag/ov2_2d.py, diag/ov2_kernels.py; decides nothing)
+
+**Model.**
+- The light-cone square, ds² = −du dv, proper density ρ = 2N_exp, ε = 0.12.
+- Fixed static kink φ = 4 arctan(e^{mx}), m = 12, V = m²(1 − cos φ).
+- Conformal bump σ = a exp(−r²/(2s²)), a = ±0.2, s = 0.12. The configurations +a, 0 and −a are thinned from one
+  master sprinkling, so they are coupled.
+- Continuum: S_kin = ∫ φ_u φ_v du dv = −42.45 and S_pot = −42.45 (the virial equality of the kink).
+
+| quantity | N_exp 4 160 (T/w 8), 256 sprinklings | N_exp 16 640 (T/w 16), 64 sprinklings | continuum |
+|---|---|---|---|
+| T0 shift 2π, Dirichlet | 2e−15 ± 5e−15 | 4e−14 ± 2e−14 | 0 exactly |
+| T0 shift 2π, row form | −5.7 ± 4.1 | +21 ± 16 | — |
+| T0 shift 2π, plain | −37 ± 42 | −532 ± 200 | — |
+| flat S_kin (Dirichlet) | −38.0 ± 1.1 | −36.0 ± 4.7 | −42.45 |
+| flat S_pot | −42.49 ± 0.06 | −42.46 ± 0.05 | −42.45 |
+| T1 δS_pot (+a / −a) | −3.545 ± 0.020 / +2.783 ± 0.017 | −3.533 ± 0.019 / +2.803 ± 0.017 | −3.537 / +2.781 |
+| T1 δS_kin Dirichlet (+a / −a) | +0.52 ± 0.43 / −0.65 ± 0.40 | −1.49 ± 1.78 / −1.66 ± 1.63 | 0 / 0 (conformal invariance) |
+| first order (S(+a) − S(−a))/2 | −2.58 ± 0.30 | −3.08 ± 1.19 | −3.12 (= ∫ σ T^a_a √g) |
+
+**Reading.**
+- **T0.** Only the pairwise form is invariant, exactly, as derived. The plain form fails by ∝ Σ B1 φ², and the row
+  form by its asymmetric diagonal.
+- **The measure part of T1 holds to 0.6 %.** δS_pot = −½ ∫ (e^{2σ} − 1) V du dv.
+- **The kinetic part is the open item.**
+  - At T/w 8 the flat S_kin is 10 % below the continuum (ratio 0.895 ± 0.027). This is plausible as the finite
+    ℓ_k m = 0.38 of the kink; F6.8a found a non-analytic (kℓ)² ln correction.
+  - The first-order conformal response of S_kin is +0.58 ± 0.30 (2σ) at T/w 8 and unresolved at T/w 16.
+  - The noise of S_kin grows with N (sd 18 → 37 per sprinkling), like the BD action itself.
+- **Before a T1 card:**
+  - the convergence of the flat S_kin to −42.45 with ℓ_k m (a density scan);
+  - the conformal invariance of S_kin to a stated precision, which needs about 10³ sprinklings per density.
