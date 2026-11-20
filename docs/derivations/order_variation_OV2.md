@@ -162,6 +162,24 @@ it.
 | T1 δS_kin Dirichlet (+a / −a) | +0.52 ± 0.43 / −0.65 ± 0.40 | −1.49 ± 1.78 / −1.66 ± 1.63 | 0 / 0 (conformal invariance) |
 | first order (S(+a) − S(−a))/2 | −2.58 ± 0.30 | −3.08 ± 1.19 | −3.12 (= ∫ σ T^a_a √g) |
 
+**Update (20 Nov, 14:2x): 2 048 sprinklings at T/w 8 and 320 at T/w 16.**
+
+| quantity | T/w 8 (2 048) | T/w 16 (320) | continuum |
+|---|---|---|---|
+| flat S_kin (Dirichlet) | −37.65 ± 0.40 | −43.07 ± 2.08 | −42.45 |
+| δS_kin (+a / −a) | −0.04 ± 0.15 / −0.43 ± 0.15 | +1.06 ± 0.80 / −0.96 ± 0.75 | 0 / 0 |
+| first order of S_kin, (δ₊ − δ₋)/2 | +0.20 ± 0.11 | +1.01 ± 0.55 | 0 |
+| second order of S_kin, δ₊ + δ₋ | −0.47 ± 0.21 | +0.10 ± 1.1 | 0 |
+| first order of S_m | −2.954 ± 0.107 | −2.16 ± 0.56 | −3.122 |
+| δS_pot (+a / −a) | −3.530 ± 0.007 / +2.772 ± 0.006 | −3.527 ± 0.008 / +2.801 ± 0.008 | −3.537 / +2.781 |
+
+- **The flat S_kin is 11 % low at T/w 8 and agrees at T/w 16.** That is a finite-nonlocality effect that disappears
+  with density.
+- **The first-order conformal response of S_kin fell from +0.58 ± 0.30 (256 sprinklings) to +0.20 ± 0.11 (2 048).**
+  It is 1.9σ, about 6 % of δS_m. Not resolved; the earlier value was partly a fluctuation.
+- **On the author's machine** (development): a = 0.1 at T/w 16 (first against second order) and T/w 32 (the density
+  dependence), 1 024 sprinklings each.
+
 **Reading.**
 - **T0.** Only the pairwise form is invariant, exactly, as derived. The plain form fails by ∝ Σ B1 φ², and the row
   form by its asymmetric diagonal.
