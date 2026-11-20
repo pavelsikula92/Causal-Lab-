@@ -365,6 +365,35 @@ width of 10 ℓ_k. The age of the order gives no growing term for the wall.
     This is an observation to test, not a result.
   - The potential part (the measure) is local and carries no form factor.
 
+**Stage 3, the cone sector ν = b cos kz** (21 Nov, night; diag/ov2_t2nu.py; wall width 10 ℓ_k).
+- **Method.** g = −dt² + e^{2bh} dx². The first-order cones and the interval volume are those of F6.8b2: the optical
+  length of the straight segment, the past parametrised by s at a fixed cone, the measure 1/(2 l₂ dt) and the age
+  cut depending on b, and dV/db from the prolate quadrature spheroid_pieces.
+  - The wall enters through Φ(Δ) = ∫ dz e^{ikz} (φ(z + Δ) − φ(z))².
+  - The boundary term of the age cut is integrated in S = s_max as F6.8b2 does.
+- **Target:** the kinetic part of ½ ∫ T^{ab} δg_ab, which is −½ ∫ cos(kz) φ′² dz = −2πk / sinh(πk/2m).
+- **Results** (T = 80):
+
+  | k ℓ_k | d s_kin/db (ν) | continuum | ratio ν | ratio ω (stage 2) |
+  |---|---|---|---|---|
+  | 0 | −0.40181 | −0.40000 | 1.0045 | 0.998 |
+  | 0.02 | −0.39202 | −0.39350 | 0.996 | 0.992 |
+  | 0.05 | −0.34745 | −0.36166 | 0.961 | 0.965 |
+  | 0.1 | −0.23554 | −0.27303 | 0.863 | 0.890 |
+  | 0.2 | −0.06242 | −0.10881 | 0.574 | 0.670 |
+
+  - Age: T = 40 / 80 / 160 give 0.855 / 0.863 / 0.861 at k = 0.1.
+  - Grid: mult 1 against 1.5 is identical to 5 digits.
+  - The boundary term of the age cut is ≤ 1.4·10⁻³ and falls with T.
+- **Reading (development).**
+  - The response of the wall's kinetic action to a change of the cones, which is a change of the order itself,
+    reproduces the spatial part of T_ab in the local limit: 0.45 % at k = 0 and 0.4 % at kℓ_k = 0.02.
+  - It carries a nonlocal form factor that falls somewhat faster than that of the conformal sector at larger k.
+  - Together with stage 1 and stage 2 and the exact measure, **T2 holds at the ensemble level**: the pairwise matter
+    action responds to the static metric perturbations of both sectors as ½ ∫ T^{ab} δg_ab, up to form factors
+    → 1 as kℓ_k → 0.
+  - The draft card is docs/OV2_coupling_cards_draft.md (T2, proposed F6.10b).
+
 **Next stages:**
 - **Stage 2 (done above):** plane-wave ω = b cos kz, using the diamond transform of F6.8a (diamond_ft4, boosted to the frame of each
   interval). It must give −∫ cos(kz)(φ′² + 4V) dz = −12πk / sinh(πk/2m).
