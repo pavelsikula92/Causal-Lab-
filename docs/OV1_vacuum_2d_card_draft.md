@@ -1,6 +1,8 @@
 # Card OV1-V (2D): no volume term in the smeared BD action of flat causal diamonds (the vacuum control of OV1)
 
-**Revision 1, draft, 20 Nov 2026. Not frozen.** The ID is the author's choice (proposed: F6.9a). Specification:
+**Revision 2, 20 Nov 2026, for freezing.** ID F6.9a (the author, 20 Nov 10:10). Test:
+phases/F6_order_dynamics/F6_09a_bd_vacuum_2d_diamonds.py (self-contained; kernels copied from diag/ov1_kernels.py).
+Revision 2 differs from revision 1 only in the instrument items I3 and I4 and the seeds (section 8). Specification:
 docs/derivations/order_variation_OV1.md, sections 4, 5, 6, 8 and 13. Development: diag/ov1_2d.py, diag/ov1_2d_summ.py.
 The tolerances and the numbers of sprinklings below follow from the development and validation rows of OV1 §13, by
 the power rule of OV1 §11.
@@ -49,9 +51,10 @@ proportional to the number of elements: ⟨S⟩ does not grow with the volume ov
   | 0.12 | 1 200 | 1.65·10⁻⁴ | 30 s | 10 |
   | 0.06 | 280 | 1.65·10⁻⁴ | 164 s | 13 |
 
-  In total about 35 core-hours, or 4.5 h on 8 workers.
-- **New sprinklings.** Seeds 200 000 + k. The development (0–15), validation (0–511) and calibration (≥ 100 000) seeds
-  are not reused.
+  In total about 35 core-hours, or 4.5 h on 8 workers. With the balance of I4 on all sprinklings it is about 40
+  core-hours, 5 h.
+- **New sprinklings.** Seeds derive_seed(base, "F6.9a", ε, k), the laboratory's SHA-256 streams. They are independent
+  of the development, validation and calibration seeds.
 - **Verdict per ε:**
   - PASSED if |c/(4ε)| + 2 SE ≤ 1·10⁻³;
   - FAILED if |c/(4ε)| − 2 SE > 1·10⁻³;
@@ -62,10 +65,11 @@ proportional to the number of elements: ⟨S⟩ does not grow with the volume ov
   - **I1:** `python -m diag.ov1_2d --check` passes: S and every ΔS against brute force to 1e−8, including two orders
     where n_cut < N.
   - **I2:** the mean number of elements per level is within 3 SE of N_exp s².
-  - **I3:** the phase diagnostics of the run lie within the calibration bands (the frozen file diag/out/ov1_2d/
-    summary.txt, md5 91afb053), with at most 3 % of the sprinklings outside at any level and ε (nominal 1 %).
-  - **I4:** the time-reversal null. ⟨D S⟩ over the interior is zero within |x| + 2 SE ≤ 1·10⁻³ at T/w = 8 for 256
-    sprinklings per ε. It is guaranteed by the symmetry of the flat diamond, so it checks the code, not physics.
+  - **I3:** the phase diagnostics of the run lie within the calibration bands (written into the test from
+    diag/out/ov1_2d/summary.txt, md5 91afb053), with at most 5 % of the sprinklings outside at any level and ε
+    (nominal 1 %).
+  - **I4:** the time-reversal null. ⟨D S⟩ over the interior is zero within |x| + 2 SE ≤ 1·10⁻³ at T/w = 8, over all
+    sprinklings. It is guaranteed by the symmetry of the flat diamond, so it checks the code, not physics.
 
 ## 5. Decisions for the author
 
@@ -97,3 +101,23 @@ OV1 §13: development at ε = 0.12 (16 sprinklings); validation on the author's 
 
 Calibration bands (512 / 512 / 256 seeds ≥ 100 000): 0.4–2.0 % of the validation sprinklings fall outside, against a
 nominal 1 %.
+
+## 8. Revision 2 (20 Nov 2026): instrument settings before freezing
+
+- **I3, 3 % → 5 %.**
+  - The bands at ε 0.06 come from 256 calibration seeds, and their realised rate outside was 0.4–2.0 % in the
+    validation rows.
+  - At 280 sprinklings and a true rate of 1.6 %, a 3 % threshold fails by chance with a probability of about 4 % per
+    item, and there are six independent items per ε. That is an underpowered control of the kind that failed F5.2c
+    seed 1.
+  - At 5 % the false alarm is below 1·10⁻³ per item. An escape from the phase would move every sprinkling out (P1).
+- **I4, 256 sprinklings → all.** With 256 sprinklings at ε 0.24, 2 SE would be 6·10⁻⁴, against the rule 2 SE ≤ tol/3 =
+  3.3·10⁻⁴. With all sprinklings 2 SE ≤ 1.4·10⁻⁴ at every ε.
+- **Seeds.** derive_seed instead of 200 000 + k, the laboratory convention.
+- **Unchanged:** the hypothesis, the readout, the criterion (tolerance 1·10⁻³, 2 SE), the numbers of sprinklings and
+  the reported constant (the author, 20 Nov 10:10).
+- **Quick run** (Claude's container, `python run.py F6.9a --quick --workers 2`, decides nothing):
+  - it ran mechanically in 150 s;
+  - I1: S and ΔS against brute force to 1.1e−10, including N = 2 523 and 1 823 with n_cut < N;
+  - I2: OK;
+  - I3 and I4 fail at 2–6 sprinklings, as expected for a smoke run.
