@@ -184,7 +184,34 @@ it.
   - The flat S_kin is −40.49 ± 1.11.
   - At T/w 16 no first-order conformal response of S_kin is seen. The T/w 8 hint (+0.20 ± 0.11 at a = 0.2) is
     consistent with a finite-ℓ_k effect.
-- **T/w 32** (a = 0.2, 1 024 sprinklings) runs on the author's machine.
+- **T/w 32** (a = 0.2, 1 024 sprinklings, the author's machine, 20 Nov, 100 s each):
+  - δS_kin (+a / −a): −0.02 ± 0.87 / −1.35 ± 0.90, so the first order of S_kin is +0.66 ± 0.62;
+  - the first order of S_m is −2.50 ± 0.61 against −3.12;
+  - δS_pot: −3.5369 ± 0.0023 / +2.7798 ± 0.0021 against −3.5371 / +2.7805;
+  - the flat S_kin is −39.99 ± 2.28.
+
+**First order of S_kin over the densities (development).**
+
+| T/w | a | sprinklings | first order of S_kin |
+|---|---|---|---|
+| 8 | 0.2 | 2 048 | +0.20 ± 0.11 |
+| 16 | 0.2 | 320 | +1.01 ± 0.55 |
+| 16 | 0.1 | 1 024 | −0.01 ± 0.21 |
+| 32 | 0.2 | 1 024 | +0.66 ± 0.62 |
+
+- **No row departs from 0 by more than 2σ, and there is no trend with density.** The conformal invariance of the
+  pairwise kinetic term holds within the errors.
+- **The measure part is exact to 1e−4** at T/w 32.
+- **The precision of the kinetic part is limited by fluctuations.** The sd per sprinkling of S_kin is 18, 35 and 73 at
+  T/w 8, 16 and 32: it grows as √N, like the BD action. The ensemble mean converges, while a single order fluctuates
+  (the L1/L2 hierarchy of OV1 §5). Sprinklings alone therefore cannot give a tight T1 at high density.
+
+**Proposal for the T1 card: the ensemble level by quadrature (family M-b in 2D).**
+- For n ~ Poisson(ρV), E[f(n, ε)] is exactly the continuum smeared kernel g(x) = e^{−x}(1 − 2x + x²/2), x = ερV.
+- So ⟨S_kin⟩[σ] = −ε² ρ² ∫∫_{y≺x} √g_x √g_y g(ερ V_g(x, y)) (φ_x − φ_y)² is a deterministic integral over pairs, with
+  V_g the interval volume in the conformal metric. ⟨S_pot⟩ is −∫ √g V.
+- This gives T1 without noise at any ℓ_k, like F6.8 for S_BD.
+- The sprinkled rows above stay the L2 check (the individual orders fluctuate, with no systematic direction).
 
 **Reading.**
 - **T0.** Only the pairwise form is invariant, exactly, as derived. The plain form fails by ∝ Σ B1 φ², and the row
