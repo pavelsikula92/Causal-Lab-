@@ -307,3 +307,43 @@ The candidate flow is F_{u→v} = K(u, v) J(u).
 - **Which of them is the F of the axiom of causal continuity** (or neither, if the axiom is about something else) is a
   decision about the ontology, the author's.
 
+## 12. T2 in 3+1, stage 1: the uniform conformal sector (diag/ov2_t2.py, diag/ov2_kernels4.py; development)
+
+**Model.**
+- A static wall φ(z) = 4 arctan(e^{mz}) on a flat 3+1 order of age T, in units ερ = 1 (ℓ_k = 1), as F6.8.
+- Pairwise kinetic action by the Mecke formula, per unit time and area:
+  s_kin = (a₄/4) ∫dz ∫_{J⁻(x), age T} g(ερV)(φ_y − φ_x)² dV, with a₄ = 4/√6 and g(w) = e^{−w}(−1 + 9w − 8w² + (4/3)w³).
+  - Normalisation: its local limit is −½ ∫ φ′² dz = −4m, because ρε ∫ g (φ_y − φ_x)² dV → −2(∂φ)²/(a₄ (ερ)^{1/2}).
+- A uniform conformal factor e^b multiplies the density and every interval volume by e^{4b}. Then d s_kin/db =
+  (a₄/4) ∫∫ [8g + 4w g′] (Δφ)² dV, and it must tend to the kinetic part of ∫ T^a_a, −∫ φ′² dz = −8m. In 4D
+  T^a_a = −(∂φ)² − 4V; the potential part −16m is the measure, exact as in 2D.
+
+**Quadrature.**
+- Variables (ρ_s, μ, s) for the past of x, with s = √κ τ².
+- A(ρ_s) = ∫ g / (2√κ dt) ds on panels clipped exactly at the age cut, and H = ∫ (Δφ)² dμ in the variable z_y.
+- **The age cut needs its own panels in ρ_s.** Near ρ_s = T the clipped kernel gives a large integrand on a width of
+  about 12/T. Without those panels the result jumped by 10³. With them it converges, and the leading age term cancels
+  (∫ s g(s²) ds = 0).
+
+**Results** (converged in the radial grid and in T):
+
+| wall width 1/m | s_kin / continuum | d s_kin/db / continuum |
+|---|---|---|
+| 2.5 ℓ_k | 0.943 | 0.982 |
+| 5 ℓ_k | 0.979 | 0.995 |
+| 10 ℓ_k | 0.993 | 0.998 |
+
+- **Both tend to 1 as ℓ_k m → 0.** The age T changes them by below 10⁻³ once T ≥ 8/m.
+- **Widths of 20 and 40 ℓ_k at T ≥ 16/m are not converged** with the present grids (the outer and radial panels).
+  These rows are not used.
+
+**Reading.** In 3+1 the pairwise matter action responds to a uniform conformal change of the metric as the continuum
+does. This includes the kinetic part, which in 4D is not conformally invariant: −∫ φ′² against −8m, to 0.2 % at a
+width of 10 ℓ_k. The age of the order gives no growing term for the wall.
+
+**Next stages:**
+- **Stage 2:** plane-wave ω = b cos kz, using the diamond transform of F6.8a (diamond_ft4, boosted to the frame of each
+  interval). It must give −∫ cos(kz)(φ′² + 4V) dz = −12πk / sinh(πk/2m).
+- **Stage 3:** the cone sector ν with the first-order cones of F6.8b2. Expected: −∫ ν(½φ′² + 3V) dz for the static
+  wall.
+
