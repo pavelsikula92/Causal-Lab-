@@ -268,3 +268,42 @@ development (another kink width, bump width and position), at T/w 32 and 64.
 - **Instruments:** grid convergence (two refinements), and the flat ⟨S_kin⟩ against the continuum.
 - **Report:** the sprinkled L2 rows.
 
+## 11. F1 for the candidate of section 3.3: analytic (decides nothing until the author reads it)
+
+**The rule and the candidate.** The retarded rule is φ(v) = φ₀(v) − Σ_{u≺v} K(u, v) J(u):
+- in 1+1, K = 1/(2ρ) on every relation;
+- in 3+1 (C0), K = c w_n on the relations with n ≤ 8;
+- J = V′(φ).
+
+The candidate flow is F_{u→v} = K(u, v) J(u).
+
+**The two sides of the balance.**
+- Inflow, exact by the rule: Σ_in F(v) = φ₀(v) − φ(v).
+- Outflow: Σ_out F(v) = J(v) κ(v), with κ(v) = Σ_{w≻v} K(v, w).
+- In 1+1, κ(v) = |J⁺(v) ∩ Ω| / (2ρ), on average half the volume of the future of v inside the region.
+- In 3+1, κ(v) = c Σ_n w_n N⁺_n(v), where N⁺_n(v) counts the future elements at interval size n ≤ 8. That number grows
+  with the extent of the region along the light cone, through the long thin intervals.
+
+**Consequence.**
+- The outflow of an event is set by the future boundary of the region, not by anything at the event. No local
+  storage ΔQ_v and source s_v satisfy Σ_in F + s_v = Σ_out F + ΔQ_v: the would-be ΔQ_v depends on where the region
+  ends.
+- The influence of the retarded rule is therefore a propagated potential, a superposition of Green functions, not a
+  conserved flow.
+- **F1 for this candidate: the axiom is not satisfied at all.** This is a statement about the candidate, not about the
+  axiom.
+
+**What a test of the axiom needs instead.**
+- **Slice conservation.** For two slices A < A′ of the order (maximal antichains, or time cuts), the flux through A
+  plus the sources between them equals the flux through A′ plus what is stored between them. This is the discrete
+  form of ∂_μ j^μ = s, and a flow that satisfies the axiom passes it.
+- **Two candidates with a conservation law** (field_and_throughput.md §3 forbids identifying them by fiat):
+  - **F-a, energy and momentum from S_m.** The slice energy is E(A) = ε² Σ_{pairs crossing A} f(n)(Δφ)² plus the
+    potential of the elements next to A, with the normalisation of the continuum ∫ T^{00}. It is tested on dynamic C0
+    configurations (a moving kink, a kink–antikink pair): is E(A) the same on every slice within the C2 precision,
+    and does it equal ∫ T^{00} dx? This is the current that can source gravity (it is the T_ab of T1 and T2).
+  - **F-b, the topological current.** The winding of φ across a slice. It is conserved by the boundary values of φ,
+    and it counts defects; it does not source gravity at linear order.
+- **Which of them is the F of the axiom of causal continuity** (or neither, if the axiom is about something else) is a
+  decision about the ontology, the author's.
+
