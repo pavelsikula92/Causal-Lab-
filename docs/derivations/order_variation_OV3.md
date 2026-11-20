@@ -1,0 +1,116 @@
+# OV3: the response of the order to matter — the linear step (draft, development)
+
+21 Nov 2026 (night; the author asked Claude to continue and prepare tests). Status: a draft. It decides nothing, no
+criterion is frozen, and the open decisions in section 7 are the author's.
+- It joins OV1 (the variations of the order; the vacuum control F6.9a PASSED) and OV2 (the coupling of matter: T1
+  and T2 at the ensemble level, development).
+- It derives what the linear static response of the order to a source must be when both ingredients are taken at
+  their measured values. It is the step "M → H_M" of the author's direction (19 Nov), restricted to linear order,
+  family M and the ensemble level (L1).
+
+## 1. The linear static response in family M (L1)
+
+**Variables.** The static metric of the order, g = e^{2ω}(−dt² + e^{2ν} dx²) (the variables of F6.8: ω conformal, ν
+optical). For a static source varying along z, mode by mode in k, the second variation of the expected BD action
+(F6.8) and the first variation of the expected matter action (OV2 T2) give the stationarity conditions (L1)
+
+    α k² [ 6 K(k) ω + 4 K_ab(k) ν ] = F_ω(k) τ_k,       α k² [ 4 K_ab(k) ω + 2 K_c(k) ν ] = F_ν(k) σ_k,
+
+with:
+- τ = T^a_a and σ = Σ_i T_ii, the sources (OV2 §2 and §12);
+- K, K_ab and K_c, the form factors of the BD stiffness, from F6.8a, b2 and c2 (all → 1 as kℓ_k → 0);
+- F_ω and F_ν, the form factors of the matter coupling, from OV2 §12 (the kinetic part; the potential part has
+  F = 1);
+- α the overall stiffness, set by the normalisation of the BD action and ℓ_k, which fixes G. Its laboratory value is
+  not derived here.
+
+**The local limit** (all form factors 1; the matrix [[6, 4], [4, 2]], determinant −4; solved and checked with sympy)
+gives
+
+    ω = (2σ − τ)/(2 α k²) = (ρ + Σp)/(2 α k²),      ν = (2τ − 3σ)/(2 α k²),     Ψ = −(ω + ν) = ρ/(2 α k²),
+
+where ρ = T_tt and Σp = Σ_i T_ii. With α = −1/(8πG) these are the static linearised Einstein equations:
+- the lapse, ∇²Φ = 4πG(ρ + Σp), the weak-field Whittaker equation of substrate_and_action_audit.md §7.1;
+- the spatial part, ∇²Ψ = 4πG ρ.
+
+This is the algebra of the EH form, not a new result. What is new is that both ingredients now come from the order:
+- **the stiffness.** F6.8a, b2 and c2: 6, 8 and 2 from counting intervals;
+- **the source.** OV2 T2: the response of the pairwise matter action to ω and to ν (a change of the cones)
+  reproduces T^a_a and Σ T_ii in the local limit (k = 0: 0.998 and 1.0045, wall width 10 ℓ_k).
+
+## 2. A known answer for walls: repulsion
+
+For the static sine-Gordon wall (BPS: ½φ′² = V):
+- ρ = T_tt = ρ_E(z), and Σp = (½φ′² − V) − 2(½φ′² + V) = −2ρ_E;
+- the tension equals the energy, the passive weight of F5.2c is E − σ = 0, and the kink stays at rest.
+
+So the source of the lapse is ρ + Σp = −ρ_E < 0: **a domain wall is gravitationally repulsive** in linearised GR (the
+Vilenkin and Ipser–Sikivie result for walls, quoted from the literature, not re-derived here beyond the algebra
+above). The spatial potential Ψ is sourced by +ρ_E.
+
+This makes the wall a sharp known-answer case for OV3:
+- **sign.** The response of the order to a wall must give the lapse of opposite sign to that of a dust source of the
+  same energy;
+- **ratio.** The ratio of the two potentials of the order, Ψ/Φ = ρ/(ρ + Σp), is −1 for the wall and +1 for dust
+  (γ = 1).
+
+## 3. What is known about the form factors (development numbers)
+
+| kℓ_k | K (F6.8a, K_loc) | F_ω (OV2 stage 2) | F_ν (OV2 stage 3) |
+|---|---|---|---|
+| 0.02–0.025 | 0.990 | 0.992 | 0.996 |
+| 0.05 | 0.968 | 0.965 | 0.961 |
+| 0.1 | 0.899 | 0.890 | 0.863 |
+| 0.2 | 0.703 | 0.670 | 0.574 |
+
+- **K_ab.** F6.8b2: K_ab − K = Δ(k), with |Δ| ≤ 0.01 for kℓ_k ≤ 0.1 (PASSED).
+- **K_c, the optical sector.** F6.8c2 gives 𝒞(0) = 2.002. Its k-dependence at fixed kT, together with the age term
+  (kT)⁵ of F6.8e3, is known only in the ranges of those tests.
+- **The coupling's form factors are close to the stiffness's** for kℓ_k ≤ 0.05. If they were equal sector by sector,
+  they would cancel in ω and ν for any source, and the response of the order would be local even at finite ℓ_k. They
+  are not equal at kℓ_k = 0.1–0.2 (F_ν falls faster), so the response there departs from GR at order (kℓ_k)². It is
+  computable from the table once K_c(k) is known.
+
+## 4. What blocks the static response of a real (old) source
+
+- **The age of the field.**
+  - K(k, T) contains the age terms: c_T k³ T in the conformal sector, (kT)³ in the mixed one (F6.8d undecided) and
+    (kT)⁵ in the optical one (F6.8e3).
+  - F6.8f FAILED its finite-amplitude reading for old fields (b²(kT)⁴ ≫ 1).
+  - The table above is the local part; using it is the "young field" reading (option 4 of
+    substrate_and_action_audit.md §7.3), and it must be declared as such.
+  - The matter side has no growing age term (OV2 §12: the wall converges in T within 1 %).
+- **The selection principle.**
+  - Stationarity of ⟨S⟩ (L1) is used here.
+  - OV1's phase sampler showed that S_BD alone does not keep the flat order: the manifold-like phase is held by
+    entropy below β_e(N).
+  - Whether the physical selection is the L1 saddle, an action-and-entropy balance or a stochastic dynamics is the
+    author's decision (OV2 §7). At linear order around the flat order all three may agree; beyond it they need not.
+- **The readout 𝒫.** Π = 𝒫[H] is read as the ratio of clocks (A2-B). At linear order its lapse part is e^{ω} at
+  fixed coordinates, but 𝒫 as an operation on the order (the clocks of K.16) is still to be fixed. The response
+  above is in the metric variables of family M, not yet in Π.
+
+## 5. Proposed development steps (decide nothing)
+
+1. **OV3-lin-a (cheap, deterministic).** Solve the 2 × 2 system per k with the measured form factors for kℓ_k ≤ 0.1,
+   for a dust slab and for the wall. Report Φ(z) and Ψ(z), their ratio, and the departure from linearised GR. This
+   needs K_c(k) at the same k: a run of the F6.8c2 machinery at kT fixed, or the covariance relation
+   C = 2 + 4φ₀ + φ₂ with φ₂ measured.
+2. **OV3-lin-b (the sign test).** The wall against a dust slab of the same energy: the order's lapse response must be
+   repulsive for the wall. As a card it is a sharp, sign-level known answer.
+3. **OV3-lin-c (L2, individual orders).** Whether single sprinklings perturbed along the response direction show the
+   expected change of the action (S-b). The noise of S_kin (OV2 §9) makes this costly, so it is optional.
+
+## 6. Relation to the roadmap
+
+- This is C.1 at linear order for young or weak fields, derived from the order (A2-B: one degree of freedom, H; Π a
+  readout), with the source from a matter action that depends only on the order.
+- It is not the static propagator of a real old body. The age problem (F6.8f) stands.
+
+## 7. Open decisions (the author's)
+
+1. Whether OV3-lin-a is computed now with the young-field reading declared, or only after the age question is
+   settled.
+2. The source of K_c(k): a new F6.8c-type run at the needed k, or the covariance relation.
+3. Whether the wall-repulsion sign test becomes a card.
+4. The selection principle (OV2 §7), before any step beyond linear order.
