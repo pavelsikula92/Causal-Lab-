@@ -225,3 +225,46 @@ it.
 - **Before a T1 card:**
   - the convergence of the flat S_kin to −42.45 with ℓ_k m (a density scan);
   - the conformal invariance of S_kin to a stated precision, which needs about 10³ sprinklings per density.
+
+## 10. T1 at the ensemble level by quadrature (diag/ov2_quad2d.py; development, decides nothing)
+
+**Method.**
+- ⟨S_kin⟩ = −ε² ∫∫_{x≺y} λ_x λ_y g(εΛ) (φ_x − φ_y)², with g(z) = e^{−z}(1 − 2z + z²/2), by the Mecke formula. This is
+  exact for Poisson sprinklings.
+- Variables for each x: t = ln Δu, and w = εN Δu Δv.
+- The outer nodes cluster at the future edges.
+- The first order in a is the analytic derivative under the integral at a = 0, d/da = ∫∫ N² [2(σ̂_x + σ̂_y) g +
+  g′ εN · 2∫_I σ̂] (Δφ)². The rectangle integrals of the Gaussian are exact (erf), so the derivative is not a difference
+  of two large numbers.
+- **An error of the first version, corrected.** A fixed lower cutoff Δu ≥ 10⁻⁷ omitted the near-null pairs (links that
+  cross the kink, with g = 1). The omitted part is ε² N² Δu_min ∫(1 − v)(Δφ)² and grows as N², which gave the false
+  growth +259 at N_exp 266 240. The cutoff is now 10⁻¹⁰/(εN).
+
+**Results** (a = 0.2, s = 0.12, m = 12; converged to 3–4 digits between the two finer grids).
+
+| T/w | N_exp | flat ⟨S_kin⟩ | sprinkled | first order of ⟨S_kin⟩ | its share of ∫σT^a_a√g = −3.122 |
+|---|---|---|---|---|---|
+| 8 | 4 160 | −37.91 | −37.65 ± 0.40 | +0.270 | 8.6 % |
+| 16 | 16 640 | −40.71 | −40.49 ± 1.11 | +0.124 | 4.0 % |
+| 32 | 66 560 | −41.85 | −39.99 ± 2.28 | +0.048 | 1.5 % |
+| 64 | 266 240 | −42.26 | — | +0.016 | 0.5 % |
+| 128 | 1 064 960 | −42.40 | — | +0.004 to +0.005 | 0.15 % |
+
+The continuum flat value is −42.45, and the continuum first order of S_kin is 0.
+
+- **The flat kinetic action converges to the continuum.** The quadrature agrees with the sprinkled means at T/w 8, 16
+  and 32 (0.6σ, 0.2σ, 0.8σ), which checks both instruments.
+- **The conformal response of S_kin vanishes in the continuum limit,** falling by a factor 2.2–3 per doubling of T/w.
+  At finite ℓ_k it is a positive nonlocal correction: 8.6 % of the response at T/w 8, below 2 % from T/w 32.
+- **The sprinkled first orders agree with it within their errors.** At T/w 8, +0.20 ± 0.11 against +0.27; at T/w 16,
+  a = 0.1, −0.01 ± 0.21 against +0.06; at T/w 32, +0.66 ± 0.62 against +0.05.
+- **T1 in 2D therefore holds at the ensemble level.** The pairwise matter action responds to a conformal change of
+  the metric as the continuum does: the measure part exactly, and the kinetic part conformally invariant up to a
+  correction that vanishes with ℓ_k. The response is ∫ σ T^a_a √g with T^a_a = −2V.
+
+**Proposal for a T1 card (the author's decision).** A deterministic quadrature on fresh parameters not used in the
+development (another kink width, bump width and position), at T/w 32 and 64.
+- **Criterion:** the first order of ⟨S_m⟩ equals ∫ σ T^a_a √g within 3 %, and the kinetic share is below 3 %.
+- **Instruments:** grid convergence (two refinements), and the flat ⟨S_kin⟩ against the continuum.
+- **Report:** the sprinkled L2 rows.
+
