@@ -177,8 +177,14 @@ it.
   with density.
 - **The first-order conformal response of S_kin fell from +0.58 ± 0.30 (256 sprinklings) to +0.20 ± 0.11 (2 048).**
   It is 1.9σ, about 6 % of δS_m. Not resolved; the earlier value was partly a fluctuation.
-- **On the author's machine** (development): a = 0.1 at T/w 16 (first against second order) and T/w 32 (the density
-  dependence), 1 024 sprinklings each.
+- **On the author's machine, a = 0.1 at T/w 16** (1 024 sprinklings, 20 Nov).
+  - δS_kin (+a / −a): +0.15 ± 0.30 / +0.16 ± 0.30.
+  - The first order of S_kin is −0.01 ± 0.21; the first order of S_m is −1.573 ± 0.219 against the continuum −1.561.
+  - δS_pot: −1.6568 ± 0.0033 / +1.4736 ± 0.0030 against −1.6598 / +1.4717.
+  - The flat S_kin is −40.49 ± 1.11.
+  - At T/w 16 no first-order conformal response of S_kin is seen. The T/w 8 hint (+0.20 ± 0.11 at a = 0.2) is
+    consistent with a finite-ℓ_k effect.
+- **T/w 32** (a = 0.2, 1 024 sprinklings) runs on the author's machine.
 
 **Reading.**
 - **T0.** Only the pairwise form is invariant, exactly, as derived. The plain form fails by ∝ Σ B1 φ², and the row
