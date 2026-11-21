@@ -332,3 +332,24 @@ two modes.
 ### 10.5 Proposed card (draft, not frozen): F6.12
 
 See docs/F6_12_card_draft.md.
+
+### 10.6 Stage β1, first results (21 Nov, 22:4x; development, decides nothing)
+
+diag/ov3_beta1.py: the conformal sector at cubic order, u = A cos kz + C cos 2kz, F6.8a's quadrature, kernel and diamond
+transform imported unchanged; level 1 (mult 1), Claude's container.
+- **The code reproduces the quadratic order.** K2_A at (0.12, n 4) = 0.849174, against F6.8a's plane_wave_row 0.849175
+  and F6.8g's K_c 0.84918; at (0.06, n 4) 0.952443 against 0.95245.
+- **The phase-average nulls hold.** The A³ and C³ coefficients are ≤ 1e-11.
+- **K3_c (the A²C coefficient relative to EH, 4.5 k²) at n = 4:**
+
+  | kℓ_k | 0.03 | 0.045 | 0.06 | 0.08 | 0.10 | 0.12 |
+  |---|---|---|---|---|---|---|
+  | K3_c | 1.00480 | 1.01073 | 1.01888 | 1.03305 | 1.05073 | 1.07160 |
+
+  - The fit K0 + k²(c₁ ln(1/k) + c₀) gives K0 = 0.99952 over k = 0.03–0.12 (max residual 9e-5) and 0.99926 over
+    0.045–0.12 (6e-5).
+  - **The conformal cubic of the discrete action tends to the Einstein–Hilbert value.** At finite kℓ_k it lies
+    above it, with the opposite sign of the quadratic departure.
+- **The age dependence is not monotonic.** K3_c at n = 3 / 4 / 6 is 1.0240 / 1.0189 / 1.0251 (k 0.06) and
+  1.0922 / 1.0716 / 1.0959 (k 0.12). The quadratic K2_A is monotonic (0.9517 / 0.9524 / 0.9539 at k 0.06). The cubic
+  involves the mode 2k, whose own age is 2n. Whether this is physics or quadrature is to be checked at level 2 (running).
