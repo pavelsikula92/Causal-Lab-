@@ -2,8 +2,8 @@
 F6.10a -- The response of the pairwise matter action to a conformal change of a 2D order (OV2 T1)
 ================================================================================================
 
-DRAFT, not frozen (21 Nov 2026, prepared by Claude at the author's request; card docs/OV2_coupling_cards_draft.md,
-T1). The criterion below is a proposal until the author freezes the card.
+FROZEN by the author, 21 Nov 2026 09:17 (decision 40; card docs/OV2_coupling_cards_draft.md rev. 3, T1). Prepared by
+Claude on 21 Nov at the author's request.
 
 Why this test exists
 --------------------
@@ -31,8 +31,8 @@ the future edges (development: OV2 sec. 10, where a fixed cut 1e-7 was found to 
 Parameters (fresh; development used m = 12, s = 0.12, centre (0.5, 0.5)): eps = 0.12, N = 66 560 and 266 240 (T/w = 32
 and 64 of OV1), m = 9, s = 0.09, centre (0.45, 0.55).
 
-Criterion (proposed)
---------------------
+Criterion
+---------
 Per density, with Delta the change of R between the two quadrature levels:
   PASSED if |R| + Delta <= 0.03 at both densities; FAILED if |R| - Delta > 0.06 at either; UNDECIDED otherwise.
 Instrument (INSTRUMENT_FAILED if any fails):
@@ -40,8 +40,7 @@ Instrument (INSTRUMENT_FAILED if any fails):
   I2 quadrature: Delta <= 0.01 at both densities (absolute, in units of the target);
   I3 the derivative of <S_pot> computed on the quadrature grid against the closed form -int sh V within 1e-6.
 Reported: R per density and level, the flat <S_kin> against the continuum, the development rows (OV2 sec. 10).
-Not included: the sprinkled cross-check (card I4); whether it is required is the author's decision (cards draft,
-decision 3).
+Not part of this test: the sprinkled cross-check (card I4); decision 40: not required.
 
 Grid choice (development, 21 Nov, Claude): R at levels (64,48,48)/(96,64,64)/(128,96,64)/(192,128,96)/
 (256,160,128) = +0.551/-0.006/-0.0139/-0.0139/-0.0139 at N 66 560 and -8.49/-0.341/-0.0048/-0.0047/-0.0047 at
@@ -61,7 +60,7 @@ from core.testing import Result
 TEST = {
     "id": "F6.10a",
     "phase": "F6",
-    "title": "Response of the pairwise matter action to a conformal change of a 2D order (OV2 T1; draft)",
+    "title": "Response of the pairwise matter action to a conformal change of a 2D order (OV2 T1)",
     "theory_part": "OV2 (docs/derivations/order_variation_OV2.md): the coupling of matter to the order; T_ab from "
                    "the first variation of the matter action at fixed matter",
     "question": "Is the first-order response of the expected pairwise matter action of a kink to a conformal bump "
@@ -70,7 +69,7 @@ TEST = {
               "light-cone square, eps 0.12, N 66560 and 266240; two quadrature levels",
     "prediction": "kinetic share R -> 0 (conformal invariance of the kinetic term in 2D); development: R = 0.015 at "
                   "T/w 32, 0.005 at 64 (m = 12)",
-    "criterion": "PROPOSED: PASSED if |R| + Delta <= 0.03 at both densities, FAILED if |R| - Delta > 0.06 at either, "
+    "criterion": "PASSED if |R| + Delta <= 0.03 at both densities, FAILED if |R| - Delta > 0.06 at either, "
                  "else UNDECIDED; INSTRUMENT_FAILED if I1 (flat S_kin within 1 %), I2 (Delta <= 0.01) or I3 "
                  "(potential derivative to 1e-6) fails",
     "null_model": "the potential part (the measure), whose first order equals the target exactly",

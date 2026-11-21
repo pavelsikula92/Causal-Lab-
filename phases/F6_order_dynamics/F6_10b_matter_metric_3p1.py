@@ -2,8 +2,8 @@
 F6.10b -- The response of the pairwise matter action of a wall to the static metric in 3+1 (OV2 T2)
 ==================================================================================================
 
-DRAFT, not frozen (21 Nov 2026, prepared by Claude at the author's request; card docs/OV2_coupling_cards_draft.md,
-T2). The criterion below is a proposal until the author freezes the card.
+FROZEN by the author, 21 Nov 2026 09:17 (decision 40; card docs/OV2_coupling_cards_draft.md rev. 3, T2, one card for
+both sectors). Prepared by Claude on 21 Nov at the author's request.
 
 Why this test exists
 --------------------
@@ -34,8 +34,8 @@ frozen test does not depend on files that may change.
 Parameters (fresh; development used width 1/m = 10 and k = 0.02, 0.05, 0.1, 0.2): width 1/m = 8 l_k (m = 0.125),
 k l_k = 0, 0.03, 0.06, 0.12; ages T = 120 (judged) and 80 (I1); grid multiplier 1 (judged) and 1.5 (I2).
 
-Criterion (proposed)
---------------------
+Criterion
+---------
 ratio = d s_kin/db / continuum, per sector and k, at T = 120 and grid 1. Delta = |ratio(T 120) - ratio(T 80)| +
 |ratio(grid 1.5) - ratio(grid 1)|.
   PASSED if in both sectors |ratio(0) - 1| + Delta <= 0.02, the ratios do not increase with k
@@ -72,7 +72,7 @@ TEST = {
     "id": "F6.10b",
     "phase": "F6",
     "title": "Response of the pairwise matter action of a wall to the static 3+1 metric, omega and nu sectors "
-             "(OV2 T2; draft)",
+             "(OV2 T2)",
     "theory_part": "OV2 (docs/derivations/order_variation_OV2.md): the coupling of matter to the order; T_ab from "
                    "the first variation of the matter action at fixed matter",
     "question": "Does the first-order response of the expected pairwise kinetic action of a static wall to a conformal "
@@ -83,7 +83,7 @@ TEST = {
               "width 8 l_k, k 0/0.03/0.06/0.12, T 120 and 80, grid 1 and 1.5",
     "prediction": "ratios -> 1 at k = 0 (development: omega 0.998, nu 1.0045 at width 10), falling with k "
                   "(development k 0.05: 0.965 and 0.961)",
-    "criterion": "PROPOSED: PASSED if in both sectors |ratio(0) - 1| + Delta <= 0.02, ratios non-increasing in k and "
+    "criterion": "PASSED if in both sectors |ratio(0) - 1| + Delta <= 0.02, ratios non-increasing in k and "
                  "|ratio(k) - 1| + Delta <= 0.15 at k <= 0.06; FAILED if |ratio(0) - 1| - Delta > 0.05 or "
                  "|ratio(k) - 1| - Delta > 0.25 at k <= 0.06 in either sector; else UNDECIDED; INSTRUMENT_FAILED if "
                  "I1 (age 1 %), I2 (grid 1 %), I3 (omega k = 0 vs stage-1 kernel 1e-5) or I4 (F6.8b2 geometry) fails",

@@ -1,7 +1,10 @@
-# Cards OV2-T1 (2D) and OV2-T2 (3+1): the response of the matter action to the metric (drafts)
+# Cards OV2-T1 (2D) and OV2-T2 (3+1): the response of the matter action to the metric (FROZEN)
 
-**Revision 2, draft, 21 Nov 2026 (night; the author asked Claude to continue and prepare tests). Not frozen.** IDs are
-the author's choice; proposed F6.10a (T1) and F6.10b (T2).
+**Revision 3, FROZEN by the author, 21 Nov 2026 09:17 (decision 40).** F6.10a (T1) and F6.10b (T2); T2 is one card
+for both sectors; the sprinkled cross-check of T1 (I4) is not required. Tolerances and fresh parameters as below.
+Test files (md5): phases/F6_order_dynamics/F6_10a_matter_conformal_2d.py a53d3a3188eefef7173b80f383615223,
+phases/F6_order_dynamics/F6_10b_matter_metric_3p1.py bdae39b0e674bc190f0fb64eb4229254.
+- Revision 2 (21 Nov, night): drafts prepared by Claude at the author's request.
 - Rev 2: both cards implemented as draft test files (quick runs only):
   phases/F6_order_dynamics/F6_10a_matter_conformal_2d.py and phases/F6_order_dynamics/F6_10b_matter_metric_3p1.py.
   The grid levels of T1 are fixed from a convergence check; the Δ of T2 is defined; the sprinkled cross-check of T1
@@ -59,7 +62,7 @@ kinetic part is conformally invariant up to a nonlocal correction that is small 
   against −42.45.
 - **I2:** grid convergence, the two finer grids within 1 % of the signal.
 - **I3:** at a = 0 the derivative of the potential part equals −∫ σ̂ V du dv to 1e−6 (normalisation).
-- **I4 (not in the draft file; decision 3):** the cross-check against a sprinkled estimate at T/w 32. The sprinkled mean of the first order (1 024
+- **I4 (not required, decision 40; not part of the test):** the cross-check against a sprinkled estimate at T/w 32. The sprinkled mean of the first order (1 024
   sprinklings, as in development) must lie within 3 SE of the quadrature.
 
 ## T2 (3+1, the conformal and the cone sector; proposed F6.10b)
@@ -98,8 +101,8 @@ as kℓ_k → 0.
 - **I3:** the ω sector at k = 0 reproduces the uniform conformal value of stage 1 to 1e−5.
 - **I4:** the geometry of F6.8b2 (its I1 check: dV/db of the test diamond and the uniform null) passes as there.
 
-## Decisions for the author
+## Decisions of the author (decision 40, 21 Nov 09:17)
 
-1. The IDs, the tolerances and the fresh parameters above.
-2. Whether T2 is one card (both sectors) or two.
-3. Whether the sprinkled cross-check (T1 I4) is required or only reported. It costs about 1 h on 8 workers.
+1. The IDs F6.10a and F6.10b, the tolerances and the fresh parameters above: accepted.
+2. T2 is one card (both sectors).
+3. The sprinkled cross-check (T1 I4) is not required.
