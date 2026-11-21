@@ -298,7 +298,8 @@ The candidate flow is F_{u→v} = K(u, v) J(u).
   plus the sources between them equals the flux through A′ plus what is stored between them. This is the discrete
   form of ∂_μ j^μ = s, and a flow that satisfies the axiom passes it.
 - **Two candidates with a conservation law** (field_and_throughput.md §3 forbids identifying them by fiat):
-  - **F-a, energy and momentum from S_m.** The slice energy is E(A) = ε² Σ_{pairs crossing A} f(n)(Δφ)² plus the
+  - **F-a, energy and momentum from S_m.** [Superseded by section 14: the crossing-pair sum below is not the energy;
+    its expectation vanishes.] The slice energy is E(A) = ε² Σ_{pairs crossing A} f(n)(Δφ)² plus the
     potential of the elements next to A, with the normalisation of the continuum ∫ T^{00}. It is tested on dynamic C0
     configurations (a moving kink, a kink–antikink pair): is E(A) the same on every slice within the C2 precision,
     and does it equal ∫ T^{00} dx? This is the current that can source gravity (it is the T_ab of T1 and T2).
@@ -455,3 +456,95 @@ measured.
 **3+1.** The laboratory has no C0 wall dynamics in 3+1 at the precision needed. T3 in 3+1 waits for it, or for an
 ensemble-level argument (the retarded rule invariant in distribution under the Poincaré group, as in the reading of
 F3.14b).
+
+## 14. F-a and T3: the energy of the pairwise action is a Noether charge, not a crossing-pair sum (21 Nov; decision 41)
+
+Decision 41 asks for the sign and the normalisation of the T3 identity to be derived from the S_m in use and frozen
+before any evaluation. This section is that derivation. It also corrects section 11.
+
+### 14.1 The crossing-pair sum of section 11 is not the energy
+
+- **The claim.** For small separations (Δφ)² ≈ (Δ^a ∂_aφ)². The expected crossing-pair sum per unit length is then
+  −ε² ∂_aφ ∂_bφ M^{abc} t_c, with M^{abc} = ρ² ∫_{J⁺} g(ερτ²) Δ^aΔ^bΔ^c d²Δ.
+- **Why it vanishes.**
+  - M is boost-invariant and of odd rank, so it vanishes wherever it converges.
+  - The near-null pairs, where the expansion fails, cancel through the moments of the kernel:
+    ∫₀^∞ g(w) dw = ∫₀^∞ w g(w) dw = 0, with g(w) = e^{−w}(1 − 2w + w²/2).
+  - So the sum carries no T_tt. What survives is suppressed by (mℓ_k)².
+- **Numerical check (L1, diag/ov2_t3_cross.py).** Static kink m = 9, ε = 0.12, light-cone square.
+  - The expected crossing sum is X/H = +3·10⁻⁴, +1·10⁻⁴ and +1·10⁻⁵ at N = 16 640, 66 560 and 266 240, with H = 8m
+    the kink energy. It falls with density.
+  - The same code with the weight Δt replaced by 1 gives the kinetic action per unit time, −35.48, −35.83 and −35.97
+    against the continuum −½∫φ′² dz = −36. The quadrature, including the near-null pairs, is correct.
+- **Consequence.** E(A) of section 11, as quoted in decision 41, is not the energy of F-a. The error was Claude's
+  (section 11, 20 Nov).
+
+### 14.2 The Noether identity of a pairwise action (exact in expectation)
+
+**Definitions.**
+- The action: S_m = Σ_{x≺y} w_xy L(φ_x, φ_y) + Σ_x U(φ_x), with:
+  - w = f(n_xy);
+  - L = −c (φ_x − φ_y)², where c = ε² in 2D;
+  - U = −V(φ)/ρ.
+- The residual: E_x = ∂S_m/∂φ_x, summed over all partners y of x, past and future.
+- **The window.** A smooth time window χ(t): 0 before t₁ − δ, 1 between t₁ + δ and t₂ − δ, and 0 after t₂ + δ. The
+  windowed action is S_χ = Σ_{x≺y} χ_x χ_y w L + Σ_x χ_x U_x.
+- **The field.** Let Φ(t, z) be a fixed function, independent of the sprinkling, and φ^s_x = Φ(t_x + s, z_x).
+
+**Two ways to compute the derivative in s.**
+1. **The chain rule** (exact on every sprinkling): dS_χ/ds = Σ_x χ_x Φ_t(x) [U′_x + Σ_y χ_y w ∂_xL].
+2. **Translation in distribution.** The Poisson process is invariant under translation and w depends on the order
+   only, so ⟨S_χ[φ^s]⟩ = ⟨S_{χ(· − s)}[Φ]⟩.
+
+**Equating the two.**
+
+    ⟨B_χ⟩ = ⟨R_χ⟩,      B_χ = Σ_x χ_x E_x Φ_t(x),
+    R_χ = Σ_x Σ_{y~x} χ_x (1 − χ_y) w ∂_xL(φ_x, φ_y) Φ_t(x)  −  Σ_{x≺y} (χ′_x χ_y + χ_x χ′_y) w L  −  Σ_x χ′_x U_x.
+
+**Reading the identity.**
+- B_χ is the bulk residual of the Euler–Lagrange equation, weighted along ξ·∂φ with ξ = ∂_t: the B_ξ of decision 41
+  with smooth edges.
+- R_χ is supported at the two ramps, through χ′ and through the pairs that leave the window, which are local by the
+  same kernel cancellations. Hence R_χ = Q(t₂) − Q(t₁), with Q the part of R_χ at one ramp.
+- **Local limit:** −Q → ∫(πφ̇ − ℒ) dz = H, the energy, with the ramp terms supplying −ℒ and the pair term supplying
+  πφ̇.
+- **Sign:** ⟨B_χ⟩ = −(H(t₂) − H(t₁)). This matches the continuum identity ∫ φ_t (δS/δφ) d²x = −ΔH.
+- **Normalisation:** the same S_m as T1 and T2 (F6.10a/b).
+
+**Lateral boundary.** The domain is wide and the kink far from its lateral edges, where Δφ = 0. The lateral flux is
+then the near-null pairs that reach the edges, which cancel in expectation. That it is negligible is an instrument item:
+the width is varied.
+
+**The energy of F-a is H = −Q.** Its time-cut form is not symmetric: the pair term uses Φ_t at the member inside the
+window. On one sprinkling the identity does not hold; it holds in the mean, and the scatter is part of the result
+(decision 41).
+
+### 14.3 The second question of decision 41: links
+
+Q contains the action density at the cut and a term of the form πφ̇ over the pairs that leave the window, both with
+the signed weights f(n), which are negative for some n.
+- A decomposition into non-negative contributions on single links is therefore not suggested by the form of Q.
+- Whether one exists, question (2) of decision 41, is not decided by this. It needs its own construction.
+- If (1) passes and (2) fails, the source T_ab stands and the axiom F needs a more general expression (decision 41).
+
+### 14.4 What the identity needs for a C0 field, and the pilot stages
+
+**The open point (the author's decision).** The identity needs Φ as a function of coordinates. A C0 field is a set of
+values on the events of one sprinkling. Translation in distribution still holds jointly: the rule is covariant, so the
+sprinkling and its C0 solution translate together. But Φ_t is not defined on the events.
+
+**Proposed readout.** (£_ξφ)_x = ∂_tΦ_fit(x), where Φ_fit is the continuum kink fitted to the C0 run (centre and
+velocity, as in the F3.14b readout). The ramp terms are evaluated on the C0 values. T3 then asks whether
+⟨B_χ⟩ = ⟨R_χ⟩ holds, and whether H(t) = −Q(t) is constant, for the C0 field within the scatter.
+
+**Pilot stages (development; stage 2 is evaluated only after the author has frozen 14.2–14.4):**
+- **Stage 0, L1, smooth moving kink.** Check that −Q gives H = 8mγ at v = 0 and 0.3. The identity is checked on the
+  quadrature.
+- **Stage 1, sprinklings, smooth kink Φ** (exact in mean). This gives the distribution of B_χ and of R_χ, their scatter
+  s_B per sprinkling, the dependence on the density and on the region, and n ≈ (1.96 s_B/δ)². This is the feasibility
+  number.
+- **Stage 1′, exact synthetic tests** (decision 41): hand-built small posets with given φ, where E_x, S_χ and R_χ are
+  computed by brute force and compared with the code to rounding.
+- **Stage 2, C0 field** (the F3.14b rule; v = 0.3 and the kicked kink): B_χ against R_χ, and H(t) against the
+  continuum readout of F3.14b.
+- **F-b on the same windows:** the winding of φ across the ramps, by a separate readout.

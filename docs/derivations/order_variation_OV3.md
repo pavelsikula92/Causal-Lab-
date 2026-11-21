@@ -114,3 +114,46 @@ This makes the wall a sharp known-answer case for OV3:
 2. The source of K_c(k): a new F6.8c-type run at the needed k, or the covariance relation.
 3. Whether the wall-repulsion sign test becomes a card.
 4. The selection principle (OV2 §7), before any step beyond linear order.
+
+## 8. Decisions (the author, 21 Nov 11:01; decision 41)
+
+1. **OV3-lin-a is computed now, in the young-field reading.**
+   - The output is a conditional linear response, not the propagator of an old static body.
+   - The card and the findings state:
+     - that the local part of the stiffness is used;
+     - that validity refers to a young field, or to a field weak enough for the age term to be negligible;
+     - that the finite-amplitude and age problem of F6.8f stays open;
+     - that the result by itself closes neither C.1 nor the 1/r law.
+   - **The bare action.** It is a result for the bare ensemble action ⟨S⟩ until the entropic correction to the second
+     variation (item 4) is evaluated. If that correction is significant, the result is not the physical linear
+     propagator without it.
+2. **K_c(k): option A.** A new F6.8c-type computation at kℓ_k = 0.02–0.12, the local part extracted as for K in F6.8a.
+   - The card reports separately:
+     - the total measured optical stiffness;
+     - the age component;
+     - the local part;
+     - the sensitivity of the separation to the chosen ranges of k and T.
+   - The covariance relation C = 2 + 4φ₀ + φ₂ is an independent check. φ₂ is measured separately, never computed from
+     the C it checks.
+3. **The BPS wall: a separate card.**
+   - Three preregistered evaluations:
+     - the sign of the response;
+     - the deviation from −ρ_E;
+     - the ratio of the wall to dust at the same k.
+   - **The error of the source.** The lapse source of the wall is −4F_ν + 3F_ω (in units of ρ_E, at equal stiffness
+     factors). Its uncertainty must include the covariance of the two form factors:
+     σ² = 16σ_ν² + 9σ_ω² − 24 Cov(F_ν, F_ω).
+     - In the deterministic quadratures of F6.10b the uncertainties are systematic (age, grid), not statistical.
+     - The cleanest way to get the covariance is to compute the combination itself in one quadrature, so that its age
+       and grid changes are measured directly. This is proposed for the card.
+4. **The selection principle.**
+   - The stationary point of an individual action is rejected: OV1 found locally reachable orders with an action lower
+     by 10³, and the manifold-like phase is held by the statistical weight.
+   - **Linear OV3** uses the saddle of the ensemble mean ⟨S⟩, conditioned on the manifold-like phase (option 1).
+   - **Nonlinear OV3** uses the explicit balance of action and entropy (option 2), through an effective functional of a
+     macrostate, Γ_β(M) = −(1/β) ln Σ_{H ∈ M} e^{−β S_tot[H]}. Its exact form and measure belong to a separate
+     specification.
+   - A stochastic dynamics (option 3) is not chosen. It would need transition probabilities and a time dynamics of
+     the configuration space.
+   - **Measured before any physical reading:** whether the entropic term changes the effective stiffness already at
+     quadratic order.
