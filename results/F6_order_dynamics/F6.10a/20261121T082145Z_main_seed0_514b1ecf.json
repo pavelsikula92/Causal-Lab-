@@ -1,0 +1,79 @@
+{
+ "id": "F6.10a",
+ "part": "main",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\F6_order_dynamics\\F6_10a_matter_conformal_2d.py",
+ "test_sha256": "514b1ecf36cd495ac6e2b757c2cfffba31468a4041c14a8a5a4b488ed1638fbe",
+ "core_sha256": "b5e0586015f9a430c2b6830e3e4fe7c7d18212546da9c0894318534c721ecb5b",
+ "files_changed_during_run": true,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261121T082145Z",
+ "duration_s": 209.3,
+ "params": {
+  "eps": 0.12,
+  "n_exp": [
+   66560,
+   266240
+  ],
+  "m": 9.0,
+  "s": 0.09,
+  "u0": 0.45,
+  "v0": 0.55,
+  "levels": [
+   [
+    192,
+    128,
+    96
+   ],
+   [
+    256,
+    160,
+    128
+   ]
+  ],
+  "tol": 0.03,
+  "fail": 0.06,
+  "tol_flat": 0.01,
+  "tol_delta": 0.01
+ },
+ "lines": [
+  "2D light-cone square, eps 0.12, kink m 9, bump s 0.09 at (0.45, 0.55); target int sigma T^a_a sqrt|g| / a = -5.84213; continuum flat S_kin -30.45582",
+  "  N 66560 level (192, 128, 96): flat <S_kin> -30.1315 (0.9894 of the continuum); d<S_kin>/da +0.08145; R = -0.0139",
+  "  N 66560 level (256, 160, 128): flat <S_kin> -30.1315 (0.9894 of the continuum); d<S_kin>/da +0.08145; R = -0.0139",
+  "  N 66560: R = -0.0139, Delta 0.0000; |R| + Delta = 0.0139 -> PASSED",
+  "  N 266240 level (192, 128, 96): flat <S_kin> -30.3533 (0.9966 of the continuum); d<S_kin>/da +0.02749; R = -0.0047",
+  "  N 266240 level (256, 160, 128): flat <S_kin> -30.3533 (0.9966 of the continuum); d<S_kin>/da +0.02748; R = -0.0047",
+  "  N 266240: R = -0.0047, Delta 0.0000; |R| + Delta = 0.0047 -> PASSED",
+  "  I1 flat S_kin at N 266240: 0.9966 of the continuum (tol 0.01) -> OK; I2 quadrature -> OK; I3 potential derivative -5.8421255 vs -5.8421255 -> OK",
+  "cost: 209 s"
+ ],
+ "data": {
+  "rows": {
+   "66560": {
+    "R": -0.013941935512444808,
+    "delta": 7.483188642406352e-07,
+    "verdict": "PASSED"
+   },
+   "266240": {
+    "R": -0.0047040076182685315,
+    "delta": 1.1622469909310443e-06,
+    "verdict": "PASSED"
+   }
+  },
+  "instrument": {
+   "I1": true,
+   "I2": true,
+   "I3": true
+  },
+  "target": -5.842125478211776,
+  "kin_continuum": -30.45581504387736
+ }
+}

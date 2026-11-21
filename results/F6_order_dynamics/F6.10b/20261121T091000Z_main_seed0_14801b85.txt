@@ -1,0 +1,13 @@
+3+1, eps rho = 1; static wall width 1/m = 8 l_k; ratio = d s_kin/db / continuum; judged at T = 120, grid 1; I1 age T = 80, I2 grid 1.5
+  omega k 0    : d s_kin/db -0.99654 (continuum -1.00000) ratio 0.9965; T 80: 0.9976; grid 1.5: 0.9965; Delta 0.0011
+  omega k 0.03 : d s_kin/db -0.96171 (continuum -0.97670) ratio 0.9847; T 80: 0.9851; grid 1.5: 0.9847; Delta 0.0004
+  omega k 0.06 : d s_kin/db -0.86970 (continuum -0.91118) ratio 0.9545; T 80: 0.9543; grid 1.5: 0.9545; Delta 0.0002
+  omega k 0.12 : d s_kin/db -0.59997 (continuum -0.70200) ratio 0.8547; T 80: 0.8542; grid 1.5: 0.8547; Delta 0.0004
+  omega: k = 0 |ratio - 1| + Delta = 0.0046 (tol 0.02); non-increasing in k: True; k <= 0.06: 0.0158, 0.0457 (tol 0.15) -> PASSED
+  nu    k 0    : d s_kin/db -0.50300 (continuum -0.50000) ratio 1.0060; T 80: 1.0061; grid 1.5: 1.0060; Delta 0.0001; boundary part +1.2e-05
+  nu    k 0.03 : d s_kin/db -0.48337 (continuum -0.48835) ratio 0.9898; T 80: 0.9893; grid 1.5: 0.9898; Delta 0.0005; boundary part -1.1e-04
+  nu    k 0.06 : d s_kin/db -0.43258 (continuum -0.45559) ratio 0.9495; T 80: 0.9490; grid 1.5: 0.9495; Delta 0.0005; boundary part +5.5e-05
+  nu    k 0.12 : d s_kin/db -0.28709 (continuum -0.35100) ratio 0.8179; T 80: 0.8177; grid 1.5: 0.8179; Delta 0.0002; boundary part +1.6e-05
+  nu: k = 0 |ratio - 1| + Delta = 0.0061 (tol 0.02); non-increasing in k: True; k <= 0.06: 0.0107, 0.0510 (tol 0.15) -> PASSED
+  I1 age (1 %) -> OK; I2 grid (1 %) -> OK; I3 omega k = 0 -0.9965429 vs stage-1 kernel -0.9965430 -> OK; I4 geometry rel 3.5e-05 / 5.8e-05, uniform null 8.6e-14 -> OK
+cost: 2955 s

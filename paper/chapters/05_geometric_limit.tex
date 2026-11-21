@@ -159,6 +159,9 @@ Two parts of the substrate rule follow without any knowledge of the dynamics of 
   proper time is measured;
 \item \emph{additivity}: the action is a sum over flows, so at the linear order their contributions add.
 \end{itemize}
+For matter as a field of the order (Sec.~\ref{sec:fielddefect}) the matter action is itself a sum over pairs of
+related events, a functional of the order alone; its first variation with the metric is computed and tested in
+Sec.~\ref{sec:variation}.
 
 \subsection{One number is left}
 
@@ -613,6 +616,192 @@ the complete law: beyond this order the field is the full tensor field of Sec.~\
 by general relativity (Sec.~\ref{sec:jacobson}).
 
 % =============================================================================
+\section{Varying the order: the source, the response and the field equation}\label{sec:variation}
+% =============================================================================
+
+The sections above compute the stiffness of the order and take the source from the proper time of flows. This
+section closes the chain within the order itself: the matter is a field of the order
+(Sec.~\ref{sec:fielddefect}), its action is a functional of the order alone, and the field equation is the
+stationarity of the sum of the two actions. It proceeds in three steps, each with its own control: the vacuum,
+the source and the response.
+Figure~\ref{fig:chain} shows the chain and the status of each step.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_chain.pdf}
+  \caption{The field equation of the order: what is computed, from which tests, and with which status. Two
+expected actions of one causal order, the BD action of the order and the pairwise action of a field on its events,
+are made stationary together; the result to first order is the linearised Einstein equation with a non-local
+spin-0 form factor. Solid boxes: frozen tests or numbers derived from their records; dashed: development;
+dotted: open. The numbers are read from the records (F6.8g, F6.9a, F6.10a, F6.10b).}\label{fig:chain}
+\end{figure}
+
+\subsection{The vacuum and the selection principle}
+
+A field equation from the stationarity of the action presupposes that the flat order is stationary. Two results
+bear on this.
+\begin{itemize}
+\item \emph{The flat order has no volume term.} The smeared BD action of nested flat causal diamonds in 2D
+  ($T/w=8$, $16$, $32$; volumes $1:4:16$) grows with no term proportional to the number of elements:
+  $c/(4\epsilon)=(+0.5\pm1.7)$, $(-0.7\pm1.6)$, $(+0.6\pm1.5)\times10^{-4}$ per element at $\epsilon=0.24$,
+  $0.12$, $0.06$, and $(+0.15\pm1.7)$, $(-0.50\pm1.6)$, $(-0.61\pm1.6)\times10^{-4}$ on new sprinklings (F6.9a,
+  \verdict{passed}, replicated; criterion $|c/(4\epsilon)|+2\,{\rm SE}\le10^{-3}$).
+\item \emph{The action alone does not hold the flat order.} A Metropolis sampler of 2D orders with the weight
+  $e^{-\lambda S_\BD}$ ($\epsilon=0.12$) and local moves, started from flat orders, leaves the manifold-like phase
+  above an escape point $\lambda_e=2.42$, $1.26$, $0.97$, $0.83$ at $N=50$, $100$, $200$, $400$, into crystalline orders
+  of much lower action (development). From $N=100$ on this is consistent with $\lambda_e\approx0.68+58/N$, a finite
+  limit that one degree of freedom does not establish. The escape is a stability limit under local moves within
+  3\,500 sweeps, an upper bound for an equilibrium transition.
+\end{itemize}
+The flat order is therefore not a minimum of the action of a single order. The working principle
+adopted here is the saddle of the ensemble mean $\langle S\rangle$, conditioned on the manifold-like phase, at
+linear order, and beyond it the balance of action and entropy through the effective functional of a macrostate
+$\mathcal M$,
+\begin{equation}\label{eq:gammabeta}
+  \Gamma_\lambda(\mathcal M)=-\frac1\lambda\ln\sum_{H\in\mathcal M}e^{-\lambda S_{\rm tot}[H]} ,
+\end{equation}
+with $\lambda$ the weight of the action, as in the sampler above.
+Whether the entropic part changes the stiffness already at quadratic order is not measured; the results below are
+for the bare ensemble action.
+
+\subsection{The source from the order}
+
+For a scalar field $\chi$ on the events (the field of Sec.~\ref{sec:fielddefect}), the matter action that depends only on the order is the pairwise
+(Dirichlet) form
+\begin{equation}\label{eq:smphi}
+  S_m^\chi=-c_d\sum_{x\prec y}f(n_{xy},\epsilon)\,(\chi_x-\chi_y)^2-\frac1\rho\sum_vV(\chi_v),
+\end{equation}
+with the smeared BD weight $f$ of the number $n_{xy}$ of elements in the interval, $c_2=\epsilon^2$ in 2D. It is
+exactly invariant under $\chi\to\chi+2\pi$; the plain bilinear form would couple $R\chi^2$. Its expectation over
+sprinklings follows from the Mecke formula with the exact kernel average, so the response of $\langle S_m^\chi\rangle$
+to the metric is a deterministic integral, compared with $\tfrac12\int T^{ab}\delta g_{ab}\sqrt{|g|}$ at fixed
+matter.
+\begin{itemize}
+\item \emph{2D, a conformal change.} The response of a kink to a Gaussian conformal bump is $\int\sigma
+  T^a{}_a\sqrt{|g|}$ with $T^a{}_a=-2V$; the kinetic part, conformally invariant in the continuum, contributes a
+  share $-0.014$ and $-0.005$ at $N=66\,560$ and $266\,240$, falling with density (F6.10a, \verdict{passed}).
+\item \emph{3+1, the static metric $e^{2\omega}(-\dd t^2+e^{2\nu}\dd\vec x^2)$.} For a wall of width $8\ell_k$ the
+  response to $\omega=a\cos kz$ (density and volumes) and to $\nu=b\cos kz$ (the cones) equals the continuum
+  $T_{ab}$ times a form factor that tends to one:
+
+  \begin{center}
+  \begin{tabular}{lcccc}
+  \toprule
+  $k\ell_k$ & $0$ & $0.03$ & $0.06$ & $0.12$ \\
+  \midrule
+  $F_\omega$ (conformal) & $0.9965$ & $0.985$ & $0.955$ & $0.855$ \\
+  $F_\nu$ (cones) & $1.0060$ & $0.990$ & $0.950$ & $0.818$ \\
+  \bottomrule
+  \end{tabular}
+  \end{center}
+  Age $T=80$ and $120$ and two grids agree within $0.11\,\%$ (F6.10b, \verdict{passed}).
+\item \emph{Conservation.} The energy of $S_m^\chi$ is a Noether charge, not a sum over the pairs that cross a cut
+  (that sum has zero expectation). With a smooth time window $W$ the identity
+  $\langle\sum_xW_xE_x\,\partial_t\chi(x)\rangle=\langle Q(t_2)-Q(t_1)\rangle$, $E_x=\partial S_m/\partial\chi_x$,
+  holds exactly in expectation. A kink evolved by Eq.~\eqref{eq:c0} satisfies it as a smooth kink on the same
+  sprinkling does, to $(-0.01\pm0.28)\,\%$ and $(-0.08\pm0.47)\,\%$ of its energy at $\rho=100$ and $200$ (512 and
+  192 sprinklings; development, not a frozen test). The energy of the fitted kink itself grows over the window, by
+  $(0.65\pm0.07)\,\%$ and $(0.34\pm0.08)\,\%$, about as $1/\rho$; its origin is not settled.
+\end{itemize}
+
+\subsection{The response of the order}
+
+Stationarity of $\langle S_\BD\rangle+\langle S_m\rangle$ for a static source mode $k$ gives, with the
+coefficients of Sec.~\ref{sec:bdaction} and $\alpha=-1/(8\pi G)$,
+\begin{equation}\label{eq:ov3}
+  \alpha k^2\bigl[\cA\,\omega+\tfrac12\cB\,\nu\bigr]=F_\omega\,T^a{}_a,\qquad
+  \alpha k^2\bigl[\tfrac12\cB\,\omega+\cC\,\nu\bigr]=F_\nu\textstyle\sum_iT_{ii},
+\end{equation}
+with $\Phi=\omega$ and $\Psi=-(\omega+\nu)$; here $\rho$ and $p$ are the energy density and the pressures of the
+matter, not the density of events. For $\cA,\cB,\cC=6,8,2$ and $F=1$ it is the static linearised Einstein
+equation: $\nabla^2\Phi=4\pi G(\rho+\sum p)$ and $\nabla^2\Psi=4\pi G\rho$.
+
+The coefficients at the same age are read at fixed $n=kT=4$, the field of age four inverse wavenumbers. The longer
+ages carry the age growth of Sec.~\ref{sec:optical}, and at $k\ell_k<0.045$ they are not numerically robust in
+double precision. All three sectors tend to their Einstein--Hilbert values: the intercepts are $\cA/6\to0.99993$,
+$\cB/8\to0.99995$ and $\cC/2\to0.99943$ (F6.8g, \verdict{passed}). The resulting response (Fig.~\ref{fig:fieldeq}), from the frozen
+records alone:
+
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+$k\ell_k$ & $\cA/6$ & $\cC/2$ & dust $\Phi/\Phi_{\rm GR}$ & dust $\gamma(k)=\Psi/\Phi$ & wall/dust lapse \\
+\midrule
+$0.06$ & $0.952$ & $0.937$ & $0.940$ & $1.033$ & $-1.045$ \\
+$0.12$ & $0.849$ & $0.800$ & $0.809$ & $1.122$ & $-1.062$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_fieldeq.pdf}
+  \caption{The linear field equation of the order, for a young static field. (a) The three static stiffnesses of the
+expected BD action at $kT=4$, relative to their Einstein--Hilbert values, with the fits $\hat K_0-k^2(c_1\ln\frac1k+c_0)$
+(F6.8g). (b) The source form factors of the pairwise matter action of a static wall (F6.10b). (c) The static response
+computed from (a) and (b) by Eq.~\eqref{eq:ov3}: the field of a dust slab relative to linearised general relativity,
+$\gamma(k)$ of dust, and the lapse of a static BPS wall relative to that of dust of the same energy, with the sign
+reversed (general relativity: $-1$; above one the wall repels more strongly). At $k\to0$ the equation is that of linearised
+general relativity.}\label{fig:fieldeq}
+\end{figure}
+
+At long wavelength the response is Einstein's, with $\gamma=1$. On scales of tens of $\ell_k$ the field of dust is
+weaker and bends light relatively more. A static BPS domain wall, with $\rho+\sum p=-\rho_E$, repels: its lapse is
+opposite to that of dust of the same energy. The wall's lapse source $-4F_\nu+3F_\omega$ is $-0.935$ and $-0.708$ at
+$k\ell_k=0.06$, $0.12$ ($\pm0.001$, computed with the correlated variants of F6.10b). These numbers are a derived
+consequence of the two frozen tests, not a test of their own.
+
+\subsection{The field equation, by order in the field}
+
+The field equation of the theory is $\delta\Gamma/\delta g_{ab}=0$, with $\Gamma=\langle S_\BD\rangle+\langle
+S_m\rangle$ at linear order and Eq.~\eqref{eq:gammabeta} beyond it.
+
+\emph{First order.} By covariance the quadratic action is $\int\sqrt{-g}\,[R+RF_0(\Box)R+C F_2(\Box)C]$, with
+$\cA=6+9\varphi_0$, $\cB=8+12\varphi_0$, $\cC=2+4\varphi_0+\varphi_2$, $\varphi_0=4k^2F_0$ and
+$\varphi_2=\tfrac43k^2F_2$ (Sec.~\ref{sec:propagator}).
+\begin{itemize}
+\item The conformal and the mixed sector give the same $\varphi_0$ to $10^{-4}$, a check of covariance.
+\item At $n=4$, $\varphi_0=-k^2\ell_k^2\bigl(2.63\ln\tfrac{1}{k\ell_k}+1.41\bigr)$. Between $n=3$ and $6$ it changes
+  by about $2\,\%$.
+\item The spin-2 part read from $\cC$ is small, $|\varphi_2|\le0.02$ at $k\ell_k\le0.12$. It changes sign between
+  $n=4$ and $6$, and it is not measured independently.
+\end{itemize}
+To this order the field equation of the order is
+\begin{equation}\label{eq:fieldeq}
+  G_{ab}^{(1)}+2\,(\eta_{ab}\Box-\partial_a\partial_b)\,F_0(\Box)\,R^{(1)}=8\pi G\,T_{ab}^{\rm eff},
+\end{equation}
+with $T^{\rm eff}$ carrying $F_\omega$ and $F_\nu$. It is the linearised Einstein equation for $k\ell_k\to0$. It
+belongs to the class of non-local quadratic gravity~\cite{Stelle1978}; the form factor and the source are counted
+from intervals, not chosen.
+
+\emph{Second order.} Not computed. In the continuum limit the mean BD action tends to the Einstein--Hilbert
+action~\cite{BenincasaDowker2010}, so the local limit should give the full $G_{ab}=8\pi GT_{ab}$ and $\beta=1$. The
+order adds a different expansion parameter: the nonlinearity is controlled by $\varepsilon=b(kT)^2$, not by the
+amplitude $b$ (Sec.~\ref{sec:optical}). For the young field of Eq.~\eqref{eq:fieldeq}, $\varepsilon=16b$,
+negligible for weak fields; for old fields it grows with the age, so the age problem and the nonlinear problem are
+one problem. The next computation is the cubic order at fixed $n$, which gives $\beta$.
+
+\begin{center}
+\begin{tabular}{p{0.47\textwidth}p{0.45\textwidth}}
+\toprule
+Part of the field equation & Status \\
+\midrule
+linear, static, young field, $k\ell_k\to0$ & Einstein, $\gamma=1$ (F6.8a, b2, c2, g; F6.10a, b) \\
+linear, static, young field, finite $k\ell_k$ & $F_0$ and the source form factors measured; $\Phi$, $\gamma(k)$ and the wall computed \\
+linear, time-dependent and tensor sectors & not measured \\
+second order ($\beta$) & not computed \\
+old fields & open: the age growth $(kT)^5$ (F6.8e3), no saturation at finite amplitude (F6.8f) \\
+entropic correction to the stiffness & not measured \\
+the value of $G$ & not derived \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Limits.} The source and the response are computed at the ensemble level, for static fields at fixed
+matter, with one kink or wall profile; the conservation check is 2D and development; the response uses the
+young-field reading and the bare action.
+
+% =============================================================================
 \section{Thermodynamic completion}\label{sec:jacobson}
 % =============================================================================
 
@@ -642,6 +831,8 @@ What the order supplies:
   its sources, which is the substrate rule of Sec.~\ref{sec:rule}.
 \end{itemize}
 What remains open is the Clausius relation beyond the linear order, with a dynamics of the order that responds
-to matter, and the Unruh temperature~\cite{Unruh1976}, which is an input from quantum field theory. The cosmological constant
+to matter, and the Unruh temperature~\cite{Unruh1976}, which is an input from quantum field theory. The selection
+principle of Sec.~\ref{sec:variation}, the balance of action and entropy in Eq.~\eqref{eq:gammabeta}, is the
+order's own form of this route; whether it reproduces the completion is open. The cosmological constant
 appears as an integration constant, consistently with its origin as a fluctuation of the number of events
 (Sec.~\ref{sec:onto-vacuum}).

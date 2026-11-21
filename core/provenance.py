@@ -11,9 +11,11 @@ the code changed since:
     versions      python, numpy, scipy, platform, laboratory version
     time, duration
 
-Files: results/<ID>/<UTC time>_<part>_<seed>_<test hash 8>.json and a
-.txt with the printed lines; quick runs go to results/<ID>/quick/ and are
-never counted. Nothing is overwritten.
+Files: results/<phase folder>/<ID>/<UTC time>_<part>_<seed>_<test hash 8>.json
+and a .txt with the printed lines (the phase folder is that of phases/, e.g.
+results/F6_order_dynamics/F6.8g/); quick runs go to .../<ID>/quick/ and are
+never counted. Nothing is overwritten. Records in the old flat layout
+results/<ID>/ (before 21 Nov 2026) are still read.
 """
 
 from __future__ import annotations
@@ -29,6 +31,19 @@ from typing import Any, Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
+
+
+def results_dir(test_id: str) -> Path:
+    """The folder of a test's records: results/<phase folder>/<ID>, the phase folder as in phases/ (core.registry)."""
+    from .registry import PHASES
+    phase = test_id.split(".")[0]
+    folder = next((f for p, f, _, _ in PHASES if p == phase), phase)
+    return RESULTS / folder / test_id
+
+
+def _record_dirs(test_id: str) -> List[Path]:
+    """Where records of a test can be: the phase layout, and the flat layout used before 21 Nov 2026."""
+    return [d for d in (results_dir(test_id), RESULTS / test_id) if d.exists()]
 
 
 def sha256_file(path: Path) -> str:
@@ -107,7 +122,7 @@ def save(test_id: str, test_file: Path, part: Optional[str], seed: int, quick: b
     csha = hashes["core_sha256"] if hashes else now_c
     changed = bool(hashes) and (now_t != tsha or now_c != csha)
     stamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
-    folder = RESULTS / test_id / ("quick" if quick else "")
+    folder = results_dir(test_id) / ("quick" if quick else "")
     folder.mkdir(parents=True, exist_ok=True)
     base = f"{stamp}_{part or 'all'}_seed{seed}_{tsha[:8]}"
     path = folder / f"{base}.json"
@@ -127,12 +142,10 @@ def save(test_id: str, test_file: Path, part: Optional[str], seed: int, quick: b
 
 def load_all(test_id: str, include_quick: bool = False) -> List[Dict[str, Any]]:
     """All saved records of a test, oldest first."""
-    folder = RESULTS / test_id
-    if not folder.exists():
-        return []
-    files = sorted(folder.glob("*.json"))
+    dirs = _record_dirs(test_id)
+    files = sorted((f for d in dirs for f in d.glob("*.json")), key=lambda f: f.name)
     if include_quick:
-        files += sorted((folder / "quick").glob("*.json"))
+        files += sorted((f for d in dirs for f in (d / "quick").glob("*.json")), key=lambda f: f.name)
     out = []
     for f in files:
         try:

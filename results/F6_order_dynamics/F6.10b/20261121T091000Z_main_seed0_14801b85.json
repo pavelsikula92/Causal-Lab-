@@ -1,0 +1,118 @@
+{
+ "id": "F6.10b",
+ "part": "main",
+ "seed": 0,
+ "quick": false,
+ "status": "PASSED",
+ "test_file": "phases\\F6_order_dynamics\\F6_10b_matter_metric_3p1.py",
+ "test_sha256": "14801b85aab27738601091ab86ceb399835371eb730b73d61596b073fd4c74fb",
+ "core_sha256": "b5e0586015f9a430c2b6830e3e4fe7c7d18212546da9c0894318534c721ecb5b",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.6",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261121T091000Z",
+ "duration_s": 2955.5,
+ "params": {
+  "m": 0.125,
+  "ks": [
+   0.0,
+   0.03,
+   0.06,
+   0.12
+  ],
+  "T": 120.0,
+  "T_age": 80.0,
+  "mult": 1.0,
+  "mult_grid": 1.5,
+  "tol0": 0.02,
+  "tolk": 0.15,
+  "kmax_judge": 0.06,
+  "fail0": 0.05,
+  "failk": 0.25,
+  "tol_age": 0.01,
+  "tol_grid": 0.01,
+  "tol_i3": 1e-05,
+  "tol_geom": 0.002,
+  "tol_unif": 1e-09
+ },
+ "lines": [
+  "3+1, eps rho = 1; static wall width 1/m = 8 l_k; ratio = d s_kin/db / continuum; judged at T = 120, grid 1; I1 age T = 80, I2 grid 1.5",
+  "  omega k 0    : d s_kin/db -0.99654 (continuum -1.00000) ratio 0.9965; T 80: 0.9976; grid 1.5: 0.9965; Delta 0.0011",
+  "  omega k 0.03 : d s_kin/db -0.96171 (continuum -0.97670) ratio 0.9847; T 80: 0.9851; grid 1.5: 0.9847; Delta 0.0004",
+  "  omega k 0.06 : d s_kin/db -0.86970 (continuum -0.91118) ratio 0.9545; T 80: 0.9543; grid 1.5: 0.9545; Delta 0.0002",
+  "  omega k 0.12 : d s_kin/db -0.59997 (continuum -0.70200) ratio 0.8547; T 80: 0.8542; grid 1.5: 0.8547; Delta 0.0004",
+  "  omega: k = 0 |ratio - 1| + Delta = 0.0046 (tol 0.02); non-increasing in k: True; k <= 0.06: 0.0158, 0.0457 (tol 0.15) -> PASSED",
+  "  nu    k 0    : d s_kin/db -0.50300 (continuum -0.50000) ratio 1.0060; T 80: 1.0061; grid 1.5: 1.0060; Delta 0.0001; boundary part +1.2e-05",
+  "  nu    k 0.03 : d s_kin/db -0.48337 (continuum -0.48835) ratio 0.9898; T 80: 0.9893; grid 1.5: 0.9898; Delta 0.0005; boundary part -1.1e-04",
+  "  nu    k 0.06 : d s_kin/db -0.43258 (continuum -0.45559) ratio 0.9495; T 80: 0.9490; grid 1.5: 0.9495; Delta 0.0005; boundary part +5.5e-05",
+  "  nu    k 0.12 : d s_kin/db -0.28709 (continuum -0.35100) ratio 0.8179; T 80: 0.8177; grid 1.5: 0.8179; Delta 0.0002; boundary part +1.6e-05",
+  "  nu: k = 0 |ratio - 1| + Delta = 0.0061 (tol 0.02); non-increasing in k: True; k <= 0.06: 0.0107, 0.0510 (tol 0.15) -> PASSED",
+  "  I1 age (1 %) -> OK; I2 grid (1 %) -> OK; I3 omega k = 0 -0.9965429 vs stage-1 kernel -0.9965430 -> OK; I4 geometry rel 3.5e-05 / 5.8e-05, uniform null 8.6e-14 -> OK",
+  "cost: 2955 s"
+ ],
+ "data": {
+  "ratios": {
+   "omega": {
+    "0.0": {
+     "ratio": 0.9965429430327574,
+     "delta": 0.0011065571299673227
+    },
+    "0.03": {
+     "ratio": 0.9846516977431454,
+     "delta": 0.0004088054078236203
+    },
+    "0.06": {
+     "ratio": 0.9544747248053569,
+     "delta": 0.00017145767470738704
+    },
+    "0.12": {
+     "ratio": 0.8546550691352176,
+     "delta": 0.0004166875139153259
+    }
+   },
+   "nu": {
+    "0.0": {
+     "ratio": 1.0060052405120203,
+     "delta": 8.058681570699555e-05
+    },
+    "0.03": {
+     "ratio": 0.9898021889123484,
+     "delta": 0.0004639618536284029
+    },
+    "0.06": {
+     "ratio": 0.9494944271829333,
+     "delta": 0.0004891255930329352
+    },
+    "0.12": {
+     "ratio": 0.8179074084978417,
+     "delta": 0.00022749288938017642
+    }
+   }
+  },
+  "verdicts": {
+   "omega": "PASSED",
+   "nu": "PASSED"
+  },
+  "instrument": {
+   "I1": true,
+   "I2": true,
+   "I3": true,
+   "I4": true
+  },
+  "stage1": -0.9965429875980604,
+  "geometry": {
+   "beta": 0.057304585839415445,
+   "beta_sph": 0.057302602604440984,
+   "gam": -0.07377128141417977,
+   "gam_sph": -0.07377557594858233,
+   "rel_beta": 3.460985861586095e-05,
+   "rel_gam": 5.821078788403953e-05,
+   "unif": 8.570921750106208e-14
+  }
+ }
+}

@@ -51,7 +51,7 @@ the previous ones, and the saved results of the author's runs are in `results/`:
     python run.py F6.8b2     mixed sector (EH value 8)            ~5-10 CPU-hours, 62 min recorded with many processes
     python run.py F6.8c2     optical sector (EH value 2)          ~1-2 h with 10 processes, 103 min recorded
 
-Compare with the recorded output (`results/<ID>/*.txt`) and with the numbers in the paper (Part V, Sec. 36-37).
+Compare with the recorded output (`results/<phase folder>/<ID>/*.txt`) and with the numbers in the paper (Part V, Sec. 36-37).
 Known limits of this result are listed in the paper (Sec. 52) and in `docs/findings.md`; in particular the optical
 coefficient depends on how the age dependence is read (fixed `kT`, extrapolation from four wavenumbers).
 
@@ -66,8 +66,8 @@ Every test ends with one status: **PASSED** (for an instrument: calibrated in th
 **INSTRUMENT_FAILED** (a check of the instrument failed; no conclusion), **RECORDED** (numbers recorded only).
 
 The level of the conclusion (calibration, mechanism, chain, prediction) says what a result may claim. A result is
-saved in `results/<ID>/` as JSON and text, with the hash of the test file and of the core, the parameters, the seed
-and the versions of the libraries; nothing is overwritten. Reduced runs go to `results/<ID>/quick/` and do not count.
+saved in `results/<phase folder>/<ID>/` (e.g. `results/F6_order_dynamics/F6.8g/`; see `results/README.md`) as JSON and text, with the hash of the test file and of the core, the parameters, the seed
+and the versions of the libraries; nothing is overwritten. Reduced runs go to `.../<ID>/quick/` and do not count.
 `results/sha_aliases.json` maps the hashes of test files from before the English translation of 30 Oct 2026 to the
 translated files where only text changed (checked by comparing the syntax trees without string constants), so the
 records stay current.

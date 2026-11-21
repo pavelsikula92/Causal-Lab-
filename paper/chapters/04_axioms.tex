@@ -95,7 +95,12 @@ Influence is transported along the relations of the order and is conserved at ev
 What enters an event leaves it or is stored there.
 \end{axiom}
 \begin{status} Input. Tested consequence: Gauss's law for a steady source, $J/S=1.003$--$1.004$ in
-2+1 and 3+1 (F1.1). \end{status}
+2+1 and 3+1 (F1.1). For a field of the order the axiom has a different form. The retarded influence of the field
+rule, Eq.~\eqref{eq:c0}, is not a conserved flow: its outflow from an event is weighted by the future volume of the
+region. What is conserved is the Noether energy of the field's matter action, in expectation, with a smooth time
+window; a defect evolved by the rule satisfies this balance as a smooth one does, to $0.3$--$0.5\,\%$ of its
+energy (2D, development; Sec.~\ref{sec:variation}). Whether this charge decomposes into a flow on the links of the
+order, as the axiom states for flows, is open. \end{status}
 
 \begin{axiom}[Finite capacity]\label{ax:capacity}
 The flow an event can pass on is bounded by a capacity $C$. Capacity limits the flow through an
@@ -139,7 +144,13 @@ $\delta S_m/\delta h_{ab}=\tfrac12T^{ab}$, i.e.\ through the rest frame of the f
 of different flows add (Sec.~\ref{sec:action}). The Causal Resistance Functional
 $\mathcal R=\sum_v Z_v\Delta\tau$ of the first version is not this action: it would coincide with it only if the
 impedance $Z_v$ were proportional to the mass, which has not been derived. Its relation to the action, and how
-$Z_v$ relates to the response of the order beyond the linear regime, are open. \end{status}
+$Z_v$ relates to the response of the order beyond the linear regime, are open.
+
+For matter as a field $\chi$ of the order (Sec.~\ref{sec:fielddefect}) the action is the pairwise form
+$S_m^\chi$ of Eq.~\eqref{eq:smphi}, a sum over related pairs weighted by the smeared BD kernel of their interval,
+and a functional of the order alone. Its response to the metric is $\tfrac12T^{ab}$ times form factors that tend to
+one: the trace in 2D (F6.10a) and both static sectors in 3+1 (F6.10b). It is an extension of this axiom to
+fields, not derived from it. \end{status}
 
 \subsection{Dynamics of the order}
 
@@ -162,8 +173,16 @@ consequences:
 \item a substrate rule realising it makes pressure and motion gravitate and tilts the cones
   (tested: F7.4a).
 \end{itemize}
+\begin{itemize}
+\item the flat order has no volume term in the expected action (2D, F6.9a, replicated);
+\item with the matter action of a field, stationarity of the expected actions gives the linearised Einstein
+  equation with a non-local spin-0 form factor, for young static fields (F6.8g, F6.10b; Sec.~\ref{sec:variation}).
+\end{itemize}
 How the order grows (a sequential growth law or a sum over orders weighted by $S_\BD$) is
-open. \end{status}
+open. The action alone does not hold the flat order: under local moves the weight $e^{-\lambda S_\BD}$ leaves the
+manifold-like phase above an escape point (2D, development). The working principle is therefore the saddle of the
+ensemble mean in the manifold-like phase at linear order, and the balance of action and entropy,
+Eq.~\eqref{eq:gammabeta}, beyond it. \end{status}
 
 % =============================================================================
 \section{What is derived, and from what}\label{sec:ax-summary}
@@ -178,12 +197,17 @@ time as order, no global simultaneity & Ax.~\ref{ax:order} & derived\\
 geometry read from order and number & Ax.~\ref{ax:substrate} & tested (K.16b/c)\\
 Gauss's law & Ax.~\ref{ax:continuity} & tested (F1.1)\\
 inertia of localised matter & Ax.~\ref{ax:momentum} & tested (F3.6)\\
+inertial mass $=$ rest energy of a field defect & field rule, Eq.~\eqref{eq:c0} & tested, 1+1 and 2+1 (F3.14b, F3.15)\\
 conservation of four-momentum in merging & Ax.~\ref{ax:momentum} & tested (K.15)\\
 geodesic motion & Ax.~\ref{ax:action} & tested (F2)\\
 coupling through $T_{ab}$ in the rest frame of each flow & Ax.~\ref{ax:action} & derived\\
+source $T_{ab}$ from an order-only matter action & extension of Ax.~\ref{ax:action} & tested (F6.10a, F6.10b)\\
+conservation as a Noether charge, field defect & extension of Ax.~\ref{ax:action} & development (2D)\\
 Einstein--Hilbert stiffness of the order & Ax.~\ref{ax:dynamics} & computed, all three sectors (F6.8a, F6.8b2, F6.8c2)\\
 throughput principle, $\gamma=1$ in 3+1 & Ax.~\ref{ax:action}, \ref{ax:dynamics} & derived; F7.1c undecided\\
 tensor coupling; tilt of the cones by a moving flow & Ax.~\ref{ax:action}, \ref{ax:dynamics} & derived; F7.4a\\
+linear field equation, young static fields & Ax.~\ref{ax:dynamics} + field action & computed (F6.8g, F6.10b)\\
+second order of the field equation ($\beta$) & Ax.~\ref{ax:dynamics} & not computed\\
 waves; frame dragging of a rotating source & completion & not computed\\
 non-linear completion by general relativity & Ax.~\ref{ax:dynamics} + uniqueness theorems & adopted; derivation from the order open\\
 \bottomrule

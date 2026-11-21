@@ -60,11 +60,23 @@ F3.12b & capacity as an elastic wall in the bundle's own field: no stationary wi
 F3.13a & integer charge of a carried-orientation defect read exactly; carried intact by the flow in 3+1 (2+1: too few readable rings) & mechanism, passed (3+1)\\
 F3.13b2 & with the two added assumptions (carried orientation, alignment): hedgehog placed by hand locked, charge kept after its core is randomised, core cost $0.275$ against $0.021$ (revision of F3.13b, whose readability requirement failed) & mechanism, passed\\
 F3.13c & moving hedgehog keeps its charge and its source; cost ratio $0.99$ ($\beta=0.3$), $0.87$ ($0.6$), a boundary effect of the box (design error) & mechanism, undecided\\
+F3.14a & kink of a field of the 1+1 order, evolved by the order's retarded Green function: inertia $r_M=0.994\pm0.019$; replication failed on the drift & mechanism, passed; replication instrument failed\\
+F3.14b & the same with resolving power: identity, velocity, contraction; $r_M=0.9988\pm0.0077$, $0.9895\pm0.0079$ & mechanism, passed, replicated\\
+F3.14c & swerves of the kink at rest: $D_p\rho/(\tfrac{32}{15}\mu^{5/2})=0.88$--$1.02$ in four cells, no free constant & mechanism, passed (seed 0)\\
+F3.15 & domain wall of a field of the 2+1 order (Green weight from the longest chain): $r_M=0.978\pm0.012$, $0.952\pm0.011$ & mechanism, passed, replicated\\
+F3.16, F3.16b & 3+1 Green function of the order (C0) against its exact mean and the noise-renormalised nonlinear prediction & mechanism, instrument failed; revision b: seed 0 undecided, seed 1 passed\\
 F4.1 & flows that meet head-on stick: merged fraction $0.82$ (2+1), $0.77$ (3+1), merged flow at rest, no bounce & mechanism, passed\\
 F5.1 & free fall with a direction carried in flat coordinates, or keeping to the longest chains from the origin: no fall & mechanism, instrument failed; failed\\
 F5.1c & longest-chain history started at rest: inward, $R=0.34\pm0.05$ & mechanism, failed\\
 F5.1d & longest-chain history started at the apex of a thrown ball falls, $R=1.069\pm0.051$ (2+1) & mechanism, passed, replicated\\
 F5.1e & the same in 3+1 does not fall, $R=-0.13\pm0.12$; longest chains read the geometry, $R_{\max}=0.85$; seed 1: $R=-0.13\pm0.13$, $R_{\max}=0.80$ & mechanism, failed, replicated\\
+F5.2a & fall of a kink in a 1+1 order of non-uniform density; the sprinkling had $0.81$ of the assumed density (implementation error) & mechanism, undecided, no conclusion\\
+F5.2a2 & the same, corrected: the kink falls as its continuum body, kinks of mass 4, 8, 16 alike within $2\,\%$ & mechanism, passed; replication undecided\\
+F5.2a3 & the same with resolving power: as the continuum body to $0.1$--$0.8\,\%$, alike within $1.5\,\%$ & mechanism, passed, replicated\\
+F5.2b & causal growth rule that thins the order around matter: a test kink falls in proportion to the source's energy, $r=1.009$--$1.029$, independently of its own mass & mechanism, passed, replicated\\
+F5.2c, F5.2c2 & walls on a prescribed curved 2+1 order: the kink stays, the breather falls ($r_B=1.035$, $0.952$), a launched kink follows the cones & mechanism, passed; replication instrument failed (flat control); revision c2 passed\\
+F5.2d & an order grown with the potential of a static wall carries it, $r_L=0.953\pm0.005$, $0.965\pm0.006$ (scalar branch) & mechanism, passed, replicated\\
+F5.3 & the C0 field on a conformally flat curved 3+1 order follows its exact mean and departs from the local conformal model as predicted & mechanism, passed, replicated\\
 F6.1, F6.2 & local growth with bounded degree: no manifold, no 3D space & mechanism\\
 F6.4a & 2D orders with BD action: manifold phase and transition reproduced; height of the crystalline
   phase not & calibration, failed\\
@@ -78,6 +90,10 @@ F6.8e3 & optical age term at second order grows as $(kT)^5$: exponent $4.984$--$
 K.18 & interval volumes of the optical sector at finite amplitude $\varepsilon\le4$: all parts within tolerance except the form check of the brute-force extrapolation & calibration, failed\\
 K.18b & the same with four brute-force levels: extrapolation within $1.1\times10^{-6}$ of the volumes & calibration, passed\\
 F6.8f & optical static response at finite amplitude: $R(4)=2.52$, $\gamma_T$ rising to $7.02$, no bend towards saturation & mechanism, failed\\
+F6.8g & the three static stiffnesses at fixed age $kT=4$: $\hat K_0=0.99943$ (optical), $0.99993$ (conformal), $0.99995$ (mixed); values at $k\ell_k=0.045$--$0.12$ & chain, passed\\
+F6.9a & no volume term in the expected BD action of flat 2D diamonds: $c/(4\epsilon)$ within $1.7\times10^{-4}$ of zero per element at three $\epsilon$ & mechanism, passed, replicated\\
+F6.10a & response of the pairwise matter action of a 2D kink to a conformal change: $T^a{}_a=-2V$; kinetic share $-0.014$, $-0.005$ & mechanism, passed\\
+F6.10b & response of the matter action of a 3+1 wall to $\omega$ and $\nu$: $T_{ab}$ times form factors, $0.9965$ and $1.0060$ at $k=0$ & mechanism, passed\\
 F7.1a & cones narrowed without added events give $\gamma\approx\tfrac12$ (2+1), as derived & mechanism, failed\\
 F7.1b & throughput principle in 2+1: $\gamma\approx1.85$ against $2$ & mechanism, undecided\\
 F7.1c & throughput principle in 3+1: $\gamma=1.000\pm0.045$, $0.972\pm0.074$ & mechanism, undecided\\
@@ -92,4 +108,4 @@ raw values agree with the prediction.
 
 The code, the test headers and the recorded outputs of every run quoted here are available at
 \url{https://github.com/pavelsikula92/Causal-Lab-}, archived with this paper on Zenodo,
-\href{https://doi.org/10.5281/zenodo.23853689}{doi:10.5281/zenodo.23853689}. Every number in this paper can be reproduced with \texttt{python run.py <ID>}.
+\href{https://doi.org/10.5281/zenodo.24427611}{doi:10.5281/zenodo.24427611}. Every number in this paper can be reproduced with \texttt{python run.py <ID>}.

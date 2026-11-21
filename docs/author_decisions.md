@@ -960,6 +960,11 @@ OK, I1 to 1.1e-10.
 results/F6.9a/20261120T113217Z_main_seed0_7929a6b8.json): **PASSED**. c/(4 eps) = (+0.5 +- 1.7)e-4, (-0.7 +- 1.6)e-4, (+0.6 +- 1.5)e-4 at eps
 0.24 / 0.12 / 0.06 (|x| + 2 SE <= 4.0e-4 against 1e-3); instrument I1-I4 OK (findings, F6.9a).
 
+**Result (21 Nov).** F6.9a seed 1 (author's machine, 12 735 s; results/F6.9a/20261121T013343Z_main_seed1_98240566.json): **PASSED (replicated)**.
+c/(4 eps) = (+0.15 +- 1.70)e-4, (-0.50 +- 1.63)e-4, (-0.61 +- 1.64)e-4 at eps 0.24 / 0.12 / 0.06 (|x| + 2 SE <= 3.9e-4
+against 1e-3); instrument I1-I4 OK. The file had become CRLF on the author's machine (raw sha256 98240566); its
+LF-normalised sha256 is 7929a6b8 and its LF md5 9a1da81c, unchanged (findings, F6.9a).
+
 ## 39. OV2: the choices of the draft specification (20 Nov)
 
 The author's decisions on docs/derivations/order_variation_OV2.md, section 8:
@@ -971,3 +976,250 @@ The author's decisions on docs/derivations/order_variation_OV2.md, section 8:
    dynamics is the separate test T3.
 4. Order of the tests: T0 -> T1 -> F1/F2 in 2D, then T2 and T3 in 3+1.
 5. Branch F (the flow F_v) is pursued in that order, after T1.
+
+## 40. OV2: the cards T1 and T2 frozen (21 Nov, 09:17)
+
+The author froze the cards of docs/OV2_coupling_cards_draft.md (revision 3) with Claude's recommendations of the
+morning summary:
+1. IDs F6.10a (T1, 2D, conformal) and F6.10b (T2, 3+1, the omega and nu sectors); the tolerances and the fresh
+   parameters of the drafts are accepted.
+2. T2 is one card for both sectors.
+3. The sprinkled cross-check of T1 (I4) is not required and is not part of the test.
+
+Test files (md5, LF): phases/F6_order_dynamics/F6_10a_matter_conformal_2d.py a53d3a3188eefef7173b80f383615223 and
+phases/F6_order_dynamics/F6_10b_matter_metric_3p1.py bdae39b0e674bc190f0fb64eb4229254. Only the header text changed from
+the drafts (syntax trees without string constants identical); quick runs PASSED (F6.10a 21 Nov 08:18 UTC; F6.10b 01:12
+UTC on the draft code).
+Disclosure (card T1): the grid check computed R at the fresh parameters before freezing (-0.014 and -0.005); the
+criterion had been written before, and the quadrature is deterministic.
+Still open: the F ontology (F-a or F-b), the OV3 decisions (docs/derivations/order_variation_OV3.md, section 7), T3, and
+the sha alias of F6.9a after its CRLF conversion.
+
+**Result (21 Nov).** F6.10b (author's machine, test sha256 14801b85 = the frozen file bdae39b0, 2955 s;
+results/F6.10b/20261121T091000Z_main_seed0_14801b85.json): **PASSED**. Ratio to the continuum at k = 0: omega 0.9965, nu 1.0060;
+at k l_k = 0.03 / 0.06 / 0.12: omega 0.985 / 0.955 / 0.855, nu 0.990 / 0.950 / 0.818; instrument I1-I4 OK (findings,
+F6.10b). F6.10a ran on the draft file (sha256 514b1ecf; the frozen file was delivered during the run, flag
+files_changed_during_run): PASSED with R = -0.0139 / -0.0047, the same code; it is re-run on the frozen file for the
+record.
+F6.10a re-run on the frozen file (test sha256 f1fd6835 = a53d3a31, unchanged during the run, 183 s;
+results/F6.10a/20261121T095829Z_main_seed0_f1fd6835.json): **PASSED**, R = -0.0139 (N 66 560) and -0.0047 (N 266 240),
+instrument I1-I3 OK (findings, F6.10a).
+
+## 41. The F ontology, the T3 pilot, OV3-lin-a, K_c(k), the wall card and the selection principle (21 Nov, 11:01)
+
+1. **The F ontology.**
+   - F-a, the energy and momentum derived from S_m (the corresponding stress-energy current), is the main physical
+     hypothesis.
+   - F-b, the topological charge, is an independent control of the measuring procedure.
+   - The third option (e.g. the throughput, the number of causal steps) is not chosen now. It stays an alternative
+     hypothesis in case F-a fails the conservation law. It is not a candidate for F until it has its own definition of
+     a balance: a throughput measures the capacity to transmit, not automatically a conserved extensive quantity.
+   - **Two separate questions** (to be kept apart in the documentation):
+     1. Are the energy and the momentum of F-a conserved between cuts, including the contributions of the lateral
+        boundaries? This is the test of F-a.
+     2. Can F-a be decomposed into non-negative contributions on the causal links so that the local balance
+        In_v + S_v = Out_v + ΔQ_v holds? This decides whether F-a can be directly the flow of the axiom of continuity.
+     - If (1) passes and (2) fails, the source T_ab has not failed, but the axiom F needs another or a more general
+       expression.
+   - F-a is naturally nonlocal: E(A) = eps^2 Σ over pairs crossing A of f(n)(Δφ)^2 + E_pot(A) includes the pairs that
+     cross the antichain.
+   - F-b checks the choice of the cuts, the antichains, the orientation and the topological readout, but not the
+     implementation of the weights f(n)(Δφ)^2. For those, small exact synthetic tests on hand-built posets are added.
+2. **T3: development pilot approved.**
+   - About 1e4 events, rho = 100-200, a few tens of independent sprinklings.
+   - Diagnostic: E_x = ∂S_m/∂φ_x and B_ξ = Σ_{x in slab} E_x (£_ξ φ)_x with ξ = ∂_t. B_ξ is compared with the change
+     of the energy between two antichain cuts, including the flux through the lateral boundary of the region.
+   - The exact sign and normalisation of the identity are derived from the definition of S_m used and frozen before
+     the evaluation.
+   - The identity assumes the translation symmetry of the action. For a nonlocal pairwise action the nonlocal and
+     boundary contributions must be included. On a single sprinkling translation invariance is not exact, so the
+     scatter between sprinklings is part of the result, not a numerical nuisance.
+   - The pilot determines:
+     - the distribution of B_ξ over independent sprinklings;
+     - the difference between the smooth reference kink and the noisy C0 field;
+     - the dependence of the residual on the density and on the size of the region;
+     - the number of sprinklings needed for a preset precision, n ≈ (1.96 s_B / δ)^2, with δ the half-width of the
+       95 % interval. The independent statistical unit is the whole sprinkling, not a pair or an event.
+   - The 1 % target is an estimated required precision, not automatically a criterion of physical success.
+     - Hundreds of seeds are still a realistic validation path. Millions mean another formulation is needed.
+     - Smoothing on l_k would have to be a separately defined variant of the test, not a later correction of the
+       result.
+   - F-b is evaluated in the pilot on the same cuts as the topological control, with a separate readout.
+3. **OV3-lin-a: computed now in the young-field reading.** The output is a conditional linear response, not the
+   propagator of an old static body. The card and the findings must state:
+   - that the local part of the stiffness is used;
+   - that validity refers to a young field, or a field weak enough for the age term to be negligible;
+   - that the problem of finite amplitude and age of F6.8f stays open;
+   - that the result by itself closes neither C.1 nor the 1/r law.
+   - It stays a result for the bare ensemble action until the entropic correction to the second variation is
+     evaluated (item 6).
+4. **The source of K_c(k): option A.**
+   - A new F6.8c-type computation for k l_k = 0.02 to 0.12, with the local part extracted by the same procedure as for
+     K in F6.8a.
+   - F6.8c2's C(0) = 2.002 at the preregistered kT = 8 contains the age contribution; it is not a separate measurement
+     of the local K_c(k).
+   - The card reports separately: (1) the total measured optical stiffness; (2) the age component; (3) the local
+     part; (4) the sensitivity of this separation to the chosen ranges of k and T.
+   - The covariance relation C = 2 + 4 φ_0 + φ_2 is an independent check. φ_2 must actually be measured and may not
+     be computed from the same C it is to check: ideally a separate computation or a separate instrumental procedure.
+5. **The repulsion of the BPS wall: a separate card, approved.**
+   - For the static BPS wall: rho = rho_E, T^a_a = -3 rho_E, Σp = -2 rho_E; the lapse source is
+     2σ - τ = -4 rho_E + 3 rho_E = -rho_E, opposite in sign to dust. In the local limit Ψ/Φ = -1 for the wall and +1
+     for dust. At k l_k = 0.12 the form factors give -4(0.818) + 3(0.855) = -0.707, about -0.71 rho_E.
+   - Three separately preregistered evaluations:
+     - the sign of the resulting response;
+     - the size of the deviation from -rho_E;
+     - the ratio of the response of the wall to that of dust at the same k.
+   - The amplification of the error when two large contributions are subtracted must be computed with their
+     covariance: σ_src^2 = 16 σ_ν^2 + 9 σ_ω^2 - 24 Cov(F_ν, F_ω), not by multiplying one error by four.
+6. **The selection principle (a revision of the author's earlier choice).**
+   - The stationary branch of an individual action is not enough. OV1 found locally reachable configurations with an
+     action lower by three orders, and the manifold-like phase is held by the statistical weight of the orders. There
+     is no reason to assume that the physical order is a stationary point of the individual action.
+   - For OV3-lin-a: option 1, the saddle of the ensemble mean action <S>, conditioned on the manifold-like phase.
+   - For nonlinear OV3, the working principle is option 2, an explicit balance of action and entropy. An effective
+     functional of a macrostate M is introduced, Γ_β(M) = -(1/β) ln Σ_{H in M} e^{-β S_tot[H]}. Its exact form and
+     measure belong to a separate specification. The formula shows the intended structure: the weight depends on the
+     action and on the number of microscopic orders that realise the same macrostate.
+   - Option 3, a stochastic dynamics weighted by the action, is not chosen now. It would need derived transition
+     probabilities and a time dynamics of the configuration space.
+   - Entropy may change the second variation. Whether the entropic term changes the effective stiffness already at
+     quadratic order must be measured. OV3-lin-a therefore stays a result for the bare ensemble action until this
+     correction is evaluated. If it is significant, the result cannot be presented as the physical linear propagator
+     without the correction.
+   - This avoids two wrong extremes: minimising the individual action, which OV1 refuted, and introducing a complete
+     stochastic dynamics that is not yet defined.
+
+## 42. T3: the readout of the C0 field approved; OV2 section 14.2-14.4 fixed for stage 2 (21 Nov, 11:42)
+
+- **Background.** Section 14 corrected section 11: the crossing-pair sum E(A) has zero expectation, and the energy of
+  F-a is the Noether charge H = -Q of the windowed identity <B_chi> = <R_chi> (exact in expectation). The decision-41
+  formula E(A) is replaced by this H.
+- **The readout, approved by the author.** For a C0 field, (L_xi phi)_x = d_t Phi_fit(x), where Phi_fit is the kink
+  fitted to the C0 run (centre and velocity, as in F3.14b). The ramp terms are evaluated on the C0 values.
+- **What is fixed.** Claude takes this approval as fixing OV2 section 14.2-14.4 for stage 2 of the pilot: the
+  identity, the sign <B> = -(H(t2) - H(t1)), the normalisation H = -Q and the readout. The author may narrow this.
+- **Status.** Stage 2 stays development (decision 41). The 1 % target is an estimated required precision, not a
+  criterion.
+
+## 43. The card F6.8g (the local optical stiffness K_c(k)) approved as drafted (21 Nov, 12:15)
+
+On docs/F6_8g_card_draft.md, revision 0:
+1. **The ID F6.8g and the rows: approved.** k = 0.02, 0.03, 0.045, 0.06, 0.08, 0.10, 0.12, at the age ladder
+   T in {20, 28, 40, 57, 80, 113, 160} with n = kT <= 12. T = 10 and 14 are reported only.
+2. **The model and the criterion: approved.**
+   - The model of the age component: K_hat_s = K_loc,s(k) - k^2 F_s(kT), with F_s(n) = a_1 n + a_2 n^2 (J = 2) and
+     F_s(0) = 0, fitted on the rows with n <= 8.
+   - The criterion of the sensitivity spread: <= 0.005 at every k <= 0.1.
+3. **F6.8h (the TT shear, an independent phi_2) is not developed now.**
+
+The test file is implemented from the card. As the laboratory standard requires, every judged point is exercised at
+full resolution before freezing. The card is frozen by the author.
+
+## 44. F6.8g revised: the young-field stiffness read at fixed n = kT = 4 for all sectors (21 Nov, 13:44)
+
+**What the quick run and the probe of the draft of decision 43 found:**
+- The k = 0 null contains a young-age term that does not depend on k. It falls as T^-4: J_bb = 8.2e-5, 2.1e-5,
+  5.1e-6 and 1.3e-6 at T = 20, 28, 40 and 57. In units of K_hat_bb it grows as 1/k^2, so a row is clean only for
+  n T >~ 100. The limit n -> 0 is out of numerical reach.
+- The conformal sector at small n differs from F6.8a's local part by about 1 k^2, and the offset scales with n
+  (F_c = 0.92 and 0.97 at n = 1.2 for k = 0.06 and 0.03). F6.8a's local part is the intercept of the asymptotic linear
+  age law (n >~ 8), not the limit n -> 0. The local part is therefore not unique at order k^2. Instrument I1 of the
+  draft compared two different definitions; the design error was Claude's.
+
+**The author's choice (option B):**
+- The young-field stiffness is read at fixed n_y = kT = 4 for all sectors (the field of age 4/k).
+- Rows at n = 3 and 6 are added for the n-dependence.
+- Instrument I1 becomes the known answer at fixed n: the conformal intercept K0_c = 1 within 1e-3, as I5 of F6.8c2.
+- The separation into a local and an age part, its sensitivity spread and the criterion 0.005 of decision 43 lapse
+  with the reading they belonged to.
+- The mixed sector at the same rows is included if the code of F6.8b2 allows it.
+- OV3-lin-a reads all inputs at n = 4. The source form factors F_omega and F_nu of F6.10b do not depend on the age
+  (T 80 against 120: below 0.1 %).
+
+## 45. Test IDs: the laboratory's numbers are kept (21 Nov, 15:07)
+
+The "next tests" table of the published paper (paper/chapters/07_predictions.tex, l. 237-243) reserved F6.8g for the
+optical age term of old fields and F6.9 for the age term in the full static propagator. The laboratory has since used
+F6.9a for the OV1 vacuum control (decision 38) and F6.8g for the young-field stiffness card (decisions 43, 44). The
+author keeps the laboratory's numbers. The planned tests of the paper's table are renumbered in the next version of the
+paper. Whether that version includes F6.8g and OV3-lin-a depends on how today's runs end.
+
+## 46. F6.8g revision 2 frozen: judged rows k = 0.045 - 0.12 (21 Nov, 15:48)
+
+**What led here.** Two development runs of revision 1 (decision 44) were made before freezing, and they are not
+verdicts: Claude's workspace (results/F6.8g/20261121T143903Z) and the author's machine (results/F6.8g/20261121T143802Z),
+both with sha 6bfb3471. Instruments I1-I4 passed in both. Two findings:
+- **The old optical rows are not numerically robust at small k.** The two platforms (Linux, numpy 2.5; Windows,
+  numpy 2.2) differ in K_hat_bb by 2.7e-4 at (0.03, T 133), 1.4e-4 at (0.045, T 133) and 5e-5 at (0.06, T 100), but by
+  <= 6e-6 at T <= 89. J_bb is a small remainder of a large cancellation, and it is divided by k^2.
+- **The row (0.03, T 133) lies about 3.5e-3 below the n-dependence of every other k.** This gave a fit residual of 1e-3
+  at n = 4, against 5e-5 at n = 3 and 6. A level-2 probe of this row was stopped unfinished, so its cause is not
+  settled.
+
+**The author's choice:** "Pojďme cestou různých k. Ano zmraž to." The judged rows are k = 0.045, 0.06, 0.08, 0.10 and
+0.12 at n = 4 (T = 89 ... 33); k = 0.03 is dropped. I3 is checked at (0.045, n 4) and (0.12, n 4). The inputs of OV3-lin-a
+are taken at k = 0.06 and 0.12.
+
+**Exercised before freezing.**
+- The judged rows, from the development runs: K0_bb(n 4) = 0.99944 (Claude) and 0.99943 (author), fit residual
+  4.7e-5; K0_c = 0.99993; K0_ab = 0.99995.
+- The new I3 point at level 2: K_hat_bb 0.961251 against 0.961281 at level 1 (3.0e-5).
+- These numbers were seen before freezing. The criterion (|K0_bb - 1| <= 0.01) was set in decision 44, before them.
+
+**Frozen.** md5 with LF line endings:
+- test phases/F6_order_dynamics/F6_08g_bd_action_optical_local.py: d594c74386a690e4e978fb4bb65debad;
+- card docs/F6_8g_card_draft.md (rev. 2): 00c780d57b04e7259e4aebb5a76ebbd8.
+
+**Result (21 Nov).** F6.8g, run by the author on the frozen file (sha256 86ec1e05, LF md5 d594c743, unchanged during the
+run), 8 workers, 4091 s; results/F6.8g/20261121T183904Z_main_seed0_86ec1e05.json: **PASSED**.
+- K0_bb(n 4) = 0.99943, fit residual 4.9e-5. I1 K0_c = 0.99993; I2 OK; I3 2.1e-5 and 2.5e-6; I4 <= 1.2e-3.
+- A first start on 16 workers stopped at task 28/30 on a memory error, without a record. It was restarted unchanged.
+- OV3-lin-a from this record and F6.10b is recorded in findings as a derived consequence (the author, 21 Nov 17:23):
+  - dust: Phi/Phi_GR 0.940 / 0.809 and gamma 1.033 / 1.122 at k l_k 0.06 / 0.12;
+  - the wall repels: wall/dust -1.045 / -1.062.
+
+## 47. The next version of the paper: planned-test numbers F6.8i and F6.11; the DOI later; new figures (21 Nov, 20:56)
+
+The paper's new version (chapters 00-08, A, B; commit bc8eb3a on claude/c0-minvar) renumbers the planned tests that
+the previous version had called F6.8g and F6.9 (decision 45). Claude proposed the numbers; the author: "ano".
+- **F6.8i**: the optical age term of old fields, eps = b (kT)^2 >> pi^2 (the previous version's F6.8g).
+- **F6.11**: the age term in the full static propagator (the previous version's F6.9).
+- F6.8h stays reserved for the transverse traceless shear (phi_2 measured independently, decision 43).
+
+The DOI in paper/main.tex (author block, Data availability) is left as it is; the author sets it when the new Zenodo
+version is created ("to upravím potom").
+
+The author asked for something new that describes or visualises exactly what the programme does ("hodilo by se mít
+něco nového a přesně popisující či vizualizující co děláme"). Claude added three figures to paper/figures/make_figures.py,
+every number read from the records:
+- fig_defect (Part II): inertia (F3.14b, F3.15), swerves (F3.14c), fall under the growth rule (F5.2b);
+- fig_chain (Part V): a diagram of the chain of the field equation, with the tests and the status of each step;
+- fig_fieldeq (Part V): stiffness at kT = 4 (F6.8g), source form factors (F6.10b), and the response computed from them.
+
+## 48. β: the reduction, the perturbative route, stage β1 first, F6.12; the results folder by phase (21 Nov, 21:43)
+
+**β (OV3 section 10; card docs/F6_12_card_draft.md, draft 0).** The author: "1. ANo 2. Poruchová cesta 3. Ano 4. ANo".
+1. The reduction is accepted: β − 1 = −κ₃/8, with κ₃ the cubic static action of the order along the exponential metric
+   (ω, ν) = (−U, 2U), where the Einstein-Hilbert action has no cubic term.
+2. Route (a), perturbative: interval volumes to third order (a new Fermat term T₃ for a stratified medium) and the
+   Mecke/kernel expansion to third order; no finite differences in amplitude.
+3. Stage β1 first: the pure conformal sector at cubic order (EH: 12 ω(∇ω)², i.e. 9A²Ck² for u = A cos kz + C cos 2kz),
+   as development; later instrument I1 of the card.
+4. The ID F6.12 and the proposed criterion (PASSED |β₀ − 1| ≤ 0.01; FAILED > 0.03). The card stays a draft: it is
+   completed and frozen only after the code exists and every judged point has been exercised.
+
+**The results folder.** The author: "Oprav složku results - ať obsahuje podsložky F1-K s popisem pro daný objective
+testů v podsložce - vše v eng".
+- The 98 test folders were moved unchanged into `results/<phase folder>/<ID>/`; the phase folders are those of
+  `phases/` (K_instruments, F0_substrate … F8_data). Each has a README.md with the objective of the phase and the
+  question of every test (from docs/test_list.md). `results/README.md` describes the layout. history_3x/ and
+  sha_aliases.json stay at the top. Script: diag/reorg_results.py (moves only, deletes nothing, never overwrites).
+- `core/provenance.py` writes to the new layout and still reads the old flat one (`results_dir`, `_record_dirs`).
+  This is a change of the core, so records from now on carry a new core hash. No gate is affected that was not
+  already closed: F1.9a's K.13a gate compares core hashes, and the core had changed since K.13a (958b2e63) before.
+- The frozen test F1.9a keeps its cache at `results/F1.9a/cache/`; a run recreates that folder.
+- The F3.14c replication that was running during the move started with the old core in memory. Its record will
+  appear in `results/F3.14c/`; `load_all` reads it there, and it can be moved into `results/F3_structure/F3.14c/`.
+- docs/findings.md: the paths `results/<ID>` were rewritten to the new layout. The decisions, cards and derivations
+  are historical and keep the old paths (`results/README.md` gives the mapping).
