@@ -400,3 +400,58 @@ width of 10 ℓ_k. The age of the order gives no growing term for the wall.
 - **Stage 3:** the cone sector ν with the first-order cones of F6.8b2. Expected: −∫ ν(½φ′² + 3V) dz for the static
   wall.
 
+
+## 13. T3 in 2D: what is already known, and what a direct test must add (21 Nov, night; decides nothing)
+
+**The identity.** For a pure coordinate change δg = £_ξ g at fixed matter, the continuum gives
+½ ∫ T^{ab} δg_ab √|g| = −∫ ξ_b ∇_a T^{ab} √|g|. The same change can be carried by the field instead,
+φ → φ + ξ·∂φ, so
+
+    ∫ ξ_b ∇_a T^{ab} √|g| = −∫ (δS_m/δφ) ξ·∂φ √|g|.
+
+Conservation of the T_ab read from S_m is therefore the statement that the field is a stationary point of S_m, tested
+along ξ·∂φ. The rule C0 is not the Euler–Lagrange equation of S_m (section 3.1). It is a Green-function rule,
+φ = φ₀ − c Σ_{u<v} w_n J(u); in 1+1 (F3.14b) the kernel is ½ × the causal relation. It does not set any sum of S_m to
+zero exactly. On a C0 solution the residual E_x = ∂S_m/∂φ_x has two parts:
+- the symmetric (retarded + advanced) BD sum of S_m against the retarded one;
+- the retarded BD sum applied to the Green-function solution against −J(x), which differs per sprinkling because
+  B_ret G_ret = 1 can hold at best in the mean and in the continuum limit (not checked in the laboratory).
+
+T3 asks whether this residual vanishes when it is coarse-grained against ξ·∂φ.
+
+**What the laboratory already has (2D, in the mean):**
+- **The continuum readout of a C0 kink conserves energy and momentum in the mean.** F3.14b (PASSED, replicated):
+  - E/γ is constant for a moving kink;
+  - the field momentum after a kick is 0.6304 against the impulse 0.6283;
+  - M_in = E within about 1–2 %, which is the momentum balance of the field under a force.
+- **The fluctuation is known.** F3.14c (PASSED): at rest the kink makes a random walk in momentum with
+  D_p = (32/15) μ^{5/2}/ρ, the shot noise of the order. Conservation holds in the mean, not sprinkling by sprinkling.
+  The size of the fluctuation is predicted.
+- **The T_ab of S_m equals the continuum T_ab at the ensemble level.** T1 (section 10; F6.10a draft): for a smooth
+  field the kinetic share of the response to a conformal bump is ≤ 1.5 % at T/w ≥ 32 and falls with density.
+
+Together these imply T3 in 2D in the mean at the level of about 2 %, if one step holds that is not yet shown: that the
+T_ab of S_m evaluated on a C0 field on one sprinkling, which carries the order's noise, has the same coarse-grained
+mean as on the smooth field. The noise of the field adds its own (vacuum) contribution to ⟨S_kin⟩. F6.9a shows the
+order's own action has no constant term at the ensemble level, but the matter action of a noisy field was not
+measured.
+
+**A direct diagnostic (proposed, not run):**
+- On the F3.14b sprinklings (rest and v = 0.3), compute E_x = ∂S_m/∂φ_x of the pairwise action on the C0 field.
+- Form the Noether balance of a time slab, B(t₁, t₂) = Σ_{x in slab} E_x ∂_tφ(x), with ∂_tφ from the continuum fit of
+  the kink (the readout F3.14b already uses).
+- Compare it with the change of the continuum-readout energy between the slices.
+- Expected: B = 0 in the mean (conservation), with a per-sprinkling scatter set by the shot noise of F3.14c. A
+  systematic B ≠ 0 would be the nonlocal departure of the retarded rule from the stationarity of S_m. Its size
+  relative to the kinetic energy is the C2-precision number the table of section 5 asks for.
+- At rest ∂_tφ = 0 and B vanishes identically. The moving kink and the kicked kink are therefore the informative
+  cases.
+- **Cost and noise (the reason it was not run tonight).** E_x sums over all pairs, including the near-null pairs
+  along the whole light cone. Their kernel weights cancel only in expectation: ∫₀^∞ g(w) dw = 0 with
+  g(w) = e^{−w}(1 − 2w + w²/2). Per sprinkling the residual is therefore very noisy; the sd of S_kin per sprinkling
+  grows as √N (section 9). The slab balance B must be averaged over many sprinklings. Its feasibility at the F3.14b
+  densities (ρ 400–800, ε 0.12: ℓ_k = (ερ)^{−1/2} ≈ 0.14–0.10 against the kink width 1) is to be checked on a small domain first.
+
+**3+1.** The laboratory has no C0 wall dynamics in 3+1 at the precision needed. T3 in 3+1 waits for it, or for an
+ensemble-level argument (the retarded rule invariant in distribution under the Poincaré group, as in the reading of
+F3.14b).

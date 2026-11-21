@@ -1,7 +1,11 @@
 # Cards OV2-T1 (2D) and OV2-T2 (3+1): the response of the matter action to the metric (drafts)
 
-**Revision 1, draft, 21 Nov 2026 (night; the author asked Claude to continue and prepare tests). Not frozen.** IDs are
+**Revision 2, draft, 21 Nov 2026 (night; the author asked Claude to continue and prepare tests). Not frozen.** IDs are
 the author's choice; proposed F6.10a (T1) and F6.10b (T2).
+- Rev 2: both cards implemented as draft test files (quick runs only):
+  phases/F6_order_dynamics/F6_10a_matter_conformal_2d.py and phases/F6_order_dynamics/F6_10b_matter_metric_3p1.py.
+  The grid levels of T1 are fixed from a convergence check; the Δ of T2 is defined; the sprinkled cross-check of T1
+  (I4) is not in the file, pending decision 3.
 - Specification: docs/derivations/order_variation_OV2.md, sections 2, 3.1, 4, 9, 10 and 12, and decision 39.
 - Development: diag/ov2_2d.py, diag/ov2_quad2d.py, diag/ov2_t2.py, diag/ov2_t2nu.py.
 
@@ -35,6 +39,13 @@ kinetic part is conformally invariant up to a nonlocal correction that is small 
   (0.5, 0.5)).
 - The first order is read from the analytic derivative under the integral (diag/ov2_quad2d.py, kin_quad_d1),
   generalised to (u₀, v₀).
+- **Grid levels** (n_outer, n_t, n_w) = (192, 128, 96) and (256, 160, 128), Δ_quad the change between them. Chosen
+  from a convergence check at the fresh parameters (R at levels 64/96/128/192/256 of n_outer: +0.551, −0.006, −0.0139,
+  −0.0139, −0.0139 at N 66 560; −8.49, −0.341, −0.0048, −0.0047, −0.0047 at N 266 240). The coarse levels are far off
+  at the higher density, so the judged pair is one level above the first converged one.
+- **Disclosure.** The grid check computed R at the fresh parameters before the card was frozen. The quadrature is
+  deterministic and the 3 % criterion was written in revision 1 before this, so nothing was tuned on it; the numbers
+  are R = −0.014 (N 66 560) and −0.005 (N 266 240), I1 0.9966.
 
 **Criterion** (per density).
 - **PASSED** if |δ₁⟨S_m⟩/∫σ T^a_a √g − 1| + Δ_quad ≤ 0.03 and |δ₁⟨S_kin⟩/∫σ T^a_a √g| + Δ_quad ≤ 0.03.
@@ -48,7 +59,7 @@ kinetic part is conformally invariant up to a nonlocal correction that is small 
   against −42.45.
 - **I2:** grid convergence, the two finer grids within 1 % of the signal.
 - **I3:** at a = 0 the derivative of the potential part equals −∫ σ̂ V du dv to 1e−6 (normalisation).
-- **I4:** the cross-check against a sprinkled estimate at T/w 32. The sprinkled mean of the first order (1 024
+- **I4 (not in the draft file; decision 3):** the cross-check against a sprinkled estimate at T/w 32. The sprinkled mean of the first order (1 024
   sprinklings, as in development) must lie within 3 SE of the quadrature.
 
 ## T2 (3+1, the conformal and the cone sector; proposed F6.10b)
@@ -64,15 +75,19 @@ as kℓ_k → 0.
 **Model.**
 - ερ = 1; wall widths 1/m = 8 ℓ_k (development: 10).
 - k ℓ_k = 0.03, 0.06, 0.12 (development: 0.02, 0.05, 0.1, 0.2).
-- Ages T = 80 and 120.
+- Ages T = 120 (judged) and 80 (I1); grid multiplier 1 (judged) and 1.5 (I2).
+- Δ = |ratio(T 120) − ratio(T 80)| + |ratio(grid 1.5) − ratio(grid 1)|.
+- The quadrature code is copied verbatim into the test file from diag/ov2_kernels4.py, diag/ov2_t2.py and
+  diag/ov2_t2nu.py, so the frozen test does not depend on the development files.
+- Development row seen at the fresh width while timing (k = 0.06, T = 80): ω 0.954, ν 0.949.
 - ω by the boosted diamond average (diag/ov2_t2.py); ν by the first-order cones and the prolate volume quadrature of
   F6.8b2 (diag/ov2_t2nu.py).
 
 **Criterion.**
 - **The local limit:**
   - **PASSED** if, at k → 0 (the k = 0 rows), both sectors give |ratio − 1| + Δ ≤ 0.02, and if the ratios at the
-    three k decrease monotonically with |ratio(k) − 1| ≤ 0.15 at kℓ_k ≤ 0.06.
-  - **FAILED** if a k = 0 ratio is off by more than 0.05, or the ratios at kℓ_k ≤ 0.06 are off by more than 0.25.
+    three k do not increase with k and |ratio(k) − 1| + Δ ≤ 0.15 at kℓ_k ≤ 0.06.
+  - **FAILED** if a k = 0 ratio is off by more than 0.05 + Δ, or a ratio at kℓ_k ≤ 0.06 by more than 0.25 + Δ.
   - **UNDECIDED** otherwise.
 - **Reported, not judged:** the form factors against K_loc(k) of F6.8a (ω) and the mixed K_loc,ab of F6.8b2 (ν).
   Whether source and stiffness share their form factor is an observation for OV3.
