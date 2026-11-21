@@ -430,7 +430,83 @@ sprinkling, a defect moving relative to nothing is a resting one seen from anoth
 confirms the covariance. The run that compared them measured the finite box instead, which cut the source region
 of the moving defects (cost ratio $0.99\pm0.03$ and $0.87\pm0.03$, undecided; a design error). The content of a rest
 mass that can be tested is relative motion: whether the cost is released when a hedgehog meets an anti-hedgehog,
-and whether it resists a change of motion.
+and whether it resists a change of motion. For a defect of a field, the resistance to a change of motion is
+tested in Sec.~\ref{sec:fielddefect}.
+
+% =============================================================================
+\section{Matter as a defect of a field of the order}\label{sec:fielddefect}
+% =============================================================================
+
+A second route to matter keeps the flow of influence and adds no internal orientation: a scalar field on
+\emph{all} events of the order, evolved by the retarded Green function that the order itself defines. A localised
+solution that the dynamics cannot unwind, a kink of the sine-Gordon potential $V=\mu^2(1-\cos\phi)$, is the
+candidate particle. The potential is chosen, not derived; everything else is read from the order.
+
+\paragraph{The rule.} The field at an event is its free part plus the retarded response to the potential force of
+its causal past,
+\begin{equation}
+  \phi(v)=\phi_0(v)-\frac{1}{\rho}\sum_{u\prec v}G(u,v)\,V'\bigl(\phi(u)\bigr),
+  \label{eq:c0}
+\end{equation}
+with $G$ the retarded Green function of the order: $G=\tfrac12$ on the causal relation in 1+1, a weight read from
+the longest chain in 2+1, and the weight $w_n$ of the order-interval on links in 3+1 (the rule called C0 in the
+laboratory). On a flat 3+1 order the field follows its exact linear mean and the noise-renormalised nonlinear
+prediction within the frozen margins (F3.16b, seed 0 \verdict{undecided} on one late slab, seed 1
+\verdict{passed}); on a conformally flat curved order it follows its exact mean, a Green function weighted by the
+curved volume, and departs from the local conformally coupled field as predicted (F5.3, \verdict{passed},
+replicated).
+
+\paragraph{Identity and inertia.} In 1+1 (F3.14b, density 800, 128 sprinklings, \verdict{passed},
+replicated):
+\begin{itemize}
+\item the kink keeps its topological charge and its rest energy, $M_{\rm rest}=8.021$ against $8\mu$ for the
+  continuum;
+\item launched at $v=0.3$ and $0.6$ it keeps its velocity to $0.002$ and its Lorentz contraction to $0.001$;
+\item kicked by a uniform force, it takes the momentum $\Delta p=0.0781\pm0.0006$ against $0.0785$, so its
+  inertial mass equals its rest energy, $r_M=M_{\rm in}/M_{\rm rest}=0.9988\pm0.0077$ (replication
+  $0.9895\pm0.0079$).
+\end{itemize}
+In 2+1 a domain wall on the order, evolved by the Green weight read from the longest chain, keeps its identity,
+its velocity and its contraction, and its inertia equals its rest energy per unit length within the criterion:
+$r_M=0.978\pm0.012$ and, in the replication, $0.952\pm0.011$ (F3.15, \verdict{passed}, replicated; the replication
+lies $4.5$ standard errors below one).
+
+\paragraph{Swerves.} At rest the kink performs a random walk in momentum. Its diffusion constant is the shot noise
+with which the order samples the binding of the defect,
+\begin{equation}
+  D_p=\frac{1}{2\rho}\int V'(\phi)^2\,\phi_x^2\,\dd x=\frac{32}{15}\frac{\mu^{5/2}}{\rho},
+\end{equation}
+with no free constant. The measured ratio $D_p\rho/\bigl(\tfrac{32}{15}\mu^{5/2}\bigr)$ is $1.016$, $0.991$,
+$0.882$ and $1.008$ ($\pm0.05$) in four cells of $\mu$ and $\rho$ (F3.14c, \verdict{passed}, seed~0; the
+replication is pending). The corrections beyond leading order are not resolved: one cell lies $2.5$ standard errors
+below one, and a heavier kink, reported only, $10\,\%$ below. The swerves of
+causal set theory~\cite{DowkerHensonSorkin2004} thereby follow for a bound object from its internal structure, and
+vanish in the vacuum.
+
+\paragraph{Fall.} The same defect falls in an order of non-uniform density, without any rule for falling added:
+\begin{itemize}
+\item In a 1+1 order whose only change is the number of events, kinks of mass 4, 8 and 16 fall as their
+  continuum bodies to $0.1$--$0.8\,\%$ and alike within about $1.5\,\%$ (F5.2a3, \verdict{passed}, replicated).
+\item Under a causal growth rule that thins the future order around matter (events realised with probability
+  $\Pi^2$ computed from the realised past), a test kink falls towards a source in proportion to the source's
+  energy and independently of its own mass: $r=1.029$, $1.017$, $1.009$ for source masses 4, 8, 16, and
+  $u=-0.0007\pm0.0081$ (F5.2b, \verdict{passed}, replicated).
+\item On a prescribed curved 2+1 order, read only through its relation, a kink wall stays at rest (its tension
+  cancels its weight, the passive weight being $E-\sigma$), a breather wall falls as in the continuum
+  ($r_B=0.952\pm0.041$) and a launched kink follows the curved cones (F5.2c2, \verdict{passed}; the first run
+  F5.2c \verdict{passed}, its replication \verdict{instrument failed} on the flat control).
+\item The active side: an order that grows with the potential a static wall produces through the order's own
+  Green weight carries the potential, the slowed clocks and the narrowed cones of the continuum in proportion to
+  the load, $r_L=0.953\pm0.005$ and $0.965\pm0.006$ (F5.2d, \verdict{passed}, replicated). It tests the
+  trace (scalar) branch of the source only; the $5$--$8\,\%$ deficit is traced to the binned midpoint of the cones.
+\end{itemize}
+
+\paragraph{What this does and does not show.} A defect of a field of the order behaves as a particle with
+inertia equal to its rest energy, swerves with the noise of the order, and falls, in 1+1 and 2+1. It is the
+matter of the order-variation programme of Part~\ref{part:geometric} (Sec.~\ref{sec:variation}). It does not yet
+give particles: the potential is chosen; there is no 3+1 defect dynamics (the 3+1 Green function exists, but no rule
+for the fall of a bound object in 3+1 has passed, Sec.~\ref{sec:fall}); the active side was tested in its scalar
+branch; and the mass of a defect is not related to the discreteness scale.
 
 % =============================================================================
 \section{The Benincasa--Dowker operator and action}\label{sec:bd}

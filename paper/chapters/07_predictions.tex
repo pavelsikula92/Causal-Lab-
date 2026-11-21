@@ -130,7 +130,10 @@ quadratic form of the action of the order (Sec.~\ref{sec:mixed}), without assumi
   Sec.~\ref{sec:bdaction} beyond; the mixed coefficient $\cB=8\hat K_{ab}(k,T)$, equal to $8\hat K$ at leading
   order and larger by $\simeq8\times0.46\,(k\ell_k)^2$ beyond it (Sec.~\ref{sec:mixed}); the optical coefficient
   $\cC=2\hat K_{bb}(k,T)$, with $\cC(k\to0)=2.002$ and an age term that grows as $(kT)^5$ at second order
-  (F6.8e3) and faster at finite amplitude up to $\varepsilon=4$ (F6.8f; Sec.~\ref{sec:optical}).
+  (F6.8e3) and faster at finite amplitude up to $\varepsilon=4$ (F6.8f; Sec.~\ref{sec:optical}). For young fields,
+  $kT=4$, all three are measured on the same rows at $k\ell_k=0.045$--$0.12$ (F6.8g), and with the source form
+  factors (F6.10b) the field of a dust slab and $\gamma(k)$ follow: $\Phi/\Phi_{\rm GR}=0.809$ and $\gamma=1.12$ at
+  $k\ell_k=0.12$ (Sec.~\ref{sec:variation}).
 \item \emph{To compute:} the optical age term of old fields, $\varepsilon=b\,(kT)^2\gg\pi^2$, where the second
   order no longer holds.
 \item \emph{Prediction:} the potential $\Phi(r)$ and $\gamma(r)$ of a point mass as functions of
@@ -195,8 +198,12 @@ Causal Physics shares. \stat{open}
 \begin{itemize}
 \item \textbf{Exact Lorentz invariance of the substrate.} No preferred frame at any scale. A detected
   violation of Lorentz invariance would contradict Axiom~\ref{ax:substrate}. A Lorentz-invariant discrete
-  substrate can still make particles diffuse slowly in momentum (``swerves''~\cite{DowkerHensonSorkin2004});
-  for flows that carry their four-velocity this has not been computed. \stat{open}
+  substrate can still make particles diffuse slowly in momentum (``swerves''~\cite{DowkerHensonSorkin2004}).
+  For a defect of a field of the order the diffusion constant follows from its internal structure with no free
+  constant, $D_p=\tfrac{32}{15}\mu^{5/2}/\rho$ for a sine-Gordon kink, and is measured in 1+1 (F3.14c,
+  Sec.~\ref{sec:fielddefect}); it vanishes in the vacuum. A bound on swerves of real particles bounds $\rho$ only
+  through a model of their internal structure, which the theory does not yet have. \stat{tested in 1+1; for real
+  particles open}
 \item \textbf{No blurring of distant point sources by the discreteness.} Influence on the light cone
   passes no intermediate events, so the images of distant quasars and gamma-ray bursts are not blurred
   by the substrate. Observed sharp images agree with this; a detected discreteness-induced blurring would
@@ -222,7 +229,10 @@ holds:
   short-range gravity data for every $\ell_k\ge\ell$;
 \item a violation of Lorentz invariance of the substrate is detected;
 \item the images of distant point sources are found blurred in a way attributable to the discreteness
-  of spacetime.
+  of spacetime;
+\item a direct computation of the order's static response to a domain wall finds that the wall attracts: then the
+  source of the order is not the energy--momentum tensor (at present derived from the two frozen form factors: a
+  static BPS wall repels, wall/dust $=-1.045$ and $-1.062$ at $k\ell_k=0.06$ and $0.12$, Sec.~\ref{sec:variation}).
 \end{enumerate}
 
 % =============================================================================
@@ -234,15 +244,20 @@ holds:
 \toprule
 test & question & needs\\
 \midrule
-F6.8g & the optical age term of old fields, $\varepsilon=b\,(kT)^2\gg\pi^2$: intervals with several rays; does
+F6.8i$^*$ & the optical age term of old fields, $\varepsilon=b\,(kT)^2\gg\pi^2$: intervals with several rays; does
   an old field have a finite static response? & F6.8f, K.18b\\
 F6.8d & the differences between the sectors beyond leading order: from the age cut or from the action? (run
   15 Nov: instrument failed; to be repeated) & F6.8b2\\
-F8.1 & $\Phi(r)$, $\gamma(r)$ of a point mass in units of $\ell_k$; comparison with short-range data & F6.8g\\
+F6.8h & the spin-2 form factor $\varphi_2$ measured independently, in the transverse traceless shear & F6.8g\\
+--- & the second order of the field equation at fixed $kT$: the post-Newtonian $\beta$ & F6.8g\\
+--- & the entropic correction to the stiffness at quadratic order, from Eq.~\eqref{eq:gammabeta} & F6.9a\\
+--- & the conservation of the Noether energy of a field defect in 3+1, as a frozen test & F6.10b, F3.16b\\
+F8.1 & $\Phi(r)$, $\gamma(r)$ of a point mass in units of $\ell_k$; comparison with short-range data & F6.8i$^*$\\
 F8.8 & the physical meaning of the age $T$; fields of different ages & theory of $T$\\
-F6.9 & the age term in the full static propagator & F6.8c\\
+F6.11$^*$ & the age term in the full static propagator & F6.8c\\
 \bottomrule
 \end{tabularx}
 \end{center}
 Each of these will be registered with its criterion before it is run, and its outcome reported whatever it
-is.
+is. Numbers marked $^*$ replace the numbers F6.8g and F6.9 of the previous version, which the laboratory has since
+given to the young-field stiffness and to the vacuum control (F6.9a); rows marked --- have no number yet.
