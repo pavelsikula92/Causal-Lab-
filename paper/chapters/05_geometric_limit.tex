@@ -624,6 +624,17 @@ section closes the chain within the order itself: the matter is a field of the o
 (Sec.~\ref{sec:fielddefect}), its action is a functional of the order alone, and the field equation is the
 stationarity of the sum of the two actions. It proceeds in three steps, each with its own control: the vacuum,
 the source and the response.
+Figure~\ref{fig:chain} shows the chain and the status of each step.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_chain.pdf}
+  \caption{The field equation of the order: what is computed, from which tests, and with which status. Two
+expected actions of one causal order, the BD action of the order and the pairwise action of a field on its events,
+are made stationary together; the result to first order is the linearised Einstein equation with a non-local
+spin-0 form factor. Solid boxes: frozen tests or numbers derived from their records; dashed: development;
+dotted: open. The numbers are read from the records (F6.8g, F6.9a, F6.10a, F6.10b).}\label{fig:chain}
+\end{figure}
 
 \subsection{The vacuum and the selection principle}
 
@@ -706,7 +717,7 @@ equation: $\nabla^2\Phi=4\pi G(\rho+\sum p)$ and $\nabla^2\Psi=4\pi G\rho$.
 The coefficients at the same age are read at fixed $n=kT=4$, the field of age four inverse wavenumbers. The longer
 ages carry the age growth of Sec.~\ref{sec:optical}, and at $k\ell_k<0.045$ they are not numerically robust in
 double precision. All three sectors tend to their Einstein--Hilbert values: the intercepts are $\cA/6\to0.99993$,
-$\cB/8\to0.99995$ and $\cC/2\to0.99943$ (F6.8g, \verdict{passed}). The resulting response, from the frozen
+$\cB/8\to0.99995$ and $\cC/2\to0.99943$ (F6.8g, \verdict{passed}). The resulting response (Fig.~\ref{fig:fieldeq}), from the frozen
 records alone:
 
 \begin{center}
@@ -719,6 +730,18 @@ $0.12$ & $0.849$ & $0.800$ & $0.809$ & $1.122$ & $-1.062$ \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_fieldeq.pdf}
+  \caption{The linear field equation of the order, for a young static field. (a) The three static stiffnesses of the
+expected BD action at $kT=4$, relative to their Einstein--Hilbert values, with the fits $\hat K_0-k^2(c_1\ln\frac1k+c_0)$
+(F6.8g). (b) The source form factors of the pairwise matter action of a static wall (F6.10b). (c) The static response
+computed from (a) and (b) by Eq.~\eqref{eq:ov3}: the field of a dust slab relative to linearised general relativity,
+$\gamma(k)$ of dust, and the lapse of a static BPS wall relative to that of dust of the same energy, with the sign
+reversed (general relativity: $-1$; above one the wall repels more strongly). At $k\to0$ the equation is that of linearised
+general relativity.}\label{fig:fieldeq}
+\end{figure}
 
 At long wavelength the response is Einstein's, with $\gamma=1$. On scales of tens of $\ell_k$ the field of dust is
 weaker and bends light relatively more. A static BPS domain wall, with $\rho+\sum p=-\rho_E$, repels: its lapse is

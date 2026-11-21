@@ -23,11 +23,18 @@ Figures (the section of the paper in brackets):
   fig_fall       free fall from the apex, F5.1d (2+1) and F5.1e (3+1): displacement against time, R = a/a_pred (sec:fall)
   fig_matter     toward matter: the width of a bundle in its own field (F3.12b) and the cost of a locked defect (F3.13b2)
                  (sec:matter)
+  fig_defect     matter as a defect of a field of the order: inertia (F3.14b, F3.15), swerves (F3.14c), fall towards a
+                 source in proportion to its energy (F5.2b) (sec:fielddefect)
+  fig_chain      the chain of the field equation of the order: what is computed, from which tests, with which status
+                 (a diagram; the numbers in it are read from the records) (sec:variation)
+  fig_fieldeq    the linear field equation of the order: stiffness at kT = 4 (F6.8g), source form factors (F6.10b), and
+                 the response computed from them (diag/ov3_lin.py) (sec:variation)
 """
 
 from __future__ import annotations
 
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -533,9 +540,249 @@ def fig_matter():
     save(fig, "fig_matter")
 
 
+# ===================================================================================== fig_defect (F3.14b, F3.15, F3.14c, F5.2b)
+
+def _line_value(rec, pattern):
+    """A number from the printed summary of a record (rec["lines"]), by a regular expression with groups (value, SE)."""
+    for ln in rec["lines"]:
+        m = re.search(pattern, ln)
+        if m:
+            return tuple(float(g) for g in m.groups())
+    raise KeyError(f"{rec['_file']}: no line matches {pattern!r}")
+
+
+def fig_defect():
+    """(a) inertia r_M = M_in / M_rest: F3.14b per density (1+1, both seeds) and F3.15 (2+1 wall, both seeds);
+    (b) swerves: R = D_p rho / ((32/15) mu^(5/2)) per cell of F3.14c (the M 16 cell is reported, not judged);
+    (c) fall under the growth rule (F5.2b): r_B = displacement of the test kink / continuum, against the source mass, for
+    a test kink of mass 8 and, at source mass 8, of mass 4."""
+    print("fig_defect: matter as a defect of a field of the order")
+    fig, (ax, bx, cx) = plt.subplots(1, 3, figsize=(WIDTH, 2.45), gridspec_kw={"width_ratios": [1.15, 1.0, 1.0]})
+    fig.subplots_adjust(wspace=0.45)
+    # (a) inertia
+    for seed, mk, off in ((0, "o", 0.97), (1, "s", 1.03)):
+        pd = record("F3.14b", seed=seed)["data"]["per_density"]
+        rho = sorted(float(r_) for r_ in pd)
+        y = [pd[f"{r_:.1f}" if f"{r_:.1f}" in pd else str(r_)]["rM"] for r_ in rho]
+        ax.errorbar([r_ * off for r_ in rho], [v[0] for v in y], [v[1] for v in y], fmt=mk, color=C1, ms=4,
+                    mec="white", mew=0.5, label=f"1+1 kink, seed {seed}", **ERR)
+        print(f"    F3.14b seed {seed}: " + ", ".join(f"rho {r_:g}: {v[0]:.4f} +- {v[1]:.4f}" for r_, v in zip(rho, y)))
+    for seed, mk, off in ((0, "D", 0.95), (1, "^", 1.05)):
+        rec = record("F3.15", seed=seed)
+        rM, se = _line_value(rec, r"r_M = M_in / M_rest ([0-9.]+) \+- ([0-9.]+)")
+        rho = float(rec["params"].get("rho", 30))
+        ax.errorbar([rho * off], [rM], [se], fmt=mk, color=C2, ms=4, mec="white", mew=0.5,
+                    label=f"2+1 wall, seed {seed}", **ERR)
+        print(f"    F3.15 seed {seed}: rho {rho:g}: r_M {rM:.4f} +- {se:.4f}")
+    ax.axhline(1.0, color=INK2, lw=0.8, ls=(0, (1, 2)))
+    ax.set_xscale("log")
+    ax.set_xticks([30, 100, 200, 400, 800])
+    ax.set_xticklabels(["30", "100", "200", "400", "800"])
+    ax.minorticks_off()
+    ax.set_xlabel(r"density $\rho$")
+    ax.set_ylabel(r"$r_M=M_{\rm in}/M_{\rm rest}$")
+    ax.set_ylim(0.80, 1.08)
+    ax.set_title("(a) inertia", loc="left")
+    ax.legend(loc="lower right", fontsize=5.4, handletextpad=0.2)
+    # (b) swerves
+    cells = record("F3.14c")["data"]["cells"]
+    keys = sorted(cells, key=lambda c: (float(c.split("_")[1]), float(c.split("_")[0])))
+    for i, c in enumerate(keys):
+        rho, mu = (float(v) for v in c.split("_"))
+        judged = not (mu > 1.0)
+        bx.errorbar([i], [cells[c]["R"]], [cells[c]["R_se"]], fmt="o", color=C1 if judged else INK2, ms=4,
+                    mfc=C1 if judged else "white", mec=C1 if judged else INK2, mew=0.8, **ERR)
+        print(f"    F3.14c {c}: R {cells[c]['R']:.3f} +- {cells[c]['R_se']:.3f}{'' if judged else ' (reported)'}")
+    bx.set_xticks(range(len(keys)))
+    bx.set_xticklabels([f"$M\\,{8 * float(c.split('_')[1]) ** 0.5:g}$\n$\\rho\\,{float(c.split('_')[0]):g}$" for c in keys],
+                       fontsize=6.2)
+    bx.axhline(1.0, color=INK2, lw=0.8, ls=(0, (1, 2)))
+    bx.set_ylim(0.7, 1.2)
+    bx.set_xlim(-0.6, len(keys) - 0.4)
+    bx.set_ylabel(r"$D_p\,\rho\,/\,(\frac{32}{15}\mu^{5/2})$")
+    bx.set_title("(b) swerves", loc="left")
+    bx.text(len(keys) - 1, 0.74, "reported", ha="center", fontsize=5.8, color=INK2)
+    # (c) fall under the growth rule
+    for seed, mk, off in ((0, "o", -0.25), (1, "s", 0.25)):
+        rec = record("F5.2b", seed=seed)
+        pts = [(ma, *_line_value(rec, rf"^\s*M_A {ma}, M_B 8: .*?r_B ([0-9.]+) \+- ([0-9.]+)")) for ma in (4, 8, 16)]
+        cx.errorbar([p_[0] * (1 + off / 8) for p_ in pts], [p_[1] for p_ in pts], [p_[2] for p_ in pts], fmt=mk + "-",
+                    color=C1, ms=4, lw=0.8, mec="white", mew=0.5, label=f"test mass 8, seed {seed}", **ERR)
+        r4, s4 = _line_value(rec, r"^\s*M_A 8, M_B 4: .*?r_B ([0-9.]+) \+- ([0-9.]+)")
+        cx.errorbar([8 * (1 + (off + 0.5) / 8)], [r4], [s4], fmt="D" if seed == 0 else "^", color=C2, ms=4, mec="white",
+                    mew=0.5, label=f"test mass 4, seed {seed}", **ERR)
+        print(f"    F5.2b seed {seed}: " + ", ".join(f"M_A {a_}: r_B {b_:.4f} +- {c_:.4f}" for a_, b_, c_ in pts) +
+              f"; test mass 4 at M_A 8: {r4:.4f} +- {s4:.4f}")
+    cx.axhline(1.0, color=INK2, lw=0.8, ls=(0, (1, 2)))
+    cx.set_xscale("log")
+    cx.set_xticks([4, 8, 16])
+    cx.set_xticklabels(["4", "8", "16"])
+    cx.minorticks_off()
+    cx.set_xlabel(r"source mass $M_A$")
+    cx.set_ylabel(r"fall / continuum, $r_B$")
+    cx.set_ylim(0.94, 1.08)
+    cx.set_title("(c) fall", loc="left")
+    cx.legend(loc="lower left", fontsize=5.4, handletextpad=0.2)
+    save(fig, "fig_defect")
+
+
+# ===================================================================================== fig_fieldeq (F6.8g, F6.10b, OV3-lin-a)
+
+def _ov3_inputs():
+    """Stiffness at n = kT = 4 (F6.8g) and source form factors (F6.10b) at the common wavenumbers, from the records."""
+    g, b = record("F6.8g"), record("F6.10b")
+    ov3 = {float(k): v for k, v in g["data"]["ov3"].items()}
+    rat = b["data"]["ratios"]
+    F = {s: {float(k): v["ratio"] for k, v in rat[s].items()} for s in ("omega", "nu")}
+    dF = {s: {float(k): v["delta"] for k, v in rat[s].items()} for s in ("omega", "nu")}
+    return g, ov3, F, dF
+
+
+def fig_fieldeq():
+    """(a) the three static stiffnesses at the fixed age kT = 4 (F6.8g rows and fits); (b) the source form factors of the
+    pairwise matter action (F6.10b; bars: the stated Delta of the record); (c) the static linear response computed from
+    (a) and (b) by stationarity of the two expected actions (diag/ov3_lin.py): the field of a dust slab against
+    linearised GR, gamma(k) = Psi/Phi of dust, and the lapse of a static BPS wall against that of dust of the same
+    energy (sign reversed: GR gives -1). At k -> 0 the solver is fed the Einstein--Hilbert values and form factors 1."""
+    from diag.ov3_lin import response
+    print("fig_fieldeq: the linear field equation of the order")
+    g, ov3, F, dF = _ov3_inputs()
+    fig, (ax, bx, cx) = plt.subplots(1, 3, figsize=(WIDTH, 2.45))
+    fig.subplots_adjust(wspace=0.45)
+    D = g["data"]
+    kk = np.linspace(0.0, 0.13, 200)
+    kk[0] = 1e-9
+    for key, rows, col, mk, lab in (("c@4", "optical", C1, "o", r"conformal $\mathcal{A}/6$"),
+                                    ("ab@4", "mixed", C2, "s", r"mixed $\mathcal{B}/8$"),
+                                    ("bb@4", "optical", C3, "D", r"optical $\mathcal{C}/2$")):
+        K0, c1, c0 = D["fits"][key][:3]
+        field = {"c@4": "Kc", "ab@4": "Kab", "bb@4": "Kbb"}[key]
+        pts = sorted((r_["k"], r_[field]) for r_ in D[rows] if abs(r_.get("n", 4.0) - 4.0) < 1e-9)
+        ax.plot(kk, kfit(kk, K0, c1, c0), color=col, lw=1.0)
+        ax.plot([p_[0] for p_ in pts], [p_[1] for p_ in pts], mk, color=col, ms=4 if key != "ab@4" else 6,
+                mfc=col if key != "ab@4" else "none", mew=0.9, label=f"{lab}, $k\\to0$: {K0:.5f}")
+        print(f"    F6.8g {key}: K0 {K0:.5f}; " + ", ".join(f"k {a_:g}: {b_:.5f}" for a_, b_ in pts))
+    ax.axhline(1.0, color=INK2, lw=0.8, ls=(0, (1, 2)))
+    ax.set_xlim(0, 0.13)
+    ax.set_ylim(0.76, 1.02)
+    ax.set_xlabel(r"$k\ell_k$")
+    ax.set_ylabel("stiffness / Einstein--Hilbert")
+    ax.set_title(r"(a) order, $kT=4$", loc="left")
+    ax.legend(loc="lower left", fontsize=5.6, handletextpad=0.3)
+    for s, col, mk, lab in (("omega", C1, "o", r"$F_\omega$ (trace)"), ("nu", C3, "D", r"$F_\nu$ ($\sum_iT_{ii}$, cones)")):
+        ks = sorted(F[s])
+        bx.errorbar(ks, [F[s][k] for k in ks], [dF[s][k] for k in ks], fmt=mk + "-", color=col, ms=4, lw=0.9,
+                    mec="white", mew=0.5, label=lab, **ERR)
+        print(f"    F6.10b {s}: " + ", ".join(f"k {k:g}: {F[s][k]:.4f}" for k in ks))
+    bx.axhline(1.0, color=INK2, lw=0.8, ls=(0, (1, 2)))
+    bx.set_xlim(-0.005, 0.13)
+    bx.set_ylim(0.76, 1.02)
+    bx.set_xlabel(r"$k\ell_k$")
+    bx.set_ylabel(r"source / $T_{ab}$")
+    bx.set_title("(b) matter, wall", loc="left")
+    bx.legend(loc="lower left", fontsize=5.6, handletextpad=0.3)
+    ks = [0.0] + sorted(ov3)
+    out = {"Phi": [], "gamma": [], "wall": []}
+    for k in ks:
+        if k == 0.0:
+            r = response(1.0, 1.0, 1.0, 1.0, 1.0)
+        else:
+            r = response(ov3[k]["K_c"], ov3[k]["K_ab"], ov3[k]["K_bb"], F["omega"][k], F["nu"][k])
+        out["Phi"].append(r["dust"]["Phi/GR"])
+        out["gamma"].append(r["dust"]["Psi/Phi"])
+        out["wall"].append(-r["wall"]["Phi"] / r["dust"]["Phi"])
+    for key, col, mk, lab in (("Phi", C1, "o", r"dust $\Phi/\Phi_{\rm GR}$"), ("gamma", C3, "D", r"dust $\gamma(k)=\Psi/\Phi$"),
+                              ("wall", C2, "s", r"$-$wall/dust lapse (repels)")):
+        cx.plot(ks, out[key], mk + "-", color=col, ms=4, lw=0.9, mec="white", mew=0.5, label=lab)
+        print(f"    response {key}: " + ", ".join(f"k {k:g}: {v:.4f}" for k, v in zip(ks, out[key])))
+    cx.axhline(1.0, color=INK2, lw=0.8, ls=(0, (1, 2)))
+    cx.set_xlim(-0.005, 0.13)
+    cx.set_ylim(0.76, 1.16)
+    cx.set_xlabel(r"$k\ell_k$")
+    cx.set_ylabel("response / linearised GR")
+    cx.set_title("(c) response", loc="left")
+    cx.legend(loc="lower left", fontsize=5.6, handletextpad=0.3)
+    save(fig, "fig_fieldeq")
+
+
+# ===================================================================================== fig_chain (diagram)
+
+def fig_chain():
+    """The chain of the field equation of the order as a diagram: two actions of one order, their stationarity, the linear
+    field equation and its consequences, with the tests that carry each step and their status. The status is written in
+    each box (passed / development / derived / open) and also shown by the edge (solid: frozen test or derived from
+    frozen records; dashed: development; dotted: open), so it is not carried by colour alone. Numbers are read from the
+    records."""
+    from matplotlib.patches import FancyBboxPatch
+    from diag.ov3_lin import response
+    print("fig_chain: the chain of the field equation")
+    g, ov3, F, _ = _ov3_inputs()
+    K0 = {k: g["data"]["fits"][k][0] for k in ("c@4", "ab@4", "bb@4")}
+    r12 = response(ov3[0.12]["K_c"], ov3[0.12]["K_ab"], ov3[0.12]["K_bb"], F["omega"][0.12], F["nu"][0.12])
+    v9 = record("F6.9a", seed=0)["data"]["eps"]
+    worst = max(abs(v["c4eps"]) + 2 * v["se"] for v in v9.values())
+    a10 = record("F6.10a")["data"]["rows"]
+    rkin = max(abs(v["R"]) for v in a10.values())
+    fig = plt.figure(figsize=(WIDTH, 3.9))
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_xlim(0, 100)
+    ax.set_ylim(0, 64)
+    ax.axis("off")
+    ax.grid(False)
+    style = {"frozen": dict(ls="-", lw=1.0), "dev": dict(ls=(0, (4, 2)), lw=0.9), "open": dict(ls=(0, (1, 1.5)), lw=0.9)}
+    fill = {"frozen": "#eef4fc", "dev": "#fdf1ea", "open": "#f4f4f2", "plain": "white"}
+
+    def box(x, y, w, h, title, body, kind, status=None):
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.3,rounding_size=1.2",
+                                    fc=fill[kind], ec=INK2, **style.get(kind, style["frozen"])))
+        ax.text(x + 1.2, y + h - 1.4, title, ha="left", va="top", fontsize=6.9, weight="bold", color=INK)
+        ax.text(x + 1.2, y + h - 4.6, body, ha="left", va="top", fontsize=6.0, color=INK, linespacing=1.25)
+        if status:
+            ax.text(x + w - 1.0, y + 0.9, status, ha="right", va="bottom", fontsize=5.6, style="italic", color=INK2)
+
+    def arrow(x0, y0, x1, y1):
+        ax.annotate("", xy=(x1, y1), xytext=(x0, y0),
+                    arrowprops=dict(arrowstyle="-|>", color=INK2, lw=0.9, shrinkA=0, shrinkB=0, mutation_scale=8))
+
+    box(30, 56, 40, 7, "a causal order of events", "Poisson sprinkling: order $+$ number $=$ geometry", "plain")
+    box(1, 38, 45, 14, r"the action of the order $\langle S_{\rm BD}\rangle$",
+        "static stiffness, three sectors, at $kT=4$:\n"
+        f"$\\mathcal{{A}}/6\\to{K0['c@4']:.5f}$, $\\mathcal{{B}}/8\\to{K0['ab@4']:.5f}$, $\\mathcal{{C}}/2\\to{K0['bb@4']:.5f}$\n"
+        f"flat order: no volume term ($<{worst * 1e4:.0f}\\times10^{{-4}}$ per element, 2D)",
+        "frozen", "passed: F6.8a, b2, c2, g; F6.9a")
+    box(54, 38, 45, 14, r"matter: a field on all events, $S_m^\phi$",
+        "a kink carried by the Green function of the order;\n"
+        "pairwise action with the BD kernel $\\to T_{ab}\\times F_\\omega, F_\\nu\\to1$\n"
+        f"2D trace: kinetic share $\\leq{rkin:.3f}$, falls with density",
+        "frozen", "passed: F3.14b, F3.15; F6.10a, b")
+    box(1, 24, 35, 11, "selection of the order",
+        "the action alone does not hold\nthe flat order; saddle of $\\langle S\\rangle$ (linear),\naction + entropy beyond",
+        "dev", "development (OV1)")
+    box(64, 24, 35, 11, "conservation",
+        "energy of $S_m^\\phi$ as a Noether charge,\nkept by the order's dynamics\nto $0.3$--$0.5\\,\\%$ (2D)",
+        "dev", "development (T3)")
+    box(12, 10, 76, 11, r"stationarity $\delta(\langle S_{\rm BD}\rangle+\langle S_m\rangle)/\delta g_{ab}=0$, first order",
+        "$G_{ab}+2(\\eta_{ab}\\partial^2-\\partial_a\\partial_b)F_0(\\partial^2)R=8\\pi G\\,T^{\\rm eff}_{ab}$\n"
+        f"$k\\ell_k=0.12$: dust $\\Phi/\\Phi_{{\\rm GR}}={r12['dust']['Phi/GR']:.3f}$, $\\gamma={r12['dust']['Psi/Phi']:.3f}$, "
+        f"wall/dust $={r12['wall']['Phi'] / r12['dust']['Phi']:+.3f}$ (repels)",
+        "frozen", "derived from frozen records (OV3-lin-a)")
+    box(1, 0.4, 98, 8.2, "open",
+        r"second order ($\beta$); old fields ($\varepsilon=b(kT)^2$, F6.8f); entropic correction to the stiffness;" "\n"
+        r"time-dependent and tensor sectors; the value of $G$; a defect in 3+1", "open")
+    for x0, x1 in ((42, 23.5), (58, 76.5)):
+        arrow(x0, 55.6, x1, 52.6)
+    arrow(41, 37.6, 41, 21.6)
+    arrow(59, 37.6, 59, 21.6)
+    print(f"    K0 {K0}; F6.9a worst |c/4eps|+2SE {worst:.2e}; F6.10a max |R| {rkin:.4f}; "
+          f"k 0.12: Phi/GR {r12['dust']['Phi/GR']:.4f}, gamma {r12['dust']['Psi/Phi']:.4f}, "
+          f"wall/dust {r12['wall']['Phi'] / r12['dust']['Phi']:+.4f}")
+    save(fig, "fig_chain")
+
+
 # ===================================================================================== main
 
-FIGURES = [fig_blind, fig_response, fig_counter, fig_conformal, fig_sectors, fig_optical, fig_window, fig_fall, fig_matter]
+FIGURES = [fig_blind, fig_response, fig_counter, fig_conformal, fig_sectors, fig_optical, fig_window, fig_fall, fig_matter,
+           fig_defect, fig_chain, fig_fieldeq]
 
 if __name__ == "__main__":
     only = set(sys.argv[1:])                           # e.g. "python make_figures.py fig_window" draws one figure

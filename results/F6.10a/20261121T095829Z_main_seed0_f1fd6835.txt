@@ -1,0 +1,9 @@
+2D light-cone square, eps 0.12, kink m 9, bump s 0.09 at (0.45, 0.55); target int sigma T^a_a sqrt|g| / a = -5.84213; continuum flat S_kin -30.45582
+  N 66560 level (192, 128, 96): flat <S_kin> -30.1315 (0.9894 of the continuum); d<S_kin>/da +0.08145; R = -0.0139
+  N 66560 level (256, 160, 128): flat <S_kin> -30.1315 (0.9894 of the continuum); d<S_kin>/da +0.08145; R = -0.0139
+  N 66560: R = -0.0139, Delta 0.0000; |R| + Delta = 0.0139 -> PASSED
+  N 266240 level (192, 128, 96): flat <S_kin> -30.3533 (0.9966 of the continuum); d<S_kin>/da +0.02749; R = -0.0047
+  N 266240 level (256, 160, 128): flat <S_kin> -30.3533 (0.9966 of the continuum); d<S_kin>/da +0.02748; R = -0.0047
+  N 266240: R = -0.0047, Delta 0.0000; |R| + Delta = 0.0047 -> PASSED
+  I1 flat S_kin at N 266240: 0.9966 of the continuum (tol 0.01) -> OK; I2 quadrature -> OK; I3 potential derivative -5.8421255 vs -5.8421255 -> OK
+cost: 183 s
