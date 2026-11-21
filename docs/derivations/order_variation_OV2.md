@@ -583,10 +583,14 @@ v = 0.3, ε = 0.12, H = 8.386, 48 sprinklings per row.
 | 100 | 1.0 | 8 | 12 810 | 0.41 | 0.49 | 0.48 |
 | 200 | 0.5 | 6 | 19 212 | 0.48 | 1.34 | 1.40 |
 | 200 | 0.5 | 8 | 25 614 | 0.45 | 1.20 | 1.26 |
+| 200 | 1.0 | 6 | 19 212 | 0.45 | 0.72 | 0.83 |
+| 200 | 1.0 | 8 | 25 614 | 0.41 | 0.77 | 0.80 |
 
-- All means agree with ⟨B⟩ = ⟨R⟩ = 0 within 2 SE.
+- All means agree with ⟨B⟩ = ⟨R⟩ = 0 within 2 SE. At ρ = 200, Z = 8, ⟨B⟩ = +1.0 ± 0.5 at both ramp widths.
+  The two rows use the same sprinklings (seeds 0–47): this is one fluctuation of about 2 SE, seen twice.
+- The rows of one ρ and Z share their sprinklings; only the window differs.
 - The scatter per sprinkling is of the order of H itself.
-- It grows with density: SD(R) by a factor 1.3–1.8 from ρ = 100 to 200, at d = 0.5. The sd of S_kin also grows
+- It grows with density: SD(R) by a factor 1.3–1.8 from ρ = 100 to 200 at d = 0.5, and by 1.2–1.6 at d = 1. The sd of S_kin also grows
   with density, as √N (section 9).
 - It falls with wider ramps.
 - Unpaired, the 1 % target needs n ≈ 4 000–70 000 sprinklings.
