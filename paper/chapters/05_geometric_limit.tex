@@ -517,9 +517,58 @@ faster than linearly: at $k\ell_k=0.12$ the age part $k^2F_{bb}(n)$ grows betwee
 increments that increase with $n$, whereas the conformal and mixed sectors become linear from $n\simeq8$
 ($c_T\simeq0.110$ and $0.195$). A local fit of the form $sn+qn^2$ is not stable: its coefficients depend on the
 range of $n$, and they do so for the conformal sector as well below $n\simeq8$, where its linear asymptotics has
-not yet set in. The data therefore do not fix the form of the optical age term; its behaviour as $kT\to\infty$,
-the regime of any physical field, is open, and the predictions of the age term depend on it
-(Part~\ref{part:predictions}; Fig.~\ref{fig:optical}).
+not yet set in. These data do not fix the form of the optical age term (Fig.~\ref{fig:optical}).
+
+The form was then computed for long intervals with an instrument built for them: coordinates that follow the
+bent ray, so that the large parts removed by the BD moments cancel analytically, and 80-bit arithmetic. For a long,
+nearly null interval the bending of rays adds to the second variation of its volume a part that grows as $(kL)^4$
+and that the moments remove; the part that survives grows as $(kL)^5$, and the age term of the optical sector at
+second order in the amplitude grows as
+\begin{equation}
+  1-\hat K_{bb}\supset c_5\,k^2\,(kT)^5 ,
+\end{equation}
+with a local exponent $4.984$ to $5.000$ for $kT=192$ to $6144$ at $k\ell_k=0.13$ and $c_5=3.05\times10^{-7}$
+(F6.8e3, \verdict{passed}; its two earlier revisions failed instrument checks). With the local part neglected it
+reverses the sign of $\hat K_{bb}$ near $kT\simeq45$ at $k\ell_k=0.13$. The second-order form has no static limit.
+
+\paragraph{Finite amplitude.} The second order in the optical amplitude $b$ holds while $\varepsilon=b\,(kT)^2$ is
+small. In the scaling limit $kT\to\infty$, $b\to0$ at fixed $\varepsilon$, the ray between the ends of a long
+interval obeys the equation of a driven pendulum, $\psi''=-\varepsilon\sin(ps+\theta+\psi)$, with $s$ the
+fraction of the interval, $p$ the phase advance along it and $\theta$ the phase of the wave, and the static response
+at finite amplitude, $K_{\rm eff}=[\partial_bE(b)-\partial_bE(0)]/b$ with $E$ the expected action, takes the form
+$K_{\rm eff}=K_2\,R(\varepsilon)$, where $K_2$ is the second-order term and $R=1$ its extrapolation. The interval
+volumes that enter were calibrated against a brute-force computation in the medium itself (K.18b,
+\verdict{passed}; its first version K.18 failed a check of the form of the extrapolation, not of the volumes).
+Up to $\varepsilon=4$ every phase has one ray, and (F6.8f):
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+$\varepsilon$ & $0.25$ & $1$ & $2$ & $4$\\
+\midrule
+$R(\varepsilon)=K_{\rm eff}/K_2$ & $1.0034$ & $1.0564$ & $1.2482$ & $2.5178$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The local exponent $\gamma_T=\dd\ln K_{\rm eff}/\dd\ln T$, $5$ at second order and $0$ for a static limit, is
+$5.07$, $5.48$ and $7.02$ on the three intervals: the optical age term grows faster than its second-order form, and
+the test fails by its pre-registered criterion for a bend towards saturation (F6.8f, \verdict{failed}, reading~B).
+
+\paragraph{The first conjugate point.} The growth comes from the slow directions ($p\lesssim3$) at the phase
+that focuses light, where the ray stays straight and its Jacobi fields obey $J''=-\varepsilon J$. The transverse
+stiffness of the interval at its midpoint is then $2\sqrt\varepsilon\cot(\sqrt\varepsilon/2)$, which vanishes at
+$\varepsilon=\pi^2$: the field focuses light within the interval, the first conjugate point appears, and a second ray
+arrives. As this point is approached the coefficient of the age term in its moment form diverges, roughly as the
+inverse fifth power of that stiffness at $p=0$ (development data up to $\varepsilon=9.5$, not a test). Beyond it
+the interval volume is not analytic in the moment variable and the expansion that selects the age term ends. For
+$\varepsilon\gg\pi^2$ the rays run in the channels of the wave, and the first arrival can become a continuous
+family because a plane wave is symmetric under translations along its fronts (development; whether this survives
+in a generic field is open).
+
+\paragraph{Old fields.} $\varepsilon=\pi^2$ is reached at the age $T\simeq\pi/(k\sqrt b)$. For a static field
+$\nu\simeq-2\Phi$, so $b\sim2|\Phi|/c^2$; for the field of the Earth at the scale of its radius this is about
+thirty light-minutes. Every long-lived field lies far beyond. Whether an old field has a finite static response,
+a property of the age term as $\varepsilon\to\infty$, is therefore open; it requires the volumes of intervals with
+several rays (Part~\ref{part:predictions}).
 
 \begin{figure}[t]
   \centering
@@ -532,7 +581,8 @@ $c_T\,\Delta(kT)$ of F6.8a, the optical points lie above it and grow faster than
 
 \subsection{What remains}
 
-The asymptotic form of the age term in the optical sector, analytically as for the conformal one; the origin of
+The static response of old fields in the optical sector, $\varepsilon\gg\pi^2$, from the volumes of intervals
+with several rays (the scaling limit above reduces it to a one-dimensional variational problem); the origin of
 the differences between the sectors beyond the leading order (the age cut or the action); and the field of a
 point mass by Fourier inversion of Eq.~\eqref{eq:gammaABC}. These are the next computations
 (Part~\ref{part:predictions}).
