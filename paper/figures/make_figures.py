@@ -750,7 +750,7 @@ def fig_chain():
         f"$\\mathcal{{A}}/6\\to{K0['c@4']:.5f}$, $\\mathcal{{B}}/8\\to{K0['ab@4']:.5f}$, $\\mathcal{{C}}/2\\to{K0['bb@4']:.5f}$\n"
         f"flat order: no volume term ($<{worst * 1e4:.0f}\\times10^{{-4}}$ per element, 2D)",
         "frozen", "passed: F6.8a, b2, c2, g; F6.9a")
-    box(54, 38, 45, 14, r"matter: a field on all events, $S_m^\phi$",
+    box(54, 38, 45, 14, r"matter: a field on all events, $S_m^\chi$",
         "a kink carried by the Green function of the order;\n"
         "pairwise action with the BD kernel $\\to T_{ab}\\times F_\\omega, F_\\nu\\to1$\n"
         f"2D trace: kinetic share $\\leq{rkin:.3f}$, falls with density",
@@ -759,7 +759,7 @@ def fig_chain():
         "the action alone does not hold\nthe flat order; saddle of $\\langle S\\rangle$ (linear),\naction + entropy beyond",
         "dev", "development (OV1)")
     box(64, 24, 35, 11, "conservation",
-        "energy of $S_m^\\phi$ as a Noether charge,\nkept by the order's dynamics\nto $0.3$--$0.5\\,\\%$ (2D)",
+        "energy of $S_m^\\chi$ as a Noether charge,\nkept by the order's dynamics\nto $0.3$--$0.5\\,\\%$ (2D)",
         "dev", "development (T3)")
     box(12, 10, 76, 11, r"stationarity $\delta(\langle S_{\rm BD}\rangle+\langle S_m\rangle)/\delta g_{ab}=0$, first order",
         "$G_{ab}+2(\\eta_{ab}\\partial^2-\\partial_a\\partial_b)F_0(\\partial^2)R=8\\pi G\\,T^{\\rm eff}_{ab}$\n"

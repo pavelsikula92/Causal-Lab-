@@ -643,13 +643,13 @@ bear on this.
 \begin{itemize}
 \item \emph{The flat order has no volume term.} The smeared BD action of nested flat causal diamonds in 2D
   ($T/w=8$, $16$, $32$; volumes $1:4:16$) grows with no term proportional to the number of elements:
-  $c/(4\varepsilon)=(+0.5\pm1.7)$, $(-0.7\pm1.6)$, $(+0.6\pm1.5)\times10^{-4}$ per element at $\varepsilon=0.24$,
+  $c/(4\epsilon)=(+0.5\pm1.7)$, $(-0.7\pm1.6)$, $(+0.6\pm1.5)\times10^{-4}$ per element at $\epsilon=0.24$,
   $0.12$, $0.06$, and $(+0.15\pm1.7)$, $(-0.50\pm1.6)$, $(-0.61\pm1.6)\times10^{-4}$ on new sprinklings (F6.9a,
-  \verdict{passed}, replicated; criterion $|c/(4\varepsilon)|+2\,{\rm SE}\le10^{-3}$).
+  \verdict{passed}, replicated; criterion $|c/(4\epsilon)|+2\,{\rm SE}\le10^{-3}$).
 \item \emph{The action alone does not hold the flat order.} A Metropolis sampler of 2D orders with the weight
-  $e^{-\beta S_\BD}$ ($\varepsilon=0.12$) and local moves, started from flat orders, leaves the manifold-like phase
-  above an escape point $\beta_e=2.42$, $1.26$, $0.97$, $0.83$ at $N=50$, $100$, $200$, $400$, into crystalline orders
-  of much lower action (development). From $N=100$ on this is consistent with $\beta_e\approx0.68+58/N$, a finite
+  $e^{-\lambda S_\BD}$ ($\epsilon=0.12$) and local moves, started from flat orders, leaves the manifold-like phase
+  above an escape point $\lambda_e=2.42$, $1.26$, $0.97$, $0.83$ at $N=50$, $100$, $200$, $400$, into crystalline orders
+  of much lower action (development). From $N=100$ on this is consistent with $\lambda_e\approx0.68+58/N$, a finite
   limit that one degree of freedom does not establish. The escape is a stability limit under local moves within
   3\,500 sweeps, an upper bound for an equilibrium transition.
 \end{itemize}
@@ -658,21 +658,22 @@ adopted here is the saddle of the ensemble mean $\langle S\rangle$, conditioned 
 linear order, and beyond it the balance of action and entropy through the effective functional of a macrostate
 $\mathcal M$,
 \begin{equation}\label{eq:gammabeta}
-  \Gamma_\beta(\mathcal M)=-\frac1\beta\ln\sum_{H\in\mathcal M}e^{-\beta S_{\rm tot}[H]} .
+  \Gamma_\lambda(\mathcal M)=-\frac1\lambda\ln\sum_{H\in\mathcal M}e^{-\lambda S_{\rm tot}[H]} ,
 \end{equation}
+with $\lambda$ the weight of the action, as in the sampler above.
 Whether the entropic part changes the stiffness already at quadratic order is not measured; the results below are
 for the bare ensemble action.
 
 \subsection{The source from the order}
 
-For a scalar field $\phi$ on the events, the matter action that depends only on the order is the pairwise
+For a scalar field $\chi$ on the events (the field of Sec.~\ref{sec:fielddefect}), the matter action that depends only on the order is the pairwise
 (Dirichlet) form
 \begin{equation}\label{eq:smphi}
-  S_m^\phi=-c_d\sum_{x\prec y}f(n_{xy},\varepsilon)\,(\phi_x-\phi_y)^2-\frac1\rho\sum_vV(\phi_v),
+  S_m^\chi=-c_d\sum_{x\prec y}f(n_{xy},\epsilon)\,(\chi_x-\chi_y)^2-\frac1\rho\sum_vV(\chi_v),
 \end{equation}
-with the smeared BD weight $f$ of the number $n_{xy}$ of elements in the interval, $c_2=\varepsilon^2$ in 2D. It is
-exactly invariant under $\phi\to\phi+2\pi$; the plain bilinear form would couple $R\phi^2$. Its expectation over
-sprinklings follows from the Mecke formula with the exact kernel average, so the response of $\langle S_m^\phi\rangle$
+with the smeared BD weight $f$ of the number $n_{xy}$ of elements in the interval, $c_2=\epsilon^2$ in 2D. It is
+exactly invariant under $\chi\to\chi+2\pi$; the plain bilinear form would couple $R\chi^2$. Its expectation over
+sprinklings follows from the Mecke formula with the exact kernel average, so the response of $\langle S_m^\chi\rangle$
 to the metric is a deterministic integral, compared with $\tfrac12\int T^{ab}\delta g_{ab}\sqrt{|g|}$ at fixed
 matter.
 \begin{itemize}
@@ -694,9 +695,9 @@ matter.
   \end{tabular}
   \end{center}
   Age $T=80$ and $120$ and two grids agree within $0.11\,\%$ (F6.10b, \verdict{passed}).
-\item \emph{Conservation.} The energy of $S_m^\phi$ is a Noether charge, not a sum over the pairs that cross a cut
-  (that sum has zero expectation). With a smooth time window $\chi$ the identity
-  $\langle\sum_x\chi_xE_x\,\partial_t\phi(x)\rangle=\langle Q(t_2)-Q(t_1)\rangle$, $E_x=\partial S_m/\partial\phi_x$,
+\item \emph{Conservation.} The energy of $S_m^\chi$ is a Noether charge, not a sum over the pairs that cross a cut
+  (that sum has zero expectation). With a smooth time window $W$ the identity
+  $\langle\sum_xW_xE_x\,\partial_t\chi(x)\rangle=\langle Q(t_2)-Q(t_1)\rangle$, $E_x=\partial S_m/\partial\chi_x$,
   holds exactly in expectation. A kink evolved by Eq.~\eqref{eq:c0} satisfies it as a smooth kink on the same
   sprinkling does, to $(-0.01\pm0.28)\,\%$ and $(-0.08\pm0.47)\,\%$ of its energy at $\rho=100$ and $200$ (512 and
   192 sprinklings; development, not a frozen test). The energy of the fitted kink itself grows over the window, by
@@ -711,7 +712,8 @@ coefficients of Sec.~\ref{sec:bdaction} and $\alpha=-1/(8\pi G)$,
   \alpha k^2\bigl[\cA\,\omega+\tfrac12\cB\,\nu\bigr]=F_\omega\,T^a{}_a,\qquad
   \alpha k^2\bigl[\tfrac12\cB\,\omega+\cC\,\nu\bigr]=F_\nu\textstyle\sum_iT_{ii},
 \end{equation}
-with $\Phi=\omega$ and $\Psi=-(\omega+\nu)$. For $\cA,\cB,\cC=6,8,2$ and $F=1$ it is the static linearised Einstein
+with $\Phi=\omega$ and $\Psi=-(\omega+\nu)$; here $\rho$ and $p$ are the energy density and the pressures of the
+matter, not the density of events. For $\cA,\cB,\cC=6,8,2$ and $F=1$ it is the static linearised Einstein
 equation: $\nabla^2\Phi=4\pi G(\rho+\sum p)$ and $\nabla^2\Psi=4\pi G\rho$.
 
 The coefficients at the same age are read at fixed $n=kT=4$, the field of age four inverse wavenumbers. The longer
