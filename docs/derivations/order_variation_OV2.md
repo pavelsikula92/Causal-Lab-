@@ -548,3 +548,77 @@ velocity, as in the F3.14b readout). The ramp terms are evaluated on the C0 valu
 - **Stage 2, C0 field** (the F3.14b rule; v = 0.3 and the kicked kink): B_χ against R_χ, and H(t) against the
   continuum readout of F3.14b.
 - **F-b on the same windows:** the winding of φ across the ramps, by a separate readout.
+
+### 14.5 The pilot (development, 21 Nov; decisions 41 and 42)
+
+**Stage 0, L1** (diag/ov2_t3_l1.py). Light-cone square, kink m = 20, window t₁ = 0.4, t₂ = 0.6, ramp half-width 0.04.
+
+| N | v | −Q₂ | Q₁ | H on the slice | ⟨B⟩ | ⟨R⟩ |
+|---|---|---|---|---|---|---|
+| 66 560 | 0 | 158.82 | 158.80 | 160.00 | 0 | −0.017 |
+| 66 560 | 0.3 | 166.01 | 166.07 | 167.71 | +0.034 | +0.056 |
+| 266 240 | 0 | 159.61 | 159.59 | 160.00 | 0 | −0.019 |
+| 266 240 | 0.3 | 167.30 | 167.16 | 167.71 | −0.199 | −0.136 |
+
+- **The normalisation.** H = −Q holds to 0.3 % at N 266 240; the deficit falls with density as the flat S_kin of T1
+  does.
+- **The identity.** ⟨B⟩ = ⟨R⟩ holds to about 4·10⁻⁴ H, which is the grid level (two grids shown).
+- **The smooth kink** loses about 10⁻³ H across the window: the nonlocal departure from the stationarity of S_m.
+
+**Stage 1′, exact synthetic tests** (diag/ov2_t3_exact.py). A diamond (n_ad = 2), a chain of 5 (n = j − i − 1) and
+random sprinklings of 40 and 70 points. Against brute force, everything agrees to ≤ 1.4·10⁻¹⁰:
+- the interval counts;
+- S_m and E_x (finite differences);
+- the chain rule on one sprinkling, B − P = Σ_x Φ_t(x) ∂S_χ/∂φ_x;
+- R = Q₂ + Q₁ against its definition.
+
+**Stage 1, single sprinklings, smooth kink** (diag/ov2_t3_pilot.py). Rectangle T = 8, window 2.5–5.5, m = 1,
+v = 0.3, ε = 0.12, H = 8.386, 48 sprinklings per row.
+
+| ρ | d | Z | ⟨N⟩ | SD(B)/H | SD(R)/H | SD(B − R)/H |
+|---|---|---|---|---|---|---|
+| 100 | 0.5 | 6 | 9 608 | 0.36 | 1.05 | 1.00 |
+| 100 | 0.5 | 8 | 12 810 | 0.44 | 0.67 | 0.68 |
+| 100 | 1.0 | 6 | 9 608 | 0.33 | 0.62 | 0.54 |
+| 100 | 1.0 | 8 | 12 810 | 0.41 | 0.49 | 0.48 |
+| 200 | 0.5 | 6 | 19 212 | 0.48 | 1.34 | 1.40 |
+| 200 | 0.5 | 8 | 25 614 | 0.45 | 1.20 | 1.26 |
+
+- All means agree with ⟨B⟩ = ⟨R⟩ = 0 within 2 SE.
+- The scatter per sprinkling is of the order of H itself.
+- It grows with density: SD(R) by a factor 1.3–1.8 from ρ = 100 to 200, at d = 0.5. The sd of S_kin also grows
+  with density, as √N (section 9).
+- It falls with wider ramps.
+- Unpaired, the 1 % target needs n ≈ 4 000–70 000 sprinklings.
+
+**Stage 2, the C0 field** (diag/ov2_t3_c0.py; decision 42). The domain of dependence of F3.14b with X = 14 and T = 8,
+ρ = 100, launched v = 0.3, window 2.5–5.5 with d = 1, 48 sprinklings. On each sprinkling it computes the C0 arm (the
+fitted readout) and the smooth arm (the exact kink on the same events).
+
+| quantity | mean ± SE | SD/H |
+|---|---|---|
+| B (C0) | −0.18 ± 0.41 | 0.34 |
+| R (C0) | +0.01 ± 0.77 | 0.64 |
+| dB = B(C0) − B(smooth), paired | +0.113 ± 0.070 (1.3 ± 0.8 % of H) | 0.058 |
+| dR = R(C0) − R(smooth), paired | +0.195 ± 0.101 (2.3 ± 1.2 % of H) | 0.084 |
+| −Q₂/H (C0) | 0.918 ± 0.077 | |
+| Q₁/H (C0) | 0.919 ± 0.059 | |
+| H(t₂) − H(t₁), continuum readout of F3.14b | +0.023 ± 0.015 (0.3 % of H) | 0.012 |
+| v_fit | 0.291 ± 0.005 | |
+| F-b winding at t₁ / t₂ | 0.9972 / 0.9971 | |
+
+**Reading (development).**
+- **The noise is mostly the order's own.** It is common to a C0 field and a smooth field on the same events. The paired
+  differences have an SD per sprinkling 6–8 times smaller than either arm.
+- **With the paired design** the 1 % target needs n ≈ (1.96 · 0.058/0.01)² ≈ 130 sprinklings for dB and ≈ 270 for dR
+  at ρ = 100. Each costs about 10 s (both arms), so this is minutes on the author's machine.
+- **The C0 field at 48 sprinklings.** It balances like the smooth field within 1.3 ± 0.8 % (dB) and 2.3 ± 1.2 % (dR)
+  of H, about 1.6–1.9 SE: not resolved.
+- **The other readouts.** The continuum-readout energy is conserved to 0.3 ± 0.2 %, and the winding (F-b) is the same
+  on both ramps.
+- **The density dependence** of the paired scatter (ρ = 200) is being computed. It decides whether a card can go to
+  higher density.
+- **A card would use:**
+  - the paired design (C0 against the smooth field on the same sprinkling);
+  - the smooth arm's own identity as an instrument;
+  - stage 0 for the expected ⟨B_smooth⟩, about −10⁻³ H.
