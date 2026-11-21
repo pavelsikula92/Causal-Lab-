@@ -7,7 +7,8 @@ Checked, each to rounding:
   1. the relation and the interval counts n_xy (hand-built: a diamond and a chain with n known by hand);
   2. S_m and E_x = dS_m/dphi_x (central finite differences of a brute-force S_m);
   3. the chain rule on one sprinkling: B - P = sum_x Phi_t(x) dS_chi/dphi_x (finite differences of S_chi);
-  4. R = Q2 + Q1 = P - sum_pairs (chi'_a chi_b + chi_a chi'_b) w L - sum_x chi'_x U_x (brute force).
+  4. R = Q2 + Q1 = P - sum_pairs (chi'_a chi_b + chi_a chi'_b) w L - sum_x chi'_x U_x (brute force);
+  5. the fast 2D path noether_multi (Fenwick interval counts) equals the bitset kernel.
 
     python -m diag.ov2_t3_exact
 """
@@ -15,7 +16,8 @@ import math
 
 import numpy as np
 
-from diag.ov2_t3_kernels import chi_of, fker, future_bits, interval_count, interval_counts_fast, noether, past_bits
+from diag.ov2_t3_kernels import (chi_of, fker, future_bits, interval_count, interval_counts_fast, noether,
+                                 noether_multi, past_bits)
 
 
 def brute(t, z, phi, phit, rho, eps, m, t1, t2, d):
@@ -75,10 +77,13 @@ def check(name, t, z, phi, phit, rho=100.0, eps=0.12, m=1.0, t1=1.0, t2=2.0, d=0
     errE = float(np.max(np.abs(E - Eb)))
     errC = abs((B - Pp) - chain)
     errR = abs((Q2 + Q1) - Rb)
+    Bm, Pm, Q2m, Q1m, Sm = noether_multi(t, z, np.vstack([phi, phi]), np.vstack([phit, phit]), rho, eps, m, t1, t2, d)
+    errM = max(abs(Bm[1] - B), abs(Pm[1] - Pp), abs(Q2m[1] - Q2), abs(Q1m[1] - Q1), abs(Sm[1] - S))
     scale = max(1.0, abs(Sb))
-    ok = ok_n and errS < 1e-12 * scale and errE < 1e-8 and errC < 1e-8 and errR < 1e-12 * max(1.0, abs(Rb))
+    ok = (ok_n and errS < 1e-12 * scale and errE < 1e-8 and errC < 1e-8 and errR < 1e-12 * max(1.0, abs(Rb))
+          and errM < 1e-12 * scale)
     print(f"{name:28s} n_xy {'OK' if ok_n else 'FAIL'}; |dS| {errS:.1e}; max|dE| {errE:.1e}; |chain| {errC:.1e}; "
-          f"|dR| {errR:.1e}  -> {'OK' if ok else 'FAIL'}", flush=True)
+          f"|dR| {errR:.1e}; fast path {errM:.1e}  -> {'OK' if ok else 'FAIL'}", flush=True)
     return ok
 
 

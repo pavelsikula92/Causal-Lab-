@@ -14,6 +14,7 @@ slabs at t1 and t2 (a separate readout).
 Expected for a conserved energy: <B_C0> = <R_C0> = 0 within the scatter; -<Q2>/H and <Q1>/H as in the smooth arm.
 
     python -m diag.ov2_t3_c0 --rho 100 --n 48 --workers 2
+Progress lines with an estimate of the remaining time; with --out, the rows so far are saved at each progress line.
 """
 import argparse
 import json
@@ -23,7 +24,7 @@ from multiprocessing import Pool
 
 import numpy as np
 
-from diag.ov2_t3_kernels import future_bits, noether, past_bits
+from diag.ov2_t3_kernels import noether_multi
 from phases.F3_structure import field1d as F
 
 
@@ -53,13 +54,13 @@ def one(args):
     vf, x0 = np.polyfit(np.array(tms), np.array(xcs), 1)
     gf = 1 / math.sqrt(1 - vf * vf)
     phit_fit = -2 * gf * vf / np.cosh(gf * (x - x0 - vf * t))
-    P = past_bits(t, x)
-    Fb = future_bits(P)
-    Bc, _, Q2c, Q1c, _, _ = noether(t, x, phi, phit_fit, rho, eps, 1.0, t1, t2, d, P, Fb)
     g = 1 / math.sqrt(1 - vel * vel)
     phis = F.kink_exact(t, x, vel)
     phits = -2 * g * vel / np.cosh(g * (x - vel * t))
-    Bs, _, Q2s, Q1s, _, _ = noether(t, x, phis, phits, rho, eps, 1.0, t1, t2, d, P, Fb)
+    # both arms in one pass over the pairs (fast 2D path; equal to the bitset kernel to rounding, diag/ov2_t3_exact.py)
+    B, _, Q2, Q1, _ = noether_multi(t, x, np.vstack([phi, phis]), np.vstack([phit_fit, phits]), rho, eps, 1.0,
+                                    t1, t2, d)
+    Bc, Q2c, Q1c, Bs, Q2s, Q1s = B[0], Q2[0], Q1[0], B[1], Q2[1], Q1[1]
     H1 = F.energy(t, x, phi, t1, x0 + vf * t1)
     H2 = F.energy(t, x, phi, t2, x0 + vf * t2)
     return {"seed": seed, "N": int(t.size), "vf": float(vf), "x0": float(x0),
@@ -103,8 +104,17 @@ def main():
     t1, t2, d = [float(z) for z in q.win.split(",")]
     jobs = [(q.seed0 + i, q.rho, q.X, q.T, q.v, q.eps, t1, t2, d) for i in range(q.n)]
     t0 = time.time()
+    rows = []
     with Pool(q.workers) as pool:
-        rows = pool.map(one, jobs)
+        for r in pool.imap_unordered(one, jobs):
+            rows.append(r)
+            k = len(rows)
+            if k % max(1, q.workers) == 0 or k == len(jobs):
+                el = time.time() - t0
+                print(f"  [{k}/{len(jobs)}] {el:.0f} s elapsed, ~{el / k * (len(jobs) - k):.0f} s left", flush=True)
+                if q.out:
+                    json.dump({"args": vars(q), "rows": rows, "partial": k < len(jobs)}, open(q.out, "w"), indent=1)
+    rows.sort(key=lambda r: r["seed"])
     print(summary(rows, q.v, f"stage 2: rho {q.rho:g} X {q.X:g} T {q.T:g} v {q.v:g} eps {q.eps:g} window {q.win}; "
                              f"{time.time() - t0:.0f} s"), flush=True)
     if q.out:

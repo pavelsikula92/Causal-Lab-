@@ -148,3 +148,101 @@ def noether(t, z, phi, phit, rho, eps, m, t1, t2, d, P, F):
         else:
             Q1 += -dchi[x] * U
     return B, Pp, Q2, Q1, S, E
+
+
+# ================================================================================ fast path (2D only)
+# In 1+1, x < y iff du > 0 and dv > 0 (u = t - z, v = t + z), and n_xy is the number of events in the open
+# rectangle (u_x, u_y) x (v_x, v_y). For each a the future events are visited in increasing u; the v-ranks of the
+# future events already visited are kept in a Fenwick tree, so n_ab = #(visited with v < v_b). Cost O(#pairs log N),
+# no bitsets; all arms (rows of PHI, PHIT) are accumulated in the same pass over the pairs.
+
+@nb.njit(cache=True)
+def noether_multi(t, z, PHI, PHIT, rho, eps, m, t1, t2, d):
+    """As noether() for several arms at once: PHI, PHIT have shape (n_arms, N), events in any order.
+    Returns B, P, Q2, Q1, S (arrays of length n_arms)."""
+    n = t.size
+    na = PHI.shape[0]
+    mid = 0.5 * (t1 + t2)
+    c = eps * eps
+    u = t - z
+    v = t + z
+    ou = np.argsort(u)
+    vr = np.empty(n, dtype=np.int64)                 # 1-based ranks of v
+    ov = np.argsort(v)
+    for r in range(n):
+        vr[ov[r]] = r + 1
+    chi = np.zeros(n)
+    dchi = np.zeros(n)
+    for i in range(n):
+        chi[i], dchi[i] = chi_of(t[i], t1, t2, d)
+    E = np.zeros((na, n))
+    B = np.zeros(na)
+    Pp = np.zeros(na)
+    Q2 = np.zeros(na)
+    Q1 = np.zeros(na)
+    S = np.zeros(na)
+    fen = np.zeros(n + 1, dtype=np.int64)
+    ins = np.empty(n, dtype=np.int64)
+    for ia in range(n):
+        a = ou[ia]
+        va = v[a]
+        nins = 0
+        for ib in range(ia + 1, n):
+            b = ou[ib]
+            if v[b] <= va:
+                continue
+            # n_ab = number of inserted (future of a, u < u_b) with v < v_b
+            cnt = 0
+            r = vr[b] - 1
+            while r > 0:
+                cnt += fen[r]
+                r -= r & (-r)
+            w = fker(cnt, eps)
+            ta = t[a]
+            tb = t[b]
+            for k in range(na):
+                D = PHI[k, a] - PHI[k, b]
+                L = -c * D * D
+                dLa = -2.0 * c * D
+                dLb = 2.0 * c * D
+                S[k] += w * L
+                E[k, a] += w * dLa
+                E[k, b] += w * dLb
+                t1v = chi[a] * (1.0 - chi[b]) * w * dLa * PHIT[k, a]
+                t2v = chi[b] * (1.0 - chi[a]) * w * dLb * PHIT[k, b]
+                Pp[k] += t1v + t2v
+                t3a = -dchi[a] * chi[b] * w * L
+                t3b = -chi[a] * dchi[b] * w * L
+                if tb > mid:
+                    Q2[k] += t1v + t3b
+                else:
+                    Q1[k] += t1v + t3b
+                if ta > mid:
+                    Q2[k] += t2v + t3a
+                else:
+                    Q1[k] += t2v + t3a
+            # insert b
+            r = vr[b]
+            while r <= n:
+                fen[r] += 1
+                r += r & (-r)
+            ins[nins] = vr[b]
+            nins += 1
+        # undo the insertions of this a
+        for j in range(nins):
+            r = ins[j]
+            while r <= n:
+                fen[r] -= 1
+                r += r & (-r)
+    for k in range(na):
+        for x in range(n):
+            ph = PHI[k, x]
+            U = -m * m * (1.0 - math.cos(ph)) / rho
+            S[k] += U
+            E[k, x] += -m * m * math.sin(ph) / rho
+            B[k] += chi[x] * E[k, x] * PHIT[k, x]
+            if t[x] > mid:
+                Q2[k] += -dchi[x] * U
+            else:
+                Q1[k] += -dchi[x] * U
+    return B, Pp, Q2, Q1, S
