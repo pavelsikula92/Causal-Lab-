@@ -563,6 +563,57 @@ def hue_color(a):
     return "#%02x%02x%02x" % (int(40 + 200 * r), int(40 + 200 * g), int(40 + 200 * b))
 
 
+MATH_FONT = ("Times New Roman", "DejaVu Serif", "Times")
+
+
+def _math_family(cv):
+    """The first serif family the system has (Windows: Times New Roman; Linux: DejaVu Serif)."""
+    import tkinter.font as tkf
+    have = set(tkf.families(cv))
+    return next((f for f in MATH_FONT if f in have), "Times")
+
+
+def draw_math(cv, xc, y, tokens, size=22, fill=INK):
+    """Draw a formula centred at (xc, y) from tokens (text, sub, sup): text on the baseline, an optional subscript and
+    superscript after it; the text "BOX" draws the d'Alembertian as a square (no font needed). Returns the width."""
+    fam = _math_family(cv)
+    big, small = (fam, -size), (fam, -int(size * 0.62))
+    items, x = [], 0.0
+    for text, sub, sup in tokens:
+        if text == "BOX":
+            a = size * 0.62
+            items.append(("box", x + size * 0.08, a))
+            x += a + size * 0.22
+        else:
+            items.append(("t", x, text, big))
+            tid = cv.create_text(0, 0, text=text, font=big, anchor="w")
+            bb = cv.bbox(tid)
+            cv.delete(tid)
+            x += bb[2] - bb[0]
+        w_s = 0.0
+        for script, dy in ((sub, 0.30), (sup, -0.42)):
+            if script:
+                tid = cv.create_text(0, 0, text=script, font=small, anchor="w")
+                bb = cv.bbox(tid)
+                cv.delete(tid)
+                items.append(("t", x, script, small, dy * size))
+                w_s = max(w_s, bb[2] - bb[0])
+        x += w_s
+    x0 = xc - x / 2.0
+    for it in items:
+        if it[0] == "box":
+            _, xx, a = it
+            cv.create_rectangle(x0 + xx, y - a * 0.62, x0 + xx + a, y + a * 0.38, outline=fill, width=max(1, size // 14))
+        else:
+            dy = it[4] if len(it) > 4 else 0.0
+            cv.create_text(x0 + it[1], y + dy, text=it[2], font=it[3], anchor="w", fill=fill)
+    return x
+
+
+FIELD_EQUATION = [("G", "ab", None), (" + 2(η", "ab", None), ("BOX", None, None), (" − ∂", "a", None), ("∂", "b", None),
+                  (") F", "0", None), ("(", None, None), ("BOX", None, None), (") R  =  8πG T", "ab", "eff")]
+
+
 class Chapter:
     key = ""
 
@@ -608,8 +659,8 @@ class Intro(Chapter):
         for name, sub, fx, fy in boxes:
             x, y = fx * W, fy * H
             cv.create_rectangle(x - 120, y - 30, x + 120, y + 30, fill=PANEL, outline=INK2, width=1.2)
-            cv.create_text(x, y - 9, text=name, font=("Helvetica", 13, "bold"), fill=INK)
-            cv.create_text(x, y + 12, text=sub, font=("Helvetica", 10), fill=INK2)
+            cv.create_text(x, y - 9, text=name, font=("Helvetica", -17, "bold"), fill=INK)
+            cv.create_text(x, y + 12, text=sub, font=("Helvetica", -13), fill=INK2)
             pos[name] = (x, y)
         for a, b in [("events", "the order"), ("the order", "time"), ("the order", "space, dimension"),
                      ("the order", "proper time"), ("space, dimension", "matter"), ("proper time", "gravity"),
@@ -618,7 +669,7 @@ class Intro(Chapter):
             (x0, y0), (x1, y1) = pos[a], pos[b]
             cv.create_line(x0, y0 + 30, x1, y1 - 30, arrow="last", fill=INK2, width=1.1)
         cv.create_text(W / 2, H - 22, text="Choose a chapter on the left. Chapters 1–4 compute random orders live.",
-                       font=("Helvetica", 11, "italic"), fill=INK2)
+                       font=("Helvetica", -15, "italic"), fill=INK2)
         self.readout("Causal Physics v2 · doi:10.5281/zenodo.24427611 · Causality Lab")
 
 
@@ -722,7 +773,7 @@ class Grow(Chapter):
             col = C_NOW if i in nowset else INK
             rr = r + 1.5 if i in nowset else r
             cv.create_oval(X - rr, Y - rr, X + rr, Y + rr, fill=col, outline="")
-        cv.create_text(48, 30, anchor="nw", text="time ↑ (the order grows)", fill=INK2, font=("Helvetica", 10))
+        cv.create_text(48, 30, anchor="nw", text="time ↑ (the order grows)", fill=INK2, font=("Helvetica", -13))
         if n >= 10:
             d, f = mm_dimension(self.R[:n, :n])
             self.readout(f"events {n}   related pairs {int(self.R[:n, :n].sum())}   ordering fraction {f:.3f}   "
@@ -741,7 +792,7 @@ class Grow(Chapter):
             v = View(x0, 40, half, H - 80, -4, 4, 2, 10)
             cv.create_rectangle(x0, 40, x0 + half, H - 40, outline=GRID)
             cv.create_text(x0 + half / 2, 25, text=f"{title}, seen moving at v = {math.tanh(eta):.2f}",
-                           font=("Helvetica", 11, "bold"), fill=INK)
+                           font=("Helvetica", -15, "bold"), fill=INK)
             if k == 0:
                 rng = np.random.default_rng(7)
                 n = rng.poisson(4.0 * 40 * 40)
@@ -910,14 +961,16 @@ class Gravity(Chapter):
         cv = self.cv
         cv.delete("all")
         W, H = self.app.CW, self.app.CH
-        top = View(60, 30, W - 90, H * 0.42, -12, 12, 0, 1)
+        top_h = 0.36 * H                     # upper band: title 14, panel 30 .. 30 + top_h
+        y2 = 30 + top_h + 34                  # title of the lower band
+        top = View(60, 30, W - 90, top_h, -12, 12, 0, 1)
         # upper panel: profiles across a mass at x = 0
         xs = np.linspace(-12, 12, 241)
         phi = -self.A * np.exp(-xs ** 2 / (2 * 3.0 ** 2))
         psi, c, rc, gam = responses(phi, self.mode)
         clock = np.exp(phi)
         cv.create_text(60, 14, anchor="w", text=f"Near a mass at the centre — response: {self.mode};  γ = {gam:.3g} "
-                       f"(3+1)", font=("Helvetica", 11, "bold"), fill=INK)
+                       f"(3+1)", font=("Helvetica", -15, "bold"), fill=INK)
         series = [("clock rate e^φ", clock, C_PAST), ("cone speed c", c, C_FUT), ("event density ρ_c", rc, C_CHAIN)]
         lo = min(s.min() for _, s, _ in series)
         hi = max(s.max() for _, s, _ in series)
@@ -929,7 +982,7 @@ class Gravity(Chapter):
         for k, (lab, s, col) in enumerate(series):
             pts = [q for a, b in zip(xs, s) for q in top.p(a, b)]
             cv.create_line(*pts, fill=col, width=2)
-            cv.create_text(W - 40, 40 + 16 * k, anchor="e", text=lab, fill=col, font=("Helvetica", 10, "bold"))
+            cv.create_text(W - 40, 40 + 16 * k, anchor="e", text=lab, fill=col, font=("Helvetica", -13, "bold"))
         # little cones along x
         for xc in (-9, -4.5, 0, 4.5, 9):
             cc = float(np.interp(xc, xs, c))
@@ -938,9 +991,13 @@ class Gravity(Chapter):
             cv.create_line(X, Y, X - L * cc / math.sqrt(1 + cc * cc), Y - L / math.sqrt(1 + cc * cc), fill=INK2)
             cv.create_line(X, Y, X + L * cc / math.sqrt(1 + cc * cc), Y - L / math.sqrt(1 + cc * cc), fill=INK2)
         # lower panel: the ball
-        bot = View(60, H * 0.52, W - 90, H * 0.42, -0.5, 20.5, -1.5, 5.5)
-        cv.create_text(60, H * 0.50, anchor="w", text="A thrown ball = the longest chain of the order (time →, "
-                       "height ↑; clocks run faster higher up)", font=("Helvetica", 11, "bold"), fill=INK)
+        vtop = 5.5
+        if self.ball:                         # the lower panel grows so that every chain fits inside it
+            vtop = max(vtop, max(float(np.max(p_[1])) for p_ in self.ball[0]) + 0.5)
+        bot = View(60, y2 + 22, W - 90, H - (y2 + 22) - 12, -0.5, 20.5, -1.5, vtop)
+        cv.create_line(20, y2 - 20, W - 20, y2 - 20, fill=GRID)
+        cv.create_text(60, y2, anchor="w", text="A thrown ball = the longest chain of the order (time →, "
+                       "height ↑; clocks run faster higher up)", font=("Helvetica", -15, "bold"), fill=INK)
         Xa, Ya = bot.p(0, -1)
         Xb, Yb = bot.p(20, -1)
         cv.create_line(Xa, Ya, Xb, Yb, fill=INK2)
@@ -1063,7 +1120,7 @@ class Defect(Chapter):
             v = View(60, 30, W - 100, H - 80, -span, span, 0, 10)
             cv.create_text(60, 14, anchor="w", text=f"The centre of a kink at rest in 8 random orders (density {rho:g}; "
                            f"horizontal scale ±{span:.2f})",
-                           font=("Helvetica", 11, "bold"), fill=INK)
+                           font=("Helvetica", -15, "bold"), fill=INK)
             X0, Y0 = v.p(0, 0)
             X1, Y1 = v.p(0, 10)
             cv.create_line(X0, Y0, X1, Y1, fill=GRID, dash=(3, 3))
@@ -1078,12 +1135,12 @@ class Defect(Chapter):
                          f"demonstration: F3.14c measures it with 1024 orders per cell)")
             return
         if not self.run or self.run.done < self.run.t.size:
-            cv.create_text(W / 2, H / 2, text="Choose an experiment and press Run.", font=("Helvetica", 13), fill=INK2)
+            cv.create_text(W / 2, H / 2, text="Choose an experiment and press Run.", font=("Helvetica", -17), fill=INK2)
             return
         r = self.run
         v = View(50, 30, W - 80, H - 70, -r.X, r.X, 0, r.T)
         cv.create_text(50, 14, anchor="w", text=f"The field on {r.t.size} events (colour = angle; time ↑)   "
-                       f"— {self.mode}", font=("Helvetica", 11, "bold"), fill=INK)
+                       f"— {self.mode}", font=("Helvetica", -15, "bold"), fill=INK)
         step = max(1, r.t.size // 9000)
         for i in range(0, r.t.size, step):
             X, Y = v.p(r.x[i], r.t[i])
@@ -1127,18 +1184,18 @@ class FieldEq(Chapter):
                   "together: response / GR (derived)")
         for v, tt in zip(plots, titles):
             cv.create_rectangle(v.x0, v.y0, v.x0 + v.w, v.y0 + v.h, outline=GRID)
-            cv.create_text(v.x0, v.y0 - 12, anchor="w", text=tt, font=("Helvetica", 9, "bold"), fill=INK)
+            cv.create_text(v.x0, v.y0 - 12, anchor="w", text=tt, font=("Helvetica", -12, "bold"), fill=INK)
             X1, Y1 = v.p(0, 1.0)
             X2, _ = v.p(0.13, 1.0)
             cv.create_line(X1, Y1, X2, Y1, fill=INK2, dash=(2, 3))
             for kk in (0.0, 0.05, 0.10):
                 X, Y = v.p(kk, v.vmin)
-                cv.create_text(X, Y + 10, text=f"{kk:g}", font=("Helvetica", 8), fill=INK2)
-            cv.create_text(v.x0 + v.w / 2, v.y0 + v.h + 24, text="k ℓ_k", font=("Helvetica", 9), fill=INK2)
+                cv.create_text(X, Y + 10, text=f"{kk:g}", font=("Helvetica", -11), fill=INK2)
+            cv.create_text(v.x0 + v.w / 2, v.y0 + v.h + 24, text="k ℓ_k", font=("Helvetica", -12), fill=INK2)
             for yy in (0.8, 0.9, 1.0, 1.1):
                 if v.vmin <= yy <= v.vmax:
                     X, Y = v.p(0, yy)
-                    cv.create_text(X - 4, Y, anchor="e", text=f"{yy:.1f}", font=("Helvetica", 8), fill=INK2)
+                    cv.create_text(X - 4, Y, anchor="e", text=f"{yy:.1f}", font=("Helvetica", -11), fill=INK2)
         kk = np.linspace(1e-4, 0.13, 100)
         v = plots[0]
         for key, fk, col, lab in (("Kc", "fit_c", C_PAST, "conformal"), ("Kab", "fit_ab", C_FUT, "mixed"),
@@ -1149,7 +1206,7 @@ class FieldEq(Chapter):
                 X, Y = v.p(a, b)
                 cv.create_oval(X - 3, Y - 3, X + 3, Y + 3, fill=col, outline="white")
         for k, (lab, col) in enumerate((("conformal A/6", C_PAST), ("mixed B/8", C_FUT), ("optical C/2", C_CHAIN))):
-            cv.create_text(v.x0 + 6, v.y0 + v.h - 44 + 14 * k, anchor="w", text=lab, fill=col, font=("Helvetica", 8, "bold"))
+            cv.create_text(v.x0 + 6, v.y0 + v.h - 44 + 14 * k, anchor="w", text=lab, fill=col, font=("Helvetica", -11, "bold"))
         v = plots[1]
         for key, col, lab in (("Fw", C_PAST, "F_ω (trace)"), ("Fn", C_CHAIN, "F_ν (Σ T_ii)")):
             pts = [q for a, b in zip(F610B["k"], F610B[key]) for q in v.p(a, b)]
@@ -1157,9 +1214,9 @@ class FieldEq(Chapter):
             for a, b in zip(F610B["k"], F610B[key]):
                 X, Y = v.p(a, b)
                 cv.create_oval(X - 3, Y - 3, X + 3, Y + 3, fill=col, outline="white")
-        cv.create_text(v.x0 + 6, v.y0 + v.h - 30, anchor="w", text="F_ω (trace)", fill=C_PAST, font=("Helvetica", 8, "bold"))
+        cv.create_text(v.x0 + 6, v.y0 + v.h - 30, anchor="w", text="F_ω (trace)", fill=C_PAST, font=("Helvetica", -11, "bold"))
         cv.create_text(v.x0 + 6, v.y0 + v.h - 16, anchor="w", text="F_ν (Σ T_ii, cones)", fill=C_CHAIN,
-                       font=("Helvetica", 8, "bold"))
+                       font=("Helvetica", -11, "bold"))
         v = plots[2]
         ks = [0.0, 0.06, 0.12]
         res = [ov3_response(1, 1, 1, 1, 1)]
@@ -1176,14 +1233,13 @@ class FieldEq(Chapter):
             for a, b in zip(ks, ys):
                 X, Y = v.p(a, b)
                 cv.create_oval(X - 3, Y - 3, X + 3, Y + 3, fill=col, outline="white")
-            cv.create_text(v.x0 + 6, v.y0 + v.h - 44 + 14 * k, anchor="w", text=lab, fill=col, font=("Helvetica", 8, "bold"))
+            cv.create_text(v.x0 + 6, v.y0 + v.h - 44 + 14 * k, anchor="w", text=lab, fill=col, font=("Helvetica", -11, "bold"))
         y = 60 + H * 0.5 + 60
-        cv.create_text(W / 2, y, text="G_ab + 2(η_ab□ − ∂_a∂_b) F₀(□) R  =  8πG T_ab^eff", font=("Helvetica", 15, "bold"),
-                       fill=INK)
+        draw_math(cv, W / 2, y, FIELD_EQUATION, size=24)
         cv.create_text(W / 2, y + 26, text="the linearised field equation of the order (young static field); "
-                       "F₀ and the source factors are counted from intervals", font=("Helvetica", 10), fill=INK2)
+                       "F₀ and the source factors are counted from intervals", font=("Helvetica", -13), fill=INK2)
         cv.create_text(W / 2, y + 56, text="open: second order (β) · old fields · time-dependent and tensor sectors · "
-                       "the value of G", font=("Helvetica", 10, "italic"), fill=C_FUT)
+                       "the value of G", font=("Helvetica", -13, "italic"), fill=C_FUT)
         r12 = res[2]
         self.readout(f"kℓ_k = 0.12: dust Φ/Φ_GR {r12['dust']['Phi/GR']:.3f}, γ {r12['dust']['gamma']:.3f}, wall/dust "
                      f"{r12['wall/dust']:+.3f}  (OV3-lin-a, from the frozen records of F6.8g and F6.10b)")
@@ -1197,9 +1253,9 @@ class Status(Chapter):
         cv.delete("all")
         W, H = self.app.CW, self.app.CH
         y = 24
-        cv.create_text(20, y, anchor="w", text="claim", font=("Helvetica", 11, "bold"), fill=INK)
-        cv.create_text(W * 0.55, y, anchor="w", text="status", font=("Helvetica", 11, "bold"), fill=INK)
-        cv.create_text(W * 0.78, y, anchor="w", text="laboratory", font=("Helvetica", 11, "bold"), fill=INK)
+        cv.create_text(20, y, anchor="w", text="claim", font=("Helvetica", -15, "bold"), fill=INK)
+        cv.create_text(W * 0.55, y, anchor="w", text="status", font=("Helvetica", -15, "bold"), fill=INK)
+        cv.create_text(W * 0.78, y, anchor="w", text="laboratory", font=("Helvetica", -15, "bold"), fill=INK)
         dy = (H - 60) / len(STATUS_ROWS)
         for k, (claim, st, lab) in enumerate(STATUS_ROWS):
             y = 50 + dy / 2 + k * dy
@@ -1207,9 +1263,9 @@ class Status(Chapter):
                 cv.create_rectangle(10, y - dy / 2, W - 10, y + dy / 2, fill=PANEL, outline="")
             col = (C_CHAIN if st.startswith("tested") else C_PAST if st.startswith("derived") else
                    INK2 if st.startswith(("adopted", "interpretation")) else C_FUT)
-            cv.create_text(20, y, anchor="w", text=claim, font=("Helvetica", 10), fill=INK)
-            cv.create_text(W * 0.55, y, anchor="w", text=st, font=("Helvetica", 10, "bold"), fill=col)
-            cv.create_text(W * 0.78, y, anchor="w", text=lab, font=("Helvetica", 9), fill=INK2)
+            cv.create_text(20, y, anchor="w", text=claim, font=("Helvetica", -13), fill=INK)
+            cv.create_text(W * 0.55, y, anchor="w", text=st, font=("Helvetica", -13, "bold"), fill=col)
+            cv.create_text(W * 0.78, y, anchor="w", text=lab, font=("Helvetica", -12), fill=INK2)
         self.readout("tested = a frozen laboratory test passed · derived = follows from tested or adopted pieces · "
                      "adopted = taken from known physics · open")
 
