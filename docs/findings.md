@@ -10,13 +10,110 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 ## Holds
 
+- **F6.8g: at the fixed age n = kT = 4 all three static stiffnesses of the expected BD action tend to their
+  Einstein-Hilbert values at long wavelength: K0 = 0.99943 (optical), 0.99993 (conformal), 0.99995 (mixed); at
+  k l_k = 0.06 / 0.12 they are 0.937 / 0.800 (optical), 0.952 / 0.849 (conformal), 0.952 / 0.849 (mixed) (PASSED)**
+  (chain, 3+1, eps rho = 1, the young field of age T = 4/k at k = 0.045 - 0.12; code of F6.8c (optical_row) and
+  F6.8b2 (mixed_row) unchanged; card docs/F6_8g_card_draft.md rev. 2, decisions 43, 44, 46; run by the author 21 Nov on
+  the frozen file (sha256 86ec1e05, LF md5 d594c743), 8 workers, 4091 s; results/F6_order_dynamics/F6.8g/20261121T183904Z_main_seed0_86ec1e05.json).
+  - **Instrument (all OK):**
+    - I1: the conformal intercept at n = 4, K0_c = 0.99993 (tol 1e-3);
+    - I2: <T2> against the Fermat ray <= 7.9e-5; d2V/db2 6.6e-4; null 3.6e-15; mixed geometry 3.5e-5 / 5.8e-5, null
+      8.6e-14;
+    - I3: level 2 against level 1, 2.1e-5 at (0.045, n 4) and 2.5e-6 at (0.12, n 4);
+    - I4: the k = 0 null at T = 4/k, 2.0e-4 ... 1.2e-3 in K_hat_bb units (tol 2e-3).
+  - **Criterion:** |K0_bb - 1| = 5.7e-4 against 0.01. The fit K0 - k^2 (c1 ln(1/k) + c0) has max residual 4.9e-5 (c1
+    5.09, c0 3.05).
+  - **Reported:**
+    - The covariance of the conformal and the mixed sector holds for the young field: K_hat_ab = K_hat_c to <= 1.5e-4.
+    - The optical intercept at n = 3 / 6: 0.99996 / 1.00033. The conformal intercept is 0.99994 / 0.99993.
+    - phi_2^(C) = 2 K_hat_bb - 2 - 4 phi_0 = +0.00002 ... +0.00255 at n = 4. It is not a check (decision 43).
+    - The inputs of OV3-lin-a at n = 4: k 0.06: K 0.95245, K_ab 0.95241, K_bb 0.93697; k 0.12: K 0.84918, K_ab 0.84902,
+      K_bb 0.80017.
+  - **History:**
+    - Revision 0 (local/age separation) was replaced, because the separation is not defined at order k^2
+      (decision 44).
+    - Revision 1 was run twice as development. Its row k = 0.03 (T 133) was not numerically robust, so it was dropped
+      (decision 46).
+    - A first frozen run on 16 workers stopped at task 28/30 on a memory error (numpy could not allocate 30.5 MiB),
+      without a record. It was restarted unchanged with 8 workers.
+
+  Reading (declared in the card). At a fixed young age the order's static stiffness has the EH value in all three
+  sectors at long wavelength (C -> 2, the optical sector, as F6.8c2 found at n = 8), and departs from it at order
+  (k l_k)^2 ln(1/k l_k). The optical sector departs fastest. Limits: the bare ensemble action; the young-field reading;
+  old fields stay open (F6.8f); k l_k >= 0.045 (older rows at smaller k are not numerically robust in double precision).
+
+- **F6.10a (OV2 T1, 2D): the response of the pairwise matter action of a kink to a conformal change of the order is
+  the continuum int sigma T^a_a sqrt|g| (T^a_a = -2V): the kinetic share R = -0.0139 at N 66 560 and -0.0047 at
+  N 266 240, falling with density (PASSED)** (mechanism, 2D light-cone square, ensemble level: Mecke formula with the
+  exact kernel average g(eps Lam), analytic first derivative under the integral, deterministic quadrature; eps 0.12,
+  sine-Gordon kink m 9, Gaussian bump s 0.09 at (0.45, 0.55), fresh parameters; card docs/OV2_coupling_cards_draft.md
+  rev. 3, decision 40; run by the author 21 Nov on the frozen file, test sha256 f1fd6835, 183 s;
+  results/F6_order_dynamics/F6.10a/20261121T095829Z_main_seed0_f1fd6835.json).
+  - **Instrument (all OK):** I1 the flat <S_kin> at N 266 240 is 0.9966 of the continuum int phi_u phi_v (0.9894 at
+    N 66 560); I2 the two grid levels agree to 1e-5; I3 the potential derivative equals -int sigma-hat V to 1e-7.
+  - **Criterion:** |R| + Delta = 0.0139 and 0.0047 against 0.03.
+  - **Reported:** a first run on the draft file (sha256 514b1ecf, the same code; the frozen file was delivered during
+    the run) gave the same numbers. The grid check had computed R at these parameters before freezing (disclosed in
+    the card); the criterion was written before it.
+
+  Reading (declared in the card). In 2D the kinetic part of the matter action is conformally invariant up to a
+  nonlocal correction that vanishes with density; the response is carried by the potential as the measure, so the
+  order sees T^a_a = -2V. Limits: ensemble level, fixed matter (off shell), one kink and one bump.
+- **F6.10b (OV2 T2, 3+1): the pairwise matter action of a static wall responds to the static metric of the order as
+  the continuum (1/2) int T^ab delta g_ab, times a nonlocal form factor that tends to 1: ratio at k = 0 omega 0.9965,
+  nu 1.0060; at k l_k = 0.03 / 0.06 / 0.12 omega 0.985 / 0.955 / 0.855 and nu 0.990 / 0.950 / 0.818 (PASSED)**
+  (mechanism, 3+1, ensemble level: Mecke formula with the exact kernel average g(eps rho V), deterministic quadrature
+  of the analytic first derivative; eps rho = 1, sine-Gordon wall of width 8 l_k at fixed field (T_ab off shell), age
+  T 120; omega = conformal g = e^{2b cos kz} eta (density and interval volumes change, the order does not), nu = the
+  cones g = -dt^2 + e^{2b cos kz} dx^2 (the order changes: first-order cones and prolate volumes of F6.8b2); card
+  docs/OV2_coupling_cards_draft.md rev. 3, decision 40; run by the author 21 Nov, test sha256 14801b85, 2955 s;
+  results/F6_order_dynamics/F6.10b/20261121T091000Z_main_seed0_14801b85.json).
+  - **Instrument (all OK):** I1 the rows at T 80 within 0.11 % of T 120; I2 grid 1.5 equal to grid 1 within 1e-4;
+    I3 the omega row at k = 0 equals the independent stage-1 kernel to 1e-7; I4 the F6.8b2 geometry 3.5e-5 / 5.8e-5
+    (tol 2e-3), uniform null 8.6e-14.
+  - **Criterion:** k = 0 |ratio - 1| + Delta = 0.0046 (omega) and 0.0061 (nu) against 0.02; ratios non-increasing in
+    k; |ratio - 1| + Delta = 0.016 / 0.046 (omega) and 0.011 / 0.051 (nu) at k l_k = 0.03 / 0.06 against 0.15.
+  - **Reported:** the omega form factor runs at the same order as the stiffness K_loc(k) of F6.8a (0.968 at 0.05, 0.899
+    at 0.1); the nu sector falls faster at k l_k = 0.12 (0.818 against 0.855), as in development (OV3 sec. 3). The
+    boundary term of the age cut is below 1.1e-4. The nu row at k = 0 is 0.6 % high (development, width 10: 0.45 %).
+
+  Reading (declared in the card). The source side of the response of the order: in 3+1 a matter action that depends
+  on the order only gives T^a_a (through omega) and Sum T_ii (through nu, a change of the cones) in the local limit,
+  with nonlocal departures of order (k l_k)^2. Limits: ensemble level (L1), static, fixed matter, one wall profile;
+  the conservation under the retarded rule (T3) is not tested.
+- **F6.9a (OV1, 2D, the vacuum control): the smeared BD action of flat causal diamonds has no volume term: c/(4 eps)
+  = (+0.5 +- 1.7)e-4, (-0.7 +- 1.6)e-4, (+0.6 +- 1.5)e-4 per element at eps = 0.24, 0.12, 0.06 (seed 0 PASSED; replication seed 1 PASSED)**
+  (mechanism, 2D, Poisson sprinklings of nested causal diamonds with a common future tip, T/w = 8, 16, 32 (volumes
+  1 : 4 : 16), 5400 / 1200 / 280 sprinklings; S = 4 eps (N - 2 eps sum N_n f), exact interval abundances; card
+  docs/OV1_vacuum_2d_card_draft.md rev. 2, decision 38; run by the author 20 Nov, test sha256 7929a6b8, 7855 s;
+  results/F6_order_dynamics/F6.9a/20261120T113217Z_main_seed0_7929a6b8.json).
+  - **Replication 21 Nov (seed 1, same test content, 12 735 s; results/F6_order_dynamics/F6.9a/20261121T013343Z_main_seed1_98240566.json): PASSED.** c/(4 eps) =
+    (+0.15 +- 1.70)e-4, (-0.50 +- 1.63)e-4, (-0.61 +- 1.64)e-4 (|x| + 2 SE = 3.6 / 3.8 / 3.9e-4 against 1e-3);
+    I1-I4 OK; the balance <D S> within 1.7 SE in every cell. The raw test sha256 of this run is 98240566 because the
+    file on the author's machine had become CRLF; its LF-normalised sha256 is 7929a6b8 (= seed 0) and its LF md5
+    9a1da81c (the frozen file): the code is unchanged.
+  - **Instrument (all OK):** I1 S and Delta S against brute force to 1.1e-10 (also N = 2523 and 1823 with n_cut < N);
+    I2 mean N per level within 3 SE of the Poisson mean; I3 0.5-2.1 % of the sprinklings outside the calibrated phase
+    bands (limit 5 %, nominal 1 %); I4 time-reversal null <D S> within 1e-4 of 0 in both orders.
+  - **Criterion:** |c/(4 eps)| + 2 SE = 3.95e-4 / 4.01e-4 / 3.52e-4 against 1e-3.
+  - **Reported:** <S> per level is flat over the 16-fold volume: 2.7 / 1.9 / 3.8 (eps 0.24), 3.0 / 3.7 / 1.2 (0.12),
+    4.4 / 7.2 / 6.9 (0.06), SE 0.9-4.9; the constant at T/w = 8 is 2.7-4.4 (the continuum joint term of a flat
+    interval; its value in the F6.4a normalisation is not derived, not judged). <D2 S> within 2e-3 of 0, no sign.
+
+  Reading (declared in the card). The blocking vacuum control of OV1 (docs/derivations/order_variation_OV1.md, sec. 8)
+  holds in 2D: the flat order is stationary in the ensemble sense (c(T) = 0) at the three eps, with no age term from
+  the past boundary at first order. Limits: 2D only (where the bulk EH action is topological); it says nothing about
+  the stability of the flat order against changes of the order (the phase sampler of OV1: not stable above
+  beta_e(N) under local moves) nor about 2+1 or 3+1; seed 0 only.
+
 - **F5.2d (B3a, 2+1, the active side of the growth): an order that grows with its density and its cones set by the
   potential that a static wall produces from its realised past through the order's own Green weight carries the
   potential, the slowed clocks and the narrowed cones of the continuum, in proportion to the wall's load: r_L 0.953 +-
   0.005 (load 16) and 0.923 +- 0.013 (load 8), u +0.030 +- 0.009, clocks near/far 0.893 against 0.879 (seed 0 PASSED;
-  replication pending)** (mechanism, 2+1, rho 30, kappa 0.01, T 9, 32 sprinklings x 2 sources x (kappa, 0); card
+  seed 1 PASSED 18 Nov)** (mechanism, 2+1, rho 30, kappa 0.01, T 9, 32 sprinklings x 2 sources x (kappa, 0); card
   docs/B3_card_draft.md rev. 2, decision 23; B3a and the active side chosen by the author 13 Nov; run by the author
-  13 Nov unchanged, 8865 s; results/F5.2d/20261113T100111Z_all_seed0_decef7cc.json).
+  13 Nov unchanged, 8865 s; results/F5_gravity/F5.2d/20261113T100111Z_all_seed0_decef7cc.json).
   - **Instrument (all OK):** A0 exact on 2 sprinklings; no overflow (lowest L -0.352); density - 1 -0.0003 +- 0.0006 and
     -0.0005 +- 0.0007; cones near/far 0.7695 +- 0.0025 against 0.7637 and 0.9150 +- 0.0030 against 0.9104 (the rule
     realises the cones it was given).
@@ -26,6 +123,13 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   - **Reported:** r_L per slab 0.991 / 0.993 / 0.931 (load 16) and 0.944 / 0.965 / 0.905 (load 8); L at x = 0 in the last
     slab -0.211 against -0.221 and -0.086 against -0.096; kink drift +0.030 +- 0.020 (kappa 0: +0.025 +- 0.021); the
     kink at load 16 is 24 % narrower than the continuum in the last slab (it breathes after the switch-on).
+  - **Replication 18 Nov (seed 1, test sha256 decef7cc unchanged, 4685 s; results/F5_gravity/F5.2d/20261118T153933Z_all_seed1_decef7cc.json): PASSED.**
+    Instrument all OK (A0 exact, no overflow, lowest L -0.354; density - 1 +0.0004 +- 0.0007 and +0.0005 +- 0.0006;
+    cones 0.7699 +- 0.0030 against 0.7619 and 0.9161 +- 0.0033 against 0.9092). r_L 0.965 +- 0.006 (load 16; |r_L - 1|
+    + 2 SE 0.047 / 0.06) and 0.946 +- 0.013 (load 8), u +0.020 +- 0.008, clocks near/far 0.883 against 0.878 (ratio - 1
+    +0.006 +- 0.008) and 0.961 against 0.955. Per slab 1.004 / 1.007 / 0.942 (load 16) and 0.994 / 0.999 / 0.920
+    (load 8): the deficit of the last slab is there again; L at x = 0 in the last slab -0.215 against -0.222 and
+    -0.088 against -0.096. Kink drift -0.005 +- 0.017 (kappa 0: -0.015 +- 0.016); kink at load 16 again 24 % narrower.
 
   Reading (declared in the card). A causal growth rule that reads only the realised past (counts, chains, independent
   marks) and lets the density and the cones follow the potential that matter produces through the order's own Green
@@ -36,7 +140,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   2 % (the order's clocks slowed 1.6 % less, consistent with a shallower potential). The binding condition passed with a
   margin of 0.003. Candidates: the calibration of the chain weight in a deepening order, the binned midpoint of the
   cones, the dynamics of the kink after the switch-on (its width). Limits: the cones are cut in coordinates in the rest
-  frame of the static source (B3a; B3b open); one geometry, one kappa, one density; seed 0 only.
+  frame of the static source (B3a; B3b open); one geometry, one kappa, one density; seeds 0 and 1.
   - **Diagnosed the same day (decides nothing; Undecided, "B3 diagnostics"):** the deficit comes from the binned
     midpoint potential of the B3a cones (finer bins give +9 %), not from the weight (0.999 with a weak field) nor from
     the dynamics of the source.
@@ -48,10 +152,10 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   the continuum metric does: the kink stays (its tension cancels its weight; D_K -0.040 +- 0.022 against -0.44 for a
   test particle), the breather wall falls as the continuum (r_B 1.035 +- 0.041) and a launched kink follows the curved
   cones (slope - 0.3 = +0.0091 +- 0.0030, continuum +0.013) (seed 0 PASSED; replication seed 1 INSTRUMENT_FAILED on
-  the flat control)** (mechanism, 2+1,
+  the flat control; the revision F5.2c2 with the flat control on 32 sprinklings PASSED)** (mechanism, 2+1,
   exact sprinkling of -Pi^2 dt^2 + Pi^-2 (dx^2 + dy^2), Pi^2 = (x + 24)/24, rho 30, T 8, 32 sprinklings x 3 arms, the
   flat control on 8; card docs/B2_card_draft.md rev. 2, decision 22; run by the author 12-13 Nov unchanged, 13818 s;
-  results/F5.2c/20261112T233449Z_all_seed0_817e17b7.json).
+  results/F5_gravity/F5.2c/20261112T233449Z_all_seed0_817e17b7.json).
   - **Instrument (all OK):** links identical to the brute-force transitive reduction (curved and flat); I4 4.2e-16 / 0;
     density N/(rho V_proper) - 1 -0.0007 +- 0.0005; kink at rest Q - Q_ex -0.0000, w/w_ex - 1 +0.0128 +- 0.0016; the
     breather on the flat order D_0 +0.075 +- 0.059 (in units of the curved fall; |D_0| + 2 SE 0.19 against 0.25).
@@ -69,7 +173,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   the cones effect is measured at 0.009 against 0.013 (dv_L -0.004, 1.3 SE). Limits: one profile and one density; an
   exact sprinkling of a chosen metric, not an order produced by matter (B3); walls only (B4); seed 0 only.
   - **Replication, seed 1 (16 Nov, by the author, unchanged test (hash 817e17b7), 16 164 s;
-    results/F5.2c/20261116T011234Z_all_seed1_817e17b7.json): INSTRUMENT_FAILED** on the flat control: the breather on
+    results/F5_gravity/F5.2c/20261116T011234Z_all_seed1_817e17b7.json): INSTRUMENT_FAILED** on the flat control: the breather on
     the flat order D_0 -0.152 +- 0.091 (in units of the curved fall), |D_0| + 2 SE 0.335 against 0.25 (seed 0:
     +0.075 +- 0.059, 0.19). The other instrument items OK: links identical to the brute-force reduction (curved 1 143 /
     11 190, flat 992 / 9 035); I4 5.4e-16 / 0; density -0.0002 +- 0.0006; kink at rest Q - Q_ex -0.0001 +- 0.0001,
@@ -81,13 +185,25 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     D_0 is 1.7 SE from 0. The seed-0 verdict PASSED stands (R132); the replication does not confirm it, because its
     instrument did not hold. How to close it (for example a revision of the flat control with more sprinklings, under a
     new ID) is the author's decision.
+  - **Revision F5.2c2 (decision 37: the flat control on 32 sprinklings, new sprinklings, nothing else changed; run by the
+    author 18-19 Nov, test sha256 d651784d, 29 361 s; results/F5_gravity/F5.2c2/20261118T234947Z_all_seed0_d651784d.json): PASSED.**
+    - Instrument (all OK): links identical to the brute-force reduction (curved 1 069 / 10 848, flat 1 081 / 9 619);
+      I4 5.5e-16 / 0; density N/(rho V_proper) - 1 +0.0001 +- 0.0005; kink at rest Q - Q_ex +0.0000 +- 0.0001,
+      w/w_ex - 1 +0.0131 +- 0.0017; the breather on the flat order D_0 -0.026 +- 0.035 (|D_0| + 2 SE 0.097 / 0.25).
+    - Passed conditions: kink stays D_K +0.020 +- 0.019 (|D_K| + 2 SE 0.058 / 0.10); launched kink against the
+      continuum dv_L +0.0043 +- 0.0035 (0.011 / 0.02); faster than flat cones: slope - 0.3 = +0.0174 +- 0.0035
+      (continuum +0.0131; - 2 SE = +0.010 > 0); breather r_B 0.952 +- 0.041 (|r_B - 1| + 2 SE 0.129 / 0.15).
+    - Reported: the energy centroid of the breather r 1.017 +- 0.085.
+    - With 32 control sprinklings the control holds (2 SE 0.071). The three runs agree within their errors: D_K -0.040,
+      -0.007, +0.020; dv_L -0.0040, +0.0038, +0.0043; r_B 1.035, 0.943, 0.952. The seed-0 result of F5.2c is
+      replicated with a working instrument. Limits unchanged (one profile and density, a prescribed metric, walls, 2+1).
 
 - **F3.15 (B1, 2+1, intrinsic instrument, variant B): a domain wall of a field on all events of a 2+1 causal order,
   evolved by the Green weight read from the order alone (the longest chain), keeps its identity at rest, keeps its
   velocity and Lorentz contraction when launched, and its inertial mass from a kick equals its rest energy per unit
   length: r_M = 0.9779 +- 0.0117 (seed 0 PASSED; replication seed 1 PASSED, r_M 0.9523 +- 0.0105)** (mechanism, 2+1, rho 30, T 8, 32 sprinklings
   x 4 arms, controls on 8, I3 at rho 60 with 8; card docs/B1_card_draft.md rev. 2, decision 21; run by the author
-  12 Nov unchanged, 6 workers, 14930 s; results/F3.15/20261112T155654Z_all_seed0_47794a19.json).
+  12 Nov unchanged, 6 workers, 14930 s; results/F3_structure/F3.15/20261112T155654Z_all_seed0_47794a19.json).
   - **Instrument (all OK):**
     - I4: kernel forward/backward 1.7e-15, linear extension 4.9e-16, region 0;
     - I1 vacuum: lambda_eff +0.0052 +- 0.0025; I2 omega/omega_c - 1: +0.0086 (1,0), +0.0067 (0,1), +0.0032 (1,1),
@@ -107,7 +223,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     - blind control separated: L 0.569 against 1.013, D_L +0.444 +- 0.034 (D_L - 2 SE 0.375 > 0.2).
   - **Reported:** plain E/8 - 1 +0.079 (the noise-debiased readout removes it); gamma v after the kick 0.074 +- 0.007.
   - **Replication, seed 1 (15 Nov, by the author, unchanged test, 6 workers, 29 738 s;
-    results/F3.15/20261115T163024Z_all_seed1_47794a19.json): PASSED.**
+    results/F3_structure/F3.15/20261115T163024Z_all_seed1_47794a19.json): PASSED.**
     - Instrument all OK: I4 1.6e-15 / 4.9e-16 / 0; I1 lambda_eff +0.0092 +- 0.0024; I2 +0.0056, +0.0066, +0.0035,
       +0.0021; I3 at rho 60 w/w_ex - 1 +0.0105 +- 0.0023, eps 0.0218 (rho 30) -> 0.0150 (rho 60); rest Q -0.0002,
       drift -0.041 +- 0.018, w/w_ex - 1 +0.0144 +- 0.0010, (E - E_ex)/8 +0.0141 +- 0.0022 (M_rest 8.124); telegraph
@@ -137,7 +253,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   8 / 16) and independently of its own mass (u = -0.0007 +- 0.0081), also for a moving system (r_sep 1.014 +- 0.008)
   (PASSED, REPLICATED: seed 0 and seed 1)** (mechanism, 1+1, rho 800, kappa 0.003, two fields interacting only through the
   order, kinks at -3 and +3, T 20, 256 sprinklings each paired with kappa = 0; card docs/F5_2b_card_draft.md rev. 1,
-  run by the author 11 Nov without changes, 5065 s; results/F5.2b/).
+  run by the author 11 Nov without changes, 5065 s; results/F5_gravity/F5.2b/).
   - **Read after decision 24 (13 Nov, the verdict stays, R132):** the load 2V is the trace of T. For the static kinks of
     the level 1-3 arms it equals ρ + Σp of decision 24 (both give E); the launched arm A2 tested the scalar branch only
     (trace E/γ against γE(1 + v²)).
@@ -184,7 +300,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   predicted by the shot noise of the order, D_p = (32/15) mu^(5/2) / rho, with no free constant: R = 1.016 / 0.991 /
   0.882 / 1.008 (+- 0.05) in the four cells (seed 0 PASSED; replication pending)** (mechanism, 1+1, flat, kink at rest,
   T 30, 1024 sprinklings per cell, mu 0.25 / 1 x rho 400 / 800; card docs/F3_14c_card_draft.md frozen 10 Nov 22:56;
-  run by the author 11 Nov, 11 018 s; results/F3.14c/). Derivation: docs/derivations/swerves_of_a_defect.md.
+  run by the author 11 Nov, 11 018 s; results/F3_structure/F3.14c/). Derivation: docs/derivations/swerves_of_a_defect.md.
   - **Instrument:** no fit lost in the decided cells. The readout check (an exact kink moved along a synthetic random
     walk of the predicted D_v, read like the data) returns its truth: 1.000 +- 0.000 (paired).
   - **R = D_p,meas rho / ((32/15) mu^(5/2))**, from the variance of the windowed velocity increments:
@@ -215,7 +331,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   velocity and its Lorentz contraction, and its inertial mass equals its rest energy to 0.8 %: r_M = 0.9988 +- 0.0077
   (PASSED, REPLICATED: seed 0 and seed 1)** (mechanism, 1+1, deciding density 800 with 128 sprinklings, controls on 32,
   rho 100 / 200 / 400 with 32 each; criteria of card docs/H5_card_draft.md rev. 4 unchanged; run by the author 10 Nov,
-  2241 s; results/F3.14b/).
+  2241 s; results/F3_structure/F3.14b/).
   - **Replication (seed 1, run by the author 10 Nov, 1079 s): PASSED.**
     - Instrument OK; I3 eps 0.0255 / 0.0197 / 0.0120 / 0.0086; drift at 800 +0.004 +- 0.013.
     - H5-B at 800: v 0.3 +0.0013 +- 0.0014, v 0.6 -0.0007 +- 0.0008; C - 1 within 0.0007.
@@ -254,7 +370,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   mass 4, 8 and 16 fall as their continuum bodies to 0.1-0.8 %, and alike within ~1.5 % (PASSED, REPLICATED: seed 0
   and seed 1)** (mechanism, 1+1,
   512 sprinklings at density 800, 32 at 400 reported; criteria of card docs/F5_2a_card_draft.md rev. 2 unchanged; run
-  by the author 10 Nov, 2316 s; results/F5.2a3/).
+  by the author 10 Nov, 2316 s; results/F5_gravity/F5.2a3/).
   - **Instrument OK:** I4 <= 1.5e-15; flat |D| <= 0.048; counting null D +0.0003 +- 0.0067 against -2.145 with counting.
   - **Falls:** a = 0.9991 +- 0.0010 / 1.0001 +- 0.0028 / 0.9976 +- 0.0079.
   - **Equivalence (frozen statistic, mean of the paired ratios a_i / a_j - 1):** (4, 8) +0.0018 +- 0.0021, (8, 16)
@@ -269,7 +385,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
       +0.0015 +- 0.0075. The paired differences a_i - a_j give the same. No violation is resolved, at the level of
       ~1.5 % (2 SE).
     - The same bias explains the replication of F5.2a2 (+0.040, +0.046).
-  - **Replication (seed 1, run by the author 10 Nov, 3535 s; results/F5.2a3/20261110T202629Z_all_seed1_81a79075.json):
+  - **Replication (seed 1, run by the author 10 Nov, 3535 s; results/F5_gravity/F5.2a3/20261110T202629Z_all_seed1_81a79075.json):
     PASSED.**
     - Instrument OK; counting null +0.012 +- 0.007.
     - a = 0.9965 +- 0.0010 / 0.9949 +- 0.0028 / 0.9928 +- 0.0078.
@@ -289,7 +405,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   replicated)** (mechanism, 1+1, Phi = g L tanh(x/L), g 0.05,
   L 10, trapezoid |x| <= 26 - t, T 10, 128 sprinklings at the deciding density 800, 32 at 400 reported; PASSED 10 Nov by
   the frozen criteria of card docs/F5_2a_card_draft.md rev. 2, unchanged from F5.2a; corrected sprinkling; run by the
-  author, 463 s; results/F5.2a2/).
+  author, 463 s; results/F5_gravity/F5.2a2/).
   - **Replication (seed 1, run by the author 10 Nov, 466 s): UNDECIDED.**
     - Instrument OK.
     - Falls: a = 0.9995 +- 0.0021 / 1.0026 +- 0.0060 / 0.9931 +- 0.0165.
@@ -336,7 +452,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   counting removed it does not fall** (mechanism, 1+1, Phi = g L tanh(x/L), g 0.05, L 10, sprinkling of density
   rho exp(2 Phi) in |x| <= 26 - t, T 10, 128 new sprinklings at the deciding density 800, 32 at 400 reported; PASSED
   10 Nov by the criteria of card docs/F5_2a_card_draft.md rev. 2, frozen 13:53, unchanged from F5.2a; run by the author,
-  463 s; results/F5.2a2/). Revision of F5.2a (implementation error in the sprinkling, no conclusion). Not yet
+  463 s; results/F5_gravity/F5.2a2/). Revision of F5.2a (implementation error in the sprinkling, no conclusion). Not yet
   replicated with another seed.
   - **Rule:** that of F3.14a, unchanged; it knows nothing about the metric. In 1+1 every metric is conformally flat,
     so the order is that of flat spacetime and only the number of events per coordinate area changes.
@@ -375,9 +491,9 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   while an overdamped dynamics stops it and a causality-blind sum dissolves it** (mechanism, 1+1, sine-Gordon kink,
   trapezoid |x| <= 26 - t, T 10, ~170 000 events per arm at the deciding density 400, 32 new sprinklings per density
   100 / 200 / 400; PASSED 10 Nov by the criteria of card docs/H5_card_draft.md rev. 4, frozen by the author at 12:05;
-  run by the author, 176 s; results/F3.14a/20261110T111802Z_all_seed0_e37cf249.json). Hypothesis H5 of
+  run by the author, 176 s; results/F3_structure/F3.14a/20261110T111802Z_all_seed0_e37cf249.json). Hypothesis H5 of
   docs/cosmogenesis.md; decisions 14 (D1-D4, D2').
-  - **Replication (seed 1, run by the author 10 Nov, 193 s; results/F3.14a/20261110T112302Z_all_seed1_e37cf249.json):
+  - **Replication (seed 1, run by the author 10 Nov, 193 s; results/F3_structure/F3.14a/20261110T112302Z_all_seed1_e37cf249.json):
     INSTRUMENT_FAILED by one condition, the drift of the rest kink.**
     - The drift was +0.0575 +- 0.0452, so |mean| + 2 SE = 0.148 > 0.1.
     - Every other condition was met as in seed 0: I1-I4, Q, width, energy, H5-E, V = 0; H5-B at both velocities; H5-C
@@ -537,6 +653,28 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     (0.72–0.85), v_mix = −0.003 ± 0.011, pure flows ±0.600, bounce 0, rest mass/parts 1.216; without contact exactly
     0; frame and four-momentum (2e−16) OK. The same behaviour as in 2+1, so not an artefact of the dimension.
 
+- **K.18b (revision of K.18): the needle-volume instrument gives the interval volumes of the optical sector at finite
+  amplitude eps = b (kT)^2 <= 4 to the working accuracy: the four-level extrapolation of the brute force agrees with the
+  q^2 series to 1.07e-6 and with the three-level extrapolation to 1.44e-6 (PASSED)** (calibration, 3+1, eps 0.1 - 4,
+  16 directions, 128 phases; revision of docs/K18_card_draft.md frozen in decision 36; run in Claude's Linux workspace
+  (part e3 needs an 80-bit long double), resumed from the cache over four passes, 1671 s in the final pass; test md5
+  159785ec (LF); results/K_instruments/K.18b/20261117T230319Z_main_seed0_0a03f218.json).
+  - **Parts (all within tolerance):**
+    - single: 1 ray per phase;
+    - Jacobi delta_J 7.24e-14 (<= 1e-4);
+    - series A_0 against the plane wave 3.77e-12 (<= 1e-9);
+    - series against the exact needle 3.36e-8 (<= 1e-6), 0 window failures;
+    - qconv 1.80e-6 (<= 1e-3);
+    - e3: the p-integrated F6.8e3 bulk against the series prediction +5.51e-4 (<= 5e-3).
+  - **Brute force** at kappa = 10, 20, 40, 80 sqrt(eps), 8 points, q = 1/4 and 1/8:
+    - |A_ext(20, 40, 80) - A_series| <= 1.07e-6 (<= 1e-3);
+    - |A_ext(20, 40, 80) - A_ext(10, 20, 40)| <= 1.44e-6 (<= 1e-5).
+  - **Reported:** at eps 4, p 8, theta 4, where the form check of K.18 failed, the level ratios are 3.13 / 3.73 / 3.61
+    (q 1/4) and 3.10 / 3.86 / 3.52 (q 1/8).
+
+  Reading (Claude, from the record and decision 36): the instrument of F6.8f is calibrated; with this record the F6.8f
+  record counts (decision 36). Limits: eps <= 4; intervals with one ray per phase.
+
 - **F6.8c2: the third coefficient also arises by itself: 𝒞(0) = 2.002 (EH 2); all three coefficients of the static EH
   form (6, 8, 2) come out of counting intervals, and γ(0) = 0.997 to 1.000 follows from the action of the order**
   (chain, 3+1, PASSED 29 Oct; revision of F6.8c, reading at fixed n = kT on new k = 0.06 / 0.085 / 0.12 / 0.17,
@@ -564,7 +702,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 - **F6.8e3: the age term of the optical (ν²) sector of the expected BD action grows as (kT)⁵, not linearly: α = 4.9999
   between n = kT = 3 072 and 6 144** (chain, 3+1, PASSED 15 Nov; second revision of F6.8e, card
   docs/F6_8e3_card_draft.md, decision 32; run by Claude in its Linux workspace, 4 452 s;
-  results/F6.8e3/20261115T231453Z_main_seed0_6a4f9826.json).
+  results/F6_order_dynamics/F6.8e3/20261115T231453Z_main_seed0_6a4f9826.json).
   - **Instruments OK:** I0 long double (eps 1.08e-19); I1 stable V''/V0 against F6.8c ≤ 1.7e-12; I2 α₀ at two
     quadrature levels at the judged pair 4.99994 / 5.00015 (2.1e-4, tol 0.01); I3 conformal c_T = 0.1016 at n = 384
     (1.9 % from 0.1035); I4 tail 7.8e-6; I5 α₀ at k = 0.13 and 0.21 equal to 7.4e-6.
@@ -1024,7 +1162,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   volume along each near-null pair, and departs as predicted from the local conformally coupled field with the same
   smearing.
 
-  **Replication, seed 1 (15 Nov, by the author, unchanged test; results/F5.3/20261115T204145Z_all_seed1_20971f3c.json,
+  **Replication, seed 1 (15 Nov, by the author, unchanged test; results/F5_gravity/F5.3/20261115T204145Z_all_seed1_20971f3c.json,
   1 129 s): PASSED.** Instrument (flat parents): largest z 2.22 of 6.18. P1: every bin within t_crit of the exact mean
   (largest z 2.18 of 8.70; χ²/bin 0.59 / 0.39 at ρ 30 / 60; the local model 33.5 / 36.3). P2: D − local +0.148 ± 0.011
   at ρ 30 (predicted +0.141) and +0.165 ± 0.012 at ρ 60 (+0.148); D − exact +0.006 ± 0.011 and +0.017 ± 0.012. The test
@@ -1032,6 +1170,32 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   LF-normalised file is the frozen one.
 
 ## Does not hold
+
+- **F6.8f: the optical static response of the expected BD action at finite amplitude does not bend towards saturation;
+  it grows faster than its second-order form (kT)^5: R(eps) = K_eff / K_2 = 1.0034, 1.0564, 1.2482, 2.5178 at
+  eps = b (kT)^2 = 0.25, 1, 2, 4, and gamma_T(2 -> 4) = 7.02 (FAILED, reading B)** (mechanism, 3+1, 16 directions,
+  128 phases, G = 4; card docs/F6_8f_card_draft.md, frozen 17 Nov 08:22 (decision 34); run on the author's machine
+  17 Nov, 22 794 s; results/F6_order_dynamics/F6.8f/20261117T205949Z_main_seed0_c3454e9d.json; the record counts since K.18b PASSED,
+  decision 36).
+  - **Criteria (decision 34):**
+    - A (PASSED): gamma_T(2 -> 4) <= 2.5, nonnegative and decreasing;
+    - B (FAILED): gamma_T(2 -> 4) >= 5, or a confirmed sign change;
+    - C (UNDECIDED) otherwise.
+    - Measured: gamma_T = 5.07 / 5.48 / 7.02 over 0.25 -> 1, 1 -> 2, 2 -> 4 (second order: 5).
+  - **Instrument (within tolerance):**
+    - one ray per phase;
+    - stationarity 6.0e-10;
+    - |R(G) - R(G - 1)| 6.0e-5 (<= 1e-3);
+    - phases 64 against 128: 5.6e-12 (<= 1e-3).
+    - Checks: k = 0 gives Phi = 0 exactly; both signs of b exact; zero age M ~ eps^(5/2). C2 = -6.3793e-10, from
+      eps 0.1 and 0.2.
+  - **Separate null test:** |R(4) - 1| = 1.518 against 0.05: FAILED (not in the status). The second order does not
+    describe eps = 4.
+
+  Reading (Claude, from the record and decisions 34-36): at finite amplitude the optical term of a static field grows
+  faster than its second-order form, with no saturation within eps <= 4. With the first conjugate point at eps = pi^2
+  (paper, Part V, "Finite amplitude"), the static response of old fields stays open, and OV3 uses the young-field
+  reading (decisions 41, 44). Limits: eps <= 4; one field shape (a phase-averaged plane wave); static.
 
 - **F5.1g: a flow whose memory is the common flow-past of its parents does not hold together and depends on the
   region; shared equally among its admissible continuations it spreads at ~0.65 c and fills the box, like radiation,
@@ -1130,7 +1294,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 - **F5.1e: in 3+1 the same history from the apex does not fall: it takes an inward velocity at the apex and then keeps
   it, without acceleration; the longest chains between fixed events read the geometry well** (mechanism, 3+1, order of
   F7.1c σ0 = 0.3, w = 4, box t [0, 24], |x| ≤ 8, 16 + 16 sprinklings of ~105 000 events, 60 chains, rule of F5.1c/F5.1d
-  m = H = 8, FAILED 30 Oct).
+  m = H = 8, FAILED 30 Oct; replicated 18 Nov with seed 1, FAILED).
   - **Instruments OK:** flat R = +0.139 ± 0.138, longest chains R_max = −0.011 ± 0.071; loaded longest chains read the
     geometry, R_max = 0.850 ± 0.058 (better than in 2+1).
   - **Loaded order:** R = a / a_pred = **−0.134 ± 0.121** (R + 2 SE = 0.11 < 1/2: does not fall), a_pred = −0.02187
@@ -1149,6 +1313,13 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     rescaled one would be a new hypothesis with its own criteria (R132). F5.1d stays PASSED for 2+1.
   - **Diagnosis 7 Nov (decides nothing):** the tie-breaker hypothesis above does not hold; see "Fall diagnostic"
     under Undecided (descriptive).
+  - **Replication 18 Nov (seed 1, frozen file sha256 230b54df, 16 + 16 new sprinklings, 12 784 s): FAILED.**
+    results/F5_gravity/F5.1e/20261118T145433Z_main_seed1_230b54df.{json,txt}. Instruments OK: flat R = −0.023 ± 0.168, flat
+    R_max = +0.174 ± 0.103, loaded R_max = 0.795 ± 0.081. Loaded R = **−0.127 ± 0.127** (does not fall), a_pred = −0.02183,
+    r_apex = 4.24, 60 of 60 chains to the end. Displacement from the apex, τ = 0, 1, …, 12: 0.00 −0.06 −0.12 −0.18 −0.26
+    −0.34 −0.38 −0.43 −0.48 −0.53 −0.57 −0.61 −0.65. Descriptively: the same pattern as seed 0, an inward velocity
+    from the apex (v0 = −0.071 ± 0.021 after +0.091 in the rising half, a jump of −0.16; flat +0.089 → +0.005) that
+    slows slightly, without acceleration. Both seeds: R = −0.134 ± 0.121 and −0.127 ± 0.127.
 
 - **F5.1c: a flow that continues its history as the longest chain moves inwards in an order curved by matter, but does
   not fall with the Newtonian acceleration** (mechanism, 2+1, order of F7.1b σ0 = 0.45, 32 + 32 sprinklings of
@@ -1485,7 +1656,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 - **F5.2a: the free fall of a field defect in a 1+1 order of nonuniform density came out UNDECIDED, but the run had an
   implementation error, found after the run: the sprinkling had 0.808 of the density the rule assumes. No conclusion**
-  (mechanism, 1+1, 128 sprinklings at rho 800, run by the author 10 Nov, 326 s; results/F5.2a/).
+  (mechanism, 1+1, 128 sprinklings at rho 800, run by the author 10 Nov, 326 s; results/F5_gravity/F5.2a/).
   - **Verdict by the frozen criteria:** UNDECIDED.
     - Instrument OK: I4 <= 1.4e-15; flat control |D| <= 0.018; counting null D -0.020 +- 0.013 against -2.14 curved.
     - a = D / D_cont 1.0174 +- 0.0023 (M 4), 0.9997 +- 0.0054 (M 8), 1.0304 +- 0.0143 (M 16: 0.059 > 0.05 with 2 SE,
@@ -1598,6 +1769,26 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   the age cut on 8 nodes of the panel (error ~T²) and the rounding of the difference of delays in thin intervals (~T⁴).
   The criterion of the null divided by the smallest |J_ab| (a design error). The fit K0_ab = 1.78 is an artefact. Fixed
   in the revision F6.8b2.
+
+- **K.18: the needle-volume instrument failed only its form check of the brute-force extrapolation** (calibration, 3+1,
+  eps 0.1 - 4, 16 directions, 128 phases; card docs/K18_card_draft.md frozen 17 Nov (decision 34), the brute-force
+  window corrected and re-frozen (decision 35); run in Claude's workspace (diag/run_resumable.py, three passes), 921 s
+  recorded; results/K_instruments/K.18/20261117T182826Z_main_seed0_f7513da2.json; FAILED).
+  - **Passed parts:**
+    - single: 1 ray per phase;
+    - Jacobi 7.24e-14;
+    - series against the plane wave 3.77e-12;
+    - series against the exact needle 3.36e-8, 0 window failures;
+    - qconv 1.80e-6;
+    - e3 +5.51e-4;
+    - brute force |A_ext - A_series| <= 8.94e-7 (<= 1e-3).
+  - **Failed:** the O(1/kappa^2) form. 2 counted ratios lie outside [3.5, 4.5], both at eps 4, p 8, theta 4, kappa 10 ->
+    20: 3.133 (q 1/4) and 3.103 (q 1/8). All other counted ratios lie in 3.958 - 4.054.
+  - **Diagnosis (decision 36):** where the O(b) coefficient is small, an O(b^2) term is not negligible at
+    kappa = 10 sqrt(eps): c/a = -0.39 and -0.16 at that point. The absolute cut 1e-4 of the ratio check did not account
+    for it. K.18 was revised as K.18b with four levels (PASSED).
+
+  Nothing follows for the theory. F6.8f counts through K.18b.
 
 - **K.17: the quadratic form of the BD action cannot be measured directly on a 3+1 sprinkling in the box of the
   laboratory; the noise is 10× to 10⁴× above the limit of feasibility** (calibration, 28 Oct, box t ∈ [0, 8], |x| ≤ 8,
@@ -1794,7 +1985,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   is lost, the numbers and the verdict are taken from the sources named.)
 
 - **F6.8e, the asymptotic age term of the optical sector (15 Nov; card docs/F6_8e_card_draft.md, decision 30 and its
-  revision 1; run by Claude in its Linux workspace, results/F6.8e/20261115T134513Z): INSTRUMENT_FAILED** on I5, the
+  revision 1; run by Claude in its Linux workspace, results/F6_order_dynamics/F6.8e/20261115T134513Z): INSTRUMENT_FAILED** on I5, the
   k⁵ scaling between k = 0.15 and 0.25: the ratio of the densities is 7.793e-2 against (0.15/0.25)⁵ = 7.776e-2, a
   relative difference of 2.2e-3 and 2.3e-3 at n = 192 and 1 536 against the tolerance 1e-3. The tolerance was set from
   the development pair k = 0.12 / 0.2 (8e-4); the difference is a small correction to the form k² F(kT) that grows with
@@ -1811,7 +2002,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   or tolerance, judged on rows not computed here) is the author's decision.
 
 - **F6.8e2, revision of F6.8e (15 Nov; card docs/F6_8e2_card_draft.md, decision 31; run by Claude in its Linux
-  workspace, results/F6.8e2/20261115T213651Z): INSTRUMENT_FAILED** on three items, all design faults of the card:
+  workspace, results/F6_order_dynamics/F6.8e2/20261115T213651Z): INSTRUMENT_FAILED** on three items, all design faults of the card:
   - I3, the conformal control at the largest age (k = 0.1, n = 6 144, r = 61 440): c_T = 0.0611 against 0.1035. The
     conformal density on the same rows is constant to n = 1 536 (−1.169e-7, −1.168e-7, −1.170e-7, −1.156e-7) and then
     departs (−1.255e-7 at n = 3 072, −7.01e-8 at n = 6 144). The conformal path is computed in double precision and
@@ -1831,7 +2022,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   Closed by the third revision F6.8e3 (decision 32): PASSED 15 Nov, α = 4.9999 at n 3 072 → 6 144 (Holds).
 
 - **F6.8d, the age term of the mixed sector (15 Nov; card docs/F6_8d_card_draft.md, decision 31; run by Claude in its
-  Linux workspace, results/F6.8d/20261115T220032Z): INSTRUMENT_FAILED** on I2:
+  Linux workspace, results/F6_order_dynamics/F6.8d/20261115T220032Z): INSTRUMENT_FAILED** on I2:
   - I2, two quadrature levels at p = 0: 2.9e-6 at the smallest age (k = 0.15, n = 96) but 1.7e-3 against 1e-3 at the
     largest (n = 3 072, r = 20 480; −1.848352e+01 against −1.845166e+01). The check sits at the judged age, where the
     instrument no longer holds three digits.
@@ -2056,6 +2247,43 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   reading of the field therefore needs a large L/ℓ, i.e. a denser sprinkling, not more rows of the operator.
 
 ## Derived consequences (no test)
+
+- **OV3-lin-a: the linear static response of the order to matter, computed from the frozen stiffness (F6.8g) and the
+  frozen source form factors (F6.10b), is linearised GR at long wavelength. At k l_k = 0.06 / 0.12 the field of a dust
+  slab is weaker (Phi/Phi_GR = 0.940 / 0.809) and bends light relatively more (gamma(k) = Psi/Phi = 1.033 / 1.122). A
+  static BPS domain wall repels at both k: its lapse is opposite to that of dust of the same energy, wall/dust =
+  -1.045 / -1.062 (GR: -1)** (derived 21 Nov, no test of its own: a deterministic 2 x 2 solution per k from the records
+  results/F6_order_dynamics/F6.8g/20261121T183904Z_main_seed0_86ec1e05.json and results/F6_order_dynamics/F6.10b/20261121T091000Z_main_seed0_14801b85.json; diag/ov3_lin_a.py, md5 17a1ea53; the
+  solver diag/ov3_lin.py reduces to linearised GR in the local limit, verified with sympy; decisions 41 and 44-46).
+  - **Model:** stationarity of <S_BD> + <S_m> per k (docs/derivations/order_variation_OV3.md, section 1);
+    alpha k^2 [6 K omega + 4 K_ab nu] = F_omega tau, alpha k^2 [4 K_ab omega + 2 K_bb nu] = F_nu sigma; Phi = omega,
+    Psi = -(omega + nu). Dust: tau = -rho, sigma = 0. Static BPS wall: tau = -3 rho_E, sigma = -2 rho_E.
+  - **The three evaluations of the wall (decision 41, item 5)**, at k l_k = 0.06 / 0.12:
+    1. **The sign:** the wall's lapse is opposite to that of dust at both k; wall/dust = -1.045 / -1.062. The wall
+       repels.
+    2. **The deviation from -rho_E:** the wall's lapse source -4 F_nu + 3 F_omega = -0.935 +- 0.001 / -0.708 +- 0.001
+       (GR -1). After the stiffness, the wall's Phi/Phi_GR = 0.982 +- 0.001 / 0.859 +- 0.001, and Psi/Phi = -1.030 /
+       -1.257 (GR -1).
+    3. **Wall against dust at the same k:** -1.045 / -1.062.
+  - **The uncertainty:** the response is recomputed with the form factors of each F6.10b variant (age T 80, grid 1.5).
+    The correlation of F_nu and F_omega therefore enters directly (decision 41: sigma_src^2 = 16 sigma_nu^2 +
+    9 sigma_omega^2 - 24 Cov). The stiffness varies by <= 3e-5 between levels (F6.8g I3) and is not propagated. For
+    dust, gamma(k) does not depend on F_omega, so its source uncertainty is zero.
+  - **Seen before:** the same numbers were previewed on the development record of F6.8g (identical rows at k 0.06,
+    0.12). The OV3-lin-a computation is deterministic from the frozen inputs, so it is recorded here and not as a test
+    (the author, 21 Nov 17:23).
+
+  Reading. The response of the order to matter is Einstein's at long wavelength, with gamma = 1. At wavelengths of tens
+  of l_k it is weaker and less Einsteinian (gamma > 1), because the optical stiffness and the nu-coupling fall faster
+  than the conformal ones. The departure is of order (k l_k)^2 ln(1/k l_k), so at any wavelength far above l_k it is
+  unobservable.
+  - Limits:
+    - the young field (age 4/k) and the bare ensemble action (decision 41: the entropic correction to the stiffness at
+      quadratic order is not measured);
+    - linear order, static, one profile per source;
+    - alpha (that is G) is not derived;
+    - the age problem of old fields (F6.8f) stands, so this is not the propagator of an old body and closes neither
+      C.1 nor the 1/r law.
 
 - **The swerves of a defect are the shot noise of the order sampling its own binding: D_p = (1/2 rho) int V'(phi)^2
   phi_x^2 dx = (32/15) mu^(5/2) / rho for the sine-Gordon kink, with no free constant** (derived 10 Nov at the leading
@@ -3034,6 +3262,21 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   and F6.8c2 are not affected (R132; F6.8c2 rows had T ≤ 167). The layer and boundary terms of the age cut at large
   ages are not computed. To be decided by F6.8e (card draft, judged range n 1 536 → 3 072 not computed in the
   development).
+
+- **F5.1e with m = H = 20 (1 Nov 2026, seed 0; not the frozen parameters; decides nothing).**
+  results/F5_gravity/F5.1e/20261101T115906Z_main_seed0_e61d89c9.{json,txt}: the F5.1e test file with memory and horizon of the
+  longest-chain rule set to 20 instead of the frozen 8 (test sha256 e61d89c9; frozen 230b54df), same order (F7.1c,
+  ~105 000 events), launch ring and fit.
+  - Loaded: R = +0.360 ± 0.100 (status UNDECIDED); v0 +0.111 ± 0.011; displacement from the apex +0.00 … +0.72; R / R_max = +0.42.
+  - Flat: R = −0.108 ± 0.150; v0 −0.010 ± 0.017. Instrument checks OK; R_max = +0.850 ± 0.058 as in the frozen run.
+  - Frozen run for comparison (30 Oct, m = H = 8): loaded R = −0.134 ± 0.121, v0 −0.102 ± 0.021; displacement +0.00 … −1.01.
+
+  Reading: with the longer memory the fitted acceleration has the sign of the prediction at 0.36 of its size (3.6
+  standard errors from zero; UNDECIDED by the criterion), and the velocity at the apex changes sign against m = H = 8.
+  The result depends on the memory of the rule; m = H = 20 is a hypothesis for a new revision, not a verdict. The
+  verdict F5.1e FAILED (30 Oct, frozen m = H = 8) stands (R132). The test file was restored to the frozen version
+  (sha256 230b54df) on 18 Nov; the frozen replication with seed 1 (18 Nov) FAILED again, R = −0.127 ± 0.127, with
+  v0 = −0.071 ± 0.021 of the same sign as seed 0 (see F5.1e under Failed). The run at m = H = 20 has one seed.
 
 ## Open questions
 

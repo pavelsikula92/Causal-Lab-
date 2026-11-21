@@ -1,0 +1,96 @@
+{
+ "id": "F6.10b",
+ "part": "main",
+ "seed": 0,
+ "quick": true,
+ "status": "PASSED",
+ "test_file": "phases/F6_order_dynamics/F6_10b_matter_metric_3p1.py",
+ "test_sha256": "cfcb7d5493305a20d85d306f7ab7b3cff0d9a7203e1088fe15ec979b888b0aab",
+ "core_sha256": "f89b9846a85945cdf9044a51734a686126977652df974499e41eb7e7d4ad7f60",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261121T011216Z",
+ "duration_s": 543.3,
+ "params": {
+  "m": 0.125,
+  "ks": [
+   0.0,
+   0.06
+  ],
+  "T": 40.0,
+  "T_age": 30.0,
+  "mult": 1.0,
+  "mult_grid": 1.25,
+  "tol0": 0.02,
+  "tolk": 0.15,
+  "kmax_judge": 0.06,
+  "fail0": 0.05,
+  "failk": 0.25,
+  "tol_age": 0.01,
+  "tol_grid": 0.01,
+  "tol_i3": 1e-05,
+  "tol_geom": 0.002,
+  "tol_unif": 1e-09
+ },
+ "lines": [
+  "3+1, eps rho = 1; static wall width 1/m = 8 l_k; ratio = d s_kin/db / continuum; judged at T = 40, grid 1; I1 age T = 30, I2 grid 1.25",
+  "  omega k 0    : d s_kin/db -0.99790 (continuum -1.00000) ratio 0.9979; T 30: 0.9968; grid 1.25: 0.9979; Delta 0.0011",
+  "  omega k 0.06 : d s_kin/db -0.86652 (continuum -0.91118) ratio 0.9510; T 30: 0.9513; grid 1.25: 0.9510; Delta 0.0003",
+  "  omega: k = 0 |ratio - 1| + Delta = 0.0032 (tol 0.02); non-increasing in k: True; k <= 0.06: 0.0493 (tol 0.15) -> PASSED",
+  "  nu    k 0    : d s_kin/db -0.50352 (continuum -0.50000) ratio 1.0070; T 30: 1.0083; grid 1.25: 1.0070; Delta 0.0012; boundary part +1.0e-03",
+  "  nu    k 0.06 : d s_kin/db -0.43032 (continuum -0.45559) ratio 0.9445; T 30: 0.9448; grid 1.25: 0.9445; Delta 0.0003; boundary part -1.6e-03",
+  "  nu: k = 0 |ratio - 1| + Delta = 0.0083 (tol 0.02); non-increasing in k: True; k <= 0.06: 0.0558 (tol 0.15) -> PASSED",
+  "  I1 age (1 %) -> OK; I2 grid (1 %) -> OK; I3 omega k = 0 -0.9978952 vs stage-1 kernel -0.9978952 -> OK; I4 geometry rel 3.5e-05 / 5.8e-05, uniform null 8.5e-14 -> OK",
+  "cost: 543 s"
+ ],
+ "data": {
+  "ratios": {
+   "omega": {
+    "0.0": {
+     "ratio": 0.9978951634310262,
+     "delta": 0.0010506818835380738
+    },
+    "0.06": {
+     "ratio": 0.950991751338613,
+     "delta": 0.0003170158523164712
+    }
+   },
+   "nu": {
+    "0.0": {
+     "ratio": 1.00703996278655,
+     "delta": 0.0012265638530069012
+    },
+    "0.06": {
+     "ratio": 0.9445304667133897,
+     "delta": 0.00028808371466138016
+    }
+   }
+  },
+  "verdicts": {
+   "omega": "PASSED",
+   "nu": "PASSED"
+  },
+  "instrument": {
+   "I1": true,
+   "I2": true,
+   "I3": true,
+   "I4": true
+  },
+  "stage1": -0.9978951641126171,
+  "geometry": {
+   "beta": 0.05730458583941367,
+   "beta_sph": 0.05730260260432432,
+   "gam": -0.07377128141418066,
+   "gam_sph": -0.07377557594883374,
+   "rel_beta": 3.460986062085373e-05,
+   "rel_gam": 5.821079127956966e-05,
+   "unif": 8.526512829121202e-14
+  }
+ }
+}

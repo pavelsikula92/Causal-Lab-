@@ -1,0 +1,231 @@
+{
+ "id": "F6.9a",
+ "part": "main",
+ "seed": 0,
+ "quick": true,
+ "status": "INSTRUMENT_FAILED",
+ "test_file": "phases/F6_order_dynamics/F6_09a_bd_vacuum_2d_diamonds.py",
+ "test_sha256": "972c18d8e74167ad3f722ccdf4fbc4573113b1b8374efb6f9cf455f75ab40344",
+ "core_sha256": "f89b9846a85945cdf9044a51734a686126977652df974499e41eb7e7d4ad7f60",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261120T091623Z",
+ "duration_s": 146.9,
+ "params": {
+  "eps": [
+   0.24,
+   0.12,
+   0.06
+  ],
+  "n": {
+   "0.24": 6,
+   "0.12": 4,
+   "0.06": 2
+  },
+  "levels": [
+   8,
+   16,
+   32
+  ],
+  "tol": 0.001,
+  "n_se": 2.0,
+  "n_balance": 2,
+  "tol_balance": 0.001,
+  "band_frac": 0.03,
+  "brute_tol": 1e-08
+ },
+ "lines": [
+  "2D causal diamonds, nested T/w = [8, 16, 32] (common future tip); S = 4 eps (N - 2 eps sum N_n f); per sprinkling c = slope of S against N; c/(4 eps) per element; mean +- SE over sprinklings",
+  "  I1 brute force: eps 0.06 N 247 (n_cut 627) S 0.0e+00 Delta S 1.5e-14; eps 0.12 N 153 (n_cut 304) S 2.7e-14 Delta S 2.6e-14; eps 0.24 N 218 (n_cut 142) S 5.5e-14 Delta S 4.5e-14; eps 0.5 N 2523 (n_cut 57) S 1.1e-10 Delta S 1.5e-12; eps 0.24 N 1823 (n_cut 142) S 2.7e-11 Delta S 3.2e-13 -> max 1.1e-10 (OK)",
+  "  eps 0.24 (n_loc 30, 6 sprinklings): c/(4 eps) = +5.779e-03 +- 4.354e-03; |x| + 2 SE = 1.45e-02 against 0.001 -> UNDECIDED",
+  "    T/w  8: N    1957.0 (expected    1920.0; I2 OK)  <S>  +19.904 +- 10.378  outside bands chi/dMM/h 0.000/0.000/0.000 (I3 OK)",
+  "    T/w 16: N    7736.3 (expected    7680.0; I2 OK)  <S> +145.734 +- 62.438  outside bands chi/dMM/h 0.000/0.000/0.000 (I3 OK)",
+  "    T/w 32: N   30831.3 (expected   30720.0; I2 OK)  <S> +210.790 +- 115.489  outside bands chi/dMM/h 0.167/0.167/0.167 (I3 FAILS)",
+  "    S(16) - S(8) = +125.830 +- 61.470",
+  "    S(32) - S(16) = +65.055 +- 109.058",
+  "    I4 T/w 8 U (2 sprinklings): <D S> +8.11e-04 +- 5.45e-03 (FAILS); reported <D2 S> +3.44e-02",
+  "    I4 T/w 8 V (2 sprinklings): <D S> +6.55e-04 +- 4.39e-03 (FAILS); reported <D2 S> +6.46e-02",
+  "  eps 0.12 (n_loc 65, 4 sprinklings): c/(4 eps) = +2.331e-03 +- 2.244e-03; |x| + 2 SE = 6.82e-03 against 0.001 -> UNDECIDED",
+  "    T/w  8: N    4139.5 (expected    4160.0; I2 OK)  <S>  +20.929 +- 15.651  outside bands chi/dMM/h 0.000/0.000/0.000 (I3 OK)",
+  "    T/w 16: N   16608.5 (expected   16640.0; I2 OK)  <S>  +49.942 +- 36.372  outside bands chi/dMM/h 0.000/0.000/0.000 (I3 OK)",
+  "    T/w 32: N   66553.2 (expected   66560.0; I2 OK)  <S>  +95.914 +- 61.927  outside bands chi/dMM/h 0.000/0.000/0.000 (I3 OK)",
+  "    S(16) - S(8) = +29.013 +- 24.230",
+  "    S(32) - S(16) = +45.972 +- 59.594",
+  "    I4 T/w 8 U (2 sprinklings): <D S> +6.47e-05 +- 4.34e-04 (OK); reported <D2 S> +1.16e-02",
+  "    I4 T/w 8 V (2 sprinklings): <D S> +4.82e-04 +- 7.71e-04 (FAILS); reported <D2 S> -8.32e-03",
+  "  eps 0.06 (n_loc 135, 2 sprinklings): c/(4 eps) = -1.187e-03 +- 2.577e-03; |x| + 2 SE = 6.34e-03 against 0.001 -> UNDECIDED",
+  "    T/w  8: N    8616.0 (expected    8640.0; I2 OK)  <S>   +0.719 +- 2.381  outside bands chi/dMM/h 0.000/0.000/0.000 (I3 OK)",
+  "    T/w 16: N   34352.5 (expected   34560.0; I2 OK)  <S>  +53.263 +- 9.475  outside bands chi/dMM/h 0.000/0.000/0.500 (I3 FAILS)",
+  "    T/w 32: N  138202.0 (expected  138240.0; I2 OK)  <S>  -16.260 +- 76.483  outside bands chi/dMM/h 0.000/0.000/0.000 (I3 OK)",
+  "    S(16) - S(8) = +52.545 +- 11.856",
+  "    S(32) - S(16) = -69.523 +- 67.007",
+  "    I4 T/w 8 U (2 sprinklings): <D S> +5.81e-05 +- 6.61e-05 (OK); reported <D2 S> +2.82e-03",
+  "    I4 T/w 8 V (2 sprinklings): <D S> +5.37e-05 +- 9.62e-05 (OK); reported <D2 S> -1.63e-03",
+  "  instrument: I1 OK; I2 OK; I3 FAILS; I4 FAILS",
+  "cost: 147 s"
+ ],
+ "data": {
+  "eps": {
+   "0.24": {
+    "c4eps": 0.0057790244295718345,
+    "se": 0.0043539487896070905,
+    "verdict": "UNDECIDED",
+    "levels": {
+     "8": {
+      "N": 1957.0,
+      "S": 19.903932188647705,
+      "seS": 10.377678752415012,
+      "out": {
+       "chi": 0.0,
+       "d_mm": 0.0,
+       "h": 0.0
+      }
+     },
+     "16": {
+      "N": 7736.333333333333,
+      "S": 145.7341535816151,
+      "seS": 62.438447779790984,
+      "out": {
+       "chi": 0.0,
+       "d_mm": 0.0,
+       "h": 0.0
+      }
+     },
+     "32": {
+      "N": 30831.333333333332,
+      "S": 210.78964021677965,
+      "seS": 115.48927213136741,
+      "out": {
+       "chi": 0.16666666666666666,
+       "d_mm": 0.16666666666666666,
+       "h": 0.16666666666666666
+      }
+     }
+    }
+   },
+   "0.12": {
+    "c4eps": 0.0023305507331956464,
+    "se": 0.002244461166362441,
+    "verdict": "UNDECIDED",
+    "levels": {
+     "8": {
+      "N": 4139.5,
+      "S": 20.92868324668041,
+      "seS": 15.650537927347722,
+      "out": {
+       "chi": 0.0,
+       "d_mm": 0.0,
+       "h": 0.0
+      }
+     },
+     "16": {
+      "N": 16608.5,
+      "S": 49.9421677693523,
+      "seS": 36.37178252042525,
+      "out": {
+       "chi": 0.0,
+       "d_mm": 0.0,
+       "h": 0.0
+      }
+     },
+     "32": {
+      "N": 66553.25,
+      "S": 95.91441395978035,
+      "seS": 61.92680612638275,
+      "out": {
+       "chi": 0.0,
+       "d_mm": 0.0,
+       "h": 0.0
+      }
+     }
+    }
+   },
+   "0.06": {
+    "c4eps": -0.0011869662967047736,
+    "se": 0.0025767896778646163,
+    "verdict": "UNDECIDED",
+    "levels": {
+     "8": {
+      "N": 8616.0,
+      "S": 0.7186611340424134,
+      "seS": 2.3811263323770984,
+      "out": {
+       "chi": 0.0,
+       "d_mm": 0.0,
+       "h": 0.0
+      }
+     },
+     "16": {
+      "N": 34352.5,
+      "S": 53.26334252303437,
+      "seS": 9.47522653952561,
+      "out": {
+       "chi": 0.0,
+       "d_mm": 0.0,
+       "h": 0.5
+      }
+     },
+     "32": {
+      "N": 138202.0,
+      "S": -16.259770537137516,
+      "seS": 76.48265403990865,
+      "out": {
+       "chi": 0.0,
+       "d_mm": 0.0,
+       "h": 0.0
+      }
+     }
+    }
+   }
+  },
+  "instrument": {
+   "I1": true,
+   "I2": true,
+   "I3": false,
+   "I4": false
+  },
+  "brute": [
+   {
+    "eps": 0.06,
+    "N": 247,
+    "n_cut": 627,
+    "dS_tot": 0.0,
+    "dS_swap": 1.5275107567713775e-14
+   },
+   {
+    "eps": 0.12,
+    "N": 153,
+    "n_cut": 304,
+    "dS_tot": 2.708944180085382e-14,
+    "dS_swap": 2.6430246879982633e-14
+   },
+   {
+    "eps": 0.24,
+    "N": 218,
+    "n_cut": 142,
+    "dS_tot": 5.46229728115577e-14,
+    "dS_swap": 4.5130565951012613e-14
+   },
+   {
+    "eps": 0.5,
+    "N": 2523,
+    "n_cut": 57,
+    "dS_tot": 1.064108801074326e-10,
+    "dS_swap": 1.4646062140855065e-12
+   },
+   {
+    "eps": 0.24,
+    "N": 1823,
+    "n_cut": 142,
+    "dS_tot": 2.7284841053187847e-11,
+    "dS_swap": 3.2171487696075474e-13
+   }
+  ]
+ }
+}

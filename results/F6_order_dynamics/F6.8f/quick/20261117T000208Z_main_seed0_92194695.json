@@ -1,0 +1,99 @@
+{
+ "id": "F6.8f",
+ "part": "main",
+ "seed": 0,
+ "quick": true,
+ "status": "INSTRUMENT_FAILED",
+ "test_file": "phases/F6_order_dynamics/F6_08f_bd_action_optical_finite_amplitude.py",
+ "test_sha256": "92194695f598e47df285ef917d8268bb6a377565e11f4876056f60d52cda24ce",
+ "core_sha256": "f89b9846a85945cdf9044a51734a686126977652df974499e41eb7e7d4ad7f60",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.18.44-fc-v553-x86_64-with-glibc2.39",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261117T000208Z",
+ "duration_s": 795.7,
+ "params": {
+  "ends": [
+   0.5,
+   3.0
+  ],
+  "g": 3,
+  "c2_eps": [
+   0.1,
+   0.2
+  ],
+  "p_panels": [
+   [
+    0.0,
+    12.0,
+    2
+   ],
+   [
+    12.0,
+    24.0,
+    1
+   ]
+  ],
+  "n_theta": 8,
+  "gamma_A": 2.5,
+  "gamma_B": 5.0,
+  "tol_lin": 1e-08,
+  "tol_g": 0.001,
+  "tol_theta": 0.001,
+  "tol_null": 0.05
+ },
+ "lines": [
+  "F6.8f (draft): K_eff / K_2 = R(eps); C2 = -6.5821381558e-10 (from eps 0.1, 0.2); 3 directions, 8 phases, G = 3",
+  "     eps      Phi(eps)          N(eps)      R(eps) = K_eff/K_2   R with G-1",
+  "   0.500  -1.6686948962e-10  +1.014075   +1.015694            +1.023230",
+  "   3.000  -1.9784113547e-08  +3.339697   +3.714781            +3.765891",
+  "  gamma_T 0.5 -> 3: +6.4475  (second order 5)",
+  "  instrument: rays per phase 1; stationarity 1.5e-10; |R(G) - R(G-1)| 5.1e-02 (<= 0.001); phases 4 vs 8: 1.2e+00 (<= 0.001); K.18 and the F6.8e3 check are separate records",
+  "  checks: k = 0 (eps = 0) largest |Phi| 0.0e+00; both signs of b exact; zero age M ~ eps^5/2; null model: largest |R - 1| 2.7148 (second order holds within 0.05: False)",
+  "  reading -",
+  "  cost 796 s"
+ ],
+ "data": {
+  "ends": [
+   0.5,
+   3.0
+  ],
+  "Phi": [
+   -1.6686948961822693e-10,
+   -1.9784113546526704e-08
+  ],
+  "C2": -6.582138155764601e-10,
+  "N": [
+   1.0140746709917265,
+   3.3396972024626455
+  ],
+  "M": [
+   -9.454639122212763e-11,
+   -3.0492517920928845e-08
+  ],
+  "R": [
+   1.0156941830722894,
+   3.7147806122551343
+  ],
+  "R_g_minus_1": [
+   1.023230157122659,
+   3.7658905968738723
+  ],
+  "gamma_T": [
+   6.447456917279894
+  ],
+  "reading": "-",
+  "nray": 1,
+  "lin": 1.468544175153852e-10,
+  "dphi_theta": [
+   0.1492424609569265,
+   1.1631168086340524
+  ],
+  "k0": 0.0
+ }
+}

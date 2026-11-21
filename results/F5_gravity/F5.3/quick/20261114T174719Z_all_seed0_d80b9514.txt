@@ -1,0 +1,19 @@
+F5.3 (C1: the C0 instrument on a conformally flat well, a 0.15, L 1.5); X 4, T 3; rho 8 (2 pairs), 12 (2 pairs); base seed 0
+rho 8: centre t >= 4.5: D - local +nan +- nan (predicted +nan); D - exact +nan +- nan
+   31 bins: chi2/bin against the exact mean 3.04, against the local model 24.20
+rho 12: centre t >= 4.5: D - local +nan +- nan (predicted +nan); D - exact +nan +- nan
+   32 bins: chi2/bin against the exact mean 8.27, against the local model 21.26
+instrument (flat parents), the four largest:
+  flat rho 8 t 2.75: d -0.0406, SE 0.0043, z 8.54 (t_crit 636.62)
+  flat rho 12 t 2.25: d +0.0065, SE 0.0014, z 2.68 (t_crit 636.62)
+  flat rho 12 t 2.75: d -0.0411, SE 0.0209, z 1.96 (t_crit 636.62)
+  flat rho 12 t 1.75: d +0.0093, SE 0.0076, z 1.19 (t_crit 636.62)
+P1, the four largest bins against the exact mean:
+  rho 12 t 2.75 x -0.75: D +0.207 +- 0.003, exact +0.131, local +0.187; z 13.16 (t_crit 4010.70)
+  rho 8 t 1.75 x -0.25: D +0.273 +- 0.004, exact +0.235, local +0.166; z 5.84 (t_crit 4010.70)
+  rho 12 t 1.75 x +1.75: D +0.168 +- 0.001, exact +0.141, local +0.113; z 5.35 (t_crit 4010.70)
+  rho 8 t 2.25 x -0.25: D +0.162 +- 0.018, exact +0.246, local +0.221; z 4.40 (t_crit 4010.70)
+instrument failures: none
+passed: P1 exact mean rho 8: yes; P2 not local rho 8: no; P1 exact mean rho 12: yes; P2 not local rho 12: no
+failed: none
+cost: 12s

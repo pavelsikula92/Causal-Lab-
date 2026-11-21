@@ -1,0 +1,10 @@
+3+1, eps rho = 1 (l_k = 1); optical (nu^2) bulk pair density of F6.8c with the stable second-order volume; p = k r cos(n, k)
+  I0 long double eps 1.08e-19 (need <= 1e-18)
+  I1 stable V''/V0 vs F6.8c: k 0.7 L 2: -1.5948447932e-02 vs -1.5948447932e-02 (rel 6.4e-13); k 0.12 L 5: -1.1322552886e-02 vs -1.1322552886e-02 (rel 4.8e-13); k 0.12 L 20: -2.2401519437e-01 vs -2.2401519437e-01 (rel 1.7e-12) (tol 1e-09)
+  I2 k 0.13, n 48 -> 96: alpha_0 level 1 4.74436, level 2 4.74303 (|diff| 1.3e-03, tol 0.01)
+  I3 conformal c_T at k 0.13, n 96: 0.1025 (F6.8a asymptotic 0.1035; rel 9.4e-03, tol 0.03)
+  I4 tail k 0.13, n 96: |I(p = 24)| / |I(p = 0)| = 7.2e-05 (tol 0.001)
+  k      n      r          rho_bb          F'_bb(n) = -a4 rho_bb / k^5   rho_conf        alpha(n_prev -> n)
+  0.13   48     369.23     -2.314277e-04   +1.017848e+01                  -4.445907e-07   
+  0.13   96     738.46     -3.136696e-03   +1.379558e+02                  -4.370904e-07   4.7606
+  reported k 0.13: c5 = F'(n) / (5 n^4) at n 96 = 3.2485e-07; K_hat_bb changes sign near n* ~ 44.9 (T ~ 345 l_k; local part neglected)

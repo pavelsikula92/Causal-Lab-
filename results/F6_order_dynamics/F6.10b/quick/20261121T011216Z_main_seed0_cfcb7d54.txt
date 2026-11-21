@@ -1,0 +1,9 @@
+3+1, eps rho = 1; static wall width 1/m = 8 l_k; ratio = d s_kin/db / continuum; judged at T = 40, grid 1; I1 age T = 30, I2 grid 1.25
+  omega k 0    : d s_kin/db -0.99790 (continuum -1.00000) ratio 0.9979; T 30: 0.9968; grid 1.25: 0.9979; Delta 0.0011
+  omega k 0.06 : d s_kin/db -0.86652 (continuum -0.91118) ratio 0.9510; T 30: 0.9513; grid 1.25: 0.9510; Delta 0.0003
+  omega: k = 0 |ratio - 1| + Delta = 0.0032 (tol 0.02); non-increasing in k: True; k <= 0.06: 0.0493 (tol 0.15) -> PASSED
+  nu    k 0    : d s_kin/db -0.50352 (continuum -0.50000) ratio 1.0070; T 30: 1.0083; grid 1.25: 1.0070; Delta 0.0012; boundary part +1.0e-03
+  nu    k 0.06 : d s_kin/db -0.43032 (continuum -0.45559) ratio 0.9445; T 30: 0.9448; grid 1.25: 0.9445; Delta 0.0003; boundary part -1.6e-03
+  nu: k = 0 |ratio - 1| + Delta = 0.0083 (tol 0.02); non-increasing in k: True; k <= 0.06: 0.0558 (tol 0.15) -> PASSED
+  I1 age (1 %) -> OK; I2 grid (1 %) -> OK; I3 omega k = 0 -0.9978952 vs stage-1 kernel -0.9978952 -> OK; I4 geometry rel 3.5e-05 / 5.8e-05, uniform null 8.5e-14 -> OK
+cost: 543 s

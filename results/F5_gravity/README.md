@@ -1,0 +1,28 @@
+# F5: Gravity and equivalence
+
+## Objective
+
+Whether matter falls in an order shaped by other matter, without a rule for falling added: longest chains in a loaded order, field defects in orders of non-uniform density, under a causal growth rule and on prescribed curved orders; the active side (how matter shapes the order); the equivalence of gravitational and inertial mass.
+
+## Contents
+
+One folder per test, `F5_gravity/<ID>/`, with the records of its full runs: `<UTC time>_<part>_seed<seed>_<test hash 8>.json` (parameters, seed, hashes of the test file and of the core, versions, the printed lines and the data) and the same lines as `.txt`. Reduced runs are in `<ID>/quick/` and do not count. Nothing is overwritten.
+
+The verdicts and their reading are in `docs/findings.md`; the list of tests with their latest states in `docs/test_list.md` (`python run.py report`); the records of one test: `python run.py results <ID>`.
+
+| Test | Question | Level |
+|---|---|---|
+| F5.1 | In an order shaped by a static source (throughput rule: narrower cones and more events), does a test flow fall towards the source (a) with the carried rule of F3.6 (direction in flat coordinates), (b) with a rule that reads only the order (go to the child that maximises the interval from the flow's own past)? | mechanism |
+| F5.1c | In the order shaped by a static source (F7.1b), does a chain that at every step aims at the event H links ahead with the shortest longest chain from its own past (m steps back; no boost), and steps along a longest chain to it, fall towards the source as the geometry of the order predicts? | mechanism |
+| F5.1d | In the order shaped by a static source (F7.1b), does a chain that starts at the apex of the longest chain between two events at the same place, with the rising half of that chain as its history, and then follows the longest-chain rule of F5.1c, fall from the apex as the geometry of the order predicts? | mechanism |
+| F5.1e | In the 3+1 throughput order of F7.1c (sigma0 = 0.3), does a chain that starts at the apex of the longest chain between two events at the same place, with the rising half of that chain as its history, and then follows the longest-chain rule of F5.1c, fall from the apex as phi = -sigma/2 predicts? | mechanism |
+| F5.1f | Does a flow whose history is fixed up to its last event v and whose next layer is shared equally among the children c of v with L(p, c) = L(p, v) + 1 (p = 8 steps back) keep the velocity of its history in its centre, and does the rule not depend on the region in which the order is read? | mechanism |
+| F5.1g | Does a flow whose events take their memory from the maximal elements of the common flow-past of their flow parents, and pass their flow equally to the children with zero deficit against every memory event, keep the velocity of its centre and its coherence in a flat 3+1 order, without depending on the region in which the order is read? | mechanism |
+| F5.2a | In a 1+1 causal order whose only change is the number of events per coordinate area (a conformally flat metric), does the kink of F3.14a, under the unchanged rule, fall as its continuum body, and do kinks of mass 4, 8 and 16 fall alike, while it does not fall when the density is uniform or the counting is removed? | mechanism |
+| F5.2a2 | In a 1+1 causal order whose only change is the number of events per coordinate area (a conformally flat metric), does the kink of F3.14a, under the unchanged rule, fall as its continuum body, and do kinks of mass 4, 8 and 16 fall alike, while it does not fall when the density is uniform or the counting is removed? | mechanism |
+| F5.2a3 | In a 1+1 causal order whose only change is the number of events per coordinate area (a conformally flat metric), does the kink of F3.14a, under the unchanged rule, fall as its continuum body, and do kinks of mass 4, 8 and 16 fall alike, while it does not fall when the density is uniform or the counting is removed? | mechanism |
+| F5.2b | With candidates realised with probability Pi^2 computed from the realised causal past (ln Pi = -(kappa/2 rho) sum of the load 2V), does matter thin its future order, and does a test defect fall towards it in proportion to its energy and independently of its own mass, as the continuum response predicts? | mechanism |
+| F5.2c | In an exact sprinkling of the 2+1 metric of the theory, does the field rule that reads only the order move walls as the continuum does: the kink (tension = energy) stays at rest, a launched kink follows the cones of the order, and a breather wall (little tension) falls as the continuum predicts? | mechanism |
+| F5.2c2 | In an exact sprinkling of the 2+1 metric of the theory, does the field rule that reads only the order move walls as the continuum does: the kink (tension = energy) stays at rest, a launched kink follows the cones of the order, and a breather wall (little tension) falls as the continuum predicts? | mechanism |
+| F5.2d | When a 2+1 order grows event by event with density and cones set by the potential L = ln Pi that a static source wall produces from its realised past through the chain weight, does the order become the order of the theory around the source, as much as the source's load (2E) says: the potential, the slowed clocks and the narrowed cones of the continuum response box_g L = kappa q? | mechanism |
+| F5.3 | On a curved 3+1 order (conformally flat planar well), does the field of the order-only rule follow its exact mean (the curved volume along each pair), and does it differ, in the predicted direction, from the local conformally coupled field with the same finite-density smearing? | mechanism |

@@ -1,0 +1,164 @@
+{
+ "id": "F6.8g",
+ "part": "main",
+ "seed": 0,
+ "quick": true,
+ "status": "UNDECIDED",
+ "test_file": "phases/F6_order_dynamics/F6_08g_bd_action_optical_local.py",
+ "test_sha256": "6bfb34716f626b7c96d0eb7a443bd9485c8534a291c5fa723ee23e8b5cba0611",
+ "core_sha256": "f89b9846a85945cdf9044a51734a686126977652df974499e41eb7e7d4ad7f60",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261121T132207Z",
+ "duration_s": 2156.7,
+ "params": {
+  "ks": [
+   0.06,
+   0.12
+  ],
+  "n_judge": 4.0,
+  "n_report": [],
+  "T_max": 160.0,
+  "mixed": true,
+  "check": [
+   0.12
+  ],
+  "ov3_ks": [
+   0.06,
+   0.12
+  ],
+  "quad": [
+   4,
+   16,
+   0.8,
+   8,
+   16
+  ],
+  "bnd_nodes": 32,
+  "tol_I1": 0.001,
+  "tol_t2": 0.002,
+  "tol_geom": 0.002,
+  "tol_unif": 1e-09,
+  "tol_level": 0.002,
+  "tol_null": 0.002,
+  "tol_pass": 0.01,
+  "tol_fail": 0.03
+ },
+ "lines": [
+  "3+1, eps rho = 1 (l_k = 1); young-field stiffness at fixed n = kT (judged n = 4); K_hat = second derivative of the expected BD action / EH (6 k^2 conformal, 8 k^2 mixed, 2 k^2 optical)",
+  "  I2 optical: <T2> vs Fermat 4.0e-07; 7.9e-05; 9.2e-06; d2V/db2 rel 6.6e-04; null 3.6e-15. Mixed: rel 3.5e-05 / 5.8e-05; null 8.5e-14 -> OK",
+  "  I3 k 0.12 T 33.33: K_hat_bb level 1 +0.800174, level 2 +0.800172, |diff| 2.5e-06 -> OK",
+  "  I4 null k = 0 at T = 4/k: k 0.06 (T 66.67): 3.2e-04; k 0.12 (T 33.33): 1.2e-03 (K_hat_bb units; tol 0.002) -> OK",
+  "  I1 not evaluated (fewer than four wavenumbers: quick run)",
+  "  k       n   T        K_hat_bb    K_hat_c     K_hat_ab    phi_2^(C) (reported)",
+  "  0.06    4   66.67    +0.936968   +0.952450   +0.952413   +0.00074",
+  "  0.12    4   33.33    +0.800174   +0.849175   +0.849022   +0.00255",
+  "  inputs of OV3-lin-a at n = 4: k 0.06: K 0.95245, K_ab 0.95241, K_bb 0.93697; k 0.12: K 0.84918, K_ab 0.84902, K_bb 0.80017",
+  "  optical K0_bb at n = 4: nan (PASSED <= 0.01, FAILED > 0.03)",
+  "cost: 2157 s"
+ ],
+ "data": {
+  "optical": [
+   {
+    "k": 0.06,
+    "T": 66.66666666666667,
+    "mult": 1.0,
+    "J_bb": 0.002065584543614105,
+    "J_c": 0.00039369641487781615,
+    "bnd": 2.006154708627794e-06,
+    "n_ang": 32,
+    "n_rs": 208,
+    "n_te_max": 20,
+    "time": 193.26517581939697,
+    "Kbb": 0.936968176376708,
+    "Kc": 0.9524497086555274,
+    "n": 4.0
+   },
+   {
+    "k": 0.12,
+    "T": 33.333333333333336,
+    "mult": 1.0,
+    "J_bb": 0.00705606587263392,
+    "J_c": 0.0014040310379707344,
+    "bnd": 3.1796444438521045e-05,
+    "n_ang": 32,
+    "n_rs": 176,
+    "n_te_max": 20,
+    "time": 173.01846504211426,
+    "Kbb": 0.8001741194175568,
+    "Kc": 0.8491752163107491,
+    "n": 4.0
+   }
+  ],
+  "mixed": [
+   {
+    "k": 0.06,
+    "T": 66.66666666666667,
+    "mult": 1.0,
+    "J_ab": 0.00419926526888944,
+    "J_c": 0.00039369641487781615,
+    "bnd": 3.1361105320886657e-06,
+    "n_ang": 32,
+    "n_rs": 208,
+    "n_te_max": 20,
+    "time": 86.17057013511658,
+    "Kab": 0.9524127040157713,
+    "Kc": 0.9524497086555274
+   },
+   {
+    "k": 0.12,
+    "T": 33.333333333333336,
+    "mult": 1.0,
+    "J_ab": 0.014973625367619713,
+    "J_c": 0.0014040310379707344,
+    "bnd": 5.021288479256612e-05,
+    "n_ang": 32,
+    "n_rs": 176,
+    "n_te_max": 20,
+    "time": 73.9947247505188,
+    "Kab": 0.8490217997745946,
+    "Kc": 0.8491752163107491
+   }
+  ],
+  "nulls": [
+   {
+    "k": 0.06,
+    "T": 66.66666666666667,
+    "J_bb": 7.004860970757885e-07,
+    "units": 0.0003177469462498826
+   },
+   {
+    "k": 0.12,
+    "T": 33.333333333333336,
+    "J_bb": 1.052111949858185e-05,
+    "units": 0.0011931191802950158
+   }
+  ],
+  "fits": {},
+  "ov3": {
+   "0.06": {
+    "K_c": 0.9524497086555274,
+    "K_ab": 0.9524127040157713,
+    "K_bb": 0.936968176376708
+   },
+   "0.12": {
+    "K_c": 0.8491752163107491,
+    "K_ab": 0.8490217997745946,
+    "K_bb": 0.8001741194175568
+   }
+  },
+  "instrument": {
+   "I1": true,
+   "I2": true,
+   "I3": true,
+   "I4": true
+  },
+  "K0_bb": null
+ }
+}

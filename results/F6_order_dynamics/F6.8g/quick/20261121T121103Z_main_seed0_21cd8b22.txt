@@ -1,0 +1,19 @@
+3+1, eps rho = 1 (l_k = 1); rows of F6.8c optical_row; K_hat_bb (optical, EH 2k^2) and K_hat_c (conformal, EH 6k^2) on the same nodes; separation K_hat = K_loc(k) - k^2 F(kT), F(0) = 0
+  I2 <T2> vs Fermat ray: 4.0e-07; 7.9e-05; 9.2e-06; d2V/db2 rel 6.6e-04; uniform null 3.6e-15 -> OK
+  I3 k 0.12 T 40: K_hat_bb level 1 +0.800489, level 2 +0.800487, |diff| 2.7e-06 -> OK
+  I4 null k = 0: T 20: 3.7e-02 (units of K_hat_bb at k = 0.06; tol 0.002) -> FAILS
+  I1 conformal separation (a = -0.1537, max res 9.4e-04) against F6.8a's local part: k 0.06: -5.0e-03; k 0.12: -2.4e-02 (tol 0.001 at k <= 0.1) -> FAILS
+  k       T      n       (1) K_hat_bb   (2) k^2 F_bb(n)   K_hat_c
+  0.06    20     1.2     +0.988235      +0.002834        +0.953052
+  0.06    40     2.4     +0.941314      +0.005669        +0.951829
+  0.12    20     2.4     +0.817653      +0.022674        +0.846713
+  0.12    40     4.8     +0.800489      +0.045348        +0.852259
+  age component, optical: F_bb(n) = +0.65608 n^1 (max res 2.2e-02); conformal: -0.15366 n^1
+  k       (3) K_loc,bb   (4) spread   K_loc,c   phi_0     phi_2^(C) (reported)
+  0.06    +0.969026      9.6e-02      +0.951445  -0.03237  +0.06753
+  0.12    +0.843082      4.7e-01      +0.841520  -0.10565  +0.10878
+    variant n<=8,T>=20,J=1: 0.06: 0.96903, 0.12: 0.84308
+    variant n<=8,T>=20,J=2: 0.06: 1.06501, 0.12: 1.31242
+    variant youngest row (n <= 1): 
+  fit K0_bb not evaluated (fewer than four wavenumbers: quick run)
+cost: 3251 s

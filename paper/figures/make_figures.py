@@ -2,7 +2,7 @@
 Figures of the paper, drawn from the saved records of the laboratory
 =====================================================================
 
-Every point in every figure is read from a record in results/<ID>/ (the newest full run of the test, quick runs are
+Every point in every figure is read from a record in results/<phase folder>/<ID>/ (the newest full run of the test, quick runs are
 ignored), never typed in by hand. The only numbers written here are those of analytic curves that the paper states
 as formulas (the window of the non-locality scale, Sec. "The window of the non-locality scale"), and they are marked
 as such. Error bars are +-1 standard error as stored in the record.
@@ -79,7 +79,7 @@ def record(test_id: str, part: str | None = None, seed: int | None = None) -> di
     if seed is not None:
         recs = [r for r in recs if r.get("seed") == seed]
     if not recs:
-        raise FileNotFoundError(f"no full-run record of {test_id} (part {part}, seed {seed}) in results/{test_id}/")
+        raise FileNotFoundError(f"no full-run record of {test_id} (part {part}, seed {seed}) in results/ (python run.py results {test_id})")
     rec = max(recs, key=lambda r: r.get("time_utc", ""))
     print(f"  {test_id}: {rec['_file']} ({rec['status']})")
     return rec

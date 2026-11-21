@@ -1,0 +1,70 @@
+{
+ "id": "F6.10a",
+ "part": "main",
+ "seed": 0,
+ "quick": true,
+ "status": "PASSED",
+ "test_file": "phases/F6_order_dynamics/F6_10a_matter_conformal_2d.py",
+ "test_sha256": "514b1ecf36cd495ac6e2b757c2cfffba31468a4041c14a8a5a4b488ed1638fbe",
+ "core_sha256": "f89b9846a85945cdf9044a51734a686126977652df974499e41eb7e7d4ad7f60",
+ "files_changed_during_run": false,
+ "versions": {
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+  "laboratory": "1.0.0"
+ },
+ "time_utc": "20261121T005848Z",
+ "duration_s": 33.4,
+ "params": {
+  "eps": 0.12,
+  "n_exp": [
+   266240
+  ],
+  "m": 9.0,
+  "s": 0.09,
+  "u0": 0.45,
+  "v0": 0.55,
+  "levels": [
+   [
+    128,
+    96,
+    64
+   ],
+   [
+    192,
+    128,
+    96
+   ]
+  ],
+  "tol": 0.03,
+  "fail": 0.06,
+  "tol_flat": 0.01,
+  "tol_delta": 0.01
+ },
+ "lines": [
+  "2D light-cone square, eps 0.12, kink m 9, bump s 0.09 at (0.45, 0.55); target int sigma T^a_a sqrt|g| / a = -5.84213; continuum flat S_kin -30.45582",
+  "  N 266240 level (128, 96, 64): flat <S_kin> -30.3534 (0.9966 of the continuum); d<S_kin>/da +0.02802; R = -0.0048",
+  "  N 266240 level (192, 128, 96): flat <S_kin> -30.3533 (0.9966 of the continuum); d<S_kin>/da +0.02749; R = -0.0047",
+  "  N 266240: R = -0.0047, Delta 0.0001; |R| + Delta = 0.0048 -> PASSED",
+  "  I1 flat S_kin at N 266240: 0.9966 of the continuum (tol 0.01) -> OK; I2 quadrature -> OK; I3 potential derivative -5.8421255 vs -5.8421255 -> OK",
+  "cost: 33 s"
+ ],
+ "data": {
+  "rows": {
+   "266240": {
+    "R": -0.00470517014863363,
+    "delta": 9.028302125635955e-05,
+    "verdict": "PASSED"
+   }
+  },
+  "instrument": {
+   "I1": true,
+   "I2": true,
+   "I3": true
+  },
+  "target": -5.84212547821178,
+  "kin_continuum": -30.45581504387737
+ }
+}

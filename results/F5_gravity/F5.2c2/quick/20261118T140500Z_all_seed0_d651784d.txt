@@ -1,0 +1,13 @@
+F5.2c2 (B2, 2+1, prescribed order of the theory Pi^2 = (x + 24)/24; intrinsic weight variant B); rho 12, T 8, 2 sprinklings; flat control on 1; base seed 0; mean +- SE over sprinklings
+  I1 links against the brute-force transitive reduction: [573, 4089, 4089] (curved), [555, 3617, 3617] (flat) [N, links, brute]: identical
+  I4 linear extension t + 0.2 x 2.7e-16, region 0.0e+00 (N 4468)
+  I0 density: N / (rho V_proper) - 1 +0.0003 +- 0.0060
+  kink at rest: Q - Q_ex -0.0003 +- 0.0012; w/w_ex - 1 +0.0270 +- 0.0035
+  flat order, breather: D_0 = (xb(last) - xb(first)) / curved continuum fall (-0.8396) +nan +- nan
+  kink at rest: D_K +0.1622 +- 0.1425 (a test particle: -0.4375)
+  launched kink v 0.3: slope - continuum slope +0.0200 +- 0.0010 (continuum slope +0.3130; flat cones would give 0.3); slope - v +0.0330 +- 0.0009
+  breather omega 0.7: r_B +0.3916 +- 0.2076 (continuum fall of the profile centre -0.8396); reported: the energy centroid r +nan +- nan (continuum +nan)
+instrument: I1 links exact: OK; I4 order, region: OK; I0 density: FAILS; kink Q: OK; kink w: OK; flat breather stays: FAILS
+passed conditions: kink stays: D_K: no; launched kink: dv_L: no; breather falls: r_B: no; launched kink: faster than flat cones: yes
+failed conditions: kink stays: D_K: no; launched kink: dv_L: no; breather falls: r_B: YES
+cost: 129 s per arm (531s)

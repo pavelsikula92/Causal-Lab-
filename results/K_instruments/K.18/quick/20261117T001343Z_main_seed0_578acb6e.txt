@@ -1,0 +1,12 @@
+K.18 (draft): needle volume; eps [1.0, 4.0], 3 directions, 8 phases
+  single: largest number of rays 1 (ok)
+  jacobi: delta_J 5.04e-14 (<= 0.0001); series A0 vs plane wave 2.19e-12 (<= 1e-09)
+  series vs exact needle: largest difference 1.93e-08 (<= 1e-06), window failures 0 (<= 2)
+  qconv: largest delta_A 1.88e-06 (<= 0.001); largest pairwise 5.60e-05
+  e3: p-integrated F6.8e3 bulk / series prediction - 1 = +2.81e-03 (<= 0.005)
+     p  2.536: F6.8e3 -2.434059e+00  series -2.426679e+00  ratio 1.003041
+     p  9.464: F6.8e3 -2.312441e-01  series -2.311740e-01  ratio 1.000303
+     p 18.000: F6.8e3 -1.230717e-03  series -1.224035e-03  ratio 1.005459
+     brute eps 4 p 2 theta 2 q 0.25: kappa-levels - series -1.19e-03 -2.97e-04 (ratio 3.997); extrapolated - series -2.70e-07
+  brute: largest |A_ext - A_series| 2.70e-07 (<= 0.001); ratios outside [3.5, 4.5]: 0
+  cost 694 s
