@@ -242,3 +242,93 @@ equation.
 | Old fields (any order) | open: the age growth (kT)⁵ (F6.8e3), no saturation at finite amplitude (F6.8f) |
 | Entropic correction to the stiffness | not measured (decision 41) |
 | The value of G | not derived |
+
+## 10. The second order: what decides β, and how the order can be asked (21 Nov, 22:xx; development, decides nothing)
+
+The author chose this direction (21 Nov, 21:32: "Druhý řád polní rovnice (β) při kT=4 … jdeme tímto směrem").
+Script: diag/ov3_beta_sym.py (sympy; every statement marked [sympy] below is printed by it).
+
+### 10.1 β needs only one cubic number
+
+Static isotropic metric, written as g = −e^{2ω} dt² + e^{2ψ} dx² (the paper's ν is ψ − ω). The most general **local**
+static action with two derivatives has, to cubic order,
+
+    L = 4 ∇ω·∇ψ + 2 (∇ψ)²                                    (the quadratic part at its EH values, 6, 8, 2 in ω, ν)
+      + c₁ ω(∇ω)² + c₂ ω ∇ω·∇ψ + c₃ ω(∇ψ)² + c₄ ψ(∇ω)² + c₅ ψ ∇ω·∇ψ + c₆ ψ(∇ψ)²,
+
+since every two-derivative cubic term reduces to these by integration by parts. For a point mass the first order is
+ω₁ = −U, ψ₁ = +U with U = m/r (ω + ψ has no source and is regular). Outside the source the second order is
+ω₂ = a m²/r², ψ₂ = b m²/r², and with −g₀₀ = e^{2ω} = 1 − 2U + 2βU²:
+
+    β = 1 + (c₁ − c₂ + c₃ − c₄ + c₅ − c₆)/8   [sympy]
+
+- **Check.** EH, L = e^{ω+ψ}[4∇ω·∇ψ + 2(∇ψ)²], has c = (0, 4, 2, 0, 4, 2). It gives β = 1 and b = −1/4, which is
+  Schwarzschild in isotropic coordinates, ψ = 2 ln(1 + m/2r) = m/r − m²/4r² [sympy].
+- **The reduction.** The combination is exactly the cubic action evaluated along the first-order solution:
+  κ₃ ≡ L₃(ω = −U, ψ = U)/(U(∇U)²) = −c₁ + c₂ − c₃ + c₄ − c₅ + c₆, so **β − 1 = −κ₃/8** [sympy]. In general
+  normalisation, β − 1 = (C₃/Q₂)/4, where Q₂ and C₃ are the coefficients of (∇U)² and U(∇U)² along that direction.
+- **The direction is the exponential metric.** (ω, ν) = (−U, 2U), i.e. g = −e^{−2U} dt² + e^{2U} dx². Along it the full
+  EH action is −2(∇U)² at **every** order [sympy], because the prefactor e^{ω+ψ} = 1.
+
+So the question "is β = 1?" becomes a null test: **does the cubic part of the order's action vanish along the
+exponential metric?** No other cubic coefficient enters. In particular the six coefficients need not be separated.
+
+### 10.2 What the order must supply
+
+The quantity is E(A, C) = ⟨S_BD⟩ per unit four-volume for the static planar metric
+
+    g = −e^{−2u} dt² + e^{2u} dx²,    u(z) = A cos kz + C cos 2kz,
+
+at fixed age n = kT = 4 (the young field of F6.8g). The averages are ⟨u(u′)²⟩ = (3/4)A²Ck² and
+⟨(u′)²⟩ = (A² + 4C²)k²/2 [sympy], so
+
+    E = −K̂_dir (A² + 4C²) k² + κ₃(k) (3/4) A² C k² + O(4),
+    β(k) − 1 = −κ₃(k) / (8 K̂_dir(k)),
+
+with EH values K̂_dir = 1 and κ₃ = 0.
+- **The quadratic part is known.** K̂_dir = (16 K̂_ab − 6 K̂_c − 8 K̂_bb)/2 from the three sectors of F6.8g. At
+  kℓ_k = 0.06 / 0.12 it is 1.014 / 1.044 (computed from the F6.8g rows; above 1, because the optical sector falls
+  fastest).
+- **The causal structure** of g depends only on ν = 2u (the cones). The density of events is e^{4ω+3ν} = e^{2u}.
+- **An exact null.** A single mode (C = 0) has no cubic term: a half-period shift maps A → −A. The A³ coefficient of
+  the order must therefore vanish identically. This is a free instrument check.
+- **Collinear configuration.** The planar modes (k, k, −2k) probe the cubic vertex at one configuration of momenta.
+  In the local limit (kℓ_k → 0) that is all β needs. At finite kℓ_k, κ₃(k) is the collinear form factor, not the β of
+  a point mass at that scale.
+
+### 10.3 How to compute it: two routes
+
+Both need what F6.8 never needed: interval volumes to **third** order in a perturbation that bends the cones, with
+two modes.
+- **(a) Perturbative.** Extend the Fermat expansion of the optical sector (F6.8c: T₂) to T₃, and the Mecke/kernel
+  expansion of the expected action (F6.8a/b2) to third order. Exact in amplitude order by order, so there are no
+  finite-difference cancellations. This is a new derivation: T₃ for a stratified medium, the kernel g''' terms, and
+  the age cut at third order. It has an exact check: at C = 0 every A³ term must cancel.
+- **(b) Finite amplitude.** Use brute-force interval volumes in the two-mode medium (generalise the needle volumes of
+  K.18b / diag/f68f_1d.py from one mode to the profile u(z)), then a third finite difference in (A, C). At n = 4,
+  ε = b(kT)² = 32A, so A ≲ 1e-3 keeps the quartic terms below the cubic. A third difference at A ~ 1e-3 needs
+  volumes to ~1e-10 relative. K.18b reached 1.1e-6, so (b) needs a precision this code has not shown.
+
+**Recommendation: route (a), in three stages.**
+- **β1, calibration (cheap).** The pure conformal sector at cubic order: the order is unchanged and only the density
+  e^{4ω} changes. EH gives 12 ω(∇ω)², i.e. 9A²Ck² for the two modes. This is F6.8a extended to third order.
+  It checks the Mecke and kernel expansion and the age cut at third order, and gives no β.
+- **β2, the cones at third order (the derivation).** T₃ of rays in a stratified medium. Check it against brute-force
+  volumes at small amplitude (K.18b code, one and two modes).
+- **β3, the test.** κ₃(k) along the exponential metric at n = 4, kℓ_k = 0.045–0.12, fitted as in F6.8g; β(k → 0).
+
+### 10.4 What a β test can and cannot say (for the author)
+
+- **The young-field local limit is expected to give β = 1.** ⟨S_BD⟩ tends to the EH action in the continuum limit of a
+  fixed geometry (Benincasa–Dowker 2010), and k → 0 at fixed n is such a limit. The test checks this at cubic order,
+  as F6.8g did at quadratic order, and measures the finite-kℓ_k departure.
+- **For Mercury it changes nothing directly.** The departure is of order (kℓ_k)² ln(1/kℓ_k), with ℓ_k ≤ 1e-19 m against
+  solar-system scales.
+- **The β that Mercury actually measures belongs to an old field:** the Sun's field has existed for Gyr. There
+  ε = b(kT)² is huge, and F6.8f shows that the expansion in ε does not saturate. **The decisive β question is
+  therefore the age problem (F6.8i), not the young cubic vertex.** The young β test is still the necessary first
+  step: without it, the cubic order of the order's action is unchecked.
+
+### 10.5 Proposed card (draft, not frozen): F6.12
+
+See docs/F6_12_card_draft.md.
