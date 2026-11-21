@@ -468,7 +468,7 @@ Try it:
 - Launched, it keeps its speed and becomes narrower: the Lorentz contraction of special relativity, without any formula of relativity put in.
 - Kicked by a uniform force, it gains exactly as much speed as a body whose mass is its energy: inertia equals rest energy, E = mc².
 - Watched long enough at rest, it trembles: the order is random, and its randomness shakes the kink. This is the "swerve" of causal set theory, here derived for a body with structure.""",
-        """The rule (C0 in 1+1): φ(v) = φ₀(v) − (1/ρ) Σ_{u≺v} G(u,v) [V′(φ(u)) + f χ(t_u)], G = 1/2 on the causal relation (the retarded Green function of □ in 1+1), V = μ²(1 − cos φ), μ = 1, φ₀ the free wave of the initial data on t = 0 (d'Alembert). Region: the domain of dependence |x| ≤ X − t. Computed exactly with a Fenwick tree in light-cone coordinates.
+        """The rule (C0 in 1+1): φ(v) = φ₀(v) − (1/ρ) Σ_{u≺v} G(u,v) [V′(φ(u)) + f χ(t_u)], G = 1/2 on the causal relation (the retarded Green function of ∂² in 1+1), V = μ²(1 − cos φ), μ = 1, φ₀ the free wave of the initial data on t = 0 (d'Alembert). Region: the domain of dependence |x| ≤ X − t. Computed exactly with a Fenwick tree in light-cone coordinates.
 
 Readouts: centre x_c and width w from a least-squares fit of the profile 4 arctan(e^{(x−x_c)/w}) per slab of Δt = 0.5 (as the laboratory's fit_kink); velocity from a linear fit of x_c; a continuum kink has w = 1/γ; kick f during 1 ≤ t < 3, read as the difference kicked − at rest on the same events (paired, as F3.14b), gives Δ(γv) = 2πfτ/M in the continuum, M = 8μ, so r_M = M_in/M_rest = (2πfτ/8)/Δ(γv). A single small order is noisy and, at finite density, the order drags the kink slightly (velocity and r_M approach the continuum as the density grows: try 100, 400, 800).
 
@@ -490,13 +490,13 @@ The laboratory computed both, with nothing from Einstein's theory put in:
 The first-order equation is the first step. The second order (which decides the perihelion of Mercury), fields that have existed for a long time, and the value of Newton's constant are still open.""",
         """Γ = ⟨S_BD⟩ + ⟨S_m⟩, δΓ/δg_ab = 0 (ensemble mean in the manifold-like phase at linear order; beyond it the balance of action and entropy, Γ_λ = −(1/λ) ln Σ e^{−λS}).
 
-Gravity side, F6.8g (PASSED, n = kT = 4): K̂ = stiffness / EH for the conformal (A/6), mixed (B/8) and optical (C/2) sectors; K₀ = 0.99993, 0.99995, 0.99943. Quadratic action ∫√−g[R + R F₀(□) R + C F₂(□) C], A = 6 + 9φ₀, B = 8 + 12φ₀, C = 2 + 4φ₀ + φ₂, φ₀ = 4k²F₀ = −k²ℓ_k²(2.63 ln(1/kℓ_k) + 1.41).
+Gravity side, F6.8g (PASSED, n = kT = 4): K̂ = stiffness / EH for the conformal (A/6), mixed (B/8) and optical (C/2) sectors; K₀ = 0.99993, 0.99995, 0.99943. Quadratic action ∫√−g[R + R F₀(∂²) R + C F₂(∂²) C], A = 6 + 9φ₀, B = 8 + 12φ₀, C = 2 + 4φ₀ + φ₂, φ₀ = 4k²F₀ = −k²ℓ_k²(2.63 ln(1/kℓ_k) + 1.41).
 
 Matter side, F6.10b (PASSED): S_m = −ε²Σ f(n)(Δχ)² − (1/ρ)ΣV, response (1/2)∫T^ab δg_ab × F_ω (trace) and F_ν (Σ T_ii); F6.10a (2D): T^a_a = −2V, kinetic share −0.014 / −0.005.
 
 Response (OV3-lin-a, derived from the two frozen records, no test of its own): α k² [A ω + B ν/2] = F_ω T^a_a, α k² [B ω/2 + C ν] = F_ν Σ T_ii; Φ = ω, Ψ = −(ω + ν). At kℓ_k = 0.06 / 0.12: dust Φ/Φ_GR = 0.940 / 0.809, γ(k) = 1.033 / 1.122; a static BPS wall (ρ + Σp = −ρ_E) repels, wall/dust lapse −1.045 / −1.062.
 
-The field equation to first order (young static field): G_ab + 2(η_ab□ − ∂_a∂_b)F₀(□)R = 8πG T_ab^eff.
+The field equation to first order (young static field): G_ab + 2(η_ab ∂² − ∂_a ∂_b) F0(∂²) R = 8πG T_ab^eff  (∂² is the wave operator, often written as a box).
 Open: the second order (β; OV3 §10: β − 1 = −κ₃/8, κ₃ the cubic action along the exponential metric; card F6.12 in development, stage β1 conformal cubic → 0.9995); old fields (age growth (kT)⁵, F6.8e3; no saturation at finite amplitude, F6.8f); time-dependent and tensor sectors; the value of G."""),
     "status": (
         "6  What is known, and what is not",
@@ -610,8 +610,8 @@ def draw_math(cv, xc, y, tokens, size=22, fill=INK):
     return x
 
 
-FIELD_EQUATION = [("G", "ab", None), (" + 2(η", "ab", None), ("BOX", None, None), (" − ∂", "a", None), ("∂", "b", None),
-                  (") F", "0", None), ("(", None, None), ("BOX", None, None), (") R  =  8πG T", "ab", "eff")]
+FIELD_EQUATION = [("G", "ab", None), (" + 2(η", "ab", None), (" ∂", None, "2"), (" − ∂", "a", None), ("∂", "b", None),
+                  (") F", "0", None), ("(∂", None, "2"), (") R  =  8πG T", "ab", "eff")]
 
 
 class Chapter:
@@ -1236,8 +1236,9 @@ class FieldEq(Chapter):
             cv.create_text(v.x0 + 6, v.y0 + v.h - 44 + 14 * k, anchor="w", text=lab, fill=col, font=("Helvetica", -11, "bold"))
         y = 60 + H * 0.5 + 60
         draw_math(cv, W / 2, y, FIELD_EQUATION, size=24)
-        cv.create_text(W / 2, y + 26, text="the linearised field equation of the order (young static field); "
-                       "F₀ and the source factors are counted from intervals", font=("Helvetica", -13), fill=INK2)
+        cv.create_text(W / 2, y + 30, text="the linearised field equation of the order (young static field); "
+                       "∂² is the wave operator; F and the source are counted from intervals",
+                       font=("Helvetica", -13), fill=INK2)
         cv.create_text(W / 2, y + 56, text="open: second order (β) · old fields · time-dependent and tensor sectors · "
                        "the value of G", font=("Helvetica", -13, "italic"), fill=C_FUT)
         r12 = res[2]
