@@ -1,6 +1,9 @@
-# Card F6.8g: the young-field stiffness of the order at fixed n = kT = 4, kℓ_k = 0.045–0.12 (draft)
+# Card F6.8g: the young-field stiffness of the order at fixed n = kT = 4, kℓ_k = 0.045–0.12 (FROZEN)
 
-**Revision 2, draft, 21 Nov 2026 (decisions 44 and 46). Not frozen.**
+**Revision 2, FROZEN by the author, 21 Nov 2026 15:48 (decision 46).** Test file
+phases/F6_order_dynamics/F6_08g_bd_action_optical_local.py, md5 d594c74386a690e4e978fb4bb65debad. Before freezing, every
+judged point was exercised at full resolution: the rows k ≥ 0.045 at n = 4 on both machines, and the I3 point
+(0.045, n = 4) at level 2 (3.0e-5).
 - Revision 2 drops k = 0.03. Two development runs of revision 1 (Claude's workspace and the author's machine, not
   verdicts) showed that the old optical rows are not numerically robust at small k:
   - between the two platforms, K̂_bb differs by 2.7e-4 at (0.03, T 133), 1.4e-4 at (0.045, T 133) and 5e-5 at

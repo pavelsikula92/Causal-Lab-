@@ -1,9 +1,18 @@
 """
-F6.8g -- The young-field stiffness of the order at fixed n = kT = 4 (optical, conformal, mixed), k l_k = 0.03-0.12
-==================================================================================================================
+F6.8g -- The young-field stiffness of the order at fixed n = kT = 4 (optical, conformal, mixed), k l_k = 0.045-0.12
+===================================================================================================================
 
-DRAFT, not frozen (21 Nov 2026; card docs/F6_8g_card_draft.md rev. 1, decision 44 (option B); frozen by the author
-only).
+FROZEN by the author, 21 Nov 2026 15:48 (decision 46; card docs/F6_8g_card_draft.md rev. 2, decisions 44 (option B)
+and 46). Every judged point was exercised at full resolution before freezing: the rows k >= 0.045 at n = 4 in two
+development runs of revision 1 (Claude's workspace and the author's machine), and the new I3 point (0.045, n 4) at
+level 2 (K_hat_bb 0.961251 against 0.961281 at level 1, 3.0e-5).
+
+Revision 2 (decision 46): the judged rows are k = 0.045 - 0.12. The development runs of revision 1 (Claude's workspace and
+the author's machine, sha 6bfb3471, not verdicts) showed that the optical rows at large age are not numerically robust at
+small k: the two platforms differ by 2.7e-4 at (0.03, T 133), 1.4e-4 at (0.045, T 133) and 5e-5 at (0.06, T 100), but
+by <= 6e-6 at T <= 89; and the row (0.03, T 133) lies ~3.5e-3 below the n-dependence of every other k (its fit residual
+1e-3 against 5e-5). k = 0.03 (T = 133 at n = 4) is therefore not used. On k >= 0.045 the two runs give K0_bb(n 4) =
+0.99944 / 0.99943 (residual 4.7e-5).
 
 Why this test exists
 --------------------
@@ -17,8 +26,9 @@ J_bb ~ 13 / T^4 (a row is clean only for n T >~ 100).
 What is computed
 ----------------
 The code of F6.8c (optical_row: K_hat_bb and K_hat_c on the same nodes) and of F6.8b2 (mixed_row: K_hat_ab),
-unchanged; eps rho = 1, l_k = 1. Judged rows: k = 0.03, 0.045, 0.06, 0.08, 0.10, 0.12 at n = 4 (T = 4/k), optical and
-mixed. Reported rows: optical at n = 3 and n = 6 (T <= 160).
+unchanged; eps rho = 1, l_k = 1. Judged rows: k = 0.045, 0.06, 0.08, 0.10, 0.12 at n = 4 (T = 4/k = 89 ... 33), optical
+and mixed. Reported rows: optical at n = 3 and n = 6 (T <= 160; the row (0.045, n 6) has T = 133, above the age where
+the platforms agree to 1e-5, reported only).
 
 Reading (stated before the run): at fixed n, per sector, K_hat_s(k, n/k) = K0_s - k^2 (c1 ln(1/k) + c0) over the k.
 
@@ -27,14 +37,14 @@ Instrument (INSTRUMENT_FAILED if any fails)
 I1 the conformal intercept at n = 4: |K0_c - 1| <= 1e-3 (F6.8c2: 0.99976 at n = 6, 8, 10);
 I2 the geometry of F6.8c (<T2> vs Fermat ray <= 2e-3; d2V/db2 vs numerical roots <= 2e-3; uniform null <= 1e-9) and of
    F6.8b2 (dV/db, d2V/da db <= 2e-3; uniform null <= 1e-9);
-I3 optical rows (0.06, n 4) and (0.12, n 4) at level 2 vs level 1: |diff K_hat_bb| <= 2e-3;
+I3 optical rows (0.045, n 4) and (0.12, n 4) at level 2 vs level 1: |diff K_hat_bb| <= 2e-3;
 I4 the k = 0 optical null at T = 4/k for each judged k: a_4 |J_bb| / k^2 <= 2e-3.
 
 Criterion
 ---------
 From the optical fit at n = 4: PASSED if |K0_bb - 1| <= 0.01; FAILED if |K0_bb - 1| > 0.03; UNDECIDED otherwise.
 Reported, not judged: every row; the fits at n = 3, 4, 6 (optical, conformal) and n = 4 (mixed); the inputs of
-OV3-lin-a at k = 0.03, 0.06, 0.12 (K_hat_c, K_hat_ab, K_hat_bb at n = 4); phi_2^(C) = 2 K_hat_bb - 2 - 4 phi_0,
+OV3-lin-a at k = 0.06, 0.12 (K_hat_c, K_hat_ab, K_hat_bb at n = 4); phi_2^(C) = 2 K_hat_bb - 2 - 4 phi_0,
 phi_0 = (2/3)(K_hat_c - 1) (to be checked by an independent phi_2 later, never a check here).
 """
 
@@ -55,31 +65,30 @@ from phases.F6_order_dynamics.F6_08c_bd_action_optical import check_geometry, ch
 TEST = {
     "id": "F6.8g",
     "phase": "F6",
-    "title": "Young-field stiffness of the order at fixed n = kT = 4 (optical, conformal, mixed), k l_k = 0.03-0.12 "
-             "(draft)",
+    "title": "Young-field stiffness of the order at fixed n = kT = 4 (optical, conformal, mixed), k l_k = 0.045-0.12",
     "theory_part": "the static propagator of the order; inputs of OV3-lin-a in the young-field reading (decisions 41, "
                    "44)",
     "question": "At the fixed age n = kT = 4, does the optical stiffness of the expected BD action tend to the EH value "
-                "(C -> 2) at long wavelength, and what are the three stiffnesses at k l_k = 0.03-0.12?",
+                "(C -> 2) at long wavelength, and what are the three stiffnesses at k l_k = 0.045-0.12?",
     "method": "optical_row of F6.8c and mixed_row of F6.8b2 (unchanged) at T = 4/k for six k; fixed-n fit K0 - k^2 "
               "(c1 ln(1/k) + c0) per sector; reported rows at n = 3 and 6",
     "prediction": "K0_bb within 0.01 of 1 (F6.8c2: 0.99971 / 1.00118 at n = 6 / 8)",
-    "criterion": "PROPOSED: PASSED if |K0_bb - 1| <= 0.01 at n = 4; FAILED if > 0.03; else UNDECIDED; INSTRUMENT_FAILED "
+    "criterion": "PASSED if |K0_bb - 1| <= 0.01 at n = 4; FAILED if > 0.03; else UNDECIDED; INSTRUMENT_FAILED "
                  "if I1 (K0_c at n = 4 within 1e-3 of 1), I2 (geometry of F6.8c and F6.8b2), I3 (level 2 within "
                  "2e-3) or I4 (k = 0 null at the judged ages <= 2e-3 in K_hat_bb units) fails",
     "null_model": "constant index (k = 0): the response vanishes",
     "level": "chain",
     "meters": [],
     "depends_on": ["F6.8a", "F6.8b2", "F6.8c2", "F6.10b"],
-    "params": {"ks": [0.03, 0.045, 0.06, 0.08, 0.10, 0.12], "n_judge": 4.0, "n_report": [3.0, 6.0], "T_max": 160.0,
-               "mixed": True, "check": [0.06, 0.12], "ov3_ks": [0.03, 0.06, 0.12],
+    "params": {"ks": [0.045, 0.06, 0.08, 0.10, 0.12], "n_judge": 4.0, "n_report": [3.0, 6.0], "T_max": 160.0,
+               "mixed": True, "check": [0.045, 0.12], "ov3_ks": [0.06, 0.12],
                "quad": [4, 16, 0.8, 8, 16], "bnd_nodes": 32,
                "tol_I1": 1e-3, "tol_t2": 2e-3, "tol_geom": 2e-3, "tol_unif": 1e-9, "tol_level": 2e-3,
                "tol_null": 2e-3, "tol_pass": 0.01, "tol_fail": 0.03},
     "parts": {"main": {}},
     "quick": {"ks": [0.06, 0.12], "n_report": [], "check": [0.12], "ov3_ks": [0.06, 0.12]},
-    "estimate": "~3 CPU-h (17 optical rows of 70-170 s, 2 level-2 rows, 6 null rows, 6 mixed rows of 2-30 min); ~1 h "
-                "wall with 16 processes (set by the longest rows)",
+    "estimate": "~2.5 CPU-h (14 optical rows of 70-170 s, 2 level-2 rows, 5 null rows, 5 mixed rows); ~1 h wall with "
+                "16 processes (set by the longest rows)",
 }
 
 
