@@ -157,3 +157,88 @@ This makes the wall a sharp known-answer case for OV3:
      the configuration space.
    - **Measured before any physical reading:** whether the entropic term changes the effective stiffness already at
      quadratic order.
+
+## 9. The field equation of the order, by order in the field (21 Nov, evening; development, decides nothing)
+
+The field equation of the theory is the stationarity of the effective functional of the order (decision 41):
+
+    δΓ[g] / δg_ab = 0,     Γ = ⟨S_BD⟩ + ⟨S_m⟩  (+ the entropic term of Γ_β beyond linear order).
+
+Nothing of GR is put in. ⟨S_BD⟩ counts intervals; ⟨S_m⟩ is the pairwise matter action, which depends only on the order
+(OV2). Below, "order n" means order n in the field amplitude b of the equation (order n + 1 of the action).
+
+### 9.1 First order: established for young fields
+
+**The gravity side.** By covariance (docs/derivations/path_to_predictions.md §2) the quadratic part of ⟨S_BD⟩ is
+∫√−g [R + R F₀(□) R + C F₂(□) C]. Its three static sectors are
+
+    A = 6 + 9φ₀,   B = 8 + 12φ₀,   C = 2 + 4φ₀ + φ₂,   with φ₀ = 4k²F₀ and φ₂ = (4/3)k²F₂.
+
+F6.8g (PASSED, n = kT = 4) measured all three on the same rows. φ₀ from the conformal sector and from the mixed sector
+agree to 1e-4: this is a real check of covariance (one form factor, two sectors).
+
+| kℓ_k | φ₀ (n = 3 / 4 / 6) | φ₂ (n = 3 / 4 / 6), from C |
+|---|---|---|
+| 0.045 | −0.0196 / −0.0194 / −0.0188 | +0.0030 / +0.0000 / −0.0010 |
+| 0.06 | −0.0322 / −0.0317 / −0.0307 | +0.0052 / +0.0007 / −0.0027 |
+| 0.08 | −0.0523 / −0.0515 / −0.0497 | +0.0092 / +0.0013 / −0.0050 |
+| 0.10 | −0.0759 / −0.0746 / −0.0718 | +0.0142 / +0.0019 / −0.0081 |
+| 0.12 | −0.1024 / −0.1005 / −0.0965 | +0.0203 / +0.0025 / −0.0118 |
+
+- **The spin-0 channel carries the departure from EH.** At n = 4, φ₀ = −k²ℓ_k²(2.63 ln(1/kℓ_k) + 1.41) (max residual
+  1.2e-5), i.e. F₀ = −ℓ_k²(0.66 ln(1/kℓ_k) + 0.35). It is nearly independent of the age (±2 % between n = 3 and 6).
+- **The spin-2 (Weyl) channel is small at young ages but not robust.** |φ₂| ≤ 0.02 at kℓ_k ≤ 0.12. It changes sign
+  between n = 4 and 6, so φ₂ ≈ 0 at n = 4 is a crossing, not a property. φ₂ is computed from C, the same number it
+  would check, so it is not an independent measurement (decision 43); the TT-shear sector (F6.8h) would measure it.
+
+**The matter side.** The first variation of ⟨S_m⟩ is T_ab with two form factors (F6.10b, PASSED): F_ω on the trace and
+F_ν on Σ T_ii. Both → 1 as kℓ_k → 0; at kℓ_k = 0.06 / 0.12 they are 0.954 / 0.855 (F_ω) and 0.949 / 0.818 (F_ν). They
+do not depend on the age (T 80 against 120: < 0.1 %).
+
+**The linear field equation** (young field, bare ensemble action; F₂ dropped at n = 4):
+
+    G_ab⁽¹⁾ + 2 (η_ab □ − ∂_a ∂_b) F₀(□) R⁽¹⁾  =  8πG T_ab^eff,
+
+where T_ab^eff carries F_ω and F_ν, and α = −1/(8πG) is the overall stiffness (G is not derived).
+- As kℓ_k → 0 it is the linearised Einstein equation, with γ = 1 and the source ρ + Σp for the lapse.
+- At finite kℓ_k it gives OV3-lin-a (findings, derived consequence, 21 Nov): Φ/Φ_GR = 0.940 / 0.809 and γ(k) = 1.033 /
+  1.122 at kℓ_k = 0.06 / 0.12; a BPS wall repels (wall/dust −1.045 / −1.062).
+- It belongs to the known class of nonlocal quadratic gravity. What is new is that the form factor F₀ and the source
+  form factors come from counting intervals, not from a choice.
+
+### 9.2 Second order (the cubic action): not computed
+
+- **What it decides in GR:** the PPN parameter β (the perihelion of Mercury), the gravitational self-energy, and the
+  equivalence principle for bound systems.
+- **The continuum expectation.** The mean BD action on a curved manifold tends to the EH action in the continuum limit
+  (Benincasa and Dowker 2010; the paper relies on this). In the local limit the full nonlinear equation should
+  therefore be G_ab = 8πG T_ab, so β = 1. The laboratory has not checked this beyond first order.
+- **What the order adds: the expansion parameter is ε = b (kT)², not b.**
+  - F6.8f (FAILED, reading B) measured the optical sector at finite amplitude. The response relative to second order
+    is R = 1.003, 1.056, 1.25, 2.52 at ε = 0.25, 1, 2, 4, i.e. R − 1 ≈ 0.055 ε² at small ε. The expansion fails at
+    ε ~ 1–4 even for a weak field.
+  - Caveat: F6.8f measured in the asymptotic (old-field) regime, not at n = 4.
+  - For the young field of 9.1 (n = 4), ε = 16 b. In the solar system (b ~ 1e-6) this is negligible.
+  - For old fields ε grows as (kT)². The age problem and the nonlinearity problem of the order are one problem.
+- **The next computation:** the cubic order of ⟨S_BD⟩ and ⟨S_m⟩ for a static source at fixed n = 4. It needs the
+  method of F6.8g extended to third-order interval volumes. It gives β, to be compared with the perihelion of Mercury
+  (planned F8.7).
+
+### 9.3 Higher orders and the strong field
+
+Only indirect: the finite-amplitude section of the paper (the first conjugate point at ε = π², where the field focuses
+light within intervals). The selection principle beyond linear order is the balance of action and entropy, Γ_β
+(decision 41). Whether its entropic term cures the age growth is open; it is the main open question of the field
+equation.
+
+### 9.4 Status, in one table
+
+| Part of the field equation | Status |
+|---|---|
+| Linear, static, young field, kℓ_k → 0 | Einstein, γ = 1 (F6.8a/b2/c2, F6.8g, F6.10a/b) |
+| Linear, static, young field, finite kℓ_k | spin-0 form factor F₀ measured; source form factors measured; Φ, γ(k) and the wall computed (OV3-lin-a) |
+| Linear, time-dependent and tensor (TT) sectors | not measured (F6.8h not developed) |
+| Second order (β) | not computed; the next derivation |
+| Old fields (any order) | open: the age growth (kT)⁵ (F6.8e3), no saturation at finite amplitude (F6.8f) |
+| Entropic correction to the stiffness | not measured (decision 41) |
+| The value of G | not derived |
