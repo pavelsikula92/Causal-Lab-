@@ -620,8 +620,36 @@ fitted readout) and the smooth arm (the exact kink on the same events).
   of H, about 1.6–1.9 SE: not resolved.
 - **The other readouts.** The continuum-readout energy is conserved to 0.3 ± 0.2 %, and the winding (F-b) is the same
   on both ramps.
-- **The density dependence** of the paired scatter (ρ = 200) is being computed. It decides whether a card can go to
-  higher density.
+- **The density dependence** of the paired scatter: see the decisive runs below.
+
+**Stage 2, the decisive development runs** (the author's machine, 21 Nov; diag/ov2_t3_c0.py, fresh seeds; fast path,
+equal to the bitset kernel to rounding). Values as fractions of H = 8γ = 8.386.
+
+| | ρ = 100, 512 sprinklings (seeds 5000+) | ρ = 200, 192 sprinklings (seeds 6000+) |
+|---|---|---|
+| failed kink fits | 0 | 0 |
+| dB = B(C0) − B(smooth), paired | −0.01 ± 0.28 % | −0.08 ± 0.47 % |
+| dR = R(C0) − R(smooth), paired | −0.05 ± 0.34 % | −0.33 ± 0.56 % |
+| paired SD per sprinkling, dB / dR | 0.063 / 0.078 | 0.065 / 0.078 |
+| ⟨B(C0)⟩ | −1.2 ± 1.5 % | +2.9 ± 3.6 % |
+| −⟨Q₂⟩/H, ⟨Q₁⟩/H (C0) | 1.024 ± 0.022, 1.014 ± 0.022 | 0.984 ± 0.053, 0.939 ± 0.052 |
+| H(t₂) − H(t₁), continuum readout of F3.14b | +0.65 ± 0.07 % | +0.34 ± 0.08 % |
+| v_fit | 0.3015 ± 0.0019 | 0.3020 ± 0.0022 |
+| F-b winding at t₁ / t₂ | 0.9971 / 0.9972 | 0.9971 / 0.9972 |
+
+My own ρ = 200 run (48 sprinklings) agrees with these: paired SD 0.054 / 0.068.
+
+**Reading (development).**
+- **The C0 field satisfies the windowed Noether balance of S_m as well as a smooth kink does,** to 0.3–0.5 % of H at
+  both densities. The Noether charge of F-a is conserved under the retarded rule in the mean, to this precision.
+- **The order's noise does not prevent the test.** In the paired design the scatter per sprinkling is about 0.065 H
+  and does not grow with density, so a few hundred sprinklings decide at the 1 % level.
+- **The continuum-readout energy of F3.14b grows across the window:** 0.65 % at ρ = 100 and 0.34 % at ρ = 200, about
+  as 1/ρ. This fits heating by the shot noise of the order (F3.14c: D_p ∝ 1/ρ).
+  - A first estimate from D_p gives a smaller number (about 0.1 % at ρ = 100), so the coefficient is not explained.
+  - The Noether balance cannot resolve it: SE(R) is about 2.5 % of H.
+- **F-b.** The winding is the same on both ramps. The topological control of the cuts passes.
+- **Not shown.** Whether a local link decomposition exists (decision 41, question 2), and the 3+1 case.
 - **A card would use:**
   - the paired design (C0 against the smooth field on the same sprinkling);
   - the smooth arm's own identity as an instrument;
