@@ -29,6 +29,11 @@ line is read from the relation "can influence"; nothing is drawn from a formula 
     python Demo/causal_physics.py --chapter 4     start at a chapter (0-6)
     python Demo/causal_physics.py --selftest      numerical checks without a window
 
+**A standalone build** (no Python needed to run it): on Windows run `Demo\build_exe.bat`; it checks the program
+(`--selftest`), installs PyInstaller and writes `Demo\dist\CausalPhysics.exe` (one file, about 30 MB). On Linux or
+macOS: `python -m PyInstaller --onefile --windowed --name CausalPhysics Demo/causal_physics.py`. PyInstaller builds for
+the system it runs on, so each platform is built on its own. The builds are attached to the GitHub releases.
+
 **What a demonstration is.** The tour computes small orders in seconds: it shows the mechanism. The laboratory's tests
 use larger orders, many sprinklings and criteria fixed in advance; the tour quotes their frozen results next to each
 demonstration. Two honest notes: at the densities of the tour the order drags a kink slightly (its velocity and the
