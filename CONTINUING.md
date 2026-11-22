@@ -74,7 +74,7 @@ give the linearised Einstein equation with a non-local spin-0 form factor counte
 
 ## How to start
 
-    python -m pip install -e .          (numpy, scipy; Python 3.10+)
+    python -m pip install numpy scipy matplotlib     (Python 3.10+)
     python run.py core                  the checks of the core
     python run.py list                  all tests
     python run.py results F6.8g         a record
