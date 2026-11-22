@@ -141,6 +141,23 @@ between the cut loci (Gauss–Legendre on each piece), with θ_c located by bise
 3. The total ∫dθ (smooth + windows) of a quantity whose answer is known: at small ε (one ray, no cut loci) it must
    equal the present code; the γ¹ and γ² window terms must vanish numerically (exact moments).
 
+### 5.1 Check 1 done (22 Nov, 11:3x; diag/f68i_d1.py, diag/out/f68i_d1_check1_20261122.txt)
+
+ε = 12, p = 1, cut locus θ_c = 5.783185 (three stationary rays): the two-well series against the exact needle at five
+phases across the window (d = 1.4e-1, 2.9e-2, 4.4e-6, 2.9e-2, 1.4e-1).
+
+| d | q = 1/2 | q = 1/4 | q = 1/8 | one ray only (q = 1/4) |
+|---|---|---|---|---|
+| 0.144 (outside every window) | −8.9e-5 | −2.9e-7 | −8.3e-9 | the same |
+| 0.029 (inside for q = 1/2, 1/4) | −1.8e-4 | −6.6e-7 | +1.0e-7 | −9.7e-3 |
+| 4.4e-6 (the tie) | −3.6e-4 | +1.3e-5 | +2.6e-7 | −1.5 |
+
+- **The two-well formula reproduces the exact needle** everywhere: the residual is the truncation of the series at
+  q⁶ (it falls by ~300 from q = 1/2 to 1/4, as q⁸), largest at the tie.
+- One ray alone misses the volume by up to 1.5 (a factor two) inside the window: the second needle is real and its
+  weight (1 − d/c)² as derived.
+- The windows are symmetric (θ_c ± 0.002 agree to 7e-7), as expected for a crossing.
+
 ## 6. D2: conjugate points (open)
 
 Near a phase where K → 0 on the first-arrival ray, the series coefficients grow like powers of 1/K and the radius of
