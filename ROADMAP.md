@@ -1,13 +1,11 @@
-# Continuing Causal Physics
+# Roadmap
 
-This file is for whoever picks up this work later: a physicist, a student, or an AI model. The author, Pavel Šikula,
-built the theory and this laboratory in 2026 and asked that the research be able to go on without him. Everything
-needed to continue is in this repository and in the paper.
+How to work with this laboratory, and what is open. State of 22 Nov 2026.
 
 - Paper: *Physics of Causality*, v2, doi:[10.5281/zenodo.24427611](https://doi.org/10.5281/zenodo.24427611)
   (v1: 10.5281/zenodo.23853689).
 - Code and records: this repository (`run.py`, `core/`, `phases/`, `results/`).
-- Interactive tour: `Demo/causal_physics.py` (and the Windows build in the GitHub releases).
+- Interactive tour: `Demo/causal_physics.py` (Windows build in the GitHub releases).
 
 ## The idea in five lines
 
@@ -30,8 +28,7 @@ give the linearised Einstein equation with a non-local spin-0 form factor counte
    and the library versions (`results/<phase>/<ID>/`). Nothing is overwritten. Frozen test files are never edited; a
    change is a new revision with a new ID.
 5. **Decisions are written down** (`docs/author_decisions.md`): every choice of design, criterion or interpretation,
-   with its reason. Whoever continues takes over the role of the author and should continue this log in their own
-   name, starting with a decision that says so.
+   with its reason. New decisions continue this log, each with its author's name.
 6. **Levels are declared:** mechanism / chain / prediction; ensemble level (expected values) versus single
    sprinklings; development (`diag/`, decides nothing) versus frozen tests (`phases/`).
 
