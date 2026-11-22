@@ -97,3 +97,56 @@ or keeps growing. If it converges, the old-field stiffness is finite and the far
 prediction (tens of micrometres) can be computed. If it diverges, the static response of an old field is not a
 property of the bare expected action, and the age has to be fixed by something else (decision 41: the balance of
 action and entropy; the meaning of the age, F8.8).
+
+## 5. D1: the cut-locus window at the q⁶ order (derivation, 22 Nov; not yet implemented)
+
+**Setting.** Write the needle volume through the well function W(c) = ∫₀¹ds √(s(1−s)) ∫dψ [c − Φ(s, ψ)]₊^{3/2},
+c = q²/2, Φ = G₁ + G₂ − S_min, so that A(q) = (8√2/π) W(c)/c² (f68f_dev §6). Near one ray, W(c) = Σ_j w_j c^{j+2} and
+A = (8√2/π) Σ_j w_j c^j; the coefficients A_j of f68f_1c are these w_j up to the factor 2^j.
+
+**Two wells.** At a cut locus θ_c the rays a and b tie; let d(θ) = |S_b(θ) − S_a(θ)| and let a be the first arrival.
+At every s, Φ has a well of depth 0 around ψ_a(s) and a well of depth d around ψ_b(s), provided the half-segments of
+ray b are themselves first arrivals from x and to y (to be checked on every cut locus; otherwise the second well is
+shallower than d over part of s). For c > d both wells count:
+
+    A(θ; q) = (8√2/π) [ Σ_j w_j^a c^j + Σ_j w_j^b (c − d)^{j+2} / c² ],
+
+the second sum only for c > d. Away from the window (d > c) A is the one-ray series.
+
+**The window integral.** With d(θ) = α|θ − θ_c| + β(θ − θ_c)² + γ₃|θ − θ_c|³ + … on each side (α, β, γ₃ one-sided),
+the θ-integral over the window is, per side, an integral over d ∈ [0, c] with dθ = (1/α − 2βd/α³ + …) dd. Put d = cz:
+
+    Δ(s) = Σ_sides ∫₀¹ c dz (1/α − 2βcz/α³ + …) [g₀(s²(A_a + X)) − g₀(s²A_a)],
+    X = (8√2/π) Σ_j w_j^b c^j (1 − z)^{j+2},
+
+with A_a, w^b and their θ-derivatives evaluated at θ_c + (side) cz/α + … (the variation of A_a and w^b across the
+window enters at the next orders in c).
+
+**Moment selection.** In the age term c = γs with γ = k²/(2l₂). A term of order γ^m in Δ has the form
+∫ds s^m G(λs²) with G a combination of g₀, g₁ = w g₀′, g₂ = w² g₀″, … at scales λ that depend on z but not on s. The
+BD moments of g₀, g₁, g₂ vanish for j ≤ 2 (f68f_dev §3), so **every window term of order γ¹ and γ² vanishes exactly**
+(the leading one by μ₁[g₀] = 0, for every z), and the first survivor is γ³, the order of the smooth part.
+
+**What the γ³ window term needs, per cut locus:** α, β, γ₃ on both sides; A_a and w^b up to second order in c (w₀, w₁,
+w₂ of both rays); the first and second θ-derivatives of w₀^a, w₀^b, w₁^a, w₁^b at θ_c. All come from the existing
+series code at θ_c and two or three neighbouring phases (the envelope theorem gives dS/dθ along each ray, f68f_dev §6).
+
+**The smooth part with the jump.** ⟨ŝ₄A₀⁻²⟩_θ of the first-arrival ray jumps at θ_c (the first arrival changes
+branch). Equally spaced phases converge only as 1/N_θ across a jump; the smooth part must be integrated piecewise
+between the cut loci (Gauss–Legendre on each piece), with θ_c located by bisection on S_b − S_a.
+
+**Checks for the implementation.**
+1. On a cut-locus phase at finite q, the two-well A(θ; q) against the exact needle (f68f_1b_exact) at q = 1/2, 1/4, 1/8.
+2. The window integral of A over θ at O(c) against dA = (A_a + A_b)c/(6πα) of f68f_dev §6 (the leading term).
+3. The total ∫dθ (smooth + windows) of a quantity whose answer is known: at small ε (one ray, no cut loci) it must
+   equal the present code; the γ¹ and γ² window terms must vanish numerically (exact moments).
+
+## 6. D2: conjugate points (open)
+
+Near a phase where K → 0 on the first-arrival ray, the series coefficients grow like powers of 1/K and the radius of
+convergence in c shrinks (E1: ε = 16, p = 4, K = 0.46 gave a value four orders above its neighbours). The window in θ
+where the series fails shrinks too. Two options, to be decided after D1:
+- **a bound:** show that the true θ-averaged contribution of the window (computed with the exact needle at finite q)
+  is small against the rest, and exclude it;
+- **a uniform form:** expand around the fold (the cubic normal form of Φ in ψ, an Airy-type needle) and integrate the
+  window analytically.
