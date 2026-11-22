@@ -51,9 +51,36 @@ The first-arrival ray per phase, without the cut-locus windows (diag/f68f_1c.py 
 This is an indication of the trend of the smooth part only; the cut-locus terms are not included, and 16 phases do not
 resolve ε ≳ 3 at the 1e-3 level (f68f_dev §9).
 
-### 3.1 Results
+### 3.1 Results (22 Nov, 09:3x; Claude's container, 2 processes, ~20 s per point; scratch, not a record)
 
-(pending)
+⟨ŝ₄A₀⁻²⟩_θ on 16 phases (the "smooth part": the first-arrival ray at every phase, no cut-locus windows). In brackets
+the number of stationary rays at the worst phase, and min K on the first-arrival ray (K → 0 at a conjugate point,
+where the q² series fails).
+
+| ε | p = 0.5 | p = 2 | p = 4 | p = 8 | p = 16 |
+|---|---|---|---|---|---|
+| 2 | −6.5e-10 | −5.6e-10 | −3.6e-10 | −8.5e-11 | −2.1e-14 |
+| 4 | −9.5e-9 | −5.9e-9 | −2.2e-9 | −3.4e-10 | −8.4e-14 |
+| 8 | +3.0e-6 (±2.2e-6) | −4.1e-7 | +4.4e-8 | −1.4e-9 | −3.7e-13 |
+| 12 | −2.0e-6 | −2.6e-6 | +2.5e-6 (min K 0.99) | −3.5e-9 | −9.6e-13 |
+| 16 | −1.7e-7 [3 rays] | −5.3e-7 | **+8.2e-4 (min K 0.46)** | −6.7e-9 | −2.0e-12 |
+| 24 | −1.2e-8 [3] | −4.2e-8 [3] | −1.4e-5 [3] | −1.8e-8 | −6.6e-12 |
+| 40 | −1.9e-9 [3] | −6.5e-9 [3] | −4.0e-7 [3] | −7.7e-8 (min K 1.0) | −3.8e-11 |
+
+Readings, with their limits:
+- **Where the interval has several rays, the smooth part falls steeply with ε:** p = 0.5 from −1.7e-7 (ε 16) to
+  −1.9e-9 (ε 40), p = 2 from −5.3e-7 to −6.5e-9, roughly ε^(−5). Up to the first caustic it grew faster than ε².
+- **Where there is still one ray, it keeps growing,** roughly as ε^(2.3–2.5) (p = 8 and 16), until its own caustic.
+  The single-ray range moves to larger p as ε grows (onset p = 1: 10.7, p = 2: 12.1, p = 4: 18.7, p = 8: none below 40),
+  while the second-order weight C₂(p) falls very fast with p (p = 8 → 16: factor ~4 000 at ε = 2).
+- So Φ(ε) could turn over once the directions that carry the weight have passed their caustic. **This is an
+  indication, not a result:**
+  - near conjugate points the series diverges (ε = 16, p = 4: +8.2e-4 from one phase with K = 0.46, four orders above
+    its neighbours); these windows need D2 before any number of Φ can be trusted;
+  - the cut-locus terms (D1) are missing, and they enter at the same order;
+  - 16 phases: the phase spread is larger than the mean in several cells (e.g. ε = 8, p = 0.5: mean +3.0e-6, standard
+    error 2.2e-6);
+  - five directions only; no p-integral.
 
 ## 4. Plan
 
