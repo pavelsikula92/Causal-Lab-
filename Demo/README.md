@@ -1,4 +1,49 @@
-# Causal Gravity: the simulator in plain words
+# Demonstrations of Causal Physics
+
+This folder has two programs. Both run on their own and change nothing in the laboratory.
+
+| Program | What it shows | Start |
+|---|---|---|
+| `causal_physics.py` | **The tour.** How the world, space, time, matter and gravity are read from a causal order of events, computed live on random orders; the field equation of the order; what is known and what is open. | `python Demo/causal_physics.py` |
+| `causal_gravity.py` | **The gravity simulator.** Planets, light, clocks and probes in the gravity law of Causal Physics, compared with Einstein, Newton and other theories. | `python Demo/causal_gravity.py` |
+
+Both need Python 3.9 or newer with numpy and tkinter.
+
+## causal_physics.py: the tour
+
+Seven chapters, each with two layers of text: *In plain words* and *For physicists* (numbers, formulas and the IDs
+of the laboratory tests). In chapters 1-4 every point is an event of a random order (a Poisson sprinkling) and every
+line is read from the relation "can influence"; nothing is drawn from a formula of space or time.
+
+| Chapter | What you can do |
+|---|---|
+| Overview | the chain from events to the field equation |
+| 1 The world grows | watch events appear one by one; the "now" is the growing edge; the dimension is counted from the related pairs (1+1 gives 2, 2+1 gives 3); move past a random sprinkling and past a lattice: only the lattice shows a rest frame |
+| 2 The order of events | click an event: its past and future are the cones, found from the order alone; click a second one: the longest chain between them is the proper time |
+| 3 Gravity as a response | clocks, cone speed and density near a mass for the three possible responses of the order (γ = −1, 1/3, 1 in 3+1); throw a ball: its path is the longest chain of an order in which clocks run faster higher up |
+| 4 Matter as a defect | a kink of a field carried by the retarded response of the order: it stays, moves, contracts (Lorentz), answers a kick with an inertial mass equal to its rest energy, and trembles with the randomness of the order (swerves) |
+| 5 The field equation | the stiffness of the order (F6.8g), the source from matter (F6.10b) and the response they give (the linearised Einstein equation of the order; a static wall repels) |
+| 6 What is known | tested, derived, adopted and open, claim by claim |
+
+    python Demo/causal_physics.py                 the tour
+    python Demo/causal_physics.py --chapter 4     start at a chapter (0-6)
+    python Demo/causal_physics.py --selftest      numerical checks without a window
+
+**A standalone build** (no Python needed to run it): on Windows run `Demo\build_exe.bat`; it checks the program
+(`--selftest`), installs PyInstaller and writes `Demo\dist\CausalPhysics.exe` (one file, about 30 MB). On Linux or
+macOS: `python -m PyInstaller --onefile --windowed --name CausalPhysics Demo/causal_physics.py`. PyInstaller builds for
+the system it runs on, so each platform is built on its own. The builds are attached to the GitHub releases.
+
+**What a demonstration is.** The tour computes small orders in seconds: it shows the mechanism. The laboratory's tests
+use larger orders, many sprinklings and criteria fixed in advance; the tour quotes their frozen results next to each
+demonstration. Two honest notes: at the densities of the tour the order drags a kink slightly (its velocity and the
+kick's mass ratio approach the continuum as the density grows from 100 to 800), and the longest chain of a thrown
+ball lies on average a little above the geodesic at density 30 (less at 60). Chapter 5 uses no live computation: its
+numbers are those of the frozen records of F6.8g and F6.10b, and the response is computed from them.
+
+---
+
+# causal_gravity.py: the simulator in plain words
 
 `causal_gravity.py` is an interactive simulator of the gravity law of Causal Physics. You can watch planets,
 light, clocks and probes move. The same scene is also computed in other theories of gravity, so you can see

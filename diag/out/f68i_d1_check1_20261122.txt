@@ -1,0 +1,24 @@
+eps 12 p 1 theta_c 5.783185: two-well series against the exact needle
+  th 5.773185 d 1.437e-01 rays 3:
+    q 0.5: exact 1.4834204 two-well 1.4833310 (diff -8.9e-05; one ray -8.9e-05)
+    q 0.25: exact 1.4628026 two-well 1.4628023 (diff -2.9e-07; one ray -2.9e-07)
+    q 0.125: exact 1.4581894 two-well 1.4581894 (diff -8.3e-09; one ray -8.3e-09)  minPhi -1.3e-11
+  th 5.781185 d 2.876e-02 rays 3:
+    q 0.5: exact 2.4515831 two-well 2.4514011 (diff -1.8e-04; one ray -9.2e-01)
+    q 0.25: exact 1.5154131 two-well 1.5154124 (diff -6.6e-07; one ray -9.7e-03)
+    q 0.125: exact 1.4999085 two-well 1.4999086 (diff +1.0e-07; one ray +1.0e-07)  minPhi 0.0e+00
+  th 5.783185 d 4.416e-06 rays 3:
+    q 0.5: exact 3.0923313 two-well 3.0919683 (diff -3.6e-04; one ray -1.5e+00)
+    q 0.25: exact 3.0349140 two-well 3.0349266 (diff +1.3e-05; one ray -1.5e+00)
+    q 0.125: exact 3.0212910 two-well 3.0212913 (diff +2.6e-07; one ray -1.5e+00)  minPhi 0.0e+00
+  th 5.785185 d 2.875e-02 rays 3:
+    q 0.5: exact 2.4517551 two-well 2.4515731 (diff -1.8e-04; one ray -9.2e-01)
+    q 0.25: exact 1.5154854 two-well 1.5154848 (diff -6.6e-07; one ray -9.8e-03)
+    q 0.125: exact 1.4999120 two-well 1.4999121 (diff +1.0e-07; one ray +1.0e-07)  minPhi 0.0e+00
+  th 5.793185 d 1.437e-01 rays 3:
+    q 0.5: exact 1.4834238 two-well 1.4833344 (diff -8.9e-05; one ray -8.9e-05)
+    q 0.25: exact 1.4628056 two-well 1.4628054 (diff -2.9e-07; one ray -2.9e-07)
+    q 0.125: exact 1.4581923 two-well 1.4581923 (diff -8.5e-09; one ray -8.5e-09)  minPhi -1.4e-11
+(53 s)
+
+[exited with code 0]

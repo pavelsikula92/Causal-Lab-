@@ -298,7 +298,7 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
 
 - **F3.14c: a field defect at rest on the 1+1 order makes a random walk in momentum with the diffusion constant
   predicted by the shot noise of the order, D_p = (32/15) mu^(5/2) / rho, with no free constant: R = 1.016 / 0.991 /
-  0.882 / 1.008 (+- 0.05) in the four cells (seed 0 PASSED; replication pending)** (mechanism, 1+1, flat, kink at rest,
+  0.882 / 1.008 (+- 0.05) in the four cells (PASSED, REPLICATED: seed 0 and seed 1)** (mechanism, 1+1, flat, kink at rest,
   T 30, 1024 sprinklings per cell, mu 0.25 / 1 x rho 400 / 800; card docs/F3_14c_card_draft.md frozen 10 Nov 22:56;
   run by the author 11 Nov, 11 018 s; results/F3_structure/F3.14c/). Derivation: docs/derivations/swerves_of_a_defect.md.
   - **Instrument:** no fit lost in the decided cells. The readout check (an exact kink moved along a synthetic random
@@ -312,6 +312,16 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
     - The second estimator (cubic growth of Var x): 1.077 / 1.007 / 0.880 / 0.990 / 0.883.
     - Exponent of the spread 1.44-1.48 (random walk in momentum: 1.5).
     - Mean drift zero within 1 SE.
+  - **Replication, seed 1 (21-22 Nov, by the author, unchanged test, sha256 5e87d3e0, 8852 s;
+    results/F3_structure/F3.14c/20261121T225909Z_all_seed1_5e87d3e0.json): PASSED.** Instrument all OK (no fit lost
+    in the decided cells; readout check 0.999-1.000).
+    - M 4: R = 1.043 +- 0.054 (rho 400), 1.020 +- 0.053 (800);
+    - M 8: R = 0.998 +- 0.048 (400), 1.058 +- 0.054 (800);
+    - density scaling: R(800) - R(400) = -0.023 +- 0.076 (M 4), +0.060 +- 0.072 (M 8);
+    - reported: M 16 at rho 800 R = 0.865 +- 0.043 (1.8 % of fits lost); cubic-growth estimator 1.060 / 1.088 / 0.988 /
+      1.109; exponent 1.46-1.48; drift within 1 SE.
+    - (The record was written to the old flat path results/F3.14c/ because the run started before the results folder
+      was reorganised (decision 48); it was moved unchanged into results/F3_structure/F3.14c/.)
 
   Reading (declared before the run). The wandering of a bound defect on the order is the shot noise with which the
   order samples its own binding, with the predicted constant and the predicted scaling: 1/rho, and mu^(5/2), i.e. M^5
@@ -319,8 +329,10 @@ The largest gap: no matter-like structure has yet arisen from the dynamics by it
   theory are thereby derived for a bound object, set by its internal structure (int V'^2 (d phi)^2), and zero in the
   vacuum.
 
-  Not resolved at this precision: the corrections beyond the leading order. M 8 at rho 400 lies 2.5 SE below 1, and M 16
-  lies 10 % below.
+  Not resolved at this precision: the corrections beyond the leading order. The low cell of seed 0 (M 8 at rho 400,
+  2.5 SE below 1) is 0.998 +- 0.048 in seed 1, so it was a fluctuation. The reported M 16 lies below 1 in both seeds
+  (0.898 +- 0.045, 0.865 +- 0.043; together about 12 % low, 4 SE): a correction for the heavier, narrower kink
+  (M w = 8 fixes w = 1/2 at M 16) that the leading-order formula does not contain. Not judged.
 
   Limits:
   - 1+1 only (in 3+1 the Green function sits on links);

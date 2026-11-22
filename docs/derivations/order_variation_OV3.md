@@ -352,4 +352,7 @@ transform imported unchanged; level 1 (mult 1), Claude's container.
     above it, with the opposite sign of the quadratic departure.
 - **The age dependence is not monotonic.** K3_c at n = 3 / 4 / 6 is 1.0240 / 1.0189 / 1.0251 (k 0.06) and
   1.0922 / 1.0716 / 1.0959 (k 0.12). The quadratic K2_A is monotonic (0.9517 / 0.9524 / 0.9539 at k 0.06). The cubic
-  involves the mode 2k, whose own age is 2n. Whether this is physics or quadrature is to be checked at level 2 (running).
+  involves the mode 2k, whose own age is 2n.
+- **Level 2 (mult 2) reproduces level 1 to 1e-6:** K3_c = 1.018881 (k 0.06) and 1.071603 (k 0.12) at n = 4. The
+  quadrature is converged, so the non-monotonic age dependence is a property of the cubic vertex, not a numerical
+  artefact.
