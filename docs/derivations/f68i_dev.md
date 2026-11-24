@@ -67,7 +67,8 @@ where the q² series fails).
 | 24 | −1.2e-8 [3] | −4.2e-8 [3] | −1.4e-5 [3] | −1.8e-8 | −6.6e-12 |
 | 40 | −1.9e-9 [3] | −6.5e-9 [3] | −4.0e-7 [3] | −7.7e-8 (min K 1.0) | −3.8e-11 |
 
-Readings, with their limits:
+Readings, with their limits (24 Nov: superseded as a trend by §5.2, the cut-locus windows are of the same order as
+the smooth part):
 - **Where the interval has several rays, the smooth part falls steeply with ε:** p = 0.5 from −1.7e-7 (ε 16) to
   −1.9e-9 (ε 40), p = 2 from −5.3e-7 to −6.5e-9, roughly ε^(−5). Up to the first caustic it grew faster than ε².
 - **Where there is still one ray, it keeps growing,** roughly as ε^(2.3–2.5) (p = 8 and 16), until its own caustic.
@@ -87,7 +88,7 @@ Readings, with their limits:
 | Step | What | Check |
 |---|---|---|
 | E1 | the smooth part of ⟨ŝ₄A₀⁻²⟩ beyond the caustic, coarse grid | trend only |
-| D1 | the cut-locus window at q⁶: series in c around each cut locus (envelope theorem for S_b − S_a; q-series of A_a, A_b) | against the exact needle (f68f_1b_exact) at q = 1/2, 1/4, 1/8 on cut-locus phases |
+| D1 | the cut-locus window at q⁶: series in c around each cut locus (envelope theorem for S_b − S_a; q-series of A_a, A_b); checks 1–3 done (§5.1, §5.2) | against the exact needle (f68f_1b_exact) at q = 1/2, 1/4, 1/8 on cut-locus phases |
 | D2 | conjugate points: the window bound or the uniform (Airy/cusp) form | against the exact needle near the folds |
 | D3 | Φ(ε) on ε up to ~40 (or until a trend is decided), p panels to p ~ 3√ε + 12 | phases 64 against 128, p panels, the b → 0 limit against F6.8f |
 | Card | F6.8i: the reading of ∫ε^{−1/2}Φ (convergent: a static limit exists; divergent: none), with criteria fixed before the run | as K.18 / F6.8f |
@@ -157,6 +158,101 @@ phases across the window (d = 1.4e-1, 2.9e-2, 4.4e-6, 2.9e-2, 1.4e-1).
 - One ray alone misses the volume by up to 1.5 (a factor two) inside the window: the second needle is real and its
   weight (1 − d/c)² as derived.
 - The windows are symmetric (θ_c ± 0.002 agree to 7e-7), as expected for a crossing.
+
+### 5.2 Checks 2 and 3 (24 Nov; diag/f68i_d1_checks.py, diag/out/f68i_d1_checks_20261124T173517Z)
+
+**Method.** Three cut loci, all symmetric ties θ_c = −p/2 (mod 2π), where the two lowest rays are mirror images:
+(ε, p) = (12, 1), (16, 1), (12, 0). On each side of θ_c the rays, the gap d = S_second − S_first and the series
+A₀…A₃ of both rays are computed at 9 Chebyshev nodes in δ = |θ − θ_c| ∈ (0, 1.25 c_max/α] (c_max = 1/8, q = 1/2) and
+fitted by polynomials of degree 5 (d without a constant). Model checks, at every point: fit residual ≤ 3e-10 (d) and
+≤ 7e-7 (A); a held-out node ≤ 4e-10 and ≤ 4e-7; continuity across θ_c (first on one side = second on the other)
+≤ 5e-7; the third ray stays above c_max (gap ≥ 0.27).
+
+**Check 2: the window integral over θ at finite q, with the exact needle.** (1/2π)∫dθ [A_exact − A_first-series] at
+6 Gauss–Legendre nodes per side inside the window d < c, against the leading term dA = (A_a + A_b)c/(6πα) and against
+the two-well model:
+
+| (ε, p) | α | exact/dA − 1 at q = 1/2, 1/4, 1/8 | ratio per halving of q | exact − two-well (q = 1/2 … 1/8) |
+|---|---|---|---|---|
+| (12, 1) | 14.376 | 2.8e-2, 6.2e-3, 1.5e-3 | 4.49, 4.09 | 4.4e-7 … 1.0e-11 |
+| (16, 1) | 24.426 | 2.2e-3, 5.4e-4, 1.3e-4 | 4.00, 4.04 | −1.5e-8 … −3.9e-11 |
+| (12, 0) | 15.927 | 1.7e-2, 3.9e-3, 9.7e-4 | 4.29, 4.06 | 1.7e-8 … −3.6e-11 |
+
+The leading window term of f68f_dev §6 holds, with corrections O(c) (factor 4 per halving of q); the two-well model
+equals the exact needle to the truncation of the series. **Passed.**
+
+**Check 3: the window in the age term.** With c = γs (γ = k²/(2l₂)):
+- 3a, the moment selection of one ray with this file's quadrature: F(γ) = ∫ds g₀(s²A(γs))/(4μ₃(2γ)³) tends to
+  ŝ₄A₀⁻² to 8e-6, 9e-5, 3e-6 (the second limited by rounding: ŝ₄A₀⁻² is 1.4e-5 there).
+- 3b, the window part W(γ) = (1/2π)Σ_sides∫ds∫dδ [g₀(s²A_two-well) − g₀(s²A_first)] at γ = 0.0008 … 0.009, fitted by
+  powers γ¹ … γ⁶. N is the same integral of |·|, the size of the γ¹ piece the moments remove.
+
+| (ε, p) | W₁/N₁ | W₂/N₁ | W₃ (fit m 1–6; m 3–6 agrees to) | window term in ⟨ŝ₄A₀⁻²⟩_θ, W₃/(4μ₃·8) | smooth part, 64 equal phases (scale only) |
+|---|---|---|---|---|---|
+| (12, 1) | 1e-13 | −3e-10 | 1.8387e-4 (1e-5) | **+1.149e-5** | −4.93e-5 |
+| (16, 1) | −7e-17 | 1e-13 | 1.9019e-6 (4e-7) | **+1.189e-7** | −4.18e-7 |
+| (12, 0) | 2e-14 | −4e-11 | 8.3295e-5 (3e-6) | **+5.206e-6** | −3.16e-5 |
+
+Doubling the s and z nodes changes W by ≤ 1.4e-6 (relative). **Replicated** on the author's PC (Windows, 6 workers,
+994 s, diag/out/f68i_d1_checks_20261124T185616Z): check 2 identical in every printed digit, W(γ) to 7 digits, W₃ to
+≤ 6e-6, the window terms identical in all five printed digits; only check 3a at (16, 1), the rounding-limited one,
+moved (−4.4e-4 against −9.4e-5). **Passed:** the γ¹ and γ² window terms vanish (to 1e-13
+and 3e-10 of the γ¹ size), and the first survivor is γ³, as derived.
+
+**Readings (development, decides nothing).**
+- **The window term is not negligible.** Per cut locus it is +1e-5 … +1e-7 in ⟨ŝ₄A₀⁻²⟩_θ, positive at all three points,
+  against a negative smooth part; it is 16–28 % of the 64-phase smooth value. The size ratio is not yet known: the
+  smooth part on equal phases does not converge across the jump at θ_c ((12, 1): −4.8e-6 on 16 phases (first run of
+  this file), −4.9e-5 on 64).
+- **E1 (§3) does not hold even as a trend in the multi-ray range:** it has no windows and 16 equal phases. Between
+  ε = 12 and 16 at p = 1 both the smooth part and the window fall by about two orders of magnitude, which is consistent
+  with a steep fall, but nothing is decided before the piecewise integration.
+- **Limits:** symmetric ties only (mirror rays, the same α on both sides). Non-symmetric cut loci (expected at larger ε
+  with more rays) are not tested; the model needs only "first" and "second" per side, so it applies to them unchanged,
+  but the continuity check then compares different rays and has to be read per locus. The conjugate-point windows (D2)
+  are untouched.
+
+**Next.** The smooth part integrated piecewise between the cut loci (θ_c located by the tie, Gauss–Legendre on each
+piece), plus W₃/(4μ₃·8) per cut locus: Φ-contributions at fixed (ε, p) with both parts. Then D2.
+
+### 5.3 D3a: ⟨ŝ₄A₀⁻²⟩_θ at fixed (ε, p) with the cut loci (24 Nov; diag/f68i_d3a.py, diag/out/f68i_d3a_20261124T224000Z)
+
+    ⟨ŝ₄A₀⁻²⟩_θ = (1/2π) Σ_pieces ∫_piece dθ ŝ₄A₀⁻² (first arrival)  +  Σ_loci W₃/(4μ₃·8)
+
+The cut loci are those of diag/f68f_1b_cut (128-phase grid and bisection). Between neighbouring loci the first arrival
+is one smooth branch.
+
+**A finding about the integrand.** ŝ₄A₀⁻² of the first arrival peaks sharply at the cut loci and stays finite there.
+At (12, 1) it is ≈ −1e-5 at |θ − θ_c| ≈ 0.2, −6e-4 at 0.04 and −3e-3 at 0.01 (A₀ rises from 1.05 to 1.51). Most of
+⟨ŝ₄A₀⁻²⟩_θ comes from within ~0.1 rad of the cut locus: the same place where the windows act.
+- One Gauss–Legendre rule per piece does not resolve this: 12 and 24 nodes differ by a factor 2 at (12, 1) (first run of
+  this file, not kept).
+- Each piece is therefore cut into 18 subintervals graded geometrically towards both cut loci (first 0.002 from θ_c,
+  ratio 2.5), with Gauss–Legendre at 6 and 12 nodes on each.
+
+| (ε, p) | smooth part (6 / 12 nodes differ by) | windows | **total** | 64 equal phases (E1 method) | min K |
+|---|---|---|---|---|---|
+| (4, 1), no cut locus | −6.378459e-9 (8e-17) | 0 | **−6.378459e-9** | −6.378459e-9 | 2.60 |
+| (12, 1) | −3.176167e-5 (8e-13) | +1.149e-5 | **−2.0270e-5** | −4.93e-5 | 1.52 |
+| (16, 1) | −3.916375e-7 (1e-14) | +1.189e-7 | **−2.7277e-7** | −4.18e-7 | 3.84 |
+| (12, 0) | −1.461195e-5 (4e-13) | +5.206e-6 | **−9.406e-6** | −3.16e-5 | 1.88 |
+
+**Readings (development, decides nothing).**
+- **The method converges.**
+  - The graded smooth part is stable to ≤ 3e-8 (relative) between 6 and 12 nodes.
+  - The control without a cut locus agrees with equal phases to all digits.
+  - No piece approaches a conjugate point: min K ≥ 1.5 against the flag at 0.5.
+- **The windows remove 30–36 % of the smooth part**, with the opposite sign.
+- **The E1 method is off by a factor 1.5–3.4** in the multi-ray range: equal phases across the jump and no windows.
+- **At p = 1, ⟨ŝ₄A₀⁻²⟩_θ falls by a factor 74 between ε = 12 and 16** (a local exponent ≈ −15).
+  - This is one direction p only.
+  - Φ(ε) = ∫dp⟨ŝ₄A₀⁻²⟩_θ needs the whole p range, and E1 indicates that the single-ray directions at large p still grow.
+  - The p-scan at fixed ε is the next run.
+- **Limits:**
+  - Cut loci closer than one grid step (0.049) can be missed; a missed pair would show as a large 6/12 difference on
+    its piece.
+  - The window model assumes a crossing with nonzero α. Near a cusp of the cut locus (where α → 0 and conjugate points
+    appear) it does not apply. That is D2.
 
 ## 6. D2: conjugate points (open)
 

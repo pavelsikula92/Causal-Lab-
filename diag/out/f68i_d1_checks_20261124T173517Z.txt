@@ -1,0 +1,72 @@
+F6.8i-dev D1 checks 2 and 3: the cut-locus window integrated over theta (development, decides nothing; docs/derivations/f68i_dev.md section 5.2)
+
+eps 12 p 1: theta_c 5.783185307  alpha 14.37583 / 14.37583 (left / right)  A_a 1.509510  A_b 1.509510  rays 3  min gap to the third ray 0.270 (c_max 0.125)
+  model: 9 nodes per side in (0, 0.0109]; fit residual d 3.7e-11, A 6.6e-07; held-out node d 4.9e-11, A 3.6e-07; continuity across theta_c 4.8e-07
+  check 2 (window integral over theta, exact needle at 6 GL nodes per side and q; min Phi -7.7e-12):
+    q 0.5    c 0.12500: exact 1.431546e-03  two-well 1.431108e-03 (diff +4.4e-07)  dA 1.392650e-03  exact/dA - 1 +2.7930e-02
+    q 0.25   c 0.03125: exact 3.503283e-04  two-well 3.503305e-04 (diff -2.1e-09)  dA 3.481625e-04  exact/dA - 1 +6.2208e-03
+    q 0.125  c 0.00781: exact 8.717297e-05  two-well 8.717296e-05 (diff +1.0e-11)  dA 8.704062e-05  exact/dA - 1 +1.5206e-03
+    (exact/dA - 1) falls by 4.49 and 4.09 per halving of q (O(c): 4)
+  check 3a (one ray at delta 0.0055): s4hat A0^-2 = -3.677572e-03;  F(gamma) = -3.596962e-03, -3.564394e-03, -3.515192e-03 at gamma 0.005, 0.007, 0.01
+    F(gamma -> 0) by a cubic fit over gamma 0.005..0.038: -3.677543e-03 (relative to s4hat A0^-2 -7.8e-06; limited by rounding where s4hat A0^-2 is small)
+  check 3b (window part of the age term, c = gamma s; N = the same with |.|, the size of the gamma^1 piece that the moments remove):
+    gamma 0.0008  W +9.482209e-14  N 7.5388e-06  W/N +1.26e-08  W/gamma^3 +1.851994e-04
+    gamma 0.0011  W +2.471498e-13  N 1.0366e-05  W/N +2.38e-08  W/gamma^3 +1.856873e-04
+    gamma 0.0016  W +7.638433e-13  N 1.5077e-05  W/N +5.07e-08  W/gamma^3 +1.864852e-04
+    gamma 0.0023  W +2.282166e-12  N 2.1672e-05  W/N +1.05e-07  W/gamma^3 +1.875702e-04
+    gamma 0.0032  W +6.190230e-12  N 3.0150e-05  W/N +2.05e-07  W/gamma^3 +1.889108e-04
+    gamma 0.0045  W +1.738127e-11  N 4.2394e-05  W/N +4.10e-07  W/gamma^3 +1.907410e-04
+    gamma 0.0064  W +5.064471e-11  N 6.0286e-05  W/N +8.40e-07  W/gamma^3 +1.931942e-04
+    gamma 0.009   W +1.429839e-10  N 8.4760e-05  W/N +1.69e-06  W/gamma^3 +1.961371e-04
+    fit W = sum_m W_m gamma^m, m 1..6: W1/N1 +1.3e-13  W2/N1 -3.1e-10  W3 +1.838667e-04  W4 +1.699e-03  (N1 = N/gamma 9.4222e-03; max rel. residual 4.0e-07)
+    fit with m 3..6 only: W3 +1.838647e-04 (max rel. residual 1.4e-06); the two W3 differ by 1.1e-05
+    quadrature: doubling s and z nodes at gamma 0.0016 changes W by 6.1e-09 (relative)
+  the window term per cut locus in <s4hat A0^-2>_theta: W3 / (4 mu_3 8) = +1.1492e-05;  smooth part on 64 equal phases (scale only, across the jump) -4.9275e-05
+  (360 s)
+eps 16 p 1: theta_c 5.783185307  alpha 24.42603 / 24.42603 (left / right)  A_a 1.026250  A_b 1.026250  rays 3  min gap to the third ray 2.194 (c_max 0.125)
+  model: 9 nodes per side in (0, 0.0064]; fit residual d 2.9e-10, A 1.0e-11; held-out node d 4.1e-10, A 1.4e-11; continuity across theta_c 1.2e-11
+  check 2 (window integral over theta, exact needle at 6 GL nodes per side and q; min Phi 0.0e+00):
+    q 0.5    c 0.12500: exact 5.584352e-04  two-well 5.584503e-04 (diff -1.5e-08)  dA 5.572361e-04  exact/dA - 1 +2.1518e-03
+    q 0.25   c 0.03125: exact 1.393840e-04  two-well 1.393841e-04 (diff -4.8e-11)  dA 1.393090e-04  exact/dA - 1 +5.3848e-04
+    q 0.125  c 0.00781: exact 3.483190e-05  two-well 3.483194e-05 (diff -3.9e-11)  dA 3.482726e-05  exact/dA - 1 +1.3323e-04
+    (exact/dA - 1) falls by 4.00 and 4.04 per halving of q (O(c): 4)
+  check 3a (one ray at delta 0.0032): s4hat A0^-2 = -1.418270e-05;  F(gamma) = -1.414871e-05, -1.413579e-05, -1.411588e-05 at gamma 0.005, 0.007, 0.01
+    F(gamma -> 0) by a cubic fit over gamma 0.005..0.038: -1.418137e-05 (relative to s4hat A0^-2 -9.4e-05; limited by rounding where s4hat A0^-2 is small)
+  check 3b (window part of the age term, c = gamma s; N = the same with |.|, the size of the gamma^1 piece that the moments remove):
+    gamma 0.0008  W +9.751831e-16  N 6.5263e-06  W/N +1.49e-10  W/gamma^3 +1.904655e-06
+    gamma 0.0011  W +2.536484e-15  N 8.9737e-06  W/N +2.83e-10  W/gamma^3 +1.905698e-06
+    gamma 0.0016  W +7.812849e-15  N 1.3053e-05  W/N +5.99e-10  W/gamma^3 +1.907434e-06
+    gamma 0.0023  W +2.323718e-14  N 1.8763e-05  W/N +1.24e-09  W/gamma^3 +1.909853e-06
+    gamma 0.0032  W +6.268336e-14  N 2.6105e-05  W/N +2.40e-09  W/gamma^3 +1.912944e-06
+    gamma 0.0045  W +1.747207e-13  N 3.6710e-05  W/N +4.76e-09  W/gamma^3 +1.917374e-06
+    gamma 0.0064  W +5.043053e-13  N 5.2210e-05  W/N +9.66e-09  W/gamma^3 +1.923772e-06
+    gamma 0.009   W +1.408705e-12  N 7.3419e-05  W/N +1.92e-08  W/gamma^3 +1.932380e-06
+    fit W = sum_m W_m gamma^m, m 1..6: W1/N1 -7.3e-17  W2/N1 +1.5e-13  W3 +1.901858e-06  W4 +3.505e-06  (N1 = N/gamma 8.1579e-03; max rel. residual 2.3e-07)
+    fit with m 3..6 only: W3 +1.901858e-06 (max rel. residual 2.1e-07); the two W3 differ by 4.0e-07
+    quadrature: doubling s and z nodes at gamma 0.0016 changes W by 1.4e-06 (relative)
+  the window term per cut locus in <s4hat A0^-2>_theta: W3 / (4 mu_3 8) = +1.1887e-07;  smooth part on 64 equal phases (scale only, across the jump) -4.1835e-07
+  (346 s)
+eps 12 p 0: theta_c 0.000000000  alpha 15.92710 / 15.92710 (left / right)  A_a 1.395171  A_b 1.395171  rays 3  min gap to the third ray 0.397 (c_max 0.125)
+  model: 9 nodes per side in (0, 0.0098]; fit residual d 3.7e-11, A 1.2e-08; held-out node d 7.4e-11, A 6.4e-09; continuity across theta_c 7.8e-09
+  check 2 (window integral over theta, exact needle at 6 GL nodes per side and q; min Phi -2.2e-12):
+    q 0.5    c 0.12500: exact 1.181423e-03  two-well 1.181406e-03 (diff +1.7e-08)  dA 1.161795e-03  exact/dA - 1 +1.6895e-02
+    q 0.25   c 0.03125: exact 2.915936e-04  two-well 2.915945e-04 (diff -8.7e-10)  dA 2.904488e-04  exact/dA - 1 +3.9415e-03
+    q 0.125  c 0.00781: exact 7.268264e-05  two-well 7.268268e-05 (diff -3.6e-11)  dA 7.261220e-05  exact/dA - 1 +9.7011e-04
+    (exact/dA - 1) falls by 4.29 and 4.06 per halving of q (O(c): 4)
+  check 3a (one ray at delta 0.0049): s4hat A0^-2 = -1.447023e-03;  F(gamma) = -1.425548e-03, -1.416891e-03, -1.403832e-03 at gamma 0.005, 0.007, 0.01
+    F(gamma -> 0) by a cubic fit over gamma 0.005..0.038: -1.447018e-03 (relative to s4hat A0^-2 -2.8e-06; limited by rounding where s4hat A0^-2 is small)
+  check 3b (window part of the age term, c = gamma s; N = the same with |.|, the size of the gamma^1 piece that the moments remove):
+    gamma 0.0008  W +4.287202e-14  N 7.3620e-06  W/N +5.82e-09  W/gamma^3 +8.373441e-05
+    gamma 0.0011  W +1.116661e-13  N 1.0123e-05  W/N +1.10e-08  W/gamma^3 +8.389640e-05
+    gamma 0.0016  W +3.447312e-13  N 1.4724e-05  W/N +2.34e-08  W/gamma^3 +8.416290e-05
+    gamma 0.0023  W +1.028460e-12  N 2.1164e-05  W/N +4.86e-08  W/gamma^3 +8.452867e-05
+    gamma 0.0032  W +2.784838e-12  N 2.9445e-05  W/N +9.46e-08  W/gamma^3 +8.498651e-05
+    gamma 0.0045  W +7.802428e-12  N 4.1405e-05  W/N +1.88e-07  W/gamma^3 +8.562335e-05
+    gamma 0.0064  W +2.267621e-11  N 5.8882e-05  W/N +3.85e-07  W/gamma^3 +8.650286e-05
+    gamma 0.009   W +6.386748e-11  N 8.2793e-05  W/N +7.71e-07  W/gamma^3 +8.760971e-05
+    fit W = sum_m W_m gamma^m, m 1..6: W1/N1 +1.6e-14  W2/N1 -3.8e-11  W3 +8.329497e-05  W4 +5.566e-04  (N1 = N/gamma 9.2017e-03; max rel. residual 1.1e-07)
+    fit with m 3..6 only: W3 +8.329473e-05 (max rel. residual 3.6e-07); the two W3 differ by 2.8e-06
+    quadrature: doubling s and z nodes at gamma 0.0016 changes W by 1.8e-08 (relative)
+  the window term per cut locus in <s4hat A0^-2>_theta: W3 / (4 mu_3 8) = +5.2059e-06;  smooth part on 64 equal phases (scale only, across the jump) -3.1617e-05
+  (332 s)
+total 1038 s
