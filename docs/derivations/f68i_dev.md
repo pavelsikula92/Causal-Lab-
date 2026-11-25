@@ -430,3 +430,64 @@ Open for the static question:
 - Ψ near ε → π⁺², where the cut locus is born at p = 0 and its two cusps (±p_c) merge.
 - The number of cusps at larger ε (new cut loci after the next caustics).
 - The direct check of γ^{11/7} from the exact needle.
+
+### 6.4 D2c: the cusp constants along ε (25 Nov; diag/f68i_d2c.py; Claude's container, 2 workers)
+
+Records (three batches; one run of the whole grid exceeds the container's 2 h limit):
+diag/out/f68i_d2c_20261125T211315Z (ε 9.9–12, 2879 s), f68i_d2c_20261125T214143Z (ε 14–25, 1702 s),
+f68i_d2c_20261125T225751Z (ε 30–39, 4563 s). Test record f68i_d2c_20261125T175202Z.
+
+For each ε, ray counts on both symmetric lines over p ∈ [0.02, 12]; p_c by bisection; σ′, τ′ from the geometry at
+p_c − Δ (Δ = D, D/2, D = min(0.05, p_c/20)), extrapolated to Δ → 0; N′ from the exact needle at q = 0.0625 (§6.3).
+
+**Number of cusps.** On every ε in 9.9–39 the line θ = −p/2 has 3 rays for p < p_c and 1 above; the line −p/2 + π
+has 1 ray everywhere. So there is one cut locus, ending in one cusp pair ±p_c, up to ε = 39. The cut-locus search at
+p_c/2 (f68f_1b_cut, 128 phases) reports extra loci off the symmetric line at ε 35 (18) and ε 39 (39). They are not
+real: all but one have α = 0, zero gap and equal A on both sides (one ray counted twice at a grid point), the remaining
+one at ε 39 has a gap of 48.8 (no tie), and a direct ray count at five of the phases (ε 39) gives 1 ray. They sit on
+the 1-ray side, θ − θ_c ∈ [1.8, 3.1] in absolute value, and appear only as ε approaches 4π²; the search code is shared
+with F6.8f and is left unchanged.
+
+**The normal form.** The predicted half-width 2(|σ|/3)^{3/2}/τ′ agrees with the measured w to ≤ 2e-4 at every ε from
+10 to 39; at ε 9.9 (w ≈ 2–5e-6) to 0.4 % and 0.9 %, the resolution of the bisection there.
+
+| ε | ε − π² | p_c | σ′ | τ′ | N′ | slopes ln A / ln q | Ψ |
+|---|---|---|---|---|---|---|---|
+| 9.9 | 0.030 | 0.31332 | 0.1293 | 7.0857 | 1.1581 | −0.497, −0.498 | 0.9036 |
+| 10 | 0.130 | 0.64718 | 0.2547 | 7.0724 | 1.1597 | −0.497, −0.498 | 0.4589 |
+| 10.25 | 0.380 | 1.09567 | 0.4325 | 7.0393 | 1.1647 | −0.497, −0.498 | 0.2700 |
+| 10.5 | 0.630 | 1.39846 | 0.5507 | 7.0068 | 1.1690 | −0.496, −0.497 | 0.2120 |
+| 11 | 1.130 | 1.84139 | 0.7326 | 6.9433 | 1.1796 | −0.498, −0.499 | 0.1590 |
+| 12 | 2.130 | 2.44905 | 0.9703 | 6.8218 | 1.1963 | −0.497, −0.498 | 0.1200 |
+| 14 | 4.130 | 3.21902 | 1.2863 | 6.5979 | 1.2310 | −0.497, −0.498 | 0.0902 |
+| 16 | 6.130 | 3.72511 | 1.5134 | 6.3943 | 1.2670 | −0.501, −0.503 | 0.0762 |
+| 20 | 10.13 | 4.38092 | 1.8328 | 6.0321 | 1.3365 | −0.507, −0.511 | 0.0623 |
+| 25 | 15.13 | 4.87923 | 2.1011 | 5.6401 | 1.4186 | −0.514, −0.520 | 0.0538 |
+| 30 | 20.13 | 5.20186 | 2.2662 | 5.2961 | 1.4899 | −0.513, −0.518 | 0.0499 |
+| 35 | 25.13 | 5.42694 | 2.3666 | 4.9884 | 1.5527 | −0.507, −0.509 | 0.0481 |
+| 39 | 29.13 | 5.56039 | 2.7047 | 4.7664 | 1.6772 | −0.551, −0.566 | 0.0399 |
+
+At ε 12 and 16 this agrees with §6.3 to 0.3 %; at ε 20 σ′ is 1.2 % larger (1.833 against 1.811), Ψ 1.3 % smaller.
+
+**The birth of the cusp (ε → π²⁺).** p_c²/(ε − π²) = 3.23, 3.21, 3.16, 3.10, 3.00 at ε 9.9–11 (fit p_c² = 3.234 e
+− 0.207 e², e = ε − π², on e < 1.2): the cut locus and its cusps are born as a pitchfork at p = 0. σ′/p_c stays at
+0.394–0.398 (0.413 at ε 9.9), τ′ → 7.09 and N′ → 1.156 are finite. So Ψ ∝ 1/σ′ ∝ (ε − π²)^{−1/2}:
+
+Ψ √(ε − π²) = 0.1657, 0.1665, 0.1683, 0.1690, 0.1751 at ε 10–12 (0.1575 at ε 9.9),
+
+and Ψ ≈ 0.165 (ε − π²)^{−1/2} at the birth. This singularity is integrable in ε. The ε 9.9 point is 5 % lower; it is
+the point with the smallest window (above) and is not used for the limit. Whether the limit is exactly the ε 10–11
+value is not checked below ε 9.9.
+
+**Large ε.** Ψ falls from 0.120 (ε 12) to 0.048 (ε 35); Ψ √(ε − π²) rises slowly (0.175 → 0.241), so Ψ falls more
+slowly than (ε − π²)^{−1/2} there. The local slope of ln A against ln q at the cusp drifts away from −1/2 with ε
+(−0.51 to −0.52 at ε 20–30), so N′ at q = 0.0625 is uncertain by 1–2 % there. At ε 39 the drift is large (−0.55,
+−0.57; N′ 1.677 → 1.748 from q 0.0625 to 0.031) and σ/Δ changes by 3.7 % between the two Δ: near the next caustic
+(4π² = 39.48) the cusp regime is narrower than q = 0.03, and Ψ(39) = 0.040 is not a cusp constant. It is not used.
+
+**What this gives for the static question.** Per cusp the age term is C Ψ(ε) (2π)⁻¹ γ^{11/7} per unit p and θ/2π,
+with one cusp pair for π² < ε < 4π² (up to ε 35 checked; ε 39 is not resolved at these q), and Ψ finite on
+(π², 4π²) with an integrable (ε − π²)^{−1/2} singularity at the birth. Open:
+- the direct check of γ^{11/7} from the exact needle on a (p, θ) patch around a cusp;
+- ε ≥ 4π² (new caustics, new cut loci);
+- how F6.8i is reformulated with this term (the author's decision).
