@@ -1,0 +1,10 @@
+F6.8i-dev D2a: a map of the cusp in p at fixed eps (development, decides nothing; docs/derivations/f68i_dev.md section 6.1)
+
+eps 12: p_c = 2.449046 (bisection on the ray count at the symmetric phase)
+  p 2.24905 (below, Delta 0.200): w 4.5564e-03  tie 7e-12  min K 0.2611  smooth -1.786361e-02 (6/12 differ 1.8e-11, 32 subintervals)  f in [-3.58e+01, -3.57e-11]  window +8.5618e-03 (alpha 5.950, gamma scale 0.241, W1/N1 +1e-07 W2/N1 -1e-03)
+  p 2.39905 (below, Delta 0.050): w 5.9452e-04  tie 8e-13  min K 0.0667  smooth -2.204572e+00 (6/12 differ 2.4e-09, 32 subintervals)  f in [-3.34e+04, -2.93e-11]  window: window not uniform (scale 0.016, alpha 2.997)
+  p 2.64905 (above, Delta 0.200): rays 1  min K 0.1337  smooth -3.807517e-03 (6/12 differ 9.1e-11, 32 subintervals)  f in [-9.80e+00, +1.28e+01]
+  p 2.49905 (above, Delta 0.050): rays 1  min K 0.0335  smooth -5.761639e-01 (6/12 differ 2.7e-09, 32 subintervals)  f in [-1.20e+04, +1.55e+04]
+  fits on the below side (log-log over Delta): |smooth| ~ Delta^-3.47, min K ~ Delta^+0.99, w ~ Delta^+1.47, alpha ~ Delta^+0.49
+  fits on the above side (log-log over Delta): |smooth| ~ Delta^-3.62, min K ~ Delta^+1.00
+total 4356 s
