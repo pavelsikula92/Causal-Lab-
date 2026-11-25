@@ -358,3 +358,37 @@ is homogeneous: I(γ) = C γ^{11/7} (s ~ γ^{1/7}, c ~ γ^{8/7}, σ ~ c^{1/2}, �
 - The singularity index 1/4 of A is Berry's index of the cusp in catastrophe optics. The first arrival is a global
   minimum, so it cannot sit on a fold: the cusps (the end points of the cut-locus segments) are its only generic
   degenerations in the (p, θ) plane.
+
+**C (diag/out/f68i_d2b_nf_20261125T101212Z; Claude's container, 2 workers, 435 s).**
+- Checks of the form:
+  - w against the closed form at the cusp: 1.4e-15;
+  - paraxial limit: 1e-9;
+  - adaptive quadrature of tilted double wells: 1.5e-11;
+  - J at 48 against 96 s-nodes: ≤ 5e-6.
+- I(γ = 1) = −8.82941e-3. The σ-nodes 12 → 20 and τ-nodes 20 → 32 change it by 2e-6 relative.
+- Tails:
+  - the σ-tails beyond |σ| = 16 (power fits p = 3.65 and 3.38, against the predicted 3.5) add −1.9e-5;
+  - the τ-range beyond t = τ/|σ|^{3/2} = 10 is bounded by 1.1e-5 (1.2e-3 relative).
+- I(γ = 1/4) = −9.99968e-4 gives C = −8.8324e-3. The exponent from the two γ is 1.57118 (11/7 = 1.57143); the grids
+  are fixed while the structures move, so this checks the quadrature.
+
+    **C = −8.83e-3 (±0.1 %): the cusp term does not vanish.**
+
+- J changes sign over the plane and its window part cancels to 1e-5 of its amplitude, so C is a small net number.
+  It is still 10⁻²-sized against a γ³ smooth part.
+- An earlier run of this file integrated τ up to 50|σ|^{3/2}. There J is at its rounding floor (~1e-11) and the
+  rows for |σ| > 15 were noise; that run was discarded, not kept.
+
+**What this means (development, decides nothing).**
+- In the age term of an old field (ε > π²), each cusp of the first arrival contributes
+  C (2πσ′τ′)⁻¹ N′^{−1/2} (γ/√N′)^{11/7} per (p, θ).
+  - This is the leading term for small γ = k²/(2l₂), ahead of the smooth γ³ (q⁶) term of §1.
+  - At fixed ε it gives dE/dn ∝ k^{15/7} instead of k⁵.
+- The quantity F6.8i asks about (Φ(ε) and ∫ε^{−1/2}Φ dε) must therefore be redefined around the cusp amplitude
+  Ψ(ε) = Σ_cusps (σ′τ′)⁻¹ N′^{−1/2−11/14}. **This is the author's decision.**
+- Open before any reading:
+  1. D2a full run: the exponents over five Δ at ε 12, 16, 20.
+  2. σ′, τ′, N′ along ε, and the number of cusps per ε (the end points of every cut-locus segment).
+  3. The direct check: the age term from the exact needle on a (p, θ) patch around p_c at several γ, against
+     C γ^{11/7} plus the smooth part.
+  4. The young-field side: below the first caustic there is no cusp, and F6.8f stands.
