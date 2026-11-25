@@ -1,0 +1,35 @@
+F6.8i-dev D2c: the cusp constants along eps (development, decides nothing; docs/derivations/f68i_dev.md section 6.4)
+
+p scan: [0.02, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 12.0]; normal form at p_c - Delta, Delta in (D, D/2), D = min(0.05, p_c/20); N' at q = [0.0625, 0.044, 0.031]
+
+eps 14 (834 s): ray counts on theta = -p/2: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1]; on -p/2 + pi: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  change on line 0: 3 -> 1 at p = 3.219019
+  cusp p_c 3.219019: cut loci at p_c/2: 1 (0 off the symmetric line)
+    Delta 0.0500: sig -0.06396 (sig/Delta -1.2792)  alpha 3.3464 (linear 3.3462)  tau' 6.6159  w 9.4108e-04 pred 9.4107e-04 (ratio 1.00001)
+    Delta 0.0250: sig -0.03207 (sig/Delta -1.2828)  alpha 2.3663 (linear 2.3662)  tau' 6.6069  w 3.3458e-04 pred 3.3456e-04 (ratio 1.00005)
+    sig' 1.2863  tau' 6.5979  N' at q [0.0625, 0.044, 0.031]: 1.2310, 1.2298, 1.2291  slopes -0.497, -0.498  => Psi 0.09020
+eps 16 (850 s): ray counts on theta = -p/2: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1]; on -p/2 + pi: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  change on line 0: 3 -> 1 at p = 3.725109
+  cusp p_c 3.725109: cut loci at p_c/2: 1 (0 off the symmetric line)
+    Delta 0.0500: sig -0.07492 (sig/Delta -1.4984)  alpha 3.5132 (linear 3.5130)  tau' 6.4177  w 1.2298e-03 pred 1.2298e-03 (ratio 0.99999)
+    Delta 0.0250: sig -0.03765 (sig/Delta -1.5059)  alpha 2.4859 (linear 2.4858)  tau' 6.4060  w 4.3890e-04 pred 4.3890e-04 (ratio 1.00000)
+    sig' 1.5134  tau' 6.3943  N' at q [0.0625, 0.044, 0.031]: 1.2670, 1.2672, 1.2684  slopes -0.501, -0.503  => Psi 0.07623
+eps 20 (822 s): ray counts on theta = -p/2: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1]; on -p/2 + pi: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  change on line 0: 3 -> 1 at p = 4.380924
+  cusp p_c 4.380924: cut loci at p_c/2: 1 (0 off the symmetric line)
+    Delta 0.0500: sig -0.09000 (sig/Delta -1.8000)  alpha 3.6393 (linear 3.6391)  tau' 6.0655  w 1.7133e-03 pred 1.7133e-03 (ratio 1.00001)
+    Delta 0.0250: sig -0.04541 (sig/Delta -1.8164)  alpha 2.5780 (linear 2.5778)  tau' 6.0488  w 6.1575e-04 pred 6.1576e-04 (ratio 0.99998)
+    sig' 1.8328  tau' 6.0321  N' at q [0.0625, 0.044, 0.031]: 1.3365, 1.3400, 1.3454  slopes -0.507, -0.511  => Psi 0.06229
+eps 25 (852 s): ray counts on theta = -p/2: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1]; on -p/2 + pi: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  change on line 0: 3 -> 1 at p = 4.879228
+  cusp p_c 4.879228: cut loci at p_c/2: 1 (0 off the symmetric line)
+    Delta 0.0500: sig -0.10252 (sig/Delta -2.0504)  alpha 3.6408 (linear 3.6406)  tau' 5.6854  w 2.2224e-03 pred 2.2223e-03 (ratio 1.00002)
+    Delta 0.0250: sig -0.05189 (sig/Delta -2.0757)  alpha 2.5800 (linear 2.5799)  tau' 5.6628  w 8.0350e-04 pred 8.0351e-04 (ratio 0.99999)
+    sig' 2.1011  tau' 5.6401  N' at q [0.0625, 0.044, 0.031]: 1.4186, 1.4255, 1.4354  slopes -0.514, -0.520  => Psi 0.05383
+
+Psi(eps), cusps with a 3 -> 1 change on theta = -p/2:
+  eps  14.00  p_c 3.21902  sig' 1.2863  tau' 6.5979  N' 1.2310  Psi 0.09020
+  eps  16.00  p_c 3.72511  sig' 1.5134  tau' 6.3943  N' 1.2670  Psi 0.07623
+  eps  20.00  p_c 4.38092  sig' 1.8328  tau' 6.0321  N' 1.3365  Psi 0.06229
+  eps  25.00  p_c 4.87923  sig' 2.1011  tau' 5.6401  N' 1.4186  Psi 0.05383
+total 1702 s
