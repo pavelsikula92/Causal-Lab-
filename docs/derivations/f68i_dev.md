@@ -392,3 +392,41 @@ is homogeneous: I(γ) = C γ^{11/7} (s ~ γ^{1/7}, c ~ γ^{8/7}, σ ~ c^{1/2}, �
   3. The direct check: the age term from the exact needle on a (p, θ) patch around p_c at several γ, against
      C γ^{11/7} plus the smooth part.
   4. The young-field side: below the first caustic there is no cusp, and F6.8f stands.
+
+### 6.3 D2a full run and the cusp constants (25 Nov; author's PC, 6 workers, 18520 s; diag/out/f68i_d2a_20261125T145244Z)
+
+ε = 12, 16, 20; Δ = 0.4, 0.2, 0.1, 0.05, 0.025 on both sides of p_c. The smooth part converges at every point (6/12
+differ ≤ 8e-8 relative). p_c = 2.449046 (ε 12), 3.725109 (ε 16), 4.380924 (ε 20).
+
+**Local slopes between neighbouring Δ (from 0.4 down to 0.025).** The cusp predicts −3.5 for the smooth part and 1.5
+for w.
+
+| ε | smooth part, below | smooth part, above | w (below) |
+|---|---|---|---|
+| 12 | −3.415, −3.464, −3.484, −3.492 | −3.811, −3.661, −3.581, −3.540 | 1.414, 1.459, 1.480, 1.490 |
+| 16 | −3.536, −3.515, −3.502, −3.489 | −3.729, −3.627, −3.572, −3.548 | 1.446, 1.472, 1.483, 1.487 |
+| 20 | −3.553, −3.516, −3.492, −3.466 | −3.663, −3.601, −3.569, −3.566 | 1.448, 1.470, 1.478, 1.476 |
+
+Both sides approach −3.5, from opposite directions. min K ∝ Δ^{0.98–1.00} and α ∝ Δ^{0.49–0.51} on every ε.
+
+**The normal form against the geometry, all 14 points with a window.** σ = −2√(third gap) and τ′ = α/(2√|σ|). The
+predicted half-width 2(|σ|/3)^{3/2}/τ′ agrees with the measured w to 1.5e-4 relative or better (to 1e-3 at
+Δ = 0.025, where w is 2e-4).
+
+**Cusp constants** (λ = 1). σ′ and τ′ are extrapolated linearly to Δ → 0 from the two smallest Δ. N′ is from the
+exact needle at p_c and θ_c (scratch probe, 25 Nov), taken at q = 0.0625. N′ still drifts by ≤ 0.6 % down to q = 0.031,
+and at ε 16 and 20 the local slope overshoots −0.5 slightly (−0.503, −0.511). That is the resolution of the exact needle
+at the smallest q, and is open.
+
+| ε | σ′ | τ′ | N′ | Ψ = (σ′τ′)⁻¹ N′^{−9/7} | per cusp C Ψ/(2π) |
+|---|---|---|---|---|---|
+| 12 | 0.970 | 6.815 | 1.196 | 0.1202 | −1.69e-4 |
+| 16 | 1.513 | 6.383 | 1.267 | 0.0764 | −1.07e-4 |
+| 20 | 1.811 | 6.026 | 1.337 | 0.0631 | −8.9e-5 |
+
+So per cusp, per unit p and θ/2π, the age term is C Ψ (2π)⁻¹ γ^{11/7}. Over ε 12–20, Ψ ∝ ε^{−1.26}.
+
+Open for the static question:
+- Ψ near ε → π⁺², where the cut locus is born at p = 0 and its two cusps (±p_c) merge.
+- The number of cusps at larger ε (new cut loci after the next caustics).
+- The direct check of γ^{11/7} from the exact needle.
