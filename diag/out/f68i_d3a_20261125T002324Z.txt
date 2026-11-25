@@ -1,0 +1,106 @@
+F6.8i-dev D3a: <s4hat A0^-2>_theta at fixed (eps, p), piecewise between the cut loci plus the window terms (development, decides nothing; docs/derivations/f68i_dev.md section 5.3)
+
+eps 12 p 0: 1 cut loci at theta_c 0.000000; rays up to 3
+  piece (0.0000, 6.2832) in 18 graded subintervals: n 6: -1.461195e-05  n 12: -1.461195e-05  min K 1.883  f in [-1.87e-03, -6.78e-11]
+  smooth part: 6/piece -1.46119475e-05  12/piece -1.46119479e-05  (difference 3.7e-13)
+  window at 0.000000: alpha 15.9271/15.9271  W1/N1 +2e-14 W2/N1 -4e-11  W3 +8.329496e-05 (m 3-6: +8.329474e-05)  term +5.205935e-06  continuity 8e-09  fit res A 1e-08  third-ray gap 0.397
+  TOTAL <s4hat A0^-2>_theta = smooth -1.461195e-05 + windows +5.205935e-06 = -9.406013e-06   [64 equal phases, as E1: -3.161706e-05]
+  (215 s)
+eps 12 p 0.5: 1 cut loci at theta_c 6.033185; rays up to 3
+  piece (6.0332, 12.3164) in 18 graded subintervals: n 6: -1.756873e-05  n 12: -1.756873e-05  min K 1.788  f in [-2.39e-03, -6.67e-11]
+  smooth part: 6/piece -1.75687325e-05  12/piece -1.75687329e-05  (difference 4.4e-13)
+  window at 6.033185: alpha 15.5478/15.5478  W1/N1 +3e-14 W2/N1 -6e-11  W3 +1.005695e-04 (m 3-6: +1.005691e-04)  term +6.285591e-06  continuity 2e-08  fit res A 3e-08  third-ray gap 0.363
+  TOTAL <s4hat A0^-2>_theta = smooth -1.756873e-05 + windows +6.285591e-06 = -1.128314e-05   [64 equal phases, as E1: -9.934164e-06]
+  (208 s)
+eps 12 p 1: 1 cut loci at theta_c 5.783185; rays up to 3
+  piece (5.7832, 12.0664) in 18 graded subintervals: n 6: -3.176167e-05  n 12: -3.176167e-05  min K 1.517  f in [-5.31e-03, -6.32e-11]
+  smooth part: 6/piece -3.17616664e-05  12/piece -3.17616672e-05  (difference 8.0e-13)
+  window at 5.783185: alpha 14.3758/14.3758  W1/N1 +1e-13 W2/N1 -3e-10  W3 +1.838667e-04 (m 3-6: +1.838647e-04)  term +1.149167e-05  continuity 5e-07  fit res A 7e-07  third-ray gap 0.270
+  TOTAL <s4hat A0^-2>_theta = smooth -3.176167e-05 + windows +1.149167e-05 = -2.027000e-05   [64 equal phases, as E1: -4.927511e-05]
+  (210 s)
+eps 12 p 2: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -5.731764e-05  n 12: -3.271754e-04  min K 0.897  f in [-2.85e-02, -4.44e-11]
+  smooth part: 6/piece -5.73176372e-05  12/piece -3.27175381e-04  (difference 2.7e-04)
+  TOTAL <s4hat A0^-2>_theta = smooth -3.271754e-04 + windows +0.000000e+00 = -3.271754e-04   [64 equal phases, as E1: -4.541554e-04]
+  (141 s)
+eps 12 p 3: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: +8.032211e-05  n 12: +2.735064e-04  min K 0.371  f in [-7.47e-08, +2.21e-02]  CONJUGATE POINT NEAR (D2)
+  smooth part: 6/piece +8.03221137e-05  12/piece +2.73506393e-04  (difference 1.9e-04)
+  TOTAL <s4hat A0^-2>_theta = smooth +2.735064e-04 + windows +0.000000e+00 = +2.735064e-04   [64 equal phases, as E1: -1.686847e-04]   (NOT TRUSTED: conjugate point, D2)
+  (145 s)
+eps 12 p 4: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -1.187688e-06  n 12: -8.867629e-07  min K 0.985  f in [-9.00e-05, +6.27e-05]
+  smooth part: 6/piece -1.18768845e-06  12/piece -8.86762910e-07  (difference 3.0e-07)
+  TOTAL <s4hat A0^-2>_theta = smooth -8.867629e-07 + windows +0.000000e+00 = -8.867629e-07   [64 equal phases, as E1: -1.145848e-06]
+  (140 s)
+eps 12 p 6: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -2.060301e-08  n 12: -2.060301e-08  min K 1.907  f in [-4.84e-07, +6.29e-07]
+  smooth part: 6/piece -2.06030113e-08  12/piece -2.06030113e-08  (difference 5.4e-19)
+  TOTAL <s4hat A0^-2>_theta = smooth -2.060301e-08 + windows +0.000000e+00 = -2.060301e-08   [64 equal phases, as E1: -2.060301e-08]
+  (139 s)
+eps 12 p 8: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -3.466728e-09  n 12: -3.466728e-09  min K 2.555  f in [-4.14e-08, +3.82e-08]
+  smooth part: 6/piece -3.46672850e-09  12/piece -3.46672850e-09  (difference 4.0e-19)
+  TOTAL <s4hat A0^-2>_theta = smooth -3.466728e-09 + windows +0.000000e+00 = -3.466728e-09   [64 equal phases, as E1: -3.466728e-09]
+  (137 s)
+eps 12 p 12: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -1.702984e-10  n 12: -1.702984e-10  min K 3.345  f in [-2.53e-09, +1.86e-09]
+  smooth part: 6/piece -1.70298425e-10  12/piece -1.70298425e-10  (difference 7.2e-21)
+  TOTAL <s4hat A0^-2>_theta = smooth -1.702984e-10 + windows +0.000000e+00 = -1.702984e-10   [64 equal phases, as E1: -1.702984e-10]
+  (137 s)
+eps 16 p 0: 1 cut loci at theta_c 0.000000; rays up to 3
+  piece (0.0000, 6.2832) in 18 graded subintervals: n 6: -2.521569e-07  n 12: -2.521569e-07  min K 4.495  f in [-8.52e-06, -3.04e-10]
+  smooth part: 6/piece -2.52156934e-07  12/piece -2.52156941e-07  (difference 7.0e-15)
+  window at 0.000000: alpha 25.6770/25.6770  W1/N1 +1e-15 W2/N1 +4e-13  W3 +1.160214e-06 (m 3-6: +1.160223e-06)  term +7.251338e-08  continuity 4e-12  fit res A 4e-12  third-ray gap 2.623
+  TOTAL <s4hat A0^-2>_theta = smooth -2.521569e-07 + windows +7.251338e-08 = -1.796436e-07   [64 equal phases, as E1: -2.810080e-07]
+  (203 s)
+eps 16 p 0.5: 1 cut loci at theta_c 6.033185; rays up to 3
+  piece (6.0332, 12.3164) in 18 graded subintervals: n 6: -2.812763e-07  n 12: -2.812763e-07  min K 4.267  f in [-9.79e-06, -3.06e-10]
+  smooth part: 6/piece -2.81276275e-07  12/piece -2.81276283e-07  (difference 7.8e-15)
+  window at 6.033185: alpha 25.3652/25.3652  W1/N1 +2e-15 W2/N1 -1e-12  W3 +1.315603e-06 (m 3-6: +1.315603e-06)  term +8.222517e-08  continuity 1e-12  fit res A 9e-12  third-ray gap 2.511
+  TOTAL <s4hat A0^-2>_theta = smooth -2.812763e-07 + windows +8.222517e-08 = -1.990511e-07   [64 equal phases, as E1: -2.653398e-07]
+  (205 s)
+eps 16 p 1: 1 cut loci at theta_c 5.783185; rays up to 3
+  piece (5.7832, 12.0664) in 18 graded subintervals: n 6: -3.916375e-07  n 12: -3.916375e-07  min K 3.838  f in [-1.49e-05, -3.13e-10]
+  smooth part: 6/piece -3.91637532e-07  12/piece -3.91637543e-07  (difference 1.1e-14)
+  window at 5.783185: alpha 24.4260/24.4260  W1/N1 +1e-15 W2/N1 +6e-13  W3 +1.901856e-06 (m 3-6: +1.901866e-06)  term +1.188660e-07  continuity 1e-11  fit res A 1e-11  third-ray gap 2.194
+  TOTAL <s4hat A0^-2>_theta = smooth -3.916375e-07 + windows +1.188660e-07 = -2.727715e-07   [64 equal phases, as E1: -4.183509e-07]
+  (205 s)
+eps 16 p 2: 1 cut loci at theta_c 5.283185; rays up to 3
+  piece (5.2832, 11.5664) in 18 graded subintervals: n 6: -1.596805e-06  n 12: -1.596805e-06  min K 2.654  f in [-9.06e-05, -3.40e-10]
+  smooth part: 6/piece -1.59680462e-06  12/piece -1.59680467e-06  (difference 4.3e-14)
+  window at 5.283185: alpha 20.5899/20.5899  W1/N1 +2e-15 W2/N1 -1e-13  W3 +8.666500e-06 (m 3-6: +8.666507e-06)  term +5.416562e-07  continuity 2e-12  fit res A 1e-11  third-ray gap 1.196
+  TOTAL <s4hat A0^-2>_theta = smooth -1.596805e-06 + windows +5.416562e-07 = -1.055148e-06   [64 equal phases, as E1: -1.627865e-06]
+  (208 s)
+eps 16 p 3: 1 cut loci at theta_c 4.783185; rays up to 3
+  piece (4.7832, 11.0664) in 18 graded subintervals: n 6: -3.548850e-05  n 12: -3.548850e-05  min K 1.181  f in [-5.64e-03, -3.80e-10]
+  smooth part: 6/piece -3.54885027e-05  12/piece -3.54885036e-05  (difference 8.9e-13)
+  window at 4.783185: alpha 13.5472/13.5472  W1/N1 +1e-13 W2/N1 -4e-10  W3 +2.080707e-04 (m 3-6: +2.080684e-04)  term +1.300442e-05  continuity 7e-07  fit res A 9e-07  third-ray gap 0.263
+  TOTAL <s4hat A0^-2>_theta = smooth -3.548850e-05 + windows +1.300442e-05 = -2.248409e-05   [64 equal phases, as E1: -2.486868e-05]
+  (251 s)
+eps 16 p 4: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: +2.880992e-04  n 12: +2.808885e-04  min K 0.398  f in [-2.98e-07, +1.32e-02]  CONJUGATE POINT NEAR (D2)
+  smooth part: 6/piece +2.88099209e-04  12/piece +2.80888510e-04  (difference 7.2e-06)
+  TOTAL <s4hat A0^-2>_theta = smooth +2.808885e-04 + windows +0.000000e+00 = +2.808885e-04   [64 equal phases, as E1: +2.596860e-04]   (NOT TRUSTED: conjugate point, D2)
+  (143 s)
+eps 16 p 6: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -6.645946e-08  n 12: -6.645946e-08  min K 1.433  f in [-2.02e-06, +2.49e-06]
+  smooth part: 6/piece -6.64594584e-08  12/piece -6.64594592e-08  (difference 8.8e-16)
+  TOTAL <s4hat A0^-2>_theta = smooth -6.645946e-08 + windows +0.000000e+00 = -6.645946e-08   [64 equal phases, as E1: -6.645946e-08]
+  (138 s)
+eps 16 p 8: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -6.725364e-09  n 12: -6.725364e-09  min K 2.208  f in [-9.68e-08, +7.25e-08]
+  smooth part: 6/piece -6.72536351e-09  12/piece -6.72536351e-09  (difference 4.5e-19)
+  TOTAL <s4hat A0^-2>_theta = smooth -6.725364e-09 + windows +0.000000e+00 = -6.725364e-09   [64 equal phases, as E1: -6.725364e-09]
+  (139 s)
+eps 16 p 12: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -3.047612e-10  n 12: -3.047612e-10  min K 3.145  f in [-3.71e-09, +2.50e-09]
+  smooth part: 6/piece -3.04761181e-10  12/piece -3.04761181e-10  (difference 3.1e-20)
+  TOTAL <s4hat A0^-2>_theta = smooth -3.047612e-10 + windows +0.000000e+00 = -3.047612e-10   [64 equal phases, as E1: -3.047612e-10]
+  (137 s)
+eps 16 p 16: 0 cut loci; rays up to 1
+  piece (0.0000, 6.2832) periodic: n 6: -2.011966e-12  n 12: -2.011966e-12  min K 3.566  f in [-7.16e-10, +7.22e-10]
+  smooth part: 6/piece -2.01196589e-12  12/piece -2.01196589e-12  (difference 1.9e-21)
+  TOTAL <s4hat A0^-2>_theta = smooth -2.011966e-12 + windows +0.000000e+00 = -2.011966e-12   [64 equal phases, as E1: -2.011966e-12]
+  (138 s)
+total 3684 s
