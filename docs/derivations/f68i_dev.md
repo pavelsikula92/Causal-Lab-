@@ -254,7 +254,33 @@ At (12, 1) it is ≈ −1e-5 at |θ − θ_c| ≈ 0.2, −6e-4 at 0.04 and −3e
   - The window model assumes a crossing with nonzero α. Near a cusp of the cut locus (where α → 0 and conjugate points
     appear) it does not apply. That is D2.
 
-## 6. D2: conjugate points (open)
+### 5.4 D3a p-scan at ε = 12 and 16 (25 Nov; run on the author's PC, 8 workers, 3684 s; diag/out/f68i_d3a_20261125T002324Z)
+
+⟨ŝ₄A₀⁻²⟩_θ (smooth part + windows) over p at fixed ε. [n] = number of cut loci found on the 128-phase grid.
+
+| p | ε = 12 | ε = 16 |
+|---|---|---|
+| 0 | −9.406e-6 [1] | −1.796e-7 [1] |
+| 0.5 | −1.128e-5 [1] | −1.991e-7 [1] |
+| 1 | −2.027e-5 [1] | −2.728e-7 [1] |
+| 2 | −3.27e-4 [0], 6/12 differ 2.7e-4: **not converged** | −1.055e-6 [1] |
+| 3 | +2.7e-4 [0], min K 0.37: **flagged (D2)** | −2.248e-5 [1] |
+| 4 | −8.87e-7 [0], 6/12 differ 3e-7 | +2.8e-4 [0], min K 0.40: **flagged (D2)** |
+| 6 | −2.060e-8 | −6.646e-8 |
+| 8 | −3.467e-9 | −6.725e-9 |
+| 12 | −1.703e-10 | −3.048e-10 |
+| 16 | – | −2.012e-12 |
+
+Readings (development, decides nothing):
+- **Three regions in p.** Small p (a cut locus, three rays at the symmetric phase): small values, falling by a factor
+  50–70 from ε = 12 to 16. Around p_c (where the symmetric 3-ray region ends): values of order ±3e-4, unconverged or
+  flagged. Large p (one ray): converged, falling steeply with p, growing slowly with ε.
+- **Φ(ε) = ∫dp⟨ŝ₄A₀⁻²⟩_θ is dominated by the region around p_c.** Its values are 10–1000 times larger than anything
+  else in the scan.
+- **ε = 12, p = 2 missed a cut locus.** The symmetric 3-ray region there is only |δ| < 0.02 wide, narrower than the
+  128-phase grid step (0.049); D2a (§6.1) bisects for p_c directly. p_c = 2.44905 (ε 12), 3.72510 (ε 16), 4.38092 (ε 20).
+
+## 6. D2: conjugate points
 
 Near a phase where K → 0 on the first-arrival ray, the series coefficients grow like powers of 1/K and the radius of
 convergence in c shrinks (E1: ε = 16, p = 4, K = 0.46 gave a value four orders above its neighbours). The window in θ
@@ -263,3 +289,72 @@ where the series fails shrinks too. Two options, to be decided after D1:
   is small against the rest, and exclude it;
 - **a uniform form:** expand around the fold (the cubic normal form of Φ in ψ, an Airy-type needle) and integrate the
   window analytically.
+
+### 6.1 D2a: the map of the cusp at p_c (25 Nov; diag/f68i_d2a.py; test run diag/out/f68i_d2a_20261125T082628Z)
+
+p_c by bisection on the ray count at the symmetric phase θ_c = −p/2 (mod 2π). At p = p_c ∓ Δ: the 3-ray half-width w,
+the window slope α, min K, and the smooth part on a mesh graded towards θ_c (first step 1e-4, ratio 2, 32 subintervals,
+Gauss–Legendre 6 and 12). The window term only where the window fits inside the 3-ray region.
+
+Test run, ε = 12 (Claude's container, 2 workers, 4356 s):
+
+| | Δ = 0.2 | Δ = 0.05 | slope (2 points) |
+|---|---|---|---|
+| smooth part, below p_c (6/12 differ) | −1.786e-2 (2e-11) | −2.2046 (2e-9) | Δ^−3.47 |
+| smooth part, above p_c | −3.808e-3 (9e-11) | −0.5762 (3e-9) | Δ^−3.62 |
+| min K, below / above | 0.261 / 0.134 | 0.067 / 0.033 | Δ^0.99 / Δ^1.00 |
+| w (below) | 4.556e-3 | 5.945e-4 | Δ^1.47 |
+| α (below) | 5.950 | 2.997 | Δ^0.49 |
+| third-ray gap (below) | 8.806e-3 | 5.789e-4 | Δ^1.96 |
+| window term (below) | +8.56e-3 | not uniform (skipped) | |
+
+The full run (ε = 12, 16, 20; Δ = 0.4, 0.2, 0.1, 0.05, 0.025) is on the author's PC.
+
+Readings: the graded mesh converges at the cusp (6/12 to ≤ 3e-9). **The q⁶ coefficient is not integrable over p at
+p_c**: ∫dp |p − p_c|^−3.5 diverges. The series in q² is not uniform near the cusp, and Φ(ε) as defined in §1 does not
+exist. The exponents are those of the cusp catastrophe (§6.2).
+
+### 6.2 The cusp normal form (25 Nov; diag/f68i_d2b_nf.py)
+
+**The form.** At a cusp of the first arrival three rays merge (pitchfork at the symmetric phase). Let a be the
+amplitude of the soft Jacobi mode. If the path through (s, ψ) is the ray plus aJ(s), then Φ(s, ψ) = V(ψ/J(s)), with
+
+    V(a) = λa⁴/4 + σa²/2 + τa,   σ ∝ (p − p_c),   τ ∝ (θ − θ_c).
+
+With λ = 1 (this fixes the unit of a), the needle factorises:
+
+    W(c) = [∫ds √(s(1−s)) J(s)] · w(c; σ, τ),   w = ∫da [c − (V − V_min)]₊^{3/2},   A = N′ w/c².
+
+Predictions of the form, all against D2a:
+- min K ∝ σ ∝ Δ;
+- third-ray gap σ²/4 ∝ Δ²;
+- tie-gap slope α = 2τ′√|σ| ∝ Δ^½;
+- 3-ray half-width w = 2(|σ|/3)^{3/2}/τ′ ∝ Δ^{3/2};
+- q⁶ coefficient: A₃A₀⁻³ ∝ σ^{−5} per phase, over a θ-width ∝ σ^{3/2}, so ∝ Δ^{−3.5}.
+
+**Quantitative check against the D2a geometry (ε = 12).** σ comes from the third-ray gap: −0.1877 (Δ 0.2) and
+−0.04812 (Δ 0.05), i.e. σ′ = 0.94 and 0.96 per unit p. Then τ′ = α/(2√|σ|) = 6.867 and 6.830 rad⁻¹. The predicted
+half-width w = 2(|σ|/3)^{3/2}/τ′ is 4.559e-3 and 5.95e-4 against the measured 4.556e-3 and 5.945e-4.
+
+**Check against the exact needle (ε = 12, θ = θ_c; diag/f68f_1b_exact, scratch probe, 25 Nov).**
+- At p = p_c the local slope d ln A/d ln q is −0.478, −0.483, …, −0.498 for q from 0.5 down to 0.031. The form
+  predicts A = N′ 4^{1/4} B c^{−1/4} ∝ q^{−1/2}, with B = ∫(1 − x⁴)^{3/2}dx; this gives N′ ≈ 1.194.
+- With N′ from the cusp and σ from the ray gaps (no fit to these curves), the form gives A(q) at Δ = −0.05, +0.05,
+  +0.2 to ≤ 0.3 % for q ≤ 0.09, and to 2–3 % at q = 0.5. This includes the non-monotone A(q) of the double well below
+  p_c. (σ above p_c is taken as σ′Δ with σ′ from below.)
+
+**The age term.** A = c^{−1/4} F(σc^{−1/2}, τc^{−3/4}) holds exactly for the form. So the age term over the unfolding
+plane,
+
+    I(γ) = ∫dσ dτ J(σ, τ; γ),   J = ∫₀^∞ds g₀(s² A(γs; σ, τ)),
+
+is homogeneous: I(γ) = C γ^{11/7} (s ~ γ^{1/7}, c ~ γ^{8/7}, σ ~ c^{1/2}, τ ~ c^{3/4}).
+- Convergence: at large σ, J ∝ γ³σ^{−5}; over τ this gives σ^{−3.5}.
+- The BD moments μ₀..μ₂ remove integer powers below γ³, not γ^{11/7}. In the exchanged order,
+  C = (4/7) G(9/7) FP∫F^{−9/7}, with G(z) = ∫v^{z−1}g₀(v)dv and G(9/7) = −0.05771 (G(½) = G(1) = G(3/2) = 0, G(2) = 1).
+- **If C ≠ 0, every cusp of the first arrival adds a term of order γ^{11/7} to the age term, which dominates the smooth
+  γ³ for γ = k²/(2l₂) → 0.** Per unit p and θ the term is C (2π σ′τ′)⁻¹ N′^{−1/2} (γ/√N′)^{11/7}. Counted like §1
+  (T = κ/k, dΩ = 2π dp/κ), it gives dE/dn ∝ k^{15/7} at fixed ε, instead of k⁵.
+- The singularity index 1/4 of A is Berry's index of the cusp in catastrophe optics. The first arrival is a global
+  minimum, so it cannot sit on a fold: the cusps (the end points of the cut-locus segments) are its only generic
+  degenerations in the (p, θ) plane.
