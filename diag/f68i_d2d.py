@@ -24,6 +24,11 @@ Modes:
 The needle A(c) at many c: the families of rays are integrated once (for the largest c); the window in psi and the
 integral are then done per decade of c, each decade with its own window (phase_A uses one window for all q). Guide rays
 psi_ray +- GUIDE W(s) widen the window where the valley of Phi is flat (f68i_d2c revision 2.2).
+
+Revision 2 (26 Nov): the s nodes of J get a panel edge at every s = gap / gamma, gap the action of a later ray above
+S_min (rays_row now returns the gaps). Without it the three-ray rows of the patch carried a ripple in theta of ~1.5 %
+of J (Gauss nodes across the jump of A''), which the tau quadrature turned into +-4 % of Q (record 20261126T171747Z,
+rows at sig_hat <= -5). Single-ray phases (the control, the check) are unchanged.
 """
 from __future__ import annotations
 
@@ -55,9 +60,18 @@ NV_FAM = 8001                # rays per family (EX.N_V = 4001); the quintic Herm
                              # noise floor of J: ~4e-9 with 4001, ~2e-10 with 8001 and 16001 (eps 8, p 2, 26 Nov)
 
 
-def s_panels(s_end):
-    """Gauss-Legendre nodes on [0, s_end]: graded geometrically towards 0 (A ~ c^(-1/4) at a cusp), then panels of 1."""
+def s_panels(s_end, breaks=()):
+    """Gauss-Legendre nodes on [0, s_end]: graded geometrically towards 0 (A ~ c^(-1/4) at a cusp), then panels of 1.
+    breaks (revision 2): the s where c = gamma s reaches the action gap of a later ray; there A gains a (c - gap)_+^2
+    term (a jump of A''), and a node set that ignores it gives J a ripple in theta (~1.5 % of J at gamma 2.5e-4 in the
+    three-ray region, 20261126 dense profile). Each break is a panel edge, graded geometrically on both sides."""
     pts = [0.0] + [4.0 ** (-j) for j in range(6, 0, -1)] + list(np.arange(1.0, math.ceil(s_end) + 1e-9, 1.0))
+    end = pts[-1]
+    for b in breaks:
+        if 0.0 < b < end:
+            pts += [b] + [b + sg * 0.5 * 4.0 ** (-j) for j in range(0, 6) for sg in (-1.0, 1.0)]
+    pts = sorted(x for x in pts if 0.0 <= x <= end)
+    pts = [x for i, x in enumerate(pts) if i == 0 or x - pts[i - 1] > 1e-12]
     x, w = np.polynomial.legendre.leggauss(N_GL)
     S, W = [], []
     for a, b in zip(pts[:-1], pts[1:]):
@@ -86,8 +100,9 @@ def rays_row(eps, p, ths, cmax):
         k += r.size
         Smin = float(Sv.min())
         near = vr[Sv - Smin < cmax]
+        gaps = sorted(float(x) for x in Sv[Sv - Smin < cmax] - Smin)
         paths = B.integrate(near, eps, p, np.full(near.size, t), EX.N_RK)[:, 0, :]
-        out.append((Smin, [np.interp(sn, sg, paths[:, j]) for j in range(paths.shape[1])], int(r.size)))
+        out.append((Smin, [np.interp(sn, sg, paths[:, j]) for j in range(paths.shape[1])], int(r.size), gaps))
     return out
 
 
@@ -98,7 +113,7 @@ class Needle:
     def __init__(self, eps, p, th, cmax, guide=0.0, pre=None, nv=NV_FAM):
         EX.N_V = nv
         self.eps, self.p, self.th, self.cmax, self.guide = eps, p, th, cmax, guide
-        self.Smin, self.rays, self.nray = pre if pre is not None else rays_row(eps, p, [th], cmax)[0]
+        self.Smin, self.rays, self.nray, self.gaps = pre if pre is not None else rays_row(eps, p, [th], cmax)[0]
         xs, wsg = np.polynomial.legendre.leggauss(EX.N_S)
         self.sn = 0.5 * (xs + 1.0)
         self.ws = 0.5 * wsg
@@ -186,7 +201,7 @@ def J_phase(eps, p, th, gammas, guide=0.0, pre=None):
             a = N.A([g * se])[0]
             se = min(S_CAP, 1.1 * math.sqrt(V_END / a))
         ends.append(se)
-    nodes = [s_panels(se) for se in ends]
+    nodes = [s_panels(se, [gp / g for gp in N.gaps if gp > 0.0]) for g, se in zip(gammas, ends)]
     cs = np.concatenate([g * sw[0] for g, sw in zip(gammas, nodes)])
     A = N.A(cs)
     J, vend, k = [], [], 0
