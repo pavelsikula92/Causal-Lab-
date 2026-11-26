@@ -581,3 +581,31 @@ integrable (ε − π²)^{−1/2} singularity at the birth, and Ψ √(ε − π
 - the direct check of γ^{11/7} from the exact needle on a (p, θ) patch;
 - ε ≥ 4π²;
 - the reformulation of F6.8i (the author's decision).
+
+## 7. The author's decision on the cusp term (26 Nov, 13:47)
+
+- **F6.8i stays as it is (option C).** It keeps its definition of Φ(ε) (the γ³ coefficient), its criteria and its
+  weight ε^{−1/2}. It measures the smooth part. Because the cusp term may dominate the asymptotics, a result of F6.8i
+  alone is not a verdict on whether an old field has a finite static response.
+- **A new card with two parts (option B), frozen only after the direct check below:**
+  E(γ, ε) = C Ψ(ε)(2π)⁻¹ γ^{11/7} + Φ(ε) γ³ + …, where the first term is the cusp term and the second the smooth part.
+  - The card reports Ψ(ε), Φ(ε) and the sum separately.
+  - It allows further terms if the direct computation finds them.
+  - The ε-weight of the γ^{11/7} term must be derived from the definition of the total response. It must not be taken
+    over from ε^{−1/2} by substituting Ψ for Φ.
+- **The direct check comes first (development, approved):**
+  1. The exact needle around a real cusp, without the normal form as a substitute.
+  2. The scaling in γ, against γ^{11/7} and against γ³. C is not fitted; the exponent and the predicted coefficient
+     must both agree.
+  3. A control without a cusp: the same computation must give γ³.
+  4. The birth of the cusp: points closer to ε = π², so that the integrable singularity of Ψ does not rest on one
+     numerical point.
+  5. The cusp count: the cusp pair is counted exactly once, with its multiplicity in the convention of Φ.
+- **Not decided:** whether the static response of an old field converges. π² < ε < 4π² covers only the first cusp
+  pair. A verdict needs:
+  - the correct weight of the cusp term;
+  - Ψ(ε) on this interval;
+  - the same computation beyond the next caustics;
+  - a check of whether the number of cusps or their contributions change with ε in a way that affects convergence.
+
+  No extrapolation is made to ε ≥ 4π².
