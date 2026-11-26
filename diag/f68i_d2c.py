@@ -8,6 +8,13 @@ rays fall into one grid cell and the count drops to 1 before p_c, so revision 1 
 Delta in {4D, 2D, D, D/2}, and fits sig = sig' (Delta + d) + b (Delta + d)^2 on all four with a free shift d
 of the origin (d is the remaining error of p_c; it should be ~0), alongside the two-point extrapolation of revision 1.
 The cut-locus count (128 phases) is optional (--loci); revision 1 recorded it.
+Revision 2.1: a needle the exact envelope refuses (RuntimeError from phase_A) is recorded as needle_error
+instead of stopping the whole batch (first seen in batch B, eps 35/39).
+Revision 2.2: the refusal is not another valley. At eps 35 the valley of Phi at the cusp is so flat in the middle
+nodes (s ~ 0.5) that Phi < q^2/2 over |psi - psi_ray| < 0.57, wider than the largest window of phase_A (4 W, W the
+paraxial width 0.144 there). phase_A places its window from the rays it is given, so a refused needle is retried
+with bracketing guide rays psi_ray +- BRACKET W(s) (window placement only; phase_A itself is unchanged). The bracketed
+window is checked against the plain one where both work (diag/f68i_d2c_bracket.py).
 
 Section 6.2 found that each cusp of the first arrival adds C Psi (2 pi)^-1 gamma^(11/7) to the age term per unit p
 (C = -8.83e-3, the normal form V = a^4/4 + sig a^2/2 + tau a), with Psi = (sig' tau')^-1 N'^(-9/7):
@@ -108,7 +115,11 @@ def geometry(eps, p):
     return out
 
 
-def needle(eps, p):
+BRACKET = 3.0
+
+
+def needle(eps, p, bracket=0.0):
+    """A(q) and N'(q) at the cusp by the exact envelope; bracket > 0 adds guide rays psi +- bracket W(s)."""
     th = (-p / 2) % (2 * math.pi)
     roots = B.branches(eps, p, np.array([th]), 1000)[0]
     vv = B.newton(roots, eps, p, np.full(roots.size, th), 4000)
@@ -120,13 +131,16 @@ def needle(eps, p):
     sn = 0.5 * (xs + 1.0)
     sg = np.linspace(0, 1, EX.N_RK + 1)
     psi_rays = [np.interp(sn, sg, paths[:, j]) for j in range(paths.shape[1])]
+    if bracket > 0:
+        Wn = (3.0 * math.sqrt(2 * max(QN) ** 2 / 2) + 0.1) * np.sqrt(sn * (1 - sn))   # as in EX.phase_A
+        psi_rays = psi_rays + [r + k * bracket * Wn for r in psi_rays for k in (-1.0, 1.0)]
     A, worst = EX.phase_A(eps, p, th, Smin, psi_rays, qs=QN)
     q = np.array(QN)
     Av = np.array([A[x] for x in QN])
     c = q * q / 2
     Np = Av * c ** 0.25 / (4 ** 0.25 * BQ)
     return {"A": Av.tolist(), "N": Np.tolist(), "slopes": (np.diff(np.log(Av)) / np.diff(np.log(q))).tolist(),
-            "worst": float(worst), "nray": int(vv.size)}
+            "worst": float(worst), "nray": int(vv.size), "bracket": bracket}
 
 
 def sig_fit(rows):
@@ -169,10 +183,18 @@ def eps_job(eps):
             t1, t2 = rows[2]["tau_p"], rows[3]["tau_p"]
             cu["sig_p"] = -(2 * s2 - s1)
             cu["tau_p"] = 2 * t2 - t1
-            nd = needle(eps, pc)
-            cu["needle"] = nd
-            Np = nd["N"][0]
-            cu["Psi"] = 1.0 / (cu["sig_p"] * cu["tau_p"]) * Np ** (-9 / 7)
+            try:
+                try:
+                    nd = needle(eps, pc)
+                except RuntimeError as e:  # the window of phase_A is narrower than the flat valley
+                    cu["needle_plain_error"] = str(e)
+                    nd = needle(eps, pc, BRACKET)
+            except RuntimeError as e:
+                cu["needle_error"] = str(e)
+            else:
+                cu["needle"] = nd
+                Np = nd["N"][0]
+                cu["Psi"] = 1.0 / (cu["sig_p"] * cu["tau_p"]) * Np ** (-9 / 7)
         out["cusps"].append(cu)
     out["seconds"] = time.time() - t0
     return out
@@ -217,8 +239,12 @@ def main():
                                  f"w {g['w']:.4e} pred {g['w_pred']:.4e} (ratio {g['w'] / g['w_pred']:.5f})")
                     else:
                         L.append(f"    Delta {g['delta']:.4f}: {g['nray']} rays (no 3-ray geometry)")
+                if "needle_error" in cu:
+                    L.append(f"    sig' {cu['sig_p']:.4f}  tau' {cu['tau_p']:.4f}  needle refused: {cu['needle_error']}")
                 if "Psi" in cu:
                     nd = cu["needle"]
+                    if nd.get("bracket"):
+                        L.append(f"    (plain window refused; needle with guide rays +- {nd['bracket']:.0f} W)")
                     L.append(f"    sig' {cu['sig_p']:.4f}  tau' {cu['tau_p']:.4f}  N' at q {QN}: "
                              f"{', '.join(f'{x:.4f}' for x in nd['N'])}  slopes {', '.join(f'{x:+.3f}' for x in nd['slopes'])}  "
                              f"=> Psi {cu['Psi']:.5f}")

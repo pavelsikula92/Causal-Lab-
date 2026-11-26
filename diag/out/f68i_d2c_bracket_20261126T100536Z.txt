@@ -1,0 +1,14 @@
+F6.8i-dev D2c revision 2.2 check: plain window vs bracketed window of the needle (development, decides nothing)
+
+eps 30  p_c 5.2023443
+  plain    N' 1.473098, 1.472989, 1.472932  slopes -0.4998, -0.4999  (18 s)
+  bracket  N' 1.473098, 1.472989, 1.472932  slopes -0.4998, -0.4999  (18 s)
+  max relative difference of N': 1.24e-09
+eps 35  p_c 5.4274000
+  plain    refused: window: Phi <= q^2/2 at the edge after widening twice
+  bracket  N' 1.535018, 1.531370, 1.526081  slopes -0.4932, -0.4901  (18 s)
+eps 20  p_c 4.3813227
+  plain    N' 1.326381, 1.325594, 1.325052  slopes -0.4983, -0.4988  (17 s)
+  bracket  N' 1.326381, 1.325594, 1.325052  slopes -0.4983, -0.4988  (18 s)
+  max relative difference of N': 2.09e-09
+total 36 s

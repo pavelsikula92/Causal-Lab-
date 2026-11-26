@@ -1,0 +1,29 @@
+F6.8i-dev D2c: the cusp constants along eps (development, decides nothing; docs/derivations/f68i_dev.md section 6.4)
+
+revision 2: ray counts with B.N_V = 6400; p scan: [0.02, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 12.0]; normal form at p_c - Delta, Delta in (4D, 2D, D, D/2), D = min(0.05, p_c/20); N' at q = [0.0625, 0.044, 0.031]
+
+eps 35 (1707 s): ray counts on theta = -p/2: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1]; on -p/2 + pi: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  change on line 0: 3 -> 1 at p = 5.427158
+  cusp p_c 5.4271580
+    fit on the 4 Delta: sig' 2.33599  shift of p_c +2.90e-06  b -0.0393  residual 5.8e-06
+    Delta 0.2000: sig -0.46563 (sig/Delta -2.3282)  alpha 7.1764 (linear 7.1761)  tau' 5.2585  w 2.3279e-02 pred 2.3257e-02 (ratio 1.00094)
+    Delta 0.1000: sig -0.23321 (sig/Delta -2.3321)  alpha 4.9506 (linear 4.9504)  tau' 5.1257  w 8.4595e-03 pred 8.4572e-03 (ratio 1.00027)
+    Delta 0.0500: sig -0.11671 (sig/Delta -2.3341)  alpha 3.4554 (linear 3.4553)  tau' 5.0574  w 3.0346e-03 pred 3.0344e-03 (ratio 1.00007)
+    Delta 0.0250: sig -0.05838 (sig/Delta -2.3353)  alpha 2.4272 (linear 2.4271)  tau' 5.0227  w 1.0810e-03 pred 1.0810e-03 (ratio 1.00001)
+    (plain window refused; needle with guide rays +- 3 W)
+    sig' 2.3364  tau' 4.9881  N' at q [0.0625, 0.044, 0.031]: 1.5444, 1.5447, 1.5449  slopes -0.501, -0.500  => Psi 0.04907
+eps 39 (1744 s): ray counts on theta = -p/2: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1]; on -p/2 + pi: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  change on line 0: 3 -> 1 at p = 5.562307
+  cusp p_c 5.5623074
+    fit on the 4 Delta: sig' 2.42552  shift of p_c +4.64e-06  b -0.0335  residual 5.5e-06
+    Delta 0.2000: sig -0.48377 (sig/Delta -2.4189)  alpha 7.0553 (linear 7.0550)  tau' 5.0718  w 2.5571e-02 pred 2.5536e-02 (ratio 1.00137)
+    Delta 0.1000: sig -0.24223 (sig/Delta -2.4223)  alpha 4.8435 (linear 4.8432)  tau' 4.9205  w 9.3293e-03 pred 9.3256e-03 (ratio 1.00040)
+    Delta 0.0500: sig -0.12120 (sig/Delta -2.4241)  alpha 3.3718 (linear 3.3716)  tau' 4.8425  w 3.3542e-03 pred 3.3539e-03 (ratio 1.00010)
+    Delta 0.0250: sig -0.06063 (sig/Delta -2.4251)  alpha 2.3652 (linear 2.3651)  tau' 4.8029  w 1.1964e-03 pred 1.1964e-03 (ratio 1.00003)
+    (plain window refused; needle with guide rays +- 3 W)
+    sig' 2.4262  tau' 4.7633  N' at q [0.0625, 0.044, 0.031]: 1.6012, 1.6018, 1.6023  slopes -0.501, -0.501  => Psi 0.04724
+
+Psi(eps), cusps with a 3 -> 1 change on theta = -p/2 (sig' two-point; fit in brackets):
+  eps  35.00  p_c 5.427158  sig' 2.3364 [2.3360, shift +2.9e-06]  tau' 4.9881  N' 1.5444  Psi 0.04907
+  eps  39.00  p_c 5.562307  sig' 2.4262 [2.4255, shift +4.6e-06]  tau' 4.7633  N' 1.6012  Psi 0.04724
+total 1744 s
