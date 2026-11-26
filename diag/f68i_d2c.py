@@ -2,6 +2,13 @@
 F6.8i-dev, step D2c (development, decides nothing): the cusp constants along eps. docs/derivations/f68i_dev.md
 section 6.4.
 
+Revision 2 (26 Nov). The ray count of f68f_1b_cut.rays uses a v grid of B.N_V = 400 points; near the cusp the three
+rays fall into one grid cell and the count drops to 1 before p_c, so revision 1 placed p_c too low (by 1.6e-4 at eps 16,
+4.0e-4 at eps 20; f68i_dev section 6.5). Revision 2 sets B.N_V = NV_FINE in every job, measures the geometry at
+Delta in {4D, 2D, D, D/2}, and fits sig = sig' (Delta + d) + b (Delta + d)^2 on all four with a free shift d
+of the origin (d is the remaining error of p_c; it should be ~0), alongside the two-point extrapolation of revision 1.
+The cut-locus count (128 phases) is optional (--loci); revision 1 recorded it.
+
 Section 6.2 found that each cusp of the first arrival adds C Psi (2 pi)^-1 gamma^(11/7) to the age term per unit p
 (C = -8.83e-3, the normal form V = a^4/4 + sig a^2/2 + tau a), with Psi = (sig' tau')^-1 N'^(-9/7):
 sig' = d sig / dp, tau' = d tau / d theta and A = N' w(c) / c^2 at the cusp. D2a gave Psi at eps 12, 16, 20. This file
@@ -34,6 +41,7 @@ from multiprocessing import Pool
 
 import numpy as np
 from scipy.integrate import quad
+from scipy.optimize import least_squares
 
 from diag import f68f_1b as B
 from diag import f68f_1b_cut as CUT
@@ -44,6 +52,8 @@ from diag.f68i_d2a import nrays
 EPS_DEFAULT = "9.9,10,10.25,10.5,11,12,14,16,20,25,30,35,39"
 P_SCAN = [0.02, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 12.0]
 QN = [0.0625, 0.044, 0.031]
+NV_FINE = 6400
+LOCI = False
 BQ = quad(lambda x: (1 - x ** 4) ** 1.5, -1, 1, epsabs=1e-14, epsrel=1e-14)[0]
 NAME = "f68i_d2c"
 
@@ -119,7 +129,20 @@ def needle(eps, p):
             "worst": float(worst), "nray": int(vv.size)}
 
 
+def sig_fit(rows):
+    """sig = sig' (Delta + d) + b (Delta + d)^2, least squares on the four Delta; returns sig', d, b, max residual."""
+    g = sorted([r for r in rows if "sig" in r], key=lambda r: r["delta"])
+    if len(g) < 3:
+        return None
+    D = np.array([r["delta"] for r in g])
+    s = -np.array([r["sig"] for r in g])
+    f = lambda a: (a[0] * (D + a[1]) + a[2] * (D + a[1]) ** 2) / s - 1
+    a = least_squares(f, [s[0] / D[0], 0.0, 0.0], xtol=1e-15, ftol=1e-15, gtol=1e-15).x
+    return {"sig_p": float(a[0]), "d": float(a[1]), "b": float(a[2]), "resid": float(np.abs(f(a)).max())}
+
+
 def eps_job(eps):
+    B.N_V = NV_FINE
     t0 = time.time()
     out = {"eps": eps, "scan": {}, "changes": [], "cusps": []}
     for line, lname in ((0.0, "0"), (math.pi, "pi")):
@@ -134,13 +157,16 @@ def eps_job(eps):
             continue
         pc = ch["p_c"]
         D = min(0.05, pc / 20)
-        rows = [geometry(eps, pc - dl) | {"delta": dl} for dl in (D, D / 2)]
-        loci = CUT.job(eps, pc / 2, B.N_TH)
-        off = [l for l in loci if abs((l[0] + pc / 4 + math.pi) % (2 * math.pi) - math.pi) > 1e-3]
-        cu = {"p_c": pc, "rows": rows, "loci_at_half": len(loci), "loci_off_symmetric": len(off)}
-        if all("sig" in r for r in rows):
-            s1, s2 = rows[0]["sig"] / D, rows[1]["sig"] / (D / 2)
-            t1, t2 = rows[0]["tau_p"], rows[1]["tau_p"]
+        rows = [geometry(eps, pc - dl) | {"delta": dl} for dl in (4 * D, 2 * D, D, D / 2)]
+        cu = {"p_c": pc, "rows": rows}
+        if LOCI:
+            loci = CUT.job(eps, pc / 2, B.N_TH)
+            off = [l for l in loci if abs((l[0] + pc / 4 + math.pi) % (2 * math.pi) - math.pi) > 1e-3]
+            cu |= {"loci_at_half": len(loci), "loci_off_symmetric": len(off)}
+        cu["fit"] = sig_fit(rows)
+        if all("sig" in r for r in rows[2:]):
+            s1, s2 = rows[2]["sig"] / D, rows[3]["sig"] / (D / 2)
+            t1, t2 = rows[2]["tau_p"], rows[3]["tau_p"]
             cu["sig_p"] = -(2 * s2 - s1)
             cu["tau_p"] = 2 * t2 - t1
             nd = needle(eps, pc)
@@ -156,14 +182,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--eps", type=str, default=EPS_DEFAULT)
     ap.add_argument("--workers", type=int, default=0)
+    ap.add_argument("--loci", action="store_true")
     a = ap.parse_args()
+    global LOCI
+    LOCI = a.loci
     t0 = time.time()
     code = C.code_md5([os.path.abspath(__file__), CUT.__file__, B.__file__, EX.__file__,
                        os.path.join(os.path.dirname(os.path.abspath(__file__)), "f68i_d2a.py")])
     eps_list = [float(x) for x in a.eps.split(",")]
     lines = ["F6.8i-dev D2c: the cusp constants along eps (development, decides nothing; "
              "docs/derivations/f68i_dev.md section 6.4)", "",
-             f"p scan: {P_SCAN}; normal form at p_c - Delta, Delta in (D, D/2), D = min(0.05, p_c/20); "
+             f"revision 2: ray counts with B.N_V = {NV_FINE}; p scan: {P_SCAN}; "
+             f"normal form at p_c - Delta, Delta in (4D, 2D, D, D/2), D = min(0.05, p_c/20); "
              f"N' at q = {QN}", ""]
     res = []
     with Pool(a.workers or os.cpu_count()) as pool:
@@ -174,8 +204,12 @@ def main():
             for ch in r["changes"]:
                 L.append(f"  change on line {ch['line']}: {ch['n_below']} -> {ch['n_above']} at p = {ch['p_c']:.6f}")
             for cu in r["cusps"]:
-                L.append(f"  cusp p_c {cu['p_c']:.6f}: cut loci at p_c/2: {cu['loci_at_half']} "
-                         f"({cu['loci_off_symmetric']} off the symmetric line)")
+                L.append(f"  cusp p_c {cu['p_c']:.7f}" + (f": cut loci at p_c/2: {cu['loci_at_half']} "
+                         f"({cu['loci_off_symmetric']} off the symmetric line)" if "loci_at_half" in cu else ""))
+                if cu["fit"]:
+                    fz = cu["fit"]
+                    L.append(f"    fit on the 4 Delta: sig' {fz['sig_p']:.5f}  shift of p_c {fz['d']:+.2e}  "
+                             f"b {fz['b']:+.4f}  residual {fz['resid']:.1e}")
                 for g in cu["rows"]:
                     if "sig" in g:
                         L.append(f"    Delta {g['delta']:.4f}: sig {g['sig']:+.5f} (sig/Delta {g['sig'] / g['delta']:+.4f})  "
@@ -191,11 +225,12 @@ def main():
             lines += L
             print("\n".join(L), flush=True)
     res.sort(key=lambda r: r["eps"])
-    lines += ["", "Psi(eps), cusps with a 3 -> 1 change on theta = -p/2:"]
+    lines += ["", "Psi(eps), cusps with a 3 -> 1 change on theta = -p/2 (sig' two-point; fit in brackets):"]
     for r in res:
         for cu in r["cusps"]:
             if "Psi" in cu:
-                lines.append(f"  eps {r['eps']:6.2f}  p_c {cu['p_c']:.5f}  sig' {cu['sig_p']:.4f}  tau' {cu['tau_p']:.4f}  "
+                fs = f" [{cu['fit']['sig_p']:.4f}, shift {cu['fit']['d']:+.1e}]" if cu.get("fit") else ""
+                lines.append(f"  eps {r['eps']:6.2f}  p_c {cu['p_c']:.6f}  sig' {cu['sig_p']:.4f}{fs}  tau' {cu['tau_p']:.4f}  "
                              f"N' {cu['needle']['N'][0]:.4f}  Psi {cu['Psi']:.5f}")
     lines.append(f"total {time.time() - t0:.0f} s")
     stem = C.save(NAME, vars(a), code, res, lines, t0)
