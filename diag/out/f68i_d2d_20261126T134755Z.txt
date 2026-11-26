@@ -1,0 +1,31 @@
+F6.8i-dev D2d: the age term J from the exact needle (development, decides nothing; docs/derivations/f68i_dev.md section 7)
+
+needle of this file against f68f_1b_exact.phase_A (q of EX.QS):
+  eps 8 p 2 theta 0.700000: one window max rel dev 0.0e+00; per-decade windows 1.9e-08
+  eps 12 p 2.4 theta 5.080000: one window max rel dev 0.0e+00; per-decade windows 4.3e-09
+control without a cusp: J(gamma) against 16 gamma^3 s4hat A0^-2 (series, f68f_1c):
+  eps 9.5 p 0 theta 0.000000 (min K 0.183, 1 rays, 20 s): series coefficient +9.000065e+01
+    gamma 0.00800: J +2.274279e-05  J/gamma^3 +4.441950e+01  ratio to series 0.493546  (s^2 A at s_end 58)
+    gamma 0.00400: J +3.914671e-06  J/gamma^3 +6.116673e+01  ratio to series 0.679625  (s^2 A at s_end 61)
+    gamma 0.00200: J +5.875093e-07  J/gamma^3 +7.343866e+01  ratio to series 0.815979  (s^2 A at s_end 62)
+    gamma 0.00100: J +8.092827e-08  J/gamma^3 +8.092827e+01  ratio to series 0.899196  (s^2 A at s_end 63)
+    gamma 0.00050: J +1.051404e-08  J/gamma^3 +8.411231e+01  ratio to series 0.934575  (s^2 A at s_end 63)
+    gamma 0.00025: J +1.118607e-09  J/gamma^3 +7.159083e+01  ratio to series 0.795448  (s^2 A at s_end 64)
+    local exponents d ln|J| / d ln gamma: 2.5384, 2.7362, 2.8599, 2.9443, 3.2325
+  eps 9 p 0 theta 0.000000 (min K 0.425, 1 rays, 20 s): series coefficient +1.010571e+00
+    gamma 0.00800: J +4.341332e-07  J/gamma^3 +8.479164e-01  ratio to series 0.839047  (s^2 A at s_end 65)
+    gamma 0.00400: J +5.915502e-08  J/gamma^3 +9.242972e-01  ratio to series 0.914629  (s^2 A at s_end 66)
+    gamma 0.00200: J +7.860827e-09  J/gamma^3 +9.826034e-01  ratio to series 0.972325  (s^2 A at s_end 66)
+    gamma 0.00100: J +1.084274e-09  J/gamma^3 +1.084274e+00  ratio to series 1.072933  (s^2 A at s_end 66)
+    gamma 0.00050: J +2.384168e-10  J/gamma^3 +1.907334e+00  ratio to series 1.887383  (s^2 A at s_end 67)
+    gamma 0.00025: J +8.832209e-11  J/gamma^3 +5.652614e+00  ratio to series 5.593487  (s^2 A at s_end 67)
+    local exponents d ln|J| / d ln gamma: 2.8756, 2.9117, 2.8580, 2.1852, 1.4326
+  eps 8 p 0 theta 0.000000 (min K 0.893, 1 rays, 20 s): series coefficient +1.414726e-02
+    gamma 0.00800: J +6.975484e-09  J/gamma^3 +1.362399e-02  ratio to series 0.963013  (s^2 A at s_end 68)
+    gamma 0.00400: J +8.417196e-10  J/gamma^3 +1.315187e-02  ratio to series 0.929641  (s^2 A at s_end 68)
+    gamma 0.00200: J +6.996217e-11  J/gamma^3 +8.745271e-03  ratio to series 0.618160  (s^2 A at s_end 68)
+    gamma 0.00100: J -5.889053e-11  J/gamma^3 -5.889053e-02  ratio to series -4.162682  (s^2 A at s_end 68)
+    gamma 0.00050: J -6.913804e-11  J/gamma^3 -5.531043e-01  ratio to series -39.096218  (s^2 A at s_end 68)
+    gamma 0.00025: J -1.176100e-10  J/gamma^3 -7.527041e+00  ratio to series -532.049437  (s^2 A at s_end 68)
+    local exponents d ln|J| / d ln gamma: 3.0509, 3.5887, 0.2485, -0.2314, -0.7665
+total 68 s
