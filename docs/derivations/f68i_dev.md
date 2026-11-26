@@ -496,7 +496,8 @@ with one cusp pair for π² < ε < 4π² (up to ε 35 checked; ε 39 is not reso
 
 Records: test diag/out/f68i_d2c_20261126T074303Z (ε 9.9, 20; reproduced on the author's PC,
 f68i_d2c_20261126T092239Z, identical in every printed digit), f68i_d2c_20261126T085437Z (ε 10–14),
-f68i_d2c_20261126T111759Z (ε 16, 25, 30), f68i_d2c_20261126T103445Z (ε 35, 39); window check
+f68i_d2c_20261126T111759Z (ε 16, 25, 30), f68i_d2c_20261126T103445Z (ε 35, 39; reproduced on the author's PC,
+f68i_d2c_20261126T122048Z, identical in every printed digit); window check
 f68i_d2c_bracket_20261126T100536Z.
 
 **The error.** The ray count of f68f_1b_cut.rays uses a grid of B.N_V = 400 slopes v. Just below the cusp the three
