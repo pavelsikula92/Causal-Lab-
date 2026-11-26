@@ -491,3 +491,92 @@ with one cusp pair for π² < ε < 4π² (up to ε 35 checked; ε 39 is not reso
 - the direct check of γ^{11/7} from the exact needle on a (p, θ) patch around a cusp;
 - ε ≥ 4π² (new caustics, new cut loci);
 - how F6.8i is reformulated with this term (the author's decision).
+
+### 6.5 Correction: p_c was too low in §6.3 and §6.4 (26 Nov; diag/f68i_d2c.py revisions 2–2.2)
+
+Records: test diag/out/f68i_d2c_20261126T074303Z (ε 9.9, 20; reproduced on the author's PC,
+f68i_d2c_20261126T092239Z, identical in every printed digit), f68i_d2c_20261126T085437Z (ε 10–14),
+f68i_d2c_20261126T111759Z (ε 16, 25, 30), f68i_d2c_20261126T103445Z (ε 35, 39); window check
+f68i_d2c_bracket_20261126T100536Z.
+
+**The error.** The ray count of f68f_1b_cut.rays uses a grid of B.N_V = 400 slopes v. Just below the cusp the three
+rays are closer than one grid cell, so the count falls from 3 to 1 before p_c, and the bisection placed p_c too low.
+σ, τ′ and the needle were then measured at points shifted from the cusp. The shift is the reason for
+- the drift of σ/Δ with Δ in the D2a run (§6.3);
+- the 1–2 % spread between σ′ of §6.3 and §6.4 at ε 20;
+- the overshoot of the needle slopes past −1/2 (−0.51 to −0.57 at ε ≥ 16), which §6.3 put down to the needle's
+  resolution and §6.4 to a narrowing cusp regime;
+- the 5 % low Ψ √(ε − π²) at ε 9.9.
+
+The evidence, before revision 2: a fit σ = σ′(Δ + d) + b(Δ + d)² with a free origin d to the D2a rows below the cusp
+gives d = 7.9e-7 (ε 12), 1.58e-4 (ε 16), 4.0e-4 (ε 20). With the origin moved by d, the local slopes of the smooth part
+(scratch, from the D2a record) approach −3.5 cleanly. At ε 20 they are −3.558, −3.526, −3.513, −3.506 below the cusp
+and −3.658, −3.590, −3.548, −3.525 above it; at ε 16, −3.538, −3.519, −3.510, −3.505 below and −3.726, −3.623, −3.563,
+−3.532 above. min K approaches 1 on both sides. So the D2a conclusion of §6.3 (the cusp normal form, the −3.5
+exponent) stands, and its p_c values and constants are replaced by the table below.
+
+**Revision 2.** B.N_V = 6400 in every job. σ is measured at p_c − Δ for Δ = 4D, 2D, D, D/2. The same fit with a free
+origin is recorded alongside the two-point extrapolation; its d is now ≤ 6.2e-6 on every ε (it was up to 4e-4). The
+predicted half-width agrees with the measured w to ≤ 1.4e-3 at every point with ε ≥ 10, and to 0.5 % at ε 9.9 (w ≈ 2e-6).
+
+**Revision 2.2.** At ε 35 and 39 the exact envelope (f68f_1b_exact.phase_A, shared with F6.8f, unchanged) refuses
+the needle window at the true p_c. The cause is not another valley. In the middle nodes (s ≈ 0.5) the valley of Φ at the
+cusp is flat, with Φ < q²/2 over |ψ − ψ_ray| < 0.57, while the window can be widened only to 4W = 0.575, where W is the
+paraxial width. A refused needle is retried with guide rays ψ_ray ± 3W(s), which only move the window edges outward.
+Where both windows work (ε 20, 30) they agree to 2e-9 in N′.
+
+**Corrected constants** (σ′ two-point; free-origin fit and its d in brackets; N′ at q = 0.0625):
+
+| ε | ε − π² | p_c | σ′ [fit, d] | τ′ | N′ | slopes ln A / ln q | Ψ |
+|---|---|---|---|---|---|---|---|
+| 9.9 | 0.030 | 0.3135853 | 0.1232 [0.1232, +9.5e-7] | 7.0857 | 1.1577 | −0.496, −0.497 | 0.94902 |
+| 10 | 0.130 | 0.647195 | 0.2543 [0.2543, −1.8e-6] | 7.0724 | 1.1596 | | 0.45963 |
+| 10.25 | 0.380 | 1.095731 | 0.4310 [0.4311, −6.2e-6] | 7.0393 | 1.1644 | | 0.27104 |
+| 10.5 | 0.630 | 1.398455 | 0.5507 [0.5508, −4.6e-6] | 7.0068 | 1.1691 | | 0.21201 |
+| 11 | 1.130 | 1.841530 | 0.7266 [0.7268, −4.9e-6] | 6.9432 | 1.1783 | −0.496, −0.497 | 0.16051 |
+| 12 | 2.130 | 2.449046 | 0.9703 [0.9705, −4.2e-6] | 6.8218 | 1.1963 | | 0.11998 |
+| 14 | 4.130 | 3.219028 | 1.2856 [1.2858, −2.9e-6] | 6.5979 | 1.2308 | | 0.09027 |
+| 16 | 6.130 | 3.7252667 | 1.4993 [1.4995, −2.5e-6] | 6.3942 | 1.2638 | −0.498, −0.498 | 0.07720 |
+| 20 | 10.13 | 4.3813227 | 1.7901 [1.7901, −2.5e-7] | 6.0318 | 1.3264 | −0.498, −0.499 | 0.06441 |
+| 25 | 15.13 | 4.8798131 | 2.0299 [2.0299, −9.0e-7] | 5.6396 | 1.4008 | −0.499, −0.499 | 0.05663 |
+| 30 | 20.13 | 5.2023443 | 2.2021 [2.2020, +4.1e-7] | 5.2956 | 1.4731 | −0.500, −0.500 | 0.05211 |
+| 35 | 25.13 | 5.4271580 | 2.3364 [2.3360, +2.9e-6] | 4.9881 | 1.5444 | −0.501, −0.500 | 0.04907 |
+| 39 | 29.13 | 5.5623074 | 2.4262 [2.4255, +4.6e-6] | 4.7633 | 1.6012 | −0.501, −0.501 | 0.04724 |
+
+(Slopes not listed are in the records; they lie in −0.496 to −0.498.) Compared with §6.4: p_c is higher by up to
+6e-4. The largest changes are σ′ −10 % and Ψ +18 % at ε 39, and σ′ −2.4 % and Ψ +3.4 % at ε 20. At ε 12 the change
+is below 0.1 %. N′ no longer drifts with q at any ε: the slopes are −1/2 within 0.004.
+
+Per cusp, C Ψ/(2π) = −1.69e-4 (ε 12), −1.08e-4 (ε 16), −9.05e-5 (ε 20). Over ε 12–20, Ψ ∝ ε^{−1.22}.
+
+**The birth (ε → π²⁺), corrected.** On e = ε − π² < 1.2:
+- p_c²/e = 3.240 − 0.214 e;
+- σ′/p_c = 0.3928 + 0.0016 e;
+- τ′ = 7.089 − 0.130 e;
+- N′ = 1.157 + 0.019 e;
+- Ψ √e = 0.1653 + 0.0047 e.
+
+ε 9.9 now lies on the same line (Ψ √e = 0.1655). So Ψ ≈ 0.165 (ε − π²)^{−1/2} at the birth, as §6.4 said, and the
+ε 9.9 anomaly of §6.4 was the p_c error.
+
+**Large ε, corrected.** Ψ √(ε − π²) rises smoothly: 0.191 (ε 16), 0.205, 0.220, 0.234, 0.246, 0.255 (ε 39). The cusp
+regime holds at q ≥ 0.031 up to ε 39. The statement in §6.4 that Ψ(39) is not a cusp constant is withdrawn: its slopes
+are −0.501, and σ/Δ changes by 0.04 % between Δ = D and D/2 (3.7 % in §6.4) and by 0.3 % from 4D to D/2.
+
+**Superseded:**
+- §6.3: the values of p_c at ε 16 and 20, and the constants table. Its slope tables of the smooth part and of w,
+  and the normal-form check, are not affected.
+- §6.3: the reading of the N′ drift as needle resolution.
+- §6.4: the constants table.
+- §6.4: the ε 9.9 remark.
+- §6.4: the ε ≥ 20 drift paragraph and the exclusion of ε 39.
+- §6.4: the parenthesis "ε 39 is not resolved at these q".
+
+The cusp count and the artefact loci of §6.4 are not affected.
+
+**What this gives for the static question.** Per cusp, the age term is C Ψ(ε)(2π)⁻¹ γ^{11/7} per unit p and θ/2π.
+There is one cusp pair on π² < ε < 4π², checked at 13 values of ε from 9.9 to 39. Ψ is finite on (π², 4π²), with an
+integrable (ε − π²)^{−1/2} singularity at the birth, and Ψ √(ε − π²) rises from 0.165 to 0.255. Open:
+- the direct check of γ^{11/7} from the exact needle on a (p, θ) patch;
+- ε ≥ 4π²;
+- the reformulation of F6.8i (the author's decision).
