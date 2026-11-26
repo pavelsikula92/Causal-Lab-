@@ -1,0 +1,34 @@
+F6.8i-dev D2d: the age term J from the exact needle (development, decides nothing; docs/derivations/f68i_dev.md section 7)
+
+cusp count: first-arrival ties over theta (scan of 720 phases, B.N_V 800):
+  eps 12 p +0.61226 (p/p_c +0.25), up to 3 rays: 1 tie(s): theta 5.97705 (theta + p/2 +8.53e-14, gap 1.0e-12)
+  eps 12 p +1.22452 (p/p_c +0.50), up to 3 rays: 1 tie(s): theta 5.67092 (theta + p/2 -3.89e-12, gap 5.3e-11)
+  eps 12 p +2.20414 (p/p_c +0.90), up to 3 rays: 1 tie(s): theta 5.18111 (theta + p/2 -3.76e-12, gap 2.5e-11)
+  eps 12 p +2.40007 (p/p_c +0.98), up to 1 rays: 2 tie(s): theta 5.08315 (theta + p/2 -3.73e-12, gap 1.1e-11); theta 5.09133 (theta + p/2 +8.18e-03, gap inf)
+  eps 12 p +2.49803 (p/p_c +1.02), up to 1 rays: 2 tie(s): theta 5.03337 (theta + p/2 -8.06e-04, gap inf); theta 5.03805 (theta + p/2 +3.88e-03, gap inf)
+  eps 12 p +2.69395 (p/p_c +1.10), up to 1 rays: 3 tie(s): theta 4.92681 (theta + p/2 -9.40e-03, gap inf); theta 4.93517 (theta + p/2 -1.04e-03, gap inf); theta 4.94312 (theta + p/2 +6.91e-03, gap inf)
+  eps 12 p +3.67357 (p/p_c +1.50), up to 1 rays: 0 tie(s)
+  eps 12 p +6.12261 (p/p_c +2.50), up to 1 rays: 0 tie(s)
+  eps 12 p -1.22452 (p/p_c -0.50), up to 3 rays: 1 tie(s): theta 0.61226 (theta + p/2 +3.89e-12, gap 5.3e-11)
+  eps 20 p +1.09533 (p/p_c +0.25), up to 3 rays: 1 tie(s): theta 5.73552 (theta + p/2 -1.36e-12, gap 4.2e-11)
+  eps 20 p +2.19066 (p/p_c +0.50), up to 3 rays: 1 tie(s): theta 5.18785 (theta + p/2 +1.34e-12, gap 3.3e-11)
+  eps 20 p +3.94319 (p/p_c +0.90), up to 3 rays: 1 tie(s): theta 4.31159 (theta + p/2 +4.04e-12, gap 4.3e-11)
+  eps 20 p +4.29370 (p/p_c +0.98), up to 3 rays: 1 tie(s): theta 4.13634 (theta + p/2 -2.98e-13, gap 2.0e-12)
+  eps 20 p +4.46895 (p/p_c +1.02), up to 1 rays: 2 tie(s): theta 4.04585 (theta + p/2 -2.87e-03, gap inf); theta 4.05274 (theta + p/2 +4.03e-03, gap inf)
+  eps 20 p +4.81945 (p/p_c +1.10), up to 1 rays: 0 tie(s)
+  eps 20 p +6.57198 (p/p_c +1.50), up to 1 rays: 0 tie(s)
+  eps 20 p +10.95331 (p/p_c +2.50), up to 1 rays: 0 tie(s)
+  eps 20 p -2.19066 (p/p_c -0.50), up to 3 rays: 1 tie(s): theta 1.09533 (theta + p/2 -1.34e-12, gap 3.3e-11)
+  eps 35 p +1.35679 (p/p_c +0.25), up to 3 rays: 1 tie(s): theta 5.60479 (theta + p/2 +4.10e-12, gap 1.8e-10)
+  eps 35 p +2.71358 (p/p_c +0.50), up to 3 rays: 1 tie(s): theta 4.92640 (theta + p/2 +4.13e-12, gap 1.4e-10)
+  eps 35 p +4.88444 (p/p_c +0.90), up to 3 rays: 1 tie(s): theta 3.84096 (theta + p/2 -2.33e-12, gap 3.1e-11)
+  eps 35 p +5.31861 (p/p_c +0.98), up to 3 rays: 1 tie(s): theta 3.62388 (theta + p/2 -3.62e-12, gap 1.9e-11)
+  eps 35 p +5.53570 (p/p_c +1.02), up to 1 rays: 0 tie(s)
+  eps 35 p +5.96987 (p/p_c +1.10), up to 1 rays: 0 tie(s)
+  eps 35 p +8.14074 (p/p_c +1.50), up to 1 rays: 0 tie(s)
+  eps 35 p +13.56790 (p/p_c +2.50), up to 1 rays: 0 tie(s)
+  eps 35 p -2.71358 (p/p_c -0.50), up to 3 rays: 1 tie(s): theta 1.35679 (theta + p/2 -4.13e-12, gap 1.4e-10)
+  eps 12: mirror S_min(-p, -theta) against S_min(p, theta) at p = p_c/2: max |diff| 3.9e-14
+  eps 20: mirror S_min(-p, -theta) against S_min(p, theta) at p = p_c/2: max |diff| 1.4e-13
+  eps 35: mirror S_min(-p, -theta) against S_min(p, theta) at p = p_c/2: max |diff| 1.4e-12
+total 5158 s
