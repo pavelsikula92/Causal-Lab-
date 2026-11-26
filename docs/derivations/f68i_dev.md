@@ -609,3 +609,40 @@ integrable (ε − π²)^{−1/2} singularity at the birth, and Ψ √(ε − π
   - a check of whether the number of cusps or their contributions change with ε in a way that affects convergence.
 
   No extrapolation is made to ε ≥ 4π².
+
+### 7.1 The ε-weight of the cusp term, derived from the definition of the response (26 Nov; derivation, unchecked by computation)
+
+The definitions are those of f68f_dev §7 and §9; nothing below is taken over from the form of Φ.
+
+1. **Per direction** (f68f_dev §7):
+   ρ(p) = (T/(2l₂)) ∫₀^∞ ds ⟨g₀(s²A(ε, p, θ; c))⟩_θ, with c = q²/2 = γs and γ = k²/(2l₂).
+2. **Integrated over p ≥ 0**, the needle gives two parts:
+   - the smooth part: 4μ₃(2γ)³ Φ(ε) = 16γ³Φ(ε);
+   - the cusp part (§6.2): C Ψ(ε)(2π)⁻¹ γ^{11/7}, per cusp in p ≥ 0.
+
+   Both are functions of ε and γ alone. γ does not contain T, and the cusp scales (σ ~ γ^{4/7}, τ ~ γ^{6/7},
+   p_c(ε)) do not contain T either.
+3. **The directions.** dΩ = 2π dp/κ with κ = kT, so dE/dT ∝ (2π/κ)(T/(2l₂)) ∫dp ρ… = (π/(k l₂)) ∫dp ⟨…⟩. The factor
+   T/κ = 1/k is the same for both parts. The mirror symmetry (p, θ) → (−p, −θ) of the pendulum (ψ → −ψ) gives the
+   same factor 2 for p < 0 to both parts.
+4. **Hence, at fixed k and b**, with the age n = kT and ε = bn²:
+
+       dE/dn ∝ k⁵ [Φ(bn²) + (C/(32π)) γ^{−10/7} Ψ(bn²)]      (16γ³ against C(2π)⁻¹γ^{11/7}; γ^{−10/7} ∝ k^{−20/7}),
+
+   and E(b, n) ∝ k⁵ (1/(2√b)) ∫₀^{bn²} ε^{−1/2} [Φ(ε) + (C/(32π)) γ^{−10/7} Ψ(ε)] dε.
+
+**Result.**
+- The weight ε^{−1/2} follows for the cusp term from the same definition, because the age enters both parts only
+  through ε. It is not substituted.
+- The convergence criteria have the same form for Ψ as for Φ: ∫^∞ ε^{−1/2}Ψ dε for E, and M_Ψ(ε) = ∫√u Ψ′ du → const
+  for K_eff. Because of the singularity at the birth, M_Ψ is to be read as E_opt = ∂E/∂b of the expression above, not
+  through Ψ′ under the integral.
+- What changes is the power of k: the cusp part carries γ^{−10/7} relative to Φ. At fixed ε it dominates for small
+  γ, and the two parts cannot be added into one Φ independent of k.
+
+**Limits that do not commute (flag for the card).**
+- Ψ ≈ 0.165(ε − π²)^{−1/2} is the γ → 0 limit at fixed ε. The cusp form needs the cusp scale σ ~ γ^{4/7} to be small
+  against the distance of the two cusps, σ′·2p_c ≈ 2.5(ε − π²).
+- For ε − π² ≲ γ^{4/7}, the two cusps and the birth point form one structure, and the term saturates.
+- In the ε-integral this region contributes ~ γ^{11/7}·γ^{2/7}. It does not change integrability, but a card must
+  state the order of the limits: γ → 0 first, then ε.
