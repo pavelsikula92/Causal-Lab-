@@ -646,3 +646,99 @@ The definitions are those of f68f_dev §7 and §9; nothing below is taken over f
 - For ε − π² ≲ γ^{4/7}, the two cusps and the birth point form one structure, and the term saturates.
 - In the ε-integral this region contributes ~ γ^{11/7}·γ^{2/7}. It does not change integrability, but a card must
   state the order of the limits: γ → 0 first, then ε.
+
+### 7.2 D2d: the direct check (26–27 Nov; diag/f68i_d2d.py revision 2, md5 3c560ac1; development, decides nothing)
+
+The age term J(γ) = ∫ds g₀(s²A(c = γs)) is computed per phase from the exact needle (f68f_1b_exact envelopes).
+A(c) uses per-decade windows in ψ and a per-node zero of Φ. The normal form is used only to place the quadrature nodes
+and to state the prediction. Numbers are copied from the records named.
+
+**Needle check (records 134755Z, 194127Z).** With one window, the needle reproduces EX.phase_A exactly. With per-decade
+windows it agrees to ≤ 1.9e-8 relative.
+
+**Check 3, control without a cusp (ε < π², one ray, p = θ = 0; records 134755Z and 194127Z, identical).**
+
+| ε | ratio to the series 16γ³ŝ₄A₀⁻² (f68f_1c), γ = 0.008 → 0.00025 | local exponents |
+|---|---|---|
+| 8 | 0.963, 0.930, then noise | 3.05, then noise |
+| 9 | 0.839, 0.915, 0.972, 1.07, then noise | 2.88, 2.91, 2.86, then noise |
+| 9.5 | 0.494, 0.680, 0.816, 0.899, 0.935, then noise | 2.54 → 2.94, then noise |
+
+- The noise floor of J is ~1e-10 absolute. J ~ γ³ drops into it at small γ.
+- The approach to the series is slower as ε → π², where the needle's quartic term grows (min K 0.89, 0.43, 0.18).
+- The exact needle gives γ³ without a cusp, with the series coefficient as the limit.
+
+**Check 4, birth of the cusp (d2c record 20261126T133110Z).**
+- Ψ√(ε − π²) = 0.1654 at ε − π² = 0.01 and 0.1652 at 0.003.
+- The fit of §6.5 gives 0.1653 + 0.0047(ε − π²).
+- So Ψ ≈ 0.165(ε − π²)^{−1/2} holds down to ε − π² = 0.003, three points below the previous smallest.
+
+**Check 5, the cusp count (record 20261126T151430Z).** The scan was 720 phases in θ at ε = 12, 20 and 35, for p/p_c ∈
+{0.25, 0.5, 0.9, 0.98, 1.02, 1.1, 1.5, 2.5} and p = −p_c/2. Each jump of the first-arrival ray was refined by
+bisection.
+- **p < p_c:** exactly one tie per θ-circle, at θ = −p/2 (|θ + p/2| ≤ 4e-12). The action gap of the two lowest rays
+  there is ≤ 2e-10, so the tie is between two rays (multiplicity 1, not a triple point).
+- **p > p_c:** no tie. The entries marked "gap inf" (ε 12 at p/p_c 0.98–1.10, ε 20 at 1.02) have one ray at the refined
+  point, so they cannot be ties. They are steep but continuous changes of the slope of that ray, caught by the jump
+  threshold. At ε 12, p/p_c = 0.98, the three-ray window is narrower than the scan step, and the refinement still
+  finds the tie at θ = −p/2.
+- **Mirror:** S_min(−p, −θ) − S_min(p, θ) ≤ 1.4e-12.
+- **Result:** the cut locus in p ≥ 0 is the segment θ = −p/2, 0 ≤ p < p_c, ending in one cusp at p_c. The cusp at −p_c
+  is its mirror image. Φ integrates over p ≥ 0, so it counts one cusp with multiplicity 1. The §7.1 factor 2 for
+  p < 0 covers the mirror.
+
+**Checks 1–2, the exact needle on the patch around the cusp at ε = 12.**
+- Patch: the layout of f68i_d2b_nf (30 rows, ns 3, nt 6, τ ≥ 0 doubled), mapped to the physical plane with the §6.5
+  constants (p_c 2.449046, σ′ 0.9703, τ′ 6.8218, N′ 1.1963, Ψ 0.11998).
+- Prediction: Q = CΨ(2π)⁻¹γ^{11/7} with C = −8.8324e-3, not fitted. The normal form on the same nodes gives 0.9935 of
+  the prediction at every γ (the quadrature).
+- Symmetry: J(θ_c + t) = J(θ_c − t) to 1e-8 relative.
+- None of the phases needed guide rays.
+- The rows are reproducible between the author's PC and Claude's container to ≤ 1e-9.
+
+*Revision 1 (record 20261126T171747Z), superseded.*
+- Exponents: 1.587 and 1.563.
+- Q/prediction scattered (0.977, 0.955, 0.966) without a trend in γ.
+- Cause: in the three-ray region, A(c) gains a (c − gap)₊² term when c reaches the action gap of a later ray. The
+  Gauss nodes in s ignored that point, which gave J a ripple in θ of ~1.5 % (a dense profile of 240 phases at
+  σ̂ = −13, γ = 2.5e-4).
+- Effect: in the far rows (σ̂ ≤ −5), the τ-integral of J is ~1e-4 of its absolute mass. The ripple therefore moved
+  single rows by up to ±0.04 of the prediction and changed sign between nt 6 and nt 12.
+- Ruled out first: the s range (s²A at the end 61–105 against 45; s_end ≪ 16), NV_FAM × 2 (7e-10), NPSI × 2 (5e-8).
+- Fix in revision 2: a panel edge at every s = gap/γ, graded on both sides.
+  - N_GL 10 and 20 then agree to 1e-9.
+  - The far rows converge in nt: row σ̂ = −13 gives exact − nf = +0.00003 / +0.00004 of the prediction at nt 6 / 12;
+    row σ̂ = −9.4 gives +0.00007 / +0.00007.
+  - Single-ray phases are unchanged, so the check and the control are identical.
+
+*Revision 2 (record 20261127T005045Z; author's PC, 6 workers, 8955 s).*
+
+| γ | Q exact | Q / prediction | Q / normal form on the same nodes | ∫\|J\| |
+|---|---|---|---|---|
+| 0.004 | −2.834099e-08 | 0.98537 | 0.99177 | 2.80e-06 |
+| 0.001 | −3.235572e-09 | 0.99364 | 1.00016 | 3.23e-07 |
+| 0.00025 | −3.678059e-10 | 0.99768 | 1.00420 | 3.68e-08 |
+
+- The σ tails beyond |σ̂| = 16 are ≤ 1.5e-3 of Q.
+- Local exponents: 1.5654 (0.004 → 0.001) and 1.5685 (0.001 → 0.00025). Over the whole range: 1.5670. Against 11/7 =
+  1.5714; the smooth part would give 3.
+- **Exponent:** 11/7 within 0.3 %, approached from below. γ³ is excluded.
+- **Coefficient:** with C not fitted, Q/prediction rises monotonically 0.985 → 0.994 → 0.998.
+- **The limit is not yet settled.**
+  - The steps in γ shrink by a factor 0.49 per factor 4 (a correction ~γ^{0.52}, close to the σ-scale γ^{4/7}). A
+    single-power extrapolation gives 1.0015 for Q/prediction and 1.008 for Q/normal form.
+  - These two cannot both be the limit: pointwise convergence to the normal form would give Q/normal form → 1 and
+    Q/prediction → 0.9935.
+  - So the corrections are not one power, and three γ do not fix the limit better than ~±0.8 %.
+  - A fourth γ (6.25e-5, ~50 min on the PC) or a refined quadrature of the patch would settle it.
+
+**Status of the direct check (for the author's decision; nothing here freezes a card):**
+1. Exact needle around a real cusp: done.
+2. Scaling: exponent 11/7 to 0.3 %. Coefficient, not fitted: within 0.25 % at the smallest γ, with the limit open to
+   ~±0.8 % (see above).
+3. Control: done.
+4. Birth: done.
+5. Count: done.
+
+- Only ε = 12 has a patch. A second patch (ε = 20) would test the ε-dependence of Ψ directly.
+- The order of limits of §7.1 (γ → 0 first) holds for every number here: ε − π² = 2.13 ≫ γ^{4/7}.
