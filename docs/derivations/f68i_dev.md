@@ -742,3 +742,65 @@ bisection.
 
 - Only ε = 12 has a patch. A second patch (ε = 20) would test the ε-dependence of Ψ directly.
 - The order of limits of §7.1 (γ → 0 first) holds for every number here: ε − π² = 2.13 ≫ γ^{4/7}.
+
+### 7.3 D2d: the fourth γ and the constant N′ (27 Nov; f68i_d2d revision 3, md5 675f517c)
+
+**Revision 3.**
+- At γ = 6.25e-5, rows 14 and 15 of the ε 12 patch (the cusp rows) refused the ψ window. The quartic valley is ~c^{1/4}
+  wide against the c^{1/2} of W, about 90 W.
+- MAX_WIDEN went from 5 to 12. A failing row (or symmetry phase) is now reported in the record and is not cached; the
+  other rows finish.
+- Smoke-tested before the author's run (commit message of revision 3):
+  - the two rows pass;
+  - ε 12, γ 2.5e-4, row 15 equals the revision 2 record to 9e-9;
+  - ε 20 rows 0, 14, 15, 29 at 2.5e-4 and rows 14, 15 at 0.004 pass;
+  - a forced failure reports and saves.
+
+**The fourth γ (record 20261127T133839Z; author's PC).**
+- γ = 2.5e-4 reproduces revision 2 exactly (Q −3.678059e-10).
+- γ = 6.25e-5: Q −4.168484e-11, Q/prediction 0.99872, Q/normal form on the same nodes 1.00525.
+- Local exponent 2.5e-4 → 6.25e-5: **1.5707** (11/7 = 1.5714).
+
+**Q/normal form on the same nodes did not tend to 1.** Over the four γ: 0.99177, 1.00016, 1.00420, 1.00525.
+- The far rows converge row by row, roughly as γ^{1/2}.
+- The cusp rows (σ̂ = −0.9 … +0.5) and row σ̂ = −2.8 approach a positive offset of 0.3–0.6 % of each row.
+- At γ = 6.25e-5 the offset does not move with:
+  - NPSI × 2 or N_GL × 2 (row 13: +0.00310 → +0.00310 / +0.00309 of the prediction);
+  - NV_FAM × 2;
+  - nt 6 → 12 (rows 8, 12, 13, 14: +0.00221/+0.00337/+0.00310/+0.00126 → +0.00222/+0.00337/+0.00311/+0.00126);
+  - a shift of p_c by ±1e-6 (Q/nf ±4e-5).
+
+**Cause: N′ was taken at finite q.** §6.5 takes N′ from the exact needle at the cusp at q = 0.0625. With the
+per-decade needle of f68i_d2d, at (p_c, θ_c):
+
+| q | 0.0625 | 0.044 | 0.031 | 0.0221 | 0.0156 | 0.011 | 0.0078 | 0.0055 | 0.0039 | 0.00276 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| N′, ε 12 | 1.196329 | 1.194934 | 1.193948 | 1.193273 | 1.192787 | 1.192454 | 1.192239 | 1.192109 | 1.192055 | 1.192065 |
+| N′, ε 20 | 1.326381 | 1.325594 | 1.325053 | 1.324701 | 1.324474 | 1.324359 | 1.324343 | 1.324423 | 1.324606 | 1.324917 |
+
+- N′(q) = N′₀ + a q^b with b ≈ 1–1.5, a correction linear in q, i.e. ∝ c^{1/2}. This is the same order as the
+  convergence of the far rows.
+- At the smallest q, N′ turns up. The phase sits on the three-ray side of p_c (nray 3), so a residual σ ~ σ′ δp_c
+  shows once c ~ σ². The fit therefore uses q ≥ 0.011 or q ≥ 0.0055.
+- Extrapolated values:
+  - ε 12: N′₀ = 1.19164–1.19172, so Ψ is higher by (N′(0.0625)/N′₀)^{9/7} = 1.0050 ± 0.0002, giving **Ψ(12) = 0.1206**.
+  - ε 20: N′₀ = 1.32406–1.32426, factor 1.0022 ± 0.0002, giving **Ψ(20) = 0.06455**.
+- The normal form on the nodes scales with Ψ (homogeneity: node layout and J_nf move together). So the corrected
+  Q/normal form is the recorded one divided by 1.0050:
+
+| γ | 0.004 | 0.001 | 0.00025 | 0.0000625 |
+|---|---|---|---|---|
+| Q / normal form (N′₀) | 0.9868 | 0.9952 | 0.9992 | **1.0003** |
+
+- The step from one γ to the next shrinks by about half per factor 4 in γ. The coefficient C Ψ, with C not fitted and
+  N′ taken in its limit, is reproduced to 0.03 % at the smallest γ.
+- Q/prediction on these nodes (0.99872) is the product of the coarse-node quadrature of the patch (0.9935, the same for
+  the exact needle and the normal form) and this ratio. Its closeness to 1 in §7.2 was partly that product.
+
+**Consequences.**
+- The Ψ column of §6.5 carries the same finite-q bias wherever the slopes of ln A / ln q differ from −1/2: +0.5 % at
+  ε 12, +0.2 % at ε 20, smaller at ε ≥ 30 (slopes −0.500 to −0.501).
+- The card takes N′ as the q → 0 extrapolation (q from 0.0625 to 0.0055, fit N′₀ + a q^b), with p_c refined enough that
+  the upturn stays below the fitted range.
+- The status of §7.2 item 2 becomes: exponent 11/7 to 0.04 % (1.5707), coefficient to 0.03 % at γ = 6.25e-5 (with N′₀),
+  approached monotonically.
