@@ -48,3 +48,49 @@ be the same. The author's picture: young fields are pliant, old ones change thei
 **What would test it.**
 - F6.8i (the old-field static response); F6.11 (the age term in the full static propagator); F8.8 (the meaning of T;
   fields of different ages at the same scale).
+
+## H3. The age term as a scaler that the classical theory cannot close (author and Claude, 27 Nov 2026)
+
+**Idea.** The age term joins the discreteness length ℓ_k, the age T and the amplitude b of a field into new scales
+(H1, H2). At a cusp of the first arrival it does so with a non-integer power. The term then does not vanish in the
+continuum limit ℓ_k → 0. Something beyond the classical expected action must regulate it, and the author expects that
+to be the quantum level of causal physics, where matter and particles belong (decision 18). The scale at which the
+regulation acts would be a candidate scale of matter.
+
+**What is known.**
+- **The cusp term.** Around each cusp of the first arrival (π² < ε < 4π², one cusp per half-plane p ≥ 0, multiplicity 1),
+  the age integral has the term C Ψ(ε)(2π)⁻¹ γ^{11/7}, C = −8.8324e-3, beside the smooth Φ(ε)·16γ³ (f68i_dev §6.2,
+  §7.1, §7.2).
+  - The exact needle reproduces the exponent at ε = 12 to 0.3 %. With C not fitted, it reproduces the coefficient to
+    0.2 % at the smallest γ (record diag/out/f68i_d2d_20261127T005045Z).
+  - The exponent comes from the cusp normal form (σ ~ γ^{4/7}, τ ~ γ^{6/7}); it is a catastrophe exponent, not a
+    power of a Taylor series.
+- **Normalisation.**
+  - γ = k²/(2l₂) with k in units of ℓ_k and l₂ = V_flat(τ = 1)^{1/2} = 0.3618 (ερ = 1). So γ = 1.382 (kℓ_k)².
+  - The cusp term exceeds the smooth one by (C/(32π)) γ^{−10/7} Ψ/Φ ∝ (kℓ_k)^{−20/7} (§7.1).
+  - The smooth part shifts the stiffness, relative to the Einstein–Hilbert value, by ∝ (kℓ_k)² at fixed n = kT and ε
+    (second order: c₅(kℓ_k)²(kT)⁵, F6.8e3; finite ε: R(ε), f68f_dev §9).
+  - Hence the cusp part shifts it by ∝ (kℓ_k)^{−6/7} at fixed n and ε. **It grows as ℓ_k → 0**: the expected BD action
+    of an old field (ε > π²) has no continuum limit for the static response.
+  - At fixed T and b, the k-dependence is k^{29/7} f(bk²T²) with f known only on π² < ε < 4π².
+- **Thin needles.** Every age term comes from causal intervals of length ~T and proper time of a few ℓ_k (s = l₂σ² of
+  order 1 under the kernel). These are the intervals with the fewest elements, where the expected action is furthest
+  from any single sprinkling.
+- **Classical perturbations do not remove it.** A cusp is a structurally stable catastrophe of a two-parameter family
+  of rays (here the direction p, θ). A generic field, not only the plane wave, has cusps with the same normal form, so
+  the exponent 11/7 is generic.
+- **Real fields are outside the computed range.** For them ε ≫ 4π² (Earth ~1e28). Ψ beyond the first cusp pair is not
+  computed. Literal numbers would be absurdly large at any scale, as already for the second-order optical age term
+  (substrate_and_action_audit §7).
+
+**What would decide it (in this order).**
+1. **The weight of §7.1 by computation.** Compare a brute-force finite-κ computation at one ε in the cusp range with
+   smooth part plus cusp part (only the derivation exists now).
+2. **What survives in a single order.** The cusp term from the actual BD action of sprinkled needles of a few elements,
+   not from its expectation. If the fluctuations at σ ~ ℓ_k already cut it off, the regulating scale is classical.
+3. **The quantum level.** In a wave description (amplitudes over chains, Johnston's propagator; Sorkin's quantum
+   measure), caustics and cusps are smoothed over a width set by the wavelength and ℓ_k, as in wave catastrophes
+   (Pearcey integral, Berry's indices). The questions:
+   - Does the γ^{11/7} term then become a smooth term with its own scale L_c(ℓ_k, T, b)?
+   - Is L_c related to L_* of H1?
+   - A comparison with hadronic scales only with T fixed by a theory of the age (F8.8), not chosen to fit.
