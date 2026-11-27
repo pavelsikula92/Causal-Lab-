@@ -25,6 +25,10 @@ The needle A(c) at many c: the families of rays are integrated once (for the lar
 integral are then done per decade of c, each decade with its own window (phase_A uses one window for all q). Guide rays
 psi_ray +- GUIDE W(s) widen the window where the valley of Phi is flat (f68i_d2c revision 2.2).
 
+Revision 3 (27 Nov): MAX_WIDEN 5 -> 12 (rows 14, 15 of the eps 12 patch at gamma 6.25e-5 refused the window near the
+cusp); a failing patch row is reported in the record instead of stopping the batch. Phases that passed under
+revision 2 take the same path (the widening loop stops at the same step), so their values are unchanged.
+
 Revision 2 (26 Nov): the s nodes of J get a panel edge at every s = gap / gamma, gap the action of a later ray above
 S_min (rays_row now returns the gaps). Without it the three-ray rows of the patch carried a ripple in theta of ~1.5 %
 of J (Gauss nodes across the jump of A''), which the tau quadrature turned into +-4 % of Q (record 20261126T171747Z,
@@ -55,7 +59,8 @@ N_GL = 10
 GUIDE = 3.0                  # guide rays psi +- GUIDE W for a refused window (f68i_d2c revision 2.2)
 NV_RAYS = 6400               # B.N_V for the ray search (as f68i_d2c revision 2: the three rays near a cusp)
 NPSI = 16001                 # points of the psi window per decade of c (EX uses 4001 for all q at once)
-MAX_WIDEN = 5                # doublings of the window (EX: 2)
+MAX_WIDEN = 12               # doublings of the window (EX: 2); revision 3: 5 -> 12 (the quartic valley at the cusp
+                             # is ~c^(1/4) wide against the c^(1/2) of W, ~90 W at gamma 6.25e-5)
 NV_FAM = 8001                # rays per family (EX.N_V = 4001); the quintic Hermite envelope between rays is the
                              # noise floor of J: ~4e-9 with 4001, ~2e-10 with 8001 and 16001 (eps 8, p 2, 26 Nov)
 
@@ -305,8 +310,11 @@ def symmetry_job(arg):
     p = row["p"]
     t = row["tau"][k] / tp
     out = []
-    for th in ((-p / 2 + t) % (2 * math.pi), (-p / 2 - t) % (2 * math.pi)):
-        out.append(J_phase(eps, p, th, [gam])["J"][0])
+    try:
+        for th in ((-p / 2 + t) % (2 * math.pi), (-p / 2 - t) % (2 * math.pi)):
+            out.append(J_phase(eps, p, th, [gam])["J"][0])
+    except RuntimeError as err:
+        return {"eps": eps, "gam": gam, "p": p, "dtheta": t, "error": str(err)}
     return {"eps": eps, "gam": gam, "p": p, "dtheta": t, "J_plus": out[0], "J_minus": out[1]}
 
 
@@ -340,8 +348,12 @@ PATCH_CODE = Cm.code_md5([os.path.abspath(__file__), B.__file__, EX.__file__, NF
 
 
 def patch_job(arg):
+    """One cached row; a failing row is reported and not cached, so that the other rows of the batch finish (rev 3)."""
     eps, gam, i = arg
-    return Cm.cached(NAME + "_patch", PATCH_CODE, row_job, (eps, gam, i))
+    try:
+        return Cm.cached(NAME + "_patch", PATCH_CODE, row_job, (eps, gam, i))
+    except RuntimeError as err:
+        return {"error": str(err), "args": [eps, gam, i]}
 
 
 # ------------------------------------------------------------------------------------------------ the cusp count
@@ -488,9 +500,17 @@ def main():
         L.append(f"patch around the cusp at eps {eps:g} (p_c {pc}, sig' {sp}, tau' {tp}, N' {Np}, Psi {Psi}); "
                  f"{nrow} rows of the f68i_d2b_nf layout (ns {NS}, nt {NT}), tau >= 0 doubled:")
         for sy in sym:
+            if "error" in sy:
+                L.append(f"  symmetry: gamma {sy['gam']:g} p {sy['p']:.5f} dtheta {sy['dtheta']:.3e}: FAILED {sy['error']}")
+                continue
             L.append(f"  symmetry: gamma {sy['gam']:g} p {sy['p']:.5f} dtheta {sy['dtheta']:.3e}: J(+) {sy['J_plus']:+.9e} "
                      f"J(-) {sy['J_minus']:+.9e}")
-        if len(sel) == nrow:
+        failed = [jr for jr in res if "error" in jr]
+        for jr in failed:
+            L.append(f"  row failed: eps {jr['args'][0]:g} gamma {jr['args'][1]:g} row {jr['args'][2]}: {jr['error']}")
+        if failed:
+            L.append(f"  {len(failed)} rows failed (not cached); no sums")
+        elif len(sel) == nrow:
             out = []
             for g in pg:
                 rows = patch_nodes(eps, g)

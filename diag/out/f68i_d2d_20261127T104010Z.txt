@@ -1,0 +1,8 @@
+F6.8i-dev D2d: the age term J from the exact needle (development, decides nothing; docs/derivations/f68i_dev.md section 7)
+
+patch around the cusp at eps 20 (p_c 4.3813227, sig' 1.7901, tau' 6.0318, N' 1.3264, Psi 0.06441); 30 rows of the f68i_d2b_nf layout (ns 3, nt 6), tau >= 0 doubled:
+  symmetry: gamma 0.00025 p 4.37907 dtheta 2.478e-06: J(+) -1.641539585e-03 J(-) -1.641539277e-03
+  symmetry: gamma 0.00025 p 4.37907 dtheta 9.531e-06: J(+) -9.192946329e-03 J(-) -9.192946146e-03
+  symmetry: gamma 0.00025 p 4.38358 dtheta 9.975e-06: J(+) +1.497051019e-03 J(-) +1.497051036e-03
+  partial run: 1 of 30 rows cached; no sums
+total 481 s
