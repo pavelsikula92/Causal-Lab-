@@ -1,0 +1,12 @@
+F6.8i-dev D2d: the age term J from the exact needle (development, decides nothing; docs/derivations/f68i_dev.md section 7)
+
+patch around the cusp at eps 12 (p_c 2.449046, sig' 0.9703, tau' 6.8218, N' 1.1963, Psi 0.11998); 30 rows of the f68i_d2b_nf layout (ns 3, nt 6), tau >= 0 doubled:
+  symmetry: gamma 0.00025 p 2.44477 dtheta 2.290e-06: J(+) -1.716442749e-03 J(-) -1.716442604e-03
+  symmetry: gamma 0.00025 p 2.44477 dtheta 8.808e-06: J(+) -9.725830979e-03 J(-) -9.725830892e-03
+  symmetry: gamma 6.25e-05 p 2.45098 dtheta 2.809e-06: J(+) +1.304594992e-03 J(-) +1.304595069e-03
+  gamma 0.00025: Q exact -3.678059e-10 (core -3.672565e-10, sig tails -3.51e-13 / -1.98e-13; int|J| 3.681e-08; 0 phases with guide rays)
+      prediction C Psi gamma^(11/7) / 2pi -3.686615e-10: ratio 0.99768; normal form on the same nodes -3.662672e-10: ratio exact / nf 1.00420
+  gamma 6.25e-05: Q exact -4.168484e-11 (core -4.162643e-11, sig tails -3.66e-14 / -2.18e-14; int|J| 4.183e-09; 0 phases with guide rays)
+      prediction C Psi gamma^(11/7) / 2pi -4.173818e-11: ratio 0.99872; normal form on the same nodes -4.146700e-11: ratio exact / nf 1.00525
+  exponent between gamma 0.00025 and 6.25e-05: 1.5707 (11/7 = 1.5714; smooth: 3)
+total 6429 s
