@@ -1,0 +1,15 @@
+F6.8i-dev D2d: the age term J from the exact needle (development, decides nothing; docs/derivations/f68i_dev.md section 7)
+
+patch around the cusp at eps 20 (p_c 4.3813227, sig' 1.7901, tau' 6.0318, N' 1.3264, Psi 0.06441); 30 rows of the f68i_d2b_nf layout (ns 3, nt 6), tau >= 0 doubled:
+  symmetry: gamma 0.004 p 4.37034 dtheta 2.668e-05: J(+) -2.414879994e-03 J(-) -2.414879953e-03
+  symmetry: gamma 0.004 p 4.37034 dtheta 1.026e-04: J(+) -1.363292592e-02 J(-) -1.363292589e-02
+  symmetry: gamma 0.00025 p 4.38358 dtheta 9.975e-06: J(+) +1.497051022e-03 J(-) +1.497051050e-03
+  gamma 0.004: Q exact -1.539190e-08 (core -1.537370e-08, sig tails -6.59e-12 / -1.16e-11; int|J| 1.525e-06; 0 phases with guide rays)
+      prediction C Psi gamma^(11/7) / 2pi -1.544048e-08: ratio 0.99685; normal form on the same nodes -1.534006e-08: ratio exact / nf 1.00338
+  gamma 0.001: Q exact -1.740919e-09 (core -1.738545e-09, sig tails -1.32e-12 / -1.06e-12; int|J| 1.743e-07; 0 phases with guide rays)
+      prediction C Psi gamma^(11/7) / 2pi -1.748101e-09: ratio 0.99589; normal form on the same nodes -1.736674e-09: ratio exact / nf 1.00244
+  gamma 0.00025: Q exact -1.963734e-10 (core -1.960869e-10, sig tails -1.55e-13 / -1.31e-13; int|J| 1.981e-08; 0 phases with guide rays)
+      prediction C Psi gamma^(11/7) / 2pi -1.979120e-10: ratio 0.99223; normal form on the same nodes -1.966295e-10: ratio exact / nf 0.99870
+  exponent between gamma 0.004 and 0.001: 1.5721 (11/7 = 1.5714; smooth: 3)
+  exponent between gamma 0.001 and 0.00025: 1.5741 (11/7 = 1.5714; smooth: 3)
+total 9737 s
