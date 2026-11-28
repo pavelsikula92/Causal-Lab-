@@ -1,6 +1,8 @@
-# Q.1c — the vacuum of one 1+1 sprinkled order: Johnston's Feynman propagator (card, draft 0, 28 Nov 2026)
+# Q.1c — the vacuum of one 1+1 sprinkled order: Johnston's Feynman propagator (card, draft 1, 28 Nov 2026)
 
-**Status: draft 0. Nothing here is frozen.** The author freezes the card. It is the second test of the quantum section,
+**Status: draft 1. Nothing here is frozen.** The author approved draft 0 (14:24). The smoke run of the test file then
+found four points; draft 1 corrects them, and they are listed at the end ("Changes from draft 0"). The author freezes
+the card. It is the second test of the quantum section,
 chosen by the author before the interference test (route "C, then A", 28 Nov 11:29). Development: diag/q1c_dev.py,
 diag/q1c_sj.py, diag/q1c_dev2.py.
 
@@ -25,7 +27,8 @@ Johnston, arXiv:0909.0944:
 
 Then Re K_F = (K_R + K_A)/2, whose mean is exact (Q.1). The content of the card is **Im K_F = Re Q**: a non-linear
 (spectral) function of the order, whose mean is not exact. Because Δ is real antisymmetric, Q = (|Δ| + iΔ)/2 with
-|Δ| = (ΔᵀΔ)^{1/2}, so Re Q = |Δ|/2. This identity is checked as an instrument (I1).
+|Δ| = (ΔᵀΔ)^{1/2}, so Re Q = |Δ|/2. |Δ| is computed as VSVᵀ from the singular value decomposition of Δ. This
+identity is checked as an instrument (I1).
 
 ## Reference: the continuum SJ state of the same diamond
 
@@ -42,14 +45,18 @@ Then Re K_F = (K_R + K_A)/2, whose mean is exact (Q.1). The content of the card 
 ## Model
 
 - **Region:** the light-cone square u, v ∈ [0, 1], as in Q.1. The mass is fixed per point: m ∈ {5, 10, 20} (mL).
-- **The only scaled quantity:** the density, N_exp ∈ {1000, 2000, 4000, 8000}; m²/ρ = 0.10 at most.
+- **The only scaled quantity:** the density, N_exp ∈ {1000, 2000, 4000, 8000}; m²/ρ = 0.20 at most (m = 20,
+  N_exp = 1000).
 - **Probe pairs:** 12 fixed pairs in the centre (u, v = ½ ± k/24, k ≤ 8), added as fixed elements to the sprinkling:
   - 4 timelike pairs with Δu = Δv;
   - 4 timelike pairs with Δu = 2Δv;
   - 4 spacelike pairs;
   - mτ or mσ from 0.29 to 6.7. Null-separated pairs are excluded: the function diverges on the light cone.
-- **Probes in general position.** No two inserted points share u or v. The pairs come in 5 groups and each group gets
-  its own sprinklings.
+- **Probes in general position.** No two inserted points share u or v, and no inserted point lies inside or on the
+  causal interval of a timelike pair of its own group. The pairs come in 8 groups and each group gets its own
+  sprinklings:
+  - (time 1, space 2), (time 2, space 3), (time 3, space 4), (time 4);
+  - (skew 1), (skew 2, space 1), (skew 3), (skew 4).
   - Reason (development, records diag/out/q1c_dev2_20261128T115328Z and 124921Z): a point exactly on the light cones
     of a pair, which has probability zero in a sprinkling, moved Re Q of that pair by −0.32 (in units of ¼).
 - **Realisations:** R = 48 per (m, N_exp, group). Seeds derive_seed(base, "Q.1c", m, N_exp, group, r).
@@ -92,8 +99,9 @@ No rate is predicted for the fluctuation, unlike Q.1. The spectral construction 
 
 - **I1 (the identity):** on 10 orders of N = 50–300, Re Q from |Δ|/2 against the explicit complex eigendecomposition
   of iΔ (positive part), max |difference| ≤ 1e-10; and Im Q = Δ/2, ≤ 1e-12.
-- **I2 (the retarded part):** at every probe pair (timelike), the mean of K_R(p, q) equals ½J₀(mτ) within 3.5 SE
-  (Q.1's exact mean, here at the inserted pairs).
+- **I2 (the retarded part):** at every timelike probe pair and every (m, N_exp), the mean of K_R(p, q) equals ½J₀(mτ)
+  within 4.0 SE (Q.1's exact mean, here at the inserted pairs). This is 96 comparisons, so the false-alarm rate of the
+  whole instrument is about 0.6 % (it would be 4.4 % at 3.5 SE).
 - **I3 (general position):** no two inserted points share u or v (a check of the construction).
 - **I4 (the null, non-negative weights):** the same construction with b = +m²/ρ at m = 10, N_exp = 2000. Its "vacuum"
   must differ from W_SJ: χ² p < 1e-6. If it agrees, the agreement of the quantum case would not be specific to the
@@ -134,5 +142,23 @@ Record diag/out/q1c_dev2_20261128T124921Z: probes in general position, 24 realis
   m = 5.
 - The first version, with all probes inserted together, is in record 115328Z. It shows the null-coincidence artifact.
 
-**Cost:** dense matrices of N ≈ N_exp + 6. At N_exp = 8000, about 2 GB per worker and a few minutes per realisation.
-The full run is several hours on the author's PC; the workers are to be chosen by its memory.
+**Cost:**
+- Dense matrices of N ≈ N_exp + 4. The workers are chosen by the author.
+- At N_exp = 8000, about 3 GB per worker and about 5 min per realisation (the SVD).
+- The full run is about 10 h on 10 workers, and an interrupted run continues from its cache.
+
+## Changes from draft 0 (found by the smoke run of the test file, 28 Nov)
+
+1. **Groups (5 → 8).**
+   - In draft 0, an inserted point could lie inside the causal interval of a timelike pair of its own group. For
+     example, (0, 0), the end of a skew pair, lies inside every Δu = Δv interval.
+   - Extra fixed elements inside the interval add chains, so E K_R(p, q) is no longer exactly ½J₀(mτ). I2 failed in
+     the smoke run (|z| up to 16 at the small densities of the smoke run).
+   - The 8 groups keep general position and keep every inserted point outside the intervals of the timelike pairs of
+     its group. Each pair appears exactly once.
+2. **|Δ| by the singular value decomposition.**
+   - (ΔᵀΔ)^{1/2} from the eigendecomposition of ΔᵀΔ squares the condition. It reached only 8e-9 against the explicit
+     positive part of iΔ, and I1 (1e-10) failed.
+   - The SVD gives 6e-15. It costs about 3× more time and one more N × N matrix.
+3. **m²/ρ at most 0.20**, not 0.10 (m = 20, N_exp = 1000). This was a factual error in draft 0.
+4. **I2 at 4.0 SE instead of 3.5 SE**, because the instrument makes 96 comparisons (proposed; the author decides).
