@@ -1,0 +1,27 @@
+Q.1: Johnston's sum-over-chains propagator on one 1+1 sprinkling (card docs/quantum/Q1_card_draft.md, decision 50)
+  region u, v in [0, 1], x = (0, 0), y = (1, 1), tau = 1; R = 2000 realisations per point
+  m 2 N_exp   1000 (m^2/rho 0.0020): mean e +0.000078 (+0.39 SE)  M1 0.008885 (7.94 % of |K|)  M2 0.006534  median |e| 0.006132  q90 |e| 0.014571
+  m 2 N_exp   4000 (m^2/rho 0.0005): mean e +0.000095 (+0.90 SE)  M1 0.004713 (4.21 % of |K|)  M2 0.003319  median |e| 0.003154  q90 |e| 0.007735
+  m 2 N_exp  16000 (m^2/rho 0.0001): mean e +0.000002 (+0.04 SE)  M1 0.002365 (2.11 % of |K|)  M2 0.001631  median |e| 0.001552  q90 |e| 0.003850
+  m 5 N_exp   1000 (m^2/rho 0.0125): mean e +0.000175 (+0.35 SE)  M1 0.022340 (25.16 % of |K|)  M2 0.016943  median |e| 0.014752  q90 |e| 0.036879
+  m 5 N_exp   4000 (m^2/rho 0.0031): mean e -0.000323 (-1.35 SE)  M1 0.010706 (12.06 % of |K|)  M2 0.008388  median |e| 0.007276  q90 |e| 0.017586
+  m 5 N_exp  16000 (m^2/rho 0.0008): mean e -0.000002 (-0.01 SE)  M1 0.005678 (6.39 % of |K|)  M2 0.004220  median |e| 0.003761  q90 |e| 0.009436
+  m 10 N_exp   1000 (m^2/rho 0.0500): mean e +0.000015 (+0.02 SE)  M1 0.038708 (31.48 % of |K|)  M2 0.037737  median |e| 0.025784  q90 |e| 0.063704
+  m 10 N_exp   4000 (m^2/rho 0.0125): mean e -0.000665 (-1.64 SE)  M1 0.018099 (14.72 % of |K|)  M2 0.018565  median |e| 0.012390  q90 |e| 0.029683
+  m 10 N_exp  16000 (m^2/rho 0.0031): mean e -0.000111 (-0.53 SE)  M1 0.009329 (7.59 % of |K|)  M2 0.009349  median |e| 0.006348  q90 |e| 0.015241
+  m 2 M1        : slope -0.4774  bootstrap median -0.4777  95 % [-0.4943, -0.4606]  -> in band
+  m 2 M2        : slope -0.5005  bootstrap median -0.5004  95 % [-0.5144, -0.4868]  -> in band
+  m 2 median |e|: slope -0.4955  bootstrap median -0.4958  95 % [-0.5241, -0.4721]  (reported)
+  m 2 q90 |e|   : slope -0.4800  bootstrap median -0.4797  95 % [-0.5026, -0.4577]  (reported)
+  m 5 M1        : slope -0.4941  bootstrap median -0.4941  95 % [-0.5108, -0.4782]  -> in band
+  m 5 M2        : slope -0.5013  bootstrap median -0.5012  95 % [-0.5103, -0.4915]  -> in band
+  m 5 median |e|: slope -0.4929  bootstrap median -0.4936  95 % [-0.5176, -0.4697]  (reported)
+  m 5 q90 |e|   : slope -0.4917  bootstrap median -0.4920  95 % [-0.5169, -0.4729]  (reported)
+  m 10 M1        : slope -0.5132  bootstrap median -0.5130  95 % [-0.5298, -0.4971]  -> in band
+  m 10 M2        : slope -0.5033  bootstrap median -0.5031  95 % [-0.5090, -0.4967]  -> in band
+  m 10 median |e|: slope -0.5055  bootstrap median -0.5039  95 % [-0.5320, -0.4738]  (reported)
+  m 10 q90 |e|   : slope -0.5158  bootstrap median -0.5167  95 % [-0.5402, -0.4887]  (reported)
+  I1 recursion vs dense solve: max |diff| 8.88e-16 (tol 1e-12) OK
+  I2 exact mean: max |z| 1.64 (tol 3.5) OK
+  I3 non-negative null (b = +m^2/rho, m 5, N_exp 4000): mean 13.6079 against (1/2) I0 = 13.6199 (-1.04 SE), sd 0.5176 OK
+  verdict: PASSED

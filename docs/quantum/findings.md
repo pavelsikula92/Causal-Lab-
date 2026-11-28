@@ -9,7 +9,7 @@ State of 28 Nov 2026: the section is open (decision 49); one verdict (Q.1).
 ## Holds
 
 - **Q.1: one sprinkled 1+1 order carries Johnston's sum-over-chains propagator; its error falls as ρ^{−1/2} at fixed
-  mτ, both at a fixed pair and over the order's own elements (PASSED, calibration)**
+  mτ, both at a fixed pair and over the order's own elements (PASSED, calibration, replicated)**
   - **Setup:** card docs/quantum/Q1_card_draft.md draft 1, frozen (decision 50). Light-cone square, τ_xy = 1, m = 2, 5,
     10, N_exp = 1000, 4000, 16000, 2000 realisations per point. Run by the author 28 Nov on the frozen file (sha256
     d58fd228, core 6eac15c4), 870 s. Record results/Q_quantum/Q.1/20261128T102351Z_main_seed0_d58fd228.json.
@@ -38,7 +38,13 @@ State of 28 Nov 2026: the section is open (decision 49); one verdict (Q.1).
     - This is a calibration; it has no physical conclusion of its own.
     - It says nothing about 3+1 (Q.1b), interference against the non-negative flow (Q.2), the Born rule (Q.3), or
       m²/ρ → 1.
-  - **Replication:** not yet (a run with another seed, --seed K).
+  - **Replication (seed 1, PASSED):** results/Q_quantum/Q.1/20261128T104119Z_main_seed1_d58fd228.json (same file
+    and core, 900 s).
+    - Slopes: M1 −0.477 [−0.494, −0.461] / −0.494 [−0.511, −0.478] / −0.513 [−0.530, −0.497]; M2 −0.501 / −0.501 /
+      −0.503, all in band.
+    - I1 8.9e-16, I2 max |z| 1.64, I3 −1.04 SE.
+    - Relative error at N_exp 16000: 2.1 % / 6.4 % / 7.6 %.
+    - The verdict is replicated.
 
 ## Does not hold
 
