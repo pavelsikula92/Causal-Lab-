@@ -94,3 +94,45 @@ regulation acts would be a candidate scale of matter.
    - Does the γ^{11/7} term then become a smooth term with its own scale L_c(ℓ_k, T, b)?
    - Is L_c related to L_* of H1?
    - A comparison with hadronic scales only with T fixed by a theory of the age (F8.8), not chosen to fit.
+
+## H4. Records live in the order between elements, not in the elements (author and Claude, 28 Nov 2026)
+
+**Idea.** A single atom or simple element carries very little of the history it went through. Once atoms are put
+together into tissues, cells, bones, layers of soil or a whole environment, their mutual arrangement, bonds,
+microscopic traces and distribution in space keep a much richer imprint of past events (the author). In causal
+physics this would be a property of the order itself: the record of the past is held by the relations among many
+elements, and its capacity grows faster than the number of elements that carry it. Matter, "a persistent flow with a
+memory of direction" (the laboratory's ontology), would then be a structure whose order keeps such an imprint. A
+measurement, "a causal act" (the author), would be the moment a relation is copied into a structure rich enough to
+keep it.
+
+**What is known.**
+- **An element alone.** In a causal set an element is defined only by its relations. Its past is the set of elements
+  below it, but locally it is joined only to its links (immediate predecessors). Without the order, N elements carry
+  nothing but their number.
+- **The order holds the information.** Among N elements of a region, the number of related pairs grows as f N², with f
+  the ordering fraction that the dimension estimator reads (Myrheim–Meyer; the laboratory's slanted instrument). The
+  room for an imprint grows faster than the matter that carries it.
+- **The age term is a record of this kind.** The static response of a field depends on its age T only through causal
+  intervals of length ~T and proper time of a few ℓ_k, the needles (f68f_dev; H3). The field keeps its history in a
+  non-local structure that spans the whole age, not at any point. At cusps of the first arrival (f68i_dev §7), the
+  channels of that record (the rays) merge and tie, and the classical record stops being unique there (H3).
+- **The quantum side.** In decoherence theory, an objective classical fact is one that the environment keeps in many
+  redundant copies (Zurek's quantum Darwinism). One atom cannot keep it; a macroscopic environment can. This is the
+  same statement read from the quantum side; the laboratory has no quantum layer yet.
+
+**What would test it.**
+1. **The record capacity of a sprinkled order.**
+   - Put a known perturbation in the past of a sprinkling: a density bump, a defect passing, a field of given age.
+   - Ask how much of it can be read from the order restricted to a later region of N elements (mutual information
+     between the perturbation's parameter and the restricted order, or the error of the best estimator).
+   - Compare regions of the same N but different shape: an Alexandrov interval, a thin slab, an antichain.
+   - The hypothesis predicts a capacity growing faster than N for connected regions (intervals) and much slower for
+     an antichain.
+2. **The age term as a readout.**
+   - The needle volumes read the age T of a field.
+   - The question: what is the least N (needle length and thickness) from which T can be read to a given accuracy?
+   - This connects H4 with H1–H3.
+3. **The quantum layer.** If the laboratory gets one (amplitudes over orders), the redundancy of records (how many
+   disjoint sub-orders each carry the same fact) would be the measure of how classical a fact is. That would be the
+   place to compare with quantum Darwinism.
