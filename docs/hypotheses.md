@@ -95,6 +95,32 @@ regulation acts would be a candidate scale of matter.
    - Is L_c related to L_* of H1?
    - A comparison with hadronic scales only with T fixed by a theory of the age (F8.8), not chosen to fit.
 
+**A candidate regulator from the literature (added 28 Nov 2026, the author: "Můžem to zkusit").**
+- **The paper.** S. Ramos et al. (CPT, Aix-Marseille), Phys. Rev. D, online 2 Nov 2026, DOI 10.1103/v7p6-qcq3. Popular
+  account: osel.cz, 26 Nov 2026.
+  - If gravity is quantum, a photon crossing a bath of gravitons meets a superposition of geometries. Its arrival time,
+    and with it the edge of the light cone, is blurred by an amount growing as the square root of the time, like a
+    random walk.
+  - Causality is not violated.
+  - Near a black hole, the blur of the horizon could reach its radius in about the Page time. That part is
+    speculative by the paper's own account.
+- **The connection with H3.**
+  - The cusp term γ^{11/7} comes from a caustic of the light cone: the first-arrival wavefront folds where the rays
+    merge (f68i_dev §6–7).
+  - The blur is not itself a caustic; it is a fluctuation of the arrival time. A caustic is where a sharp front is
+    most singular, so a blur of width w smooths it, as a wave smooths a classical caustic.
+  - Moreover, fluctuating media form new caustics by random focusing. Both effects meet at the cusps.
+- **A scale.** A blur growing as √(ℓT) would set the scale L_c of H3 from the discreteness ℓ and the age T. For ℓ the
+  Planck length and T the age of the universe, √(ℓT) ≈ 5·10⁻⁵ m. This is only an illustration of the order: the
+  coefficient of the paper is not known here, and ℓ need not be the Planck length.
+- **The classical counterpart already in the laboratory.** F3.14c ("swerves", replicated): a defect on a sprinkled
+  order receives random kicks from the discreteness, a Lorentz-invariant diffusion of momentum (Dowker, Philpott,
+  Sorkin). The order alone already blurs trajectories, without gravitons.
+- **How the laboratory could test it.**
+  - Classically: smooth the first arrival over a width w (an arrival time with a √T spread) and see whether the cusp
+    term becomes a smooth term with the scale √(wT).
+  - Quantum: a superposition of orders instead of one order (after interference and the Born rule, Q.2, Q.3).
+
 ## H4. Records live in the order between elements, not in the elements (author and Claude, 28 Nov 2026)
 
 **Idea.** A single atom or simple element carries very little of the history it went through. Once atoms are put
