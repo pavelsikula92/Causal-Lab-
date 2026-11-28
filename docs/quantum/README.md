@@ -1,7 +1,9 @@
 # Quantum layer — points and observations for future development
 
-Opened 9 Nov 2026 at the author's request. **Status: notes only. Nothing here is a result, a test or a part of the
-theory yet.** The quantum layer is deliberately postponed until the classical base stands (the author's decision,
+Opened 9 Nov 2026 at the author's request. **Status since 28 Nov 2026: the quantum layer is a section of the
+laboratory of its own (decision 49): its tests (IDs Q.n), cards, planned tests, findings and results are kept apart
+from the classical ones (section 7). Nothing here is a result yet.** The notes below (sections 1-6) are the notes of
+9 Nov, kept as they were. The quantum layer is deliberately postponed until the classical base stands (the author's decision,
 9 Nov): motion of matter from conservation (F5.1g, F5.1h), the field equations (the Jacobson route), waves and frame
 dragging from the dynamics of the order, and the strong field. A quantum test before that would not tell whether a
 failure comes from the phase or from the classical rule.
@@ -72,10 +74,54 @@ failure comes from the phase or from the classical rule.
 - **Gravitationally induced collapse / entanglement (Penrose–Diósi, BMV):** external experiments; the theory should
   say what it predicts for them once the quantum layer exists.
 
-## 6. Rules for this layer (to be confirmed by the author when it opens)
+## 6. Rules for this layer (9 Nov; the first rule was replaced by decision 49, section 7)
 
 - Nothing here starts before the classical pillars have their verdicts.
 - Every test gets a card, frozen criteria and a null model (the classical, non-negative flow), as in the rest of the
   laboratory; R132 holds.
 - The interpretation (section 2) is a guide for building rules, not a result; it is confirmed only through tests of
   section 3.
+
+## 7. The quantum section of the laboratory (28 Nov 2026, decision 49)
+
+**Why now.** The author opened the layer on 28 Nov, before all classical pillars have verdicts. The reason given in
+the discussion: the classical age term does not close by itself (hypothesis H3: no continuum limit for old fields),
+and records and measurement need a quantum account (H4). The danger named on 9 Nov stays: a quantum test built on an
+open classical rule could not tell which of the two failed. So the first quantum tests are **calibrations of quantum
+instruments on the bare substrate** (a Poisson sprinkling of flat spacetime), which depend on no open classical
+pillar. Tests that use the classical rules (fields, defects, the age term) come only after these instruments pass.
+
+**Layout (kept apart from the classical section).**
+
+| What | Where |
+|---|---|
+| notes and the stance (this file) | `docs/quantum/README.md` |
+| planned tests, ID;Question;Level;Depends on;Note | `docs/quantum/planned_tests.csv` |
+| cards | `docs/quantum/Q<n>_card_draft.md` |
+| findings (verdicts and their reading) | `docs/quantum/findings.md` |
+| test files | `phases/Q_quantum/Q_<nn>_<name>.py` (registered when the first card is frozen) |
+| records of full runs | `results/Q_quantum/<ID>/` |
+| development scripts and records | `diag/q<n>_*.py`, `diag/out/q<n>_*` |
+
+**IDs.** Q.1, Q.2, ... with revision letters as elsewhere (Q.1b). The phase Q is added to the registry of the
+laboratory (`core/registry.py`: the phase list and the file-name pattern) when the first quantum test file is
+written. That is a change of the core, so records from then on carry a new core hash, as with decision 48.
+
+**Rules (replacing the first rule of section 6).**
+- Every quantum test has a card with a frozen question, instruments, criteria and a **null model**: the classical,
+  non-negative flow, or the same construction with non-negative weights. A quantum effect counts only where it
+  differs from the null.
+- A quantum test may use only instruments that passed their own calibration (Q.1 first).
+- Interpretation (section 2) guides the construction of rules. It is not a result.
+- The standing rules of the laboratory hold unchanged (M1-M7, R132, smoke test before every run).
+
+**The first line of tests (docs/quantum/planned_tests.csv).**
+1. Q.1: the sum-over-chains propagator (Johnston) on a 1+1 sprinkling: exact mean, self-averaging of one order.
+2. Q.1b: the same in 3+1 with the link matrix; the mean is not exact there.
+3. Q.2: two-route interference on a sprinkled order, against the non-negative null.
+4. Q.3: the quantum measure of a two-route experiment (Sorkin's decoherence functional): the second-order interference
+   term I₂ and the vanishing of the third-order term I₃ (the Born-rule test).
+5. Q.4: the first arrival as an amplitude sum. Does the cusp term γ^{11/7} of the classical age term survive when the
+   minimum over rays is replaced by a sum with phases (H3, test 3)?
+6. Q.5: Bell correlations in a growth of two separated regions from a common past.
+7. Q.6: records: redundancy of a fact in sub-orders (H4, test 3).

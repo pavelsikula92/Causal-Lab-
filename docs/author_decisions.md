@@ -1223,3 +1223,28 @@ testů v podsložce - vše v eng".
   appear in `results/F3.14c/`; `load_all` reads it there, and it can be moved into `results/F3_structure/F3.14c/`.
 - docs/findings.md: the paths `results/<ID>` were rewritten to the new layout. The decisions, cards and derivations
   are historical and keep the old paths (`results/README.md` gives the mapping).
+
+## 49. The quantum layer opened as a section of its own (28 Nov, 10:29)
+
+**The author** (after Claude's assessment that the laboratory is still entirely classical and that H3 and H4 point to
+the need for a quantum level): "Dobře, než doběhne test připrav mi nové testy - první pro kvantové. Bude to chtít
+vlastní results, findings, kartu,... vlastní sekci v labině pro odlišení."
+
+- The quantum layer is opened on 28 Nov, before all classical pillars have verdicts. This replaces the first rule of
+  docs/quantum/README.md section 6 (9 Nov: "nothing starts before the classical pillars have their verdicts").
+- The danger named then stays, so the first quantum tests are calibrations of quantum instruments on a bare Poisson
+  sprinkling of flat spacetime. They depend on no open classical pillar.
+- **Its own section, kept apart from the classical one** (docs/quantum/README.md section 7):
+  - IDs Q.n;
+  - planned tests in docs/quantum/planned_tests.csv;
+  - cards in docs/quantum/Q<n>_card_draft.md;
+  - findings in docs/quantum/findings.md;
+  - test files in phases/Q_quantum/;
+  - records in results/Q_quantum/<ID>/.
+- The phase Q is added to core/registry.py when the first quantum test file is written. That is a change of the core,
+  so records from then on carry a new core hash, as with decision 48.
+- Every quantum test has a null model (the classical, non-negative flow, or the same construction with non-negative
+  weights). A quantum effect counts only where it differs from the null.
+- **The first card, Q.1 (draft 0):** Johnston's sum-over-chains propagator on a 1+1 sprinkling. The mean ½J₀(mτ) is
+  exact at every density. The question is the self-averaging of a single order. The card is proposed; the author
+  freezes it.
