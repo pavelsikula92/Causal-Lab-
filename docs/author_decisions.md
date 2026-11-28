@@ -1248,3 +1248,34 @@ vlastní results, findings, kartu,... vlastní sekci v labině pro odlišení."
 - **The first card, Q.1 (draft 0):** Johnston's sum-over-chains propagator on a 1+1 sprinkling. The mean ½J₀(mτ) is
   exact at every density. The question is the self-averaging of a single order. The card is proposed; the author
   freezes it.
+
+## 50. Q.1 frozen (28 Nov, 10:47)
+
+**The author on draft 0** (10:39): the card is approved for completion and freezing, but not unchanged. Four points:
+1. Define exactly what is held fixed when N changes: region, density, mass, construction, the definition of sd and
+   the reference.
+2. Distinguish one realisation from the ensemble: several independent realisations per N, the distribution of the
+   deviations, the median and the spread of the slope.
+3. Complete the decision bands: INCONCLUSIVE for the gap, not a widening of the bands after the results; a verdict
+   for slopes below −0.65 (a deviation from the expected scaling, not a failure).
+4. Keep the calibration (the exact mean, the non-negative null) apart from the physics verdict, and keep the
+   development as a diagnostic outside the result, including the error growing with m (2.1 / 6.0 / 7.2 %).
+Q.1 tests the numerical realisation of the propagator on a causal order, not quantum mechanics as a whole; that is a
+correctly limited first step.
+
+**Draft 1** (docs/quantum/Q1_card_draft.md) answers the four points:
+- Fixed region and mass; the density is the only scaled quantity.
+- M1 = sd of the error at the fixed pair; M2 = median over realisations of the error of one order over its own
+  elements. Bootstrap intervals of both slopes.
+- Complete bands: in band / fail / deviation / inconclusive. INCONCLUSIVE is recorded as UNDECIDED with a sub-label,
+  because the statuses of the core are fixed.
+- I1–I3 as instruments; the development in its own section.
+
+**The author** (10:47): "Schváleno".
+- The card is frozen.
+- Test file phases/Q_quantum/Q_01_chain_propagator_2d.py (sha256 d58fd228…, LF md5 a596dfaa).
+- The phase Q is added to core/registry.py (the phase list, the file-name pattern; LF md5 3c3376b9). This is a change
+  of the core: records from now on carry a new core hash. No closed gate is affected; the classical tests are
+  unchanged.
+- Smoke run (--quick, 40 realisations, 7 s): I1 6e-16, I2 max |z| 1.95, I3 +0.22 SE; the bands are not read from it.
+- The core checks pass (25/25).

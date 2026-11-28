@@ -1,6 +1,6 @@
 # Q.1 — the sum-over-chains propagator on a 1+1 sprinkling (card, draft 1, 28 Nov 2026)
 
-**Status: draft 1. Nothing here is frozen.** The author freezes the card. It is the first test of the quantum section
+**Status: FROZEN** by the author, 28 Nov 2026, 10:47 ("Schváleno"; decision 50). The test file is phases/Q_quantum/Q_01_chain_propagator_2d.py (sha256 d58fd228…, LF md5 a596dfaa). Its smoke run (--quick, 40 realisations) decides nothing. From now on, the metric, the range and the bands do not change; a change would be a new revision with a new ID. It is the first test of the quantum section
 (decision 49; docs/quantum/README.md section 7).
 
 Draft 1 answers the author's four points on draft 0 (28 Nov, 10:39):

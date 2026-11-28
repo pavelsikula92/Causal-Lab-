@@ -31,9 +31,10 @@ PHASES: List[Tuple[str, str, str, str]] = [
     ("F6", "F6_order_dynamics", "Dynamics of the order", "axiom 7, D_eff ≈ 3 (problems 2, 5, 8)"),
     ("F7", "F7_light", "Light and waves", "hypotheses H1, H2 (problem 4)"),
     ("F8", "F8_data", "Confrontation with data", "problems 6, 7, 10 and the solar system"),
+    ("Q", "Q_quantum", "Quantum layer", "decision 49: quantum instruments and tests, kept apart from the classical phases"),
 ]
 
-_FILE = re.compile(r"^(K|F\d)_\d{2}[a-z]?\d?_[A-Za-z0-9_]+\.py$")
+_FILE = re.compile(r"^(K|Q|F\d)_\d{2}[a-z]?\d?_[A-Za-z0-9_]+\.py$")
 
 
 def _load(path: Path):
@@ -73,7 +74,7 @@ def phase_of(tid: str) -> str:
 
 
 def sort_key(tid: str):
-    """K first, then F0..F8; numbers numerically; revision letters last."""
+    """K first, then F0..F8, then Q; numbers numerically; revision letters last."""
     ph, rest = tid.split(".", 1)
     m = re.match(r"(\d+)([a-z]?)", rest)
     order = [p[0] for p in PHASES]
