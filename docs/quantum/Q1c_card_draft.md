@@ -1,8 +1,9 @@
 # Q.1c — the vacuum of one 1+1 sprinkled order: Johnston's Feynman propagator (card, draft 1, 28 Nov 2026)
 
-**Status: draft 1. Nothing here is frozen.** The author approved draft 0 (14:24). The smoke run of the test file then
-found four points; draft 1 corrects them, and they are listed at the end ("Changes from draft 0"). The author freezes
-the card. It is the second test of the quantum section,
+**Status: FROZEN** by the author, 28 Nov 2026, 14:41 (decision 51): draft 1 with all four changes, I2 at 4.0 SE.
+The author approved draft 0 at 14:24; the smoke run of the test file then found the four points listed at the end
+("Changes from draft 0"). Test file phases/Q_quantum/Q_01c_feynman_vacuum_2d.py (sha256 2defb344…, LF md5 e751fb95).
+From now on, the metric, the range and the bands do not change; a change would be a new revision with a new ID. It is the second test of the quantum section,
 chosen by the author before the interference test (route "C, then A", 28 Nov 11:29). Development: diag/q1c_dev.py,
 diag/q1c_sj.py, diag/q1c_dev2.py.
 
@@ -161,4 +162,4 @@ Record diag/out/q1c_dev2_20261128T124921Z: probes in general position, 24 realis
      positive part of iΔ, and I1 (1e-10) failed.
    - The SVD gives 6e-15. It costs about 3× more time and one more N × N matrix.
 3. **m²/ρ at most 0.20**, not 0.10 (m = 20, N_exp = 1000). This was a factual error in draft 0.
-4. **I2 at 4.0 SE instead of 3.5 SE**, because the instrument makes 96 comparisons (proposed; the author decides).
+4. **I2 at 4.0 SE instead of 3.5 SE**, because the instrument makes 96 comparisons (the author's decision, 14:41).

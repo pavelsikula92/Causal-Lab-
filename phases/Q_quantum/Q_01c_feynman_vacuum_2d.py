@@ -2,7 +2,7 @@
 Q.1c -- the vacuum of one 1+1 sprinkled order: Johnston's Feynman propagator against the continuum SJ state
 =========================================================================================================
 
-Why this test exists (28 Nov 2026; card docs/quantum/Q1c_card_draft.md draft 1, NOT YET FROZEN)
+Why this test exists (28 Nov 2026; card docs/quantum/Q1c_card_draft.md draft 1, frozen by the author, decision 51)
 ---------------------------------------------------------------------------------------------------------------
 Q.1 showed that one sprinkled order carries the propagation of a free scalar (the retarded propagator). Q.1c asks
 whether one order also carries its vacuum: the imaginary part of Johnston's Feynman propagator (arXiv:0909.0944),
@@ -41,7 +41,7 @@ hi < 0, grows if lo > 0, unclear otherwise. FAILED if any bias deviant or any fl
 consistent and all fluctuations fall; else UNDECIDED (inconclusive). INSTRUMENT_FAILED if I1-I4 fails:
 I1 |Delta|/2 against the explicit complex eigendecomposition of i Delta on 10 orders of N = 50-300, max |diff| <= 1e-10,
    and Im Q = Delta/2 <= 1e-12;
-I2 at every timelike probe pair (every m and N_exp) the mean of K_R(p, q) equals (1/2) J0(m tau) within 3.5 SE;
+I2 at every timelike probe pair (every m and N_exp) the mean of K_R(p, q) equals (1/2) J0(m tau) within 4.0 SE;
 I3 no two inserted points share u or v;
 I4 the same construction with b = +m^2/rho at m = 10, N_exp = 2000 (5 groups x R) differs from W_SJ: chi^2 p < 1e-6.
 
@@ -91,14 +91,14 @@ TEST = {
                  "falls if the bootstrap 95 % interval of the slope of ln S against ln N_exp has hi < 0, grows if "
                  "lo > 0. FAILED if any deviant or growing; PASSED if all consistent and falling; else UNDECIDED "
                  "(inconclusive). INSTRUMENT_FAILED if I1 (identity 1e-10, Im Q 1e-12), I2 (K_R mean at timelike "
-                 "pairs within 3.5 SE), I3 (general position) or I4 (non-negative null must differ, p < 1e-6) fails",
+                 "pairs within 4.0 SE), I3 (general position) or I4 (non-negative null must differ, p < 1e-6) fails",
     "null_model": "the same construction with non-negative weights b = +m^2/rho (I4): its 'vacuum' must differ",
     "level": "calibration",
     "meters": ["Q.1"],
     "depends_on": ["Q.1"],
     "params": {"ms": [5.0, 10.0, 20.0], "n_exp": [1000, 2000, 4000, 8000], "reps": 48, "chunk": {"1000": 12,
                "2000": 6, "4000": 2, "8000": 1}, "grids": [24, 48, 96], "boot": 2000, "p_ok": 0.01, "p_bad": 0.001,
-               "n_se": 3.5, "null_m": 10.0, "null_n": 2000, "null_p": 1e-6, "i1_orders": 10, "i1_tol": 1e-10,
+               "n_se": 4.0, "null_m": 10.0, "null_n": 2000, "null_p": 1e-6, "i1_orders": 10, "i1_tol": 1e-10,
                "i1_tol_im": 1e-12, "cache": True},
     "parts": {"main": {}},
     "quick": {"n_exp": [400, 800], "reps": 6, "chunk": {"400": 3, "800": 3}, "grids": [24, 48], "boot": 200,
@@ -328,7 +328,7 @@ def run(p, ctx):
                 kr[j] = np.array([row[i] for row in kk])
         return d, kr, gen
 
-    L = ["Q.1c: the vacuum of one 1+1 sprinkled order (card docs/quantum/Q1c_card_draft.md)",
+    L = ["Q.1c: the vacuum of one 1+1 sprinkled order (card docs/quantum/Q1c_card_draft.md, decision 51)",
          f"  light-cone square; 12 probe pairs in 8 groups (general position); R = {R} per (m, N_exp, group); "
          f"d = (Re Q - W_SJ)/(1/4)"]
     data = {"i1": i1, "ref": {str(m): refs[m] for m in ms}, "cells": [], "per_m": []}

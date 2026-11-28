@@ -1279,3 +1279,31 @@ correctly limited first step.
   unchanged.
 - Smoke run (--quick, 40 realisations, 7 s): I1 6e-16, I2 max |z| 1.95, I3 +0.22 SE; the bands are not read from it.
 - The core checks pass (25/25).
+
+## 51. Q.1c frozen (28 Nov, 14:41)
+
+**Route (11:29).** The author: "C, poté A - bez něho bychom A museli opakovat". The complex (Feynman) propagator is
+calibrated before the interference test.
+
+**Construction (11:31).** The author: the Feynman propagator must be defined purely from G_ret, G_adv of the given
+order, through the Pauli–Jordan operator and the SJ spectral decomposition of its positive part, without any
+external intervention. The card follows this: no truncation of the spectrum, constant amplitudes, and the continuum
+used only as the reference.
+
+**Reference (11:43).** The author: the offset against the Minkowski vacuum is only reported. The reference is the
+continuum SJ state of the same diamond, computed independently of any causal set.
+
+**Draft 0** (14:0x) was approved by the author at 14:24 ("Shváleno"). The smoke run of the test file then found four
+points, corrected in draft 1:
+1. 8 probe groups instead of 5. No inserted point may lie inside or on the interval of a timelike pair of its group;
+   otherwise E K_R is not exactly ½J₀ and I2 fails.
+2. |Δ| from the SVD, because the eigendecomposition of ΔᵀΔ reached only 8e-9 against I1's 1e-10.
+3. m²/ρ is at most 0.20, not 0.10.
+4. I2's threshold.
+
+**The author (14:41):** "Schvaluji všechny čtyři změny. U bodu 4 rozhoduji: I2 bude mít práh 4,0 SE."
+- The card (docs/quantum/Q1c_card_draft.md draft 1) is frozen.
+- Test file phases/Q_quantum/Q_01c_feynman_vacuum_2d.py (sha256 2defb344…, LF md5 e751fb95).
+- Smoke run (--quick): I1 5.8e-15, I2 max |z| 3.43, I3 OK, I4 χ²/12 = 443. It decides nothing.
+- The full run is on the author's PC with the workers of his choice: about 3 GB per worker at N_exp = 8000, about 10 h
+  on 10 workers. An interrupted run continues from its cache (results/Q_quantum/Q.1c/cache).
