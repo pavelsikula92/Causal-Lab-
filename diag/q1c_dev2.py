@@ -10,6 +10,13 @@ extrapolated in n with the order estimated from the three grids; its uncertainty
 
 Readout per (m, N_exp, pair): d = (Re Q - W_SJ) / (1/4), mean and sd over realisations.
 
+Probes in general position (revision 2, 28 Nov). Inserting all probe points at once put some of them exactly on the
+light cones of others (equal u or equal v: for example (-1, 1) is null to both (-1, -1) and (1, 1)). Such
+coincidences have probability zero in a sprinkling, but two of them moved Re Q of the pair (-1,-1)-(1,1) by -0.32 (in
+units of 1/4) at m 10, N_exp 2000 (alone: -0.010 +- 0.018; with (0, 0): -0.021; with (-1, 1), (1, -1): -0.316). The
+pairs are therefore inserted in five groups whose points share no u and no v, one group per sprinkling (record
+20261128T115328Z is the first, flawed version).
+
 Usage: python -m diag.q1c_dev2 --n 1000,2000,4000 --m 5,10,20 --reps 20 --workers 2
 """
 
@@ -48,6 +55,20 @@ def reference():
     return pr, ref
 
 
+GROUPS = [  # (kind, k) per group; in each group all u and all v of the probe points are distinct
+    [("skew", 1), ("time", 3), ("space", 4)],
+    [("skew", 2), ("time", 1), ("space", 3)],
+    [("skew", 3), ("time", 2), ("space", 1)],
+    [("skew", 4), ("time", 3), ("space", 2)],
+    [("time", 4)],
+]
+
+
+def pair_index(kind, k):
+    """Index of the probe pair in diag/q1c_sj.probes(): per k the order is time, space, null, skew."""
+    return 4 * (k - 1) + {"time": 0, "space": 1, "null": 2, "skew": 3}[kind]
+
+
 def one(args):
     n_exp, m, seed, pts = args
     rng = np.random.default_rng(seed)
@@ -77,28 +98,33 @@ def main():
     a = ap.parse_args()
     t0 = time.time()
     pr, ref = reference()
-    pts = sorted({p for i, pq in enumerate(pr) if pq[2] != "null" for p in pq[:2]})
-    idx = {p: k for k, p in enumerate(pts)}
     L = ["Q.1c-dev2: Re Q (= Im K_F) of one sprinkled order at fixed probe pairs against the continuum SJ state of the "
          f"same diamond (development, decides nothing); {a.reps} realisations per point; d = (Re Q - W_SJ)/(1/4)"]
     rows = []
     with Pool(a.workers) as P:
         for m in (float(x) for x in a.m.split(",")):
             for n_exp in (int(x) for x in a.n.split(",")):
-                jobs = [(n_exp, m, a.seed + 1000003 * int(m) + 7919 * n_exp + r, pts) for r in range(a.reps)]
-                res = P.map(one, jobs)
                 L.append(f"  m {m:g} N_exp {n_exp} (m^2/rho {m*m/(2*n_exp):.4f}):")
-                for i, pq in enumerate(pr):
-                    if pq[2] == "null":
-                        continue
-                    key = f"{idx[pq[0]]},{idx[pq[1]]}"
+                got = {}
+                for g, grp in enumerate(GROUPS):
+                    ids = [pair_index(kd, k) for kd, k in grp]
+                    pts = sorted({p for i in ids for p in pr[i][:2]})
+                    assert len({p[0] for p in pts}) == len(pts) and len({p[1] for p in pts}) == len(pts)
+                    idx = {p: j for j, p in enumerate(pts)}
+                    jobs = [(n_exp, m, a.seed + 1000003 * int(m) + 7919 * n_exp + 104729 * g + r, pts)
+                            for r in range(a.reps)]
+                    res = P.map(one, jobs)
+                    for i in ids:
+                        key = f"{idx[pr[i][0]]},{idx[pr[i][1]]}"
+                        got[i] = [r["ReQ"][key] for r in res]
+                for i in sorted(got):
                     r0 = ref[(m, i)]
-                    dd = np.array([(r["ReQ"][key] - r0["W"]) / 0.25 for r in res])
+                    dd = np.array([(x - r0["W"]) / 0.25 for x in got[i]])
                     rows.append({"m": m, "n_exp": n_exp, "pair": i, "kind": r0["kind"], "ms": r0["ms"],
                                  "W": r0["W"], "unc": r0["unc"] / 0.25, "d": dd.tolist()})
                     L.append(f"    {r0['kind']:5s} m s {r0['ms']:6.3f}: d {dd.mean():+.4f} +- {dd.std(ddof=1)/math.sqrt(dd.size):.4f}"
                              f" (sd one order {dd.std(ddof=1):.4f}; reference unc {r0['unc']/0.25:.4f}; W_SJ/(1/4) {r0['W']/0.25:+.4f})")
-                print("\n".join(L[-1 - sum(1 for p in pr if p[2] != 'null'):]), flush=True)
+                print("\n".join(L[-1 - len(got):]), flush=True)
     L.append(f"total {time.time() - t0:.0f} s")
     out = Path(__file__).resolve().parent / "out"
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
