@@ -1,0 +1,21 @@
+Q.1c-sj: the continuum SJ state of the diamond by Nystrom quadrature (development); Re W_SJ at probe pairs, its convergence in n, and (Re W_SJ - Im G_F(Minkowski)) / (1/4)
+  m 10:
+    time  m s  0.200: Re W_SJ n=+1.602140 / -0.035075  Im W +3.02e-01 (Delta/2 +2.48e-01)  Minkowski +0.270276  offset/(1/4) -1.2214
+    space m s  0.200: Re W_SJ n=+1.646164 / -0.106723  Im W -3.57e-15 (Delta/2 +0.00e+00)  Minkowski +0.278951  offset/(1/4) -1.5427
+    time  m s  0.141: Re W_SJ n=+1.630242 / -0.032168  Im W +2.85e-01 (Delta/2 +2.49e-01)  Minkowski +0.327319  offset/(1/4) -1.4379
+    time  m s  0.400: Re W_SJ n=+1.400855 / -0.199080  Im W +3.66e-01 (Delta/2 +2.40e-01)  Minkowski +0.151506  offset/(1/4) -1.4023
+    space m s  0.400: Re W_SJ n=+1.574410 / -0.300255  Im W -7.50e-15 (Delta/2 +0.00e+00)  Minkowski +0.177383  offset/(1/4) -1.9106
+    time  m s  0.283: Re W_SJ n=+1.511992 / -0.099180  Im W +3.35e-01 (Delta/2 +2.45e-01)  Minkowski +0.211916  offset/(1/4) -1.2444
+    time  m s  0.700: Re W_SJ n=-0.031683 / -0.167281  Im W +1.82e-01 (Delta/2 +2.20e-01)  Minkowski +0.047666  offset/(1/4) -0.8598
+    space m s  0.700: Re W_SJ n=+0.014293 / +0.022042  Im W -1.59e-14 (Delta/2 +0.00e+00)  Minkowski +0.105125  offset/(1/4) -0.3323
+    time  m s  0.495: Re W_SJ n=+0.645462 / -0.238511  Im W +2.66e-01 (Delta/2 +2.35e-01)  Minkowski +0.112986  offset/(1/4) -1.4060
+    time  m s  1.000: Re W_SJ n=+0.045612 / +0.040812  Im W +2.07e-01 (Delta/2 +1.91e-01)  Minkowski -0.022064  offset/(1/4) +0.2515
+    space m s  1.000: Re W_SJ n=+0.032212 / +0.032118  Im W -9.07e-15 (Delta/2 +0.00e+00)  Minkowski +0.067008  offset/(1/4) -0.1396
+    time  m s  0.707: Re W_SJ n=+0.529352 / -0.292496  Im W +3.10e-01 (Delta/2 +2.20e-01)  Minkowski +0.045715  offset/(1/4) -1.3528
+    time  m s  1.400: Re W_SJ n=-0.041376 / -0.236078  Im W +1.08e-01 (Delta/2 +1.42e-01)  Minkowski -0.084474  offset/(1/4) -0.6064
+    space m s  1.400: Re W_SJ n=+0.042889 / +0.008781  Im W -2.00e-13 (Delta/2 +0.00e+00)  Minkowski +0.038779  offset/(1/4) -0.1200
+    time  m s  0.990: Re W_SJ n=+0.032189 / -0.373585  Im W +1.54e-01 (Delta/2 +1.92e-01)  Minkowski -0.020090  offset/(1/4) -1.4140
+    time  m s  2.000: Re W_SJ n=-0.034174 / -0.100156  Im W +8.85e-02 (Delta/2 +5.60e-02)  Minkowski -0.127594  offset/(1/4) +0.1098
+    space m s  2.000: Re W_SJ n=+0.018117 / +0.062866  Im W -1.46e-13 (Delta/2 +0.00e+00)  Minkowski +0.018127  offset/(1/4) +0.1790
+    time  m s  1.414: Re W_SJ n=-0.181385 / -0.169988  Im W +1.57e-01 (Delta/2 +1.40e-01)  Minkowski -0.086159  offset/(1/4) -0.3353
+total 10 s
