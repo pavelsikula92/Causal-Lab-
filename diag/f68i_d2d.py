@@ -25,6 +25,11 @@ The needle A(c) at many c: the families of rays are integrated once (for the lar
 integral are then done per decade of c, each decade with its own window (phase_A uses one window for all q). Guide rays
 psi_ray +- GUIDE W(s) widen the window where the valley of Phi is flat (f68i_d2c revision 2.2).
 
+Revision 4 (28 Nov): N_GL 10 -> 60. Just past a fold caustic (one real ray), the pair of rays not yet born leaves a
+shoulder in Phi; A(c) changes fast where c crosses it and no ray gap marks the point, so 10 Gauss nodes per s panel
+gave J errors up to 7 % at the nodes next to the fold (eps 20, gamma 6.25e-5, row sig_hat -1.75: row -0.0069 of the
+prediction; N_GL 30 / 60: +0.00248 / +0.00241). The cost is ~25 % per row.
+
 Revision 3 (27 Nov): MAX_WIDEN 5 -> 12 (rows 14, 15 of the eps 12 patch at gamma 6.25e-5 refused the window near the
 cusp); a failing patch row is reported in the record instead of stopping the batch. Phases that passed under
 revision 2 take the same path (the widening loop stops at the same step), so their values are unchanged.
@@ -55,7 +60,7 @@ PATCH_CODE = None             # set below (code md5 of this file and its imports
 C_CUSP = -8.8324e-3          # f68i_d2b_nf_20261125T101212Z (section 6.2)
 S_CAP = 16.0                 # s range of the J integral; s^2 A must exceed V_END there
 V_END = 45.0                 # g0(45) ~ 1e-15
-N_GL = 10
+N_GL = 60                    # Gauss-Legendre nodes per s panel; revision 4: 10 -> 60 (the shoulder of an unborn ray pair)
 GUIDE = 3.0                  # guide rays psi +- GUIDE W for a refused window (f68i_d2c revision 2.2)
 NV_RAYS = 6400               # B.N_V for the ray search (as f68i_d2c revision 2: the three rays near a cusp)
 NPSI = 16001                 # points of the psi window per decade of c (EX uses 4001 for all q at once)
