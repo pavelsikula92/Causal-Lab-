@@ -136,3 +136,34 @@ keep it.
 3. **The quantum layer.** If the laboratory gets one (amplitudes over orders), the redundancy of records (how many
    disjoint sub-orders each carry the same fact) would be the measure of how classical a fact is. That would be the
    place to compare with quantum Darwinism.
+
+## H5. The substrate is the vacuum; its resistance is mass and polarisation (author, 28 Nov 2026)
+
+**Idea (the author).** The substrate of causal physics is the vacuum. At the most basic level of reality it is a
+"resistance" to causality, to light. At the subatomic level it is a resistance to electromagnetism.
+
+**What is known.**
+- **The vacuum as a medium.** Even classical electrodynamics gives empty space the properties of a medium: c = 1/√(ε₀μ₀),
+  and free space has an impedance of about 377 Ω.
+- **Polarisation of the vacuum.** In quantum electrodynamics the vacuum polarises around a charge (virtual pairs) and
+  screens it. The coupling therefore runs with the scale (α ≈ 1/137 at long distances, ≈ 1/128 near 90 GeV): a
+  resistance to electromagnetism that depends on the distance, a scaler in the sense of H3.
+- **Mass as a resistance per element (Q.1).** In the sum-over-chains propagator, every intermediate element of the
+  order carries the amplitude b = −m²/ρ. Without mass the signal passes the elements without resistance; with mass,
+  each step of the order turns the amplitude. Q.1 (PASSED, replicated) shows that one sprinkled order carries this
+  propagator.
+- **The vacuum from the order alone (Q.1c, in preparation).** The Sorkin–Johnston state is built only from the
+  retarded and advanced propagators of the order, with no external choice of vacuum. If one order carries it, the
+  substrate carries not only propagation but the ground state of the field: the substrate is the vacuum in an
+  operational sense.
+- **The first version of the theory (February 2026):** "histories with higher accumulated resistance carry lower
+  transition weight". The sum over chains is that statement with amplitudes instead of probabilities.
+
+**What would test it (step by step, the author: "testujme postupně").**
+1. **Q.1c.** Does one order carry the vacuum, the SJ state of the same region? (In preparation; the first step.)
+2. **Interference (A, Q.2) and the Born rule (Q.3).** These come first, so that the quantum instrument is complete.
+3. **Polarisation of the order's vacuum.**
+   - Put a source (a charge-like coupling, a defect) into the order and measure the change of the SJ state around it
+     as a function of the distance.
+   - Does an effective coupling run with the scale, as the screening of a charge does?
+   - The null model: the same source in the non-negative flow, which has no vacuum to polarise.
