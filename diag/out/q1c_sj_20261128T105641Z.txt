@@ -1,0 +1,53 @@
+Q.1c-sj: the continuum SJ state of the diamond (trapezoid quadrature of the exact kernel; development); Re W_SJ at probe node pairs for n = 24, 48, 96, Richardson limit (1/n), and (limit - Im G_F Minkowski) / (1/4)
+  m 5:
+    time  du 0.0833 dv +0.0833 m s  0.417: Re W_SJ +0.147833 / +0.151626 / +0.152704  -> limit +0.153782  Minkowski +0.144216  offset/(1/4) +0.0383
+    space du 0.0833 dv -0.0833 m s  0.417: Re W_SJ +0.174930 / +0.179072 / +0.180248  -> limit +0.181424  Minkowski +0.171730  offset/(1/4) +0.0388
+    null  du 0.0833 dv +0.0000 m s  0.000: Re W_SJ +0.320369 / +0.377361 / +0.433056  -> limit +0.488751  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.0833 dv +0.0417 m s  0.295: Re W_SJ +0.231817 / +0.209923 / +0.212504  -> limit +0.215084  Minkowski +0.204923  offset/(1/4) +0.0406
+    time  du 0.1667 dv +0.1667 m s  0.833: Re W_SJ +0.021424 / +0.022233 / +0.022445  -> limit +0.022658  Minkowski +0.013704  offset/(1/4) +0.0358
+    space du 0.1667 dv -0.1667 m s  0.833: Re W_SJ +0.093015 / +0.094183 / +0.094489  -> limit +0.094795  Minkowski +0.085547  offset/(1/4) +0.0370
+    null  du 0.1667 dv +0.0000 m s  0.000: Re W_SJ +0.267202 / +0.322785 / +0.378062  -> limit +0.433338  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.1667 dv +0.0833 m s  0.589: Re W_SJ +0.084950 / +0.087197 / +0.087824  -> limit +0.088451  Minkowski +0.080539  offset/(1/4) +0.0316
+    time  du 0.2500 dv +0.2500 m s  1.250: Re W_SJ -0.056065 / -0.055880 / -0.055825  -> limit -0.055769  Minkowski -0.064554  offset/(1/4) +0.0351
+    space du 0.2500 dv -0.2500 m s  1.250: Re W_SJ +0.055846 / +0.056366 / +0.056503  -> limit +0.056641  Minkowski +0.047365  offset/(1/4) +0.0371
+    null  du 0.2500 dv +0.0000 m s  0.000: Re W_SJ +0.235305 / +0.290616 / +0.345839  -> limit +0.401062  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.2500 dv +0.1250 m s  0.884: Re W_SJ +0.010032 / +0.007537 / +0.007764  -> limit +0.007992  Minkowski +0.002143  offset/(1/4) +0.0234
+    time  du 0.3333 dv +0.3333 m s  1.667: Re W_SJ -0.101891 / -0.101866 / -0.101857  -> limit -0.101847  Minkowski -0.110548  offset/(1/4) +0.0348
+    space du 0.3333 dv -0.3333 m s  1.667: Re W_SJ +0.036326 / +0.036621 / +0.036697  -> limit +0.036772  Minkowski +0.027476  offset/(1/4) +0.0372
+    null  du 0.3333 dv +0.0000 m s  0.000: Re W_SJ +0.212349 / +0.267731 / +0.322968  -> limit +0.378204  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.3333 dv +0.1667 m s  1.179: Re W_SJ -0.051159 / -0.050810 / -0.050718  -> limit -0.050626  Minkowski -0.053641  offset/(1/4) +0.0121
+  m 10:
+    time  du 0.0833 dv +0.0833 m s  0.833: Re W_SJ +0.014122 / +0.014483 / +0.014666  -> limit +0.014849  Minkowski +0.013704  offset/(1/4) +0.0046
+    space du 0.0833 dv -0.0833 m s  0.833: Re W_SJ +0.084267 / +0.085811 / +0.086334  -> limit +0.086856  Minkowski +0.085547  offset/(1/4) +0.0052
+    null  du 0.0833 dv +0.0000 m s  0.000: Re W_SJ +0.207266 / +0.260419 / +0.315176  -> limit +0.369933  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.0833 dv +0.0417 m s  0.589: Re W_SJ +0.100921 / +0.079176 / +0.080707  -> limit +0.082239  Minkowski +0.080539  offset/(1/4) +0.0068
+    time  du 0.1667 dv +0.1667 m s  1.667: Re W_SJ -0.108317 / -0.109211 / -0.109451  -> limit -0.109691  Minkowski -0.110548  offset/(1/4) +0.0034
+    space du 0.1667 dv -0.1667 m s  1.667: Re W_SJ +0.028275 / +0.028245 / +0.028244  -> limit +0.028243  Minkowski +0.027476  offset/(1/4) +0.0031
+    null  du 0.1667 dv +0.0000 m s  0.000: Re W_SJ +0.152409 / +0.205273 / +0.259963  -> limit +0.314653  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.1667 dv +0.0833 m s  1.179: Re W_SJ -0.052983 / -0.053457 / -0.053544  -> limit -0.053631  Minkowski -0.053641  offset/(1/4) +0.0000
+    time  du 0.2500 dv +0.2500 m s  2.500: Re W_SJ -0.123474 / -0.123488 / -0.123508  -> limit -0.123528  Minkowski -0.124518  offset/(1/4) +0.0040
+    space du 0.2500 dv -0.2500 m s  2.500: Re W_SJ +0.010241 / +0.010288 / +0.010301  -> limit +0.010314  Minkowski +0.009923  offset/(1/4) +0.0016
+    null  du 0.2500 dv +0.0000 m s  0.000: Re W_SJ +0.118665 / +0.172425 / +0.227444  -> limit +0.282463  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.2500 dv +0.1250 m s  1.768: Re W_SJ -0.115932 / -0.117957 / -0.118145  -> limit -0.118333  Minkowski -0.117477  offset/(1/4) -0.0034
+    time  du 0.3333 dv +0.3333 m s  3.333: Re W_SJ -0.064262 / -0.063312 / -0.063086  -> limit -0.062860  Minkowski -0.064020  offset/(1/4) +0.0046
+    space du 0.3333 dv -0.3333 m s  3.333: Re W_SJ +0.003537 / +0.003549 / +0.003555  -> limit +0.003561  Minkowski +0.003771  offset/(1/4) -0.0008
+    null  du 0.3333 dv +0.0000 m s  0.000: Re W_SJ +0.093871 / +0.148751 / +0.204199  -> limit +0.259647  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.3333 dv +0.1667 m s  2.357: Re W_SJ -0.129355 / -0.129628 / -0.129709  -> limit -0.129790  Minkowski -0.128574  offset/(1/4) -0.0049
+  m 20:
+    time  du 0.0833 dv +0.0833 m s  1.667: Re W_SJ -0.116261 / -0.112147 / -0.111238  -> limit -0.110329  Minkowski -0.110548  offset/(1/4) +0.0009
+    space du 0.0833 dv -0.0833 m s  1.667: Re W_SJ +0.023520 / +0.026280 / +0.026889  -> limit +0.027497  Minkowski +0.027476  offset/(1/4) +0.0001
+    null  du 0.0833 dv +0.0000 m s  0.000: Re W_SJ +0.139628 / +0.162425 / +0.206826  -> limit +0.251227  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.0833 dv +0.0417 m s  1.179: Re W_SJ -0.037131 / -0.051362 / -0.053075  -> limit -0.054787  Minkowski -0.053641  offset/(1/4) -0.0046
+    time  du 0.1667 dv +0.1667 m s  3.333: Re W_SJ -0.076037 / -0.067711 / -0.065296  -> limit -0.062882  Minkowski -0.064020  offset/(1/4) +0.0046
+    space du 0.1667 dv -0.1667 m s  3.333: Re W_SJ -0.006363 / +0.000753 / +0.002737  -> limit +0.004720  Minkowski +0.003771  offset/(1/4) +0.0038
+    null  du 0.1667 dv +0.0000 m s  0.000: Re W_SJ +0.079264 / +0.104898 / +0.150736  -> limit +0.196575  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.1667 dv +0.0833 m s  2.357: Re W_SJ -0.136891 / -0.130498 / -0.128787  -> limit -0.127077  Minkowski -0.128574  offset/(1/4) +0.0060
+    time  du 0.2500 dv +0.2500 m s  5.000: Re W_SJ +0.079098 / +0.077446 / +0.076896  -> limit +0.076346  Minkowski +0.077129  offset/(1/4) -0.0031
+    space du 0.2500 dv -0.2500 m s  5.000: Re W_SJ -0.003587 / -0.000664 / +0.000111  -> limit +0.000886  Minkowski +0.000587  offset/(1/4) +0.0012
+    null  du 0.2500 dv +0.0000 m s  0.000: Re W_SJ +0.049248 / +0.071958 / +0.117794  -> limit +0.163629  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.2500 dv +0.1250 m s  3.536: Re W_SJ -0.049147 / -0.044992 / -0.043735  -> limit -0.042477  Minkowski -0.043601  offset/(1/4) +0.0045
+    time  du 0.3333 dv +0.3333 m s  6.667: Re W_SJ +0.033570 / +0.031668 / +0.031202  -> limit +0.030737  Minkowski +0.031491  offset/(1/4) -0.0030
+    space du 0.3333 dv -0.3333 m s  6.667: Re W_SJ -0.000077 / +0.000088 / +0.000130  -> limit +0.000172  Minkowski +0.000097  offset/(1/4) +0.0003
+    null  du 0.3333 dv +0.0000 m s  0.000: Re W_SJ +0.024972 / +0.046794 / +0.093614  -> limit +0.140435  Minkowski +nan  offset/(1/4) +nan
+    time  du 0.3333 dv +0.1667 m s  4.714: Re W_SJ +0.061183 / +0.062414 / +0.062804  -> limit +0.063194  Minkowski +0.063198  offset/(1/4) -0.0000
+total 507 s
