@@ -58,7 +58,9 @@ def one(args):
     k = k_row(u, v, a, b)
     tau = np.sqrt(u[:-1] * v[:-1])
     inner = k[:-1] - 0.5 * j0(m * tau)
-    return {"K_y": float(k[-1]), "n": int(n), "inner_rms": float(np.sqrt(np.mean(inner ** 2))) if n else 0.0}
+    far = tau >= 0.5                           # M2: the error within one order, over its elements with tau_xz >= 1/2
+    return {"K_y": float(k[-1]), "n": int(n), "inner_rms": float(np.sqrt(np.mean(inner ** 2))) if n else 0.0,
+            "E_r": float(np.sqrt(np.mean(inner[far] ** 2))) if far.any() else 0.0}
 
 
 def main():
@@ -81,24 +83,42 @@ def main():
                 K = np.array([r["K_y"] for r in res]); ex = 0.5 * float(j0(m))
                 mean, sd = float(K.mean()), float(K.std(ddof=1))
                 inner = float(np.mean([r["inner_rms"] for r in res]))
+                E = np.array([r["E_r"] for r in res]); e = np.abs(K - ex)
                 rows.append({"m": m, "n_exp": n_exp, "mean": mean, "se": sd / math.sqrt(a.reps), "sd": sd,
-                             "exact": ex, "inner_rms": inner})
+                             "exact": ex, "inner_rms": inner, "K": K.tolist(), "E_r": E.tolist(),
+                             "med_abs_e": float(np.median(e)), "q90_abs_e": float(np.quantile(e, 0.9)),
+                             "med_E": float(np.median(E))})
                 L.append(f"  m {m:g}  N_exp {n_exp:6d}  (m^2/rho {m*m/(2*n_exp):.4f}): K(x,y) mean {mean:+.5f} +- "
                          f"{sd/math.sqrt(a.reps):.5f}  exact {ex:+.5f}  (mean-exact)/SE {(mean-ex)/(sd/math.sqrt(a.reps)):+.2f}"
-                         f" | single-sprinkling sd {sd:.5f}  rms over the interior {inner:.5f}")
+                         f" | sd {sd:.5f}  median |e| {rows[-1]['med_abs_e']:.5f}  q90 |e| {rows[-1]['q90_abs_e']:.5f}  median E_r {rows[-1]['med_E']:.5f}")
+    rng = np.random.default_rng(a.seed + 99)
     for m in sorted({r["m"] for r in rows}):
-        sel = [r for r in rows if r["m"] == m]
-        if len(sel) > 1:
-            ex = [math.log(sel[i + 1]["sd"] / sel[i]["sd"]) / math.log(sel[i + 1]["n_exp"] / sel[i]["n_exp"])
-                  for i in range(len(sel) - 1)]
-            L.append(f"  m {m:g}: d ln sd / d ln N = " + ", ".join(f"{e:+.3f}" for e in ex))
+        sel = [r for r in rows if r["m"] == m and r["n_exp"] >= 1000]
+        if len(sel) < 2:
+            continue
+        x = np.log([r["n_exp"] for r in sel])
+        stat = {"sd": lambda K, E, ex: np.std(K, ddof=1), "q90 |e|": lambda K, E, ex: np.quantile(np.abs(K - ex), 0.9),
+                "median E_r": lambda K, E, ex: np.median(E)}
+        for name, f in stat.items():
+            y = np.log([f(np.array(r["K"]), np.array(r["E_r"]), r["exact"]) for r in sel])
+            s0 = np.polyfit(x, y, 1)[0]
+            bs = []
+            for _ in range(1000):
+                yb = []
+                for r in sel:
+                    i = rng.integers(0, len(r["K"]), len(r["K"]))
+                    yb.append(math.log(f(np.array(r["K"])[i], np.array(r["E_r"])[i], r["exact"])))
+                bs.append(np.polyfit(x, yb, 1)[0])
+            lo, md, hi = np.quantile(bs, [0.025, 0.5, 0.975])
+            L.append(f"  m {m:g}: slope of ln {name} over N_exp >= 1000: {s0:+.3f} (bootstrap median {md:+.3f}, "
+                     f"95 % [{lo:+.3f}, {hi:+.3f}])")
     L.append(f"total {time.time() - t0:.0f} s")
     print("\n".join(L))
     out = Path(__file__).resolve().parent / "out"
     out.mkdir(exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     (out / f"{NAME}_{stamp}.txt").write_text("\n".join(L) + "\n")
-    (out / f"{NAME}_{stamp}.json").write_text(json.dumps({"args": vars(a), "rows": rows}, indent=1))
+    (out / f"{NAME}_{stamp}.json").write_text(json.dumps({"args": vars(a), "rows": rows}))
     print(f"saved diag/out/{NAME}_{stamp}.json")
 
 
