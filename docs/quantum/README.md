@@ -117,7 +117,9 @@ written. That is a change of the core, so records from then on carry a new core 
 
 **The first line of tests (docs/quantum/planned_tests.csv).**
 1. Q.1: the sum-over-chains propagator (Johnston) on a 1+1 sprinkling: exact mean, self-averaging of one order.
-2. Q.1b: the same in 3+1 with the link matrix; the mean is not exact there.
+2. Q.1c: the vacuum of one order: the imaginary part of Johnston's Feynman propagator (the SJ state) against the
+   continuum SJ state of the same diamond (the author chose it before interference, 28 Nov).
+2b. Q.1b: the same in 3+1 with the link matrix; the mean is not exact there.
 3. Q.2: two-route interference on a sprinkled order, against the non-negative null.
 4. Q.3: the quantum measure of a two-route experiment (Sorkin's decoherence functional): the second-order interference
    term I₂ and the vanishing of the third-order term I₃ (the Born-rule test).
